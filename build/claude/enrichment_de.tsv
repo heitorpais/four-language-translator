@@ -1,0 +1,1016 @@
+# Written by Claude (origin "claude"). One line per German lemma:  lemma|CEFR level|Swiss German form
+# The Swiss German forms follow Zurich usage and Dieth-style spelling; the dialect has no fixed spelling,
+# so every form is stored with "approximate": true. An empty third column means: no form given.
+sein|A1|sii
+ihr|A1|ir
+haben|A1|haa
+du|A1|du
+sie|A1|si
+ich|A1|ich, i
+es|A1|es, s
+er|A1|er
+wir|A1|mir
+nicht|A1|nöd
+der|A1|de
+die|A1|d
+ein|A1|en, e
+das|A1|s, das
+und|A1|und
+was|A1|was
+zu|A1|zue, z
+werden|A1|werde
+in|A1|i, in
+mit|A1|mit
+können|A1|chöne
+ja|A1|ja
+auf|A1|uf
+wie|A1|wie
+dass|A2|dass
+wollen|A1|wele
+für|A1|für
+so|A1|so
+von|A1|vo
+gut|A1|guet
+hier|A1|da
+sagen|A1|säge
+wissen|A1|wüsse
+gehen|A1|gaa
+kommen|A1|choo
+wenn|A1|wänn
+an|A1|a
+all|A1|all
+machen|A1|mache
+müssen|A1|müese
+Sie|A1|Si
+sehen|A1|gsee
+kein|A1|kei
+noch|A1|na
+nur|A1|nu, nume
+da|A1|da
+tun|A1|tue
+sich|A2|sich
+sollen|A1|söle
+im|A1|im
+viel|A1|vil
+um|A1|um
+auch|A1|au
+geben|A1|gää
+als|A1|als
+jetzt|A1|jetzt
+aus|A1|us
+dann|A1|dänn
+doch|A2|doch
+dies|A1|das
+nach|A1|naa, nach
+sehr|A1|sehr, mega
+oder|A1|oder
+bei|A1|bi
+hören|A1|ghööre, lose
+denken|A1|tänke
+lassen|A2|laa
+nichts|A1|nüüt
+man|A1|me
+wo|A1|wo
+oh|A1|oh
+aber|A1|aber
+also|A1|also
+nein|A1|nei
+immer|A1|immer
+vor|A1|vor
+wer|A1|wer
+über|A1|über
+ganz|A1|ganz
+warum|A1|warum, wieso
+dieser|A1|dä
+Mann|A1|de Maa
+finden|A1|finde
+glauben|A1|glaube
+denn|A1|dänn
+unser|A1|öise
+schon|A1|scho
+zum|A1|zum
+vielleicht|A1|vilicht
+mögen|A1|möge
+brauchen|A1|bruuche
+okay|A1|okay
+nehmen|A1|nää
+wirklich|A2|würkli
+nie|A1|nie
+bitten|A2|bitte
+einfach|A1|eifach
+Frau|A1|d Frau
+bringen|A1|bringe
+Zeit|A1|d Ziit
+malen|A2|maale
+halten|A2|hebe, halte
+Tag|A1|de Taag
+warten|A1|warte
+verstehen|A1|verstaa
+bleiben|A1|bliibe
+Freund|A1|de Fründ
+jemand|A1|öpper
+kennen|A1|käne
+mal|A1|mal
+stehen|A1|staa
+danken|A1|tanke
+reden|A2|rede
+Gott|A2|de Gott
+Jahr|A1|s Jaar
+etwas|A1|öppis
+nun|A2|jetzt
+helfen|A1|hälfe
+jeder|A1|jede
+bis|A1|bis
+na|A2|
+Haus|A1|s Huus
+Leben|A1|s Läbe
+groß|A1|gross
+klein|A1|chlii
+zurück|A1|zrugg
+meinen|A2|meine
+fahren|A1|faare
+Kind|A1|s Chind
+weit|A1|wiit
+neu|A1|nöi
+Mal|A1|s Maal
+genau|A2|genau
+Vater|A1|de Vatter
+sprechen|A1|rede
+wieder|A1|wider
+klar|A2|klar
+schön|A1|schöön
+zur|A1|zur
+dürfen|A1|töörfe
+los|A2|los
+wohl|B1|wool
+lang|A1|lang
+leid|A2|leid
+richtig|A1|richtig
+ab|A2|ab
+durch|A2|dur
+gerade|A2|grad
+Weg|A1|de Wäg
+mein|A1|min
+heißen|A1|heisse
+Geld|A1|s Gält
+Mutter|A1|d Mueter
+versuchen|A2|probiere
+ob|A2|öb
+leben|A1|läbe
+alt|A1|alt
+raus|A2|use
+Mensch|A1|de Mänsch
+töten|B1|tööte
+wieso|A2|wieso
+Sir|B1|
+erzählen|A2|verzele
+ander|A1|ander
+Junge|A1|de Bueb
+passieren|A2|passiere
+bekommen|A1|überchoo
+selbst|A2|sälber
+ohne|A1|ooni
+her|A2|här
+sterben|A2|stärbe
+holen|A1|hole
+lieben|A1|liebe
+Nacht|A1|d Nacht
+fragen|A1|fröge
+arbeiten|A1|schaffe
+danke|A1|merci, tanke
+natürlich|A1|natürli
+beide|A1|beidi
+suchen|A1|sueche
+hallo|A1|hoi, sali
+sicher|A2|sicher
+letzte|A1|letscht
+Sache|A1|d Sach
+Name|A1|de Name
+spät|A1|spaat
+dort|A1|deet
+weil|A1|wil
+seit|A1|sit
+weg|A2|wäg
+niemand|A1|niemert
+morgen|A1|morn
+Ding|A2|s Ding
+Problem|A1|s Problem
+vergessen|A1|vergässe
+Ordnung|A2|d Ornig
+vom|A1|vom
+laufen|A1|laufe, ränne
+sichern|B2|sichere
+gegen|A2|gäge
+spielen|A1|spile
+essen|A1|ässe
+treffen|A1|träffe
+zeigen|A1|zeige
+tot|A2|tod
+Mädchen|A1|s Meitli
+erste|A1|erscht
+gern|A1|gärn
+wegen|A2|wäge
+heute|A1|hüt
+schnell|A1|schnäll
+hin|A2|hii
+rein|A2|ine
+drei|A1|drüü
+fühlen|A2|füele
+unter|A1|under
+Welt|A1|d Wält
+Angst|A2|d Angscht
+verlieren|A2|verlüüre
+dein|A1|din
+schaffen|A2|schaffe
+liegen|A1|ligge
+zusammen|A1|zäme
+Frage|A1|d Fraag
+echt|A2|ächt
+rufen|A2|rüefe
+Hand|A1|d Hand
+Fall|B1|de Fall
+erst|A2|erscht
+stellen|A2|stele
+Moment|A1|de Momänt
+Arbeit|A1|d Arbet
+Leute|A1|d Lüüt
+Abend|A1|de Aabig
+genug|A2|gnueg
+Familie|A1|d Familie
+früh|A1|früe
+zwei|A1|zwei
+Sohn|A1|de Soon
+setzen|A2|setze
+sonst|A2|susch
+Bruder|A1|de Brüeder
+Musik|A1|d Musig
+lieb|A1|lieb
+Herr|A1|de Herr
+verdammt|B2|verdammt
+Scheiß|B2|de Schiiss
+wenig|A1|wenig
+erinnern|A2|erinnere
+ach|A2|ach
+stimmen|A2|stimme
+sofort|A1|sofort, grad
+nennen|A2|näne
+bevor|A2|bevor
+entschuldigen|A1|entschuldige
+einmal|A1|eimal
+schlafen|A1|schlaafe
+kriegen|A2|überchoo
+nah|A2|nööch
+Stunde|A1|d Stund
+Woche|A1|d Wuche
+wann|A1|wänn
+toll|A2|toll, lässig
+Dank|A2|de Dank
+schlecht|A1|schlächt
+Minute|A1|d Minuute
+leiden|B1|liide
+allein|A1|elei
+beim|A1|bim
+Sorge|B1|d Sorg
+fallen|A2|gheie, fale
+einzig|B1|einzig
+wichtig|A1|wichtig
+Hilfe|A1|d Hilf
+gerne|A1|gärn
+Lady|B2|
+bitte|A1|bitte
+hoch|A1|höch
+ziehen|A2|zie
+verschwinden|B1|verschwinde
+bald|A1|bald
+Baby|A1|s Bébé
+schicken|A1|schicke
+hoffen|A2|hoffe
+trinken|A1|trinke
+egal|A2|gliich, egal
+Kopf|A1|de Chopf
+schreiben|A1|schriibe
+Stadt|A1|d Stadt
+jung|A1|jung
+eigentlich|A2|eigetli
+gleich|A1|gliich
+Auto|A1|s Auto
+kurz|A1|churz
+schauen|A1|luege
+Uhr|A1|d Uur
+nett|A1|nätt
+Wort|A1|s Wort
+Typ|A2|de Typ
+Tür|A1|d Türe
+verlassen|B1|verlaa
+Grund|A2|de Grund
+schlimm|A2|schlimm
+Glück|A1|s Glück
+hi|A1|hoi
+falsch|A1|falsch
+Ende|A1|s Änd
+retten|B1|rette
+fangen|B1|faa
+bedeuten|A2|bedüüte
+hinter|A1|hinder
+bisschen|A1|bitzeli
+nee|A2|nei
+tragen|A2|trääge
+lernen|A1|leere
+sitzen|A1|sitze
+Schwester|A1|d Schwöschter
+Kerl|B1|de Kärli
+kümmern|B1|kümmere
+Idee|A1|d Idee
+Waffe|B1|d Waffe
+Tod|A2|de Tood
+Monat|A1|de Monet
+Ahnung|A2|d Aanig
+draußen|A1|dusse
+legen|A2|legge
+voll|A2|vole
+gar|A2|gar
+anrufen|A1|aalüüte
+reichen|B1|lange
+ruhig|A1|ruig
+paar|A1|paar
+Polizei|A1|d Polizei
+scheinen|A2|schiine
+lesen|A1|läse
+kaufen|A1|chaufe, poschte
+Tochter|A1|d Tochter
+eigen|A2|eige
+wahr|A2|waar
+runter|A2|abe
+Krieg|A2|de Chrieg
+Geschichte|A2|d Gschicht
+vorbei|A2|verbii
+Land|A1|s Land
+Job|A1|de Job
+ziemlich|A2|zimli
+dran|B1|draa
+Herz|A2|s Härz
+Spiel|A1|s Spiil
+zehn|A1|zää
+schlagen|B1|schlaa
+Schatz|A2|de Schatz
+drin|A2|dine
+umbringen|B2|umbringe
+sogar|A2|sogar
+Teufel|B1|de Tüüfel
+gefallen|A1|gfale
+je|B1|je
+euer|A1|öie
+Mama|A1|s Mami
+Art|A2|d Art
+woher|A1|wohär
+überhaupt|B1|überhaupt
+Seite|A1|d Siite
+Morgen|A1|de Morge
+Ort|A1|de Ort
+welcher|A1|wele
+passen|A2|passe
+freuen|A1|fröie
+stecken|B1|stecke
+gewinnen|A2|güne
+oben|A1|obe
+endlich|A2|äntli
+he|A2|
+gestern|A1|geschter
+erwarten|B1|erwarte
+etwa|A2|öppe
+Wasser|A1|s Wasser
+Ruhe|A2|d Rue
+anders|A2|anderscht
+Chance|A2|d Chance
+bezahlen|A1|zale
+versprechen|A2|verspräche
+wünschen|A2|wünsche
+Wahrheit|B1|d Waret
+fünf|A1|föif
+schwer|A1|schwäär
+glücklich|A1|glücklich
+heiraten|A1|hüraate
+deshalb|A2|drum
+erklären|A2|erchlääre
+Zimmer|A1|s Zimmer
+weiß|A1|wiiss
+bereiten|B1|
+zwischen|A1|zwüsched
+klingen|B1|töne
+ändern|A2|ändere
+Spaß|A1|de Spass, de Plausch
+Bett|A1|s Bett
+lachen|A1|lache
+Plan|A2|de Plaan
+niemals|A2|nie
+hassen|A2|hasse
+möglich|A2|mögli
+oft|A1|oft, vil
+Gesicht|A1|s Gsicht
+eben|B1|äbe
+vier|A1|vier
+stark|A2|starch
+manchmal|A1|mängisch
+wohnen|A1|wone
+benutzen|A2|bruuche
+Schule|A1|d Schuel
+Gefühl|A2|s Gfüül
+verkaufen|A1|verchaufe
+Film|A1|de Film
+Hund|A1|de Hund
+solch|B1|sone
+anfangen|A1|aafange
+vertrauen|B1|vertroue
+Recht|B1|s Rächt
+bloß|B1|bloss, nume
+Entschuldigung|A1|d Entschuldigung, äxgüsi
+Buch|A1|s Buech
+ehrlich|A2|eerlich
+ernst|B1|ernscht
+aufhören|A2|uufhööre
+funktionieren|A2|funktioniere
+schießen|B1|schüüsse
+verrückt|A2|verruckt
+Teil|A2|de Teil
+Nachricht|A2|d Nachricht
+Platz|A1|de Platz
+äh|A1|äh
+kämpfen|B1|kämpfe
+dauern|A1|duure
+Miss|B2|
+hart|A2|hert
+geschehen|B1|passiere
+verdienen|A2|verdiene
+unten|A1|une
+derselbe|B1|de gliich
+gehören|A2|ghööre
+beginnen|A1|aafange
+Auge|A1|s Aug
+leicht|A1|liecht
+Schiff|A1|s Schiff
+Blut|A2|s Bluet
+fertig|A1|fertig
+ah|A1|ah
+langsam|A1|langsam
+Rede|B1|d Reed
+Nummer|A1|d Nummere
+schließen|A1|zuemache
+falls|B1|falls
+passiert|B1|passiert
+drauf|B1|druf
+Papa|A1|de Papi
+werfen|A2|rüere, wärfe
+fliegen|A1|flüüge
+irgendwie|A2|irgendwie
+Liebe|A1|d Liebi
+König|A2|de König
+außer|A2|usser
+kaum|B1|chuum
+Arsch|B2|s Füdli
+irgendwas|A2|irgendöppis
+entscheiden|A2|entscheide
+sondern|A2|sondern
+erfahren|B1|erfaare
+Telefon|A1|s Telifon
+wahrscheinlich|A2|waarschiinli
+folgen|A2|folge
+wohin|A1|wohii
+hübsch|A2|hübsch
+süß|A1|süess
+Straße|A1|d Straass
+singen|A1|singe
+erledigen|B1|erledige
+Zeug|B1|s Züüg
+öffnen|A1|uufmache
+frei|A1|frei
+zuerst|A1|zerscht
+dumm|A2|tumm
+brechen|B1|bräche
+bestimmen|B1|bestimme
+froh|A2|froo
+Fehler|A1|de Fääler
+Dollar|A1|de Dollar
+Dame|A2|d Dame
+nahe|A2|nööch
+Büro|A1|s Büro
+Menge|A2|d Mängi
+hierher|A2|dahere
+bewegen|A2|bewege
+vorstellen|A1|vorstele
+direkt|A2|diräkt
+willkommen|A1|willkomme
+schreien|A2|schreie, brüele
+lügen|A2|lüüge
+Arzt|A1|de Tokter
+schätzen|B1|schetze
+verstecken|A2|verstecke
+Kaffee|A1|de Kafi
+sechs|A1|sächs
+bereits|A2|scho
+behalten|B1|bhalte
+großartig|B1|grossartig
+Stück|A1|s Stuck
+erkennen|B1|erchäne
+Bild|A1|s Bild
+hängen|A2|hange
+besorgen|B1|bsorge
+perfekt|A2|perfekt
+Geschäft|A1|s Gschäft
+cool|A2|cool
+Foto|A1|s Foti
+Idiot|B1|de Idiot
+Million|A1|d Million
+Hölle|B1|d Höll
+Sekunde|A1|d Sekunde
+steigen|A2|stiige
+trotzdem|A2|trotzdäm
+Kumpel|B1|de Koleg
+fehlen|A2|fääle
+total|A2|total
+völlig|B1|völlig
+tja|B1|tja
+Mord|B1|de Mord
+halb|A1|halb
+einig|B1|einig
+überall|A2|überall
+drehen|A2|trüle
+Himmel|A2|de Himmel
+interessieren|A2|interessiere
+vermissen|A2|vermisse
+wiedersehen|A2|widergsee
+Feuer|A2|s Füür
+Pass|A1|de Pass
+Licht|A1|s Liecht
+aussehen|A1|uusgsee
+deswegen|A2|drum
+melden|B1|mälde
+normal|A2|normal
+wow|A2|wow
+Party|A1|d Party
+Traum|A2|de Traum
+alleine|A1|elei
+zerstören|B1|zerstööre, kaputtmache
+Luft|A2|d Luft
+recht|A2|rächt
+Opfer|B1|s Opfer
+herausfinden|B1|usefinde
+Person|A1|d Person
+alles|A1|alles
+ansehen|A2|aaluege
+verletzen|B1|verletze
+bauen|A2|boue
+Ei|A1|s Ei
+Erde|A2|d Ärde
+Fuß|A1|de Fuess
+schrecklich|A2|schrecklich
+zwar|B1|zwar
+Sinn|B1|de Sinn
+Pferd|A1|s Ross
+Wahl|B1|d Waal
+stehlen|B1|stäle
+Onkel|A1|de Unkle
+gefährlich|A2|gföörlich
+Witz|A2|de Witz
+Stelle|A2|d Stell
+komisch|A2|komisch
+lustig|A1|luschtig
+übernehmen|B1|übernää
+sorgen|B1|sorge
+Beweis|B1|de Bewiis
+Arm|A1|de Arm
+erschießen|B2|erschüüsse
+erreichen|A2|erreiche
+stören|A2|stööre
+schwarz|A1|schwarz
+Körper|A2|de Körper
+damals|A2|doozmal
+tief|A2|tüüf
+beruhigen|B1|berueige
+persönlich|A2|persönlich
+Haar|A1|s Haar
+nachdem|B1|nachdäm
+unglaublich|B1|unglaublich
+Rest|A2|de Räscht
+irgendwo|A2|irgendwo
+genauso|A2|genauso
+blöd|A2|blööd
+wunderbar|A2|wunderbar
+Zukunft|A2|d Zuekunft
+Krankenhaus|A1|s Spital
+treten|B1|trätte
+Gefängnis|B1|s Gfängnis
+hm|A1|hm
+gucken|A2|luege
+arm|A2|arm
+Antwort|A1|d Antwort
+Versuch|B1|de Versuech
+bereit|A2|parat
+drüben|B1|däne
+Schlüssel|A1|de Schlüssel
+zweite|A1|zweit
+Wohnung|A1|d Wonig
+Kraft|B1|d Chraft
+merken|A2|merke
+Bein|A1|s Bei
+Anwalt|B1|de Aawalt
+seltsam|B1|komisch
+stimmt|A1|stimmt
+verzeihen|B1|verzeie
+Team|A2|s Team
+zahlen|A1|zale
+Entscheidung|B1|d Entscheidig
+vorsichtig|A2|vorsichtig
+tanzen|A1|tanze
+Mist|B1|de Mischt
+fürchten|B1|fürchte
+bestimmt|A2|bestimmt
+außerdem|A2|usserdäm
+offen|A2|offe
+teilen|A2|teile
+kalt|A1|chalt
+Befehl|B1|de Befääl
+laut|A1|luut
+sobald|B1|sobald
+nochmal|A1|namal
+Boss|B1|de Boss
+Geist|B1|de Geischt
+beeilen|A2|pressiere
+Sex|B1|de Sex
+besuchen|A1|bsueche
+Karte|A1|d Charte
+wenigstens|B1|wenigschtens
+Klasse|A1|d Klass
+Handy|A1|s Händi, s Natel
+Tier|A1|s Tier
+lauten|B2|
+schwören|B2|schwööre
+Ziel|A2|s Ziil
+Boden|A2|de Bode
+Mund|A1|s Muul
+Regel|A2|d Regle
+besonders|A2|bsunders
+Ehre|B2|d Eer
+irgendein|A2|irgenden
+Schluss|A2|de Schluss
+Brief|A1|de Brief
+hauen|B2|haue
+schulden|B1|schulde
+Kampf|B1|de Kampf
+General|B2|de General
+Sicherheit|B1|d Sicherheit
+scheißen|C1|schiisse
+bestehen|B1|bestaa
+Arschloch|C1|s Arschloch
+absolut|B1|absolut
+interessant|A1|interessant
+Stimme|A2|d Stimm
+Agent|B2|de Agänt
+beschützen|B1|beschütze
+verbringen|A2|verbringe
+Meinung|A2|d Meinig
+überlegen|A2|überlegge
+erwischen|B2|verwütsche
+weinen|A2|briegge
+rot|A1|root
+Geheimnis|B1|s Gheimnis
+unmöglich|A2|unmögli
+beweisen|B1|bewiise
+nachdenken|A2|naatänke
+Wissen|B1|s Wüsse
+wachen|B2|wache
+kennenlernen|A1|käneleere
+aufhalten|B1|uufhalte
+Hotel|A1|s Hotel
+plötzlich|A2|plötzli
+ähm|A1|ähm
+Tisch|A1|de Tisch
+Wagen|A2|de Wage
+Kollege|A1|de Koleg
+Verzeihung|A2|äxgüsi
+mitnehmen|A1|mitnää
+stolz|B1|stolz
+aufs|A2|ufs
+traurig|A1|truurig
+Punkt|A2|de Punkt
+vorher|A2|vorhär
+verraten|B1|verraate
+Liebling|A2|de Liebling, de Schatz
+wunderschön|A2|wunderschöön
+verändern|B1|verändere
+Soldat|B1|de Soldat
+zählen|A2|zele
+Geschenk|A1|s Gschänk
+hinten|A1|hine
+schnappen|B2|schnappe
+tatsächlich|B1|tatsächli
+fest|A2|fescht
+super|A1|super
+heraus|B1|use
+spüren|B1|gspüüre
+riechen|A2|schmöcke
+überleben|B1|überläbe
+Beziehung|B1|d Beziig
+Partner|A2|de Partner
+fassen|B1|fasse
+erhalten|B1|überchoo
+küssen|A2|küsse
+Meister|B1|de Meischter
+Seele|B1|d Seel
+Schmerz|A2|de Schmerz
+Nähe|A2|d Nööchi
+ständig|B1|ständig
+sieben|A1|sibe
+Schuld|B1|d Schuld
+Schulden|B1|d Schulde
+beenden|A2|beände
+Polizist|A1|de Polizischt
+jemals|B1|jemals
+Leid|B1|s Leid
+Raum|A2|de Ruum
+Präsident|A2|de Presidänt
+bellen|B1|bäle
+Bewegung|B1|d Bewegig
+springen|A2|gumpe
+neben|A1|näbed
+Gedanke|B1|de Gedanke
+ha|A2|
+Gefahr|B1|d Gfaar
+Rolle|B1|d Role
+verfolgen|B1|verfolge
+Feind|B1|de Find
+Finger|A2|de Finger
+obwohl|A2|obwool
+überprüfen|B1|überprüefe
+Zug|A1|de Zuug
+Augenblick|B1|de Augeblick
+verpassen|A2|verpasse
+Fenster|A1|s Fänschter
+Information|A2|d Information
+unterwegs|A2|underwägs
+Kleid|A1|s Chleid
+wirken|B1|würke
+Tasche|A1|d Täsche
+verlangen|B1|verlange
+zurückkommen|A2|zruggchoo
+krank|A1|chrank
+Spur|B1|d Spuur
+kosten|A1|choschte
+Macht|B1|d Macht
+einige|A2|es paar
+antun|B2|aatue
+Möglichkeit|A2|d Möglichkeit
+Paar|A2|s Paar
+ewig|B1|ewig
+schützen|B1|schütze
+Ärger|B1|de Ärger
+behandeln|B1|behandle
+fällen|B2|fele
+Anruf|A2|s Telifon
+antworten|A1|antworte
+Prinzessin|A2|d Prinzässin
+schaden|B1|schade
+Eltern|A1|d Eltere
+erlauben|A2|erlaube
+verhaften|B2|verhafte
+wählen|A2|wääle
+Hochzeit|A2|d Hochziit
+fast|A2|fascht
+achten|B1|achte
+fort|B1|furt
+Anfang|A2|de Aafang
+manch|B1|mänge
+Verbindung|B1|d Verbindig
+Vogel|A1|de Vogel
+treiben|B1|triibe
+Bescheid|B1|de Bscheid
+Bier|A1|s Bier
+überraschen|B1|überrasche
+Monsieur|C1|
+bieten|B1|büüte
+Unfall|A2|de Unfall
+schwierig|A2|schwirig
+zwingen|B1|zwinge
+während|A2|wäred
+überzeugen|B1|überzüüge
+gemeinsam|A2|gmeinsam
+herkommen|A2|härechoo
+irren|B1|ire
+träumen|A2|träume
+annehmen|B1|aanää
+Preis|A1|de Priis
+furchtbar|B1|furchtbar
+fürs|A2|fürs
+Patient|A2|de Paziänt
+Gesetz|B1|s Gsetz
+Klappe|B2|d Chlappe
+Boot|A2|s Boot
+herum|B1|ume
+entfernen|B1|entfärne
+einladen|A1|iilade
+weiter|A2|wiiter
+lösen|B1|lööse
+raten|B1|raate
+Tat|B1|d Taat
+Weile|B1|es Wiili
+Schwein|A2|d Sou, s Schwii
+hoffentlich|A2|hoffentli
+Wein|A1|de Wii
+Schuh|A1|de Schue
+Schritt|A2|de Schritt
+planen|A2|plaane
+Alter|A2|s Alter
+Firma|A1|d Firma
+Doktor|A2|de Tokter
+sauber|A2|suuber
+irgendwann|A2|irgendwänn
+jagen|B1|jage
+jedenfalls|B1|uf jede Fall
+aufgeben|B1|uufgää
+rüber|B1|übere
+Gast|A1|de Gascht
+irgendetwas|A2|irgendöppis
+Richtung|A2|d Richtig
+bisher|B1|bis jetzt
+rennen|A2|ränne, seckle
+führen|B1|füere
+greifen|B1|griife
+leisten|B1|leischte
+unbedingt|B1|unbedingt
+Ohr|A1|s Oor
+packen|A2|packe
+Lauf|B1|de Lauf
+Kontrolle|B1|d Kontrole
+handeln|B1|handle
+Kamera|A1|d Kamera
+nen|B2|en
+drücken|A2|trucke
+Beispiel|A1|s Biispiil
+Schuss|B1|de Schuss
+Kontakt|A2|de Kontakt
+Überraschung|A2|d Überraschig
+Bank|A1|d Bank
+beobachten|B1|beobachte
+Volk|B1|s Volk
+Flugzeug|A1|s Flugzüüg
+dahin|B1|deethii
+Liste|A2|d Lischte
+Lage|B1|d Laag
+verlieben|A2|verliebe
+Vorsicht|A2|d Vorsicht
+zumindest|B1|zmindescht
+atmen|B1|schnuufe
+aufpassen|A2|uufpasse
+Planet|B1|de Planet
+Leutnant|C1|de Lütnant
+Held|B1|de Held
+enden|A2|ände
+sowieso|B1|sowieso
+Gericht|B1|s Gricht
+schenken|A2|schänke
+Tante|A1|d Tante
+feuern|B2|füüre
+landen|B1|lande
+Hunger|A1|de Hunger
+schneiden|A2|schniide
+Baum|A1|de Baum
+Bericht|B1|de Bricht
+Erinnerung|B1|d Erinnerig
+kaputt|A1|kaputt
+trauen|B1|troue
+Scheiße|B2|de Schiissdräck
+Geburtstag|A1|de Geburtstaag
+Hoffnung|B1|d Hoffnig
+Wald|A1|de Wald
+reißen|B1|riisse
+warnen|B1|warne
+Kirche|A1|d Chile
+genießen|B1|gnüüsse
+angreifen|B1|aagriife
+dunkel|A1|tunkel
+besitzen|B1|bsitze
+Essen|A1|s Ässe
+Wunder|B1|s Wunder
+ergeben|B2|ergää
+Strom|A2|de Strom
+Bulle|B2|de Bulle
+Major|C1|de Major
+witzig|A2|witzig
+Chef|A1|de Scheff
+Mörder|B1|de Mörder
+leise|A1|liislig
+erwähnen|B2|erwääne
+Majestät|C1|d Majestät
+Blick|B1|de Blick
+Glas|A1|s Glaas
+vermutlich|B1|vermuetli
+offensichtlich|B2|offesichtlich
+klappen|B1|chlappe
+Computer|A1|de Computer
+trennen|B1|tränne
+ans|A2|as
+Colonel|C1|
+Nase|A1|d Nase
+Madame|B2|d Madame
+aufnehmen|B1|uufnää
+Lüge|B1|d Lüüg
+erleben|B1|erläbe
+Rücken|A2|de Rugge
+stöhnen|C1|stööne
+mitbringen|A1|mitbringe
+Regierung|B1|d Regierig
+Show|B1|d Show
+Sonne|A1|d Sune
+Aufgabe|A1|d Uufgaab
+menschlich|B1|mänschlich
+ausgehen|A2|uusgaa
+Band|B1|s Band
+feiern|A1|fiire
+Schlag|B1|de Schlaag
+diesmal|B1|das Maal
+vorbereiten|A2|vorbereite
+Güte|B2|d Güeti
+ankommen|A1|aachoo
+klingeln|A2|lüüte
+Rat|B1|de Raat
+tschüs|A1|tschüss, adie
+nämlich|B1|nämli
+probieren|A2|probiere
+Berg|A1|de Bärg
+nicken|B2|nicke
+Gebäude|A2|s Geböide
+Gold|A2|s Gold
+Laden|A2|de Lade
+Weihnachten|A1|d Wienacht
+Situation|A2|d Situation
+wachsen|B1|wachse
+naja|A2|naja
+hinterlassen|B1|hinderlaa
+Besuch|A2|de Bsuech
+Armee|B1|d Armee
+Zeitung|A1|d Ziitig
+Sheriff|C1|
+links|A1|linggs
+Wert|B1|de Wärt
+Drink|B2|de Drink
+Stein|A2|de Stei
+klug|A2|gschiid
+abholen|A1|abhole
+Lehrer|A1|de Leerer
+Maschine|A2|d Maschine
+gewiss|B2|gwüss
+Schicksal|B2|s Schicksal
+Wand|A2|d Wand
+ran|B2|
+nervös|A2|närvös
+befinden|B1|befinde
+Lust|A2|d Luscht
+übrigens|B1|übrigens
+Flasche|A1|d Fläsche
+wild|B1|wild
+übrig|B1|übrig
+Schlaf|A2|de Schlaaf
+kochen|A1|choche
+fressen|B1|frässe
+schmecken|A1|schmöcke
+Gespräch|A2|s Gspräch
+bestellen|A1|bstele
+Fisch|A1|de Fisch
+Lied|A1|s Lied
+Haut|A2|d Huut
+vergeben|B1|vergää
+gegenüber|A2|vis-à-vis
+Hose|A1|d Hose
+böse|A2|böös
+Tee|A1|de Tee
+dritte|A1|dritt
+indem|B1|
+weder|B1|weder
+irgendwelche|B1|irgendweli
+Bar|A2|d Bar
+Gesellschaft|B1|d Gsellschaft
+Vergangenheit|B1|d Vergangeheit
+miteinander|A2|mitenand
+still|A2|still
+Hals|A2|de Hals
+entweder|A2|entweder
+schuldig|B1|schuldig
+abhauen|B2|abhaue
+Leiche|B2|d Liich
+Gruppe|A2|d Gruppe
+stoppen|A2|stoppe
+kapieren|B2|tschegge
+Frühstück|A1|de Zmorge
+Fahrrad|A1|s Velo
+Bus|A1|de Bus
+Farbe|A1|d Farb
+neunzig|A1|nüünzg
+Natel|B1|s Natel
+Morgenessen|A2|de Zmorge
+Velo|A1|s Velo
+Blume|A1|d Blueme
+Freude|A2|d Fröid
+Mädel|B1|s Meitli
+geheim|B1|gheim
+Loch|A2|s Loch
+Königin|A2|d Königin
+verbinden|B1|verbinde

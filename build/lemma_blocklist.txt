@@ -1,0 +1,11 @@
+# Lemmas removed from the frequency ranking by hand (one per line). Reasons:
+# (1) wrong lemma: a frequent form was credited to a rare homograph (hat -> haten, aber -> abern)
+# (2) inflected pronoun/article form that has its own Wiktionary page (mir, dessen); the base pronoun is kept
+# (3) proper names and capitalised duplicates (Du, Ihr, Nein)
+einen abern abher neinen schonen wiederaufbauen losen Börsenmantel Quadratsekunde Würstel heuen weilen zween beiten weißen lass Männin paaren garen Urethan Xanthin Aug wahren rechen wär währen rechten verrücken frank letzen tollen schnellen fasen fasten Wage zeihen schweren wehen bös Elter etwer schönen gleichen fertigen verdammen langen Leut
+dessen einer meiner deiner keiner mir uns welche jedes anderer
+Du Ihr Nein Hallo Ja Ach Los Halt Lieber Gut Henry Paris Mark mom Mom Dad Daddy
+freien Reis Esse Don Doktorin abend
+Leich
+# (4) owner's decision, 10 Nov 2026: foreign titles and forms of address that are frequent only because the list is built from film subtitles
+Sir Lady Miss Madame Monsieur Colonel Sheriff Mister Mrs Señor Mademoiselle Madam Captain Sergeant Lord Mylord Milady Ma'am Signore Mister Detective Lieutenant

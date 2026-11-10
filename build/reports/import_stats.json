@@ -1,0 +1,209 @@
+{
+ "german_entries": 1095,
+ "linked_entries": {
+  "en": 2484,
+  "fr": 2008,
+  "pt": 1413
+ },
+ "translation_routes_per_sense": {
+  "en": {
+   "de-edition": 2300,
+   "en-edition": 44,
+   "via-en": 0,
+   "via-en-unchecked": 0,
+   "none": 0
+  },
+  "fr": {
+   "de-edition": 1830,
+   "fr-edition": 238,
+   "via-en": 10,
+   "via-en-unchecked": 15,
+   "none": 251
+  },
+  "pt": {
+   "de-edition": 1389,
+   "pt-edition": 272,
+   "via-en": 48,
+   "via-en-unchecked": 37,
+   "none": 598
+  }
+ },
+ "target_words_not_in_wiktionary_data": {
+  "en": 225,
+  "fr": 249,
+  "pt": 186
+ },
+ "skipped": [
+  [
+   "das",
+   "conj",
+   "no senses with translations"
+  ],
+  [
+   "am",
+   "contraction",
+   "no senses with translations"
+  ],
+  [
+   "am",
+   "particle",
+   "no senses with translations"
+  ],
+  [
+   "halb",
+   "adv",
+   "no senses with translations"
+  ],
+  [
+   "Luft",
+   "noun",
+   "no senses with translations"
+  ],
+  [
+   "Mist",
+   "intj",
+   "no senses with translations"
+  ],
+  [
+   "ne",
+   "article",
+   "no senses with translations"
+  ],
+  [
+   "ne",
+   "intj",
+   "no senses with translations"
+  ],
+  [
+   "Rolle",
+   "noun",
+   "no senses with translations"
+  ],
+  [
+   "Rolle",
+   "noun",
+   "no senses with translations"
+  ],
+  [
+   "Bus",
+   "noun",
+   "no senses with translations"
+  ]
+ ],
+ "edition_disagreements": [
+  [
+   "de:stehen:verb",
+   "aux",
+   "haben",
+   "haben/sein"
+  ],
+  [
+   "de:laufen:verb",
+   "aux",
+   "sein/haben",
+   "sein"
+  ],
+  [
+   "de:liegen:verb",
+   "aux",
+   "haben",
+   "haben/sein"
+  ],
+  [
+   "de:setzen:verb",
+   "aux",
+   "haben",
+   "haben/sein"
+  ],
+  [
+   "de:sitzen:verb",
+   "aux",
+   "haben",
+   "haben/sein"
+  ],
+  [
+   "de:folgen:verb",
+   "aux",
+   "sein/haben",
+   "sein"
+  ],
+  [
+   "de:bewegen:verb",
+   "past tense",
+   "bewegte",
+   "bewog"
+  ],
+  [
+   "de:hängen:verb",
+   "aux",
+   "haben",
+   "haben/sein"
+  ],
+  [
+   "de:hängen:verb",
+   "past tense",
+   "hängte",
+   "hing"
+  ],
+  [
+   "de:tanzen:verb",
+   "aux",
+   "haben",
+   "haben/sein"
+  ],
+  [
+   "de:beeilen:verb",
+   "aux",
+   "haben",
+   "haben/sein"
+  ],
+  [
+   "de:wachen:verb",
+   "aux",
+   "haben",
+   "sein"
+  ],
+  [
+   "de:schnappen:verb",
+   "aux",
+   "sein/haben",
+   "haben"
+  ],
+  [
+   "de:verhaften:verb",
+   "aux",
+   "haben/sein",
+   "haben"
+  ],
+  [
+   "de:rennen:verb",
+   "aux",
+   "sein",
+   "haben/sein"
+  ],
+  [
+   "de:landen:verb",
+   "aux",
+   "sein",
+   "haben/sein"
+  ],
+  [
+   "de:reißen:verb",
+   "aux",
+   "haben",
+   "haben/sein"
+  ],
+  [
+   "de:Bar:noun",
+   "plural",
+   "Bars",
+   "Bar"
+  ],
+  [
+   "de:abhauen:verb",
+   "past tense",
+   "hieb ab",
+   "haute ab"
+  ]
+ ]
+}

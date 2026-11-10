@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Four-Language Translator</title>
+<link rel="stylesheet" href="fonts.css">
+<style>
+/* Layout idea: four dictionary columns side by side. Each column is a flag, a slot, then a printed-dictionary entry with a thumb-index tab. */
+:root{
+  --paper:#eef1f4; --surface:#ffffff; --ink:#131a24; --muted:#5a6675; --rule:#d5dbe3;
+  --accent:#3438a8; --accent-soft:#e4e6fa;
+  --regular:#157a3e; --irregular:#c4201c;
+  --mark:#fff0a8;
+  --display:"Newsreader", "Iowan Old Style", Georgia, serif;
+  --body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0f1318; --surface:#181d25; --ink:#e6eaf0; --muted:#98a3b3; --rule:#2c3440;
+    --accent:#a3a8ff; --accent-soft:#252a52;
+    --regular:#5fd08c; --irregular:#ff7b72; --mark:#5a4a00;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0f1318; --surface:#181d25; --ink:#e6eaf0; --muted:#98a3b3; --rule:#2c3440;
+  --accent:#a3a8ff; --accent-soft:#252a52;
+  --regular:#5fd08c; --irregular:#ff7b72; --mark:#5a4a00;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5}
+.wrap{max-width:1360px;margin:0 auto;padding:28px 20px 48px;display:flex;flex-direction:column;gap:20px}
+header{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+h1{font-family:var(--display);font-weight:700;font-size:30px;line-height:1.1;margin:0 6px 0 0;letter-spacing:-.01em;text-wrap:balance}
+header p{margin:0;color:var(--muted);flex:1 1 320px;max-width:65ch}
+.btn{border:1px solid var(--rule);background:var(--surface);color:var(--ink);border-radius:8px;padding:7px 14px;font:500 14px var(--body);cursor:pointer}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn:focus-visible,.more:focus-visible,.say:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.btn[aria-expanded="true"]{background:var(--accent-soft);border-color:var(--accent)}
+.btn[disabled]{opacity:.5;cursor:default}
+
+/* panels */
+.panel{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:16px 18px}
+.panel[hidden]{display:none}
+.panel h2{margin:0 0 12px;font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+#settings .sets{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px 26px}
+.set{display:flex;flex-direction:column;gap:4px}
+.set label{font-weight:500}
+.hint{color:var(--muted);font-size:13px}
+.set.check{flex-direction:row;align-items:flex-start;gap:9px}
+.set.check input{margin-top:4px;accent-color:var(--accent);width:16px;height:16px}
+select,.text{font:400 14px var(--body);color:var(--ink);background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:6px 8px;max-width:260px}
+#library{display:flex;flex-direction:column;gap:12px}
+#library[hidden]{display:none}
+#library h2{margin:0}
+.row{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+#lib-list{display:flex;flex-wrap:wrap;gap:6px;max-height:240px;overflow-y:auto}
+
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;align-items:start}
+@media (max-width:1100px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.grid{grid-template-columns:minmax(0,1fr)}}
+
+/* slots */
+.slot{display:flex;flex-direction:column;gap:8px;position:relative}
+.slot-head{display:flex;align-items:center;flex-wrap:wrap;gap:6px 10px}
+.flag{height:30px;width:45px;border-radius:3px;display:block;box-shadow:0 0 0 1px var(--rule);flex:none}
+.flag.mini{height:12px;width:18px;border-radius:2px;display:inline-block;vertical-align:-1px;margin-right:5px}
+.lang-name{font-weight:600}
+.slot-head select{padding:3px 6px;font-size:13px}
+.count{text-align:right;margin-top:-4px;color:var(--muted);font:400 11.5px var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.field{display:flex;background:var(--surface);border:1.5px solid var(--rule);border-radius:8px;overflow:hidden}
+.field:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.field input{flex:1;min-width:0;border:0;background:transparent;color:var(--ink);font:500 17px var(--display);padding:10px 12px;outline:none}
+.field input::placeholder{color:var(--muted);font-style:italic;font-weight:400}
+.field button{border:0;background:var(--accent);color:var(--surface);font:600 13px var(--body);padding:0 14px;cursor:pointer}
+.field button:hover{filter:brightness(1.12)}
+.field button:focus-visible{outline:2px solid var(--ink);outline-offset:-3px}
+.sugg{position:absolute;left:0;right:0;top:calc(100% - 18px);margin:0;padding:4px;list-style:none;background:var(--surface);border:1px solid var(--rule);border-radius:8px;box-shadow:0 10px 28px rgba(10,20,40,.18);z-index:5;max-height:330px;overflow-y:auto}
+.sugg[hidden]{display:none}
+.sugg li{padding:6px 10px;border-radius:5px;cursor:pointer;font:500 16px var(--display)}
+.sugg li small{font:400 12px var(--body);color:var(--muted);margin-left:6px}
+.sugg li[aria-selected="true"],.sugg li:hover{background:var(--accent-soft)}
+
+/* status */
+.status{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;min-height:30px;color:var(--muted);font-size:14px}
+.status b{color:var(--ink);font-weight:600}
+.chip{border:1px solid var(--rule);background:var(--surface);color:var(--ink);border-radius:999px;padding:3px 11px;font:500 13px var(--body);cursor:pointer}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
+.chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.chip small{color:var(--muted);font:400 11px var(--mono);margin-left:5px}
+.err{color:var(--irregular);font-weight:500}
+#toast{color:var(--irregular);font-size:13.5px}
+#toast:empty{display:none}
+
+/* entry cards */
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:18px 18px 16px;position:relative;display:flex;flex-direction:column;gap:14px;min-height:220px}
+.tab{position:absolute;top:14px;right:-1px;background:var(--accent);color:var(--surface);font:500 11px var(--mono);letter-spacing:.08em;padding:3px 7px 3px 9px;border-radius:6px 0 0 6px}
+.hwrow{display:flex;align-items:center;gap:8px;padding-right:34px}
+.hw{font-family:var(--display);font-weight:700;font-size:28px;line-height:1.12;margin:0;overflow-wrap:anywhere}
+.hw .art{font-weight:500;font-style:italic;color:var(--muted)}
+.say{flex:none;width:28px;height:28px;border-radius:50%;border:1px solid var(--rule);background:var(--paper);color:var(--accent);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0}
+.say:hover{border-color:var(--accent);background:var(--accent-soft)}
+.say svg{width:15px;height:15px;fill:currentColor}
+.say.sm{width:22px;height:22px;vertical-align:-4px;margin-left:6px} .say.sm svg{width:12px;height:12px}
+.no-audio .say{display:none}
+.pron{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;margin-top:5px}
+.ipa{font:400 15px/1.3 "Charis SIL","Doulos SIL","Noto Sans",var(--body);color:var(--ink)}
+.pos{font:400 12.5px var(--mono);color:var(--muted)}
+.lvl{font:500 11.5px var(--mono);background:var(--accent-soft);color:var(--accent);border-radius:4px;padding:1px 7px;white-space:nowrap}
+dl{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:7px 12px;border-top:1px solid var(--rule);padding-top:12px}
+dt{font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.07em;color:var(--muted);padding-top:3px;white-space:nowrap}
+dd{margin:0;overflow-wrap:anywhere}
+dd .form{font:500 16.5px var(--display)}
+.sub{display:block;color:var(--muted);font-size:13px}
+.reg{font-weight:600;font-size:13.5px;white-space:nowrap}
+.reg::before{content:"";display:inline-block;width:7px;height:7px;margin-right:5px;vertical-align:1px}
+.reg.ok{color:var(--regular)} .reg.ok::before{background:var(--regular);border-radius:50%}
+.reg.bad{color:var(--irregular)} .reg.bad::before{background:var(--irregular);transform:rotate(45deg)}
+.gov,.vars{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px}
+.gov .pat{font:500 13.5px var(--mono);background:var(--accent-soft);color:var(--ink);border-radius:4px;padding:1px 6px;display:inline-block}
+.where{font-size:13px;color:var(--muted);display:block}
+.vex{display:block;font:400 15px/1.35 var(--display);padding-left:9px;border-left:2px solid var(--rule);margin-top:3px}
+.more{align-self:flex-start;border:0;background:none;color:var(--accent);font:500 13.5px var(--body);padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.forms{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px 18px;background:var(--paper);border-radius:8px;padding:12px}
+.forms h3,.extra h3{margin:0 0 3px;font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.forms table{border-collapse:collapse;width:100%}
+.forms th{font:400 13px var(--body);color:var(--muted);text-align:left;padding:1px 10px 1px 0;white-space:nowrap;vertical-align:baseline;width:1%}
+.forms td{font:500 15.5px var(--display);padding:1px 0;overflow-wrap:anywhere}
+.forms td.irr{color:var(--irregular)}
+.extra{background:var(--paper);border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:10px}
+.extra p{margin:0;font-size:14px}
+.extra ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:3px}
+.extra li b{font:500 15.5px var(--display)}
+.extra li span{color:var(--muted);font-size:13px}
+.ex{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:7px;border-top:1px solid var(--rule);padding-top:12px}
+.ex li{font:400 16.5px/1.4 var(--display);padding-left:12px;border-left:2px solid var(--rule)}
+mark{background:var(--mark);color:inherit;border-radius:2px;padding:0 2px;font-weight:500}
+.note{font-size:13.5px;color:var(--muted);margin:0}
+.note b{color:var(--ink);font-weight:600}
+.links{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px}
+.links a{color:var(--accent);text-underline-offset:2px}
+.card.empty{min-height:120px;justify-content:center}
+.chip[lang]{font-family:var(--display);font-size:14.5px}
+#sources p{margin:0 0 8px;max-width:95ch}
+#sources a{color:var(--accent)}
+#sources ul{margin:0 0 8px;padding-left:18px;max-width:95ch}
+.card.loading .sk{height:14px;border-radius:4px;background:linear-gradient(90deg,var(--rule),var(--accent-soft),var(--rule));background-size:200% 100%;animation:sh 1.3s linear infinite}
+.card.loading .sk.big{height:30px;width:60%}
+@keyframes sh{to{background-position:-200% 0}}
+@media (prefers-reduced-motion:reduce){.card.loading .sk{animation:none}}
+footer{color:var(--muted);font-size:13px;max-width:90ch}
+footer p{margin:0 0 6px}
+footer b{color:var(--ink);font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Four-Language Translator</h1>
+    <p>Type a word under any flag and press Enter. Pick the main variant of each language next to its flag.</p>
+    <button class="btn" id="lib-toggle" aria-expanded="false" aria-controls="library">Library</button>
+    <button class="btn" id="set-toggle" aria-expanded="false" aria-controls="settings">Settings</button>
+    <button class="btn" id="src-toggle" aria-expanded="false" aria-controls="sources">Sources &amp; licences</button>
+  </header>
+
+  <section id="library" class="panel" hidden aria-label="Library">
+    <h2>Library</h2>
+    <div id="lib-status" class="hint"></div>
+    <div class="row"><input class="text" id="lib-filter" type="search" placeholder="Filter saved words…" aria-label="Filter saved words"></div>
+    <div id="lib-list"></div>
+  </section>
+
+  <section id="settings" class="panel" hidden aria-label="Settings">
+    <h2>Settings</h2>
+    <div class="sets">
+    <div class="set check"><input type="checkbox" id="s-variants"><div><label for="s-variants">Show other regions</label><div class="hint">When another country spells or says the word differently, list its form with the flag.</div></div></div>
+    <div class="set check"><input type="checkbox" id="s-gsw"><div><label for="s-gsw">Show Swiss German</label><div class="hint">Adds the dialect word (Schwiizerdütsch) to the German card.</div></div></div>
+    <div class="set check"><input type="checkbox" id="s-slow"><div><label for="s-slow">Slow speech</label><div class="hint">Plays words and sentences more slowly. Audio uses the voices installed on this device.</div></div></div>
+    <div class="set"><label for="s-examples">Context sentences per word</label><select id="s-examples"><option value="2">2 sentences</option><option value="3">3 sentences</option><option value="4">4 sentences</option></select><div class="hint">How many of the stored sentences each card shows.</div></div>
+    <div class="set"><label for="s-level">Sentence difficulty</label><select id="s-level"><option value="easy">Easy (A1 to A2)</option><option value="medium">Medium (A2 to B1)</option><option value="advanced">Advanced (B2 to C1)</option></select><div class="hint">Easy shows the shortest stored sentences first, Advanced the longest.</div></div>
+    <div class="set"><label for="s-sugg">Suggestions shown while typing</label><select id="s-sugg"><option value="5">5</option><option value="8">8</option><option value="12">12</option><option value="20">20</option></select></div>
+    <div class="set check"><input type="checkbox" id="s-links"><div><label for="s-links">Show outside dictionary links</label><div class="hint">Off by default. Adds Wiktionary links for checking an entry.</div></div></div>
+    <div class="set"><label for="s-clear">Lookups kept in this browser</label><div><button class="btn" id="s-clear">Clear recent words and browser copies</button></div><div class="hint" id="s-clear-msg" aria-live="polite">Removes the recent words and the copy of the data saved on this device.</div></div>
+    </div>
+  </section>
+
+  <section id="sources" class="panel" hidden aria-label="Sources and licences">
+    <h2>Sources &amp; licences</h2>
+    <p><b>Wiktionary.</b> Headwords, pronunciation, gender, plurals, verb forms, translations, definitions, word origins, idioms and word families come from the English, German, French and Portuguese editions of <a href="https://www.wiktionary.org" target="_blank" rel="noopener">Wiktionary</a>, read from the extracts published by <a href="https://kaikki.org/dictionary/rawdata.html" target="_blank" rel="noopener">kaikki.org</a> (Wiktextract). Text by the Wiktionary contributors, licence <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>. The data was selected, merged and reformatted for this app and is shared under the same licence.</p>
+    <p><b>Tatoeba.</b> Example sentences and their translations come from <a href="https://tatoeba.org" target="_blank" rel="noopener">Tatoeba</a>, licence <a href="https://creativecommons.org/licenses/by/2.0/fr/" target="_blank" rel="noopener">CC BY 2.0 FR</a>. Rest the pointer on a sentence to see its Tatoeba number and author.</p>
+    <p><b>FrequencyWords.</b> Word frequencies come from <a href="https://github.com/hermitdave/FrequencyWords" target="_blank" rel="noopener">FrequencyWords</a> by Hermit Dave, counted from the OpenSubtitles 2018 corpus. Licence CC BY-SA 4.0 for the lists.</p>
+    <p><b>Written by AI.</b> The language level (A1 to C2), the Swiss German form, the common mistake and the notes were written by Claude (Anthropic), as were the entries carried over from the first version of this app. They are not checked against a printed dictionary. Swiss German has no fixed spelling, so those forms are approximate.</p>
+    <p><b>Fonts.</b> IBM Plex Sans and IBM Plex Mono (IBM Corp.) and Newsreader (The Newsreader Project Authors), licence <a href="https://openfontlicense.org" target="_blank" rel="noopener">SIL Open Font License 1.1</a>. They are part of the app, so it looks the same offline.</p>
+    <p><b>Built by rule.</b> Tables of forms and the regular or irregular labels are computed from the Wiktionary forms.</p>
+    <p class="hint">Under "More about this word" every card lists where its own content comes from. <span id="src-version"></span></p>
+  </section>
+
+  <div class="grid" id="slots"></div>
+  <div class="status" id="status" aria-live="polite"></div>
+  <div id="toast" aria-live="polite"></div>
+  <div class="grid" id="cards"></div>
+
+  <footer>
+    <p><b>Words.</b> <span id="lex-total">Loading the dictionary data…</span> They power the suggestions and the cards. Nothing is written or looked up on the internet when you search.</p>
+    <p><b>Entries.</b> Every entry ships with the app and is built from Wiktionary and Tatoeba; see Sources &amp; licences. <span id="offline-state"></span></p>
+  </footer>
+</div>
+<script src="forms.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

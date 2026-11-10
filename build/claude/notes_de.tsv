@@ -1,0 +1,103 @@
+# Written by Claude (origin "claude"). One line per German entry:  entry id|typical learner mistake|usage note
+# Either text column may be empty.
+de:sein:verb|The perfect is formed with sein itself: "ich bin gewesen", not "ich habe gewesen".|
+de:haben:verb|Age, hunger and thirst take haben in German, as in French and Portuguese: "ich habe Hunger" (but "ich bin 20 Jahre alt").|
+de:werden:verb|"Ich werde Lehrer" means "I am becoming a teacher". "Ich will Lehrer werden" means "I want to become one". Will is not the future.|Three jobs: to become, the future tense (werden + infinitive) and the passive (werden + Partizip II).
+de:können:verb|Use kennen for knowing people and places, können for abilities and wissen for facts: "Ich kann Deutsch", not "Ich weiß Deutsch".|
+de:wissen:verb|Wissen is for facts, kennen for people and places: "Ich kenne ihn", not "Ich weiß ihn".|
+de:kennen:verb|Kennen needs a direct object (person, place, thing). For a fact in a clause use wissen: "Ich weiß, wo er wohnt".|
+de:wollen:verb|"Ich will" means "I want", not "I will". The future is "ich werde".|"Ich möchte" is the polite form when asking for something.
+de:gehen:verb|Gehen is on foot. For a trip by car, train or bus use fahren, and for a flight use fliegen.|"Es geht" also means "it works" or "it is possible": "Das geht nicht."
+de:fahren:verb|The perfect takes sein when you travel ("ich bin gefahren") and haben when you drive something ("ich habe das Auto gefahren").|
+de:kommen:verb|"Ich komme aus Brasilien" gives your origin; "ich komme von der Arbeit" is where you are just coming from.|
+de:machen:verb|Many English "make" phrases use other verbs: a decision is "eine Entscheidung treffen", a mistake is "einen Fehler machen".|
+de:mögen:verb|For activities say "ich lese gern", not "ich mag lesen". Mögen is mainly for things and people.|
+de:helfen:verb|The person helped is in the dative: "Ich helfe dir", not "Ich helfe dich".|
+de:danken:verb|Danken takes the dative: "Ich danke Ihnen", not "Ich danke Sie".|
+de:gefallen:verb|The thing liked is the subject and the person is in the dative: "Das Buch gefällt mir", not "Ich gefalle das Buch".|
+de:warten:verb|"To wait for" is warten auf + Akkusativ: "Ich warte auf den Bus", not "für den Bus".|
+de:denken:verb|"To think of" is denken an + Akkusativ; an opinion is denken über or halten von.|
+de:erinnern:verb|It is reflexive with an + Akkusativ: "Ich erinnere mich an den Tag", not "Ich erinnere den Tag".|
+de:freuen:verb|"Sich freuen auf" looks forward to something coming; "sich freuen über" is about something that has happened.|
+de:interessieren:verb|"Ich interessiere mich für Musik" takes für + Akkusativ, not "in" or "an".|
+de:heißen:verb|"Ich heiße Ana" needs no "mich": not "Ich heiße mich Ana".|
+de:fragen:verb|"To ask for" is bitten um (a favour) or fragen nach (information), not "fragen für".|
+de:bitten:verb|Bitten um means to ask for something. Do not confuse the forms with bieten (to offer) or beten (to pray).|
+de:bekommen:verb|False friend: bekommen means "to get, to receive", not "to become" (werden).|
+de:verstehen:verb|The ver- prefix is never separated and the participle has no ge-: "ich habe verstanden".|
+de:anfangen:verb|The prefix an splits off: "Der Film fängt um acht an", not "anfängt um acht" in a main clause.|
+de:anrufen:verb|Anrufen takes the accusative with no preposition: "Ich rufe dich an", not "Ich rufe zu dir an".|
+de:treffen:verb|"I meet a friend" is "Ich treffe einen Freund" or "Ich treffe mich mit einem Freund". Do not mix the two patterns.|
+de:heiraten:verb|"She married him" is "Sie hat ihn geheiratet", without "mit". The state is "verheiratet sein mit".|
+de:studieren:verb||
+de:wohnen:verb|Wohnen is where your home is; leben is being alive or living in a wider sense. "Ich wohne in Zürich" is the normal way to give your address.|
+de:leben:verb|For your address use wohnen. Leben is broader: "Ich lebe seit einem Jahr in der Schweiz."|
+de:lernen:verb|Lernen is to learn or study for a test; studieren is only for university subjects.|
+de:stehen:verb||In Switzerland, Austria and southern Germany the perfect takes sein: "ich bin gestanden".
+de:sitzen:verb|Sitzen is the position (wo? + Dativ). The movement is sich setzen (wohin? + Akkusativ).|In Switzerland and Austria the perfect takes sein: "ich bin gesessen".
+de:liegen:verb|Liegen is the position (Dativ); legen is putting something down (Akkusativ).|In Switzerland and Austria the perfect takes sein: "ich bin gelegen".
+de:legen:verb|Legen is for laying things flat and stellen for standing them upright; English uses "put" for both.|
+de:stellen:verb|Stellen is for things that stand upright (a bottle, a chair). Use legen for flat things.|
+de:nicht:particle|Nouns with ein or without an article are negated with kein, not nicht: "Ich habe kein Auto".|
+de:kein:pronoun|Kein replaces "nicht ein": "Ich habe keine Zeit", not "Ich habe nicht Zeit".|
+de:wenn:conjunction|Wenn is "if" or a repeated "when". A single event in the past takes als, and a question takes wann.|
+de:als:conjunction|Als is "when" for one event in the past and "than" after a comparative: "größer als", not "größer wie".|
+de:wann:adverb|Wann only asks about time. "When I was young" is "Als ich jung war".|
+de:dass:conjunction|Dass sends the verb to the end: "Ich weiß, dass er kommt." Do not confuse it with the article or pronoun das.|
+de:weil:conjunction|The verb goes to the end after weil: "weil ich müde bin", not "weil ich bin müde".|
+de:denn:conjunction|Denn means "because" but keeps normal word order: "denn ich bin müde". After weil the verb goes to the end.|
+de:sondern:conjunction|After a negation "but" is sondern, not aber: "nicht rot, sondern blau".|
+de:ob:conjunction|"If" in an indirect question is ob, not wenn: "Ich weiß nicht, ob er kommt."|
+de:seit:preposition|With seit German uses the present tense for something still going on: "Ich wohne seit einem Jahr hier."|
+de:vor:preposition|"Ago" is vor + Dativ before the time: "vor zwei Jahren", not "zwei Jahre vor".|
+de:nach:preposition|Nach is used for cities and countries without an article and in "nach Hause". To a person it is zu, and into a building in.|
+de:zu:preposition|Zu always takes the dative: "zu dem Arzt" becomes "zum Arzt". "At home" is "zu Hause", "(to) home" is "nach Hause".|
+de:bei:preposition|Bei is "at someone's place" or "near", never "by" for transport: "mit dem Bus", not "bei dem Bus".|
+de:mit:preposition|Mit always takes the dative: "mit dem Zug", "mit mir".|
+de:in:preposition|Two-way preposition: accusative for movement into ("ins Kino"), dative for position ("im Kino").|
+de:auf:preposition|Two-way preposition: "auf den Tisch" (movement, accusative), "auf dem Tisch" (position, dative).|
+de:für:preposition|Für always takes the accusative: "für mich", "für den Lehrer". It does not express duration in the past: "I lived there for a year" is "Ich habe ein Jahr dort gewohnt".|
+de:wegen:preposition||Standard German uses the genitive ("wegen des Wetters"); in speech the dative is common.
+de:Sie:pronoun|The polite Sie always has a capital S and takes the verb in the plural: "Haben Sie Zeit?"|
+de:du:pronoun||Du is for family, friends, children and, in Switzerland, very often for colleagues too. Wait for the other person to offer it when unsure.
+de:man:pronoun|Man means "one, people in general" and is not "der Mann". It takes the verb in the 3rd person singular.|
+de:es:pronoun|"There is / there are" is "es gibt" + Akkusativ: "Es gibt einen Park."|
+de:gern:adverb|Gern goes with a verb to say you like doing something: "Ich schwimme gern", not "Ich gern schwimmen".|
+de:viel:adverb|Viel is "much, a lot"; sehr is "very". "Thank you very much" is "vielen Dank" or "danke sehr".|
+de:sehr:particle|Sehr goes with adjectives and adverbs ("sehr gut"). With a verb it means "a lot": "Ich liebe dich sehr."|
+de:schon:adverb|Do not confuse schon (already) with schön (beautiful).|
+de:erst:adverb|Erst means "only, not until" with times: "erst um acht" is later than expected. Nur is "only" for amounts.|
+de:eigentlich:adverb|False friend for Portuguese and French speakers: eigentlich is "actually, in fact", not "eventually".|
+de:bald:adverb|False friend: bald means "soon", not "bald" (which is kahl).|
+de:also:adverb|False friend: also means "so, therefore", not English "also" (which is auch).|
+de:fast:adverb|False friend: fast means "almost", not "fast" (which is schnell).|
+de:hier:adverb||Swiss German uses "da" for "here" and "deet" for "there".
+de:gut:adjective|The adverb "well" is also gut: "Sie singt gut", not "Sie singt wohl".|
+de:groß:adjective|In Switzerland it is written gross, because Swiss German spelling has no ß.|For people, groß means tall: "Er ist groß."
+de:spät:adjective|"I am late" is "Ich bin zu spät" or "Ich habe Verspätung", not "Ich bin spät".|
+de:kalt:adjective|"I am cold" is "Mir ist kalt". "Ich bin kalt" says you are a cold person.|
+de:Leute:noun|Leute is always plural and has no singular. One person is "eine Person" or "ein Mensch".|
+de:Eltern:noun|Eltern is always plural. One parent is "ein Elternteil".|
+de:Mädchen:noun|The gender is neuter because of the ending -chen: "das Mädchen", and the pronoun in formal grammar is "es".|
+de:Mann:noun|Mann is a male person or a husband. "One" or "people in general" is the pronoun man.|
+de:Freund:noun|"Mein Freund" usually means "my boyfriend". For a friend say "ein Freund von mir".|
+de:Uhr:noun|Uhr is the clock or the time on it ("um drei Uhr"). A period of sixty minutes is eine Stunde.|
+de:Stunde:noun|Stunde is a duration ("zwei Stunden"). Clock time uses Uhr ("zwei Uhr").|
+de:Mal:noun|"Three times" is "dreimal" or "drei Mal". Zeit is never used for counting occasions.|
+de:Zeit:noun|"Three times" is "dreimal", not "drei Zeiten". Zeit is time as a quantity: "Ich habe keine Zeit."|
+de:Handy:noun|False friend: English "handy" means useful. A Handy is a mobile phone.|
+de:Chef:noun|False friend: der Chef is the boss, not a cook (der Koch).|
+de:Art:noun|False friend: die Art is "kind, way, manner". Art in the English sense is die Kunst.|
+de:Rat:noun|False friend: der Rat is "advice" or "council". The animal is die Ratte.|
+de:Gift:noun||
+de:Geld:noun|Geld has no plural in everyday use: "viel Geld", not "viele Gelder".|
+de:Polizei:noun|Polizei is singular in German: "Die Polizei kommt", not "kommen".|
+de:Familie:noun|Familie is singular: "Meine Familie wohnt in Brasilien", not "wohnen".|
+de:Krankenhaus:noun||In Switzerland and Austria the usual word is "das Spital".
+de:Fahrrad:noun||In Switzerland the usual word is "das Velo".
+de:Frühstück:noun||In Switzerland people also say "das Morgenessen"; in dialect it is "de Zmorge".
+de:Junge:noun||In Switzerland, Austria and southern Germany the usual word is "der Bub".
+de:Straße:noun|In Switzerland it is written Strasse, because Swiss German spelling has no ß.|
+de:Morgen:noun|"Tomorrow morning" is "morgen früh", not "morgen Morgen".|
+de:morgen:adverb|Lower-case morgen is "tomorrow"; capital der Morgen is "the morning".|
+de:heute:adverb|"Tonight" is "heute Abend"; "heute Nacht" is the night itself.|

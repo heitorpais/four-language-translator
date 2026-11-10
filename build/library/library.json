@@ -1,0 +1,4788 @@
+[
+ {
+  "_source": "entries.js",
+  "pos": "noun",
+  "sense": "portable telephone",
+  "en": {
+   "word": "cell phone",
+   "ipa": "/ˈsɛl ˌfoʊn/",
+   "level": "A1",
+   "gender": null,
+   "plural": "cell phones",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "synonyms": [
+    "cellphone",
+    "smartphone"
+   ],
+   "collocations": [
+    {
+     "phrase": "cell phone number",
+     "meaning": "the number you call"
+    }
+   ],
+   "etymology": "Short for cellular phone; the network is divided into cells.",
+   "examples": [
+    "I forgot my *cell phone* at home.",
+    "*Cell phones* must be turned off."
+   ],
+   "regional": {
+    "gb": {
+     "word": "mobile phone",
+     "ipa": "/ˈməʊbaɪl ˌfəʊn/",
+     "plural": "mobile phones",
+     "examples": [
+      "I forgot my *mobile phone* at home.",
+      "*Mobile phones* must be switched off."
+     ],
+     "diff": "British English says \"mobile (phone)\"."
+    }
+   }
+  },
+  "de": {
+   "word": "Handy",
+   "ipa": "/ˈhɛndi/",
+   "level": "A1",
+   "article": "das",
+   "gender": "n",
+   "plural": "die Handys",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "synonyms": [
+    "Mobiltelefon",
+    "Smartphone"
+   ],
+   "collocations": [
+    {
+     "phrase": "am Handy sein",
+     "meaning": "to be on your phone"
+    }
+   ],
+   "etymology": "A German coinage that looks English. English does not use it.",
+   "examples": [
+    "Ich habe mein *Handy* zu Hause vergessen.",
+    "*Handys* müssen ausgeschaltet sein."
+   ],
+   "note": "False friend: English \"handy\" means useful.",
+   "gsw": "s Händi, s Natel",
+   "regional": {
+    "ch": {
+     "word": "Natel",
+     "ipa": "/ˈnaːtɛl/",
+     "article": "das",
+     "plural": "die Natel",
+     "pluralRule": "no change",
+     "examples": [
+      "Ich habe mein *Natel* zu Hause vergessen.",
+      "*Natel* müssen ausgeschaltet sein."
+     ],
+     "diff": "Switzerland also says \"Natel\" (a little dated now). \"Handy\" is common too."
+    }
+   }
+  },
+  "fr": {
+   "word": "portable",
+   "ipa": "/pɔʁ.tabl/",
+   "level": "A1",
+   "article": "le",
+   "gender": "m",
+   "plural": "les portables",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "synonyms": [
+    "mobile",
+    "téléphone portable"
+   ],
+   "collocations": [
+    {
+     "phrase": "numéro de portable",
+     "meaning": "cell phone number"
+    }
+   ],
+   "etymology": "From porter, to carry.",
+   "examples": [
+    "J'ai oublié mon *portable* à la maison.",
+    "Les *portables* doivent être éteints."
+   ],
+   "note": "Un portable can also be a laptop.",
+   "regional": {
+    "ca": {
+     "word": "cellulaire",
+     "ipa": "/sɛ.ly.lɛʁ/",
+     "plural": "les cellulaires",
+     "examples": [
+      "J'ai oublié mon *cellulaire* à la maison.",
+      "Les *cellulaires* doivent être éteints."
+     ],
+     "diff": "Québec says \"cellulaire\", or \"cell\" for short."
+    },
+    "be": {
+     "word": "GSM",
+     "ipa": "/ʒe.ɛs.ɛm/",
+     "plural": "les GSM",
+     "pluralRule": "no change",
+     "examples": [
+      "J'ai oublié mon *GSM* à la maison.",
+      "Les *GSM* doivent être éteints."
+     ],
+     "diff": "Belgium says \"GSM\"."
+    },
+    "ch": {
+     "word": "natel",
+     "ipa": "/na.tɛl/",
+     "plural": "les natels",
+     "examples": [
+      "J'ai oublié mon *natel* à la maison.",
+      "Les *natels* doivent être éteints."
+     ],
+     "diff": "Switzerland also says \"natel\"."
+    }
+   }
+  },
+  "pt": {
+   "word": "celular",
+   "ipa": "/se.luˈlaʁ/",
+   "level": "A1",
+   "article": "o",
+   "gender": "m",
+   "plural": "os celulares",
+   "pluralRule": "adds -es after r",
+   "pluralRegular": true,
+   "synonyms": [
+    "telefone",
+    "smartphone"
+   ],
+   "collocations": [
+    {
+     "phrase": "número de celular",
+     "meaning": "cell phone number"
+    }
+   ],
+   "etymology": "From célula, cell.",
+   "examples": [
+    "Esqueci meu *celular* em casa.",
+    "Os *celulares* devem ficar desligados."
+   ],
+   "regional": {
+    "pt": {
+     "word": "telemóvel",
+     "ipa": "/tɛ.lɛˈmɔ.vɛɫ/",
+     "plural": "os telemóveis",
+     "pluralRule": "-el → -eis",
+     "examples": [
+      "Esqueci-me do *telemóvel* em casa.",
+      "Os *telemóveis* devem estar desligados."
+     ],
+     "diff": "Portugal uses a different word."
+    }
+   }
+  }
+ },
+ {
+  "_source": "entries.js",
+  "pos": "noun",
+  "sense": "first meal of the day",
+  "en": {
+   "word": "breakfast",
+   "ipa": "/ˈbrɛkfəst/",
+   "level": "A1",
+   "gender": null,
+   "plural": "breakfasts",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "synonyms": [
+    "morning meal"
+   ],
+   "collocations": [
+    {
+     "phrase": "have breakfast",
+     "meaning": "to eat it"
+    }
+   ],
+   "etymology": "Break + fast: it breaks the night's fast.",
+   "examples": [
+    "*Breakfast* is at seven.",
+    "Hotel *breakfasts* are usually expensive."
+   ]
+  },
+  "de": {
+   "word": "Frühstück",
+   "ipa": "/ˈfʁyːˌʃtʏk/",
+   "level": "A1",
+   "article": "das",
+   "gender": "n",
+   "plural": "die Frühstücke",
+   "pluralRule": "adds -e",
+   "pluralRegular": true,
+   "synonyms": [
+    "Morgenmahlzeit"
+   ],
+   "collocations": [
+    {
+     "phrase": "zum Frühstück",
+     "meaning": "for breakfast"
+    }
+   ],
+   "etymology": "Früh (early) + Stück (piece, of bread).",
+   "examples": [
+    "Das *Frühstück* gibt es um sieben Uhr.",
+    "*Frühstücke* im Hotel sind meistens teuer."
+   ],
+   "gsw": "de Zmorge",
+   "regional": {
+    "ch": {
+     "word": "Morgenessen",
+     "ipa": "/ˈmɔʁɡn̩ˌʔɛsn̩/",
+     "article": "das",
+     "plural": "die Morgenessen",
+     "pluralRule": "no change",
+     "examples": [
+      "Das *Morgenessen* gibt es um sieben Uhr.",
+      "*Morgenessen* im Hotel sind meistens teuer."
+     ],
+     "diff": "Switzerland also says \"Morgenessen\". \"Frühstück\" is used too."
+    }
+   }
+  },
+  "fr": {
+   "word": "petit-déjeuner",
+   "ipa": "/pə.ti.de.ʒœ.ne/",
+   "level": "A1",
+   "article": "le",
+   "gender": "m",
+   "plural": "les petits-déjeuners",
+   "pluralRule": "both parts add -s",
+   "pluralRegular": true,
+   "synonyms": [
+    "petit-déj (informal)"
+   ],
+   "collocations": [
+    {
+     "phrase": "prendre le petit-déjeuner",
+     "meaning": "to have breakfast"
+    }
+   ],
+   "etymology": "Petit + déjeuner, from Latin disjejunare, to break the fast.",
+   "examples": [
+    "Le *petit-déjeuner* est à sept heures.",
+    "Les *petits-déjeuners* à l'hôtel sont souvent chers."
+   ],
+   "regional": {
+    "ca": {
+     "word": "déjeuner",
+     "ipa": "/de.ʒœ.ne/",
+     "plural": "les déjeuners",
+     "pluralRule": "adds -s",
+     "examples": [
+      "Le *déjeuner* est à sept heures.",
+      "Les *déjeuners* à l'hôtel sont souvent chers."
+     ],
+     "diff": "In Québec \"déjeuner\" is breakfast, \"dîner\" is lunch and \"souper\" is the evening meal."
+    },
+    "be": {
+     "word": "déjeuner",
+     "ipa": "/de.ʒœ.ne/",
+     "plural": "les déjeuners",
+     "pluralRule": "adds -s",
+     "examples": [
+      "Le *déjeuner* est à sept heures.",
+      "Les *déjeuners* à l'hôtel sont souvent chers."
+     ],
+     "diff": "In Belgium \"déjeuner\" is breakfast, \"dîner\" is lunch and \"souper\" is the evening meal."
+    },
+    "ch": {
+     "word": "déjeuner",
+     "ipa": "/de.ʒœ.ne/",
+     "plural": "les déjeuners",
+     "pluralRule": "adds -s",
+     "examples": [
+      "Le *déjeuner* est à sept heures.",
+      "Les *déjeuners* à l'hôtel sont souvent chers."
+     ],
+     "diff": "In Switzerland \"déjeuner\" is breakfast, \"dîner\" is lunch and \"souper\" is the evening meal."
+    }
+   }
+  },
+  "pt": {
+   "word": "café da manhã",
+   "ipa": "/kaˈfɛ da mɐˈɲɐ̃/",
+   "level": "A1",
+   "article": "o",
+   "gender": "m",
+   "plural": "os cafés da manhã",
+   "pluralRule": "only café adds -s",
+   "pluralRegular": true,
+   "synonyms": [
+    "desjejum (formal)"
+   ],
+   "collocations": [
+    {
+     "phrase": "tomar café da manhã",
+     "meaning": "to have breakfast"
+    }
+   ],
+   "etymology": "Literally \"morning coffee\".",
+   "examples": [
+    "O *café da manhã* é às sete.",
+    "Os *cafés da manhã* de hotel costumam ser caros."
+   ],
+   "regional": {
+    "pt": {
+     "word": "pequeno-almoço",
+     "ipa": "/pɨ.ke.nu aɫˈmo.su/",
+     "plural": "os pequenos-almoços",
+     "pluralRule": "both parts add -s",
+     "examples": [
+      "O *pequeno-almoço* é às sete.",
+      "Os *pequenos-almoços* de hotel costumam ser caros."
+     ],
+     "diff": "Portugal uses a different word."
+    }
+   }
+  }
+ },
+ {
+  "_source": "entries.js",
+  "pos": "noun",
+  "sense": "two-wheeled vehicle you pedal",
+  "en": {
+   "word": "bicycle",
+   "ipa": "/ˈbaɪsɪkəl/",
+   "level": "A1",
+   "gender": null,
+   "plural": "bicycles",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "synonyms": [
+    "bike",
+    "cycle"
+   ],
+   "collocations": [
+    {
+     "phrase": "ride a bicycle",
+     "meaning": "to travel on one"
+    }
+   ],
+   "etymology": "Bi- (two) + Greek kyklos, wheel.",
+   "examples": [
+    "I ride my *bicycle* to school.",
+    "The *bicycles* are in the garage."
+   ]
+  },
+  "de": {
+   "word": "Fahrrad",
+   "ipa": "/ˈfaːɐ̯ˌʁaːt/",
+   "level": "A1",
+   "article": "das",
+   "gender": "n",
+   "plural": "die Fahrräder",
+   "pluralRule": "umlaut + -er",
+   "pluralRegular": false,
+   "synonyms": [
+    "Rad"
+   ],
+   "collocations": [
+    {
+     "phrase": "Fahrrad fahren",
+     "meaning": "to cycle"
+    }
+   ],
+   "etymology": "Fahren (to ride) + Rad (wheel).",
+   "examples": [
+    "Ich fahre mit dem *Fahrrad* zur Schule.",
+    "Die *Fahrräder* stehen in der Garage."
+   ],
+   "gsw": "s Velo",
+   "regional": {
+    "ch": {
+     "word": "Velo",
+     "ipa": "/ˈveːlo/",
+     "article": "das",
+     "plural": "die Velos",
+     "pluralRule": "adds -s",
+     "pluralRegular": true,
+     "examples": [
+      "Ich fahre mit dem *Velo* zur Schule.",
+      "Die *Velos* stehen in der Garage."
+     ],
+     "diff": "Switzerland says \"Velo\"."
+    },
+    "at": {
+     "diff": "Informally also \"Radl\"."
+    }
+   }
+  },
+  "fr": {
+   "word": "vélo",
+   "ipa": "/ve.lo/",
+   "level": "A1",
+   "article": "le",
+   "gender": "m",
+   "plural": "les vélos",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "synonyms": [
+    "bicyclette",
+    "bécane (informal)"
+   ],
+   "collocations": [
+    {
+     "phrase": "faire du vélo",
+     "meaning": "to cycle"
+    }
+   ],
+   "etymology": "Short for vélocipède.",
+   "examples": [
+    "Je vais à l'école à *vélo*.",
+    "Les *vélos* sont dans le garage."
+   ]
+  },
+  "pt": {
+   "word": "bicicleta",
+   "ipa": "/bi.siˈklɛ.tɐ/",
+   "level": "A1",
+   "article": "a",
+   "gender": "f",
+   "plural": "as bicicletas",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "synonyms": [
+    "bike (informal)"
+   ],
+   "collocations": [
+    {
+     "phrase": "andar de bicicleta",
+     "meaning": "to ride a bike"
+    }
+   ],
+   "etymology": "From French bicyclette.",
+   "examples": [
+    "Eu vou para a escola de *bicicleta*.",
+    "As *bicicletas* estão na garagem."
+   ]
+  }
+ },
+ {
+  "_source": "entries.js",
+  "pos": "noun",
+  "sense": "large road vehicle for passengers",
+  "en": {
+   "word": "bus",
+   "ipa": "/bʌs/",
+   "level": "A1",
+   "gender": null,
+   "plural": "buses",
+   "pluralRule": "adds -es after s",
+   "pluralRegular": true,
+   "synonyms": [
+    "coach (long distance)"
+   ],
+   "collocations": [
+    {
+     "phrase": "catch the bus",
+     "meaning": "to get on it in time"
+    }
+   ],
+   "etymology": "Short for omnibus, Latin \"for all\".",
+   "examples": [
+    "The *bus* arrives in five minutes.",
+    "Two *buses* go to the airport."
+   ]
+  },
+  "de": {
+   "word": "Bus",
+   "ipa": "/bʊs/",
+   "level": "A1",
+   "article": "der",
+   "gender": "m",
+   "plural": "die Busse",
+   "pluralRule": "adds -e, the s doubles",
+   "pluralRegular": true,
+   "synonyms": [
+    "Omnibus",
+    "Autobus"
+   ],
+   "collocations": [
+    {
+     "phrase": "den Bus verpassen",
+     "meaning": "to miss the bus"
+    }
+   ],
+   "etymology": "Short for Omnibus.",
+   "examples": [
+    "Der *Bus* kommt in fünf Minuten.",
+    "Zwei *Busse* fahren zum Flughafen."
+   ],
+   "gsw": "de Bus",
+   "regional": {
+    "ch": {
+     "diff": "The yellow rural buses are called \"Postauto\"."
+    }
+   }
+  },
+  "fr": {
+   "word": "bus",
+   "ipa": "/bys/",
+   "level": "A1",
+   "article": "le",
+   "gender": "m",
+   "plural": "les bus",
+   "pluralRule": "no change, already ends in -s",
+   "pluralRegular": true,
+   "synonyms": [
+    "autobus",
+    "car (long distance)"
+   ],
+   "collocations": [
+    {
+     "phrase": "arrêt de bus",
+     "meaning": "bus stop"
+    }
+   ],
+   "etymology": "Short for omnibus.",
+   "examples": [
+    "Le *bus* arrive dans cinq minutes.",
+    "Deux *bus* vont à l'aéroport."
+   ],
+   "regional": {
+    "ca": {
+     "word": "autobus",
+     "ipa": "/o.to.bys/",
+     "article": "l'",
+     "plural": "les autobus",
+     "examples": [
+      "L'*autobus* arrive dans cinq minutes.",
+      "Deux *autobus* vont à l'aéroport."
+     ],
+     "diff": "Québec normally says \"autobus\"."
+    }
+   }
+  },
+  "pt": {
+   "word": "ônibus",
+   "ipa": "/ˈõ.ni.bus/",
+   "level": "A1",
+   "article": "o",
+   "gender": "m",
+   "plural": "os ônibus",
+   "pluralRule": "no change, already ends in -s",
+   "pluralRegular": true,
+   "synonyms": [
+    "coletivo"
+   ],
+   "collocations": [
+    {
+     "phrase": "ponto de ônibus",
+     "meaning": "bus stop"
+    }
+   ],
+   "etymology": "Latin omnibus, \"for all\".",
+   "examples": [
+    "O *ônibus* chega em cinco minutos.",
+    "Dois *ônibus* vão para o aeroporto."
+   ],
+   "regional": {
+    "pt": {
+     "word": "autocarro",
+     "ipa": "/aw.tɔˈka.ʁu/",
+     "plural": "os autocarros",
+     "pluralRule": "adds -s",
+     "examples": [
+      "O *autocarro* chega em cinco minutos.",
+      "Dois *autocarros* vão para o aeroporto."
+     ],
+     "diff": "Portugal uses a different word."
+    }
+   }
+  }
+ },
+ {
+  "_source": "entries.js",
+  "pos": "noun",
+  "sense": "railway vehicle",
+  "en": {
+   "word": "train",
+   "ipa": "/treɪn/",
+   "level": "A1",
+   "gender": null,
+   "plural": "trains",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "synonyms": [
+    "railroad (the system)"
+   ],
+   "collocations": [
+    {
+     "phrase": "catch a train",
+     "meaning": "to get on it in time"
+    }
+   ],
+   "etymology": "Old French train, something drawn along.",
+   "examples": [
+    "The *train* leaves at eight.",
+    "The *trains* are often late in winter."
+   ]
+  },
+  "de": {
+   "word": "Zug",
+   "ipa": "/tsuːk/",
+   "level": "A1",
+   "article": "der",
+   "gender": "m",
+   "plural": "die Züge",
+   "pluralRule": "umlaut + -e",
+   "pluralRegular": false,
+   "synonyms": [
+    "Bahn",
+    "Eisenbahn"
+   ],
+   "collocations": [
+    {
+     "phrase": "mit dem Zug fahren",
+     "meaning": "to go by train"
+    }
+   ],
+   "etymology": "From ziehen, to pull.",
+   "examples": [
+    "Der *Zug* fährt um acht Uhr ab.",
+    "Im Winter haben die *Züge* oft Verspätung."
+   ],
+   "gsw": "de Zug (pl. Züüg)"
+  },
+  "fr": {
+   "word": "train",
+   "ipa": "/tʁɛ̃/",
+   "level": "A1",
+   "article": "le",
+   "gender": "m",
+   "plural": "les trains",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "synonyms": [
+    "rame"
+   ],
+   "collocations": [
+    {
+     "phrase": "être en train de + infinitive",
+     "meaning": "to be in the middle of doing"
+    }
+   ],
+   "etymology": "From traîner, to drag.",
+   "examples": [
+    "Le *train* part à huit heures.",
+    "Les *trains* sont souvent en retard en hiver."
+   ]
+  },
+  "pt": {
+   "word": "trem",
+   "ipa": "/ˈtɾẽj̃/",
+   "level": "A1",
+   "article": "o",
+   "gender": "m",
+   "plural": "os trens",
+   "pluralRule": "-m → -ns",
+   "pluralRegular": true,
+   "synonyms": [
+    "locomotiva (the engine)"
+   ],
+   "collocations": [
+    {
+     "phrase": "pegar o trem",
+     "meaning": "to catch the train"
+    }
+   ],
+   "etymology": "From French train, through English.",
+   "examples": [
+    "O *trem* parte às oito.",
+    "Os *trens* costumam atrasar no inverno."
+   ],
+   "regional": {
+    "pt": {
+     "word": "comboio",
+     "ipa": "/kõˈbɔj.u/",
+     "plural": "os comboios",
+     "pluralRule": "adds -s",
+     "examples": [
+      "O *comboio* parte às oito.",
+      "Os *comboios* atrasam-se muitas vezes no inverno."
+     ],
+     "diff": "Portugal uses a different word."
+    }
+   }
+  }
+ },
+ {
+  "_source": "entries.js",
+  "pos": "noun",
+  "sense": "road in a town with buildings along it",
+  "en": {
+   "word": "street",
+   "ipa": "/striːt/",
+   "level": "A1",
+   "gender": null,
+   "plural": "streets",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "synonyms": [
+    "road",
+    "avenue"
+   ],
+   "collocations": [
+    {
+     "phrase": "across the street",
+     "meaning": "on the other side"
+    }
+   ],
+   "etymology": "Latin (via) strata, paved road.",
+   "examples": [
+    "I live on this *street*.",
+    "The *streets* are empty at night."
+   ],
+   "regional": {
+    "gb": {
+     "examples": [
+      "I live in this *street*.",
+      "The *streets* are empty at night."
+     ],
+     "diff": "British English says \"in a street\"."
+    }
+   }
+  },
+  "de": {
+   "word": "Straße",
+   "ipa": "/ˈʃtʁaːsə/",
+   "level": "A1",
+   "article": "die",
+   "gender": "f",
+   "plural": "die Straßen",
+   "pluralRule": "adds -n",
+   "pluralRegular": true,
+   "synonyms": [
+    "Weg",
+    "Gasse"
+   ],
+   "collocations": [
+    {
+     "phrase": "auf der Straße",
+     "meaning": "in the street"
+    }
+   ],
+   "etymology": "Latin strata.",
+   "examples": [
+    "Ich wohne in dieser *Straße*.",
+    "Nachts sind die *Straßen* leer."
+   ],
+   "gsw": "d Straass (pl. Straasse)"
+  },
+  "fr": {
+   "word": "rue",
+   "ipa": "/ʁy/",
+   "level": "A1",
+   "article": "la",
+   "gender": "f",
+   "plural": "les rues",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "synonyms": [
+    "voie",
+    "avenue"
+   ],
+   "collocations": [
+    {
+     "phrase": "dans la rue",
+     "meaning": "in the street"
+    }
+   ],
+   "etymology": "Latin ruga, wrinkle or furrow.",
+   "examples": [
+    "J'habite dans cette *rue*.",
+    "La nuit, les *rues* sont vides."
+   ]
+  },
+  "pt": {
+   "word": "rua",
+   "ipa": "/ˈʁu.ɐ/",
+   "level": "A1",
+   "article": "a",
+   "gender": "f",
+   "plural": "as ruas",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "synonyms": [
+    "via",
+    "avenida"
+   ],
+   "collocations": [
+    {
+     "phrase": "na rua",
+     "meaning": "in the street"
+    }
+   ],
+   "etymology": "Latin ruga.",
+   "examples": [
+    "Eu moro nesta *rua*.",
+    "À noite, as *ruas* ficam vazias."
+   ]
+  }
+ },
+ {
+  "_source": "entries.js",
+  "pos": "noun",
+  "sense": "what red, blue and green are",
+  "en": {
+   "word": "color",
+   "ipa": "/ˈkʌlɚ/",
+   "level": "A1",
+   "gender": null,
+   "plural": "colors",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "synonyms": [
+    "hue",
+    "shade"
+   ],
+   "collocations": [
+    {
+     "phrase": "in color",
+     "meaning": "not black and white"
+    }
+   ],
+   "etymology": "Latin color, through Old French.",
+   "examples": [
+    "What is your favorite *color*?",
+    "Fall leaves have beautiful *colors*."
+   ],
+   "regional": {
+    "gb": {
+     "word": "colour",
+     "ipa": "/ˈkʌlə/",
+     "plural": "colours",
+     "examples": [
+      "What is your favourite *colour*?",
+      "Autumn leaves have beautiful *colours*."
+     ],
+     "diff": "-our spelling."
+    }
+   }
+  },
+  "de": {
+   "word": "Farbe",
+   "ipa": "/ˈfaʁbə/",
+   "level": "A1",
+   "article": "die",
+   "gender": "f",
+   "plural": "die Farben",
+   "pluralRule": "adds -n",
+   "pluralRegular": true,
+   "synonyms": [
+    "Farbton"
+   ],
+   "collocations": [
+    {
+     "phrase": "Farbe bekennen",
+     "meaning": "to show your true colors"
+    }
+   ],
+   "etymology": "Old High German farawa.",
+   "examples": [
+    "Welche *Farbe* magst du am liebsten?",
+    "Herbstblätter haben schöne *Farben*."
+   ],
+   "gsw": "d Farb (pl. Farbe)"
+  },
+  "fr": {
+   "word": "couleur",
+   "ipa": "/ku.lœʁ/",
+   "level": "A1",
+   "article": "la",
+   "gender": "f",
+   "plural": "les couleurs",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "synonyms": [
+    "teinte",
+    "nuance"
+   ],
+   "collocations": [
+    {
+     "phrase": "en couleur",
+     "meaning": "in color"
+    }
+   ],
+   "etymology": "Latin color.",
+   "examples": [
+    "Quelle est ta *couleur* préférée ?",
+    "Les feuilles d'automne ont de belles *couleurs*."
+   ]
+  },
+  "pt": {
+   "word": "cor",
+   "ipa": "/ˈkoʁ/",
+   "level": "A1",
+   "article": "a",
+   "gender": "f",
+   "plural": "as cores",
+   "pluralRule": "adds -es after r",
+   "pluralRegular": true,
+   "synonyms": [
+    "tom",
+    "tonalidade"
+   ],
+   "collocations": [
+    {
+     "phrase": "em cores",
+     "meaning": "in color"
+    }
+   ],
+   "etymology": "Latin color.",
+   "examples": [
+    "Qual é a sua *cor* favorita?",
+    "As folhas de outono têm *cores* lindas."
+   ],
+   "note": "\"De cor\" (by heart) is a different word, said with an open o.",
+   "regional": {
+    "pt": {
+     "ipa": "/ˈkoɾ/",
+     "examples": [
+      "Qual é a tua *cor* favorita?",
+      "As folhas de outono têm *cores* lindas."
+     ]
+    }
+   }
+  }
+ },
+ {
+  "_source": "entries.js",
+  "pos": "noun",
+  "sense": "building people live in",
+  "en": {
+   "word": "house",
+   "ipa": "/haʊs/",
+   "level": "A1",
+   "gender": null,
+   "plural": "houses",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "synonyms": [
+    "home",
+    "dwelling"
+   ],
+   "collocations": [
+    {
+     "phrase": "on the house",
+     "meaning": "free, paid by the owner"
+    }
+   ],
+   "etymology": "Old English hūs.",
+   "examples": [
+    "The *house* has a big yard.",
+    "There are many old *houses* on this street."
+   ],
+   "note": "The plural is spelled regularly but the s is voiced: /ˈhaʊzɪz/.",
+   "regional": {
+    "gb": {
+     "examples": [
+      "The *house* has a big garden.",
+      "There are many old *houses* in this street."
+     ],
+     "diff": "British English says \"garden\" where American says \"yard\"."
+    }
+   }
+  },
+  "de": {
+   "word": "Haus",
+   "ipa": "/haʊ̯s/",
+   "level": "A1",
+   "article": "das",
+   "gender": "n",
+   "plural": "die Häuser",
+   "pluralRule": "umlaut + -er",
+   "pluralRegular": false,
+   "synonyms": [
+    "Gebäude",
+    "Heim"
+   ],
+   "collocations": [
+    {
+     "phrase": "nach Hause / zu Hause",
+     "meaning": "(to) home / at home"
+    }
+   ],
+   "etymology": "Old High German hūs.",
+   "examples": [
+    "Das *Haus* hat einen großen Garten.",
+    "In dieser Straße stehen viele alte *Häuser*."
+   ],
+   "gsw": "s Huus (pl. Hüüser)"
+  },
+  "fr": {
+   "word": "maison",
+   "ipa": "/mɛ.zɔ̃/",
+   "level": "A1",
+   "article": "la",
+   "gender": "f",
+   "plural": "les maisons",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "synonyms": [
+    "demeure",
+    "logement"
+   ],
+   "collocations": [
+    {
+     "phrase": "à la maison",
+     "meaning": "at home"
+    }
+   ],
+   "etymology": "Latin mansio, a stay or dwelling.",
+   "examples": [
+    "La *maison* a un grand jardin.",
+    "Il y a beaucoup de vieilles *maisons* dans cette rue."
+   ]
+  },
+  "pt": {
+   "word": "casa",
+   "ipa": "/ˈka.zɐ/",
+   "level": "A1",
+   "article": "a",
+   "gender": "f",
+   "plural": "as casas",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "synonyms": [
+    "lar",
+    "moradia"
+   ],
+   "collocations": [
+    {
+     "phrase": "em casa",
+     "meaning": "at home"
+    }
+   ],
+   "etymology": "Latin casa, hut.",
+   "examples": [
+    "A *casa* tem um jardim grande.",
+    "Há muitas *casas* antigas nesta rua."
+   ]
+  }
+ },
+ {
+  "_source": "entries.js",
+  "pos": "noun",
+  "sense": "bound pages to read",
+  "en": {
+   "word": "book",
+   "ipa": "/bʊk/",
+   "level": "A1",
+   "gender": null,
+   "plural": "books",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "synonyms": [
+    "volume",
+    "work"
+   ],
+   "collocations": [
+    {
+     "phrase": "by the book",
+     "meaning": "strictly following the rules"
+    }
+   ],
+   "etymology": "Old English bōc.",
+   "examples": [
+    "I am reading a *book* about history.",
+    "These *books* belong to the library."
+   ]
+  },
+  "de": {
+   "word": "Buch",
+   "ipa": "/buːx/",
+   "level": "A1",
+   "article": "das",
+   "gender": "n",
+   "plural": "die Bücher",
+   "pluralRule": "umlaut + -er",
+   "pluralRegular": false,
+   "synonyms": [
+    "Band",
+    "Werk"
+   ],
+   "collocations": [
+    {
+     "phrase": "wie ein Buch reden",
+     "meaning": "to talk without stopping"
+    }
+   ],
+   "etymology": "Old High German buoh.",
+   "examples": [
+    "Ich lese ein *Buch* über Geschichte.",
+    "Diese *Bücher* gehören der Bibliothek."
+   ],
+   "gsw": "s Buech (pl. Büecher)"
+  },
+  "fr": {
+   "word": "livre",
+   "ipa": "/livʁ/",
+   "level": "A1",
+   "article": "le",
+   "gender": "m",
+   "plural": "les livres",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "synonyms": [
+    "ouvrage",
+    "bouquin (informal)"
+   ],
+   "collocations": [
+    {
+     "phrase": "livre de poche",
+     "meaning": "paperback"
+    }
+   ],
+   "etymology": "Latin liber.",
+   "examples": [
+    "Je lis un *livre* sur l'histoire.",
+    "Ces *livres* appartiennent à la bibliothèque."
+   ],
+   "note": "La livre (feminine) is a different word: a pound."
+  },
+  "pt": {
+   "word": "livro",
+   "ipa": "/ˈli.vɾu/",
+   "level": "A1",
+   "article": "o",
+   "gender": "m",
+   "plural": "os livros",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "synonyms": [
+    "obra",
+    "volume"
+   ],
+   "collocations": [
+    {
+     "phrase": "livro de bolso",
+     "meaning": "paperback"
+    }
+   ],
+   "etymology": "Latin liber.",
+   "examples": [
+    "Estou lendo um *livro* sobre história.",
+    "Estes *livros* pertencem à biblioteca."
+   ],
+   "regional": {
+    "pt": {
+     "examples": [
+      "Estou a ler um *livro* sobre história.",
+      "Estes *livros* pertencem à biblioteca."
+     ],
+     "diff": "Portugal says \"estou a ler\"."
+    }
+   }
+  }
+ },
+ {
+  "_source": "entries.js",
+  "pos": "noun",
+  "sense": "young human being",
+  "en": {
+   "word": "child",
+   "ipa": "/tʃaɪld/",
+   "level": "A1",
+   "gender": null,
+   "plural": "children",
+   "pluralRule": "adds -ren, the vowel changes",
+   "pluralRegular": false,
+   "synonyms": [
+    "kid",
+    "youngster"
+   ],
+   "collocations": [
+    {
+     "phrase": "only child",
+     "meaning": "a child with no brothers or sisters"
+    }
+   ],
+   "etymology": "Old English cild.",
+   "examples": [
+    "The *child* is playing in the park.",
+    "The *children* are at school."
+   ]
+  },
+  "de": {
+   "word": "Kind",
+   "ipa": "/kɪnt/",
+   "level": "A1",
+   "article": "das",
+   "gender": "n",
+   "plural": "die Kinder",
+   "pluralRule": "adds -er",
+   "pluralRegular": false,
+   "synonyms": [
+    "Nachwuchs"
+   ],
+   "collocations": [
+    {
+     "phrase": "von Kind auf",
+     "meaning": "since childhood"
+    }
+   ],
+   "etymology": "Old High German kind.",
+   "examples": [
+    "Das *Kind* spielt im Park.",
+    "Die *Kinder* sind in der Schule."
+   ],
+   "gsw": "s Chind (pl. Chind)"
+  },
+  "fr": {
+   "word": "enfant",
+   "ipa": "/ɑ̃.fɑ̃/",
+   "level": "A1",
+   "article": "l'",
+   "gender": "m/f",
+   "plural": "les enfants",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "synonyms": [
+    "gamin (informal)",
+    "gosse (informal)"
+   ],
+   "collocations": [
+    {
+     "phrase": "enfant unique",
+     "meaning": "only child"
+    }
+   ],
+   "etymology": "Latin infans, not yet speaking.",
+   "examples": [
+    "L'*enfant* joue dans le parc.",
+    "Les *enfants* sont à l'école."
+   ]
+  },
+  "pt": {
+   "word": "criança",
+   "ipa": "/kɾiˈɐ̃.sɐ/",
+   "level": "A1",
+   "article": "a",
+   "gender": "f",
+   "plural": "as crianças",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "synonyms": [
+    "menino / menina",
+    "garoto / garota"
+   ],
+   "collocations": [
+    {
+     "phrase": "desde criança",
+     "meaning": "since childhood"
+    }
+   ],
+   "etymology": "From criar, to raise.",
+   "examples": [
+    "A *criança* está brincando no parque.",
+    "As *crianças* estão na escola."
+   ],
+   "note": "Always feminine, also for a boy.",
+   "regional": {
+    "pt": {
+     "examples": [
+      "A *criança* está a brincar no parque.",
+      "As *crianças* estão na escola."
+     ],
+     "diff": "Informally Portugal says \"miúdo / miúda\". It also says \"está a brincar\"."
+    }
+   }
+  }
+ },
+ {
+  "_source": "entries.js",
+  "pos": "noun",
+  "sense": "organ you see with",
+  "en": {
+   "word": "eye",
+   "ipa": "/aɪ/",
+   "level": "A1",
+   "gender": null,
+   "plural": "eyes",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "collocations": [
+    {
+     "phrase": "keep an eye on",
+     "meaning": "to watch carefully"
+    }
+   ],
+   "etymology": "Old English ēage.",
+   "examples": [
+    "She has something in her *eye*.",
+    "He has blue *eyes*."
+   ]
+  },
+  "de": {
+   "word": "Auge",
+   "ipa": "/ˈaʊ̯ɡə/",
+   "level": "A1",
+   "article": "das",
+   "gender": "n",
+   "plural": "die Augen",
+   "pluralRule": "adds -n",
+   "pluralRegular": true,
+   "collocations": [
+    {
+     "phrase": "unter vier Augen",
+     "meaning": "in private, just the two of us"
+    }
+   ],
+   "etymology": "Old High German ouga.",
+   "examples": [
+    "Sie hat etwas im *Auge*.",
+    "Er hat blaue *Augen*."
+   ],
+   "gsw": "s Aug (pl. Auge)"
+  },
+  "fr": {
+   "word": "œil",
+   "ipa": "/œj/",
+   "level": "A1",
+   "article": "l'",
+   "gender": "m",
+   "plural": "les yeux",
+   "pluralRule": "a completely different form, said /jø/",
+   "pluralRegular": false,
+   "collocations": [
+    {
+     "phrase": "coup d'œil",
+     "meaning": "a glance"
+    }
+   ],
+   "etymology": "Latin oculus.",
+   "examples": [
+    "Elle a quelque chose dans l'*œil*.",
+    "Il a les *yeux* bleus."
+   ]
+  },
+  "pt": {
+   "word": "olho",
+   "ipa": "/ˈo.ʎu/",
+   "level": "A1",
+   "article": "o",
+   "gender": "m",
+   "plural": "os olhos",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "collocations": [
+    {
+     "phrase": "de olho em",
+     "meaning": "keeping an eye on"
+    }
+   ],
+   "etymology": "Latin oculus.",
+   "examples": [
+    "Ela está com alguma coisa no *olho*.",
+    "Ele tem *olhos* azuis."
+   ],
+   "note": "The plural opens the vowel: /ˈɔ.ʎus/."
+  }
+ },
+ {
+  "_source": "entries.js",
+  "pos": "verb",
+  "sense": "to stay until something happens",
+  "en": {
+   "word": "to wait",
+   "ipa": "/weɪt/",
+   "level": "A1",
+   "verbRegular": true,
+   "verbClass": "regular verb",
+   "forms": "waits · waited · has waited",
+   "auxiliary": "have",
+   "government": [
+    {
+     "pattern": "wait for + object",
+     "meaning": "the thing or person awaited"
+    },
+    {
+     "pattern": "wait + to-infinitive",
+     "meaning": "wait to do something"
+    }
+   ],
+   "synonyms": [
+    "await",
+    "hold on"
+   ],
+   "collocations": [
+    {
+     "phrase": "wait a minute",
+     "meaning": "just a moment"
+    }
+   ],
+   "etymology": "Old Northern French waitier, to watch.",
+   "examples": [
+    "I am *waiting* for the bus.",
+    "We *waited* an hour for you."
+   ]
+  },
+  "de": {
+   "word": "warten",
+   "ipa": "/ˈvaʁtn̩/",
+   "level": "A1",
+   "verbRegular": true,
+   "verbClass": "weak verb",
+   "forms": "wartet · wartete · hat gewartet",
+   "auxiliary": "haben",
+   "government": [
+    {
+     "pattern": "warten auf + Akkusativ",
+     "meaning": "to wait for"
+    }
+   ],
+   "synonyms": [
+    "abwarten",
+    "sich gedulden"
+   ],
+   "collocations": [
+    {
+     "phrase": "Warte mal!",
+     "meaning": "Hold on!"
+    }
+   ],
+   "etymology": "Old High German wartēn, to look out.",
+   "examples": [
+    "Ich *warte* auf den Bus.",
+    "Wir haben eine Stunde auf dich *gewartet*."
+   ],
+   "gsw": "warte"
+  },
+  "fr": {
+   "word": "attendre",
+   "ipa": "/a.tɑ̃dʁ/",
+   "level": "A1",
+   "verbRegular": true,
+   "verbClass": "3rd group, but follows the regular -re pattern (like vendre)",
+   "forms": "j'attends · j'attendais · j'ai attendu",
+   "auxiliary": "avoir",
+   "government": [
+    {
+     "pattern": "attendre + direct object",
+     "meaning": "no preposition: attendre le bus"
+    },
+    {
+     "pattern": "s'attendre à + noun / infinitive",
+     "meaning": "to expect"
+    }
+   ],
+   "synonyms": [
+    "patienter"
+   ],
+   "collocations": [
+    {
+     "phrase": "en attendant",
+     "meaning": "in the meantime"
+    }
+   ],
+   "etymology": "Latin attendere, to pay attention.",
+   "examples": [
+    "J'*attends* le bus.",
+    "Nous t'avons *attendu* pendant une heure."
+   ],
+   "note": "No preposition for \"for\": attendre quelqu'un, never attendre pour."
+  },
+  "pt": {
+   "word": "esperar",
+   "ipa": "/es.peˈɾaʁ/",
+   "level": "A1",
+   "verbRegular": true,
+   "verbClass": "regular -ar verb",
+   "forms": "espero · esperei · esperado",
+   "auxiliary": "ter",
+   "government": [
+    {
+     "pattern": "esperar + direct object",
+     "meaning": "esperar o ônibus"
+    },
+    {
+     "pattern": "esperar por + noun",
+     "meaning": "to wait for (also common)"
+    }
+   ],
+   "synonyms": [
+    "aguardar"
+   ],
+   "collocations": [
+    {
+     "phrase": "espera aí",
+     "meaning": "hang on"
+    }
+   ],
+   "etymology": "Latin sperare, to hope.",
+   "examples": [
+    "Estou *esperando* o ônibus.",
+    "*Esperamos* uma hora por você."
+   ],
+   "note": "Esperar also means \"to hope\".",
+   "regional": {
+    "pt": {
+     "ipa": "/ɨʃ.pɨˈɾaɾ/",
+     "examples": [
+      "Estou a *esperar* o autocarro.",
+      "*Esperámos* uma hora por ti."
+     ],
+     "diff": "Portugal says \"estou a esperar\" and writes the past \"esperámos\" with an accent."
+    }
+   }
+  }
+ },
+ {
+  "_source": "entries.js",
+  "pos": "verb",
+  "sense": "to move from one place to another",
+  "en": {
+   "word": "to go",
+   "ipa": "/ɡoʊ/",
+   "level": "A1",
+   "verbRegular": false,
+   "verbClass": "irregular verb (the past comes from another verb)",
+   "forms": "goes · went · has gone",
+   "auxiliary": "have",
+   "government": [
+    {
+     "pattern": "go to + place",
+     "meaning": "destination"
+    },
+    {
+     "pattern": "go + -ing",
+     "meaning": "activities: go swimming"
+    }
+   ],
+   "synonyms": [
+    "move",
+    "travel"
+   ],
+   "collocations": [
+    {
+     "phrase": "go for a walk",
+     "meaning": "to take a walk"
+    }
+   ],
+   "etymology": "Old English gān. \"Went\" was the past of \"wend\".",
+   "examples": [
+    "I *go* to work on foot every day.",
+    "She *went* to the movies yesterday."
+   ],
+   "regional": {
+    "gb": {
+     "ipa": "/ɡəʊ/",
+     "examples": [
+      "I *go* to work on foot every day.",
+      "She *went* to the cinema yesterday."
+     ],
+     "diff": "British English says \"the cinema\" for \"the movies\"."
+    }
+   }
+  },
+  "de": {
+   "word": "gehen",
+   "ipa": "/ˈɡeːən/",
+   "level": "A1",
+   "verbRegular": false,
+   "verbClass": "strong verb (e → i → a)",
+   "forms": "geht · ging · ist gegangen",
+   "auxiliary": "sein",
+   "government": [
+    {
+     "pattern": "gehen zu + Dativ",
+     "meaning": "to a person or place"
+    },
+    {
+     "pattern": "gehen in + Akkusativ",
+     "meaning": "into a building: ins Kino"
+    },
+    {
+     "pattern": "gehen nach + Dativ",
+     "meaning": "towns, countries, nach Hause"
+    }
+   ],
+   "synonyms": [
+    "laufen"
+   ],
+   "collocations": [
+    {
+     "phrase": "Wie geht's?",
+     "meaning": "How are you?"
+    }
+   ],
+   "etymology": "Old High German gān, gēn.",
+   "examples": [
+    "Ich *gehe* jeden Tag zu Fuß zur Arbeit.",
+    "Sie ist gestern ins Kino *gegangen*."
+   ],
+   "gsw": "gaa"
+  },
+  "fr": {
+   "word": "aller",
+   "ipa": "/a.le/",
+   "level": "A1",
+   "verbRegular": false,
+   "verbClass": "3rd group, the only irregular -er verb",
+   "forms": "je vais · j'allais · je suis allé(e)",
+   "auxiliary": "être",
+   "government": [
+    {
+     "pattern": "aller à + place",
+     "meaning": "au, à la, aux"
+    },
+    {
+     "pattern": "aller chez + person",
+     "meaning": "to someone's place"
+    },
+    {
+     "pattern": "aller + infinitive",
+     "meaning": "near future: je vais partir"
+    }
+   ],
+   "synonyms": [
+    "se rendre"
+   ],
+   "collocations": [
+    {
+     "phrase": "Ça va ?",
+     "meaning": "How's it going?"
+    }
+   ],
+   "etymology": "Built from three Latin verbs: ambulare, vadere and ire.",
+   "examples": [
+    "Je *vais* au travail à pied tous les jours.",
+    "Elle est *allée* au cinéma hier."
+   ]
+  },
+  "pt": {
+   "word": "ir",
+   "ipa": "/ˈiʁ/",
+   "level": "A1",
+   "verbRegular": false,
+   "verbClass": "irregular verb",
+   "forms": "vou · fui · ido",
+   "auxiliary": "ter",
+   "government": [
+    {
+     "pattern": "ir a / para + place",
+     "meaning": "a: short visit · para: to stay"
+    },
+    {
+     "pattern": "ir + infinitive",
+     "meaning": "future: vou viajar"
+    }
+   ],
+   "synonyms": [
+    "dirigir-se"
+   ],
+   "collocations": [
+    {
+     "phrase": "vamos embora",
+     "meaning": "let's go"
+    }
+   ],
+   "etymology": "Latin ire, with forms from vadere and esse.",
+   "examples": [
+    "Eu *vou* a pé para o trabalho todos os dias.",
+    "Ela *foi* ao cinema ontem."
+   ],
+   "note": "In spoken Brazilian Portuguese \"ir em\" is also heard: vou no cinema.",
+   "regional": {
+    "pt": {
+     "ipa": "/ˈiɾ/"
+    }
+   }
+  }
+ },
+ {
+  "_source": "entries.js",
+  "pos": "verb",
+  "sense": "to be upright on your feet",
+  "en": {
+   "word": "to stand",
+   "ipa": "/stænd/",
+   "level": "A2",
+   "verbRegular": false,
+   "verbClass": "irregular verb",
+   "forms": "stands · stood · has stood",
+   "auxiliary": "have",
+   "government": [
+    {
+     "pattern": "stand in / on / at + place",
+     "meaning": "position"
+    },
+    {
+     "pattern": "stand for + noun",
+     "meaning": "to represent"
+    }
+   ],
+   "synonyms": [
+    "be upright"
+   ],
+   "collocations": [
+    {
+     "phrase": "stand up",
+     "meaning": "to rise to your feet"
+    }
+   ],
+   "etymology": "Old English standan.",
+   "examples": [
+    "I have been *standing* in line for an hour.",
+    "We *stood* in front of the door."
+   ],
+   "regional": {
+    "gb": {
+     "examples": [
+      "I have been *standing* in a queue for an hour.",
+      "We *stood* in front of the door."
+     ],
+     "diff": "British English says \"queue\" where American says \"line\"."
+    }
+   }
+  },
+  "de": {
+   "word": "stehen",
+   "ipa": "/ˈʃteːən/",
+   "level": "A1",
+   "verbRegular": false,
+   "verbClass": "strong verb (e → a → a)",
+   "forms": "steht · stand · hat gestanden",
+   "auxiliary": "haben",
+   "government": [
+    {
+     "pattern": "stehen in / auf / vor + Dativ",
+     "meaning": "position, no movement"
+    },
+    {
+     "pattern": "stehen zu + Dativ",
+     "meaning": "to stand by someone or something"
+    }
+   ],
+   "synonyms": [
+    "sich befinden"
+   ],
+   "collocations": [
+    {
+     "phrase": "Schlange stehen",
+     "meaning": "to stand in line"
+    }
+   ],
+   "etymology": "Old High German stān, stēn.",
+   "examples": [
+    "Ich *stehe* seit einer Stunde in der Schlange.",
+    "Wir *standen* vor der Tür."
+   ],
+   "gsw": "staa",
+   "regional": {
+    "ch": {
+     "forms": "steht · stand · ist gestanden",
+     "auxiliary": "sein",
+     "diff": "The perfect takes sein: ich bin gestanden."
+    },
+    "at": {
+     "forms": "steht · stand · ist gestanden",
+     "auxiliary": "sein",
+     "diff": "The perfect takes sein, as in southern Germany."
+    }
+   }
+  },
+  "fr": {
+   "word": "être debout",
+   "ipa": "/ɛtʁ də.bu/",
+   "level": "A2",
+   "verbRegular": false,
+   "verbClass": "phrase with être (irregular)",
+   "forms": "je suis debout · j'étais debout · j'ai été debout",
+   "auxiliary": "avoir",
+   "government": [
+    {
+     "pattern": "se tenir + place",
+     "meaning": "to stand somewhere"
+    }
+   ],
+   "synonyms": [
+    "se tenir debout"
+   ],
+   "collocations": [
+    {
+     "phrase": "rester debout",
+     "meaning": "to remain standing"
+    }
+   ],
+   "etymology": "Debout is de + bout, \"on end\".",
+   "examples": [
+    "Je *suis debout* dans la file depuis une heure.",
+    "Nous nous *tenions* devant la porte."
+   ],
+   "note": "French has no single verb for \"to stand\". Se lever means to stand up."
+  },
+  "pt": {
+   "word": "ficar em pé",
+   "ipa": "/fiˈkaʁ ẽj̃ ˈpɛ/",
+   "level": "A2",
+   "verbRegular": true,
+   "verbClass": "regular -ar verb (c → qu before e: fiquei)",
+   "forms": "fico em pé · fiquei em pé · ficado em pé",
+   "auxiliary": "ter",
+   "government": [
+    {
+     "pattern": "ficar / estar em pé + place",
+     "meaning": "estar for the state, ficar for staying"
+    }
+   ],
+   "synonyms": [
+    "estar em pé"
+   ],
+   "collocations": [
+    {
+     "phrase": "em pé de igualdade",
+     "meaning": "on an equal footing"
+    }
+   ],
+   "etymology": "Pé comes from Latin pes, foot.",
+   "examples": [
+    "Estou *em pé* na fila há uma hora.",
+    "Nós *ficamos em pé* em frente à porta."
+   ],
+   "regional": {
+    "pt": {
+     "word": "ficar de pé",
+     "ipa": "/fiˈkaɾ dɨ ˈpɛ/",
+     "forms": "fico de pé · fiquei de pé · ficado de pé",
+     "examples": [
+      "Estou *de pé* na fila há uma hora.",
+      "*Ficámos de pé* em frente à porta."
+     ],
+     "diff": "Portugal prefers \"de pé\"."
+    }
+   }
+  }
+ },
+ {
+  "_source": "entries.js",
+  "pos": "verb",
+  "sense": "to give assistance",
+  "en": {
+   "word": "to help",
+   "ipa": "/hɛlp/",
+   "level": "A1",
+   "verbRegular": true,
+   "verbClass": "regular verb",
+   "forms": "helps · helped · has helped",
+   "auxiliary": "have",
+   "government": [
+    {
+     "pattern": "help someone with + noun",
+     "meaning": "the task"
+    },
+    {
+     "pattern": "help someone (to) + infinitive",
+     "meaning": "\"to\" is optional"
+    }
+   ],
+   "synonyms": [
+    "assist",
+    "aid"
+   ],
+   "collocations": [
+    {
+     "phrase": "help yourself",
+     "meaning": "take what you want"
+    }
+   ],
+   "etymology": "Old English helpan.",
+   "examples": [
+    "Can you *help* me, please?",
+    "He *helped* his sister with the move."
+   ]
+  },
+  "de": {
+   "word": "helfen",
+   "ipa": "/ˈhɛlfn̩/",
+   "level": "A1",
+   "verbRegular": false,
+   "verbClass": "strong verb (e → i · a · o)",
+   "forms": "hilft · half · hat geholfen",
+   "auxiliary": "haben",
+   "government": [
+    {
+     "pattern": "helfen + Dativ",
+     "meaning": "the person helped: mir, dir, ihm"
+    },
+    {
+     "pattern": "helfen bei + Dativ",
+     "meaning": "with a task"
+    }
+   ],
+   "synonyms": [
+    "unterstützen",
+    "beistehen"
+   ],
+   "collocations": [
+    {
+     "phrase": "sich zu helfen wissen",
+     "meaning": "to know how to manage"
+    }
+   ],
+   "etymology": "Old High German helfan.",
+   "examples": [
+    "Kannst du mir bitte *helfen*?",
+    "Er hat seiner Schwester beim Umzug *geholfen*."
+   ],
+   "gsw": "hälfe"
+  },
+  "fr": {
+   "word": "aider",
+   "ipa": "/e.de/",
+   "level": "A1",
+   "verbRegular": true,
+   "verbClass": "1st group, regular -er verb",
+   "forms": "j'aide · j'aidais · j'ai aidé",
+   "auxiliary": "avoir",
+   "government": [
+    {
+     "pattern": "aider + direct object",
+     "meaning": "the person: aider quelqu'un"
+    },
+    {
+     "pattern": "aider à + infinitive",
+     "meaning": "to help to do"
+    }
+   ],
+   "synonyms": [
+    "assister",
+    "secourir"
+   ],
+   "collocations": [
+    {
+     "phrase": "À l'aide !",
+     "meaning": "Help!"
+    }
+   ],
+   "etymology": "Latin adiutare.",
+   "examples": [
+    "Peux-tu m'*aider*, s'il te plaît ?",
+    "Il a *aidé* sa sœur à déménager."
+   ]
+  },
+  "pt": {
+   "word": "ajudar",
+   "ipa": "/a.ʒuˈdaʁ/",
+   "level": "A1",
+   "verbRegular": true,
+   "verbClass": "regular -ar verb",
+   "forms": "ajudo · ajudei · ajudado",
+   "auxiliary": "ter",
+   "government": [
+    {
+     "pattern": "ajudar + direct object",
+     "meaning": "the person: ajudar alguém"
+    },
+    {
+     "pattern": "ajudar a + infinitive",
+     "meaning": "to help to do"
+    },
+    {
+     "pattern": "ajudar com / em + noun",
+     "meaning": "with a task"
+    }
+   ],
+   "synonyms": [
+    "auxiliar",
+    "socorrer"
+   ],
+   "collocations": [
+    {
+     "phrase": "dar uma mão",
+     "meaning": "to lend a hand"
+    }
+   ],
+   "etymology": "Latin adiutare.",
+   "examples": [
+    "Você pode me *ajudar*, por favor?",
+    "Ele *ajudou* a irmã com a mudança."
+   ],
+   "regional": {
+    "pt": {
+     "ipa": "/ɐ.ʒuˈðaɾ/",
+     "examples": [
+      "Podes *ajudar*-me, por favor?",
+      "Ele *ajudou* a irmã com a mudança."
+     ],
+     "diff": "Portugal puts the pronoun after the verb: ajudar-me."
+    }
+   }
+  }
+ },
+ {
+  "_source": "entries.js",
+  "pos": "verb",
+  "sense": "to have something in mind; to hold an opinion",
+  "en": {
+   "word": "to think",
+   "ipa": "/θɪŋk/",
+   "level": "A1",
+   "verbRegular": false,
+   "verbClass": "irregular verb",
+   "forms": "thinks · thought · has thought",
+   "auxiliary": "have",
+   "government": [
+    {
+     "pattern": "think of / about + noun",
+     "meaning": "have in mind; opinion"
+    }
+   ],
+   "synonyms": [
+    "believe",
+    "consider"
+   ],
+   "collocations": [
+    {
+     "phrase": "think twice",
+     "meaning": "to consider carefully first"
+    }
+   ],
+   "etymology": "Old English þencan.",
+   "examples": [
+    "I often *think* of my family.",
+    "What do you *think* about this book?"
+   ]
+  },
+  "de": {
+   "word": "denken",
+   "ipa": "/ˈdɛŋkn̩/",
+   "level": "A1",
+   "verbRegular": false,
+   "verbClass": "mixed verb (weak endings, stem change)",
+   "forms": "denkt · dachte · hat gedacht",
+   "auxiliary": "haben",
+   "government": [
+    {
+     "pattern": "denken an + Akkusativ",
+     "meaning": "to have in mind"
+    },
+    {
+     "pattern": "denken über + Akkusativ",
+     "meaning": "to hold an opinion about"
+    }
+   ],
+   "synonyms": [
+    "überlegen",
+    "meinen"
+   ],
+   "collocations": [
+    {
+     "phrase": "Das habe ich mir gedacht.",
+     "meaning": "I thought so."
+    }
+   ],
+   "etymology": "Old High German denken.",
+   "examples": [
+    "Ich *denke* oft an meine Familie.",
+    "Was *denkst* du über dieses Buch?"
+   ],
+   "gsw": "tänke"
+  },
+  "fr": {
+   "word": "penser",
+   "ipa": "/pɑ̃.se/",
+   "level": "A1",
+   "verbRegular": true,
+   "verbClass": "1st group, regular -er verb",
+   "forms": "je pense · je pensais · j'ai pensé",
+   "auxiliary": "avoir",
+   "government": [
+    {
+     "pattern": "penser à + noun / infinitive",
+     "meaning": "to have in mind"
+    },
+    {
+     "pattern": "penser de + noun",
+     "meaning": "to hold an opinion about"
+    }
+   ],
+   "synonyms": [
+    "réfléchir",
+    "croire"
+   ],
+   "collocations": [
+    {
+     "phrase": "penser à voix haute",
+     "meaning": "to think out loud"
+    }
+   ],
+   "etymology": "Latin pensare, to weigh.",
+   "examples": [
+    "Je *pense* souvent à ma famille.",
+    "Que *penses*-tu de ce livre ?"
+   ]
+  },
+  "pt": {
+   "word": "pensar",
+   "ipa": "/pẽˈsaʁ/",
+   "level": "A1",
+   "verbRegular": true,
+   "verbClass": "regular -ar verb",
+   "forms": "penso · pensei · pensado",
+   "auxiliary": "ter",
+   "government": [
+    {
+     "pattern": "pensar em + noun / infinitive",
+     "meaning": "to have in mind"
+    },
+    {
+     "pattern": "pensar sobre + noun",
+     "meaning": "to reflect on, hold an opinion"
+    }
+   ],
+   "synonyms": [
+    "refletir",
+    "achar"
+   ],
+   "collocations": [
+    {
+     "phrase": "pensando bem",
+     "meaning": "on second thought"
+    }
+   ],
+   "etymology": "Latin pensare, to weigh.",
+   "examples": [
+    "Eu *penso* muito na minha família.",
+    "O que você *pensa* sobre este livro?"
+   ],
+   "regional": {
+    "pt": {
+     "ipa": "/pẽˈsaɾ/",
+     "examples": [
+      "*Penso* muito na minha família.",
+      "O que *pensas* deste livro?"
+     ],
+     "diff": "Portugal uses tu: o que pensas?"
+    }
+   }
+  }
+ },
+ {
+  "_source": "entries.js",
+  "pos": "verb",
+  "sense": "to know again someone or something seen before",
+  "otherSenses": [
+   "to admit, acknowledge"
+  ],
+  "en": {
+   "word": "to recognize",
+   "ipa": "/ˈrɛkəɡnaɪz/",
+   "level": "B1",
+   "verbRegular": true,
+   "verbClass": "regular verb",
+   "forms": "recognizes · recognized · has recognized",
+   "auxiliary": "have",
+   "government": [
+    {
+     "pattern": "recognize + object",
+     "meaning": "no preposition"
+    },
+    {
+     "pattern": "recognize someone by + noun",
+     "meaning": "the feature that identifies them"
+    }
+   ],
+   "synonyms": [
+    "identify",
+    "know"
+   ],
+   "collocations": [
+    {
+     "phrase": "recognize a face",
+     "meaning": "to know who it is"
+    }
+   ],
+   "etymology": "Latin recognoscere, through Old French.",
+   "examples": [
+    "I didn't *recognize* you with your new haircut.",
+    "She *recognized* him by his voice."
+   ],
+   "regional": {
+    "gb": {
+     "word": "to recognise",
+     "forms": "recognises · recognised · has recognised",
+     "examples": [
+      "I didn't *recognise* you with your new haircut.",
+      "She *recognised* him by his voice."
+     ],
+     "diff": "-ise spelling. Oxford style also accepts -ize."
+    }
+   }
+  },
+  "de": {
+   "word": "erkennen",
+   "ipa": "/ɛɐ̯ˈkɛnən/",
+   "level": "B1",
+   "verbRegular": false,
+   "verbClass": "mixed verb (weak endings, stem change)",
+   "forms": "erkennt · erkannte · hat erkannt",
+   "auxiliary": "haben",
+   "government": [
+    {
+     "pattern": "erkennen + Akkusativ",
+     "meaning": "the person or thing"
+    },
+    {
+     "pattern": "erkennen an + Dativ",
+     "meaning": "to recognize by a feature"
+    }
+   ],
+   "synonyms": [
+    "wiedererkennen",
+    "identifizieren"
+   ],
+   "collocations": [
+    {
+     "phrase": "zu erkennen geben",
+     "meaning": "to reveal, make known"
+    }
+   ],
+   "etymology": "Er- + kennen, to know.",
+   "examples": [
+    "Ich habe dich mit deiner neuen Frisur nicht *erkannt*.",
+    "Sie *erkannte* ihn an seiner Stimme."
+   ],
+   "gsw": "erkänne"
+  },
+  "fr": {
+   "word": "reconnaître",
+   "ipa": "/ʁə.kɔ.nɛtʁ/",
+   "level": "B1",
+   "verbRegular": false,
+   "verbClass": "3rd group, irregular (like connaître)",
+   "forms": "je reconnais · je reconnaissais · j'ai reconnu",
+   "auxiliary": "avoir",
+   "government": [
+    {
+     "pattern": "reconnaître + direct object",
+     "meaning": "the person or thing"
+    },
+    {
+     "pattern": "reconnaître quelqu'un à + noun",
+     "meaning": "to recognize by a feature"
+    }
+   ],
+   "synonyms": [
+    "identifier"
+   ],
+   "collocations": [
+    {
+     "phrase": "reconnaître ses torts",
+     "meaning": "to admit you were wrong"
+    }
+   ],
+   "etymology": "Latin recognoscere.",
+   "examples": [
+    "Je ne t'ai pas *reconnu* avec ta nouvelle coupe de cheveux.",
+    "Elle l'a *reconnu* à sa voix."
+   ],
+   "note": "The 1990 spelling reform also allows reconnaitre, without the circumflex."
+  },
+  "pt": {
+   "word": "reconhecer",
+   "ipa": "/ʁe.ko.ɲeˈseʁ/",
+   "level": "B1",
+   "verbRegular": true,
+   "verbClass": "regular -er verb (c → ç before o, a: reconheço)",
+   "forms": "reconheço · reconheci · reconhecido",
+   "auxiliary": "ter",
+   "government": [
+    {
+     "pattern": "reconhecer + direct object",
+     "meaning": "the person or thing"
+    },
+    {
+     "pattern": "reconhecer alguém por / pela + noun",
+     "meaning": "to recognize by a feature"
+    }
+   ],
+   "synonyms": [
+    "identificar"
+   ],
+   "collocations": [
+    {
+     "phrase": "reconhecer um erro",
+     "meaning": "to admit a mistake"
+    }
+   ],
+   "etymology": "Latin recognoscere.",
+   "examples": [
+    "Eu não te *reconheci* com o seu novo corte de cabelo.",
+    "Ela o *reconheceu* pela voz."
+   ],
+   "regional": {
+    "pt": {
+     "ipa": "/ʁɨ.ku.ɲɨˈseɾ/",
+     "examples": [
+      "Não te *reconheci* com o teu novo corte de cabelo.",
+      "Ela *reconheceu*-o pela voz."
+     ],
+     "diff": "Portugal puts the pronoun after the verb: reconheceu-o."
+    }
+   }
+  }
+ },
+ {
+  "_source": "entries.js",
+  "pos": "verb",
+  "sense": "to take food",
+  "en": {
+   "word": "to eat",
+   "ipa": "/iːt/",
+   "level": "A1",
+   "verbRegular": false,
+   "verbClass": "irregular verb",
+   "forms": "eats · ate · has eaten",
+   "auxiliary": "have",
+   "government": [
+    {
+     "pattern": "eat + object",
+     "meaning": "no preposition"
+    }
+   ],
+   "synonyms": [
+    "consume",
+    "dine"
+   ],
+   "collocations": [
+    {
+     "phrase": "eat out",
+     "meaning": "to eat at a restaurant"
+    }
+   ],
+   "etymology": "Old English etan.",
+   "examples": [
+    "What do you *eat* for breakfast?",
+    "We *ate* at a restaurant yesterday."
+   ]
+  },
+  "de": {
+   "word": "essen",
+   "ipa": "/ˈɛsn̩/",
+   "level": "A1",
+   "verbRegular": false,
+   "verbClass": "strong verb (e → i · a · e)",
+   "forms": "isst · aß · hat gegessen",
+   "auxiliary": "haben",
+   "government": [
+    {
+     "pattern": "essen + Akkusativ",
+     "meaning": "the food"
+    }
+   ],
+   "synonyms": [
+    "speisen",
+    "verzehren"
+   ],
+   "collocations": [
+    {
+     "phrase": "zu Mittag essen",
+     "meaning": "to have lunch"
+    }
+   ],
+   "etymology": "Old High German ezzan.",
+   "examples": [
+    "Was *isst* du zum Frühstück?",
+    "Wir haben gestern im Restaurant *gegessen*."
+   ],
+   "gsw": "ässe"
+  },
+  "fr": {
+   "word": "manger",
+   "ipa": "/mɑ̃.ʒe/",
+   "level": "A1",
+   "verbRegular": true,
+   "verbClass": "1st group, regular -er verb (g → ge before a, o: nous mangeons)",
+   "forms": "je mange · je mangeais · j'ai mangé",
+   "auxiliary": "avoir",
+   "government": [
+    {
+     "pattern": "manger + direct object",
+     "meaning": "the food"
+    }
+   ],
+   "synonyms": [
+    "se nourrir",
+    "déguster"
+   ],
+   "collocations": [
+    {
+     "phrase": "manger sur le pouce",
+     "meaning": "to grab a quick bite"
+    }
+   ],
+   "etymology": "Latin manducare, to chew.",
+   "examples": [
+    "Qu'est-ce que tu *manges* au petit-déjeuner ?",
+    "Nous avons *mangé* au restaurant hier."
+   ]
+  },
+  "pt": {
+   "word": "comer",
+   "ipa": "/koˈmeʁ/",
+   "level": "A1",
+   "verbRegular": true,
+   "verbClass": "regular -er verb",
+   "forms": "como · comi · comido",
+   "auxiliary": "ter",
+   "government": [
+    {
+     "pattern": "comer + direct object",
+     "meaning": "the food"
+    }
+   ],
+   "synonyms": [
+    "alimentar-se"
+   ],
+   "collocations": [
+    {
+     "phrase": "comer fora",
+     "meaning": "to eat out"
+    }
+   ],
+   "etymology": "Latin comedere.",
+   "examples": [
+    "O que você *come* no café da manhã?",
+    "Nós *comemos* em um restaurante ontem."
+   ],
+   "regional": {
+    "pt": {
+     "ipa": "/kuˈmeɾ/",
+     "examples": [
+      "O que *comes* ao pequeno-almoço?",
+      "*Comemos* num restaurante ontem."
+     ],
+     "diff": "Portugal uses tu, and \"pequeno-almoço\" for breakfast."
+    }
+   }
+  }
+ },
+ {
+  "_source": "entries.js",
+  "pos": "verb",
+  "sense": "to keep or bring back in your memory",
+  "en": {
+   "word": "to remember",
+   "ipa": "/rɪˈmɛmbɚ/",
+   "level": "A2",
+   "verbRegular": true,
+   "verbClass": "regular verb",
+   "forms": "remembers · remembered · has remembered",
+   "auxiliary": "have",
+   "government": [
+    {
+     "pattern": "remember + object",
+     "meaning": "no preposition"
+    },
+    {
+     "pattern": "remember + -ing",
+     "meaning": "a past event: I remember meeting her"
+    },
+    {
+     "pattern": "remember + to-infinitive",
+     "meaning": "not forget to do: remember to call"
+    }
+   ],
+   "synonyms": [
+    "recall",
+    "recollect"
+   ],
+   "collocations": [
+    {
+     "phrase": "as far as I remember",
+     "meaning": "if my memory is right"
+    }
+   ],
+   "etymology": "Latin rememorari, through Old French.",
+   "examples": [
+    "I *remember* my first day of school.",
+    "Do you *remember* her name?"
+   ],
+   "regional": {
+    "gb": {
+     "ipa": "/rɪˈmɛmbə/"
+    }
+   }
+  },
+  "de": {
+   "word": "sich erinnern",
+   "ipa": "/zɪç ɛɐ̯ˈʔɪnɐn/",
+   "level": "A2",
+   "verbRegular": true,
+   "verbClass": "weak verb, reflexive",
+   "forms": "erinnert sich · erinnerte sich · hat sich erinnert",
+   "auxiliary": "haben",
+   "government": [
+    {
+     "pattern": "sich erinnern an + Akkusativ",
+     "meaning": "to remember"
+    },
+    {
+     "pattern": "jemanden erinnern an + Akkusativ",
+     "meaning": "to remind someone of"
+    }
+   ],
+   "synonyms": [
+    "sich entsinnen",
+    "sich besinnen"
+   ],
+   "collocations": [
+    {
+     "phrase": "wenn ich mich recht erinnere",
+     "meaning": "if I remember correctly"
+    }
+   ],
+   "etymology": "From inner: to bring inward.",
+   "examples": [
+    "Ich *erinnere* mich an meinen ersten Schultag.",
+    "*Erinnerst* du dich an ihren Namen?"
+   ],
+   "gsw": "sich erinnere, sich bsinne",
+   "regional": {
+    "at": {
+     "diff": "Colloquially also \"sich erinnern auf + Akkusativ\"."
+    }
+   }
+  },
+  "fr": {
+   "word": "se souvenir",
+   "ipa": "/sə suv.niʁ/",
+   "level": "A2",
+   "verbRegular": false,
+   "verbClass": "3rd group, irregular (like venir), reflexive",
+   "forms": "je me souviens · je me souvenais · je me suis souvenu(e)",
+   "auxiliary": "être",
+   "government": [
+    {
+     "pattern": "se souvenir de + noun / infinitive",
+     "meaning": "to remember"
+    },
+    {
+     "pattern": "se rappeler + direct object",
+     "meaning": "same meaning, no preposition"
+    }
+   ],
+   "synonyms": [
+    "se rappeler"
+   ],
+   "collocations": [
+    {
+     "phrase": "Je me souviens",
+     "meaning": "I remember (the motto of Québec)"
+    }
+   ],
+   "etymology": "Latin subvenire, to come to mind.",
+   "examples": [
+    "Je me *souviens* de mon premier jour d'école.",
+    "Tu te *souviens* de son nom ?"
+   ]
+  },
+  "pt": {
+   "word": "lembrar-se",
+   "ipa": "/lẽˈbɾaʁ.si/",
+   "level": "A2",
+   "verbRegular": true,
+   "verbClass": "regular -ar verb, reflexive",
+   "forms": "me lembro · me lembrei · lembrado",
+   "auxiliary": "ter",
+   "government": [
+    {
+     "pattern": "lembrar-se de + noun / infinitive",
+     "meaning": "to remember"
+    },
+    {
+     "pattern": "lembrar alguém de + noun",
+     "meaning": "to remind someone of"
+    }
+   ],
+   "synonyms": [
+    "recordar-se"
+   ],
+   "collocations": [
+    {
+     "phrase": "se bem me lembro",
+     "meaning": "if I remember correctly"
+    }
+   ],
+   "etymology": "Latin memorare.",
+   "examples": [
+    "Eu me *lembro* do meu primeiro dia de aula.",
+    "Você se *lembra* do nome dela?"
+   ],
+   "regional": {
+    "pt": {
+     "ipa": "/lẽˈbɾaɾ.sɨ/",
+     "forms": "lembro-me · lembrei-me · lembrado",
+     "examples": [
+      "*Lembro*-me do meu primeiro dia de escola.",
+      "*Lembras*-te do nome dela?"
+     ],
+     "diff": "Portugal puts the pronoun after the verb: lembro-me."
+    }
+   }
+  }
+ },
+ {
+  "_source": "entries.js",
+  "pos": "verb",
+  "sense": "to find pleasant; to enjoy",
+  "en": {
+   "word": "to like",
+   "ipa": "/laɪk/",
+   "level": "A1",
+   "verbRegular": true,
+   "verbClass": "regular verb",
+   "forms": "likes · liked · has liked",
+   "auxiliary": "have",
+   "government": [
+    {
+     "pattern": "like + object",
+     "meaning": "no preposition"
+    },
+    {
+     "pattern": "like + -ing / to-infinitive",
+     "meaning": "activities"
+    }
+   ],
+   "synonyms": [
+    "enjoy",
+    "be fond of"
+   ],
+   "collocations": [
+    {
+     "phrase": "if you like",
+     "meaning": "if you want"
+    }
+   ],
+   "etymology": "Old English līcian, to please.",
+   "examples": [
+    "I *like* this song.",
+    "She *likes* to read in the evening."
+   ]
+  },
+  "de": {
+   "word": "mögen",
+   "ipa": "/ˈmøːɡn̩/",
+   "level": "A1",
+   "verbRegular": false,
+   "verbClass": "irregular verb (conjugates like a modal)",
+   "forms": "mag · mochte · hat gemocht",
+   "auxiliary": "haben",
+   "government": [
+    {
+     "pattern": "mögen + Akkusativ",
+     "meaning": "things and people"
+    },
+    {
+     "pattern": "verb + gern",
+     "meaning": "activities: ich lese gern"
+    },
+    {
+     "pattern": "gefallen + Dativ",
+     "meaning": "das gefällt mir: I like that"
+    }
+   ],
+   "synonyms": [
+    "gernhaben",
+    "gefallen"
+   ],
+   "collocations": [
+    {
+     "phrase": "Das mag sein.",
+     "meaning": "That may be."
+    }
+   ],
+   "etymology": "Old High German mugan, to be able.",
+   "examples": [
+    "Ich *mag* dieses Lied.",
+    "Sie liest abends *gern*."
+   ],
+   "gsw": "möge, gärn haa",
+   "regional": {
+    "ch": {
+     "diff": "Swiss speakers often say \"gern haben\": Ich habe dieses Lied gern."
+    }
+   }
+  },
+  "fr": {
+   "word": "aimer",
+   "ipa": "/e.me/",
+   "level": "A1",
+   "verbRegular": true,
+   "verbClass": "1st group, regular -er verb",
+   "forms": "j'aime · j'aimais · j'ai aimé",
+   "auxiliary": "avoir",
+   "government": [
+    {
+     "pattern": "aimer + direct object",
+     "meaning": "no preposition"
+    },
+    {
+     "pattern": "aimer + infinitive",
+     "meaning": "no preposition: aimer lire"
+    }
+   ],
+   "synonyms": [
+    "apprécier",
+    "adorer"
+   ],
+   "collocations": [
+    {
+     "phrase": "aimer mieux",
+     "meaning": "to prefer"
+    }
+   ],
+   "etymology": "Latin amare.",
+   "examples": [
+    "J'*aime* cette chanson.",
+    "Elle *aime* lire le soir."
+   ],
+   "note": "About a person, aimer alone means to love. Aimer bien means to like."
+  },
+  "pt": {
+   "word": "gostar",
+   "ipa": "/ɡosˈtaʁ/",
+   "level": "A1",
+   "verbRegular": true,
+   "verbClass": "regular -ar verb",
+   "forms": "gosto · gostei · gostado",
+   "auxiliary": "ter",
+   "government": [
+    {
+     "pattern": "gostar de + noun / infinitive",
+     "meaning": "always with de"
+    }
+   ],
+   "synonyms": [
+    "apreciar",
+    "curtir (informal)"
+   ],
+   "collocations": [
+    {
+     "phrase": "gostar muito de",
+     "meaning": "to like a lot"
+    }
+   ],
+   "etymology": "Latin gustare, to taste.",
+   "examples": [
+    "Eu *gosto* dessa música.",
+    "Ela *gosta* de ler à noite."
+   ],
+   "regional": {
+    "pt": {
+     "ipa": "/ɡuʃˈtaɾ/",
+     "examples": [
+      "*Gosto* desta música.",
+      "Ela *gosta* de ler à noite."
+     ]
+    }
+   }
+  }
+ },
+ {
+  "_source": "entries.js",
+  "pos": "numeral",
+  "sense": "the number 90",
+  "en": {
+   "word": "ninety",
+   "ipa": "/ˈnaɪnti/",
+   "level": "A1",
+   "collocations": [
+    {
+     "phrase": "ninety percent",
+     "meaning": "90 %"
+    }
+   ],
+   "etymology": "Nine + -ty, ten.",
+   "examples": [
+    "My grandmother is *ninety* years old.",
+    "The ticket costs *ninety* francs."
+   ]
+  },
+  "de": {
+   "word": "neunzig",
+   "ipa": "/ˈnɔʏ̯ntsɪç/",
+   "level": "A1",
+   "collocations": [
+    {
+     "phrase": "in den neunziger Jahren",
+     "meaning": "in the nineties"
+    }
+   ],
+   "etymology": "Neun + -zig, ten.",
+   "examples": [
+    "Meine Großmutter ist *neunzig* Jahre alt.",
+    "Die Fahrkarte kostet *neunzig* Franken."
+   ],
+   "gsw": "nüünzg",
+   "regional": {
+    "ch": {
+     "ipa": "/ˈnɔʏ̯ntsɪk/",
+     "examples": [
+      "Meine Grossmutter ist *neunzig* Jahre alt.",
+      "Das Billett kostet *neunzig* Franken."
+     ],
+     "diff": "The ending -ig is said /ɪk/. A ticket is a \"Billett\"."
+    },
+    "at": {
+     "ipa": "/ˈnɔʏ̯ntsɪk/",
+     "diff": "The ending -ig is said /ɪk/."
+    }
+   }
+  },
+  "fr": {
+   "word": "quatre-vingt-dix",
+   "ipa": "/ka.tʁə.vɛ̃.dis/",
+   "level": "A1",
+   "collocations": [
+    {
+     "phrase": "quatre-vingt-dix pour cent",
+     "meaning": "90 %"
+    }
+   ],
+   "etymology": "\"Four twenties and ten\": a count in twenties.",
+   "examples": [
+    "Ma grand-mère a *quatre-vingt-dix* ans.",
+    "Le billet coûte *quatre-vingt-dix* francs."
+   ],
+   "regional": {
+    "be": {
+     "word": "nonante",
+     "ipa": "/nɔ.nɑ̃t/",
+     "examples": [
+      "Ma grand-mère a *nonante* ans.",
+      "Le billet coûte *nonante* francs."
+     ],
+     "diff": "Belgium says \"nonante\"."
+    },
+    "ch": {
+     "word": "nonante",
+     "ipa": "/nɔ.nɑ̃t/",
+     "examples": [
+      "Ma grand-mère a *nonante* ans.",
+      "Le billet coûte *nonante* francs."
+     ],
+     "diff": "Switzerland says \"nonante\"."
+    }
+   }
+  },
+  "pt": {
+   "word": "noventa",
+   "ipa": "/noˈvẽ.tɐ/",
+   "level": "A1",
+   "collocations": [
+    {
+     "phrase": "noventa por cento",
+     "meaning": "90 %"
+    }
+   ],
+   "etymology": "Latin nonaginta.",
+   "examples": [
+    "Minha avó tem *noventa* anos.",
+    "A passagem custa *noventa* francos."
+   ],
+   "regional": {
+    "pt": {
+     "ipa": "/nuˈvẽ.tɐ/",
+     "examples": [
+      "A minha avó tem *noventa* anos.",
+      "O bilhete custa *noventa* francos."
+     ],
+     "diff": "Portugal says \"bilhete\" for \"passagem\"."
+    }
+   }
+  }
+ },
+ {
+  "_source": "entries.js",
+  "pos": "adjective",
+  "sense": "large in size",
+  "en": {
+   "word": "big",
+   "ipa": "/bɪɡ/",
+   "level": "A1",
+   "comparison": "bigger · biggest",
+   "comparisonRegular": true,
+   "synonyms": [
+    "large",
+    "huge"
+   ],
+   "antonyms": [
+    "small"
+   ],
+   "collocations": [
+    {
+     "phrase": "big deal",
+     "meaning": "something important (often ironic)"
+    }
+   ],
+   "etymology": "Middle English, origin uncertain.",
+   "examples": [
+    "They live in a *big* city.",
+    "This shirt is too *big* for me."
+   ]
+  },
+  "de": {
+   "word": "groß",
+   "ipa": "/ɡʁoːs/",
+   "level": "A1",
+   "comparison": "größer · am größten",
+   "comparisonRegular": false,
+   "synonyms": [
+    "riesig",
+    "weit"
+   ],
+   "antonyms": [
+    "klein"
+   ],
+   "collocations": [
+    {
+     "phrase": "im Großen und Ganzen",
+     "meaning": "by and large"
+    }
+   ],
+   "etymology": "Old High German grōz.",
+   "examples": [
+    "Sie wohnen in einer *großen* Stadt.",
+    "Dieses Hemd ist mir zu *groß*."
+   ],
+   "gsw": "gross (grösser)"
+  },
+  "fr": {
+   "word": "grand",
+   "ipa": "/ɡʁɑ̃/",
+   "level": "A1",
+   "forms": "f. grande · pl. grands, grandes",
+   "formsRegular": true,
+   "comparison": "plus grand · le plus grand",
+   "comparisonRegular": true,
+   "synonyms": [
+    "gros",
+    "vaste"
+   ],
+   "antonyms": [
+    "petit"
+   ],
+   "collocations": [
+    {
+     "phrase": "pas grand-chose",
+     "meaning": "not much"
+    }
+   ],
+   "etymology": "Latin grandis.",
+   "examples": [
+    "Ils habitent dans une *grande* ville.",
+    "Cette chemise est trop *grande* pour moi."
+   ],
+   "note": "Before a person it can mean great: un grand homme (a great man), un homme grand (a tall man)."
+  },
+  "pt": {
+   "word": "grande",
+   "ipa": "/ˈɡɾɐ̃.dʒi/",
+   "level": "A1",
+   "forms": "m. and f. grande · pl. grandes",
+   "formsRegular": true,
+   "comparison": "maior · o maior",
+   "comparisonRegular": false,
+   "synonyms": [
+    "enorme",
+    "amplo"
+   ],
+   "antonyms": [
+    "pequeno"
+   ],
+   "collocations": [
+    {
+     "phrase": "grande coisa",
+     "meaning": "big deal (ironic)"
+    }
+   ],
+   "etymology": "Latin grandis.",
+   "examples": [
+    "Eles moram em uma cidade *grande*.",
+    "Esta camisa é *grande* demais para mim."
+   ],
+   "regional": {
+    "pt": {
+     "ipa": "/ˈɡɾɐ̃.dɨ/",
+     "examples": [
+      "Eles vivem numa cidade *grande*.",
+      "Esta camisa é *grande* demais para mim."
+     ]
+    }
+   }
+  }
+ },
+ {
+  "_source": "entries.js",
+  "pos": "adjective",
+  "sense": "very pleasant to look at",
+  "en": {
+   "word": "beautiful",
+   "ipa": "/ˈbjuːtɪfəl/",
+   "level": "A1",
+   "comparison": "more beautiful · most beautiful",
+   "comparisonRegular": true,
+   "synonyms": [
+    "lovely",
+    "gorgeous"
+   ],
+   "antonyms": [
+    "ugly"
+   ],
+   "collocations": [
+    {
+     "phrase": "beautiful weather",
+     "meaning": "sunny and pleasant"
+    }
+   ],
+   "etymology": "Beauty (Old French beauté) + -ful.",
+   "examples": [
+    "What a *beautiful* day!",
+    "The city is *beautiful* in spring."
+   ]
+  },
+  "de": {
+   "word": "schön",
+   "ipa": "/ʃøːn/",
+   "level": "A1",
+   "comparison": "schöner · am schönsten",
+   "comparisonRegular": true,
+   "synonyms": [
+    "hübsch",
+    "herrlich"
+   ],
+   "antonyms": [
+    "hässlich"
+   ],
+   "collocations": [
+    {
+     "phrase": "Schönen Tag noch!",
+     "meaning": "Have a nice day!"
+    }
+   ],
+   "etymology": "Old High German scōni.",
+   "examples": [
+    "Was für ein *schöner* Tag!",
+    "Die Stadt ist im Frühling *schön*."
+   ],
+   "gsw": "schöön"
+  },
+  "fr": {
+   "word": "beau",
+   "ipa": "/bo/",
+   "level": "A1",
+   "forms": "m. beau (bel before a vowel) · f. belle · pl. beaux, belles",
+   "formsRegular": false,
+   "comparison": "plus beau · le plus beau",
+   "comparisonRegular": true,
+   "synonyms": [
+    "joli",
+    "magnifique"
+   ],
+   "antonyms": [
+    "laid"
+   ],
+   "collocations": [
+    {
+     "phrase": "il fait beau",
+     "meaning": "the weather is nice"
+    }
+   ],
+   "etymology": "Latin bellus.",
+   "examples": [
+    "Quelle *belle* journée !",
+    "La ville est *belle* au printemps."
+   ]
+  },
+  "pt": {
+   "word": "bonito",
+   "ipa": "/boˈni.tu/",
+   "level": "A1",
+   "forms": "f. bonita · pl. bonitos, bonitas",
+   "formsRegular": true,
+   "comparison": "mais bonito · o mais bonito",
+   "comparisonRegular": true,
+   "synonyms": [
+    "lindo",
+    "belo"
+   ],
+   "antonyms": [
+    "feio"
+   ],
+   "collocations": [
+    {
+     "phrase": "Que bonito!",
+     "meaning": "How lovely!"
+    }
+   ],
+   "etymology": "A diminutive of bom, good.",
+   "examples": [
+    "Que dia *bonito*!",
+    "A cidade é *bonita* na primavera."
+   ],
+   "regional": {
+    "pt": {
+     "ipa": "/buˈni.tu/"
+    }
+   }
+  }
+ },
+ {
+  "_source": "entries.js",
+  "pos": "adjective",
+  "sense": "of high quality; pleasant",
+  "en": {
+   "word": "good",
+   "ipa": "/ɡʊd/",
+   "level": "A1",
+   "comparison": "better · best",
+   "comparisonRegular": false,
+   "synonyms": [
+    "fine",
+    "great"
+   ],
+   "antonyms": [
+    "bad"
+   ],
+   "collocations": [
+    {
+     "phrase": "good morning",
+     "meaning": "greeting before noon"
+    }
+   ],
+   "etymology": "Old English gōd.",
+   "examples": [
+    "This is a *good* idea.",
+    "The food here is very *good*."
+   ]
+  },
+  "de": {
+   "word": "gut",
+   "ipa": "/ɡuːt/",
+   "level": "A1",
+   "comparison": "besser · am besten",
+   "comparisonRegular": false,
+   "synonyms": [
+    "prima",
+    "fein"
+   ],
+   "antonyms": [
+    "schlecht"
+   ],
+   "collocations": [
+    {
+     "phrase": "Guten Tag!",
+     "meaning": "Hello!"
+    }
+   ],
+   "etymology": "Old High German guot.",
+   "examples": [
+    "Das ist eine *gute* Idee.",
+    "Das Essen hier ist sehr *gut*."
+   ],
+   "gsw": "guet"
+  },
+  "fr": {
+   "word": "bon",
+   "ipa": "/bɔ̃/",
+   "level": "A1",
+   "forms": "f. bonne · pl. bons, bonnes",
+   "formsRegular": true,
+   "comparison": "meilleur · le meilleur",
+   "comparisonRegular": false,
+   "synonyms": [
+    "agréable",
+    "délicieux"
+   ],
+   "antonyms": [
+    "mauvais"
+   ],
+   "collocations": [
+    {
+     "phrase": "bon appétit",
+     "meaning": "enjoy your meal"
+    }
+   ],
+   "etymology": "Latin bonus.",
+   "examples": [
+    "C'est une *bonne* idée.",
+    "La nourriture ici est très *bonne*."
+   ],
+   "note": "Bon is the adjective. The adverb \"well\" is bien."
+  },
+  "pt": {
+   "word": "bom",
+   "ipa": "/ˈbõ/",
+   "level": "A1",
+   "forms": "f. boa · pl. bons, boas",
+   "formsRegular": false,
+   "comparison": "melhor · o melhor",
+   "comparisonRegular": false,
+   "synonyms": [
+    "ótimo",
+    "legal (informal)"
+   ],
+   "antonyms": [
+    "mau",
+    "ruim"
+   ],
+   "collocations": [
+    {
+     "phrase": "bom dia",
+     "meaning": "good morning"
+    }
+   ],
+   "etymology": "Latin bonus.",
+   "examples": [
+    "Essa é uma *boa* ideia.",
+    "A comida aqui é muito *boa*."
+   ]
+  }
+ },
+ {
+  "_source": "shared library",
+  "_id": "road_strasse",
+  "pos": "noun",
+  "sense": "road (as a route between places)",
+  "otherSenses": [
+   "street (in a town, with buildings)",
+   "strait (as in a waterway, e.g. Straße von Gibraltar)"
+  ],
+  "en": {
+   "word": "road",
+   "ipa": "ɹoʊd",
+   "ipaAlt": {
+    "gb": "ɹəʊd"
+   },
+   "level": "A1",
+   "synonyms": [
+    "route",
+    "highway",
+    "street"
+   ],
+   "gender": null,
+   "plural": "roads",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "examples": [
+    "The *road* to the village is very narrow.",
+    "Many *roads* are closed because of the snow."
+   ],
+   "variants": []
+  },
+  "de": {
+   "word": "Straße",
+   "ipa": "ˈʃtʁaːsə",
+   "level": "A1",
+   "synonyms": [
+    "Weg",
+    "Landstraße",
+    "Chaussee"
+   ],
+   "article": "die",
+   "gender": "f",
+   "plural": "die Straßen",
+   "pluralRule": "adds -n",
+   "pluralRegular": true,
+   "examples": [
+    "Die *Straße* zum Dorf ist sehr schmal.",
+    "Viele *Straßen* sind wegen des Schnees gesperrt."
+   ],
+   "variants": [
+    {
+     "region": "ch",
+     "ipa": "ˈʃtraːsə",
+     "note": "In Switzerland the word is written 'Strasse' (no ß); otherwise the same. The Swiss pronunciation has a typically more alveolar/trilled r."
+    }
+   ],
+   "note": "Straße also means 'street' within a town; for a road between places, Landstraße (country road) or Weg (way, path) are common alternatives.",
+   "gsw": "Strass"
+  },
+  "fr": {
+   "word": "route",
+   "ipa": "ʁut",
+   "level": "A1",
+   "synonyms": [
+    "chemin",
+    "voie",
+    "itinéraire"
+   ],
+   "article": "la",
+   "gender": "f",
+   "plural": "les routes",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "examples": [
+    "La *route* du village est très étroite.",
+    "Beaucoup de *routes* sont fermées à cause de la neige."
+   ],
+   "variants": [],
+   "note": "For a street within a town, French uses 'rue', whereas 'route' is used for roads between places."
+  },
+  "pt": {
+   "word": "estrada",
+   "ipa": "isˈtɾa.dɐ",
+   "ipaAlt": {
+    "pt": "ɨʃˈtɾa.ðɐ"
+   },
+   "level": "A2",
+   "synonyms": [
+    "rodovia",
+    "via",
+    "caminho"
+   ],
+   "article": "a",
+   "gender": "f",
+   "plural": "as estradas",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "examples": [
+    "A *estrada* para o vilarejo é muito estreita.",
+    "Muitas *estradas* estão fechadas por causa da neve."
+   ],
+   "variants": [
+    {
+     "region": "pt",
+     "ipa": "ɨʃˈtɾa.ðɐ",
+     "examples": [
+      "A *estrada* para a aldeia é muito estreita.",
+      "Muitas *estradas* estão fechadas por causa da neve."
+     ],
+     "note": "European Portuguese prefers 'aldeia' for a small village; 'vilarejo' is more Brazilian."
+    }
+   ],
+   "note": "For a street in a town, Portuguese uses 'rua'; 'estrada' is for roads between places."
+  },
+  "level": "A1"
+ },
+ {
+  "_source": "shared library",
+  "_id": "street_strasse",
+  "pos": "noun",
+  "sense": "street, road in a town or village",
+  "otherSenses": [
+   "road (as a route between places)",
+   "roadway (as opposed to the sidewalk)",
+   "strait (geographical, as in 'Straße von Gibraltar')"
+  ],
+  "en": {
+   "word": "street",
+   "ipa": "striːt",
+   "synonyms": [
+    "road",
+    "avenue"
+   ],
+   "gender": null,
+   "plural": "streets",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "level": "A1",
+   "examples": [
+    "I live on a quiet *street* near the park.",
+    "The *streets* are very busy on Saturday."
+   ],
+   "variants": []
+  },
+  "de": {
+   "word": "Straße",
+   "ipa": "ˈʃtʁaːsə",
+   "synonyms": [
+    "Weg",
+    "Gasse",
+    "Allee"
+   ],
+   "article": "die",
+   "gender": "f",
+   "plural": "die Straßen",
+   "pluralRule": "adds -n",
+   "pluralRegular": true,
+   "level": "A1",
+   "examples": [
+    "Ich wohne in einer ruhigen *Straße* in der Nähe vom Park.",
+    "Am Samstag sind die *Straßen* sehr voll."
+   ],
+   "variants": [
+    {
+     "region": "ch",
+     "note": "Standard Swiss spelling uses ss instead of ß (Strasse); the app converts this automatically, so the word is otherwise the same.",
+     "examples": [
+      null,
+      null
+     ]
+    }
+   ],
+   "gsw": "Strass"
+  },
+  "fr": {
+   "word": "rue",
+   "ipa": "ʁy",
+   "synonyms": [
+    "route",
+    "avenue",
+    "chaussée"
+   ],
+   "article": "la",
+   "gender": "f",
+   "plural": "les rues",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "level": "A1",
+   "examples": [
+    "J'habite dans une *rue* calme près du parc.",
+    "Le samedi, les *rues* sont très animées."
+   ],
+   "variants": [],
+   "note": "French distinguishes 'rue' (street in a town) from 'route' (road between places), whereas German 'Straße' covers both."
+  },
+  "pt": {
+   "word": "rua",
+   "ipa": "ˈhu.a",
+   "ipaAlt": {
+    "pt": "ˈʁu.ɐ"
+   },
+   "synonyms": [
+    "avenida",
+    "via",
+    "estrada"
+   ],
+   "article": "a",
+   "gender": "f",
+   "plural": "as ruas",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "level": "A1",
+   "examples": [
+    "Eu moro numa *rua* tranquila perto do parque.",
+    "Aos sábados, as *ruas* ficam muito movimentadas."
+   ],
+   "variants": [
+    {
+     "region": "pt",
+     "note": "European Portuguese pronunciation differs; the sentences are otherwise identical in structure, with a slightly different word for 'busy'.",
+     "ipa": "ˈʁu.ɐ",
+     "examples": [
+      null,
+      "Aos sábados, as *ruas* estão muito movimentadas."
+     ]
+    }
+   ],
+   "note": "Portuguese distinguishes 'rua' (town street) from 'estrada' (road between places)."
+  },
+  "level": "A1"
+ },
+ {
+  "_source": "index.html",
+  "pos": "verb",
+  "level": "A1",
+  "sense": "to stay until something happens",
+  "otherSenses": [],
+  "en": {
+   "word": "to wait",
+   "ipa": "weɪt",
+   "synonyms": [
+    "to await"
+   ],
+   "verbRegular": true,
+   "verbClass": "regular verb",
+   "forms": "waits · waited · has waited",
+   "auxiliary": "have",
+   "government": [
+    {
+     "pattern": "wait for + object",
+     "meaning": "the thing or person awaited"
+    },
+    {
+     "pattern": "wait + to-infinitive",
+     "meaning": "wait to do something"
+    }
+   ],
+   "examples": [
+    "I am *waiting* for the bus.",
+    "We *waited* an hour for you."
+   ]
+  },
+  "de": {
+   "word": "warten",
+   "ipa": "ˈvaʁtn̩",
+   "synonyms": [
+    "abwarten"
+   ],
+   "verbRegular": true,
+   "verbClass": "weak verb",
+   "forms": "wartet · wartete · hat gewartet",
+   "auxiliary": "haben",
+   "government": [
+    {
+     "pattern": "warten auf + Akkusativ",
+     "meaning": "to wait for"
+    }
+   ],
+   "examples": [
+    "Ich *warte* auf den Bus.",
+    "Wir haben eine Stunde auf dich *gewartet*."
+   ],
+   "gsw": "warte"
+  },
+  "fr": {
+   "word": "attendre",
+   "ipa": "a.tɑ̃dʁ",
+   "synonyms": [
+    "patienter"
+   ],
+   "verbRegular": true,
+   "verbClass": "3rd group, but follows the regular -re pattern (like vendre)",
+   "forms": "j'attends · j'attendais · j'ai attendu",
+   "auxiliary": "avoir",
+   "government": [
+    {
+     "pattern": "attendre + direct object",
+     "meaning": "no preposition: attendre le bus"
+    },
+    {
+     "pattern": "s'attendre à + noun / infinitive",
+     "meaning": "to expect"
+    }
+   ],
+   "examples": [
+    "J'*attends* le bus.",
+    "Nous t'avons *attendu* pendant une heure."
+   ],
+   "note": "No preposition for \"for\": attendre quelqu'un, never attendre pour."
+  },
+  "pt": {
+   "word": "esperar",
+   "ipa": "es.peˈɾa(ʁ)",
+   "ipaAlt": {
+    "pt": "ɨʃ.pɨˈɾaɾ"
+   },
+   "synonyms": [
+    "aguardar"
+   ],
+   "verbRegular": true,
+   "verbClass": "regular -ar verb",
+   "forms": "espero · esperei · esperado",
+   "auxiliary": "ter",
+   "government": [
+    {
+     "pattern": "esperar + direct object",
+     "meaning": "esperar o ônibus"
+    },
+    {
+     "pattern": "esperar por + noun",
+     "meaning": "to wait for (also common)"
+    }
+   ],
+   "examples": [
+    "Estou *esperando* o ônibus.",
+    "*Esperamos* uma hora por você."
+   ],
+   "note": "Esperar also means \"to hope\".",
+   "variants": [
+    {
+     "region": "pt",
+     "examples": [
+      "Estou *à espera* do autocarro.",
+      "*Esperámos* uma hora por ti."
+     ],
+     "note": "Portugal avoids the gerund (estar a + infinitive, estar à espera), says autocarro, and writes esperámos."
+    }
+   ]
+  }
+ },
+ {
+  "_source": "index.html",
+  "pos": "verb",
+  "level": "A1",
+  "sense": "to move from one place to another",
+  "otherSenses": [],
+  "en": {
+   "word": "to go",
+   "ipa": "ɡoʊ",
+   "ipaAlt": {
+    "gb": "ɡəʊ"
+   },
+   "verbRegular": false,
+   "verbClass": "irregular verb (suppletive past)",
+   "forms": "goes · went · has gone",
+   "auxiliary": "have",
+   "government": [
+    {
+     "pattern": "go to + place",
+     "meaning": "destination"
+    },
+    {
+     "pattern": "go + -ing",
+     "meaning": "activities: go swimming"
+    }
+   ],
+   "examples": [
+    "I *go* to work on foot every day.",
+    "She *went* to the movies yesterday."
+   ],
+   "variants": [
+    {
+     "region": "gb",
+     "examples": [
+      null,
+      "She *went* to the cinema yesterday."
+     ],
+     "note": "British English says \"the cinema\" where American says \"the movies\"."
+    }
+   ]
+  },
+  "de": {
+   "word": "gehen",
+   "ipa": "ˈɡeːən",
+   "verbRegular": false,
+   "verbClass": "strong verb (e → i → a)",
+   "forms": "geht · ging · ist gegangen",
+   "auxiliary": "sein",
+   "government": [
+    {
+     "pattern": "gehen zu + Dativ",
+     "meaning": "to a person or place"
+    },
+    {
+     "pattern": "gehen in + Akkusativ",
+     "meaning": "into a building: ins Kino"
+    },
+    {
+     "pattern": "gehen nach + Dativ",
+     "meaning": "towns, countries, nach Hause"
+    }
+   ],
+   "examples": [
+    "Ich *gehe* jeden Tag zu Fuß zur Arbeit.",
+    "Sie ist gestern ins Kino *gegangen*."
+   ],
+   "gsw": "gaa"
+  },
+  "fr": {
+   "word": "aller",
+   "ipa": "a.le",
+   "verbRegular": false,
+   "verbClass": "3rd group, the only irregular -er verb",
+   "forms": "je vais · j'allais · je suis allé(e)",
+   "auxiliary": "être",
+   "government": [
+    {
+     "pattern": "aller à + place",
+     "meaning": "au, à la, aux"
+    },
+    {
+     "pattern": "aller chez + person",
+     "meaning": "to someone's place"
+    },
+    {
+     "pattern": "aller + infinitive",
+     "meaning": "near future: je vais partir"
+    }
+   ],
+   "examples": [
+    "Je *vais* au travail à pied tous les jours.",
+    "Elle est *allée* au cinéma hier."
+   ]
+  },
+  "pt": {
+   "word": "ir",
+   "ipa": "i(ʁ)",
+   "ipaAlt": {
+    "pt": "iɾ"
+   },
+   "verbRegular": false,
+   "verbClass": "irregular verb",
+   "forms": "vou · fui · ido",
+   "auxiliary": "ter",
+   "government": [
+    {
+     "pattern": "ir a / para + place",
+     "meaning": "a: short visit · para: to stay"
+    },
+    {
+     "pattern": "ir + infinitive",
+     "meaning": "future: vou viajar"
+    }
+   ],
+   "examples": [
+    "Eu *vou* a pé para o trabalho todos os dias.",
+    "Ela *foi* ao cinema ontem."
+   ],
+   "note": "In spoken Brazilian Portuguese \"ir em\" is also heard: vou no cinema."
+  }
+ },
+ {
+  "_source": "index.html",
+  "pos": "verb",
+  "level": "A1",
+  "sense": "to be upright on your feet",
+  "otherSenses": [],
+  "en": {
+   "word": "to stand",
+   "ipa": "stænd",
+   "verbRegular": false,
+   "verbClass": "irregular verb",
+   "forms": "stands · stood · has stood",
+   "auxiliary": "have",
+   "government": [
+    {
+     "pattern": "stand in / on / at + place",
+     "meaning": "position"
+    },
+    {
+     "pattern": "stand for + noun",
+     "meaning": "to represent"
+    }
+   ],
+   "examples": [
+    "I have been *standing* in line for an hour.",
+    "We *stood* in front of the door."
+   ],
+   "variants": [
+    {
+     "region": "gb",
+     "examples": [
+      "I have been *standing* in a queue for an hour.",
+      null
+     ],
+     "note": "British English says \"queue\" where American says \"line\"."
+    }
+   ]
+  },
+  "de": {
+   "word": "stehen",
+   "ipa": "ˈʃteːən",
+   "verbRegular": false,
+   "verbClass": "strong verb (e → a → a)",
+   "forms": "steht · stand · hat gestanden",
+   "auxiliary": "haben",
+   "government": [
+    {
+     "pattern": "stehen in / auf / vor + Dativ",
+     "meaning": "position (no movement)"
+    },
+    {
+     "pattern": "stehen zu + Dativ",
+     "meaning": "to stand by someone or something"
+    }
+   ],
+   "examples": [
+    "Ich *stehe* seit einer Stunde in der Schlange.",
+    "Wir haben vor der Tür *gestanden*."
+   ],
+   "gsw": "staa",
+   "variants": [
+    {
+     "region": "ch",
+     "forms": "steht · stand · ist gestanden",
+     "auxiliary": "sein",
+     "examples": [
+      null,
+      "Wir sind vor der Tür *gestanden*."
+     ],
+     "note": "Perfect with sein (ich bin gestanden), as in southern Germany."
+    },
+    {
+     "region": "at",
+     "forms": "steht · stand · ist gestanden",
+     "auxiliary": "sein",
+     "examples": [
+      null,
+      "Wir sind vor der Tür *gestanden*."
+     ],
+     "note": "Perfect with sein (ich bin gestanden), as in southern Germany."
+    }
+   ]
+  },
+  "fr": {
+   "word": "être debout",
+   "ipa": "ɛtʁ də.bu",
+   "verbRegular": false,
+   "verbClass": "phrase with être (irregular)",
+   "forms": "je suis debout · j'étais debout · j'ai été debout",
+   "auxiliary": "avoir",
+   "government": [
+    {
+     "pattern": "se tenir + place",
+     "meaning": "to stand somewhere"
+    }
+   ],
+   "examples": [
+    "Je *suis debout* dans la file depuis une heure.",
+    "Nous *étions debout* devant la porte."
+   ],
+   "note": "French has no single verb for \"to stand\". Se lever means to stand up."
+  },
+  "pt": {
+   "word": "ficar em pé",
+   "ipa": "fiˈka(ʁ) ẽj̃ ˈpɛ",
+   "verbRegular": true,
+   "verbClass": "regular -ar verb (c → qu before e: fiquei)",
+   "forms": "fico em pé · fiquei em pé · ficado em pé",
+   "auxiliary": "ter",
+   "government": [
+    {
+     "pattern": "ficar / estar em pé + place",
+     "meaning": "estar for the state, ficar for staying"
+    }
+   ],
+   "examples": [
+    "Estou *em pé* na fila há uma hora.",
+    "Nós *ficamos em pé* em frente à porta."
+   ],
+   "variants": [
+    {
+     "region": "pt",
+     "word": "ficar de pé",
+     "forms": "fico de pé · fiquei de pé · ficado de pé",
+     "examples": [
+      "Estou *de pé* na fila há uma hora.",
+      "Nós *ficámos de pé* em frente à porta."
+     ],
+     "note": "Portugal prefers \"de pé\" and writes the past as ficámos."
+    }
+   ]
+  }
+ },
+ {
+  "_source": "index.html",
+  "pos": "verb",
+  "level": "A1",
+  "sense": "to give assistance",
+  "otherSenses": [],
+  "en": {
+   "word": "to help",
+   "ipa": "hɛlp",
+   "synonyms": [
+    "to assist"
+   ],
+   "verbRegular": true,
+   "verbClass": "regular verb",
+   "forms": "helps · helped · has helped",
+   "auxiliary": "have",
+   "government": [
+    {
+     "pattern": "help someone with + noun",
+     "meaning": "the task"
+    },
+    {
+     "pattern": "help someone (to) + infinitive",
+     "meaning": "\"to\" is optional"
+    }
+   ],
+   "examples": [
+    "Can you *help* me, please?",
+    "He *helped* his sister with the move."
+   ]
+  },
+  "de": {
+   "word": "helfen",
+   "ipa": "ˈhɛlfn̩",
+   "synonyms": [
+    "unterstützen"
+   ],
+   "verbRegular": false,
+   "verbClass": "strong verb (e → i · a · o)",
+   "forms": "hilft · half · hat geholfen",
+   "auxiliary": "haben",
+   "government": [
+    {
+     "pattern": "helfen + Dativ",
+     "meaning": "the person helped: mir, dir, ihm"
+    },
+    {
+     "pattern": "helfen bei + Dativ",
+     "meaning": "with a task"
+    }
+   ],
+   "examples": [
+    "Kannst du mir bitte *helfen*?",
+    "Er hat seiner Schwester beim Umzug *geholfen*."
+   ],
+   "gsw": "hälfe"
+  },
+  "fr": {
+   "word": "aider",
+   "ipa": "e.de",
+   "synonyms": [
+    "assister"
+   ],
+   "verbRegular": true,
+   "verbClass": "1st group, regular -er verb",
+   "forms": "j'aide · j'aidais · j'ai aidé",
+   "auxiliary": "avoir",
+   "government": [
+    {
+     "pattern": "aider + direct object",
+     "meaning": "the person: aider quelqu'un"
+    },
+    {
+     "pattern": "aider à + infinitive",
+     "meaning": "to help to do"
+    }
+   ],
+   "examples": [
+    "Peux-tu m'*aider*, s'il te plaît ?",
+    "Il a *aidé* sa sœur à déménager."
+   ]
+  },
+  "pt": {
+   "word": "ajudar",
+   "ipa": "a.ʒuˈda(ʁ)",
+   "ipaAlt": {
+    "pt": "ɐ.ʒuˈdaɾ"
+   },
+   "synonyms": [
+    "auxiliar"
+   ],
+   "verbRegular": true,
+   "verbClass": "regular -ar verb",
+   "forms": "ajudo · ajudei · ajudado",
+   "auxiliary": "ter",
+   "government": [
+    {
+     "pattern": "ajudar + direct object",
+     "meaning": "the person: ajudar alguém"
+    },
+    {
+     "pattern": "ajudar a + infinitive",
+     "meaning": "to help to do"
+    },
+    {
+     "pattern": "ajudar com / em + noun",
+     "meaning": "with a task"
+    }
+   ],
+   "examples": [
+    "Você pode me *ajudar*, por favor?",
+    "Ele *ajudou* a irmã com a mudança."
+   ],
+   "variants": [
+    {
+     "region": "pt",
+     "examples": [
+      "Podes *ajudar*-me, por favor?",
+      null
+     ],
+     "note": "Portugal uses tu with friends and puts the pronoun after the verb."
+    }
+   ]
+  }
+ },
+ {
+  "_source": "index.html",
+  "pos": "verb",
+  "level": "A1",
+  "sense": "to have something in mind; to hold an opinion",
+  "otherSenses": [],
+  "en": {
+   "word": "to think",
+   "ipa": "θɪŋk",
+   "verbRegular": false,
+   "verbClass": "irregular verb",
+   "forms": "thinks · thought · has thought",
+   "auxiliary": "have",
+   "government": [
+    {
+     "pattern": "think of / about + noun",
+     "meaning": "have in mind; opinion"
+    }
+   ],
+   "examples": [
+    "I often *think* of my family.",
+    "What do you *think* about this book?"
+   ]
+  },
+  "de": {
+   "word": "denken",
+   "ipa": "ˈdɛŋkn̩",
+   "verbRegular": false,
+   "verbClass": "mixed verb (weak endings, stem change)",
+   "forms": "denkt · dachte · hat gedacht",
+   "auxiliary": "haben",
+   "government": [
+    {
+     "pattern": "denken an + Akkusativ",
+     "meaning": "to have in mind"
+    },
+    {
+     "pattern": "denken über + Akkusativ",
+     "meaning": "to hold an opinion about"
+    }
+   ],
+   "examples": [
+    "Ich *denke* oft an meine Familie.",
+    "Was *denkst* du über dieses Buch?"
+   ],
+   "gsw": "tänke"
+  },
+  "fr": {
+   "word": "penser",
+   "ipa": "pɑ̃.se",
+   "verbRegular": true,
+   "verbClass": "1st group, regular -er verb",
+   "forms": "je pense · je pensais · j'ai pensé",
+   "auxiliary": "avoir",
+   "government": [
+    {
+     "pattern": "penser à + noun / infinitive",
+     "meaning": "to have in mind"
+    },
+    {
+     "pattern": "penser de + noun",
+     "meaning": "to hold an opinion about"
+    }
+   ],
+   "examples": [
+    "Je *pense* souvent à ma famille.",
+    "Que *penses*-tu de ce livre ?"
+   ]
+  },
+  "pt": {
+   "word": "pensar",
+   "ipa": "pẽˈsa(ʁ)",
+   "ipaAlt": {
+    "pt": "pẽˈsaɾ"
+   },
+   "verbRegular": true,
+   "verbClass": "regular -ar verb",
+   "forms": "penso · pensei · pensado",
+   "auxiliary": "ter",
+   "government": [
+    {
+     "pattern": "pensar em + noun / infinitive",
+     "meaning": "to have in mind"
+    },
+    {
+     "pattern": "pensar sobre + noun",
+     "meaning": "to reflect on, hold an opinion"
+    }
+   ],
+   "examples": [
+    "Eu *penso* muito na minha família.",
+    "O que você *pensa* sobre este livro?"
+   ],
+   "variants": [
+    {
+     "region": "pt",
+     "examples": [
+      null,
+      "O que *pensas* sobre este livro?"
+     ],
+     "note": "Portugal uses tu with friends."
+    }
+   ]
+  }
+ },
+ {
+  "_source": "index.html",
+  "pos": "verb",
+  "level": "B1",
+  "sense": "to know again someone or something seen before",
+  "otherSenses": [
+   "to admit, acknowledge"
+  ],
+  "en": {
+   "word": "to recognize",
+   "ipa": "ˈɹɛk.əɡ.naɪz",
+   "verbRegular": true,
+   "verbClass": "regular verb",
+   "forms": "recognizes · recognized · has recognized",
+   "auxiliary": "have",
+   "government": [
+    {
+     "pattern": "recognize + object",
+     "meaning": "no preposition"
+    },
+    {
+     "pattern": "recognize someone by + noun",
+     "meaning": "the feature that identifies them"
+    }
+   ],
+   "examples": [
+    "I didn't *recognize* you with your new haircut.",
+    "She *recognized* him by his voice."
+   ],
+   "variants": [
+    {
+     "region": "gb",
+     "word": "to recognise",
+     "forms": "recognises · recognised · has recognised",
+     "examples": [
+      "I didn't *recognise* you with your new haircut.",
+      "She *recognised* him by his voice."
+     ],
+     "note": "-ise spelling. Oxford style also accepts -ize."
+    }
+   ]
+  },
+  "de": {
+   "word": "erkennen",
+   "ipa": "ɛɐ̯ˈkɛnən",
+   "verbRegular": false,
+   "verbClass": "mixed verb (weak endings, stem change)",
+   "forms": "erkennt · erkannte · hat erkannt",
+   "auxiliary": "haben",
+   "government": [
+    {
+     "pattern": "erkennen + Akkusativ",
+     "meaning": "the person or thing"
+    },
+    {
+     "pattern": "erkennen an + Dativ",
+     "meaning": "to recognize by a feature"
+    }
+   ],
+   "examples": [
+    "Ich habe dich mit deiner neuen Frisur nicht *erkannt*.",
+    "Sie *erkannte* ihn an seiner Stimme."
+   ],
+   "gsw": "erkänne"
+  },
+  "fr": {
+   "word": "reconnaître",
+   "ipa": "ʁə.kɔ.nɛtʁ",
+   "verbRegular": false,
+   "verbClass": "3rd group, irregular (like connaître)",
+   "forms": "je reconnais · je reconnaissais · j'ai reconnu",
+   "auxiliary": "avoir",
+   "government": [
+    {
+     "pattern": "reconnaître + direct object",
+     "meaning": "the person or thing"
+    },
+    {
+     "pattern": "reconnaître quelqu'un à + noun",
+     "meaning": "to recognize by a feature"
+    }
+   ],
+   "examples": [
+    "Je ne t'ai pas *reconnu* avec ta nouvelle coupe de cheveux.",
+    "Elle l'a *reconnu* à sa voix."
+   ],
+   "note": "The 1990 spelling reform also allows reconnaitre, without the circumflex."
+  },
+  "pt": {
+   "word": "reconhecer",
+   "ipa": "ʁe.ko.ɲeˈse(ʁ)",
+   "ipaAlt": {
+    "pt": "ʁɨ.ku.ɲɨˈseɾ"
+   },
+   "verbRegular": true,
+   "verbClass": "regular -er verb (c → ç before o, a: reconheço)",
+   "forms": "reconheço · reconheci · reconhecido",
+   "auxiliary": "ter",
+   "government": [
+    {
+     "pattern": "reconhecer + direct object",
+     "meaning": "the person or thing"
+    },
+    {
+     "pattern": "reconhecer alguém por / pela + noun",
+     "meaning": "to recognize by a feature"
+    }
+   ],
+   "examples": [
+    "Eu não te *reconheci* com o seu novo corte de cabelo.",
+    "Ela o *reconheceu* pela voz."
+   ],
+   "variants": [
+    {
+     "region": "pt",
+     "examples": [
+      "Não te *reconheci* com o teu novo corte de cabelo.",
+      "Ela *reconheceu*-o pela voz."
+     ],
+     "note": "Portugal uses teu with tu and puts the object pronoun after the verb."
+    }
+   ]
+  }
+ },
+ {
+  "_source": "index.html",
+  "pos": "verb",
+  "level": "A1",
+  "sense": "to take food",
+  "otherSenses": [],
+  "en": {
+   "word": "to eat",
+   "ipa": "iːt",
+   "verbRegular": false,
+   "verbClass": "irregular verb",
+   "forms": "eats · ate · has eaten",
+   "auxiliary": "have",
+   "government": [
+    {
+     "pattern": "eat + object",
+     "meaning": "the food"
+    }
+   ],
+   "examples": [
+    "We *eat* at seven o'clock.",
+    "Have you already *eaten*?"
+   ]
+  },
+  "de": {
+   "word": "essen",
+   "ipa": "ˈɛsn̩",
+   "verbRegular": false,
+   "verbClass": "strong verb (e → i · a · e)",
+   "forms": "isst · aß · hat gegessen",
+   "auxiliary": "haben",
+   "government": [
+    {
+     "pattern": "essen + Akkusativ",
+     "meaning": "the food"
+    },
+    {
+     "pattern": "zu Mittag / zu Abend essen",
+     "meaning": "to have lunch / dinner"
+    }
+   ],
+   "examples": [
+    "Wir *essen* um sieben Uhr.",
+    "Hast du schon *gegessen*?"
+   ],
+   "gsw": "ässe"
+  },
+  "fr": {
+   "word": "manger",
+   "ipa": "mɑ̃.ʒe",
+   "verbRegular": true,
+   "verbClass": "1st group, regular -er verb (g → ge before a, o: nous mangeons)",
+   "forms": "je mange · je mangeais · j'ai mangé",
+   "auxiliary": "avoir",
+   "government": [
+    {
+     "pattern": "manger + direct object",
+     "meaning": "the food"
+    }
+   ],
+   "examples": [
+    "Nous *mangeons* à sept heures.",
+    "As-tu déjà *mangé* ?"
+   ]
+  },
+  "pt": {
+   "word": "comer",
+   "ipa": "koˈme(ʁ)",
+   "ipaAlt": {
+    "pt": "kuˈmeɾ"
+   },
+   "verbRegular": true,
+   "verbClass": "regular -er verb",
+   "forms": "como · comi · comido",
+   "auxiliary": "ter",
+   "government": [
+    {
+     "pattern": "comer + direct object",
+     "meaning": "the food"
+    }
+   ],
+   "examples": [
+    "Nós *comemos* às sete horas.",
+    "Você já *comeu*?"
+   ],
+   "variants": [
+    {
+     "region": "pt",
+     "examples": [
+      null,
+      "Já *comeste*?"
+     ],
+     "note": "Portugal uses tu with friends."
+    }
+   ]
+  }
+ },
+ {
+  "_source": "index.html",
+  "pos": "noun",
+  "level": "A1",
+  "sense": "a building people live in",
+  "otherSenses": [],
+  "en": {
+   "word": "house",
+   "ipa": "haʊs",
+   "synonyms": [
+    "home"
+   ],
+   "gender": null,
+   "plural": "houses",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "examples": [
+    "The *house* has a big yard.",
+    "There are many old *houses* on this street."
+   ],
+   "note": "The plural is spelled regularly but the s is voiced: /ˈhaʊzɪz/.",
+   "variants": [
+    {
+     "region": "gb",
+     "examples": [
+      "The *house* has a big garden.",
+      null
+     ],
+     "note": "The yard of a house is its garden in British English."
+    }
+   ]
+  },
+  "de": {
+   "word": "Haus",
+   "ipa": "haʊ̯s",
+   "article": "das",
+   "gender": "n",
+   "plural": "die Häuser",
+   "pluralRule": "umlaut + -er",
+   "pluralRegular": false,
+   "examples": [
+    "Das *Haus* hat einen großen Garten.",
+    "In dieser Straße stehen viele alte *Häuser*."
+   ],
+   "gsw": "s Huus (pl. Hüüser)"
+  },
+  "fr": {
+   "word": "maison",
+   "ipa": "mɛ.zɔ̃",
+   "article": "la",
+   "gender": "f",
+   "plural": "les maisons",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "examples": [
+    "La *maison* a un grand jardin.",
+    "Il y a beaucoup de vieilles *maisons* dans cette rue."
+   ]
+  },
+  "pt": {
+   "word": "casa",
+   "ipa": "ˈka.zɐ",
+   "article": "a",
+   "gender": "f",
+   "plural": "as casas",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "examples": [
+    "A *casa* tem um jardim grande.",
+    "Há muitas *casas* antigas nesta rua."
+   ]
+  }
+ },
+ {
+  "_source": "index.html",
+  "pos": "noun",
+  "level": "A1",
+  "sense": "bound pages to read",
+  "otherSenses": [],
+  "en": {
+   "word": "book",
+   "ipa": "bʊk",
+   "gender": null,
+   "plural": "books",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "examples": [
+    "I am reading a *book* about history.",
+    "These *books* belong to the library."
+   ]
+  },
+  "de": {
+   "word": "Buch",
+   "ipa": "buːx",
+   "article": "das",
+   "gender": "n",
+   "plural": "die Bücher",
+   "pluralRule": "umlaut + -er",
+   "pluralRegular": false,
+   "examples": [
+    "Ich lese ein *Buch* über Geschichte.",
+    "Diese *Bücher* gehören der Bibliothek."
+   ],
+   "gsw": "s Buech (pl. Büecher)"
+  },
+  "fr": {
+   "word": "livre",
+   "ipa": "livʁ",
+   "article": "le",
+   "gender": "m",
+   "plural": "les livres",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "examples": [
+    "Je lis un *livre* sur l'histoire.",
+    "Ces *livres* appartiennent à la bibliothèque."
+   ],
+   "note": "La livre (feminine) is a different word: a pound."
+  },
+  "pt": {
+   "word": "livro",
+   "ipa": "ˈli.vɾu",
+   "article": "o",
+   "gender": "m",
+   "plural": "os livros",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "examples": [
+    "Estou lendo um *livro* sobre história.",
+    "Estes *livros* pertencem à biblioteca."
+   ],
+   "variants": [
+    {
+     "region": "pt",
+     "examples": [
+      "Estou a ler um *livro* sobre história.",
+      null
+     ],
+     "note": "Portugal says estar a + infinitive instead of the gerund."
+    }
+   ]
+  }
+ },
+ {
+  "_source": "index.html",
+  "pos": "noun",
+  "level": "A1",
+  "sense": "large road vehicle for passengers",
+  "otherSenses": [],
+  "en": {
+   "word": "bus",
+   "ipa": "bʌs",
+   "gender": null,
+   "plural": "buses",
+   "pluralRule": "adds -es after s",
+   "pluralRegular": true,
+   "examples": [
+    "The *bus* arrives in five minutes.",
+    "Two *buses* go to the airport."
+   ]
+  },
+  "de": {
+   "word": "Bus",
+   "ipa": "bʊs",
+   "article": "der",
+   "gender": "m",
+   "plural": "die Busse",
+   "pluralRule": "adds -e, the s doubles",
+   "pluralRegular": true,
+   "examples": [
+    "Der *Bus* kommt in fünf Minuten.",
+    "Zwei *Busse* fahren zum Flughafen."
+   ],
+   "gsw": "de Bus"
+  },
+  "fr": {
+   "word": "bus",
+   "ipa": "bys",
+   "article": "le",
+   "gender": "m",
+   "plural": "les bus",
+   "pluralRule": "no change, already ends in -s",
+   "pluralRegular": true,
+   "examples": [
+    "Le *bus* arrive dans cinq minutes.",
+    "Deux *bus* vont à l'aéroport."
+   ],
+   "variants": [
+    {
+     "region": "ca",
+     "word": "autobus",
+     "article": "l'",
+     "plural": "les autobus",
+     "ipa": "o.tɔ.bys",
+     "examples": [
+      "L'*autobus* arrive dans cinq minutes.",
+      "Deux *autobus* vont à l'aéroport."
+     ],
+     "note": "Québec usually says autobus."
+    }
+   ]
+  },
+  "pt": {
+   "word": "ônibus",
+   "ipa": "ˈo.ni.bus",
+   "article": "o",
+   "gender": "m",
+   "plural": "os ônibus",
+   "pluralRule": "no change, already ends in -s",
+   "pluralRegular": true,
+   "examples": [
+    "O *ônibus* chega em cinco minutos.",
+    "Dois *ônibus* vão para o aeroporto."
+   ],
+   "variants": [
+    {
+     "region": "pt",
+     "word": "autocarro",
+     "article": "o",
+     "plural": "os autocarros",
+     "pluralRule": "adds -s",
+     "ipa": "aw.tɔˈka.ʁu",
+     "examples": [
+      "O *autocarro* chega dentro de cinco minutos.",
+      "Dois *autocarros* vão para o aeroporto."
+     ],
+     "note": "Portugal uses a different word."
+    }
+   ]
+  }
+ },
+ {
+  "_source": "index.html",
+  "pos": "noun",
+  "level": "A1",
+  "sense": "what red, blue and green are",
+  "otherSenses": [],
+  "en": {
+   "word": "color",
+   "ipa": "ˈkʌl.ɚ",
+   "gender": null,
+   "plural": "colors",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "examples": [
+    "Which *color* do you like best?",
+    "The leaves have beautiful *colors* in the fall."
+   ],
+   "variants": [
+    {
+     "region": "gb",
+     "word": "colour",
+     "plural": "colours",
+     "ipa": "ˈkʌl.ə",
+     "examples": [
+      "Which *colour* do you like best?",
+      "The leaves have beautiful *colours* in autumn."
+     ],
+     "note": "-our spelling. \"The fall\" is \"autumn\"."
+    }
+   ]
+  },
+  "de": {
+   "word": "Farbe",
+   "ipa": "ˈfaʁ.bə",
+   "article": "die",
+   "gender": "f",
+   "plural": "die Farben",
+   "pluralRule": "adds -n",
+   "pluralRegular": true,
+   "examples": [
+    "Welche *Farbe* magst du am liebsten?",
+    "Im Herbst haben die Blätter schöne *Farben*."
+   ],
+   "gsw": "d Farb"
+  },
+  "fr": {
+   "word": "couleur",
+   "ipa": "ku.lœʁ",
+   "article": "la",
+   "gender": "f",
+   "plural": "les couleurs",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "examples": [
+    "Quelle *couleur* préfères-tu ?",
+    "En automne, les feuilles ont de belles *couleurs*."
+   ]
+  },
+  "pt": {
+   "word": "cor",
+   "ipa": "koʁ",
+   "ipaAlt": {
+    "pt": "koɾ"
+   },
+   "article": "a",
+   "gender": "f",
+   "plural": "as cores",
+   "pluralRule": "adds -es after r",
+   "pluralRegular": true,
+   "examples": [
+    "De que *cor* você gosta mais?",
+    "No outono, as folhas têm *cores* bonitas."
+   ],
+   "variants": [
+    {
+     "region": "pt",
+     "examples": [
+      "De que *cor* gostas mais?",
+      null
+     ],
+     "note": "Portugal uses tu with friends."
+    }
+   ]
+  }
+ },
+ {
+  "_source": "index.html",
+  "pos": "noun",
+  "level": "A1",
+  "sense": "two-wheeled vehicle you pedal",
+  "otherSenses": [],
+  "en": {
+   "word": "bicycle",
+   "ipa": "ˈbaɪ.sɪ.kəl",
+   "synonyms": [
+    "bike"
+   ],
+   "gender": null,
+   "plural": "bicycles",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "examples": [
+    "I go to work by *bicycle*.",
+    "Both *bicycles* are in the garage."
+   ]
+  },
+  "de": {
+   "word": "Fahrrad",
+   "ipa": "ˈfaːɐ̯ˌʁaːt",
+   "synonyms": [
+    "Rad"
+   ],
+   "article": "das",
+   "gender": "n",
+   "plural": "die Fahrräder",
+   "pluralRule": "umlaut + -er",
+   "pluralRegular": false,
+   "examples": [
+    "Ich fahre mit dem *Fahrrad* zur Arbeit.",
+    "Beide *Fahrräder* stehen in der Garage."
+   ],
+   "gsw": "s Velo",
+   "variants": [
+    {
+     "region": "ch",
+     "word": "Velo",
+     "article": "das",
+     "plural": "die Velos",
+     "pluralRule": "adds -s",
+     "pluralRegular": true,
+     "ipa": "ˈveː.lo",
+     "examples": [
+      "Ich fahre mit dem *Velo* zur Arbeit.",
+      "Beide *Velos* stehen in der Garage."
+     ],
+     "note": "Switzerland says Velo."
+    }
+   ]
+  },
+  "fr": {
+   "word": "vélo",
+   "ipa": "ve.lo",
+   "synonyms": [
+    "bicyclette"
+   ],
+   "article": "le",
+   "gender": "m",
+   "plural": "les vélos",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "examples": [
+    "Je vais au travail à *vélo*.",
+    "Les deux *vélos* sont dans le garage."
+   ]
+  },
+  "pt": {
+   "word": "bicicleta",
+   "ipa": "bi.siˈklɛ.tɐ",
+   "synonyms": [
+    "bike"
+   ],
+   "article": "a",
+   "gender": "f",
+   "plural": "as bicicletas",
+   "pluralRule": "adds -s",
+   "pluralRegular": true,
+   "examples": [
+    "Eu vou de *bicicleta* para o trabalho.",
+    "As duas *bicicletas* estão na garagem."
+   ]
+  }
+ },
+ {
+  "_source": "index.html",
+  "pos": "adjective",
+  "level": "A1",
+  "sense": "very pleasant to look at",
+  "otherSenses": [],
+  "en": {
+   "word": "beautiful",
+   "ipa": "ˈbjuː.tɪ.fəl",
+   "synonyms": [
+    "pretty",
+    "lovely"
+   ],
+   "comparison": "more beautiful · most beautiful",
+   "comparisonRegular": true,
+   "examples": [
+    "What a *beautiful* day!",
+    "She lives in a *beautiful* old house."
+   ]
+  },
+  "de": {
+   "word": "schön",
+   "ipa": "ʃøːn",
+   "synonyms": [
+    "hübsch"
+   ],
+   "comparison": "schöner · am schönsten",
+   "comparisonRegular": true,
+   "examples": [
+    "Was für ein *schöner* Tag!",
+    "Sie wohnt in einem *schönen* alten Haus."
+   ],
+   "gsw": "schöön"
+  },
+  "fr": {
+   "word": "beau",
+   "ipa": "bo",
+   "synonyms": [
+    "joli"
+   ],
+   "agreement": "beau (bel before a vowel) · belle · beaux · belles",
+   "agreementRegular": false,
+   "comparison": "plus beau · le plus beau",
+   "comparisonRegular": true,
+   "examples": [
+    "Quelle *belle* journée !",
+    "Elle habite dans une *belle* maison ancienne."
+   ],
+   "note": "Goes before the noun: une belle maison."
+  },
+  "pt": {
+   "word": "bonito",
+   "ipa": "boˈni.tu",
+   "ipaAlt": {
+    "pt": "buˈni.tu"
+   },
+   "synonyms": [
+    "lindo",
+    "belo"
+   ],
+   "agreement": "bonito · bonita · bonitos · bonitas",
+   "agreementRegular": true,
+   "comparison": "mais bonito · o mais bonito",
+   "comparisonRegular": true,
+   "examples": [
+    "Que dia *bonito*!",
+    "Ela mora em uma casa antiga e *bonita*."
+   ],
+   "variants": [
+    {
+     "region": "pt",
+     "examples": [
+      null,
+      "Ela mora numa casa antiga e *bonita*."
+     ],
+     "note": "Portugal contracts em + uma to numa in writing too."
+    }
+   ]
+  }
+ }
+]

@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Four-Language Translator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,700;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: four dictionary columns side by side. Each column is a flag, a slot, then a printed-dictionary entry with a thumb-index tab. */
+:root{
+  --paper:#eef1f4; --surface:#ffffff; --ink:#131a24; --muted:#5a6675; --rule:#d5dbe3;
+  --accent:#3438a8; --accent-soft:#e4e6fa;
+  --regular:#157a3e; --irregular:#c4201c;
+  --mark:#fff0a8;
+  --display:"Newsreader", "Iowan Old Style", Georgia, serif;
+  --body:"IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0f1318; --surface:#181d25; --ink:#e6eaf0; --muted:#98a3b3; --rule:#2c3440;
+    --accent:#a3a8ff; --accent-soft:#252a52;
+    --regular:#5fd08c; --irregular:#ff7b72; --mark:#5a4a00;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0f1318; --surface:#181d25; --ink:#e6eaf0; --muted:#98a3b3; --rule:#2c3440;
+  --accent:#a3a8ff; --accent-soft:#252a52;
+  --regular:#5fd08c; --irregular:#ff7b72; --mark:#5a4a00;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5}
+.wrap{max-width:1360px;margin:0 auto;padding:28px 20px 48px;display:flex;flex-direction:column;gap:20px}
+header{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+h1{font-family:var(--display);font-weight:700;font-size:30px;line-height:1.1;margin:0 6px 0 0;letter-spacing:-.01em;text-wrap:balance}
+header p{margin:0;color:var(--muted);flex:1 1 320px;max-width:65ch}
+.btn{border:1px solid var(--rule);background:var(--surface);color:var(--ink);border-radius:8px;padding:7px 14px;font:500 14px var(--body);cursor:pointer}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn:focus-visible,.more:focus-visible,.say:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.btn[aria-expanded="true"]{background:var(--accent-soft);border-color:var(--accent)}
+.btn[disabled]{opacity:.5;cursor:default}
+
+/* panels */
+.panel{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:16px 18px}
+.panel[hidden]{display:none}
+.panel h2{margin:0 0 12px;font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+#settings .sets{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px 26px}
+.set{display:flex;flex-direction:column;gap:4px}
+.set label{font-weight:500}
+.hint{color:var(--muted);font-size:13px}
+.set.check{flex-direction:row;align-items:flex-start;gap:9px}
+.set.check input{margin-top:4px;accent-color:var(--accent);width:16px;height:16px}
+select,.text{font:400 14px var(--body);color:var(--ink);background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:6px 8px;max-width:260px}
+#library{display:flex;flex-direction:column;gap:12px}
+#library[hidden]{display:none}
+#library h2{margin:0}
+.row{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+#lib-list{display:flex;flex-wrap:wrap;gap:6px;max-height:240px;overflow-y:auto}
+
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;align-items:start}
+@media (max-width:1100px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.grid{grid-template-columns:minmax(0,1fr)}}
+
+/* slots */
+.slot{display:flex;flex-direction:column;gap:8px;position:relative}
+.slot-head{display:flex;align-items:center;flex-wrap:wrap;gap:6px 10px}
+.flag{height:30px;width:45px;border-radius:3px;display:block;box-shadow:0 0 0 1px var(--rule);flex:none}
+.flag.mini{height:12px;width:18px;border-radius:2px;display:inline-block;vertical-align:-1px;margin-right:5px}
+.lang-name{font-weight:600}
+.slot-head select{padding:3px 6px;font-size:13px}
+.count{text-align:right;margin-top:-4px;color:var(--muted);font:400 11.5px var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.field{display:flex;background:var(--surface);border:1.5px solid var(--rule);border-radius:8px;overflow:hidden}
+.field:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.field input{flex:1;min-width:0;border:0;background:transparent;color:var(--ink);font:500 17px var(--display);padding:10px 12px;outline:none}
+.field input::placeholder{color:var(--muted);font-style:italic;font-weight:400}
+.field button{border:0;background:var(--accent);color:var(--surface);font:600 13px var(--body);padding:0 14px;cursor:pointer}
+.field button:hover{filter:brightness(1.12)}
+.field button:focus-visible{outline:2px solid var(--ink);outline-offset:-3px}
+.sugg{position:absolute;left:0;right:0;top:calc(100% - 18px);margin:0;padding:4px;list-style:none;background:var(--surface);border:1px solid var(--rule);border-radius:8px;box-shadow:0 10px 28px rgba(10,20,40,.18);z-index:5;max-height:330px;overflow-y:auto}
+.sugg[hidden]{display:none}
+.sugg li{padding:6px 10px;border-radius:5px;cursor:pointer;font:500 16px var(--display)}
+.sugg li small{font:400 12px var(--body);color:var(--muted);margin-left:6px}
+.sugg li[aria-selected="true"],.sugg li:hover{background:var(--accent-soft)}
+
+/* status */
+.status{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;min-height:30px;color:var(--muted);font-size:14px}
+.status b{color:var(--ink);font-weight:600}
+.chip{border:1px solid var(--rule);background:var(--surface);color:var(--ink);border-radius:999px;padding:3px 11px;font:500 13px var(--body);cursor:pointer}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
+.chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.chip small{color:var(--muted);font:400 11px var(--mono);margin-left:5px}
+.err{color:var(--irregular);font-weight:500}
+#toast{color:var(--irregular);font-size:13.5px}
+#toast:empty{display:none}
+
+/* entry cards */
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:10px;padding:18px 18px 16px;position:relative;display:flex;flex-direction:column;gap:14px;min-height:220px}
+.tab{position:absolute;top:14px;right:-1px;background:var(--accent);color:var(--surface);font:500 11px var(--mono);letter-spacing:.08em;padding:3px 7px 3px 9px;border-radius:6px 0 0 6px}
+.hwrow{display:flex;align-items:center;gap:8px;padding-right:34px}
+.hw{font-family:var(--display);font-weight:700;font-size:28px;line-height:1.12;margin:0;overflow-wrap:anywhere}
+.hw .art{font-weight:500;font-style:italic;color:var(--muted)}
+.say{flex:none;width:28px;height:28px;border-radius:50%;border:1px solid var(--rule);background:var(--paper);color:var(--accent);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0}
+.say:hover{border-color:var(--accent);background:var(--accent-soft)}
+.say svg{width:15px;height:15px;fill:currentColor}
+.say.sm{width:22px;height:22px;vertical-align:-4px;margin-left:6px} .say.sm svg{width:12px;height:12px}
+.no-audio .say{display:none}
+.pron{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;margin-top:5px}
+.ipa{font:400 15px/1.3 "Charis SIL","Doulos SIL","Noto Sans",var(--body);color:var(--ink)}
+.pos{font:400 12.5px var(--mono);color:var(--muted)}
+.lvl{font:500 11.5px var(--mono);background:var(--accent-soft);color:var(--accent);border-radius:4px;padding:1px 7px;white-space:nowrap}
+dl{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:7px 12px;border-top:1px solid var(--rule);padding-top:12px}
+dt{font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.07em;color:var(--muted);padding-top:3px;white-space:nowrap}
+dd{margin:0;overflow-wrap:anywhere}
+dd .form{font:500 16.5px var(--display)}
+.sub{display:block;color:var(--muted);font-size:13px}
+.reg{font-weight:600;font-size:13.5px;white-space:nowrap}
+.reg::before{content:"";display:inline-block;width:7px;height:7px;margin-right:5px;vertical-align:1px}
+.reg.ok{color:var(--regular)} .reg.ok::before{background:var(--regular);border-radius:50%}
+.reg.bad{color:var(--irregular)} .reg.bad::before{background:var(--irregular);transform:rotate(45deg)}
+.gov,.vars{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px}
+.gov .pat{font:500 13.5px var(--mono);background:var(--accent-soft);color:var(--ink);border-radius:4px;padding:1px 6px;display:inline-block}
+.where{font-size:13px;color:var(--muted);display:block}
+.vex{display:block;font:400 15px/1.35 var(--display);padding-left:9px;border-left:2px solid var(--rule);margin-top:3px}
+.more{align-self:flex-start;border:0;background:none;color:var(--accent);font:500 13.5px var(--body);padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.forms{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px 18px;background:var(--paper);border-radius:8px;padding:12px}
+.forms h3,.extra h3{margin:0 0 3px;font:500 11px var(--mono);text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.forms table{border-collapse:collapse;width:100%}
+.forms th{font:400 13px var(--body);color:var(--muted);text-align:left;padding:1px 10px 1px 0;white-space:nowrap;vertical-align:baseline;width:1%}
+.forms td{font:500 15.5px var(--display);padding:1px 0;overflow-wrap:anywhere}
+.forms td.irr{color:var(--irregular)}
+.extra{background:var(--paper);border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:10px}
+.extra p{margin:0;font-size:14px}
+.extra ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:3px}
+.extra li b{font:500 15.5px var(--display)}
+.extra li span{color:var(--muted);font-size:13px}
+.ex{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:7px;border-top:1px solid var(--rule);padding-top:12px}
+.ex li{font:400 16.5px/1.4 var(--display);padding-left:12px;border-left:2px solid var(--rule)}
+mark{background:var(--mark);color:inherit;border-radius:2px;padding:0 2px;font-weight:500}
+.note{font-size:13.5px;color:var(--muted);margin:0}
+.note b{color:var(--ink);font-weight:600}
+.links{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:13px}
+.links a{color:var(--accent);text-underline-offset:2px}
+.card.loading .sk{height:14px;border-radius:4px;background:linear-gradient(90deg,var(--rule),var(--accent-soft),var(--rule));background-size:200% 100%;animation:sh 1.3s linear infinite}
+.card.loading .sk.big{height:30px;width:60%}
+@keyframes sh{to{background-position:-200% 0}}
+@media (prefers-reduced-motion:reduce){.card.loading .sk{animation:none}}
+footer{color:var(--muted);font-size:13px;max-width:90ch}
+footer p{margin:0 0 6px}
+footer b{color:var(--ink);font-weight:600}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Four-Language Translator</h1>
+    <p>Type a word under any flag and press Enter. Pick the main variant of each language next to its flag.</p>
+    <button class="btn" id="lib-toggle" aria-expanded="false" aria-controls="library">Library</button>
+    <button class="btn" id="set-toggle" aria-expanded="false" aria-controls="settings">Settings</button>
+  </header>
+
+  <section id="library" class="panel" hidden aria-label="Library">
+    <h2>Library</h2>
+    <div id="lib-status" class="hint"></div>
+    <div class="row">
+      <button class="btn" id="grow">Add 10 common words</button>
+      <button class="btn" id="grow-stop" hidden>Stop</button>
+      <span class="hint" id="grow-msg" aria-live="polite">Writes entries for everyday words that are not saved yet. Each takes a few seconds.</span>
+    </div>
+    <div class="row"><input class="text" id="lib-filter" type="search" placeholder="Filter saved words…" aria-label="Filter saved words"></div>
+    <div id="lib-list"></div>
+  </section>
+
+  <section id="settings" class="panel" hidden aria-label="Settings">
+    <h2>Settings</h2>
+    <div class="sets">
+    <div class="set check"><input type="checkbox" id="s-variants"><div><label for="s-variants">Show other regions</label><div class="hint">When another country spells or says the word differently, list its form with the flag.</div></div></div>
+    <div class="set check"><input type="checkbox" id="s-gsw"><div><label for="s-gsw">Show Swiss German</label><div class="hint">Adds the dialect word (Schwiizerdütsch) to the German card.</div></div></div>
+    <div class="set check"><input type="checkbox" id="s-slow"><div><label for="s-slow">Slow speech</label><div class="hint">Plays words and sentences more slowly.</div></div></div>
+    <div class="set"><label for="s-voice">Voice for audio</label><select id="s-voice"><option value="auto">Automatic</option><option value="device">This device's voices</option><option value="claude">Claude's voice</option></select><div class="hint">Device voices follow the chosen country when one is installed.</div></div>
+    <div class="set"><label for="s-examples">Context sentences per word</label><select id="s-examples"><option value="2">2 sentences</option><option value="3">3 sentences</option><option value="4">4 sentences</option></select><div class="hint">For words that are not in the library yet.</div></div>
+    <div class="set"><label for="s-level">Sentence difficulty</label><select id="s-level"><option value="easy">Easy (A1 to A2)</option><option value="medium">Medium (A2 to B1)</option><option value="advanced">Advanced (B2 to C1)</option></select><div class="hint">For words that are not in the library yet.</div></div>
+    <div class="set"><label for="s-sugg">Suggestions shown while typing</label><select id="s-sugg"><option value="5">5</option><option value="8">8</option><option value="12">12</option><option value="20">20</option></select></div>
+    <div class="set check"><input type="checkbox" id="s-links"><div><label for="s-links">Show outside dictionary links</label><div class="hint">Off by default. Adds Wiktionary links for checking an entry.</div></div></div>
+    <div class="set"><label for="s-clear">Lookups kept in this browser</label><div><button class="btn" id="s-clear">Clear recent words and browser copies</button></div><div class="hint" id="s-clear-msg" aria-live="polite">The shared library is not affected.</div></div>
+    </div>
+  </section>
+
+  <div class="grid" id="slots"></div>
+  <div class="status" id="status" aria-live="polite"></div>
+  <div id="toast" aria-live="polite"></div>
+  <div class="grid" id="cards"></div>
+
+  <footer>
+    <p><b>Word lists.</b> <span id="lex-total">Loading the word lists…</span> They power the suggestions. Each list combines words found in open spell-checking and text-recognition vocabularies with inflected forms built by grammar rules, so a small share of entries are names, abbreviations or forms that do not exist.</p>
+    <p><b>Entries.</b> Thirteen starter words ship with the page. Every other entry, table of forms and background section is written by Claude inside this page the first time someone asks for it, then saved to the library so it never has to be written again. Entries are not checked against a printed dictionary. Swiss German has no fixed spelling, so those forms are approximate.</p>
+  </footer>
+</div>
+
+<script>
+/*PURE*/
+const REG={en:['us','gb'],de:['de','ch','at'],fr:['fr','ca','be','ch'],pt:['br','pt']};
+const BASE={en:'us',de:'de',fr:'fr',pt:'br'};
+const RNAME={us:'United States',gb:'United Kingdom',de:'Germany',ch:'Switzerland',at:'Austria',fr:'France',ca:'Canada',be:'Belgium',br:'Brazil',pt:'Portugal'};
+const LOCALE={en:{us:'en-US',gb:'en-GB'},de:{de:'de-DE',ch:'de-CH',at:'de-AT'},fr:{fr:'fr-FR',ca:'fr-CA',be:'fr-BE',ch:'fr-CH'},pt:{br:'pt-BR',pt:'pt-PT'}};
+const STD={en_us:'American English',en_gb:'British English',de_de:'Standard German of Germany (with ß)',de_ch:'Swiss Standard German (ss, never ß)',de_at:'Austrian Standard German',fr_fr:'French of France',fr_ca:'Canadian (Québec) French',fr_be:'Belgian French',fr_ch:'Swiss French',pt_br:'Brazilian Portuguese',pt_pt:'European Portuguese'};
+const S={variants:true,gsw:true,slow:false,links:false,voice:'auto',examples:2,level:'medium',sugg:8,main:{en:'us',de:'de',fr:'fr',pt:'br'}};
+const fold=s=>String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').trim();
+const key=(lang,w)=>{let k=fold(w).replace(/ß/g,'ss'); if(lang==='en') k=k.replace(/^to\s+/,''); return lang+':'+k;};
+const VF=['word','article','gender','plural','pluralRule','pluralRegular','forms','auxiliary','verbRegular','verbClass','agreement','comparison'];
+const deepMap=(o,f)=>typeof o==='string'?f(o):Array.isArray(o)?o.map(x=>deepMap(x,f)):o&&typeof o==='object'?Object.fromEntries(Object.entries(o).map(([k,v])=>[k,(k==='ipa'||k==='ipaAlt'||k==='gsw')?v:deepMap(v,f)])):o;
+/* The entry of one language as region r has it. */
+function regional(lang,e,r){
+  const o=Object.assign({},e), v=(e.variants||[]).find(x=>x&&x.region===r);
+  if(r!==BASE[lang]&&v){
+    VF.forEach(f=>{if(v[f]!=null&&v[f]!=='') o[f]=v[f];});
+    if(Array.isArray(v.examples)) o.examples=(e.examples||[]).map((x,i)=>v.examples[i]||x);
+  }
+  o.ipa=(r!==BASE[lang]&&((v&&v.ipa)||(e.ipaAlt&&e.ipaAlt[r])))||e.ipa||'';
+  o._note=(v&&v.note)||''; o._noteOnly=!!v&&Object.keys(v).every(k=>k==='region'||k==='note');
+  return (lang==='de'&&r==='ch')?deepMap(o,s=>s.replace(/ß/g,'ss')):o;
+}
+/* Main-variant view plus the other regions that differ from it. */
+function view(lang,e,pos){
+  const main=S.main[lang], M=regional(lang,e,main), groups=[], accents=[];
+  for(const r of REG[lang]){
+    if(r===main) continue;
+    const o=regional(lang,e,r), parts=[], d=f=>o[f]!=null&&o[f]!==''&&o[f]!==M[f];
+    if(d('word')||d('article')) parts.push(((o.article&&pos==='noun')?o.article+' ':'')+o.word);
+    if(d('plural')) parts.push('pl. '+o.plural);
+    if(d('forms')) parts.push(o.forms); else if(d('auxiliary')) parts.push('auxiliary '+o.auxiliary);
+    if(d('gender')&&!d('article')) parts.push('gender '+o.gender);
+    if(d('agreement')) parts.push(o.agreement);
+    if(d('comparison')) parts.push(o.comparison);
+    const nz=x=>lang==='de'?String(x||'').replace(/ß/g,'ss'):x;
+    const ex=(o.examples||[]).filter((x,i)=>nz(x)!==nz((M.examples||[])[i]));
+    if(o.ipa&&o.ipa!==M.ipa&&o.word===M.word){const a=accents.find(x=>x.ipa===o.ipa); if(a) a.regions.push(r); else accents.push({regions:[r],ipa:o.ipa});}
+    if(!parts.length&&!ex.length&&!o._noteOnly) continue;
+    const note=o._note, sig=JSON.stringify([parts,ex,note]), g=groups.find(x=>x.sig===sig);
+    if(g) g.regions.push(r); else groups.push({sig,regions:[r],parts,ex,note});
+  }
+  return {M,groups,accents};
+}
+function entryKeys(e){
+  const out=new Set();
+  Object.keys(REG).forEach(l=>{ if(!e[l]) return; [e[l].word,...(e[l].variants||[]).map(v=>v&&v.word)].filter(Boolean).forEach(w=>out.add(key(l,w))); });
+  return [...out];
+}
+
+/* ---------- built-in entries (base standards: US, Germany, France, Brazil) ---------- */
+const BUILTIN=[
+{pos:'verb',level:'A1',sense:'to stay until something happens',otherSenses:[],
+ en:{word:'to wait',ipa:'weɪt',synonyms:['to await'],verbRegular:true,verbClass:'regular verb',forms:'waits · waited · has waited',auxiliary:'have',
+  government:[{pattern:'wait for + object',meaning:'the thing or person awaited'},{pattern:'wait + to-infinitive',meaning:'wait to do something'}],
+  examples:['I am *waiting* for the bus.','We *waited* an hour for you.']},
+ de:{word:'warten',ipa:'ˈvaʁtn̩',synonyms:['abwarten'],verbRegular:true,verbClass:'weak verb',forms:'wartet · wartete · hat gewartet',auxiliary:'haben',
+  government:[{pattern:'warten auf + Akkusativ',meaning:'to wait for'}],
+  examples:['Ich *warte* auf den Bus.','Wir haben eine Stunde auf dich *gewartet*.'],gsw:'warte'},
+ fr:{word:'attendre',ipa:'a.tɑ̃dʁ',synonyms:['patienter'],verbRegular:true,verbClass:'3rd group, but follows the regular -re pattern (like vendre)',forms:"j'attends · j'attendais · j'ai attendu",auxiliary:'avoir',
+  government:[{pattern:'attendre + direct object',meaning:'no preposition: attendre le bus'},{pattern:"s'attendre à + noun / infinitive",meaning:'to expect'}],
+  examples:["J'*attends* le bus.","Nous t'avons *attendu* pendant une heure."],note:'No preposition for "for": attendre quelqu\'un, never attendre pour.'},
+ pt:{word:'esperar',ipa:'es.peˈɾa(ʁ)',ipaAlt:{pt:'ɨʃ.pɨˈɾaɾ'},synonyms:['aguardar'],verbRegular:true,verbClass:'regular -ar verb',forms:'espero · esperei · esperado',auxiliary:'ter',
+  government:[{pattern:'esperar + direct object',meaning:'esperar o ônibus'},{pattern:'esperar por + noun',meaning:'to wait for (also common)'}],
+  examples:['Estou *esperando* o ônibus.','*Esperamos* uma hora por você.'],note:'Esperar also means "to hope".',
+  variants:[{region:'pt',examples:['Estou *à espera* do autocarro.','*Esperámos* uma hora por ti.'],note:'Portugal avoids the gerund (estar a + infinitive, estar à espera), says autocarro, and writes esperámos.'}]}},
+
+{pos:'verb',level:'A1',sense:'to move from one place to another',otherSenses:[],
+ en:{word:'to go',ipa:'ɡoʊ',ipaAlt:{gb:'ɡəʊ'},verbRegular:false,verbClass:'irregular verb (suppletive past)',forms:'goes · went · has gone',auxiliary:'have',
+  government:[{pattern:'go to + place',meaning:'destination'},{pattern:'go + -ing',meaning:'activities: go swimming'}],
+  examples:['I *go* to work on foot every day.','She *went* to the movies yesterday.'],
+  variants:[{region:'gb',examples:[null,'She *went* to the cinema yesterday.'],note:'British English says "the cinema" where American says "the movies".'}]},
+ de:{word:'gehen',ipa:'ˈɡeːən',verbRegular:false,verbClass:'strong verb (e → i → a)',forms:'geht · ging · ist gegangen',auxiliary:'sein',
+  government:[{pattern:'gehen zu + Dativ',meaning:'to a person or place'},{pattern:'gehen in + Akkusativ',meaning:'into a building: ins Kino'},{pattern:'gehen nach + Dativ',meaning:'towns, countries, nach Hause'}],
+  examples:['Ich *gehe* jeden Tag zu Fuß zur Arbeit.','Sie ist gestern ins Kino *gegangen*.'],gsw:'gaa'},
+ fr:{word:'aller',ipa:'a.le',verbRegular:false,verbClass:'3rd group, the only irregular -er verb',forms:'je vais · j\'allais · je suis allé(e)',auxiliary:'être',
+  government:[{pattern:'aller à + place',meaning:'au, à la, aux'},{pattern:'aller chez + person',meaning:"to someone's place"},{pattern:'aller + infinitive',meaning:'near future: je vais partir'}],
+  examples:['Je *vais* au travail à pied tous les jours.','Elle est *allée* au cinéma hier.']},
+ pt:{word:'ir',ipa:'i(ʁ)',ipaAlt:{pt:'iɾ'},verbRegular:false,verbClass:'irregular verb',forms:'vou · fui · ido',auxiliary:'ter',
+  government:[{pattern:'ir a / para + place',meaning:'a: short visit · para: to stay'},{pattern:'ir + infinitive',meaning:'future: vou viajar'}],
+  examples:['Eu *vou* a pé para o trabalho todos os dias.','Ela *foi* ao cinema ontem.'],note:'In spoken Brazilian Portuguese "ir em" is also heard: vou no cinema.'}},
+
+{pos:'verb',level:'A1',sense:'to be upright on your feet',otherSenses:[],
+ en:{word:'to stand',ipa:'stænd',verbRegular:false,verbClass:'irregular verb',forms:'stands · stood · has stood',auxiliary:'have',
+  government:[{pattern:'stand in / on / at + place',meaning:'position'},{pattern:'stand for + noun',meaning:'to represent'}],
+  examples:['I have been *standing* in line for an hour.','We *stood* in front of the door.'],
+  variants:[{region:'gb',examples:['I have been *standing* in a queue for an hour.',null],note:'British English says "queue" where American says "line".'}]},
+ de:{word:'stehen',ipa:'ˈʃteːən',verbRegular:false,verbClass:'strong verb (e → a → a)',forms:'steht · stand · hat gestanden',auxiliary:'haben',
+  government:[{pattern:'stehen in / auf / vor + Dativ',meaning:'position (no movement)'},{pattern:'stehen zu + Dativ',meaning:'to stand by someone or something'}],
+  examples:['Ich *stehe* seit einer Stunde in der Schlange.','Wir haben vor der Tür *gestanden*.'],gsw:'staa',
+  variants:[{region:'ch',forms:'steht · stand · ist gestanden',auxiliary:'sein',examples:[null,'Wir sind vor der Tür *gestanden*.'],note:'Perfect with sein (ich bin gestanden), as in southern Germany.'},
+            {region:'at',forms:'steht · stand · ist gestanden',auxiliary:'sein',examples:[null,'Wir sind vor der Tür *gestanden*.'],note:'Perfect with sein (ich bin gestanden), as in southern Germany.'}]},
+ fr:{word:'être debout',ipa:'ɛtʁ də.bu',verbRegular:false,verbClass:'phrase with être (irregular)',forms:"je suis debout · j'étais debout · j'ai été debout",auxiliary:'avoir',
+  government:[{pattern:'se tenir + place',meaning:'to stand somewhere'}],
+  examples:['Je *suis debout* dans la file depuis une heure.','Nous *étions debout* devant la porte.'],note:'French has no single verb for "to stand". Se lever means to stand up.'},
+ pt:{word:'ficar em pé',ipa:'fiˈka(ʁ) ẽj̃ ˈpɛ',verbRegular:true,verbClass:'regular -ar verb (c → qu before e: fiquei)',forms:'fico em pé · fiquei em pé · ficado em pé',auxiliary:'ter',
+  government:[{pattern:'ficar / estar em pé + place',meaning:'estar for the state, ficar for staying'}],
+  examples:['Estou *em pé* na fila há uma hora.','Nós *ficamos em pé* em frente à porta.'],
+  variants:[{region:'pt',word:'ficar de pé',forms:'fico de pé · fiquei de pé · ficado de pé',examples:['Estou *de pé* na fila há uma hora.','Nós *ficámos de pé* em frente à porta.'],note:'Portugal prefers "de pé" and writes the past as ficámos.'}]}},
+
+{pos:'verb',level:'A1',sense:'to give assistance',otherSenses:[],
+ en:{word:'to help',ipa:'hɛlp',synonyms:['to assist'],verbRegular:true,verbClass:'regular verb',forms:'helps · helped · has helped',auxiliary:'have',
+  government:[{pattern:'help someone with + noun',meaning:'the task'},{pattern:'help someone (to) + infinitive',meaning:'"to" is optional'}],
+  examples:['Can you *help* me, please?','He *helped* his sister with the move.']},
+ de:{word:'helfen',ipa:'ˈhɛlfn̩',synonyms:['unterstützen'],verbRegular:false,verbClass:'strong verb (e → i · a · o)',forms:'hilft · half · hat geholfen',auxiliary:'haben',
+  government:[{pattern:'helfen + Dativ',meaning:'the person helped: mir, dir, ihm'},{pattern:'helfen bei + Dativ',meaning:'with a task'}],
+  examples:['Kannst du mir bitte *helfen*?','Er hat seiner Schwester beim Umzug *geholfen*.'],gsw:'hälfe'},
+ fr:{word:'aider',ipa:'e.de',synonyms:['assister'],verbRegular:true,verbClass:'1st group, regular -er verb',forms:"j'aide · j'aidais · j'ai aidé",auxiliary:'avoir',
+  government:[{pattern:'aider + direct object',meaning:"the person: aider quelqu'un"},{pattern:'aider à + infinitive',meaning:'to help to do'}],
+  examples:["Peux-tu m'*aider*, s'il te plaît ?",'Il a *aidé* sa sœur à déménager.']},
+ pt:{word:'ajudar',ipa:'a.ʒuˈda(ʁ)',ipaAlt:{pt:'ɐ.ʒuˈdaɾ'},synonyms:['auxiliar'],verbRegular:true,verbClass:'regular -ar verb',forms:'ajudo · ajudei · ajudado',auxiliary:'ter',
+  government:[{pattern:'ajudar + direct object',meaning:'the person: ajudar alguém'},{pattern:'ajudar a + infinitive',meaning:'to help to do'},{pattern:'ajudar com / em + noun',meaning:'with a task'}],
+  examples:['Você pode me *ajudar*, por favor?','Ele *ajudou* a irmã com a mudança.'],
+  variants:[{region:'pt',examples:['Podes *ajudar*-me, por favor?',null],note:'Portugal uses tu with friends and puts the pronoun after the verb.'}]}},
+
+{pos:'verb',level:'A1',sense:'to have something in mind; to hold an opinion',otherSenses:[],
+ en:{word:'to think',ipa:'θɪŋk',verbRegular:false,verbClass:'irregular verb',forms:'thinks · thought · has thought',auxiliary:'have',
+  government:[{pattern:'think of / about + noun',meaning:'have in mind; opinion'}],
+  examples:['I often *think* of my family.','What do you *think* about this book?']},
+ de:{word:'denken',ipa:'ˈdɛŋkn̩',verbRegular:false,verbClass:'mixed verb (weak endings, stem change)',forms:'denkt · dachte · hat gedacht',auxiliary:'haben',
+  government:[{pattern:'denken an + Akkusativ',meaning:'to have in mind'},{pattern:'denken über + Akkusativ',meaning:'to hold an opinion about'}],
+  examples:['Ich *denke* oft an meine Familie.','Was *denkst* du über dieses Buch?'],gsw:'tänke'},
+ fr:{word:'penser',ipa:'pɑ̃.se',verbRegular:true,verbClass:'1st group, regular -er verb',forms:"je pense · je pensais · j'ai pensé",auxiliary:'avoir',
+  government:[{pattern:'penser à + noun / infinitive',meaning:'to have in mind'},{pattern:'penser de + noun',meaning:'to hold an opinion about'}],
+  examples:['Je *pense* souvent à ma famille.','Que *penses*-tu de ce livre ?']},
+ pt:{word:'pensar',ipa:'pẽˈsa(ʁ)',ipaAlt:{pt:'pẽˈsaɾ'},verbRegular:true,verbClass:'regular -ar verb',forms:'penso · pensei · pensado',auxiliary:'ter',
+  government:[{pattern:'pensar em + noun / infinitive',meaning:'to have in mind'},{pattern:'pensar sobre + noun',meaning:'to reflect on, hold an opinion'}],
+  examples:['Eu *penso* muito na minha família.','O que você *pensa* sobre este livro?'],
+  variants:[{region:'pt',examples:[null,'O que *pensas* sobre este livro?'],note:'Portugal uses tu with friends.'}]}},
+
+{pos:'verb',level:'B1',sense:'to know again someone or something seen before',otherSenses:['to admit, acknowledge'],
+ en:{word:'to recognize',ipa:'ˈɹɛk.əɡ.naɪz',verbRegular:true,verbClass:'regular verb',forms:'recognizes · recognized · has recognized',auxiliary:'have',
+  government:[{pattern:'recognize + object',meaning:'no preposition'},{pattern:'recognize someone by + noun',meaning:'the feature that identifies them'}],
+  examples:["I didn't *recognize* you with your new haircut.",'She *recognized* him by his voice.'],
+  variants:[{region:'gb',word:'to recognise',forms:'recognises · recognised · has recognised',examples:["I didn't *recognise* you with your new haircut.",'She *recognised* him by his voice.'],note:'-ise spelling. Oxford style also accepts -ize.'}]},
+ de:{word:'erkennen',ipa:'ɛɐ̯ˈkɛnən',verbRegular:false,verbClass:'mixed verb (weak endings, stem change)',forms:'erkennt · erkannte · hat erkannt',auxiliary:'haben',
+  government:[{pattern:'erkennen + Akkusativ',meaning:'the person or thing'},{pattern:'erkennen an + Dativ',meaning:'to recognize by a feature'}],
+  examples:['Ich habe dich mit deiner neuen Frisur nicht *erkannt*.','Sie *erkannte* ihn an seiner Stimme.'],gsw:'erkänne'},
+ fr:{word:'reconnaître',ipa:'ʁə.kɔ.nɛtʁ',verbRegular:false,verbClass:'3rd group, irregular (like connaître)',forms:"je reconnais · je reconnaissais · j'ai reconnu",auxiliary:'avoir',
+  government:[{pattern:'reconnaître + direct object',meaning:'the person or thing'},{pattern:'reconnaître quelqu\'un à + noun',meaning:'to recognize by a feature'}],
+  examples:["Je ne t'ai pas *reconnu* avec ta nouvelle coupe de cheveux.","Elle l'a *reconnu* à sa voix."],note:'The 1990 spelling reform also allows reconnaitre, without the circumflex.'},
+ pt:{word:'reconhecer',ipa:'ʁe.ko.ɲeˈse(ʁ)',ipaAlt:{pt:'ʁɨ.ku.ɲɨˈseɾ'},verbRegular:true,verbClass:'regular -er verb (c → ç before o, a: reconheço)',forms:'reconheço · reconheci · reconhecido',auxiliary:'ter',
+  government:[{pattern:'reconhecer + direct object',meaning:'the person or thing'},{pattern:'reconhecer alguém por / pela + noun',meaning:'to recognize by a feature'}],
+  examples:['Eu não te *reconheci* com o seu novo corte de cabelo.','Ela o *reconheceu* pela voz.'],
+  variants:[{region:'pt',examples:['Não te *reconheci* com o teu novo corte de cabelo.','Ela *reconheceu*-o pela voz.'],note:'Portugal uses teu with tu and puts the object pronoun after the verb.'}]}},
+
+{pos:'verb',level:'A1',sense:'to take food',otherSenses:[],
+ en:{word:'to eat',ipa:'iːt',verbRegular:false,verbClass:'irregular verb',forms:'eats · ate · has eaten',auxiliary:'have',
+  government:[{pattern:'eat + object',meaning:'the food'}],
+  examples:['We *eat* at seven o\'clock.','Have you already *eaten*?']},
+ de:{word:'essen',ipa:'ˈɛsn̩',verbRegular:false,verbClass:'strong verb (e → i · a · e)',forms:'isst · aß · hat gegessen',auxiliary:'haben',
+  government:[{pattern:'essen + Akkusativ',meaning:'the food'},{pattern:'zu Mittag / zu Abend essen',meaning:'to have lunch / dinner'}],
+  examples:['Wir *essen* um sieben Uhr.','Hast du schon *gegessen*?'],gsw:'ässe'},
+ fr:{word:'manger',ipa:'mɑ̃.ʒe',verbRegular:true,verbClass:'1st group, regular -er verb (g → ge before a, o: nous mangeons)',forms:"je mange · je mangeais · j'ai mangé",auxiliary:'avoir',
+  government:[{pattern:'manger + direct object',meaning:'the food'}],
+  examples:['Nous *mangeons* à sept heures.','As-tu déjà *mangé* ?']},
+ pt:{word:'comer',ipa:'koˈme(ʁ)',ipaAlt:{pt:'kuˈmeɾ'},verbRegular:true,verbClass:'regular -er verb',forms:'como · comi · comido',auxiliary:'ter',
+  government:[{pattern:'comer + direct object',meaning:'the food'}],
+  examples:['Nós *comemos* às sete horas.','Você já *comeu*?'],
+  variants:[{region:'pt',examples:[null,'Já *comeste*?'],note:'Portugal uses tu with friends.'}]}},
+
+{pos:'noun',level:'A1',sense:'a building people live in',otherSenses:[],
+ en:{word:'house',ipa:'haʊs',synonyms:['home'],gender:null,plural:'houses',pluralRule:'adds -s',pluralRegular:true,
+  examples:['The *house* has a big yard.','There are many old *houses* on this street.'],note:'The plural is spelled regularly but the s is voiced: /ˈhaʊzɪz/.',
+  variants:[{region:'gb',examples:['The *house* has a big garden.',null],note:'The yard of a house is its garden in British English.'}]},
+ de:{word:'Haus',ipa:'haʊ̯s',article:'das',gender:'n',plural:'die Häuser',pluralRule:'umlaut + -er',pluralRegular:false,
+  examples:['Das *Haus* hat einen großen Garten.','In dieser Straße stehen viele alte *Häuser*.'],gsw:'s Huus (pl. Hüüser)'},
+ fr:{word:'maison',ipa:'mɛ.zɔ̃',article:'la',gender:'f',plural:'les maisons',pluralRule:'adds -s',pluralRegular:true,
+  examples:['La *maison* a un grand jardin.','Il y a beaucoup de vieilles *maisons* dans cette rue.']},
+ pt:{word:'casa',ipa:'ˈka.zɐ',article:'a',gender:'f',plural:'as casas',pluralRule:'adds -s',pluralRegular:true,
+  examples:['A *casa* tem um jardim grande.','Há muitas *casas* antigas nesta rua.']}},
+
+{pos:'noun',level:'A1',sense:'bound pages to read',otherSenses:[],
+ en:{word:'book',ipa:'bʊk',gender:null,plural:'books',pluralRule:'adds -s',pluralRegular:true,
+  examples:['I am reading a *book* about history.','These *books* belong to the library.']},
+ de:{word:'Buch',ipa:'buːx',article:'das',gender:'n',plural:'die Bücher',pluralRule:'umlaut + -er',pluralRegular:false,
+  examples:['Ich lese ein *Buch* über Geschichte.','Diese *Bücher* gehören der Bibliothek.'],gsw:'s Buech (pl. Büecher)'},
+ fr:{word:'livre',ipa:'livʁ',article:'le',gender:'m',plural:'les livres',pluralRule:'adds -s',pluralRegular:true,
+  examples:["Je lis un *livre* sur l'histoire.",'Ces *livres* appartiennent à la bibliothèque.'],note:'La livre (feminine) is a different word: a pound.'},
+ pt:{word:'livro',ipa:'ˈli.vɾu',article:'o',gender:'m',plural:'os livros',pluralRule:'adds -s',pluralRegular:true,
+  examples:['Estou lendo um *livro* sobre história.','Estes *livros* pertencem à biblioteca.'],
+  variants:[{region:'pt',examples:['Estou a ler um *livro* sobre história.',null],note:'Portugal says estar a + infinitive instead of the gerund.'}]}},
+
+{pos:'noun',level:'A1',sense:'large road vehicle for passengers',otherSenses:[],
+ en:{word:'bus',ipa:'bʌs',gender:null,plural:'buses',pluralRule:'adds -es after s',pluralRegular:true,
+  examples:['The *bus* arrives in five minutes.','Two *buses* go to the airport.']},
+ de:{word:'Bus',ipa:'bʊs',article:'der',gender:'m',plural:'die Busse',pluralRule:'adds -e, the s doubles',pluralRegular:true,
+  examples:['Der *Bus* kommt in fünf Minuten.','Zwei *Busse* fahren zum Flughafen.'],gsw:'de Bus'},
+ fr:{word:'bus',ipa:'bys',article:'le',gender:'m',plural:'les bus',pluralRule:'no change, already ends in -s',pluralRegular:true,
+  examples:['Le *bus* arrive dans cinq minutes.',"Deux *bus* vont à l'aéroport."],
+  variants:[{region:'ca',word:'autobus',article:"l'",plural:'les autobus',ipa:'o.tɔ.bys',examples:["L'*autobus* arrive dans cinq minutes.","Deux *autobus* vont à l'aéroport."],note:'Québec usually says autobus.'}]},
+ pt:{word:'ônibus',ipa:'ˈo.ni.bus',article:'o',gender:'m',plural:'os ônibus',pluralRule:'no change, already ends in -s',pluralRegular:true,
+  examples:['O *ônibus* chega em cinco minutos.','Dois *ônibus* vão para o aeroporto.'],
+  variants:[{region:'pt',word:'autocarro',article:'o',plural:'os autocarros',pluralRule:'adds -s',ipa:'aw.tɔˈka.ʁu',examples:['O *autocarro* chega dentro de cinco minutos.','Dois *autocarros* vão para o aeroporto.'],note:'Portugal uses a different word.'}]}},
+
+{pos:'noun',level:'A1',sense:'what red, blue and green are',otherSenses:[],
+ en:{word:'color',ipa:'ˈkʌl.ɚ',gender:null,plural:'colors',pluralRule:'adds -s',pluralRegular:true,
+  examples:['Which *color* do you like best?','The leaves have beautiful *colors* in the fall.'],
+  variants:[{region:'gb',word:'colour',plural:'colours',ipa:'ˈkʌl.ə',examples:['Which *colour* do you like best?','The leaves have beautiful *colours* in autumn.'],note:'-our spelling. "The fall" is "autumn".'}]},
+ de:{word:'Farbe',ipa:'ˈfaʁ.bə',article:'die',gender:'f',plural:'die Farben',pluralRule:'adds -n',pluralRegular:true,
+  examples:['Welche *Farbe* magst du am liebsten?','Im Herbst haben die Blätter schöne *Farben*.'],gsw:'d Farb'},
+ fr:{word:'couleur',ipa:'ku.lœʁ',article:'la',gender:'f',plural:'les couleurs',pluralRule:'adds -s',pluralRegular:true,
+  examples:['Quelle *couleur* préfères-tu ?','En automne, les feuilles ont de belles *couleurs*.']},
+ pt:{word:'cor',ipa:'koʁ',ipaAlt:{pt:'koɾ'},article:'a',gender:'f',plural:'as cores',pluralRule:'adds -es after r',pluralRegular:true,
+  examples:['De que *cor* você gosta mais?','No outono, as folhas têm *cores* bonitas.'],
+  variants:[{region:'pt',examples:['De que *cor* gostas mais?',null],note:'Portugal uses tu with friends.'}]}},
+
+{pos:'noun',level:'A1',sense:'two-wheeled vehicle you pedal',otherSenses:[],
+ en:{word:'bicycle',ipa:'ˈbaɪ.sɪ.kəl',synonyms:['bike'],gender:null,plural:'bicycles',pluralRule:'adds -s',pluralRegular:true,
+  examples:['I go to work by *bicycle*.','Both *bicycles* are in the garage.']},
+ de:{word:'Fahrrad',ipa:'ˈfaːɐ̯ˌʁaːt',synonyms:['Rad'],article:'das',gender:'n',plural:'die Fahrräder',pluralRule:'umlaut + -er',pluralRegular:false,
+  examples:['Ich fahre mit dem *Fahrrad* zur Arbeit.','Beide *Fahrräder* stehen in der Garage.'],gsw:'s Velo',
+  variants:[{region:'ch',word:'Velo',article:'das',plural:'die Velos',pluralRule:'adds -s',pluralRegular:true,ipa:'ˈveː.lo',examples:['Ich fahre mit dem *Velo* zur Arbeit.','Beide *Velos* stehen in der Garage.'],note:'Switzerland says Velo.'}]},
+ fr:{word:'vélo',ipa:'ve.lo',synonyms:['bicyclette'],article:'le',gender:'m',plural:'les vélos',pluralRule:'adds -s',pluralRegular:true,
+  examples:['Je vais au travail à *vélo*.','Les deux *vélos* sont dans le garage.']},
+ pt:{word:'bicicleta',ipa:'bi.siˈklɛ.tɐ',synonyms:['bike'],article:'a',gender:'f',plural:'as bicicletas',pluralRule:'adds -s',pluralRegular:true,
+  examples:['Eu vou de *bicicleta* para o trabalho.','As duas *bicicletas* estão na garagem.']}},
+
+{pos:'adjective',level:'A1',sense:'very pleasant to look at',otherSenses:[],
+ en:{word:'beautiful',ipa:'ˈbjuː.tɪ.fəl',synonyms:['pretty','lovely'],comparison:'more beautiful · most beautiful',comparisonRegular:true,
+  examples:['What a *beautiful* day!','She lives in a *beautiful* old house.']},
+ de:{word:'schön',ipa:'ʃøːn',synonyms:['hübsch'],comparison:'schöner · am schönsten',comparisonRegular:true,
+  examples:['Was für ein *schöner* Tag!','Sie wohnt in einem *schönen* alten Haus.'],gsw:'schöön'},
+ fr:{word:'beau',ipa:'bo',synonyms:['joli'],agreement:'beau (bel before a vowel) · belle · beaux · belles',agreementRegular:false,comparison:'plus beau · le plus beau',comparisonRegular:true,
+  examples:['Quelle *belle* journée !','Elle habite dans une *belle* maison ancienne.'],note:'Goes before the noun: une belle maison.'},
+ pt:{word:'bonito',ipa:'boˈni.tu',ipaAlt:{pt:'buˈni.tu'},synonyms:['lindo','belo'],agreement:'bonito · bonita · bonitos · bonitas',agreementRegular:true,comparison:'mais bonito · o mais bonito',comparisonRegular:true,
+  examples:['Que dia *bonito*!','Ela mora em uma casa antiga e *bonita*.'],
+  variants:[{region:'pt',examples:[null,'Ela mora numa casa antiga e *bonita*.'],note:'Portugal contracts em + uma to numa in writing too.'}]}}
+];
+/*END PURE*/
+
+/* ---------- flags ---------- */
+const FLAG_ART={
+us:'<rect width="60" height="40" fill="#B22234"/><path d="M0,4.62H60M0,10.77H60M0,16.92H60M0,23.08H60M0,29.23H60M0,35.38H60" stroke="#fff" stroke-width="3.08"/><rect width="26" height="21.54" fill="#3C3B6E"/><path d="M3,3H24M3,7H24M3,11H24M3,15H24M3,19H24" stroke="#fff" stroke-width="1.5" stroke-dasharray="0 4.1" stroke-linecap="round"/>',
+gb:'<rect width="60" height="40" fill="#012169"/><path d="M0,0L60,40M60,0L0,40" stroke="#fff" stroke-width="7"/><path d="M0,0L60,40M60,0L0,40" stroke="#C8102E" stroke-width="2.6"/><path d="M30,0v40M0,20h60" stroke="#fff" stroke-width="12"/><path d="M30,0v40M0,20h60" stroke="#C8102E" stroke-width="7"/>',
+de:'<rect width="60" height="40" fill="#000"/><rect y="13.33" width="60" height="26.67" fill="#DD0000"/><rect y="26.67" width="60" height="13.33" fill="#FFCE00"/>',
+fr:'<rect width="60" height="40" fill="#EF4135"/><rect width="40" height="40" fill="#fff"/><rect width="20" height="40" fill="#0055A4"/>',
+br:'<rect width="60" height="40" fill="#009C3B"/><path d="M30,4L55,20L30,36L5,20Z" fill="#FFDF00"/><circle cx="30" cy="20" r="9" fill="#002776"/><path d="M21.3,18Q30,15 38.9,22" fill="none" stroke="#fff" stroke-width="1.8"/>',
+ch:'<rect width="60" height="40" fill="#DA291C"/><path d="M26,8h8v8h8v8h-8v8h-8v-8h-8v-8h8z" fill="#fff"/>',
+at:'<rect width="60" height="40" fill="#C8102E"/><rect y="13.33" width="60" height="13.34" fill="#fff"/>',
+pt:'<rect width="60" height="40" fill="#DA291C"/><rect width="24" height="40" fill="#046A38"/><circle cx="24" cy="20" r="7.5" fill="#FFE900"/><circle cx="24" cy="20" r="3.6" fill="#DA291C" stroke="#fff" stroke-width="1.4"/>',
+be:'<rect width="60" height="40" fill="#EF3340"/><rect width="40" height="40" fill="#FDDA24"/><rect width="20" height="40" fill="#000"/>',
+ca:'<rect width="60" height="40" fill="#fff"/><rect width="15" height="40" fill="#D80621"/><rect x="45" width="15" height="40" fill="#D80621"/><path d="M30,7L27.6,11.5L25,10.2L26.2,16.5L22.8,13.2L22.2,15L18,14.2L19.4,18.5L17.6,19.6L24.5,25L23.7,27.5L29.4,26.8L29.2,32.5H30.8L30.6,26.8L36.3,27.5L35.5,25L42.4,19.6L40.6,18.5L42,14.2L37.8,15L37.2,13.2L33.8,16.5L35,10.2L32.4,11.5Z" fill="#D80621"/>'
+};
+const flag=(c,mini)=>FLAG_ART[c]?`<svg class="flag${mini?' mini':''}" viewBox="0 0 60 40" preserveAspectRatio="none" aria-hidden="true">${FLAG_ART[c]}</svg>`:'';
+const SPEAKER='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3zm11.5 3a4 4 0 0 0-2-3.46v6.92a4 4 0 0 0 2-3.46zm-2-8.3v2.1a7 7 0 0 1 0 12.4v2.1a9 9 0 0 0 0-16.6z"/></svg>';
+const LANGS=[
+ {id:'en',name:'English',ph:'type a word…',code:'EN'},
+ {id:'de',name:'German',ph:'Wort eingeben…',code:'DE'},
+ {id:'fr',name:'French',ph:'saisir un mot…',code:'FR'},
+ {id:'pt',name:'Portuguese',ph:'digite uma palavra…',code:'PT'}
+];
+const LNAME={en:'English',de:'German',fr:'French',pt:'Portuguese'};
+const CEFR={A1:'basic',A2:'elementary',B1:'intermediate',B2:'upper intermediate',C1:'advanced',C2:'academic'};
+
+/* ---------- common words: shown first in suggestions; CORE feeds "Add 10 common words" ---------- */
+const WORDS={
+en:'able about accept afternoon again always answer apple arrive ask bad beautiful become begin believe big bread bring brother build buy call car carry change child choose city close cold color come cook country cut day decide difficult dog door dream drink drive early easy eat evening eye fall family father favorite feel find finish flower follow food forget friend give good hand happy have hear heavy hope hour know language laugh learn leave letter life listen live long look lose love make man money morning mother mountain name need new night old open pay people play put question rain read remember run say school see sell send show sister sleep small speak stand start stay street strong student sun take talk teach tell time tired town train travel tree try understand water week win window woman word work world write year young',
+de:'Abend Antwort Apfel Arbeit Auge Auto Baum Berg Blume Brief Brot Bruder Fahrrad Familie Farbe Frage Frau Freund Geld Hand Hund Jahr Kind Land Leben Lehrer Mann Morgen Mutter Nacht Name Schule Schwester Sprache Stadt Straße Stunde Tag Traum Tür Vater Wasser Welt Woche Wort Zeit Zug alt anfangen antworten arbeiten bauen beginnen bekommen bezahlen bleiben brauchen bringen einfach entscheiden erinnern essen fahren fallen finden folgen fragen fühlen geben glauben glücklich groß gut haben heißen hoffen hören jung kalt kaufen kennen klein kochen kommen können lachen laufen leben lernen lesen lieben liegen machen müde nehmen neu öffnen reden reisen rufen sagen schlafen schließen schön schreiben schwierig sehen sein singen sitzen spielen sprechen stark stehen suchen tragen träumen trinken vergessen verkaufen verlieren verstehen versuchen wählen werden wissen wohnen zeigen',
+fr:'acheter aimer ami an année apprendre arbre argent arriver attendre avoir beau boire bon bonheur chanter chercher chien choisir comprendre connaître construire couleur courir croire demander devenir difficile dire donner dormir eau école écouter écrire enfant entendre espérer être facile faire famille femme fenêtre fermer finir fleur frère froid grand heure heureux homme jeune jouer jour langue lettre lire livre main manger mère montagne montrer monde mot nouveau nuit œil oublier ouvrir pain parler partir payer penser père perdre petit porte porter pouvoir prendre question regarder répondre rester rêve rire rue savoir semaine sœur soir soleil suivre temps tomber travail travailler trouver vélo vendre venir vie vieux ville vivre voir voiture vouloir voyager',
+pt:'abrir acreditar água ajudar amar amigo ano aprender árvore beber bicicleta bom bonito brincar cachorro cair cantar carro carta casa chegar cidade começar comer comprar conhecer construir cor correr criança dar decidir difícil dia dinheiro dizer dormir escola escolher escrever escutar esperar esquecer estar estudante fácil falar família fato fazer fechar feliz ficar flor frio ganhar gostar grande homem hora ir irmã irmão janela jovem ler levar língua livro lembrar mãe mão montanha morar mostrar mulher mundo noite novo olho ônibus ouvir pagar pai palavra pão pedir pensar pequeno perder perguntar poder porta precisar querer responder rir rua saber sair semana sentir ser sol sonho tempo ter trabalhar trabalho trazer trem vender ver viajar vida vir viver velho'
+};
+for(const k in WORDS) WORDS[k]=WORDS[k].split(' ');
+const CORE=('water bread friend family mother father child day night time year week hand eye door window street city country school work money food name word language question answer man woman dog tree flower sun rain mountain sea river car train letter dream life world morning evening hour '
++'be have do say see know come give take make want can must find tell ask feel leave call need try keep begin show hear play run live believe bring write sit lose pay meet learn understand read speak open close buy sell sleep drink cook drive travel remember forget love laugh sing dance swim walk fly win send choose change build carry fall grow wash clean cut break '
++'good bad big small new old young long short hot cold happy sad easy difficult fast slow strong weak rich poor early late right wrong important free full empty heavy light dark clean dirty expensive cheap tired hungry sick healthy '
++'always never often sometimes today tomorrow yesterday now here there very also maybe together alone again already '
++'apple cheese milk coffee tea meat fish egg salt sugar breakfast lunch dinner kitchen table chair bed room bathroom garden key bag shoe shirt coat hat clock phone computer newspaper picture song movie game ball '
++'head face mouth nose ear hair arm leg foot heart back doctor hospital medicine teacher student office job boss colleague police lawyer engineer artist '
++'airport station ticket hotel passport suitcase map beach forest lake island bridge village church market shop bank restaurant museum library '
++'spring summer autumn winter weather wind snow cloud sky star moon fire earth air '
++'brother sister son daughter husband wife uncle aunt grandmother grandfather neighbor guest baby '
++'idea reason problem solution example mistake truth story history future past peace war freedom law government science art music nature health knowledge experience opinion decision '
++'explain describe compare develop improve achieve avoid allow agree refuse promise suggest expect depend belong exist happen appear disappear increase reduce protect destroy').split(' ');
+
+/* ---------- helpers ---------- */
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const marked=s=>esc(s).replace(/\*(.+?)\*/g,'<mark>$1</mark>');
+const plain=s=>String(s||'').replace(/\*/g,'');
+const store={
+  get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},
+  set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+};
+(function(){const saved=store.get('flt:settings3',{}); Object.assign(S,saved,{main:Object.assign({},S.main,saved.main||{})});
+  Object.keys(REG).forEach(l=>{if(!REG[l].includes(S.main[l])) S.main[l]=BASE[l];});})();
+let cache=store.get('flt:cache3',{});
+let recent=store.get('flt:recent2',{en:[],de:[],fr:[],pt:[]});
+const builtinIndex={};
+BUILTIN.forEach(e=>{e._builtin=true; entryKeys(e).forEach(k=>{builtinIndex[k]=e;});});
+let state={status:'done',src:{lang:'de',word:'stehen'},entry:BUILTIN[2],error:'',forms:{},more:{}};
+const use=n=>(window.claude&&window.claude.use)?window.claude.use(n).catch(()=>null):Promise.resolve(null);
+const sampleP=use('sample'), ttsP=use('tts'), dbP=use('db');
+const timeout=(p,ms)=>Promise.race([p,new Promise(r=>setTimeout(()=>r(null),ms))]);
+let toastTimer=0;
+function toast(msg){const t=$('#toast'); t.textContent=msg; clearTimeout(toastTimer); toastTimer=setTimeout(()=>{t.textContent='';},6000);}
+
+/* ---------- word lists ---------- */
+const LEXI={};
+const mk=s=>{const w=s?s.split('\n'):[]; return {w,f:w.map(fold)};};
+window.onLex=lang=>{
+  const d=window.LEX[lang]; LEXI[lang]={c:mk(d.c),x:mk(d.x)}; window.LEX[lang]=null;
+  const n=l=>LEXI[l].c.w.length+LEXI[l].x.w.length;
+  const c=$('#cnt-'+lang); if(c) c.textContent=n(lang).toLocaleString('en-US')+' words';
+  const done=Object.keys(LEXI);
+  $('#lex-total').textContent=done.length<4?`Loaded ${done.length} of 4 word lists…`
+    :`${done.reduce((a,l)=>a+n(l),0).toLocaleString('en-US')} words in total: `+LANGS.map(l=>`${l.name} ${n(l.id).toLocaleString('en-US')}`).join(', ')+'.';
+};
+function loadLexicon(){
+  LANGS.forEach(l=>{const s=document.createElement('script');s.src='lex-'+l.id+'.js';s.async=true;
+    s.onerror=()=>{const c=$('#cnt-'+l.id); if(c) c.textContent='word list unavailable';};
+    document.head.appendChild(s);});
+}
+function scan(L,q){
+  let lo=0,hi=L.f.length;
+  while(lo<hi){const m=(lo+hi)>>1; if(L.f[m]<q) lo=m+1; else hi=m;}
+  const c=[];
+  for(let i=lo;i<L.f.length&&L.f[i].startsWith(q)&&c.length<40000;i++) c.push(i);
+  c.sort((a,b)=>L.f[a].length-L.f[b].length||(L.f[a]<L.f[b]?-1:1));
+  return c;
+}
+function suggest(lang,raw,n){
+  let q=fold(raw); if(lang==='en') q=q.replace(/^to\s+/,'');
+  const out=[],seen=new Set();
+  const add=(w,tag)=>{if(out.length<n&&!seen.has(w)){seen.add(w);out.push({w,tag});}};
+  const prio=[...WORDS[lang],...BUILTIN.map(e=>e[lang].word.replace(/^to /,''))];
+  (recent[lang]||[]).filter(w=>!q||fold(w).startsWith(q)).forEach(w=>add(w,'recent'));
+  prio.filter(w=>!q||fold(w).startsWith(q)).forEach(w=>add(w,''));
+  const L=LEXI[lang];
+  if(q&&L) for(const tier of [L.c,L.x]){ if(out.length>=n) break; for(const i of scan(tier,q)){ if(out.length>=n) break; add(tier.w[i],''); } }
+  if(q&&out.length<n) prio.filter(w=>fold(w).includes(q)).forEach(w=>add(w,''));
+  return out;
+}
+
+/* ---------- library (shared store inside the app) ---------- */
+let DB=null, libWritable=true;
+const lib={rows:[],keys:new Map(),ready:false,state:'connecting'};
+function libCount(){const ids=new Set(lib.rows.map(r=>r.en)); BUILTIN.forEach(b=>ids.add(b.en.word)); return ids.size;}
+function libPaint(){
+  $('#lib-toggle').textContent=`Library (${libCount().toLocaleString('en-US')})`;
+  const msg={connecting:'Connecting to the library…',
+    ready:`${libCount()} entries: ${BUILTIN.length} built in and ${lib.rows.length} saved in this app's library. Saved entries are available on every device where you open this page.`,
+    local:'The shared library is not available in this view, so new entries are kept in this browser only.',
+    error:'The library could not be reached. New entries are kept in this browser for now.'}[lib.state];
+  $('#lib-status').textContent=msg+(libWritable?'':' You can read the library but not add to it.');
+  const q=fold($('#lib-filter').value||'');
+  const items=[...BUILTIN.map(b=>({en:b.en.word,de:b.de.word,fr:b.fr.word,pt:b.pt.word,level:b.level,tag:'built in'})),...lib.rows.filter(r=>!builtinIndex[key('en',r.en||'')])]
+    .filter(r=>!q||[r.en,r.de,r.fr,r.pt].some(w=>fold(w||'').includes(q)))
+    .sort((a,b)=>fold(a.en)<fold(b.en)?-1:1);
+  $('#lib-list').innerHTML=items.slice(0,400).map(r=>`<button class="chip" data-open="${esc(r.en)}" title="${esc([r.de,r.fr,r.pt].join(' · '))}">${esc(r.en)}${r.level?`<small>${esc(r.level)}</small>`:''}</button>`).join('')
+    +(items.length>400?`<span class="hint">and ${items.length-400} more. Use the filter.</span>`:'');
+}
+function libInit(){
+  dbP.then(db=>{
+    DB=db; if(!db){lib.state='local';libPaint();return;}
+    const timer=setTimeout(()=>{if(!lib.ready){lib.state='error';libPaint();}},10000);
+    db.collection('index').orderBy('en').limit(1000).onSnapshot(snap=>{
+      clearTimeout(timer);
+      lib.rows=snap.docs.map(d=>Object.assign({id:d.id},d.data()));
+      lib.keys=new Map(); lib.rows.forEach(r=>(r.keys||[]).forEach(k=>lib.keys.set(k,r.id)));
+      lib.ready=true; lib.state='ready'; libPaint();
+    },()=>{clearTimeout(timer); lib.state='error'; libPaint();});
+  });
+}
+async function libGet(k){
+  if(!DB) return null;
+  try{
+    let id=lib.keys.get(k);
+    if(!id&&(!lib.ready||lib.rows.length>=1000)){
+      const q=await timeout(DB.collection('index').where('keys','array-contains',k).limit(1).get(),7000);
+      if(q&&!q.empty) id=q.docs[0].id;
+    }
+    if(!id) return null;
+    const d=await timeout(DB.doc('entries/'+id).get(),7000);
+    if(!d||!d.exists) return null;
+    const e=JSON.parse(d.data().json); e._id=id; return e;
+  }catch(err){return null;}
+}
+const slug=x=>fold(x).replace(/^to\s+/,'').replace(/ß/g,'ss').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,60)||'x';
+const writeQ={};
+function libSave(e,withIndex){
+  if(!DB||!libWritable) return;
+  const id=e._id||(e._id=slug(e.en.word)+'_'+slug(e.de.word));
+  const body=Object.assign({},e); delete body._id; delete body._builtin;
+  const json=JSON.stringify(body);
+  const idx={en:e.en.word,de:e.de.word,fr:e.fr.word,pt:e.pt.word,pos:e.pos||'',level:e.level||e.en.level||'',keys:entryKeys(e),t:Date.now()};
+  writeQ[id]=(writeQ[id]||Promise.resolve())
+    .then(()=>DB.doc('entries/'+id).set({json}))
+    .then(()=>withIndex?DB.doc('index/'+id).set(idx):null)
+    .catch(err=>{const c=err&&err.code; if(c==='invalid_argument'||c==='not_granted'||c==='revoked'){libWritable=false;libPaint();} else if(c==='quota_exceeded') toast('The library is full. New entries are kept in this browser only.');});
+}
+function remember(e,k,isNew){
+  if(k){cache[k]=e; const ks=Object.keys(cache); if(ks.length>60) delete cache[ks[0]]; store.set('flt:cache3',cache);}
+  libSave(e,isNew||e._builtin||!lib.keys.has(key('en',e.en.word)));
+}
+
+/* ---------- slots ---------- */
+function buildSlots(){
+  $('#slots').innerHTML=LANGS.map(l=>`
+   <div class="slot" data-lang="${l.id}">
+     <div class="slot-head"><span id="flag-${l.id}">${flag(S.main[l.id])}</span><span class="lang-name">${l.name}</span>
+       <select id="var-${l.id}" aria-label="Main variant of ${l.name}">${REG[l.id].map(r=>`<option value="${r}"${r===S.main[l.id]?' selected':''}>${RNAME[r]}</option>`).join('')}</select>
+</div>
+     <form class="field" autocomplete="off">
+       <input id="in-${l.id}" type="text" placeholder="${l.ph}" aria-label="${l.name} word" role="combobox" aria-expanded="false" aria-controls="sg-${l.id}" autocapitalize="off" spellcheck="false">
+       <button type="submit" id="go-${l.id}">Translate</button>
+     </form>
+     <ul class="sugg" id="sg-${l.id}" role="listbox" hidden></ul>
+     <span class="count" id="cnt-${l.id}">&nbsp;</span>
+   </div>`).join('');
+  LANGS.forEach(l=>{
+    const input=$('#in-'+l.id), list=$('#sg-'+l.id); let sel=-1, items=[];
+    $('#var-'+l.id).addEventListener('change',e=>{S.main[l.id]=e.target.value; store.set('flt:settings3',S); $('#flag-'+l.id).innerHTML=flag(S.main[l.id]); if(state.status==='done') render();});
+    const close=()=>{list.hidden=true;input.setAttribute('aria-expanded','false');sel=-1;};
+    const paint=()=>{[...list.children].forEach((li,i)=>{li.setAttribute('aria-selected',i===sel?'true':'false'); if(i===sel) li.scrollIntoView({block:'nearest'});});};
+    const open=()=>{
+      items=suggest(l.id,input.value,+S.sugg);
+      if(!items.length||(items.length===1&&fold(items[0].w)===fold(input.value))){close();return;}
+      list.innerHTML=items.map((it,i)=>`<li role="option" data-i="${i}">${esc(it.w)}${it.tag?`<small>${it.tag}</small>`:''}</li>`).join('');
+      list.hidden=false;input.setAttribute('aria-expanded','true');sel=-1;
+    };
+    const pick=w=>{input.value=w;close();translate(l.id,w);};
+    input.addEventListener('input',open);
+    input.addEventListener('focus',open);
+    input.addEventListener('blur',()=>setTimeout(close,120));
+    input.addEventListener('keydown',e=>{
+      if(list.hidden) return;
+      if(e.key==='ArrowDown'){e.preventDefault();sel=(sel+1)%items.length;paint();}
+      else if(e.key==='ArrowUp'){e.preventDefault();sel=(sel-1+items.length)%items.length;paint();}
+      else if(e.key==='Escape'){close();}
+      else if(e.key==='Enter'&&sel>=0){e.preventDefault();pick(items[sel].w);}
+    });
+    list.addEventListener('mousedown',e=>{const li=e.target.closest('li');if(li){e.preventDefault();pick(items[+li.dataset.i].w);}});
+    input.closest('form').addEventListener('submit',e=>{e.preventDefault();close();const w=input.value.trim();if(w)translate(l.id,w);});
+  });
+}
+
+/* ---------- prompts ---------- */
+const LEVEL={easy:'A1 to A2: short, simple, everyday',medium:'A2 to B1: natural everyday sentences',advanced:'B2 to C1: longer, idiomatic, varied tenses'};
+function prompt(lang,word,hint){
+return `You are a lexicographer writing one entry of a four-language learner's dictionary. Follow the grammatical information and conventions of Wiktionary (and DWDS/Duden for German, TLFi for French, Priberam/Michaelis for Portuguese). Be accurate; never invent forms.
+
+Input word: "${word}" (${LNAME[lang]}; any regional spelling may be used as input).${hint?` Translate this specific sense: "${hint}".`:' Translate its most common sense.'}
+
+Return ONLY one JSON object, no markdown, no commentary. If the input is not a real ${LNAME[lang]} word (allow small typos and inflected forms; use the lemma), return {"error":"short reason"}.
+
+BASE STANDARDS. Every field outside "variants" uses these:
+en = American English. de = Standard German of Germany, with ß. fr = French of France. pt = Brazilian Portuguese (você, gerund 'estou fazendo').
+
+Shape:
+{"pos":"verb|noun|adjective|adverb|other",
+ "sense":"short English gloss of the sense translated",
+ "otherSenses":["up to 3 short English glosses of other clearly distinct meanings of the input word, or empty"],
+ "en":{...},"de":{...},"fr":{...},"pt":{...}}
+
+Each language object:
+{"word":"lemma without article; verbs in the infinitive (English with 'to ')",
+ "ipa":"IPA of the headword in the base standard, without slashes",
+ "ipaAlt":{"gb":"..."},
+ "level":"CEFR level at which a learner normally meets this word: A1|A2|B1|B2|C1|C2",
+ "synonyms":["up to 3 common synonyms in that language"],
+ "article":"definite article singular for nouns (der/die/das, le/la/l', o/a), else omit",
+ "gender":"m|f|n|m/f for nouns in de/fr/pt; null for English",
+ "plural":"plural with article for de/fr/pt nouns (e.g. 'die Häuser'), plain plural for English; '—' if none",
+ "pluralRule":"very short rule, e.g. 'adds -s', 'umlaut + -e', '-al → -aux', '-ão → -ões'",
+ "pluralRegular":true|false,
+ "verbRegular":true|false,
+ "verbClass":"short, e.g. 'weak verb', 'strong verb (ei → ie → ie)', '1st group, regular -er verb', 'regular -ir verb', 'irregular verb'",
+ "forms":"principal parts. de: 3rd sg present · Präteritum · perfect with auxiliary ('hilft · half · hat geholfen'). en: 3rd sg · past · 'has' + participle. fr: je present · je imparfait · passé composé. pt: eu present · eu pretérito perfeito · particípio",
+ "auxiliary":"verbs only: haben|sein (de), avoir|être (fr), have (en), ter (pt)",
+ "agreement":"adjectives in fr/pt: masc sg · fem sg · masc pl · fem pl",
+ "agreementRegular":true|false,
+ "comparison":"adjectives: comparative · superlative",
+ "comparisonRegular":true|false,
+ "government":[{"pattern":"word + preposition + what follows","meaning":"short English explanation"}],
+ "examples":[${Array.from({length:+S.examples},(_, i)=>`"sentence ${i+1}"`).join(',')}],
+ "variants":[{"region":"gb","word":"...","article":"...","gender":"...","plural":"...","pluralRule":"...","forms":"...","auxiliary":"...","ipa":"...","examples":["regional sentence or null"],"note":"short English note on what differs"}],
+ "note":"optional short English usage note (false friend, register), else omit",
+ "gsw":"German object only: the Swiss German dialect (Schwiizerdütsch) form if you are confident, else omit"}
+
+Rules:
+- Omit fields that do not apply to the part of speech.
+- ipa: broad phonemic IPA with stress marks. ipaAlt holds the IPA in another region when the pronunciation clearly differs: "gb" for English (most words with r, or the vowels of lot, bath, goat), "pt" for Portuguese (European Portuguese almost always differs), "ca" for French only when notable. Omit ipaAlt otherwise.
+- government: for verbs (and adjectives/nouns that take a fixed preposition) list the 1 to 3 most important patterns. For German ALWAYS name the case: 'warten auf + Akkusativ', 'helfen + Dativ', 'sich erinnern an + Akkusativ'; also give the object case when a verb takes a plain dative or genitive object. For fr/pt/en say what follows ('penser à + noun / infinitive', 'gostar de + noun', 'depend on + object', or '+ direct object' when the language uses no preposition where another does).
+- variants: the regions are en → gb; de → ch, at; fr → ca, be, ch; pt → pt. Add a variant ONLY when that region really differs for this word or for these example sentences. Give only the fields that differ, plus note. In "examples" give an array as long as the base examples: the regional version of a sentence where it differs, null where it is identical.
+  gb: spelling (-ise, -our, -re, doubled l), different word (lorry, flat, queue, autumn, cinema), 'got' vs 'gotten'.
+  de ch: do NOT list ß → ss, the app converts that by itself. List Helvetisms (Velo, Tram, parkieren, Billett, grillieren, Poulet), a different auxiliary (stehen, sitzen, liegen: 'ist gestanden'), gender or plural. de at: Austrian words and forms (Jänner, Paradeiser, Sessel, 'ist gestanden').
+  fr ca: Québec words (magasiner, fin de semaine, courriel, autobus, déjeuner/dîner/souper). fr be and fr ch: septante, nonante, huitante (ch), déjeuner/dîner/souper, natel (ch).
+  pt pt: different word (autocarro, comboio, telemóvel, pequeno-almoço), spelling (facto, económico), and in examples the European grammar: estar a + infinitive, tu forms, pronoun after the verb.
+- regular vs irregular. Verbs: en irregular = irregular past/participle; de weak = regular, strong and mixed = irregular; fr regular = regular -er and finir-type -ir verbs, others irregular unless they follow the plain vendre pattern; pt = standard grammar. Plurals: regular only if a learner can predict the form from the singular by the default rule; German umlaut plurals, -er plurals and foreign plurals count as irregular; English men/children/feet, French œil → yeux and -al → -aux, Portuguese -ão → -ães/-ãos count as irregular.
+- examples: exactly ${S.examples} sentences, level ${LEVEL[S.level]}. The SAME sentences in all four languages, in the same order. For verbs at least one shows a government pattern; for nouns at least one shows the plural when natural. Wrap the form of the headword in *asterisks*.
+- All explanations (meaning, note, pluralRule, verbClass) in English.`;
+}
+const FORMSPEC={
+ verb:{
+  en:'Tables in this order: "Present", "Past", "Present perfect", "Future", "Conditional", each with rows for I, you, he/she/it, we, they. Then "Other forms" with rows infinitive, present participle, past participle.',
+  de:'Tables in this order: "Präsens (present)", "Präteritum (simple past)", "Perfekt (perfect)", "Plusquamperfekt (past perfect)", "Futur I (future)", "Konjunktiv II (would)", each with rows ich, du, er/sie/es, wir, ihr, sie/Sie. Then "Imperativ (command)" with rows du, ihr, Sie. Then "Weitere Formen" with rows Partizip I, Partizip II. For separable verbs split the prefix where required.',
+  fr:'Tables in this order: "Présent", "Imparfait", "Passé composé", "Passé simple", "Futur simple", "Conditionnel présent", "Subjonctif présent" (forms with que), each with rows je, tu, il/elle/on, nous, vous, ils/elles (use j\' where needed). Then "Impératif" with rows tu, nous, vous. Then "Autres formes" with rows participe présent, participe passé.',
+  pt:'Tables in this order: "Presente", "Pretérito perfeito", "Pretérito imperfeito", "Futuro do presente", "Futuro do pretérito (condicional)", "Presente do subjuntivo", "Imperfeito do subjuntivo", "Futuro do subjuntivo", each with rows eu, tu, ele/ela/você, nós, eles/elas/vocês. Then "Imperativo afirmativo" with rows tu, você, nós, vocês. Then "Outras formas" with rows gerúndio, particípio, infinitivo pessoal (eles).'},
+ noun:{de:'One table "Deklination (cases)" with rows Nominativ Sg., Akkusativ Sg., Dativ Sg., Genitiv Sg., Nominativ Pl., Akkusativ Pl., Dativ Pl., Genitiv Pl. Give each form with its definite article.'},
+ adjective:{
+  de:'Table "Steigerung (comparison)" with rows Positiv, Komparativ, Superlativ. Table "Nach der/die/das (nominative)" with rows maskulin, feminin, neutral, Plural, e.g. der gute. Table "Nach ein/eine (nominative)" with rows maskulin, feminin, neutral, Plural (keine), e.g. ein guter.',
+  fr:'Table "Accord (agreement)" with rows masculin singulier, féminin singulier, masculin pluriel, féminin pluriel. Table "Comparaison" with rows comparatif, superlatif.',
+  pt:'Table "Concordância (agreement)" with rows masculino singular, feminino singular, masculino plural, feminino plural. Table "Comparação" with rows comparativo, superlativo.'}
+};
+const canForms=(lang,pos)=>!!(FORMSPEC[pos]&&FORMSPEC[pos][lang]);
+function formsPrompt(lang,word,pos){
+return `Give the complete inflection of the ${LNAME[lang]} ${pos} "${word}" in ${STD[lang+'_'+S.main[lang]]}. Follow Wiktionary's inflection tables. Be accurate; never invent forms.
+${FORMSPEC[pos][lang]}
+Return ONLY JSON, no markdown: {"tables":[{"title":"...","rows":[["pronoun or label","form",0]]}]}
+The third element of a row is 1 when that form is irregular (it cannot be built from the stem by the regular rule of its conjugation or declension class), otherwise 0. Give the form without repeating the pronoun.`;
+}
+function morePrompt(lang,word,pos,sense){
+return `Write background knowledge for the ${LNAME[lang]} ${pos} "${word}" (sense: ${sense||'most common'}) in ${STD[lang+'_'+BASE[lang]]}, for a learner's dictionary. Follow Wiktionary. Be accurate; if unsure of an item, leave it out.
+Return ONLY JSON, no markdown:
+{"definition":"one-sentence definition, in English",
+ "etymology":"one or two sentences on the origin of the word, in English",
+ "family":[{"word":"related word from the same root","pos":"noun","gloss":"English"}],
+ "collocations":[{"phrase":"very common word combination or fixed phrase","gloss":"English"}],
+ "idioms":[{"phrase":"idiom or proverb with this word","gloss":"what it means, in English"}],
+ "antonyms":["up to 3"],
+ "mistake":"one typical learner mistake with this word and the correct form, in English; empty string if none"}
+Give up to 6 family words, 4 to 6 collocations and up to 3 idioms (empty array if there are none).`;
+}
+function parseJSON(t){
+  t=String(t).replace(/```(?:json)?/g,'');
+  const a=t.indexOf('{'), b=t.lastIndexOf('}');
+  if(a<0||b<=a) throw new Error('bad');
+  return JSON.parse(t.slice(a,b+1));
+}
+const failText=err=>{const c=err&&err.code;
+  return c==='not_granted'?'This needs your permission to ask Claude. Try again and allow it.'
+   :c==='rate_limited'?'Too many requests in a short time. Wait a moment, then try again.'
+   :c==='none'?'Writing new entries is not available in this view. Open the page on claude.ai.'
+   :(err&&err.msg)||'The answer could not be used. Try again.';};
+
+/* ---------- lookup ---------- */
+async function fetchEntry(lang,word,hint,force){
+  const bk=key(lang,word), ck=bk+(hint?'|'+hint:'');
+  if(!force){
+    if(cache[ck]) return cache[ck];
+    if(!hint){
+      const b=builtinIndex[bk]; if(b&&!lib.keys.has(bk)) return b;
+      const e=await libGet(bk); if(e){cache[ck]=e; return e;}
+      if(b) return b;
+    }
+  }
+  const sample=await sampleP;
+  if(!sample) throw {code:'none'};
+  const r=await sample(prompt(lang,word,hint),{modelTier:'default',cache:!force});
+  let e; try{e=parseJSON(r.text);}catch(x){throw {msg:'The entry came back incomplete. Try again.'};}
+  if(e.error) throw {msg:`No entry for "${word}" in ${LNAME[lang]}: ${e.error}`};
+  if(!LANGS.every(l=>e[l.id]&&e[l.id].word)) throw {msg:'The entry came back incomplete. Try again.'};
+  LANGS.forEach(l=>{const o=e[l.id]; if(o.ipa) o.ipa=String(o.ipa).replace(/^[\/\[]|[\/\]]$/g,'');});
+  e.level=e.level||e[lang].level||'';
+  remember(e,ck,true);
+  return e;
+}
+let runId=0, tick=0;
+async function translate(lang,word,hint,force){
+  word=word.trim(); if(!word) return;
+  const my=++runId, t0=Date.now();
+  state={status:'loading',src:{lang,word},entry:null,error:'',forms:{},more:{}}; render();
+  clearInterval(tick); tick=setInterval(()=>{const s=$('#secs'); if(s) s.textContent=Math.round((Date.now()-t0)/1000)+' s';},1000);
+  try{
+    const entry=await fetchEntry(lang,word,hint,force);
+    if(my!==runId) return;
+    state={status:'done',src:{lang,word},entry,error:'',forms:{},more:{}};
+    const w=entry[lang].word.replace(/^to /,'');
+    recent[lang]=[w,...(recent[lang]||[]).filter(x=>x!==w)].slice(0,8); store.set('flt:recent2',recent);
+  }catch(err){
+    if(my!==runId) return;
+    state={status:'error',src:{lang,word},entry:null,error:failText(err),forms:{},more:{}};
+  }
+  clearInterval(tick); render();
+}
+async function toggleExtra(kind,lang){
+  const entry=state.entry, cur=state[kind][lang]||(state[kind][lang]={open:false});
+  cur.open=!cur.open;
+  const slot=kind==='forms'?'tables':'more', sk=kind==='forms'?lang+'_'+S.main[lang]:lang;
+  cur.sk=sk;
+  if(!cur.open){render(false);return;}
+  if(entry[slot]&&entry[slot][sk]){cur.status='done';render(false);return;}
+  if(cur.status==='loading'){render(false);return;}
+  cur.status='loading';render(false);
+  try{
+    const sample=await sampleP; if(!sample) throw {code:'none'};
+    const M=regional(lang,entry[lang],S.main[lang]);
+    const r=await sample(kind==='forms'?formsPrompt(lang,M.word,entry.pos):morePrompt(lang,entry[lang].word,entry.pos,entry.sense),{modelTier:'default'});
+    const j=parseJSON(r.text), val=kind==='forms'?j.tables:j;
+    if(kind==='forms'&&(!Array.isArray(val)||!val.length)) throw new Error('bad');
+    (entry[slot]||(entry[slot]={}))[sk]=val; cur.status='done';
+    remember(entry,key(state.src.lang,state.src.word),false);
+  }catch(err){cur.status='error';cur.error=failText(err);}
+  if(state.entry===entry) render(false);
+}
+
+/* ---------- audio ---------- */
+let voices=[], TTS=null;
+try{ if('speechSynthesis' in window){const lv=()=>{voices=speechSynthesis.getVoices()||[];}; lv(); speechSynthesis.addEventListener('voiceschanged',lv);} }catch(e){}
+ttsP.then(t=>{TTS=t; if(!t&&!('speechSynthesis' in window)) document.body.classList.add('no-audio');});
+function pickVoice(loc){
+  const n=v=>String(v.lang||'').toLowerCase().replace('_','-'), l=loc.toLowerCase();
+  return voices.find(v=>n(v)===l)||voices.find(v=>n(v).slice(0,2)===l.slice(0,2));
+}
+function deviceSpeak(text,loc){
+  return new Promise(res=>{
+    const v=pickVoice(loc); if(!v) return res(false);
+    try{
+      let done=false; const fin=x=>{if(!done){done=true;res(x);}};
+      speechSynthesis.cancel();
+      const u=new SpeechSynthesisUtterance(text); u.voice=v; u.lang=v.lang; u.rate=S.slow?0.7:0.95;
+      u.onstart=()=>fin(true); u.onerror=()=>fin(false);
+      speechSynthesis.speak(u);
+      setTimeout(()=>{ if(!done){try{speechSynthesis.cancel();}catch(e){} fin(false);} },1600);
+    }catch(e){res(false);}
+  });
+}
+async function speak(text,lang){
+  text=plain(text).replace(/\s*\(.*?\)/g,'').trim(); if(!text) return;
+  const loc=LOCALE[lang][S.main[lang]];
+  if(S.voice!=='claude'&&await deviceSpeak(text,loc)) return;
+  if(S.voice!=='device'&&TTS){
+    try{ await TTS.speak(text,{language:loc,rate:S.slow?0.75:1}); return; }
+    catch(e){ if(e&&e.code==='rate_limited'){toast('Audio is busy. Wait a moment and try again.');return;} if(e&&e.code==='not_granted'){toast('Audio is switched off for this page.');return;} if(e&&/stop|replac|cancel/i.test(String(e.code||''))) return; }
+  }
+  toast(`No ${LNAME[lang]} voice is available on this device. Try the other voice option in Settings.`);
+}
+const sayBtn=(text,lang,sm)=>`<button class="say${sm?' sm':''}" data-say="${esc(plain(text))}" data-lang="${lang}" aria-label="Listen" title="Listen">${SPEAKER}</button>`;
+
+/* ---------- render ---------- */
+const GENDER={m:'masculine',f:'feminine',n:'neuter','m/f':'masculine or feminine'};
+const POS={verb:'verb',noun:'noun',adjective:'adjective',adverb:'adverb',other:''};
+const badge=r=>r===true?'<span class="reg ok">regular</span>':r===false?'<span class="reg bad">irregular</span>':'';
+function links(lang,word){
+  const w=encodeURIComponent(word.replace(/^to /,''));
+  return `<a href="https://en.wiktionary.org/wiki/${w}${({en:'#English',de:'#German',fr:'#French',pt:'#Portuguese'})[lang]}" target="_blank" rel="noopener">Wiktionary</a>`;
+}
+function formsBlock(lang,entry){
+  const fs=state.forms[lang]; if(!fs||!fs.open) return '';
+  if(fs.status==='loading') return '<p class="note">Writing all forms…</p>';
+  if(fs.status==='error') return `<p class="note err">${esc(fs.error)}</p>`;
+  let tables=(entry.tables||{})[fs.sk]||[];
+  if(lang==='de'&&S.main.de==='ch') tables=deepMap(tables,s=>s.replace(/ß/g,'ss'));
+  const anyIrr=tables.some(t=>(t.rows||[]).some(r=>r[2]));
+  return `<div class="forms">${tables.map(t=>`<section><h3>${esc(t.title)}</h3><table>${(t.rows||[]).map(r=>`<tr><th scope="row">${esc(r[0])}</th><td${r[2]?' class="irr"':''}>${esc(r[1])}</td></tr>`).join('')}</table></section>`).join('')}</div>${anyIrr?'<p class="note" lang="en">Forms in red are irregular.</p>':''}`;
+}
+function moreBlock(lang,entry){
+  const ms=state.more[lang]; if(!ms||!ms.open) return '';
+  if(ms.status==='loading') return '<p class="note">Writing background…</p>';
+  if(ms.status==='error') return `<p class="note err">${esc(ms.error)}</p>`;
+  let d=(entry.more||{})[lang]||{};
+  if(lang==='de'&&S.main.de==='ch') d=deepMap(d,s=>s.replace(/ß/g,'ss'));
+  const list=(t,a)=>a&&a.length?`<div><h3>${t}</h3><ul>${a.map(x=>`<li><b lang="${lang}">${esc(x.phrase||x.word)}</b>${x.pos?` <span>${esc(x.pos)}</span>`:''}${x.gloss?` <span>· ${esc(x.gloss)}</span>`:''}</li>`).join('')}</ul></div>`:'';
+  return `<div class="extra" lang="en">
+    ${d.definition?`<div><h3>Definition</h3><p>${esc(d.definition)}</p></div>`:''}
+    ${list('Common combinations',d.collocations)}${list('Idioms',d.idioms)}${list('Word family',d.family)}
+    ${d.antonyms&&d.antonyms.length?`<div><h3>Opposites</h3><p lang="${lang}">${esc(d.antonyms.join(', '))}</p></div>`:''}
+    ${d.etymology?`<div><h3>Origin</h3><p>${esc(d.etymology)}</p></div>`:''}
+    ${d.mistake?`<div><h3>Common mistake</h3><p>${esc(d.mistake)}</p></div>`:''}
+  </div>`;
+}
+function card(l,entry){
+  const lang=l.id, pos=entry.pos, {M:e,groups,accents}=view(lang,entry[lang],pos), rows=[];
+  const level=entry[lang].level||entry.level;
+  if(accents.length) rows.push(['Elsewhere',accents.map(a=>`<span style="white-space:nowrap;margin-right:10px">${a.regions.map(r=>flag(r,true)).join('')}<span class="ipa">/${esc(a.ipa)}/</span></span>`).join('')]);
+  if(pos==='noun'){
+    rows.push(['Gender', lang==='en'?'<span class="sub">English nouns have no grammatical gender</span>':`<span class="form">${esc(GENDER[e.gender]||e.gender||'—')}</span>${e.article?` <span class="sub">article: ${esc(e.article)}</span>`:''}`]);
+    if(e.plural) rows.push(['Plural',`<span class="form">${esc(e.plural)}</span> ${badge(e.pluralRegular)}${e.pluralRule?`<span class="sub">${esc(e.pluralRule)}</span>`:''}`]);
+  }
+  if(pos==='verb'){
+    rows.push(['Verb',`${badge(e.verbRegular)}${e.verbClass?`<span class="sub">${esc(e.verbClass)}</span>`:''}`]);
+    if(e.forms) rows.push(['Forms',`<span class="form">${esc(e.forms)}</span>`]);
+    if(e.auxiliary) rows.push(['Auxiliary',`<span class="form">${esc(e.auxiliary)}</span>`]);
+  }
+  if(e.agreement) rows.push(['Agreement',`<span class="form">${esc(e.agreement)}</span> ${badge(e.agreementRegular)}`]);
+  if(e.comparison) rows.push(['Compare',`<span class="form">${esc(e.comparison)}</span> ${badge(e.comparisonRegular)}`]);
+  if(e.government&&e.government.length) rows.push([lang==='de'?'Prep. + case':'Followed by',
+    `<ul class="gov">${e.government.map(g=>`<li><span class="pat">${esc(g.pattern)}</span>${g.meaning?`<span class="sub" lang="en">${esc(g.meaning)}</span>`:''}</li>`).join('')}</ul>`]);
+  if(e.synonyms&&e.synonyms.length) rows.push(['Synonyms',`<span class="form">${esc(e.synonyms.join(', '))}</span>`]);
+  if(S.variants&&groups.length) rows.push(['Variants',
+    `<ul class="vars">${groups.map(g=>`<li><span class="where" lang="en">${g.regions.map(r=>flag(r,true)+esc(RNAME[r])).join(' &nbsp;')}</span>${g.parts.length?`<span class="form">${esc(g.parts.join(' · '))}</span>`:''}${g.ex.map(x=>`<span class="vex">${marked(x)}</span>`).join('')}${g.note?`<span class="sub" lang="en">${esc(g.note)}</span>`:''}</li>`).join('')}</ul>`]);
+  if(S.gsw&&lang==='de'&&e.gsw) rows.push(['Swiss German',`${flag('ch',true)}<span class="form" lang="gsw">${esc(e.gsw)}</span><span class="sub" lang="en">spoken dialect</span>`]);
+  const fs=state.forms[lang], ms=state.more[lang];
+  const head=((e.article&&pos==='noun')?e.article+' ':'')+e.word;
+  return `<article class="card" lang="${LOCALE[lang][S.main[lang]]}">
+    <span class="tab">${l.code}</span>
+    <div><div class="hwrow"><h2 class="hw">${e.article&&pos==='noun'?`<span class="art">${esc(e.article)}</span> `:''}${esc(e.word)}</h2>${sayBtn(head,lang)}</div>
+    <div class="pron">${e.ipa?`<span class="ipa">/${esc(e.ipa)}/</span>`:''}<span class="pos" lang="en">${esc(POS[pos]??pos)}${pos==='noun'&&e.gender?' · '+esc(e.gender):''}</span>${level&&CEFR[level]?`<span class="lvl" lang="en">${level} · ${CEFR[level]}</span>`:''}</div></div>
+    ${rows.length?`<dl>${rows.map(([a,b])=>`<dt lang="en">${a}</dt><dd>${b}</dd>`).join('')}</dl>`:''}
+    ${canForms(lang,pos)?`<button class="more" data-extra="forms" data-lang="${lang}" lang="en" aria-expanded="${fs&&fs.open?'true':'false'}">${fs&&fs.open?'Hide forms':'See more forms'}</button>${formsBlock(lang,entry)}`:''}
+    ${e.examples&&e.examples.length?`<ul class="ex">${e.examples.map(x=>`<li>${marked(x)}${sayBtn(x,lang,true)}</li>`).join('')}</ul>`:''}
+    ${e.note?`<p class="note" lang="en"><b>Note</b> ${esc(e.note)}</p>`:''}
+    ${e._note&&S.main[lang]!==BASE[lang]?`<p class="note" lang="en"><b>In ${RNAME[S.main[lang]]}</b> ${esc(e._note)}</p>`:''}
+    <button class="more" data-extra="more" data-lang="${lang}" lang="en" aria-expanded="${ms&&ms.open?'true':'false'}">${ms&&ms.open?'Hide background':'More about this word'}</button>${moreBlock(lang,entry)}
+    ${S.links?`<div class="links" lang="en">${links(lang,e.word)}</div>`:''}
+  </article>`;
+}
+function render(fill){
+  const {status,src,entry,error}=state, st=$('#status'), cards=$('#cards');
+  if(status==='loading'){
+    st.innerHTML=`<span>Looking up <b>${esc(src.word)}</b> (${LNAME[src.lang]}). A word that is not in the library yet takes a few seconds to write. <span id="secs"></span></span>`;
+    cards.innerHTML=LANGS.map(l=>`<article class="card loading"><span class="tab">${l.code}</span><div class="sk big"></div><div class="sk"></div><div class="sk" style="width:80%"></div><div class="sk" style="width:65%"></div></article>`).join('');
+    return;
+  }
+  if(status==='error'){ st.innerHTML=`<span class="err">${esc(error)}</span>`; cards.innerHTML=''; return; }
+  if(fill!==false) LANGS.forEach(l=>{$('#in-'+l.id).value=regional(l.id,entry[l.id],S.main[l.id]).word;});
+  const others=(entry.otherSenses||[]).slice(0,3);
+  st.innerHTML=`<span>From ${LNAME[src.lang]}: <b>${esc(regional(src.lang,entry[src.lang],S.main[src.lang]).word)}</b>${entry.sense?` · ${esc(entry.sense)}`:''}</span>`
+    +(others.length?`<span>Other senses:</span>${others.map((s,i)=>`<button class="chip" data-sense="${i}">${esc(s)}</button>`).join('')}`:'')
+    +(entry._builtin?'':`<button class="chip" data-rewrite="1" title="Write this entry again with the current settings and replace the saved one">Rewrite entry</button>`)
+    +`<span>Try:</span>${BUILTIN.filter(b=>b!==entry).slice(0,6).map(b=>`<button class="chip" data-try="${esc(b.en.word)}">${esc(b.en.word)}</button>`).join('')}`;
+  cards.innerHTML=LANGS.map(l=>card(l,entry)).join('');
+}
+$('#status').addEventListener('click',e=>{
+  const b=e.target.closest('.chip'); if(!b) return;
+  if(b.dataset.try) translate('en',b.dataset.try);
+  else if(b.dataset.rewrite) translate(state.src.lang,state.src.word,null,true);
+  else translate(state.src.lang,state.entry[state.src.lang].word,state.entry.otherSenses[+b.dataset.sense]);
+});
+$('#cards').addEventListener('click',e=>{
+  const s=e.target.closest('[data-say]'); if(s){speak(s.dataset.say,s.dataset.lang);return;}
+  const b=e.target.closest('[data-extra]'); if(b) toggleExtra(b.dataset.extra,b.dataset.lang);
+});
+
+/* ---------- library panel ---------- */
+let growing=false;
+async function grow(){
+  if(growing) return; growing=true;
+  const msg=$('#grow-msg'), stop=$('#grow-stop'), go=$('#grow'); stop.hidden=false; go.disabled=true;
+  const todo=CORE.filter(w=>!builtinIndex[key('en',w)]&&!lib.keys.has(key('en',w))&&!cache[key('en',w)]).slice(0,10);
+  let ok=0;
+  if(!todo.length) msg.textContent='Every word on the common-word list is already saved.';
+  for(let i=0;i<todo.length&&growing;i++){
+    msg.textContent=`Writing "${todo[i]}" (${i+1} of ${todo.length})…`;
+    try{ await fetchEntry('en',todo[i]); ok++; }
+    catch(err){ if(err&&(err.code==='rate_limited'||err.code==='not_granted'||err.code==='none')){msg.textContent=failText(err); growing=false; break;} }
+    libPaint();
+  }
+  if(todo.length&&msg.textContent.startsWith('Writing')) msg.textContent=`Added ${ok} ${ok===1?'entry':'entries'}.`;
+  growing=false; stop.hidden=true; go.disabled=false; libPaint();
+}
+function initPanels(){
+  const pair=(btn,panel)=>{$(btn).addEventListener('click',()=>{const p=$(panel); p.hidden=!p.hidden; $(btn).setAttribute('aria-expanded',String(!p.hidden)); if(!p.hidden&&panel==='#library') libPaint();});};
+  pair('#lib-toggle','#library'); pair('#set-toggle','#settings');
+  $('#grow').addEventListener('click',grow);
+  $('#grow-stop').addEventListener('click',()=>{growing=false; $('#grow-msg').textContent='Stopping after this word…';});
+  $('#lib-filter').addEventListener('input',libPaint);
+  $('#lib-list').addEventListener('click',e=>{const b=e.target.closest('[data-open]'); if(b){translate('en',b.dataset.open); $('#slots').scrollIntoView({block:'start'});}});
+  const save=()=>store.set('flt:settings3',S);
+  [['variants','s-variants'],['gsw','s-gsw'],['slow','s-slow'],['links','s-links']].forEach(([k,id])=>{const el=$('#'+id); el.checked=!!S[k];
+    el.addEventListener('change',()=>{S[k]=el.checked;save(); if(state.status==='done') render(false);});});
+  [['examples','s-examples'],['level','s-level'],['sugg','s-sugg'],['voice','s-voice']].forEach(([k,id])=>{const el=$('#'+id); el.value=String(S[k]);
+    el.addEventListener('change',()=>{S[k]=(k==='level'||k==='voice')?el.value:+el.value;save();});});
+  $('#s-clear').addEventListener('click',()=>{
+    cache={};recent={en:[],de:[],fr:[],pt:[]}; store.set('flt:cache3',cache);store.set('flt:recent2',recent);
+    $('#s-clear-msg').textContent='Cleared. The shared library is not affected.';
+  });
+}
+
+/* ---------- boot ---------- */
+function start(saved){
+  buildSlots(); initPanels();
+  if(saved&&saved.entry){ state={status:'done',src:saved.src,entry:saved.entry,error:'',forms:{},more:{}}; const b=builtinIndex[key('en',saved.entry.en.word)]; if(b&&saved.entry._builtin) state.entry=b; }
+  render(); libPaint(); libInit(); loadLexicon();
+}
+const hot=window.claude&&window.claude.hot;
+if(hot&&hot.snapshot) hot.snapshot(()=>state.status==='done'?{src:state.src,entry:state.entry}:{});
+if(hot&&hot.ready) hot.ready(start); else start((hot&&hot.data)||{});
+</script>
+</body>
+</html>

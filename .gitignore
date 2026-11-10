@@ -1,0 +1,7 @@
+# Downloaded source files and intermediate build files: large, rebuilt by the scripts in /build
+build/raw/
+build/work/
+__pycache__/
+*.pyc
+# old notes and logs from the first build attempts
+build/*.log

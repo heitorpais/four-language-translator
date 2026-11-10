@@ -1,0 +1,72 @@
+{
+ "version": "0.2.0-pilot",
+ "built": "2026-11-10",
+ "files": [
+  {
+   "file": "core-de.json",
+   "bytes": 3939604,
+   "gzip_bytes": 929930,
+   "sha256": "b06107700e648ee9",
+   "tier": "core",
+   "lang": "de",
+   "entries": 1095
+  },
+  {
+   "file": "core-en.json",
+   "bytes": 3626294,
+   "gzip_bytes": 574977,
+   "sha256": "c98bc7af7a8eb182",
+   "tier": "core",
+   "lang": "en",
+   "entries": 2485
+  },
+  {
+   "file": "core-fr.json",
+   "bytes": 2445309,
+   "gzip_bytes": 281466,
+   "sha256": "450639a519b191b9",
+   "tier": "core",
+   "lang": "fr",
+   "entries": 2008
+  },
+  {
+   "file": "core-pt.json",
+   "bytes": 1868839,
+   "gzip_bytes": 238551,
+   "sha256": "dda3c674cebd9251",
+   "tier": "core",
+   "lang": "pt",
+   "entries": 1416
+  },
+  {
+   "file": "links.json",
+   "bytes": 841120,
+   "gzip_bytes": 180371,
+   "sha256": "8e74a5f20b046395",
+   "tier": "links"
+  },
+  {
+   "file": "source_gaps.json",
+   "bytes": 17601,
+   "tier": "build-info"
+  }
+ ],
+ "sources": [
+  {
+   "name": "Wiktionary (English, German, French and Portuguese editions) via kaikki.org / Wiktextract",
+   "licence": "CC BY-SA 4.0",
+   "url": "https://kaikki.org/dictionary/rawdata.html"
+  },
+  {
+   "name": "Tatoeba sentences and links",
+   "licence": "CC BY 2.0 FR",
+   "url": "https://tatoeba.org",
+   "export": "2026-11-07"
+  },
+  {
+   "name": "FrequencyWords by Hermit Dave (OpenSubtitles 2018)",
+   "licence": "CC BY-SA 4.0 (content), MIT (code)",
+   "url": "https://github.com/hermitdave/FrequencyWords"
+  }
+ ]
+}
