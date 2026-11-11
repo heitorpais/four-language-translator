@@ -55,3 +55,14 @@ are marked `"approximate": true`.
 
 Fields with origin `generated` (for example "regular / irregular", the short plural rule) are computed
 by the scripts in `/build` from the Wiktionary forms.
+
+
+## Written by AI (Claude, Anthropic)
+
+`app/learn.js` (false friends, gender rules from endings, grammar notes), `app/i18n.js` (interface translations),
+`build/claude/regional_words.tsv` and `build/claude/*.tsv` (levels, Swiss German forms, notes). Shared under the same
+CC BY-SA 4.0 licence as the data.
+
+## App icon
+
+`app/icons/*.png` were drawn for this app (letters "Aa" and four colour squares); no third-party artwork.

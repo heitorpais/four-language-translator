@@ -305,6 +305,41 @@ Do these as separate tasks, in this order. Each one needs my approval before you
 16. **Export** to Anki, CSV or PDF, plus share links for single cards.
 17. **Dark mode and keyboard shortcuts.**
 
+#### Phase 5 as built (approved and done 11 Nov 2026)
+
+The owner approved all of Phase 5 at once, together with 100 further ideas. Everything below is in the app.
+
+- **Files.** `app/app.js` (lookup, cards, search, audio, address of each word), `app/views.js` (Explore, Practice,
+  My words, Settings, welcome box, grammar pages, home-screen tip), `app/learn.js` (false friends, gender rules,
+  level estimate, grammar notes; origin `claude`), `app/i18n.js` (interface in German, French, Portuguese; English is
+  in the code), `app/manifest.webmanifest` and `app/icons/` (add to home screen).
+- **Search.** Results as you type; Enter opens the top suggestion; one box for any language (the language that has
+  the word wins; the reader's language order breaks ties); accents optional; ss = ß; ae/oe/ue = ä/ö/ü in German;
+  idioms searchable; pasted text cleaned; special-character bar and voice input under each box; every word has an
+  address (`#/de/Haus~noun`, sense as `/2`) and the back button works.
+- **Cards.** Essentials first (compact mode), the rest under "All details"; one-line summary (der Tisch · die Tische,
+  geht · ging · ist gegangen) with changed letters marked; gender colours with shapes; level, case, auxiliary,
+  register and frequency badges; false friends, gender tips (shown only where the app's data confirms the rule for at
+  least 80 % of the nouns), similar words in the other languages, synonyms, opposites, word family, words like this;
+  tappable words in the sentences; grammar pages (ⓘ) linked from terms.
+- **Levels.** Stored levels (Claude, German pilot) are kept; all other words get a level estimated from the frequency
+  rank (≤600 A1, ≤1,500 A2, ≤3,000 B1, ≤5,500 B2, ≤9,000 C1, else C2), shown with ≈.
+- **Register.** `build/regions.py` also fills `senses[].register` for core entries when every matching Wiktionary
+  sense carries the same label (colloquial, slang, vulgar, offensive, derogatory, formal, literary, dated, archaic,
+  humorous, childish, euphemistic).
+- **Personal data** (browser only, `flt:me1`): favourites, known words, notes, own lists, history, practice mistakes,
+  flashcard schedule (SM-2); export/import as JSON, CSV, Anki text, print/PDF.
+- **Practice.** der/die/das, plural, haben/sein, preposition + case, translation in any direction, fill the gap,
+  listen and type, principal parts, matching game across four languages, review of mistakes, flashcards with
+  spaced repetition; 10 questions a round, filter by level, saved words or a list.
+- **Audio.** Device voices only: play all four, tap the IPA, hold for slow, optional autoplay, voice per language,
+  read a table of forms aloud, repeat, words lit up as they are spoken, record yourself and compare.
+- **Settings** in three groups (Display, Audio, Data), reset to defaults, welcome box ("I speak / I am learning /
+  my level") that orders the four boxes, themes Device/Light/Dark/Midnight, text size, animations (off when the
+  device asks for reduced motion), keyboard: `/` search, `1`–`4` languages, `?` help.
+- **Not done:** a "verified" badge is shown only for entries marked `verified: true`; no entry is marked yet.
+  "Report a mistake" opens a prefilled GitHub issue.
+
 ---
 
 ## 6. Reporting (at the end of every phase)

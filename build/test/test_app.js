@@ -49,9 +49,9 @@ const results = []; const ok = (name, pass, info) => { results.push([name, pass,
       else {
         if (!card.querySelector('.hw').textContent.trim()) why.push('no headword');
         if (e.ipa.default && !card.querySelector('.ipa')) why.push('no IPA');
-        if (e.noun && e.noun.gender && !card.textContent.includes(({ m: 'masculine', f: 'feminine', n: 'neuter' })[e.noun.gender])) why.push('no gender');
-        if (e.noun && e.noun.plural && !card.textContent.includes('Plural')) why.push('no plural');
-        if (e.verb && e.verb.aux && !card.textContent.includes('Auxiliary')) why.push('no auxiliary');
+        if (e.noun && e.noun.gender && !card.querySelector('.art.g-' + ({ m: 'm', f: 'f', n: 'n', 'm/f': 'mf' })[e.noun.gender]) && !card.querySelector('.pos').textContent.includes(' · ' + e.noun.gender)) why.push('no gender');
+        if (e.noun && e.noun.plural && !(card.querySelector('.sum') && card.querySelector('.sum').textContent.includes(e.noun.plural))) why.push('no plural');
+        if (e.verb && e.verb.aux && !card.querySelector('.aux')) why.push('no auxiliary');
         if (e.examples.length && card.querySelectorAll('.ex li').length === 0) why.push('no examples');
         if (card.querySelectorAll('.ex li').length) out.withEx++;
         const more = card.querySelector('[data-extra="forms"]');
@@ -95,7 +95,7 @@ const results = []; const ok = (name, pass, info) => { results.push([name, pass,
     sel('#var-de', 'ch'); out.ch_aux = deCard().textContent.includes('sein');
     await F.translate('de', 'Straße'); out.ch_ss = deCard().querySelector('.hw').textContent; out.ch_input = document.querySelector('#in-de').value;
     sel('#var-de', 'de');
-    await F.translate('de', 'stehen'); out.de_aux = /Auxiliaryhaben/.test(deCard().textContent.replace(/\s+/g, ''));
+    await F.translate('de', 'stehen'); out.de_aux = /\+haben/.test(deCard().textContent.replace(/\s+/g, ''));
     await F.translate('pt', 'rua'); const pc = () => document.querySelector('#cards .card[data-id^="pt:"]');
     out.pt_br = pc().querySelector('.ipa').textContent; sel('#var-pt', 'pt'); out.pt_pt = pc().querySelector('.ipa').textContent; sel('#var-pt', 'br');
     const chk = (id, v) => { const c = document.querySelector(id); c.checked = v; c.dispatchEvent(new Event('change')); };
@@ -103,7 +103,7 @@ const results = []; const ok = (name, pass, info) => { results.push([name, pass,
     chk('#s-gsw', false); out.gsw_off = !deCard().textContent.includes('Swiss German'); chk('#s-gsw', true); out.gsw_on = deCard().textContent.includes('Swiss German');
     chk('#s-links', true); out.links_on = !!deCard().querySelector('.links a'); chk('#s-links', false); out.links_off = !deCard().querySelector('.links');
     await F.translate('de', 'stehen');
-    chk('#s-variants', false); out.var_off = !deCard().textContent.includes('Variants'); chk('#s-variants', true); out.var_on = deCard().textContent.includes('Variants');
+    F.S.compact = false; F.render(false); chk('#s-variants', false); out.var_off = !deCard().textContent.includes('Variants'); chk('#s-variants', true); out.var_on = deCard().textContent.includes('Variants'); F.S.compact = true; F.render(false);
     await F.translate('de', 'Haus');
     sel('#s-examples', '4'); out.ex4 = deCard().querySelectorAll('.ex li').length; sel('#s-examples', '2'); out.ex2 = deCard().querySelectorAll('.ex li').length;
     sel('#s-level', 'easy'); const e1 = deCard().querySelector('.ex li').textContent; sel('#s-level', 'advanced'); const e2 = deCard().querySelector('.ex li').textContent; out.level_changes = e1 !== e2; sel('#s-level', 'medium');

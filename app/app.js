@@ -1,15 +1,35 @@
 /* Four-Language Translator. Every lookup reads the local data files in ./data (kept in IndexedDB).
-   Nothing is generated or requested at lookup time. Word forms come from forms.js. */
+   Nothing is generated or requested at lookup time. Word forms come from forms.js, learner helpers from learn.js,
+   the interface texts from i18n.js; the extra views (explore, practice, my words, settings) are in views.js. */
 (function () {
 'use strict';
 
 /* ---------- regions and settings ---------- */
 const REG = { en: ['us', 'gb'], de: ['de', 'ch', 'at'], fr: ['fr', 'ca', 'be', 'ch'], pt: ['br', 'pt'] };
 const BASE = { en: 'us', de: 'de', fr: 'fr', pt: 'br' };
-const RNAME = { us: 'United States', gb: 'United Kingdom', de: 'Germany', ch: 'Switzerland', at: 'Austria', fr: 'France', ca: 'Canada', be: 'Belgium', br: 'Brazil', pt: 'Portugal' };
+const RNAME_EN = { us: 'United States', gb: 'United Kingdom', de: 'Germany', ch: 'Switzerland', at: 'Austria', fr: 'France', ca: 'Canada', be: 'Belgium', br: 'Brazil', pt: 'Portugal' };
+const RNAME = new Proxy(RNAME_EN, { get: (o, k) => typeof k === 'string' && o[k] ? t('region.' + k, o[k]) : o[k] });
 const LOCALE = { en: { us: 'en-US', gb: 'en-GB' }, de: { de: 'de-DE', ch: 'de-CH', at: 'de-AT' }, fr: { fr: 'fr-FR', ca: 'fr-CA', be: 'fr-BE', ch: 'fr-CH' }, pt: { br: 'pt-BR', pt: 'pt-PT' } };
-const S = { variants: true, gsw: true, slow: false, links: false, examples: 2, level: 'medium', sugg: 8, main: { en: 'us', de: 'de', fr: 'fr', pt: 'br' } };
+/* every setting with its default (Settings › Reset to defaults puts these back) */
+const DEFAULTS = {
+  // display
+  ui: null, theme: 'system', textSize: 100, compact: true, anim: true, gcolor: true, variants: true, gsw: true, links: false,
+  examples: 2, level: 'medium', sugg: 8, order: ['en', 'de', 'fr', 'pt'], speak: null, learning: null, myLevel: 'A2',
+  // audio
+  slow: false, autoplay: false, playAll: false, voice: { en: '', de: '', fr: '', pt: '' },
+  main: { en: 'us', de: 'de', fr: 'fr', pt: 'br' }
+};
+const S = JSON.parse(JSON.stringify(DEFAULTS));
 const fold = s => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/ß/g, 'ss').replace(/[’`]/g, "'").trim();
+const I18N = window.FLTI18N || {};
+function t(key, en, vars) {
+  const L = S.ui || 'en';
+  let s = (L !== 'en' && I18N[L] && I18N[L][key]) || en;
+  if (vars) for (const k in vars) s = s.split('{' + k + '}').join(vars[k]);
+  return s;
+}
+
+
 
 /* ---------- flags ---------- */
 const FLAG_ART = {
@@ -32,26 +52,78 @@ const LANGS = [
   { id: 'fr', name: 'French', ph: 'saisir un mot…', code: 'FR' },
   { id: 'pt', name: 'Portuguese', ph: 'digite uma palavra…', code: 'PT' }
 ];
-const LNAME = { en: 'English', de: 'German', fr: 'French', pt: 'Portuguese' };
+const LNAME_EN = { en: 'English', de: 'German', fr: 'French', pt: 'Portuguese' };
+const LNAME = new Proxy(LNAME_EN, { get: (o, k) => typeof k === 'string' && o[k] ? t('lang.' + k, o[k]) : o[k] });
 const CEFR = { A1: 'basic', A2: 'elementary', B1: 'intermediate', B2: 'upper intermediate', C1: 'advanced', C2: 'academic' };
 const TRY = ['Haus', 'gehen', 'gut', 'Zeit', 'helfen', 'schön', 'anfangen', 'Kind'];
+
 
 /* ---------- helpers ---------- */
 const $ = s => document.querySelector(s);
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-const num = n => Number(n).toLocaleString('en-US');
+const num = n => Number(n).toLocaleString({ de: 'de-CH', fr: 'fr-CH', pt: 'pt-BR' }[S.ui] || 'en-US');
 const store = {
   get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
   set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
 };
-(function () {
+function loadSettings() {
   const saved = store.get('flt:settings4', {});
-  Object.assign(S, saved, { main: Object.assign({}, S.main, saved.main || {}) });
+  Object.assign(S, JSON.parse(JSON.stringify(DEFAULTS)), saved, { main: Object.assign({}, DEFAULTS.main, saved.main || {}), voice: Object.assign({}, DEFAULTS.voice, saved.voice || {}) });
   Object.keys(REG).forEach(l => { if (!REG[l].includes(S.main[l])) S.main[l] = BASE[l]; });
-})();
+  if (!Array.isArray(S.order) || S.order.length !== 4 || ['en', 'de', 'fr', 'pt'].some(l => !S.order.includes(l))) S.order = DEFAULTS.order.slice();
+  if (!S.ui) { const n = (navigator.language || 'en').slice(0, 2); S.ui = ['en', 'de', 'fr', 'pt'].includes(n) ? n : 'en'; }
+}
+loadSettings();
+const saveSettings = () => store.set('flt:settings4', S);
+/* personal data, only on this device: favourites, known words, notes, own lists, history, practice mistakes */
+const P = Object.assign({ favs: {}, known: {}, notes: {}, lists: [], history: [], mistakes: [], looks: {}, offered: {}, last: null, srs: {} }, store.get('flt:me1', {}));
+const saveP = () => { store.set('flt:me1', P); if (window.FLTViews) FLTViews.counter(); };
 let recent = store.get('flt:recent3', { en: [], de: [], fr: [], pt: [] });
 let toastTimer = 0;
-function toast(msg) { const t = $('#toast'); t.textContent = msg; clearTimeout(toastTimer); toastTimer = setTimeout(() => { t.textContent = ''; }, 6000); }
+function toast(msg, action) {
+  const el = $('#toast');
+  el.innerHTML = esc(msg) + (action ? ` <button class="chip" id="toast-act">${esc(action.label)}</button>` : '');
+  if (action) $('#toast-act').addEventListener('click', () => { action.fn(); el.textContent = ''; });
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => { el.textContent = ''; }, action ? 12000 : 6000);
+}
+const reducedMotion = () => { try { return matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { return false; } };
+const animOn = () => S.anim && !reducedMotion();
+/* level: stored (Claude, Wiktionary) or estimated from the frequency rank */
+function levelOf(e) {
+  if (!e) return null;
+  if (e.level) return { l: e.level, est: false };
+  const l = FLTLearn.estimateLevel(e.frequency_rank);
+  return l ? { l, est: true } : null;
+}
+const LVORD = { A1: 1, A2: 2, B1: 3, B2: 4, C1: 5, C2: 6 };
+const lvlBadge = (e, small) => { const v = levelOf(e); return v ? `<span class="lvl ${v.l}${small ? ' sm' : ''}" lang="en" title="${esc(v.est ? t('lvl.est', 'Level estimated from how often the word is used') : t('lvl.stored', 'Level'))}">${v.est ? '≈' : ''}${v.l}${small ? '' : ' · ' + esc(t('cefr.' + v.l, CEFR[v.l]))}</span>` : ''; };
+/* Marks the letters of `form` that are not in `base` (Tisch -> Tisch<b>e</b>, Haus -> H<b>ä</b>us<b>er</b>). */
+function diffMarkRaw(base, form, vowelsOnly) { return diffMark(base, form, vowelsOnly); }
+function diffMark(base, form, vowelsOnly) {
+  const a = String(base), b = String(form), n = a.length, m = b.length;
+  if (!a || !b || n * m > 4000) return esc(b);
+  const L = Array.from({ length: n + 1 }, () => new Int16Array(m + 1));
+  for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--) L[i][j] = a[i].toLowerCase() === b[j].toLowerCase() ? L[i + 1][j + 1] + 1 : Math.max(L[i + 1][j], L[i][j + 1]);
+  const keep = new Array(m).fill(false);
+  for (let i = 0, j = 0; i < n && j < m;) { if (a[i].toLowerCase() === b[j].toLowerCase()) { keep[j] = true; i++; j++; } else if (L[i + 1][j] >= L[i][j + 1]) i++; else j++; }
+  let out = '', open = false;
+  for (let j = 0; j < m; j++) {
+    const hi = !keep[j] && (!vowelsOnly || /[aeiouyäöüàâéèêëîïôûœãõáíóú]/i.test(b[j]));
+    if (hi && !open) { out += '<b class="chg">'; open = true; }
+    if (!hi && open) { out += '</b>'; open = false; }
+    out += esc(b[j]);
+  }
+  return out + (open ? '</b>' : '');
+}
+function similar(a, b) {      // 0..1, folded spelling
+  a = fold(a); b = fold(b); if (!a || !b) return 0;
+  const n = a.length, m = b.length; let prev = Array.from({ length: m + 1 }, (_, j) => j);
+  for (let i = 1; i <= n; i++) { const cur = [i]; for (let j = 1; j <= m; j++) cur[j] = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)); prev = cur; }
+  return 1 - prev[m] / Math.max(n, m);
+}
+const cleanTyped = s => String(s || '').replace(/\s+/g, ' ').replace(/^[\s\p{P}\p{S}]+|[\s\p{P}\p{S}]+$/gu, '').trim();
+
+
 
 /* ---------- data: ./data files, kept in IndexedDB ----------
    core-<lang>.json      the most frequent words, card data: loaded on the first visit
@@ -110,6 +182,15 @@ async function loadDetails() {
       (x.senses || []).forEach((y, i) => { if (e.senses[i]) Object.assign(e.senses[i], y); });
     }
   }));
+  // idioms become searchable: typing "auf jemanden Häuser bauen" opens Haus
+  for (const lang of Object.keys(REG)) {
+    const rows = D.idx[lang]; let added = 0;
+    for (const e of D.byId.values()) if (e.lang === lang && e.tier === 'core' && e.more && e.more.idioms) for (const x of e.more.idioms) {
+      const w = String(x).split(' — ')[0].trim(); if (w.length < 5 || !/\s/.test(w)) continue;
+      rows.push({ k: fold(w), w, id: e.id, r: e.frequency_rank || 1e9, a: 2 }); added++;
+    }
+    if (added) rows.sort(rowSort);
+  }
   D.details = true;
 }
 const stripKey = (lang, k) => lang === 'en' ? k.replace(/^to\s+/, '') : lang === 'de' ? k.replace(/^sich\s+/, '') : lang === 'fr' ? k.replace(/^(se\s+|s')/, '') : k.replace(/-se$/, '');
@@ -219,20 +300,24 @@ async function find(lang, word) {
     for (const r of fr) for (const id of r.ids) { const e = D.byId.get(id); if (e) put(e, exact(r.w), 1); }
   }
   const list = [...cand.values()].sort((a, b) => cmpKey(a.key, b.key));
+  if (!list.length && !word.__alt && lang === 'de' && /ae|oe|ue/i.test(w)) {      // Baer, schoen, Muell: ä ö ü typed as ae oe ue
+    const alt = Object.assign(new String(w.replace(/ae/g, 'ä').replace(/oe/g, 'ö').replace(/ue/g, 'ü').replace(/Ae/g, 'Ä').replace(/Oe/g, 'Ö').replace(/Ue/g, 'Ü')), { __alt: 1 });
+    if (String(alt) !== w) { const r = await find(lang, alt); if (r.hits.length) return r; }
+  }
   if (!list.length && missing) throw new Error('letter file not on this device');
   return { hits: list.map(x => x.e), form: list.length && list[0].isForm ? w : null };
 }
 function cmpKey(a, b) { for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) return a[i] < b[i] ? -1 : 1; return 0; }
 function suggest(lang, raw, n) {
   const q = stripKey(lang, fold(raw)), out = [], seen = new Set();
-  const add = (w, tag) => { if (out.length < n && !seen.has(w)) { seen.add(w); out.push({ w, tag }); } };
-  (recent[lang] || []).filter(w => !q || fold(w).startsWith(q)).forEach(w => add(w, 'recent'));
+  const add = (w, tag, id) => { if (out.length < n && !seen.has(w)) { seen.add(w); out.push({ w, tag, id }); } };
+  (recent[lang] || []).filter(w => !q || fold(w).startsWith(q)).forEach(w => { const x = D.ready ? findLoaded(lang, w)[0] : null; add(w, 'recent', x && x.id); });
   if (!D.ready) return out;
-  if (!q) { D.top[lang].forEach(x => add(x.w, '')); return out; }
+  if (!q) { D.top[lang].forEach(x => add(x.w, '', x.id)); return out; }
   const rows = D.idx[lang], c = [];
   for (let i = lower(rows, q); i < rows.length && rows[i].k.startsWith(q) && c.length < 3000; i++) c.push(rows[i]);
   c.sort((a, b) => (a.k === q ? 0 : 1) - (b.k === q ? 0 : 1) || a.r - b.r || a.k.length - b.k.length);
-  c.forEach(x => add(x.w, ''));
+  c.forEach(x => add(x.w, x.a === 2 ? '→ ' + (D.byId.get(x.id) || {}).lemma : '', x.id));
   const fr = D.frows[lang], fc = [];
   for (let i = lower(fr, q); i < fr.length && fr[i].k.startsWith(q) && fc.length < 400; i++) fc.push(fr[i]);
   fc.sort((a, b) => (a.k === q ? 0 : 1) - (b.k === q ? 0 : 1) || a.k.length - b.k.length);
@@ -277,36 +362,81 @@ function visibleSenses(e) {
 }
 const linkedIds = e => [...e.senses.flatMap(s => Object.values(s.translations).flat()), ...(e.synonyms || [])];
 
+
 /* ---------- state ---------- */
-let state = { status: 'loading', msg: 'Loading the dictionary data…', src: { lang: 'de', word: 'stehen' }, entry: null, sense: 0, pick: {}, forms: {}, more: {}, others: [], error: '' };
-let seq = 0;
-async function openEntry(e, sense, word, form) {
+let state = { status: 'loading', msg: 'Loading the dictionary data…', src: { lang: 'de', word: 'stehen' }, entry: null, sense: 0, pick: {}, forms: {}, more: {}, det: {}, panel: {}, others: [], error: '', trail: [], fresh: false };
+let seq = 0, commitTimer = 0, typingGen = 0;     // typingGen: a lookup made another way cancels a pending as-you-type lookup
+/* opts: live (typed, not yet committed), noRoute (opened from the address), noPlay */
+async function openEntry(e, sense, word, form, opts) {
+  opts = opts || {};
   const my = ++seq;
   try { await ensureIds(linkedIds(e)); } catch (err) {}
   if (my !== seq) return;
   const vis = visibleSenses(e);
   const si = (sense != null && e.senses[sense]) ? sense : (vis.length ? vis[0].i : 0);
-  state = { status: 'done', src: { lang: e.lang, word: word || e.lemma }, entry: e, sense: si, pick: {}, forms: {}, more: {}, others: state.others || [], form: form || null, error: '' };
-  recent[e.lang] = [e.lemma, ...(recent[e.lang] || []).filter(x => x !== e.lemma)].slice(0, 8); store.set('flt:recent3', recent);
+  const same = state.entry === e;
+  const trail = state.trail || [];
+  state = { status: 'done', src: { lang: e.lang, word: word || e.lemma }, entry: e, sense: si, pick: {}, forms: {}, more: {}, det: {}, panel: {}, others: state.others || [], form: form || null, error: '', trail, fresh: !same };
+  clearTimeout(commitTimer);
+  if (opts.live) commitTimer = setTimeout(() => commit(e, opts), 2500); else commit(e, opts);
   render();
+  if (!same && !opts.noPlay && !opts.live) autoAudio();
 }
-async function translate(lang, word) {
-  word = String(word || '').trim(); if (!word) return;
-  if (!D.ready) { toast('The dictionary data is still loading.'); return; }
+/* a lookup the reader stayed on: recent words, history, trail, address, "save it?" */
+function commit(e, opts) {
+  if (state.entry !== e) return;
+  recent[e.lang] = [e.lemma, ...(recent[e.lang] || []).filter(x => x !== e.lemma)].slice(0, 8); store.set('flt:recent3', recent);
+  P.history = [{ id: e.id, w: e.lemma, t: Date.now() }, ...P.history.filter(h => h.id !== e.id)].slice(0, 300);
+  P.last = { id: e.id, sense: state.sense };
+  P.looks[e.id] = (P.looks[e.id] || 0) + 1;
+  state.trail = [...(state.trail || []).filter(x => x !== e.id), e.id].slice(-8);
+  saveP();
+  if (P.looks[e.id] >= 3 && !P.favs[e.id] && !P.offered[e.id]) {
+    P.offered[e.id] = 1; saveP();
+    toast(t('save.offer', 'You looked up “{w}” {n} times. Save it to your words?', { w: e.lemma, n: P.looks[e.id] }), { label: t('save.yes', '☆ Save'), fn: () => { toggleFav(e); render(false); } });
+  }
+  if (!opts.noRoute) setRoute(e, state.sense, false);
+  if (opts.live) { const s = $('#status .trail'); if (s) render(false); }
+}
+async function translate(lang, word, opts) {
+  opts = opts || {};
+  word = cleanTyped(word); if (!word) return;
+  if (!opts.live) typingGen++;
+  if (!D.ready) { toast(t('msg.loading', 'The dictionary data is still loading.')); return; }
   const my = ++seq;
   let res;
   try { res = await find(lang, word); }
-  catch (err) { if (my === seq) { state = Object.assign({}, state, { status: 'error', error: 'The data for this word is not on this device yet. Connect to the internet once to load it.', near: [] }); render(); } return; }
+  catch (err) { if (my === seq && !opts.live) { state = Object.assign({}, state, { status: 'error', error: t('msg.offline', 'The data for this word is not on this device yet. Connect to the internet once to load it.'), near: [] }); render(); } return; }
   if (my !== seq) return;
   if (!res.hits.length) {
+    if (opts.live) return;             // while typing, a half word is not an error
     const near = suggest(lang, word.slice(0, Math.max(2, word.length - 2)), 5).map(x => x.w);
-    state = { status: 'error', src: { lang, word }, entry: null, sense: 0, pick: {}, forms: {}, more: {}, others: [], near,
-      error: `“${word}” is not in the ${LNAME[lang]} data. The app holds ${num(D.count[lang])} ${LNAME[lang]} words and forms and makes no entries up.` };
+    state = Object.assign({}, state, { status: 'error', src: { lang, word }, entry: null, near,
+      error: t('msg.notfound', '“{w}” is not in the {lang} data. The app holds {n} {lang} words and forms and makes no entries up.', { w: word, lang: LNAME[lang], n: num(D.count[lang]) }) });
     render(); return;
   }
   state.others = res.hits;
-  return openEntry(res.hits[0], null, word, res.form);
+  return openEntry(res.hits[0], null, word, res.form, opts);
 }
+/* ---------- address of a word: #/de/Tisch or #/de/Tisch/2 (sense). The back button works. ---------- */
+function routeOf(e, sense) { return '#/' + e.lang + '/' + encodeURIComponent(e.lemma) + (e.pos ? '~' + e.pos : '') + (sense ? '/' + sense : ''); }
+function setRoute(e, sense, replace) {
+  const h = routeOf(e, sense);
+  if (location.hash === h) return;
+  try { history[replace ? 'replaceState' : 'pushState'](null, '', h); } catch (err) {}
+}
+async function openRoute() {
+  const m = /^#\/(en|de|fr|pt)\/([^/]+)(?:\/(\d+))?$/.exec(location.hash || ''); if (!m || !D.ready) return false;
+  const [w, pos] = decodeURIComponent(m[2]).split('~'), lang = m[1];
+  const r = await find(lang, w).catch(() => ({ hits: [] }));
+  const hit = r.hits.find(x => x.lemma === w && (!pos || x.pos === pos)) || r.hits[0];
+  if (!hit) return false;
+  state.others = r.hits;
+  await openEntry(hit, m[3] ? +m[3] : null, w, null, { noRoute: true });
+  return true;
+}
+window.addEventListener('popstate', () => { openRoute(); });
+
 function quad() {
   const e = state.entry, s = e.senses[state.sense], q = {}, alts = {};
   q[e.lang] = e;
@@ -449,35 +579,110 @@ function tables(e, rv) {
   return T.filter(t => t.rows.length);
 }
 
+
 /* ---------- audio: the device's own voices only ---------- */
 let voices = [];
-try { if ('speechSynthesis' in window) { const lv = () => { voices = speechSynthesis.getVoices() || []; }; lv(); speechSynthesis.addEventListener('voiceschanged', lv); } else document.body.classList.add('no-audio'); } catch (e) {}
-function pickVoice(loc) {
-  const n = v => String(v.lang || '').toLowerCase().replace('_', '-'), l = loc.toLowerCase();
-  return voices.find(v => n(v) === l) || voices.find(v => n(v).slice(0, 2) === l.slice(0, 2));
+try {
+  if ('speechSynthesis' in window) { const lv = () => { voices = speechSynthesis.getVoices() || []; if (window.FLTViews) FLTViews.voicesChanged(); }; lv(); speechSynthesis.addEventListener('voiceschanged', lv); }
+  else document.documentElement.classList.add('no-audio');
+} catch (e) {}
+const vlang = v => String(v.lang || '').toLowerCase().replace('_', '-');
+function voicesFor(lang) { return voices.filter(v => vlang(v).slice(0, 2) === lang); }
+function voiceFor(lang) {
+  const loc = LOCALE[lang][S.main[lang]].toLowerCase();
+  if (S.voice[lang]) { const v = voices.find(x => x.name === S.voice[lang]); if (v) return v; }
+  return voices.find(v => vlang(v) === loc) || voices.find(v => vlang(v).slice(0, 2) === loc.slice(0, 2));
 }
-function speak(text, lang) {
-  text = String(text || '').replace(/\s*\(.*?\)/g, '').trim(); if (!text) return;
-  const loc = LOCALE[lang][S.main[lang]];
+let speaking = null, loop = null;
+/* o: slow, btn (gets sound waves), onboundary, onend */
+function speak(text, lang, o) {
+  o = o || {};
+  text = String(text || '').replace(/\s*\(.*?\)/g, '').trim(); if (!text) return false;
   try {
     if (!('speechSynthesis' in window)) throw 0;
-    const v = pickVoice(loc);
-    if (!v && voices.length) { toast(`No ${LNAME[lang]} voice is installed on this device. You can add one in the device's language or speech settings.`); return; }
-    speechSynthesis.cancel();
+    const v = voiceFor(lang);
+    if (!v && voices.length) { toast(t('audio.novoice', 'No {lang} voice is installed on this device. Settings › Audio shows how to add one.', { lang: LNAME[lang] })); return false; }
+    if (!o.queue) { speechSynthesis.cancel(); stopWaves(); }
     const u = new SpeechSynthesisUtterance(text);
-    if (v) { u.voice = v; u.lang = v.lang; } else u.lang = loc;
-    u.rate = S.slow ? 0.7 : 0.95;
+    if (v) { u.voice = v; u.lang = v.lang; } else u.lang = LOCALE[lang][S.main[lang]];
+    u.rate = (o.slow || S.slow) ? 0.6 : 0.95;
+    if (o.onboundary) u.onboundary = o.onboundary;
+    u.onstart = () => { if (o.btn) { o.btn.classList.add('speaking'); speaking = o.btn; } };
+    u.onend = u.onerror = () => { if (o.btn) o.btn.classList.remove('speaking'); if (o.onend) o.onend(); };
     speechSynthesis.speak(u);
-  } catch (e) { toast('This browser cannot read text aloud.'); }
+    return true;
+  } catch (e) { toast(t('audio.none', 'This browser cannot read text aloud.')); return false; }
 }
-const sayBtn = (text, lang, sm) => `<button class="say${sm ? ' sm' : ''}" data-say="${esc(text)}" data-lang="${lang}" aria-label="Listen" title="Listen">${SPEAKER}</button>`;
+function stopWaves() { document.querySelectorAll('.speaking').forEach(b => b.classList.remove('speaking')); document.querySelectorAll('.ex .on').forEach(b => b.classList.remove('on')); }
+function speakAll(items) {          // one after the other
+  try { speechSynthesis.cancel(); } catch (e) {}
+  stopWaves();
+  const next = i => { if (i >= items.length) return; const it = items[i]; speak(it.text, it.lang, { queue: true, btn: it.btn, onend: () => setTimeout(() => next(i + 1), 350) }); };
+  next(0);
+}
+function headwords() {
+  const { q } = quad();
+  return S.order.filter(l => q[l]).map(l => { const rv = regionView(q[l]), art = q[l].pos === 'noun' ? article(l, q[l], rv.word) : ''; return { text: withArt(art, rv.word), lang: l, btn: document.querySelector(`#cards .card[data-lang="${l}"] .hwrow .say`) }; });
+}
+function autoAudio() {
+  if (S.playAll) setTimeout(() => speakAll(headwords()), 300);
+  else if (S.autoplay) setTimeout(() => { const h = headwords().find(x => x.lang === state.entry.lang); if (h) speak(h.text, h.lang, { btn: h.btn }); }, 300);
+}
+function toggleLoop(lang) {
+  if (loop === lang) { loop = null; try { speechSynthesis.cancel(); } catch (e) {} stopWaves(); render(false); return; }
+  loop = lang; render(false);
+  const go = () => { if (loop !== lang || !state.entry) return; const h = headwords().find(x => x.lang === lang); if (!h) { loop = null; return; } speak(h.text, lang, { queue: true, btn: h.btn, onend: () => setTimeout(go, 900) }); };
+  try { speechSynthesis.cancel(); } catch (e) {}
+  go();
+}
+/* reads one example sentence and lights up each word as it is spoken (where the voice reports word boundaries) */
+function speakExample(li, text, lang, slow) {
+  const spans = [...li.querySelectorAll('.w')];
+  speak(text, lang, { slow, btn: li.querySelector('.say'), onboundary: ev => {
+    if (ev.name && ev.name !== 'word') return;
+    let cur = null; for (const s of spans) if (+s.dataset.o <= ev.charIndex) cur = s;
+    spans.forEach(s => s.classList.toggle('on', s === cur));
+  }, onend: () => spans.forEach(s => s.classList.remove('on')) });
+}
+const sayBtn = (text, lang, sm, extra) => `<button class="say${sm ? ' sm' : ''}" data-say="${esc(text)}" data-lang="${lang}"${extra || ''} aria-label="${esc(t('audio.listen', 'Listen'))}" title="${esc(t('audio.listen.tip', 'Listen (hold for slow)'))}">${SPEAKER}<i class="wave"></i></button>`;
+
+/* ---------- record yourself and compare ---------- */
+let recorder = null;
+async function recordCompare(text, lang, btn) {
+  if (recorder) { if (recorder.state === 'recording') recorder.stop(); return; }
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || !window.MediaRecorder) { toast(t('rec.none', 'This browser cannot record sound.')); return; }
+  let stream;
+  try { stream = await navigator.mediaDevices.getUserMedia({ audio: true }); } catch (err) { toast(t('rec.denied', 'The microphone is not allowed. Allow it in the browser to record yourself.')); return; }
+  const chunks = [];
+  recorder = new MediaRecorder(stream);
+  recorder.ondataavailable = ev => { if (ev.data && ev.data.size) chunks.push(ev.data); };
+  recorder.onstop = () => {
+    stream.getTracks().forEach(x => x.stop()); recorder = null; btn.classList.remove('on');
+    if (!chunks.length) return;
+    const url = URL.createObjectURL(new Blob(chunks, { type: chunks[0].type || 'audio/webm' }));
+    toast(t('rec.play', 'First the voice, then you.'));
+    speak(text, lang, { onend: () => { const au = new Audio(url); au.onended = () => URL.revokeObjectURL(url); au.play().catch(() => {}); } });
+  };
+  recorder.start(); btn.classList.add('on');
+  toast(t('rec.go', 'Recording… say “{w}”, then tap 🎙 again (stops by itself after 4 seconds).', { w: text }));
+  setTimeout(() => { if (recorder && recorder.state === 'recording') recorder.stop(); }, 4000);
+}
 
 /* ---------- render ---------- */
 const GENDER = { m: 'masculine', f: 'feminine', n: 'neuter', 'm/f': 'masculine or feminine' };
-const CASENAME = { Akk: 'Akkusativ', Dat: 'Dativ', Gen: 'Genitiv' };
-const badge = r => r === true ? '<span class="reg ok">regular</span>' : r === false ? '<span class="reg bad">irregular</span>' : '';
-const ipaHtml = (ipa, narrow) => `<span class="ipa">${narrow ? '[' : '/'}${esc(ipa)}${narrow ? ']' : '/'}</span>`;
+const gname = g => t('gender.' + g, GENDER[g] || g);
+const gclass = g => ({ m: 'g-m', f: 'g-f', n: 'g-n', 'm/f': 'g-mf' }[g] || '');
+const artHtml = (a, g) => a ? `<span class="art ${gclass(g)}" title="${esc(gname(g))}">${esc(a)}</span>` : '';
+const CASENAME = { Akk: 'Akkusativ', Dat: 'Dativ', Gen: 'Genitiv', Nom: 'Nominativ' };
+const gram = (key, label) => FLTLearn.GRAMMAR[key] ? `<button class="gram" data-gram="${key}" aria-label="${esc(t('gram.open', 'Grammar: {t}', { t: FLTLearn.GRAMMAR[key].title }))}" title="${esc(FLTLearn.GRAMMAR[key].title)}">${label || 'ⓘ'}</button>` : '';
+const GRAM_TITLES = [[/Präteritum/, 'praeteritum'], [/Konjunktiv/, 'konjunktiv'], [/Perfekt/, 'perfect_de'], [/Deklination/, 'cases'], [/Stark|Schwach|Gemischt/, 'adj_endings'],
+  [/Passé composé/, 'fr_passe'], [/Subjonctif/, 'fr_subj'], [/Infinitivo pessoal/, 'pt_infpers'], [/Futuro do subjuntivo/, 'pt_futsubj']];
+const badge = r => r === true ? `<span class="reg ok">${esc(t('reg.ok', 'regular'))}</span>` : r === false ? `<span class="reg bad">${esc(t('reg.bad', 'irregular'))}</span>` : '';
+const ipaHtml = (ipa, narrow, lang, word) => `<button class="ipa"${word ? ` data-say="${esc(word)}" data-lang="${lang}" title="${esc(t('audio.ipa', 'Tap to hear'))}"` : ''}>${narrow ? '[' : '/'}${esc(ipa)}${narrow ? ']' : '/'}</button>`;
 const lemmaOf = id => { const x = D.byId.get(id); return x ? x.lemma : null; };
+const ROW = { usedin: 'Used in', verb: 'Verb', gov: 'Prep. + case', govx: 'Followed by', also: 'Also', gsw: 'Swiss German', elsewhere: 'Elsewhere', gender: 'Gender',
+  agree: 'Agreement', compare: 'Compare', freq: 'Frequency', syn: 'Synonyms', ant: 'Opposites', fam: 'Word family', like: 'Words like this', looks: 'Looks like', vars: 'Variants' };
+const rowName = k => t('row.' + k, ROW[k]);
 function wikiLink(lang, word) {
   return `<a href="https://en.wiktionary.org/wiki/${encodeURIComponent(word)}${({ en: '#English', de: '#German', fr: '#French', pt: '#Portuguese' })[lang]}" target="_blank" rel="noopener">Wiktionary</a>`;
 }
@@ -490,247 +695,550 @@ function exampleList(q) {
   if (S.level === 'advanced') list.sort((a, b) => b.text.length - a.text.length);
   return { donor, list };
 }
-function examplesBlock(lang, ex) {
-  if (!ex.donor) return (!D.details && state.entry && state.entry.tier === 'core') ? '<p class="note" lang="en">Loading example sentences…</p>' : '';
-  const items = [];
+function formSet(e) {
+  const s = new Set([fold(e.lemma)]);
+  try { const f = FLTForms.forms(e); for (const k in f) if (f[k]) String(f[k]).split(/[ ,/]+/).forEach(x => x && s.add(fold(x))); } catch (err) {}
+  const rv = regionView(e); s.add(fold(rv.word));
+  return s;
+}
+/* a sentence as tappable words; the looked-up word is marked */
+function sentenceHtml(text, hl, forms) {
+  let out = '', last = 0;
+  const re = /\p{L}[\p{L}\p{M}'’-]*/gu; let m;
+  while ((m = re.exec(text))) {
+    const a = m.index, b = a + m[0].length;
+    out += esc(text.slice(last, a));
+    const on = hl ? (a < hl[1] && b > hl[0]) : (forms && forms.has(fold(m[0])));
+    const w = `<span class="w" data-w="${esc(m[0])}" data-o="${a}">${esc(m[0])}</span>`;
+    out += on ? '<mark>' + w + '</mark>' : w;
+    last = b;
+  }
+  return out + esc(text.slice(last));
+}
+function examplesBlock(lang, ex, e) {
+  if (!ex.donor) return (!D.details && state.entry && state.entry.tier === 'core') ? `<p class="note" lang="en">${esc(t('ex.loading', 'Loading example sentences…'))}</p>` : '';
+  const items = [], forms = lang === ex.donor.lang ? null : formSet(e);
   for (const x of ex.list) {
     if (items.length >= +S.examples) break;
     let text, hl = null;
     if (lang === ex.donor.lang) { text = x.text; hl = x.hl; } else text = x.translations && x.translations[lang];
     if (!text) continue;
-    const html = hl ? esc(text.slice(0, hl[0])) + '<mark>' + esc(text.slice(hl[0], hl[1])) + '</mark>' + esc(text.slice(hl[1])) : esc(text);
-    const who = x.origin === 'tatoeba' ? 'Tatoeba ' + (lang === ex.donor.lang ? x.id : (x.translation_ids && x.translation_ids[lang]) || x.id).replace('t:', '#') + ((x.credits && x.credits[lang]) ? ' · ' + x.credits[lang] : '') + ' · CC BY 2.0 FR' : 'Written by AI';
-    items.push(`<li title="${esc(who)}">${html}${sayBtn(text, lang, true)}</li>`);
+    const who = x.origin === 'tatoeba' ? 'Tatoeba ' + (lang === ex.donor.lang ? x.id : (x.translation_ids && x.translation_ids[lang]) || x.id).replace('t:', '#') + ((x.credits && x.credits[lang]) ? ' · ' + x.credits[lang] : '') + ' · CC BY 2.0 FR' : t('src.ai', 'Written by AI');
+    items.push(`<li title="${esc(who)}" data-text="${esc(text)}">${sentenceHtml(text, hl, forms)}${sayBtn(text, lang, true, ' data-ex="1"')}</li>`);
   }
-  return items.length ? `<ul class="ex">${items.join('')}</ul>` : '';
+  return items.length ? `<ul class="ex" lang="${lang}">${items.join('')}</ul>` : '';
 }
 function formsBlock(e, rv) {
   const fs = state.forms[e.lang]; if (!fs || !fs.open) return '';
   const T = tables(e, rv);
-  const anyIrr = T.some(t => t.rows.some(r => r[2]));
-  return `<div class="forms">${T.map(t => `<section><h3>${esc(t.title)}</h3><table>${t.rows.map(r => `<tr>${r[0] ? `<th scope="row">${esc(r[0])}</th>` : ''}<td${r[0] ? '' : ' colspan="2"'}${r[2] ? ' class="irr"' : ''}>${esc(r[1])}</td></tr>`).join('')}</table></section>`).join('')}</div>${anyIrr ? '<p class="note" lang="en">Forms in red are irregular.</p>' : ''}`;
+  const anyIrr = T.some(x => x.rows.some(r => r[2]));
+  return `<div class="forms">${T.map((x, k) => `<section><h3>${esc(x.title)} ${(GRAM_TITLES.find(g => g[0].test(x.title)) || [])[1] ? gram(GRAM_TITLES.find(g => g[0].test(x.title))[1]) : ''}<button class="say sm" data-act="readtable" data-k="${k}" aria-label="${esc(t('forms.read', 'Read this table aloud'))}" title="${esc(t('forms.read', 'Read this table aloud'))}">${SPEAKER}<i class="wave"></i></button></h3><table>${x.rows.map(r => `<tr>${r[0] ? `<th scope="row">${esc(r[0])}</th>` : ''}<td${r[0] ? '' : ' colspan="2"'}${r[2] ? ' class="irr"' : ''}>${r[2] ? '<span class="irr-i" aria-hidden="true">!</span>' : ''}${esc(r[1])}</td></tr>`).join('')}</table></section>`).join('')}</div>${anyIrr ? `<p class="note" lang="en">${esc(t('forms.irr', 'Forms in red with ! are irregular.'))}</p>` : ''}`;
 }
 function sourcesLine(e, ex, lang) {
   const o = Object.values(e.origin || {}), parts = [];
   if (o.includes('wiktionary')) parts.push('Wiktionary (CC BY-SA 4.0)');
-  if (ex.donor && ex.list.some(x => x.origin === 'tatoeba')) parts.push('example sentences from Tatoeba (CC BY 2.0 FR)');
+  if (ex.donor && ex.list.some(x => x.origin === 'tatoeba')) parts.push(t('src.tatoeba', 'example sentences from Tatoeba (CC BY 2.0 FR)'));
   const ai = Object.entries(e.origin || {}).filter(([, v]) => v === 'claude').map(([k]) => ({ level: 'level', swiss_german: 'Swiss German form', usage_note: 'note', 'more.learner_mistake': 'common mistake', 'examples.library': 'some sentences', senses: 'a translation link' }[k] || k.replace(/^more\./, '').replace(/_/g, ' ')));
-  if (ai.length) parts.push('written by AI: ' + [...new Set(ai)].join(', '));
-  if (o.includes('generated')) parts.push('regular/irregular labels and tables of forms built by rule');
-  if (e.tier && e.tier !== 'core') parts.push('short entry: this word has only basic data so far');
-  return parts.length ? `<div><h3>Sources</h3><p>${esc(parts.join('; '))}.</p></div>` : '';
+  if (ai.length) parts.push(t('src.aiparts', 'written by AI') + ': ' + [...new Set(ai)].join(', '));
+  const lv = levelOf(e); if (lv && lv.est) parts.push(t('src.lvlest', 'level estimated from word frequency'));
+  if (o.includes('generated')) parts.push(t('src.rule', 'regular/irregular labels and tables of forms built by rule'));
+  if (e.tier && e.tier !== 'core') parts.push(t('src.short', 'short entry: this word has only basic data so far'));
+  return parts.length ? `<div><h3>${esc(t('src.title', 'Sources'))}</h3><p>${esc(parts.join('; '))}.</p></div>` : '';
 }
 function moreBlock(e, ex) {
   const ms = state.more[e.lang]; if (!ms || !ms.open) return '';
-  if (!e.more && e.tier === 'core' && !D.details) return '<div class="extra" lang="en"><p>Loading the background of this word…</p></div>';
+  if (!e.more && e.tier === 'core' && !D.details) return `<div class="extra" lang="en"><p>${esc(t('more.loading', 'Loading the background of this word…'))}</p></div>`;
   const d = e.more || {}, lang = e.lang;
-  const list = (t, a) => a && a.length ? `<div><h3>${t}</h3><ul>${a.map(x => { const [w, g] = String(x).split(' — '); return `<li><b lang="${lang}">${esc(w)}</b>${g ? ` <span lang="${lang === 'de' && t === 'Idioms' ? 'de' : 'en'}">· ${esc(g)}</span>` : ''}</li>`; }).join('')}</ul></div>` : '';
-  const body = `${d.definition ? `<div><h3>Definition</h3><p>${esc(d.definition)}</p></div>` : ''}
-    ${list('Common combinations', d.collocations)}${list('Idioms', d.idioms)}${list('Word family', d.word_family)}
-    ${d.antonyms && d.antonyms.length ? `<div><h3>Opposites</h3><p lang="${lang}">${esc(d.antonyms.join(', '))}</p></div>` : ''}
-    ${d.etymology ? `<div><h3>Origin</h3><p>${esc(d.etymology)}</p></div>` : ''}
-    ${d.learner_mistake ? `<div><h3>Common mistake</h3><p>${esc(d.learner_mistake)}</p></div>` : ''}`;
-  return `<div class="extra" lang="en">${body.trim() ? body : '<p>No background is stored for this word yet.</p>'}${sourcesLine(e, ex, lang)}</div>`;
+  const list = (k, ttl, a) => a && a.length ? `<div><h3>${esc(t(k, ttl))}</h3><ul>${a.map(x => { const [w, g] = String(x).split(' — '); return `<li><b lang="${lang}">${esc(w)}</b>${g ? ` <span lang="${lang === 'de' && ttl === 'Idioms' ? 'de' : 'en'}">· ${esc(g)}</span>` : ''}</li>`; }).join('')}</ul></div>` : '';
+  const body = `${d.definition ? `<div><h3>${esc(t('more.def', 'Definition'))}</h3><p>${esc(d.definition)}</p></div>` : ''}
+    ${list('more.coll', 'Common combinations', d.collocations)}${list('more.idioms', 'Idioms', d.idioms)}
+    ${d.etymology ? `<div><h3>${esc(t('more.origin', 'Origin'))}</h3><p>${esc(d.etymology)}</p></div>` : ''}
+    ${d.learner_mistake ? `<div><h3>${esc(t('more.mistake', 'Common mistake'))}</h3><p>${esc(d.learner_mistake)}</p></div>` : ''}`;
+  const issue = 'https://github.com/heitorpais/four-language-translator/issues/new?title=' + encodeURIComponent('Mistake in ' + e.id) + '&body=' + encodeURIComponent('Entry: ' + e.id + '\nAddress: ' + location.href.split('#')[0] + routeOf(e, null) + '\n\nWhat is wrong:\n\nWhat it should be:\n');
+  return `<div class="extra" lang="en">${body.trim() ? body : `<p>${esc(t('more.none', 'No background is stored for this word yet.'))}</p>`}${sourcesLine(e, ex, lang)}<p><a href="${esc(issue)}" target="_blank" rel="noopener">⚑ ${esc(t('report', 'Report a mistake in this entry'))}</a> <span class="hint">${esc(t('report.h', '(opens GitHub; a free account is needed)'))}</span></p></div>`;
 }
-function card(l, e, alts, ex) {
-  const lang = l.id;
-  if (!e) return `<article class="card empty"><span class="tab">${l.code}</span><p class="note" lang="en">No ${l.name} translation for this meaning in the data.</p></article>`;
-  const pos = e.pos, rv = regionView(e), rows = [], n = e.noun, v = e.verb, a = e.adjective;
-  const art = pos === 'noun' ? article(lang, e, rv.word) : '';
-  if (rv.accents.length) rows.push(['Elsewhere', rv.accents.map(x => `<span style="white-space:nowrap;margin-right:10px">${x.regions.map(r => flag(r, true)).join('')}${ipaHtml(x.ipa, x.narrow)}</span>`).join('')]);
-  if (n) {
-    rows.push(['Gender', lang === 'en' ? '<span class="sub">English nouns have no grammatical gender</span>' : `<span class="form">${esc(GENDER[n.gender] || '—')}</span>${art ? ` <span class="sub">article: ${esc(art)}</span>` : ''}`]);
-    if (rv.plural) rows.push(['Plural', `<span class="form">${esc(withArt(article(lang, e, rv.plural, true), rv.plural))}</span> ${badge(n.plural_regular)}${n.plural_rule ? `<span class="sub">${esc(n.plural_rule)}</span>` : ''}${n.plural_alt && n.plural_alt.length ? `<span class="sub">also: ${esc(n.plural_alt.join(', '))}</span>` : ''}`]);
-  }
-  if (v) {
-    if (v.regular !== null || v.class) rows.push(['Verb', `${badge(v.regular)}${v.class ? `<span class="sub">${esc(v.class + (lang === 'de' ? ' verb' : ''))}</span>` : ''}`]);
+/* the short grammar line under the headword: "der Tisch · die Tische", "geht · ging · ist gegangen" */
+function summary(e, rv, art) {
+  const lang = e.lang, n = e.noun, v = e.verb, a = e.adjective, parts = [];
+  if (e.pos === 'noun' && n) {
+    if (lang !== 'en') parts.push(`${artHtml(art, n.gender)}${art && !art.endsWith("'") ? ' ' : ''}<span class="form">${esc(rv.word)}</span>${gram(lang === 'de' ? 'gender_de' : 'gender_romance')}`);
+    if (rv.plural) { const pa = lang === 'en' ? '' : article(lang, e, rv.plural, true); parts.push(`${pa ? `<span class="art g-pl">${esc(pa)}</span> ` : ''}<span class="form">${diffMark(rv.word, rv.plural)}</span>${n.plural_regular === false ? ' ' + badge(false) : ''}${lang === 'de' ? gram('plural_de') : ''}`); }
+    else if (n.plural === null && lang !== 'en' && e.tier === 'core') parts.push(`<span class="sub inl">${esc(t('sum.nopl', 'no plural'))}</span>`);
+  } else if (e.pos === 'verb' && v) {
     const pp = v.principal_parts;
     if (pp) {
-      let s = '';
-      if (lang === 'de') { const ax = (rv.aux || 'haben').split('/').map(x => x === 'sein' ? 'ist' : 'hat').join('/'); s = [v.present_3sg, pp[1], pp[2] ? ax + ' ' + pp[2] : null].filter(Boolean).join(' · '); }
-      else if (lang === 'en') { const f = FLTForms.forms(e); s = [f['3sg'], pp[1], pp[2] ? 'has ' + pp[2] : null].filter(Boolean).join(' · '); }
-      else if (lang === 'fr') s = [pp[1] ? frJe(pp[1]) : null, pp[2] ? (rv.aux === 'être' ? 'je suis ' + pp[2] + '(e)' : "j'ai " + pp[2]) : null].filter(Boolean).join(' · ');
-      else s = pp.slice(1).filter(Boolean).join(' · ');
-      if (s) rows.push(['Forms', `<span class="form">${esc(s)}</span>`]);
+      const base = e.lemma, irr = v.regular === false;
+      const diffMark = (a, b, vowels) => irr ? diffMarkRaw(a, b, vowels) : esc(b);
+      if (lang === 'de') { const ax = (rv.aux || 'haben').split('/').map(x => x === 'sein' ? 'ist' : 'hat').join('/'); const p2 = pp[2] && pp[2].startsWith('ge') && !base.startsWith('ge') ? 'ge' + diffMark(base, pp[2].slice(2), true) : pp[2] && diffMark(base, pp[2], true); [v.present_3sg && diffMark(base, v.present_3sg, true), pp[1] && diffMark(base, pp[1], true), p2 ? esc(ax) + ' ' + p2 : null].filter(Boolean).forEach(x => parts.push(`<span class="form">${x}</span>`)); }
+      else if (lang === 'en') { const f = FLTForms.forms(e); [f['3sg'] && esc(f['3sg']), pp[1] && diffMark(base, pp[1], true), pp[2] && 'has ' + diffMark(base, pp[2], true)].filter(Boolean).forEach(x => parts.push(`<span class="form">${x}</span>`)); }
+      else if (lang === 'fr') [pp[1] ? esc(frJe(pp[1])) : null, pp[2] ? (rv.aux === 'être' ? 'je suis ' + esc(pp[2]) + '(e)' : "j'ai " + esc(pp[2])) : null].filter(Boolean).forEach(x => parts.push(`<span class="form">${x}</span>`));
+      else pp.slice(1).filter(Boolean).forEach(x => parts.push(`<span class="form">${diffMark(base, x, true)}</span>`));
     }
-    if (rv.aux) rows.push(['Auxiliary', `<span class="form">${esc(rv.aux.replace('/', ' or '))}</span>`]);
+    if (rv.aux) parts.push(`<button class="aux"${lang === 'de' ? ' data-gram="perfect_de"' : lang === 'fr' ? ' data-gram="fr_passe"' : ''} title="${esc(t('row.aux', 'Auxiliary'))}">+ ${esc(rv.aux.replace('/', ' / '))}</button>`);
+  } else if (e.pos === 'adjective' && a) {
+    if (a.comparison) parts.push(`<span class="form">${a.comparison.filter(Boolean).map(x => diffMark(e.lemma, x)).join(' · ')}</span>`);
+    else if (a.agreement) parts.push(`<span class="form">${a.agreement.filter(Boolean).map(esc).join(' · ')}</span>`);
   }
-  if (a && a.agreement) rows.push(['Agreement', `<span class="form">${esc(a.agreement.filter(Boolean).join(' · '))}</span>`]);
-  if (a && a.comparison) rows.push(['Compare', `<span class="form">${esc(a.comparison.join(' · '))}</span> ${badge(a.comparison_regular)}`]);
-  if (e.governs && e.governs.length) rows.push([lang === 'de' ? 'Prep. + case' : 'Followed by',
-    `<ul class="gov">${e.governs.map(g => { const pat = g.pattern || (e.lemma + (g.prep ? ' ' + g.prep : '') + (g.case ? ' + ' + g.case.split('/').map(c => CASENAME[c] || c).join(' / ') : '')); return `<li><span class="pat">${esc(pat)}</span>${g.meaning ? `<span class="sub" lang="en">${esc(g.meaning)}</span>` : ''}</li>`; }).join('')}</ul>`]);
-  const syn = [...(e.synonyms || []).map(lemmaOf).filter(Boolean), ...(e.synonyms_text || [])].slice(0, 6);
-  if (syn.length) rows.push(['Synonyms', `<span class="form">${esc(syn.join(', '))}</span>`]);
+  return parts.length ? `<div class="sum" lang="${lang}">${parts.join('<span class="dot"> · </span>')}</div>` : '';
+}
+/* gender rule from the ending, checked against the data: shown only where it holds for 80 % of the nouns */
+const gstat = {};
+function genderStats(lang) {
+  if (gstat[lang]) return gstat[lang];
+  const rules = FLTLearn.GENDER_RULES.filter(r => r[0] === lang), st = rules.map(r => ({ end: r[1], g: r[2], n: 0, ok: 0 }));
+  for (const e of D.byId.values()) {
+    if (e.lang !== lang || e.pos !== 'noun' || e.tier !== 'core' || !e.noun || !['m', 'f', 'n'].includes(e.noun.gender)) continue;
+    const w = e.lemma.toLowerCase();
+    for (const s of st) if (w.endsWith(s.end) && w.length > s.end.length + 1) { s.n++; if (e.noun.gender === s.g) s.ok++; }
+  }
+  return (gstat[lang] = st.filter(s => s.n >= 8 && s.ok / s.n >= 0.8));
+}
+function genderHint(e) {
+  if (e.pos !== 'noun' || !e.noun || !['m', 'f', 'n'].includes(e.noun.gender) || !['de', 'fr', 'pt'].includes(e.lang)) return '';
+  const w = e.lemma.toLowerCase(), r = genderStats(e.lang).filter(s => w.endsWith(s.end) && w.length > s.end.length + 1).sort((a, b) => b.end.length - a.end.length)[0];
+  if (!r) return '';
+  const pct = Math.round(100 * r.ok / r.n), art = { de: { m: 'der', f: 'die', n: 'das' }, fr: { m: 'le', f: 'la' }, pt: { m: 'o', f: 'a' } }[e.lang][r.g];
+  if (r.g === e.noun.gender) return `<p class="tip" lang="en">💡 ${t('hint.gender', 'Nouns ending in <b>-{end}</b> are usually {g} ({art}): {p} % of {n} nouns here.', { end: esc(r.end), g: esc(gname(r.g)), art: artHtml(art, r.g), p: pct, n: r.n })}</p>`;
+  return `<p class="tip" lang="en">💡 ${t('hint.gender.exc', 'Exception: most nouns ending in <b>-{end}</b> are {g} ({art}, {p} %), this one is not.', { end: esc(r.end), g: esc(gname(r.g)), art: artHtml(art, r.g), p: pct })}</p>`;
+}
+function falseFriends(e) {
+  return FLTLearn.FALSE_FRIENDS.filter(x => (x[0] === e.lang && x[1] === e.lemma) || (x[2] === e.lang && x[3] === e.lemma))
+    .map(x => { const other = x[0] === e.lang ? [x[2], x[3]] : [x[0], x[1]]; return `<p class="warn" lang="en">⚠ ${t('ff.title', 'False friend with {lang} “{w}”.', { lang: esc(LNAME[other[0]]), w: esc(other[1]) })} ${esc(x[4])}</p>`; }).join('');
+}
+/* verbs with the same vowel change (singen sang gesungen ~ trinken trank getrunken); nouns with the same plural */
+const likeCache = {};
+const vowelOf = (w, lang) => { let s = String(w || '').toLowerCase(); if (lang === 'de') s = s.replace(/(en|n|t|e|et)$/, ''); const g = s.match(/[aeiouyäöü]+/g); return g ? g[g.length - 1] : ''; };
+function likeKey(e) {
+  if (e.pos === 'verb' && e.verb && e.verb.principal_parts && e.verb.regular === false) { const p = e.verb.principal_parts; return 'v|' + [p[0], p[1], (p[2] || '').replace(/^ge/, '')].map(x => vowelOf(x, e.lang)).join('-'); }
+  if (e.pos === 'noun' && e.noun && e.noun.plural && (e.lang === 'de' || e.noun.plural_regular === false)) {
+    const w = e.lemma, p = e.noun.plural, un = s => s.replace(/ä/g, 'a').replace(/ö/g, 'o').replace(/ü/g, 'u');
+    if (p.startsWith(w)) return 'n|' + e.noun.gender + '|' + p.slice(w.length);
+    if (un(p).startsWith(w)) return 'n|' + e.noun.gender + '|¨' + p.slice(w.length);
+    return null;
+  }
+  return null;
+}
+function likeThis(e) {
+  const k = likeKey(e); if (!k) return [];
+  const ck = e.lang + k;
+  if (!likeCache[ck]) {
+    const out = [];
+    for (const x of D.byId.values()) if (x.lang === e.lang && x.tier === 'core' && x.pos === e.pos && likeKey(x) === k) out.push(x);
+    likeCache[ck] = out.sort((a, b) => (a.frequency_rank || 1e9) - (b.frequency_rank || 1e9));
+  }
+  return likeCache[ck].filter(x => x !== e).slice(0, 8);
+}
+function familyOf(e) {
+  const out = [], seen = new Set([fold(e.lemma)]);
+  for (const w of (e.more && e.more.word_family) || []) { const x = findLoaded(e.lang, String(w).split(' — ')[0])[0]; if (x && !seen.has(fold(x.lemma))) { seen.add(fold(x.lemma)); out.push(x); } if (out.length >= 5) break; }
+  const k = fold(e.lemma);
+  if (k.length >= 4 && ['noun', 'verb', 'adjective'].includes(e.pos)) {
+    for (const r of D.idx[e.lang]) {
+      if (out.length >= 10) break;
+      if (r.a || r.k === k || !r.k.includes(k) || seen.has(r.k)) continue;
+      const x = D.byId.get(r.id); if (!x || x.tier !== 'core' || /\s/.test(x.lemma)) continue;
+      seen.add(r.k); out.push(x);
+    }
+  }
+  return out;
+}
+const chip = (x, cls) => `<button class="chip${cls ? ' ' + cls : ''}" data-id="${esc(x.id)}" lang="${x.lang}">${esc(x.lemma)}</button>`;
+const isFav = e => !!P.favs[e.id];
+function toggleFav(e) { if (P.favs[e.id]) delete P.favs[e.id]; else P.favs[e.id] = { w: e.lemma, t: Date.now() }; saveP(); }
+function card(lang, e, alts, ex, i, q) {
+  const l = LANGS.find(x => x.id === lang);
+  if (!e) return `<article class="card empty" data-lang="${lang}" style="--i:${i}"><span class="tab">${l.code}</span><p class="note" lang="en">${esc(t('card.none', 'No {lang} translation for this meaning in the data.', { lang: LNAME[lang] }))}</p></article>`;
+  const pos = e.pos, rv = regionView(e), n = e.noun, v = e.verb, a = e.adjective;
+  const art = pos === 'noun' ? article(lang, e, rv.word) : '';
   const sn = state.entry && state.entry.senses[state.sense];
-  const chipFlags = id => { const p = sn && sn.regional ? plainRegions(sn.regional[id]) : null; return p && p.length ? p.map(r => flag(r.toLowerCase(), true)).join('') : ''; };
-  if (alts && alts.length > 1) rows.push(['Also', alts.map((id, i) => D.byId.get(id) === e ? '' : `<button class="chip" data-pick="${lang}:${i}" lang="${lang}">${chipFlags(id)}${esc(lemmaOf(id))}</button>`).join(' ')]);
+  const ess = [], det = [], notes = [];
+  // essentials, in the same order on every card
   const ui = usedIn(e, e === state.entry ? null : sn), R = S.main[lang].toUpperCase();
-  if (ui && !ui.includes(R)) rows.unshift(['Used in', ui.length ? ui.map(r => flag(r.toLowerCase(), true) + esc(RNAME[r.toLowerCase()])).join(' &nbsp;') + ` <span class="sub">not usual in ${esc(RNAME[S.main[lang]])}</span>` : '<span class="sub">regional (not one of the regions offered here)</span>']);
-  if (S.variants && rv.groups.length) rows.push(['Variants',
-    `<ul class="vars">${rv.groups.map(g => `<li><span class="where" lang="en">${g.regions.map(r => flag(r, true) + esc(RNAME[r])).join(' &nbsp;')}</span>${g.parts.length ? `<span class="form">${esc(g.parts.join(' · '))}</span>` : ''}${g.note ? `<span class="sub" lang="en">${esc(g.note)}</span>` : ''}</li>`).join('')}</ul>`]);
-  if (S.gsw && lang === 'de' && e.swiss_german) rows.push(['Swiss German', `${flag('ch', true)}<span class="form" lang="gsw">${esc(e.swiss_german.form)}</span><span class="sub" lang="en">spoken dialect${e.swiss_german.approximate ? ', spelling is approximate' : ''}</span>`]);
-  const fs = state.forms[lang], ms = state.more[lang];
-  const head = withArt(art, rv.word);
-  let html = `<article class="card" lang="${LOCALE[lang][S.main[lang]]}" data-id="${esc(e.id)}">
+  if (ui && !ui.includes(R)) ess.push(['usedin', ui.length ? ui.map(r => flag(r.toLowerCase(), true) + esc(RNAME[r.toLowerCase()])).join(' &nbsp;') + ` <span class="sub">${esc(t('usedin.not', 'not usual in {r}', { r: RNAME[S.main[lang]] }))}</span>` : `<span class="sub">${esc(t('usedin.other', 'regional (not one of the regions offered here)'))}</span>`]);
+  if (v && (v.regular !== null || v.class)) ess.push(['verb', `${badge(v.regular)} ${gram('irregular_' + lang)}${/separable|trennbar/i.test(v.class || '') ? gram('separable') : ''}${v.class ? `<span class="sub">${esc(v.class + (lang === 'de' ? ' verb' : ''))}</span>` : ''}`]);
+  if (e.governs && e.governs.length) ess.push([lang === 'de' ? 'gov' : 'govx',
+    `<ul class="gov">${e.governs.map(g => { const cases = g.case ? g.case.split('/') : []; const pat = g.pattern || (e.lemma + (g.prep ? ' ' + g.prep : '')); return `<li><span class="pat">${esc(pat)}</span>${cases.map(c => ` <button class="case c-${esc(c)}" data-gram="cases" title="${esc(CASENAME[c] || c)}">${esc(c)}</button>`).join('')}${g.meaning ? `<span class="sub" lang="en">${esc(g.meaning)}</span>` : ''}</li>`; }).join('')}</ul>`]);
+  const chipFlags = id => { const p = sn && sn.regional ? plainRegions(sn.regional[id]) : null; return p && p.length ? p.map(r => flag(r.toLowerCase(), true)).join('') : ''; };
+  if (alts && alts.length > 1) ess.push(['also', alts.map((id, k) => D.byId.get(id) === e ? '' : `<button class="chip" data-pick="${lang}:${k}" lang="${lang}">${chipFlags(id)}${esc(lemmaOf(id))}</button>`).join(' ')]);
+  if (S.gsw && lang === 'de' && e.swiss_german) ess.push(['gsw', `${flag('ch', true)}<span class="form" lang="gsw">${esc(e.swiss_german.form)}</span><span class="sub" lang="en">${esc(t('gsw.sub', 'spoken dialect'))}${e.swiss_german.approximate ? ', ' + esc(t('gsw.approx', 'spelling is approximate')) : ''}</span>`]);
+  // details (folded in compact mode)
+  if (rv.accents.length) det.push(['elsewhere', rv.accents.map(x => `<span style="white-space:nowrap;margin-right:10px">${x.regions.map(r => flag(r, true)).join('')}${ipaHtml(x.ipa, x.narrow)}</span>`).join('')]);
+  if (n && n.gender && lang !== 'en') det.push(['gender', `${artHtml(art || article(lang, e, e.lemma), n.gender)} <span class="form">${esc(gname(n.gender))}</span>${n.plural_rule ? `<span class="sub">${esc(n.plural_rule)}</span>` : ''}${n.plural_alt && n.plural_alt.length ? `<span class="sub">${esc(t('sum.also', 'also'))}: ${esc(n.plural_alt.join(', '))}</span>` : ''}`]);
+  if (a && a.agreement && a.comparison) det.push(['agree', `<span class="form">${esc(a.agreement.filter(Boolean).join(' · '))}</span>`]);
+  if (a && a.comparison) det.push(['compare', badge(a.comparison_regular)]);
+  const syn = (e.synonyms || []).map(id => D.byId.get(id)).filter(Boolean).slice(0, 8), synT = (e.synonyms_text || []).slice(0, 4);
+  if (syn.length || synT.length) det.push(['syn', syn.map(x => chip(x)).join(' ') + synT.map(w => ` <button class="chip" data-go="${lang}:${esc(w)}" lang="${lang}">${esc(w)}</button>`).join('')]);
+  const ants = ['adjective', 'adverb', 'verb', 'preposition'].includes(pos) && e.more && e.more.antonyms ? e.more.antonyms.slice(0, 4) : [];
+  if (ants.length) det.push(['ant', ants.map(w => `<button class="chip" data-go="${lang}:${esc(w)}" lang="${lang}">↔ ${esc(w)}</button>`).join(' ')]);
+  const fam = familyOf(e); if (fam.length) det.push(['fam', fam.map(x => chip(x)).join(' ')]);
+  const like = likeThis(e); if (like.length) det.push(['like', like.map(x => chip(x)).join(' ')]);
+  const looks = q ? S.order.filter(o => o !== lang && q[o] && ['noun', 'verb', 'adjective', 'adverb'].includes(q[o].pos) && rv.word.length >= 4 && q[o].lemma.length >= 4 && similar(rv.word, q[o].lemma) >= 0.6
+    && !FLTLearn.FALSE_FRIENDS.some(x => (x[1] === e.lemma && x[3] === q[o].lemma) || (x[3] === e.lemma && x[1] === q[o].lemma))) : [];
+  if (looks.length) det.push(['looks', looks.map(o => `<span class="nowrap">${flag(S.main[o], true)}<span lang="${o}">${esc(q[o].lemma)}</span></span>`).join(' &nbsp;') + `<span class="sub">${esc(t('looks.sub', 'similar word: easier to remember'))}</span>`]);
+  const fq = FLTLearn.freqLabel(e.frequency_rank);
+  if (fq) det.push(['freq', `<span class="form">${esc(t('freq.' + fq, fq))}</span><span class="sub">${esc(t('freq.rank', 'number {n} in the frequency list (film subtitles)', { n: num(e.frequency_rank) }))}</span>`]);
+  if (S.variants && rv.groups.length) det.push(['vars', `<ul class="vars">${rv.groups.map(g => `<li><span class="where" lang="en">${g.regions.map(r => flag(r, true) + esc(RNAME[r])).join(' &nbsp;')}</span>${g.parts.length ? `<span class="form">${esc(g.parts.join(' · '))}</span>` : ''}${g.note ? `<span class="sub" lang="en">${esc(g.note)}</span>` : ''}</li>`).join('')}</ul>`]);
+  // notes
+  notes.push(falseFriends(e));
+  notes.push(genderHint(e));
+  if (e.usage_note) notes.push(`<p class="note" lang="en"><b>${esc(t('note.note', 'Note'))}</b> ${esc(e.usage_note)}</p>`);
+  if (rv.note && S.main[lang] !== BASE[lang]) notes.push(`<p class="note" lang="en"><b>${esc(t('note.in', 'In {r}', { r: RNAME[S.main[lang]] }))}</b> ${esc(rv.note)}</p>`);
+  if (P.notes[e.id]) notes.push(`<p class="mynote"><b>${esc(t('note.mine', 'My note'))}</b> ${esc(P.notes[e.id])}</p>`);
+  const fs = state.forms[lang], ms = state.more[lang], ds = state.det[lang], pan = state.panel[lang];
+  const showDet = !S.compact || (ds && ds.open);
+  const rowsHtml = rs => rs.map(([k, y]) => `<dt lang="en">${esc(rowName(k))}</dt><dd>${y}</dd>`).join('');
+  const head = withArt(art, rv.word), fav = isFav(e), known = !!P.known[e.id];
+  const lv = lvlBadge(e);
+  let html = `<article class="card${known ? ' known' : ''}" lang="${LOCALE[lang][S.main[lang]]}" data-id="${esc(e.id)}" data-lang="${lang}" style="--i:${i}">
     <span class="tab">${l.code}</span>
-    <div><div class="hwrow"><h2 class="hw">${art ? `<span class="art">${esc(art)}</span>${art.endsWith("'") ? '' : ' '}` : ''}${esc(rv.word)}</h2>${sayBtn(head, lang)}</div>
-    <div class="pron">${rv.ipa ? (rv.ipaFrom ? `<span class="ipafrom" lang="en" title="Wiktionary has no separate transcription for ${RNAME[S.main[lang]]}; this is the pronunciation of ${RNAME[rv.ipaFrom]}">${flag(rv.ipaFrom, true)}</span>` : '') + ipaHtml(rv.ipa, rv.narrow) + (rv.ipaFrom ? `<span class="sub ipanote" lang="en">as in ${RNAME[rv.ipaFrom]}</span>` : '') : ''}<span class="pos" lang="en">${esc(pos)}${n && n.gender ? ' · ' + esc(n.gender) : ''}</span>${e.level && CEFR[e.level] ? `<span class="lvl" lang="en">${e.level} · ${CEFR[e.level]}</span>` : ''}</div></div>
-    ${rows.length ? `<dl>${rows.map(([x, y]) => `<dt lang="en">${x}</dt><dd>${y}</dd>`).join('')}</dl>` : ''}
-    ${canForms(e) ? `<button class="more" data-extra="forms" data-lang="${lang}" lang="en" aria-expanded="${fs && fs.open ? 'true' : 'false'}">${fs && fs.open ? 'Hide forms' : 'See more forms'}</button>${formsBlock(e, rv)}` : ''}
-    ${examplesBlock(lang, ex)}
-    ${e.usage_note ? `<p class="note" lang="en"><b>Note</b> ${esc(e.usage_note)}</p>` : ''}
-    ${rv.note && S.main[lang] !== BASE[lang] ? `<p class="note" lang="en"><b>In ${RNAME[S.main[lang]]}</b> ${esc(rv.note)}</p>` : ''}
-    <button class="more" data-extra="more" data-lang="${lang}" lang="en" aria-expanded="${ms && ms.open ? 'true' : 'false'}">${ms && ms.open ? 'Hide background' : 'More about this word'}</button>${moreBlock(e, ex)}
+    <div class="hwrow"><button class="star${fav ? ' on' : ''}" data-act="fav" aria-pressed="${fav}" aria-label="${esc(fav ? t('act.unsave', 'Remove from my words') : t('act.save', 'Save to my words'))}" title="${esc(fav ? t('act.unsave', 'Remove from my words') : t('act.save', 'Save to my words'))}">${fav ? '★' : '☆'}</button><h2 class="hw">${art ? artHtml(art, n && n.gender) + (art.endsWith("'") ? '' : ' ') : ''}${esc(rv.word)}</h2>${sayBtn(head, lang)}<button class="loop${loop === lang ? ' on' : ''}" data-act="loop" aria-pressed="${loop === lang}" aria-label="${esc(t('audio.loop', 'Repeat the word'))}" title="${esc(t('audio.loop', 'Repeat the word'))}">⟲</button></div>
+    <div class="pron">${rv.ipa ? (rv.ipaFrom ? `<span class="ipafrom" lang="en" title="${esc(t('ipa.from.tip', 'Wiktionary has no separate transcription for {r}; this is the pronunciation of {b}', { r: RNAME[S.main[lang]], b: RNAME[rv.ipaFrom] }))}">${flag(rv.ipaFrom, true)}</span>` : '') + ipaHtml(rv.ipa, rv.narrow, lang, head) + (rv.ipaFrom ? `<span class="sub ipanote" lang="en">${esc(t('ipa.asin', 'as in {b}', { b: RNAME[rv.ipaFrom] }))}</span>` : '') : ''}<span class="pos" lang="en">${esc(t('pos.' + pos, pos))}${n && n.gender ? ' · ' + esc(n.gender) : ''}</span>${lv}${regTag(e === state.entry ? sn : null)}${e.verified ? `<span class="ver" lang="en" title="${esc(t('ver.tip', 'Checked by a person'))}">✓ ${esc(t('ver', 'checked'))}</span>` : ''}</div>
+    ${summary(e, rv, art)}
+    <div class="acts" lang="en">
+      <button class="act${known ? ' on' : ''}" data-act="known" aria-pressed="${known}">${known ? '✓ ' + esc(t('act.known', 'Known')) : esc(t('act.know', 'I know this'))}</button>
+      <button class="act${pan === 'note' ? ' on' : ''}" data-act="note">✎ ${esc(t('act.note', 'Note'))}</button>
+      <button class="act${pan === 'list' ? ' on' : ''}" data-act="list">＋ ${esc(t('act.list', 'List'))}</button>
+      <button class="act" data-act="link">🔗 ${esc(t('act.link', 'Link'))}</button>
+      <button class="act rec-b" data-act="record" title="${esc(t('rec.tip', 'Record yourself saying the word, then hear it next to the voice'))}">🎙 ${esc(t('act.record', 'Record me'))}</button>
+    </div>
+    ${pan === 'note' ? `<div class="pan"><textarea id="note-${lang}" rows="3" aria-label="${esc(t('act.note', 'Note'))}">${esc(P.notes[e.id] || '')}</textarea><div class="row"><button class="btn sm" data-act="note-save">${esc(t('btn.save', 'Save'))}</button>${P.notes[e.id] ? `<button class="btn sm" data-act="note-del">${esc(t('btn.delete', 'Delete'))}</button>` : ''}</div></div>` : ''}
+    ${pan === 'list' ? `<div class="pan">${P.lists.map((L, k) => `<label class="ck"><input type="checkbox" data-act="list-tog" data-k="${k}"${L.ids.includes(e.id) ? ' checked' : ''}> ${esc(L.name)} <small>${L.ids.length}</small></label>`).join('')}<div class="row"><input class="text" id="newlist-${lang}" placeholder="${esc(t('list.new', 'New list…'))}"><button class="btn sm" data-act="list-new">${esc(t('btn.add', 'Add'))}</button></div></div>` : ''}
+    ${ess.length ? `<dl>${rowsHtml(ess)}</dl>` : ''}
+    ${det.length && showDet ? `<dl class="det">${rowsHtml(det)}</dl>` : ''}
+    ${det.length && S.compact ? `<button class="more" data-extra="det" data-lang="${lang}" aria-expanded="${showDet}">${showDet ? esc(t('det.hide', 'Fewer details')) : esc(t('det.show', 'All details ({n})', { n: det.length }))}</button>` : ''}
+    ${canForms(e) ? `<button class="more" data-extra="forms" data-lang="${lang}" lang="en" aria-expanded="${fs && fs.open ? 'true' : 'false'}">${fs && fs.open ? esc(t('forms.hide', 'Hide forms')) : esc(t('forms.show', 'See more forms'))}</button>${formsBlock(e, rv)}` : ''}
+    ${examplesBlock(lang, ex, e)}
+    ${notes.join('')}
+    <button class="more" data-extra="more" data-lang="${lang}" lang="en" aria-expanded="${ms && ms.open ? 'true' : 'false'}">${ms && ms.open ? esc(t('more.hide', 'Hide background')) : esc(t('more.show', 'More about this word'))}</button>${moreBlock(e, ex)}
     ${S.links ? `<div class="links" lang="en">${wikiLink(lang, e.lemma)}</div>` : ''}
   </article>`;
   if (lang === 'de' && S.main.de === 'ch') html = html.replace(/ß/g, 'ss');      // Swiss spelling has no ß
   return html;
 }
+function regTag(s) { return s && s.register ? `<button class="regtag" data-gram="register" lang="en">${esc(t('regi.' + s.register, s.register))}</button>` : ''; }
+function gendersLine(q) {
+  if (state.entry.pos !== 'noun') return '';
+  const g = ['de', 'fr', 'pt'].filter(l => q[l] && q[l].noun && q[l].noun.gender && q[l].pos === 'noun').map(l => ({ l, g: q[l].noun.gender, a: article(l, q[l], regionView(q[l]).word) }));
+  if (g.length < 2) return '';
+  const same = g.every(x => x.g === g[0].g);
+  return `<span class="genders">${esc(t('st.gender', 'Gender:'))} ${g.map(x => `${flag(S.main[x.l], true)}${artHtml(x.a || x.g, x.g)}`).join(' ')}${same ? '' : ` <small>${esc(t('st.gender.diff', 'differs'))}</small>`}</span>`;
+}
+function idiomOf(e) {
+  const w = state.src && state.src.word; if (!w || state.form || fold(w) === fold(e.lemma) || !e.more || !e.more.idioms) return null;
+  const hit = e.more.idioms.map(x => String(x).split(' — ')[0].trim()).find(x => fold(x) === fold(w));
+  return hit || null;
+}
 function render(fill) {
   const st = $('#status'), cards = $('#cards');
   if (state.status === 'loading') {
     st.innerHTML = `<span>${esc(state.msg)}</span>`;
-    cards.innerHTML = LANGS.map(l => `<article class="card loading"><span class="tab">${l.code}</span><div class="sk big"></div><div class="sk"></div><div class="sk" style="width:80%"></div><div class="sk" style="width:65%"></div></article>`).join('');
+    cards.innerHTML = S.order.map(l => `<article class="card loading" data-lang="${l}"><span class="tab">${l.toUpperCase()}</span><div class="sk big"></div><div class="sk"></div><div class="sk" style="width:80%"></div><div class="sk" style="width:65%"></div></article>`).join('');
     return;
   }
   if (state.status === 'error') {
-    st.innerHTML = `<span class="err">${esc(state.error)}</span>` + ((state.near || []).length ? `<span>Close to it:</span>${state.near.map(w => `<button class="chip" data-go="${esc(state.src.lang)}:${esc(w)}">${esc(w)}</button>`).join('')}` : '');
+    st.innerHTML = `<span class="err">${esc(state.error)}</span>` + ((state.near || []).length ? `<span>${esc(t('st.close', 'Close to it:'))}</span>${state.near.map(w => `<button class="chip" data-go="${esc(state.src.lang)}:${esc(w)}">${esc(w)}</button>`).join('')}` : '');
     cards.innerHTML = ''; return;
   }
   const e = state.entry, { q, alts, sense } = quad(), ex = exampleList(q);
-  if (fill !== false) LANGS.forEach(l => { const x = q[l.id]; let w = x ? regionView(x).word : ''; if (l.id === 'de' && S.main.de === 'ch') w = ss(w); $('#in-' + l.id).value = w; });
+  if (fill !== false) LANGS.forEach(l => { const x = q[l.id]; let w = x ? regionView(x).word : ''; if (l.id === 'de' && S.main.de === 'ch') w = ss(w); const inp = $('#in-' + l.id); if (inp && document.activeElement !== inp) inp.value = w; syncClear(l.id); });
   const vis = visibleSenses(e).filter(x => x.i !== state.sense).slice(0, 5);
   const others = (state.others || []).filter(x => x !== e).slice(0, 4);
   let srcWord = regionView(e).word; if (e.lang === 'de' && S.main.de === 'ch') srcWord = ss(srcWord);
-  st.innerHTML = (state.form && fold(state.form) !== fold(e.lemma) ? `<span><b>${esc(state.form)}</b> is a form of <b>${esc(srcWord)}</b>.</span>` : '')
-    + `<span>From ${LNAME[e.lang]}: <b>${esc(srcWord)}</b>${sense && sense.gloss_en ? ` · ${esc(sense.gloss_en)}` : ''}</span>`
-    + (vis.length ? `<span>Other senses:</span>${vis.map(x => `<button class="chip" data-sense="${x.i}">${esc(x.s.gloss_en || '…')}</button>`).join('')}` : '')
-    + (others.length ? `<span>Same spelling:</span>${others.map(x => `<button class="chip" data-id="${esc(x.id)}">${esc(x.lemma)}<small>${esc(x.pos)}</small></button>`).join('')}` : '')
-    + `<span>Try:</span>${TRY.filter(w => w !== e.lemma).slice(0, 6).map(w => `<button class="chip" data-go="de:${esc(w)}">${esc(w)}</button>`).join('')}`;
-  cards.innerHTML = LANGS.map(l => card(l, q[l.id], alts[l.id], ex)).join('');
+  const trail = (state.trail || []).filter(id => id !== e.id).slice(-5).map(id => D.byId.get(id)).filter(Boolean);
+  st.innerHTML = (state.form && fold(state.form) !== fold(e.lemma) ? `<span>${t('st.form', '<b>{f}</b> is a form of <b>{w}</b>.', { f: esc(state.form), w: esc(srcWord) })}</span>` : '')
+    + (idiomOf(e) ? `<span>${t('st.idiom', '“{i}” is an idiom with <b>{w}</b>.', { i: esc(idiomOf(e)), w: esc(srcWord) })}</span>` : '')
+    + `<span>${esc(t('st.from', 'From {lang}:', { lang: LNAME[e.lang] }))} <b>${esc(srcWord)}</b>${sense && sense.gloss_en ? ` · ${esc(sense.gloss_en)}` : ''}${regTag(sense)}</span>`
+    + `<button class="chip play" data-act="playall" title="${esc(t('st.playall.tip', 'Play the word in all four languages'))}">▶ ${esc(t('st.playall', 'all four'))}</button>`
+    + gendersLine(q)
+    + (vis.length ? `<span>${esc(t('st.senses', 'Other senses:'))}</span>${vis.map(x => `<button class="chip" data-sense="${x.i}">${esc(x.s.gloss_en || '…')}${x.s.register ? `<small>${esc(t('regi.' + x.s.register, x.s.register))}</small>` : ''}</button>`).join('')}` : '')
+    + (others.length ? `<span>${esc(t('st.same', 'Same spelling:'))}</span>${others.map(x => `<button class="chip" data-id="${esc(x.id)}">${esc(x.lemma)}<small>${esc(t('pos.' + x.pos, x.pos))}</small></button>`).join('')}` : '')
+    + (trail.length ? `<span class="trail">${esc(t('st.trail', 'Back to:'))} ${trail.map(x => `<button class="chip" data-id="${esc(x.id)}" lang="${x.lang}">${esc(x.lemma)}</button>`).join('<span class="sep">›</span>')}</span>` : '');
+  if (!state.fresh) cards.classList.remove('enter');        // only a new word slides in, not a re-drawn card
+  cards.innerHTML = S.order.map((l, i) => card(l, q[l], alts[l], ex, i, q)).join('');
+  if (state.fresh && animOn()) { cards.classList.remove('enter'); void cards.offsetWidth; cards.classList.add('enter'); clearTimeout(render.t); render.t = setTimeout(() => cards.classList.remove('enter'), 900); }
+  state.fresh = false;
+  if (window.FLTViews) FLTViews.afterRender();
 }
 
-/* ---------- slots ---------- */
+/* ---------- search: one box for any language, and one slot per language ---------- */
+function syncClear(lang) { const i = $('#in-' + lang), b = $('#clr-' + lang); if (i && b) b.hidden = !i.value; }
+function suggestHtml(it, lang) {
+  const e = it.id ? D.byId.get(it.id) : null;
+  const art = e && e.pos === 'noun' ? article(e.lang, e, e.lemma) : '';
+  return `${lang ? flag(S.main[lang], true) : ''}${art ? `<span class="art ${gclass(e.noun.gender)}">${esc(art)}</span> ` : ''}${esc(it.w)}${e ? lvlBadge(e, true) : ''}${it.tag ? `<small>${esc(it.tag === 'recent' ? t('sg.recent', 'recent') : it.tag)}</small>` : ''}`;
+}
+/* the input behaviour shared by the slots and the any-language box */
+function wireInput(input, list, cfg) {
+  let sel = -1, items = [], timer = 0;
+  const close = () => { list.hidden = true; input.setAttribute('aria-expanded', 'false'); sel = -1; };
+  const paint = () => { [...list.children].forEach((li, i) => { li.setAttribute('aria-selected', i === sel ? 'true' : 'false'); if (i === sel) li.scrollIntoView({ block: 'nearest' }); }); };
+  const open = () => {
+    items = cfg.items(input.value);
+    if (!items.length || (items.length === 1 && fold(items[0].w) === fold(input.value))) { close(); return; }
+    list.innerHTML = items.map((it, i) => `<li role="option" data-i="${i}">${suggestHtml(it, it.lang && cfg.flags ? it.lang : null)}</li>`).join('');
+    list.hidden = false; input.setAttribute('aria-expanded', 'true'); sel = -1;
+  };
+  const pick = it => { input.value = it.w; close(); cfg.go(it); };
+  input.addEventListener('input', () => {
+    open(); if (cfg.after) cfg.after();
+    const v = input.value;
+    clearTimeout(timer);
+    if (D.ready && v.trim()) {
+      Promise.all(cfg.langs().map(l => ensureWord(l, stripKey(l, fold(v))).catch(() => {}))).then(() => { if (document.activeElement === input && input.value === v) open(); });
+      const gen = typingGen;
+      timer = setTimeout(() => { if (gen === typingGen && input.value === v && cleanTyped(v).length >= 2) cfg.live(cleanTyped(v)); }, 450);     // results as you type
+    }
+  });
+  input.addEventListener('paste', ev => {          // pasted text: spaces and punctuation around the word removed
+    const s = (ev.clipboardData || window.clipboardData).getData('text'); if (s == null) return;
+    ev.preventDefault();
+    const c = cleanTyped(s), a = input.selectionStart, b = input.selectionEnd;
+    input.value = input.value.slice(0, a) + c + input.value.slice(b);
+    input.dispatchEvent(new Event('input'));
+  });
+  input.addEventListener('focus', open);
+  input.addEventListener('blur', () => setTimeout(close, 150));
+  input.addEventListener('keydown', ev => {
+    if (ev.key === 'ArrowDown' && !list.hidden) { ev.preventDefault(); sel = (sel + 1) % items.length; paint(); }
+    else if (ev.key === 'ArrowUp' && !list.hidden) { ev.preventDefault(); sel = (sel - 1 + items.length) % items.length; paint(); }
+    else if (ev.key === 'Escape') { if (!list.hidden) close(); else input.blur(); }
+    else if (ev.key === 'Enter') {               // Enter opens the selected or the top suggestion
+      ev.preventDefault(); clearTimeout(timer);
+      const v = cleanTyped(input.value);
+      const exact = items.find(it => fold(it.w) === fold(v));
+      const it = sel >= 0 ? items[sel] : (exact || (!list.hidden && items[0]) || (v ? { w: v } : null));
+      close(); if (it) { input.value = it.w; cfg.go(it); }
+    }
+  });
+  list.addEventListener('mousedown', ev => { const li = ev.target.closest('li'); if (li) { ev.preventDefault(); pick(items[+li.dataset.i]); } });
+}
 function buildSlots() {
-  $('#slots').innerHTML = LANGS.map(l => `
-   <div class="slot" data-lang="${l.id}">
-     <div class="slot-head"><span id="flag-${l.id}">${flag(S.main[l.id])}</span><span class="lang-name">${l.name}</span>
-       <select id="var-${l.id}" aria-label="Main variant of ${l.name}">${REG[l.id].map(r => `<option value="${r}"${r === S.main[l.id] ? ' selected' : ''}>${RNAME[r]}</option>`).join('')}</select>
+  const order = S.order.map(id => LANGS.find(l => l.id === id));
+  $('#slots').innerHTML = order.map((l, k) => `
+   <div class="slot" data-lang="${l.id}" style="--i:${k}">
+     <div class="slot-head"><span id="flag-${l.id}" class="fl">${flag(S.main[l.id])}</span><span class="lang-name">${esc(LNAME[l.id])}</span><kbd class="key" title="${esc(t('kb.slot', 'Press {n} to jump here', { n: k + 1 }))}">${k + 1}</kbd>
+       <select id="var-${l.id}" aria-label="${esc(t('slot.variant', 'Main variant of {lang}', { lang: LNAME[l.id] }))}">${REG[l.id].map(r => `<option value="${r}"${r === S.main[l.id] ? ' selected' : ''}>${esc(RNAME[r])}</option>`).join('')}</select>
      </div>
      <form class="field" autocomplete="off">
-       <input id="in-${l.id}" type="text" placeholder="${l.ph}" aria-label="${l.name} word" role="combobox" aria-expanded="false" aria-controls="sg-${l.id}" autocapitalize="off" spellcheck="false">
-       <button type="submit" id="go-${l.id}">Translate</button>
+       <input id="in-${l.id}" type="text" placeholder="${esc(t('ph.' + l.id, l.ph))}" aria-label="${esc(t('slot.word', '{lang} word', { lang: LNAME[l.id] }))}" role="combobox" aria-expanded="false" aria-controls="sg-${l.id}" autocapitalize="off" spellcheck="false" lang="${l.id}">
+       <button type="button" class="clr" id="clr-${l.id}" aria-label="${esc(t('slot.clear', 'Clear'))}" hidden>×</button>
+       ${SR ? `<button type="button" class="mic" id="mic-${l.id}" aria-label="${esc(t('mic', 'Speak a word'))}" title="${esc(t('mic', 'Speak a word'))}">🎤</button>` : ''}
      </form>
+     ${CHARS[l.id] ? `<div class="chars" id="chars-${l.id}" hidden>${CHARS[l.id].map(c => `<button type="button" data-ch="${c}" tabindex="-1">${c}</button>`).join('')}</div>` : ''}
      <ul class="sugg" id="sg-${l.id}" role="listbox" hidden></ul>
-     <span class="count" id="cnt-${l.id}">&nbsp;</span>
+     <span class="count" id="cnt-${l.id}">${D.ready ? esc(t('slot.count', '{n} words', { n: num(D.count[l.id]) })) : '&nbsp;'}</span>
    </div>`).join('');
-  LANGS.forEach(l => {
-    const input = $('#in-' + l.id), list = $('#sg-' + l.id); let sel = -1, items = [];
-    $('#var-' + l.id).addEventListener('change', e => { S.main[l.id] = e.target.value; store.set('flt:settings4', S); $('#flag-' + l.id).innerHTML = flag(S.main[l.id]); if (state.status === 'done') render(); });
-    const close = () => { list.hidden = true; input.setAttribute('aria-expanded', 'false'); sel = -1; };
-    const paint = () => { [...list.children].forEach((li, i) => { li.setAttribute('aria-selected', i === sel ? 'true' : 'false'); if (i === sel) li.scrollIntoView({ block: 'nearest' }); }); };
-    const open = () => {
-      items = suggest(l.id, input.value, +S.sugg);
-      if (!items.length || (items.length === 1 && fold(items[0].w) === fold(input.value))) { close(); return; }
-      list.innerHTML = items.map((it, i) => `<li role="option" data-i="${i}">${esc(it.w)}${it.tag ? `<small>${it.tag}</small>` : ''}</li>`).join('');
-      list.hidden = false; input.setAttribute('aria-expanded', 'true'); sel = -1;
-    };
-    const pick = w => { input.value = w; close(); translate(l.id, w); };
-    input.addEventListener('input', () => {
-      open();
-      const v = input.value;
-      if (D.ready && v.trim()) ensureWord(l.id, stripKey(l.id, fold(v))).then(() => { if (document.activeElement === input && input.value === v) open(); }).catch(() => {});
+  order.forEach(l => {
+    const input = $('#in-' + l.id), list = $('#sg-' + l.id);
+    $('#var-' + l.id).addEventListener('change', ev => {
+      S.main[l.id] = ev.target.value; saveSettings();
+      const fl = $('#flag-' + l.id); fl.innerHTML = flag(S.main[l.id]);
+      if (animOn()) { fl.classList.remove('flip'); void fl.offsetWidth; fl.classList.add('flip'); }
+      if (state.status === 'done') render();
     });
-    input.addEventListener('focus', open);
-    input.addEventListener('blur', () => setTimeout(close, 120));
-    input.addEventListener('keydown', e => {
-      if (list.hidden) return;
-      if (e.key === 'ArrowDown') { e.preventDefault(); sel = (sel + 1) % items.length; paint(); }
-      else if (e.key === 'ArrowUp') { e.preventDefault(); sel = (sel - 1 + items.length) % items.length; paint(); }
-      else if (e.key === 'Escape') { close(); }
-      else if (e.key === 'Enter' && sel >= 0) { e.preventDefault(); pick(items[sel].w); }
+    $('#clr-' + l.id).addEventListener('click', () => { input.value = ''; syncClear(l.id); input.focus(); });
+    input.addEventListener('input', () => syncClear(l.id));
+    wireInput(input, list, {
+      langs: () => [l.id],
+      items: v => suggest(l.id, v, +S.sugg),
+      go: it => translate(l.id, it.w),
+      live: v => translate(l.id, v, { live: true })
     });
-    list.addEventListener('mousedown', e => { const li = e.target.closest('li'); if (li) { e.preventDefault(); pick(items[+li.dataset.i].w); } });
-    input.closest('form').addEventListener('submit', e => { e.preventDefault(); close(); const w = input.value.trim(); if (w) translate(l.id, w); });
+    input.closest('form').addEventListener('submit', ev => ev.preventDefault());
+    const bar = $('#chars-' + l.id);
+    if (bar) {          // special characters under the box while typing
+      input.addEventListener('focus', () => { bar.hidden = false; });
+      input.addEventListener('blur', () => setTimeout(() => { if (document.activeElement !== input) bar.hidden = true; }, 150));
+      bar.addEventListener('mousedown', ev => {
+        const b = ev.target.closest('[data-ch]'); if (!b) return; ev.preventDefault();
+        const a = input.selectionStart, z = input.selectionEnd; input.value = input.value.slice(0, a) + b.dataset.ch + input.value.slice(z);
+        input.setSelectionRange(a + 1, a + 1); input.dispatchEvent(new Event('input'));
+      });
+    }
+    const mic = $('#mic-' + l.id);
+    if (mic) mic.addEventListener('click', () => {          // voice input
+      try {
+        const r = new SR(); r.lang = LOCALE[l.id][S.main[l.id]]; r.interimResults = false; r.maxAlternatives = 1;
+        mic.classList.add('on');
+        r.onresult = ev => { const w = cleanTyped(ev.results[0][0].transcript); input.value = w; syncClear(l.id); translate(l.id, w); };
+        r.onerror = ev => toast(t('mic.err', 'Voice input did not work ({e}).', { e: ev.error || '?' }));
+        r.onend = () => mic.classList.remove('on');
+        r.start();
+      } catch (err) { mic.classList.remove('on'); toast(t('mic.none', 'This browser cannot listen to speech.')); }
+    });
   });
+}
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition || null;
+const CHARS = { de: ['ä', 'ö', 'ü', 'ß', 'Ä', 'Ö', 'Ü'], fr: ['é', 'è', 'ê', 'ë', 'à', 'â', 'î', 'ï', 'ô', 'û', 'ù', 'ç', 'œ', 'É'], pt: ['á', 'à', 'â', 'ã', 'é', 'ê', 'í', 'ó', 'ô', 'õ', 'ú', 'ç'] };
+/* any-language box: suggestions from all four languages; the language is the one that has the word */
+function anySuggest(v) {
+  const q = stripKey('en', fold(v)); if (!q) return [];
+  const out = [];
+  for (const l of S.order) for (const it of suggest(l, v, 5)) if (it.tag !== 'recent') out.push(Object.assign({ lang: l, ex: fold(it.w) === q ? 0 : 1 }, it));
+  const rk = it => { const e = it.id && D.byId.get(it.id); return e && e.frequency_rank || 1e9; };
+  return out.sort((a, b) => a.ex - b.ex || rk(a) - rk(b) || S.order.indexOf(a.lang) - S.order.indexOf(b.lang)).slice(0, +S.sugg);
+}
+async function detect(v) {        // which language has this word? the reader's order breaks ties
+  await Promise.all(S.order.map(l => ensureWord(l, stripKey(l, fold(v))).catch(() => {})));
+  let best = null;
+  for (const l of S.order) {
+    const r = await find(l, v).catch(() => ({ hits: [] }));
+    const h = r.hits[0]; if (!h) continue;
+    const exact = h.lemma === v ? 0 : fold(h.lemma) === fold(v) ? 1 : 2;
+    const key = [exact, TIER[h.tier] || 0, h.frequency_rank || 1e9];
+    if (!best || cmpKey(key, best.key) < 0) best = { l, key };
+  }
+  return best && best.l;
+}
+function buildAny() {
+  const input = $('#in-any'), list = $('#sg-any');
+  wireInput(input, list, {
+    flags: true,
+    langs: () => S.order,
+    items: anySuggest,
+    after: () => { $('#clr-any').hidden = !input.value; },
+    go: async it => { const l = it.lang || await detect(it.w); if (l) translate(l, it.w); else toast(t('any.none', '“{w}” is in none of the four languages here.', { w: it.w })); },
+    live: async v => { const l = await detect(v); if (l && input.value.trim() === v) translate(l, v, { live: true }); }
+  });
+  $('#clr-any').addEventListener('click', () => { input.value = ''; $('#clr-any').hidden = true; input.focus(); });
+  $('#any-form').addEventListener('submit', ev => ev.preventDefault());
+}
+function paintRecent() {
+  const el = $('#recent-any'); if (!el) return;
+  const h = P.history.slice(0, 8);
+  el.innerHTML = h.length ? `<span>${esc(t('any.recent', 'Recent:'))}</span>` + h.map(x => `<button class="chip" data-open="${esc(x.id)}" lang="${x.id.slice(0, 2)}">${flag(S.main[x.id.slice(0, 2)], true)}${esc(x.w)}</button>`).join('') : '';
+}
+async function openId(id, sense) {
+  if (!D.byId.has(id)) await ensureIds([id]);
+  const e = D.byId.get(id); if (!e) { toast(t('msg.offline', 'The data for this word is not on this device yet. Connect to the internet once to load it.')); return; }
+  state.others = findLoaded(e.lang, e.lemma); await openEntry(e, sense);
+  const top = $('#slots'); if (top && top.getBoundingClientRect().top < 0) top.scrollIntoView({ block: 'start', behavior: animOn() ? 'smooth' : 'auto' });
+}
+/* word of the day: a word of the language being learned, at the reader's level, the same all day */
+function wordOfDay() {
+  const lang = S.learning || (S.order[1] || 'de'), lv = S.myLevel;
+  const c = [];
+  for (const r of D.idx[lang]) { if (r.a) continue; const e = D.byId.get(r.id); if (e && e.tier === 'core' && ['noun', 'verb', 'adjective'].includes(e.pos) && !P.known[e.id]) { const x = levelOf(e); if (x && x.l === lv) c.push(e); } }
+  if (!c.length) return null;
+  c.sort((a, b) => a.id < b.id ? -1 : 1);
+  const day = Math.floor(Date.now() / 864e5);
+  return c[(day * 2654435761 >>> 0) % c.length];
+}
+function paintWotd() {
+  const el = $('#wotd'); if (!el || !D.ready) return;
+  const e = wordOfDay();
+  el.innerHTML = e ? `<span>${esc(t('wotd', 'Word of the day'))} ${lvlBadge(e, true)}</span><button class="chip" data-open="${esc(e.id)}" lang="${e.lang}">${flag(S.main[e.lang], true)}${e.pos === 'noun' ? artHtml(article(e.lang, e, e.lemma), e.noun && e.noun.gender) + ' ' : ''}${esc(e.lemma)}</button>` : '';
 }
 
-/* ---------- library panel: every entry that ships with the app ---------- */
-function libPaint() {
-  const total = D.byId.size;
-  $('#lib-toggle').textContent = D.ready ? `Library (${num(total)})` : 'Library';
-  if (!D.ready) { $('#lib-status').textContent = 'Loading…'; return; }
-  $('#lib-status').textContent = `The app holds ${num(LANGS.reduce((a, l) => a + D.entries[l.id], 0))} entries: ` + LANGS.map(l => `${l.name} ${num(D.entries[l.id])}`).join(', ') + `. The ${num(total)} listed here are on this device and work without an internet connection; the others load by first letter when you look them up.`;
-  const q = fold($('#lib-filter').value || '');
-  let items;
-  if (!q) items = D.top.de.concat(D.idx.de.filter(x => !x.a && x.r < 1e9).sort((a, b) => a.r - b.r).slice(60, 400)).map(x => D.byId.get(x.id));
-  else {
-    items = [];
-    for (const l of ['de', 'en', 'fr', 'pt']) { const rows = D.idx[l]; for (let i = lower(rows, q); i < rows.length && rows[i].k.startsWith(q) && items.length < 400; i++) items.push(D.byId.get(rows[i].id)); }
-  }
-  const seen = new Set(); items = items.filter(e => !seen.has(e.id) && seen.add(e.id));
-  $('#lib-list').innerHTML = items.slice(0, 400).map(e => `<button class="chip" data-id="${esc(e.id)}" lang="${e.lang}">${esc(e.lemma)}<small>${esc(e.lang.toUpperCase())}${e.level ? ' ' + esc(e.level) : ''}</small></button>`).join('')
-    + (items.length >= 400 ? '<span class="hint">Showing the first 400. Use the filter to find a word.</span>' : '') + (!items.length ? '<span class="hint">No entry starts with these letters.</span>' : '');
+/* ---------- display settings: theme, text size, motion ---------- */
+function applyDisplay() {
+  const r = document.documentElement;
+  if (S.theme === 'system') delete r.dataset.theme; else r.dataset.theme = S.theme;
+  r.style.setProperty('--zoom', String((+S.textSize || 100) / 100));
+  r.classList.toggle('anim', animOn());
+  r.classList.toggle('compact', !!S.compact);
+  r.classList.toggle('nogcolor', !S.gcolor);
+  r.lang = S.ui;
 }
-function sourcesPaint() {
-  const m = D.manifest; if (!m) return;
-  $('#src-version').textContent = `Data version ${m.version}, built ${m.built}.`;
+function applyTexts() {         // the fixed texts of the page, in the interface language
+  document.querySelectorAll('[data-t]').forEach(el => { el.textContent = t(el.dataset.t, el.dataset.en || (el.dataset.en = el.textContent)); });
+  document.querySelectorAll('[data-tph]').forEach(el => { el.placeholder = t(el.dataset.tph, el.dataset.enph || (el.dataset.enph = el.placeholder)); });
+  document.querySelectorAll('[data-tal]').forEach(el => { el.setAttribute('aria-label', t(el.dataset.tal, el.dataset.enal || (el.dataset.enal = el.getAttribute('aria-label')))); });
 }
-function initPanels() {
-  const pair = (btn, panel) => { $(btn).addEventListener('click', () => { const p = $(panel); p.hidden = !p.hidden; $(btn).setAttribute('aria-expanded', String(!p.hidden)); if (!p.hidden && panel === '#library') libPaint(); }); };
-  pair('#lib-toggle', '#library'); pair('#set-toggle', '#settings'); pair('#src-toggle', '#sources');
-  $('#lib-filter').addEventListener('input', libPaint);
-  $('#lib-list').addEventListener('click', e => { const b = e.target.closest('[data-id]'); if (b) { const x = D.byId.get(b.dataset.id); state.others = findLoaded(x.lang, x.lemma); openEntry(x); $('#slots').scrollIntoView({ block: 'start' }); } });
-  const save = () => store.set('flt:settings4', S);
-  [['variants', 's-variants'], ['gsw', 's-gsw'], ['slow', 's-slow'], ['links', 's-links']].forEach(([k, id]) => {
-    const el = $('#' + id); el.checked = !!S[k];
-    el.addEventListener('change', () => { S[k] = el.checked; save(); if (state.status === 'done') render(false); });
-  });
-  [['examples', 's-examples'], ['level', 's-level'], ['sugg', 's-sugg']].forEach(([k, id]) => {
-    const el = $('#' + id); el.value = String(S[k]);
-    el.addEventListener('change', () => { S[k] = k === 'level' ? el.value : +el.value; save(); if (state.status === 'done') render(false); });
-  });
-  $('#s-clear').addEventListener('click', async () => {
-    recent = { en: [], de: [], fr: [], pt: [] }; store.set('flt:recent3', recent);
-    let msg = 'Cleared the recent words.';
-    try { const db = await idbOpen(); await idbClear(db); msg = 'Cleared the recent words and the saved copy of the data. The data is loaded again the next time you open the app with an internet connection.'; } catch (e) {}
-    $('#s-clear-msg').textContent = msg;
-  });
-}
-$('#status').addEventListener('click', e => {
-  const b = e.target.closest('.chip'); if (!b) return;
+
+/* ---------- clicks ---------- */
+document.addEventListener('click', ev => {
+  const g = ev.target.closest('[data-gram]'); if (g && window.FLTViews) { ev.stopPropagation(); FLTViews.grammar(g.dataset.gram); return; }
+  const o = ev.target.closest('[data-open]'); if (o) { openId(o.dataset.open); return; }
+}, true);
+$('#status').addEventListener('click', ev => {
+  const b = ev.target.closest('button'); if (!b) return;
+  if (b.dataset.act === 'playall') { speakAll(headwords()); return; }
   if (b.dataset.go) { const i = b.dataset.go.indexOf(':'); translate(b.dataset.go.slice(0, i), b.dataset.go.slice(i + 1)); }
-  else if (b.dataset.sense) { state.sense = +b.dataset.sense; state.pick = {}; render(); }
-  else if (b.dataset.id) openEntry(D.byId.get(b.dataset.id));
+  else if (b.dataset.sense) { state.sense = +b.dataset.sense; state.pick = {}; setRoute(state.entry, state.sense, true); render(); }
+  else if (b.dataset.id) openId(b.dataset.id);
 });
-$('#cards').addEventListener('click', e => {
-  const s = e.target.closest('[data-say]'); if (s) { speak(s.dataset.say, s.dataset.lang); return; }
-  const p = e.target.closest('[data-pick]'); if (p) { const [l, i] = p.dataset.pick.split(':'); state.pick[l] = +i; render(); return; }
-  const b = e.target.closest('[data-extra]');
-  if (b) { const k = b.dataset.extra, l = b.dataset.lang, cur = state[k][l] || (state[k][l] = { open: false }); cur.open = !cur.open; render(false); }
+let pressTimer = 0, longPressed = false;
+$('#cards').addEventListener('pointerdown', ev => {          // hold the speaker: slow
+  const s = ev.target.closest('.say[data-say]'); if (!s) return;
+  longPressed = false; clearTimeout(pressTimer);
+  pressTimer = setTimeout(() => { longPressed = true; sayFrom(s, true); }, 500);
+});
+['pointerup', 'pointerleave', 'pointercancel'].forEach(k => $('#cards').addEventListener(k, () => clearTimeout(pressTimer)));
+function sayFrom(s, slow) {
+  if (s.dataset.ex) { const li = s.closest('li'); speakExample(li, li.dataset.text, s.dataset.lang, slow); }
+  else speak(s.dataset.say, s.dataset.lang, { slow, btn: s.classList.contains('say') ? s : null });
+}
+$('#cards').addEventListener('contextmenu', ev => { if (ev.target.closest('.say')) ev.preventDefault(); });
+$('#cards').addEventListener('click', ev => {
+  const cardEl = ev.target.closest('.card'), e = cardEl && D.byId.get(cardEl.dataset.id), lang = cardEl && cardEl.dataset.lang;
+  const s = ev.target.closest('[data-say]'); if (s) { if (longPressed) { longPressed = false; return; } sayFrom(s, false); return; }
+  const w = ev.target.closest('.ex .w'); if (w) { translate(lang, w.dataset.w); return; }        // tap a word of a sentence
+  const p = ev.target.closest('[data-pick]'); if (p) { const [l, i] = p.dataset.pick.split(':'); state.pick[l] = +i; render(); return; }
+  const g = ev.target.closest('[data-go]'); if (g) { const i = g.dataset.go.indexOf(':'); translate(g.dataset.go.slice(0, i), g.dataset.go.slice(i + 1)); return; }
+  const c = ev.target.closest('.chip[data-id]'); if (c) { openId(c.dataset.id); return; }
+  const b = ev.target.closest('[data-extra]');
+  if (b) { const k = b.dataset.extra, l = b.dataset.lang, cur = state[k][l] || (state[k][l] = { open: false }); cur.open = !cur.open; render(false); return; }
+  const a = ev.target.closest('[data-act]'); if (!a || !e) return;
+  const act = a.dataset.act;
+  if (act === 'fav') { toggleFav(e); render(false); if (animOn()) { const st = document.querySelector(`#cards .card[data-lang="${lang}"] .star`); if (st) st.classList.add('pop'); } toast(isFav(e) ? t('fav.added', 'Saved to your words.') : t('fav.removed', 'Removed from your words.')); }
+  else if (act === 'known') { if (P.known[e.id]) delete P.known[e.id]; else P.known[e.id] = { w: e.lemma, t: Date.now() }; saveP(); render(false); }
+  else if (act === 'note' || act === 'list') { state.panel[lang] = state.panel[lang] === act ? null : act; render(false); const f = $(act === 'note' ? '#note-' + lang : '#newlist-' + lang); if (f && act === 'note') f.focus(); }
+  else if (act === 'note-save') { const v = $('#note-' + lang).value.trim(); if (v) P.notes[e.id] = v; else delete P.notes[e.id]; saveP(); state.panel[lang] = null; render(false); }
+  else if (act === 'note-del') { delete P.notes[e.id]; saveP(); state.panel[lang] = null; render(false); }
+  else if (act === 'list-new') { const inp = $('#newlist-' + lang), name = inp.value.trim(); if (!name) return; let L = P.lists.find(x => x.name === name); if (!L) P.lists.push(L = { name, ids: [], w: {} }); if (!L.ids.includes(e.id)) { L.ids.push(e.id); L.w = L.w || {}; L.w[e.id] = e.lemma; } saveP(); render(false); toast(t('list.added', 'Added to “{l}”.', { l: name })); }
+  else if (act === 'link') { const url = location.href.split('#')[0] + routeOf(e, null); try { navigator.clipboard.writeText(url).then(() => toast(t('link.copied', 'Link copied: {u}', { u: url })), () => toast(url)); } catch (err) { toast(url); } }
+  else if (act === 'loop') toggleLoop(lang);
+  else if (act === 'record') { const rv = regionView(e); recordCompare(withArt(e.pos === 'noun' ? article(lang, e, rv.word) : '', rv.word), lang, a); }
+  else if (act === 'readtable') {
+    const T = tables(e, regionView(e)), x = T[+a.dataset.k]; if (!x) return;
+    const lab = r => r[0] && /^[\p{Ll}/ ]+$/u.test(r[0]) && r[0].length < 20 ? r[0] + ' ' : '';
+    speakAll(x.rows.map((r, i) => ({ text: lab(r) + r[1], lang: e.lang, btn: i === 0 ? a : null })));
+  }
+});
+$('#cards').addEventListener('change', ev => {
+  const a = ev.target.closest('[data-act="list-tog"]'); if (!a) return;
+  const cardEl = a.closest('.card'), e = D.byId.get(cardEl.dataset.id), L = P.lists[+a.dataset.k]; if (!e || !L) return;
+  if (a.checked) { if (!L.ids.includes(e.id)) L.ids.push(e.id); L.w = L.w || {}; L.w[e.id] = e.lemma; } else L.ids = L.ids.filter(x => x !== e.id);
+  saveP();
+});
+/* keyboard: / any-language box, 1-4 the slots, Esc leaves a box, ? the list of keys */
+document.addEventListener('keydown', ev => {
+  const tag = (ev.target.tagName || '').toLowerCase();
+  if (['input', 'textarea', 'select'].includes(tag) || ev.ctrlKey || ev.metaKey || ev.altKey) return;
+  if (ev.key === '/') { ev.preventDefault(); $('#in-any').focus(); }
+  else if (/^[1-4]$/.test(ev.key)) { const l = S.order[+ev.key - 1]; ev.preventDefault(); const i = $('#in-' + l); i.focus(); i.select(); }
+  else if (ev.key === '?') toast(t('kb.help', 'Keys: / search in any language · 1–4 jump to a language · Enter open the top suggestion · Esc leave the box'));
+  else if (ev.key === 'Escape' && window.FLTViews) FLTViews.closePanels();
 });
 
 /* ---------- boot ---------- */
 function offlineNote(text) { const el = $('#offline-state'); if (el) el.textContent = text; }
 async function start() {
-  buildSlots(); initPanels(); render(); libPaint();
+  applyDisplay(); applyTexts(); buildAny(); buildSlots(); render();
+  if (window.FLTViews) FLTViews.init(API);
   try {
     const { manifest, out } = await loadData(msg => { state.msg = msg; if (state.status === 'loading') render(); });
     D.manifest = manifest; buildIndex(out);
-    LANGS.forEach(l => { $('#cnt-' + l.id).textContent = num(D.count[l.id]) + ' words'; });
-    $('#lex-total').textContent = `${num(LANGS.reduce((a, l) => a + D.count[l.id], 0))} words and forms, ${num(LANGS.reduce((a, l) => a + D.entries[l.id], 0))} entries: ` + LANGS.map(l => `${l.name} ${num(D.entries[l.id])}`).join(', ') + '.';
-    loadDetails().then(() => { if (state.status === 'done') render(false); }).catch(() => {});
-    libPaint(); sourcesPaint();
-    const first = findLoaded('de', 'stehen')[0] || D.byId.get(D.top.de[0].id);
-    state.others = findLoaded(first.lang, first.lemma); await openEntry(first);
+    LANGS.forEach(l => { $('#cnt-' + l.id).textContent = t('slot.count', '{n} words', { n: num(D.count[l.id]) }); });
+    $('#lex-total').textContent = t('foot.total', '{n} words and forms, {e} entries:', { n: num(LANGS.reduce((a, l) => a + D.count[l.id], 0)), e: num(LANGS.reduce((a, l) => a + D.entries[l.id], 0)) }) + ' ' + LANGS.map(l => `${LNAME[l.id]} ${num(D.entries[l.id])}`).join(', ') + '.';
+    loadDetails().then(() => { if (state.status === 'done') render(false); if (window.FLTViews) FLTViews.dataReady(); }).catch(() => {});
+    paintRecent(); paintWotd();
+    if (window.FLTViews) FLTViews.dataReady();
+    let opened = await openRoute().catch(() => false);
+    if (!opened && P.last && P.last.id) { await ensureIds([P.last.id]); const e = D.byId.get(P.last.id); if (e) { state.others = findLoaded(e.lang, e.lemma); await openEntry(e, P.last.sense, null, null, { noRoute: true, noPlay: true }); opened = true; } }
+    if (!opened) { const first = findLoaded('de', 'stehen')[0] || D.byId.get(D.top.de[0].id); state.others = findLoaded(first.lang, first.lemma); await openEntry(first, null, null, null, { noRoute: true, noPlay: true }); }
   } catch (err) {
     state = Object.assign(state, { status: 'error', error: String(err && err.message || err), near: [] }); render();
   }
   if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
-    navigator.serviceWorker.register('sw.js').then(() => navigator.serviceWorker.ready).then(() => offlineNote('Saved on this device: the app also works without an internet connection.'))
-      .catch(() => offlineNote('Offline use is not available in this browser.'));
-  } else offlineNote('Offline use needs the app to be opened from its web address.');
+    navigator.serviceWorker.register('sw.js').then(() => navigator.serviceWorker.ready).then(() => offlineNote(t('foot.offline', 'Saved on this device: the app also works without an internet connection.')))
+      .catch(() => offlineNote(t('foot.nooffline', 'Offline use is not available in this browser.')));
+  } else offlineNote(t('foot.needweb', 'Offline use needs the app to be opened from its web address.'));
 }
-window.FLT = { D, S, find, translate, openEntry, tables, canForms, visibleSenses, quad, regionView, get state() { return state; }, ready: null };
+const API = { D, S, P, DEFAULTS, t, esc, num, flag, fold, LNAME, RNAME, REG, BASE, LOCALE, LANGS, CEFR, LVORD, levelOf, lvlBadge, article, artHtml, gclass, gname, withArt, regionView,
+  find, findLoaded, translate, openEntry, openId, ensureIds, ensureWord, speak, speakAll, voicesFor, voiceFor, get voices() { return voices; }, saveP, saveSettings, loadSettings, toast, render, applyDisplay, applyTexts,
+  buildSlots, paintRecent, paintWotd, tables, canForms, routeOf, firstTr: null, trIds, toggleFav, diffMark, animOn, quad, visibleSenses, idParts, sentenceHtml, regionScore, get state() { return state; } };
+window.FLT = Object.assign(API, { ready: null });
 window.FLT.ready = start();
 })();

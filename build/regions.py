@@ -15,6 +15,8 @@ The app puts a word marked for the reader's region before unmarked ones only if 
 marked for another region (café da manhã / pequeno-almoço) or the marker is Claude's "+"; words marked only for
 other regions go last.
 Each entry whose senses are all regional gets used_in: ["PT"].
+A core sense whose matching Wiktionary senses all carry the same register label (colloquial, formal, slang …) gets it
+in senses[].register.
 Rewrites build/work/core.json and build/work/entries_<lang>.jsonl.gz in place.  Run:  python3 -I build/regions.py"""
 import sys, os, re, json, gzip, sqlite3, zlib, collections
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -62,6 +64,27 @@ def labels(lang, tags):
 
 
 _senses = {}
+REGISTER = {'colloquial': 'colloquial', 'informal': 'colloquial', 'slang': 'slang', 'vulgar': 'vulgar', 'offensive': 'offensive',
+            'derogatory': 'derogatory', 'pejorative': 'derogatory', 'formal': 'formal', 'literary': 'literary', 'poetic': 'literary',
+            'dated': 'dated', 'archaic': 'archaic', 'obsolete': 'archaic', 'humorous': 'humorous', 'childish': 'childish', 'euphemistic': 'euphemistic'}
+_regs = {}
+
+
+def register_of(i, ks):
+    """the register label shared by all of entry i's English-edition senses that name one of ks"""
+    if i not in _regs:
+        p = i.split(':'); lang, word, pos = p[0], p[1], p[2] if len(p) > 2 else ''
+        out = []
+        for (b,) in db('enw-' + lang).execute('select data from entry where word=? and pos=?', (word, DBPOS.get(pos, pos))):
+            d = json.loads(zlib.decompress(b))
+            for x in d['senses']:
+                if x.get('form_of') or x.get('alt_of'): continue
+                out.append(((x.get('gloss') or '').lower(), [REGISTER[t] for t in x['tags'] if t in REGISTER]))
+        _regs[i] = out
+    m = [x for x in _regs[i] if match(x[0], ks)]
+    if not m or not all(x[1] for x in m): return None
+    common = set(m[0][1]).intersection(*[set(x[1]) for x in m[1:]])
+    return sorted(common)[0] if common else None
 
 
 def senses_of(i):
@@ -156,6 +179,12 @@ def main():
         else: e.pop('used_in', None)
         for s in e['senses']:
             s.pop('regional', None); s.pop('regional_origin', None)
+            if e['tier'] == 'core' and 'register' in s:
+                reg_ks = keys_of(e, s) - ({e['lemma'].lower()} if L != 'en' else set())
+                if L == 'en': reg_ks = {k for k in reg_ks if k != e['lemma'].lower()} or reg_ks
+                r = register_of(e['id'], reg_ks) if reg_ks else None
+                s['register'] = r
+                if r: st['register ' + r] += 1
             ks = None
             reg, orig = {}, {}
             for X, ids in s['translations'].items():

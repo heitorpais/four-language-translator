@@ -25,8 +25,8 @@ const results = []; const ok = (n, p, i) => results.push([n, p, i || '']);
   const setReg = (lang, r) => page.evaluate(([l, r]) => { const s = document.querySelector('#var-' + l); s.value = r; s.dispatchEvent(new Event('change')); }, [lang, r]);
   const tr = async (lang, w) => { await page.evaluate(([l, w]) => FLT.translate(l, w), [lang, w]); await page.waitForFunction(() => FLT.state.status === 'done' || FLT.state.status === 'error'); };
   const word = l => page.evaluate(l => document.querySelector('#in-' + l).value, l);
-  const pron = l => page.evaluate(l => { const c = [...document.querySelectorAll('#cards .card')][['en', 'de', 'fr', 'pt'].indexOf(l)]; return c ? c.querySelector('.pron').textContent : ''; }, l);
-  const card = l => page.evaluate(l => [...document.querySelectorAll('#cards .card')][['en', 'de', 'fr', 'pt'].indexOf(l)].textContent, l);
+  const pron = l => page.evaluate(l => { const c = document.querySelector(`#cards .card[data-lang="${l}"]`); return c ? c.querySelector('.pron').textContent : ''; }, l);
+  const card = l => page.evaluate(l => document.querySelector(`#cards .card[data-lang="${l}"]`).textContent, l);
 
   const cases = [
     // [region settings, source lang, word, target lang, expected]
