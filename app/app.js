@@ -283,8 +283,10 @@ async function find(lang, word) {
   const w = word.trim(), lw = w.toLowerCase(), sk = stripKey(lang, lw);
   // the letter file may be missing offline: then only the words already on this device can be found
   let missing = false;
-  await Promise.all([ensureWord(lang, sk), sk !== lw ? ensureWord(lang, w) : null].map(p => p && p.catch(() => { missing = true; })));
   const ssw = w.replace(/ß/g, 'ss');               // Swiss spelling: Strasse is Straße
+  const loading = Promise.all([ensureWord(lang, sk), sk !== lw ? ensureWord(lang, w) : null].map(p => p && p.catch(() => { missing = true; })));
+  // a common word spelled exactly as typed is already on the device: answer at once, the letter file loads meanwhile
+  if (!findLoaded(lang, w).some(e => e.tier === 'core' && (e.lemma === w || e.lemma.replace(/ß/g, 'ss') === ssw))) await loading;
   const exact = x => (x === w || x.replace(/ß/g, 'ss') === ssw) ? 0 : (x.toLowerCase() === lw || stripKey(lang, x.toLowerCase()) === sk) ? 1 : 2;
   const cand = new Map();
   const put = (e, ex, isForm) => {
@@ -405,8 +407,9 @@ async function translate(lang, word, opts) {
   if (!D.ready) { toast(t('msg.loading', 'The dictionary data is still loading.')); return; }
   const my = ++seq;
   let res;
-  try { res = await find(lang, word); }
-  catch (err) { if (my === seq && !opts.live) { state = Object.assign({}, state, { status: 'error', error: t('msg.offline', 'The data for this word is not on this device yet. Connect to the internet once to load it.'), near: [] }); render(); } return; }
+  const slow = opts.live ? 0 : setTimeout(() => { if (my === seq) { const st = $('#status'); if (st) st.innerHTML = `<span>${esc(t('msg.looking', 'Looking up “{w}”…', { w: word }))}</span>`; } }, 200);
+  try { res = await find(lang, word); clearTimeout(slow); }
+  catch (err) { clearTimeout(slow); if (my === seq && !opts.live) { state = Object.assign({}, state, { status: 'error', error: t('msg.offline', 'The data for this word is not on this device yet. Connect to the internet once to load it.'), near: [] }); render(); } return; }
   if (my !== seq) return;
   if (!res.hits.length) {
     if (opts.live) return;             // while typing, a half word is not an error
@@ -1002,14 +1005,21 @@ function wireInput(input, list, cfg) {
     if (ev.key === 'ArrowDown' && !list.hidden) { ev.preventDefault(); sel = (sel + 1) % items.length; paint(); }
     else if (ev.key === 'ArrowUp' && !list.hidden) { ev.preventDefault(); sel = (sel - 1 + items.length) % items.length; paint(); }
     else if (ev.key === 'Escape') { if (!list.hidden) close(); else input.blur(); }
-    else if (ev.key === 'Enter') {               // Enter opens the selected or the top suggestion
-      ev.preventDefault(); clearTimeout(timer);
-      const v = cleanTyped(input.value);
-      const exact = items.find(it => fold(it.w) === fold(v));
-      const it = sel >= 0 ? items[sel] : (exact || (!list.hidden && items[0]) || (v ? { w: v } : null));
-      close(); if (it) { input.value = it.w; cfg.go(it); }
-    }
+    else if (ev.key === 'Enter' || ev.keyCode === 13) { ev.preventDefault(); enter(); }
   });
+  /* Enter opens the selected or the top suggestion. Phone keyboards often send no Enter key while a word is being
+     typed, only a form submission, so the form's submit does the same. */
+  function enter() {
+    clearTimeout(timer);
+    const v = cleanTyped(input.value);
+    if (v) items = cfg.items(input.value);
+    const exact = items.find(it => fold(it.w) === fold(v));
+    const it = sel >= 0 && !list.hidden ? items[sel] : (exact || items[0] || (v ? { w: v } : null));
+    close(); if (!it) return;
+    input.value = it.w; cfg.go(it);
+    if (matchMedia('(pointer: coarse)').matches) input.blur();      // on a phone: close the keyboard so the cards show
+  }
+  input.closest('form').addEventListener('submit', ev => { ev.preventDefault(); enter(); });
   list.addEventListener('mousedown', ev => { const li = ev.target.closest('li'); if (li) { ev.preventDefault(); pick(items[+li.dataset.i]); } });
 }
 function buildSlots() {
@@ -1044,7 +1054,6 @@ function buildSlots() {
       go: it => translate(l.id, it.w),
       live: v => translate(l.id, v, { live: true })
     });
-    input.closest('form').addEventListener('submit', ev => ev.preventDefault());
     const bar = $('#chars-' + l.id);
     if (bar) {          // special characters under the box while typing
       input.addEventListener('focus', () => { bar.hidden = false; });
@@ -1101,7 +1110,6 @@ function buildAny() {
     live: async v => { const l = await detect(v); if (l && input.value.trim() === v) translate(l, v, { live: true }); }
   });
   $('#clr-any').addEventListener('click', () => { input.value = ''; $('#clr-any').hidden = true; input.focus(); });
-  $('#any-form').addEventListener('submit', ev => ev.preventDefault());
 }
 function paintRecent() {
   const el = $('#recent-any'); if (!el) return;
