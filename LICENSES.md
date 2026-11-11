@@ -42,7 +42,7 @@ which are counted from the OpenSubtitles 2018 corpus (https://opus.nlpl.eu/OpenS
 The app ships its own fonts (folder `app/fonts`), taken from the Fontsource packages on npm:
 
 - IBM Plex Sans and IBM Plex Mono, Copyright 2019 IBM Corp. (`app/fonts/OFL-IBM-Plex.txt`)
-- Newsreader, Copyright 2020 The Newsreader Project Authors (`app/fonts/OFL-Newsreader.txt`)
+- Source Serif 4, Copyright 2014–2023 Adobe (`app/fonts/OFL-Source-Serif-4.txt`)
 
 ## Fields written by an AI
 
