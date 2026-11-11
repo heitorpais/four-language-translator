@@ -339,7 +339,11 @@ The owner approved all of Phase 5 at once, together with 100 further ideas. Ever
   device asks for reduced motion), keyboard: `/` search, `1`–`4` languages, `?` help.
 - **Noun or verb first** (`pos_share`, core entries of en/fr/pt that are both): `build/pos_share.py` counts in the
   Tatoeba sentences the forms only one of them has and the shared spelling after typical words (a/the/le/o → noun;
-  to/I/je/vou → verb); the higher share opens first. English modal verbs (can, may, must, shall, will, should) have
+  to/I/je/vou → verb); the higher share opens first. The same step sets `pos_order` for every spelling with several
+  core entries (and: conjunction first): entries whose Wiktionary senses are all rare, obsolete, archaic, dialectal or
+  nonstandard ("to and"), entries with no meaning left and all-capital abbreviations (AND) go last and lose their
+  frequency rank; the others are ordered by their most common same-part-of-speech translation and how many distinct
+  translations they have. English modal verbs (can, may, must, shall, will, should) have
   class `modal`: no -s, no -ing, no participle, no auxiliary.
 - **Not done:** a "verified" badge is shown only for entries marked `verified: true`; no entry is marked yet.
   "Report a mistake" opens a prefilled GitHub issue.

@@ -291,7 +291,7 @@ async function find(lang, word) {
   const cand = new Map();
   const put = (e, ex, isForm) => {
     const nTr = e.senses.reduce((a, s) => a + Object.values(s.translations).reduce((b, l) => b + l.length, 0), 0);
-    const key = [ex, TIER[e.tier] || 0, isForm, e.frequency_rank || 1e9, -(e.pos_share == null ? 0.5 : e.pos_share), -nTr, POSR[e.pos] == null ? 9 : POSR[e.pos]];     // pos_share: verb or noun first (build/pos_share.py)
+    const key = [ex, TIER[e.tier] || 0, isForm, e.frequency_rank || 1e9, e.pos_order || 0, -(e.pos_share == null ? 0.5 : e.pos_share), -nTr, POSR[e.pos] == null ? 9 : POSR[e.pos]];     // pos_order: which of several entries with one spelling opens first (build/pos_share.py)
     const old = cand.get(e.id);
     if (!old || cmpKey(key, old.key) < 0) cand.set(e.id, { e, key, isForm });
   };
@@ -299,9 +299,15 @@ async function find(lang, word) {
   const fr = formRows(lang, w);
   if (fr.length) {
     await ensureIds(fr.flatMap(r => r.ids));
-    for (const r of fr) for (const id of r.ids) { const e = D.byId.get(id); if (e) put(e, exact(r.w), 1); }
+    for (const r of fr) for (const id of r.ids) {
+      const e = D.byId.get(id); if (!e) continue;
+      // a modal verb has no -s or participle: "cans" is the plural of the noun, not a form of "can"
+      if (e.lang === 'en' && e.verb && e.verb.class === 'modal' && fold(r.w) !== fold(e.verb.principal_parts && e.verb.principal_parts[1] || '')) continue;
+      put(e, exact(r.w), 1);
+    }
   }
-  const list = [...cand.values()].sort((a, b) => cmpKey(a.key, b.key));
+  let list = [...cand.values()].sort((a, b) => cmpKey(a.key, b.key));
+  if (list.some(x => x.e.senses.length)) list = list.filter(x => x.e.senses.length);     // an entry with no meaning left is never shown
   if (!list.length && !word.__alt && lang === 'de' && /ae|oe|ue/i.test(w)) {      // Baer, schoen, Muell: ä ö ü typed as ae oe ue
     const alt = Object.assign(new String(w.replace(/ae/g, 'ä').replace(/oe/g, 'ö').replace(/ue/g, 'ü').replace(/Ae/g, 'Ä').replace(/Oe/g, 'Ö').replace(/Ue/g, 'Ü')), { __alt: 1 });
     if (String(alt) !== w) { const r = await find(lang, alt); if (r.hits.length) return r; }

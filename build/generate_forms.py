@@ -571,6 +571,12 @@ def main():
             first = {'can': r'\bable\b', 'should': r'obligation'}.get(e['lemma'])
             if first:
                 e['senses'].sort(key=lambda x: 0 if re.search(first, x.get('gloss_en') or '') else 1)
+            # senses of the other, ordinary verb with the same spelling (to can = to preserve in cans; to will = to bequeath)
+            # do not belong to the modal verb; they are dropped here
+            other = {'can': r'preserv|discard|shut up|fire or dismiss|^to can\b', 'will': r'bequeath|^to will$'}.get(e['lemma'])
+            if other:
+                keep = [x for x in e['senses'] if not re.search(other, x.get('gloss_en') or '')]
+                if keep: st_drop = len(e['senses']) - len(keep); e['senses'] = keep; stat[key]['senses of the ordinary verb dropped'] += st_drop
             stat[key]['modal verbs'] += 1
             continue
         ref = ref_table(e, src)
