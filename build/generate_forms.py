@@ -172,7 +172,18 @@ def en_s(w):
     return w + 's'
 
 
+# English modal verbs: no -s, no -ing, no participle, no perfect; only a past / conditional form where one exists
+MODALS = {'can': 'could', 'may': 'might', 'shall': 'should', 'will': 'would', 'must': None, 'should': None, 'would': None,
+          'might': None, 'could': None, 'ought': None}
+NEGATIVE = {'can': "cannot / can't", 'could': "could not / couldn't", 'may': 'may not', 'might': "might not / mightn't",
+            'must': "must not / mustn't", 'shall': "shall not / shan't", 'should': "should not / shouldn't", 'will': "will not / won't",
+            'would': "would not / wouldn't", 'ought': "ought not to / oughtn't to"}
+
+
 def en_verb(lemma, v, irr):
+    if v.get('class') == 'modal':
+        pp = v.get('principal_parts') or [lemma, None, None]
+        return {k: x for k, x in {'3sg': lemma, 'past': pp[1]}.items() if x}
     head, _, rest = lemma.partition(' ')
     tail = (' ' + rest) if rest else ''
     pp = v.get('principal_parts') or [lemma, None, None]
@@ -553,6 +564,15 @@ def main():
         if key not in GEN or e.get(e['pos']) is None: continue
         blk = e[e['pos']]
         blk['irregular_forms'] = {}
+        if key == ('en', 'verb') and e['lemma'] in MODALS:      # modal verb: Wiktionary's rule forms (canned, mayed) are wrong
+            blk.update({'regular': None, 'class': 'modal', 'aux': None, 'aux_regional': {}, 'present_3sg': e['lemma'],
+                        'principal_parts': [e['lemma'], MODALS[e['lemma']], None]})
+            # the modal meaning first (can: "to be able to" before "to preserve in cans"); hidden senses keep their place
+            first = {'can': r'\bable\b', 'should': r'obligation'}.get(e['lemma'])
+            if first:
+                e['senses'].sort(key=lambda x: 0 if re.search(first, x.get('gloss_en') or '') else 1)
+            stat[key]['modal verbs'] += 1
+            continue
         ref = ref_table(e, src)
         if not ref:
             stat[key]['entries without a Wiktionary table'] += 1; continue

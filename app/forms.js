@@ -126,6 +126,9 @@
     return w + 's';
   }
   function enVerb(lemma, v) {
+    if (v.class === 'modal') {               // can, may, must …: no -s, no -ing, no participle
+      const o = { '3sg': lemma }; if (v.principal_parts && v.principal_parts[1]) o.past = v.principal_parts[1]; return o;
+    }
     const i = lemma.indexOf(' ');
     const head = i < 0 ? lemma : lemma.slice(0, i), tail = i < 0 ? '' : ' ' + lemma.slice(i + 1);
     const pp = v.principal_parts || [lemma, null, null];

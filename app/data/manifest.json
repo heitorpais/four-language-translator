@@ -7348,9 +7348,9 @@
   },
   {
    "file": "core-en.json",
-   "bytes": 16066548,
-   "gzip_bytes": 2363094,
-   "sha256": "1d13f4a0cc827177",
+   "bytes": 16203773,
+   "gzip_bytes": 2404529,
+   "sha256": "d71904f7db673f23",
    "tier": "core",
    "lang": "en",
    "entries": 14785
@@ -7359,7 +7359,7 @@
    "file": "details-en.json",
    "bytes": 37193218,
    "gzip_bytes": 7530421,
-   "sha256": "6a280a13243b4d2c",
+   "sha256": "39cbc14b6673f780",
    "tier": "details",
    "lang": "en",
    "entries": 14785
@@ -19543,9 +19543,9 @@
   },
   {
    "file": "core-fr.json",
-   "bytes": 10731528,
-   "gzip_bytes": 1460134,
-   "sha256": "ef3c3af3e5758332",
+   "bytes": 10737030,
+   "gzip_bytes": 1463136,
+   "sha256": "a06b041eac2198bd",
    "tier": "core",
    "lang": "fr",
    "entries": 10113
@@ -32178,9 +32178,9 @@
   },
   {
    "file": "core-pt.json",
-   "bytes": 9894718,
-   "gzip_bytes": 1407468,
-   "sha256": "6338d99ac9621bb8",
+   "bytes": 9897002,
+   "gzip_bytes": 1408852,
+   "sha256": "0e4dab56d28e2185",
    "tier": "core",
    "lang": "pt",
    "entries": 9840
@@ -37362,9 +37362,9 @@
   },
   {
    "file": "source_gaps.json",
-   "bytes": 72885,
-   "gzip_bytes": 12392,
-   "sha256": "badc0fb85b14685b",
+   "bytes": 73083,
+   "gzip_bytes": 12428,
+   "sha256": "0fe6e443c8dd828c",
    "tier": "build-info"
   }
  ],

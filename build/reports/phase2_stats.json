@@ -58,13 +58,13 @@
   [
    "en",
    "verb",
-   4423,
-   13,
-   17685,
-   99.26,
+   4417,
+   12,
+   17663,
+   99.27,
    100.0,
-   131,
-   128
+   129,
+   126
   ],
   [
    "fr",
@@ -133,9 +133,9 @@
    112
   ]
  ],
- "total_forms": 483615,
+ "total_forms": 483593,
  "rule_match_percent": 98.01,
  "final_match_percent": 100.0,
- "stored_irregular_forms": 4383,
- "rule_mismatches": 9634
+ "stored_irregular_forms": 4381,
+ "rule_mismatches": 9632
 }

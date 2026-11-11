@@ -337,6 +337,10 @@ The owner approved all of Phase 5 at once, together with 100 further ideas. Ever
 - **Settings** in three groups (Display, Audio, Data), reset to defaults, welcome box ("I speak / I am learning /
   my level") that orders the four boxes, themes Device/Light/Dark/Midnight, text size, animations (off when the
   device asks for reduced motion), keyboard: `/` search, `1`–`4` languages, `?` help.
+- **Noun or verb first** (`pos_share`, core entries of en/fr/pt that are both): `build/pos_share.py` counts in the
+  Tatoeba sentences the forms only one of them has and the shared spelling after typical words (a/the/le/o → noun;
+  to/I/je/vou → verb); the higher share opens first. English modal verbs (can, may, must, shall, will, should) have
+  class `modal`: no -s, no -ing, no participle, no auxiliary.
 - **Not done:** a "verified" badge is shown only for entries marked `verified: true`; no entry is marked yet.
   "Report a mistake" opens a prefilled GitHub issue.
 

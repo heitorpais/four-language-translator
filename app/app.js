@@ -291,7 +291,7 @@ async function find(lang, word) {
   const cand = new Map();
   const put = (e, ex, isForm) => {
     const nTr = e.senses.reduce((a, s) => a + Object.values(s.translations).reduce((b, l) => b + l.length, 0), 0);
-    const key = [ex, TIER[e.tier] || 0, isForm, e.frequency_rank || 1e9, -nTr, POSR[e.pos] == null ? 9 : POSR[e.pos]];
+    const key = [ex, TIER[e.tier] || 0, isForm, e.frequency_rank || 1e9, -(e.pos_share == null ? 0.5 : e.pos_share), -nTr, POSR[e.pos] == null ? 9 : POSR[e.pos]];     // pos_share: verb or noun first (build/pos_share.py)
     const old = cand.get(e.id);
     if (!old || cmpKey(key, old.key) < 0) cand.set(e.id, { e, key, isForm });
   };
@@ -546,6 +546,11 @@ function tables(e, rv) {
     T = [sec('Steigerung (comparison)', [['Positiv', e.lemma, false], row('Komparativ', 'comp'), row('Superlativ', 'sup')]),
       deg(['strong', 'Stark: no article (m · f · n · pl)']), deg(['weak', 'Schwach: after der, die, das']), deg(['mixed', 'Gemischt: after ein, kein, mein'])];
     if (b.comparison === null && !stored.comp) T[0].rows = T[0].rows.slice(0, 1);
+  } else if (pos === 'verb' && lang === 'en' && b.class === 'modal') {
+    const NEG = { can: "cannot / can't", could: "could not / couldn't", may: 'may not', might: "might not / mightn't", must: "must not / mustn't", shall: "shall not / shan't", should: "should not / shouldn't", will: "will not / won't", would: "would not / wouldn't", ought: "ought not to" };
+    const to = e.lemma === 'ought' ? ' to' : '';
+    T = [sec('Modal verb', [['I / you / he / she / we / they', e.lemma + to + ' go', false], f.past ? ['past and conditional', f.past + ' go', false] : null, NEG[e.lemma] ? ['negative', NEG[e.lemma], false] : null,
+      ['', 'No -s, no -ing form, no participle: he ' + e.lemma + to + ', not he ' + e.lemma + 's', false]])];
   } else if (pos === 'verb' && lang === 'en') {
     T = [sec('Forms', [['base form', e.lemma, false], row('he / she / it', '3sg'), row('-ing form', 'ing'), row('past', 'past'), row('past participle', 'pp'), f.pp ? ['perfect', 'has ' + f.pp, irr('pp')] : null])];
   } else if (pos === 'verb' && lang === 'fr') {
@@ -779,11 +784,12 @@ function summary(e, rv, art) {
       const base = e.lemma, irr = v.regular === false;
       const diffMark = (a, b, vowels) => irr ? diffMarkRaw(a, b, vowels) : esc(b);
       if (lang === 'de') { const ax = (rv.aux || 'haben').split('/').map(x => x === 'sein' ? 'ist' : 'hat').join('/'); const p2 = pp[2] && pp[2].startsWith('ge') && !base.startsWith('ge') ? 'ge' + diffMark(base, pp[2].slice(2), true) : pp[2] && diffMark(base, pp[2], true); [v.present_3sg && diffMark(base, v.present_3sg, true), pp[1] && diffMark(base, pp[1], true), p2 ? esc(ax) + ' ' + p2 : null].filter(Boolean).forEach(x => parts.push(`<span class="form">${x}</span>`)); }
+      else if (lang === 'en' && v.class === 'modal') { if (pp[1]) parts.push(`<span class="form">${esc(pp[1])}</span>`); parts.push(`<span class="sub inl">${esc(t('sum.modal', 'modal verb: no -s, no participle'))}</span>`); }
       else if (lang === 'en') { const f = FLTForms.forms(e); [f['3sg'] && esc(f['3sg']), pp[1] && diffMark(base, pp[1], true), pp[2] && 'has ' + diffMark(base, pp[2], true)].filter(Boolean).forEach(x => parts.push(`<span class="form">${x}</span>`)); }
       else if (lang === 'fr') [pp[1] ? esc(frJe(pp[1])) : null, pp[2] ? (rv.aux === 'être' ? 'je suis ' + esc(pp[2]) + '(e)' : "j'ai " + esc(pp[2])) : null].filter(Boolean).forEach(x => parts.push(`<span class="form">${x}</span>`));
       else pp.slice(1).filter(Boolean).forEach(x => parts.push(`<span class="form">${diffMark(base, x, true)}</span>`));
     }
-    if (rv.aux) parts.push(`<button class="aux"${lang === 'de' ? ' data-gram="perfect_de"' : lang === 'fr' ? ' data-gram="fr_passe"' : ''} title="${esc(t('row.aux', 'Auxiliary'))}">+ ${esc(rv.aux.replace('/', ' / '))}</button>`);
+    if (rv.aux && (lang === 'de' || lang === 'fr')) parts.push(`<button class="aux"${lang === 'de' ? ' data-gram="perfect_de"' : lang === 'fr' ? ' data-gram="fr_passe"' : ''} title="${esc(t('row.aux', 'Auxiliary'))}">+ ${esc(rv.aux.replace('/', ' / '))}</button>`);
   } else if (e.pos === 'adjective' && a) {
     if (a.comparison) parts.push(`<span class="form">${a.comparison.filter(Boolean).map(x => diffMark(e.lemma, x)).join(' · ')}</span>`);
     else if (a.agreement) parts.push(`<span class="form">${a.agreement.filter(Boolean).map(esc).join(' · ')}</span>`);
@@ -864,7 +870,7 @@ function card(lang, e, alts, ex, i, q) {
   // essentials, in the same order on every card
   const ui = usedIn(e, e === state.entry ? null : sn), R = S.main[lang].toUpperCase();
   if (ui && !ui.includes(R)) ess.push(['usedin', ui.length ? ui.map(r => flag(r.toLowerCase(), true) + esc(RNAME[r.toLowerCase()])).join(' &nbsp;') + ` <span class="sub">${esc(t('usedin.not', 'not usual in {r}', { r: RNAME[S.main[lang]] }))}</span>` : `<span class="sub">${esc(t('usedin.other', 'regional (not one of the regions offered here)'))}</span>`]);
-  if (v && (v.regular !== null || v.class)) ess.push(['verb', `${badge(v.regular)} ${gram('irregular_' + lang)}${/separable|trennbar/i.test(v.class || '') ? gram('separable') : ''}${v.class ? `<span class="sub">${esc(v.class + (lang === 'de' ? ' verb' : ''))}</span>` : ''}`]);
+  if (v && (v.regular !== null || v.class)) ess.push(['verb', `${badge(v.regular)}${v.regular !== null ? ' ' + gram('irregular_' + lang) : ''}${/separable|trennbar/i.test(v.class || '') ? gram('separable') : ''}${v.class && !['regular', 'irregular'].includes(v.class) ? `<span class="sub">${esc(t('vclass.' + v.class, v.class) + (lang === 'de' ? ' verb' : ''))}</span>` : ''}`]);
   if (e.governs && e.governs.length) ess.push([lang === 'de' ? 'gov' : 'govx',
     `<ul class="gov">${e.governs.map(g => { const cases = g.case ? g.case.split('/') : []; const pat = g.pattern || (e.lemma + (g.prep ? ' ' + g.prep : '')); return `<li><span class="pat">${esc(pat)}</span>${cases.map(c => ` <button class="case c-${esc(c)}" data-gram="cases" title="${esc(CASENAME[c] || c)}">${esc(c)}</button>`).join('')}${g.meaning ? `<span class="sub" lang="en">${esc(g.meaning)}</span>` : ''}</li>`; }).join('')}</ul>`]);
   const chipFlags = id => { const p = sn && sn.regional ? plainRegions(sn.regional[id]) : null; return p && p.length ? p.map(r => flag(r.toLowerCase(), true)).join('') : ''; };
