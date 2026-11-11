@@ -1,8 +1,9 @@
 /* Service worker: keeps the app and its data on the device so it opens without a connection.
    - app files (index.html, app.js, forms.js): served from the saved copy, refreshed in the background
    - data/manifest.json: network first, saved copy when offline
-   - other data files: saved copy first (their address carries a version, so a new version is a new address) */
-const SHELL = 'flt-shell-v2', DATA = 'flt-data-v1';
+   - other data files: saved copy first (their address carries a version, so a new version is a new address).
+     Core and details files are saved at install; the files of the other words when first used. */
+const SHELL = 'flt-shell-v3', DATA = 'flt-data-v2';
 const APP_FILES = ['./', 'index.html', 'app.js', 'forms.js', 'fonts.css',
   'fonts/ibm-plex-mono-latin-400-normal.woff2', 'fonts/ibm-plex-mono-latin-500-normal.woff2', 'fonts/ibm-plex-mono-latin-ext-400-normal.woff2', 'fonts/ibm-plex-mono-latin-ext-500-normal.woff2', 'fonts/ibm-plex-sans-latin-400-normal.woff2', 'fonts/ibm-plex-sans-latin-500-normal.woff2', 'fonts/ibm-plex-sans-latin-600-normal.woff2', 'fonts/ibm-plex-sans-latin-ext-400-normal.woff2', 'fonts/ibm-plex-sans-latin-ext-500-normal.woff2', 'fonts/ibm-plex-sans-latin-ext-600-normal.woff2', 'fonts/newsreader-latin-ext-opsz-italic.woff2', 'fonts/newsreader-latin-ext-opsz-normal.woff2', 'fonts/newsreader-latin-opsz-italic.woff2', 'fonts/newsreader-latin-opsz-normal.woff2'];
 
@@ -16,7 +17,7 @@ self.addEventListener('install', event => {
       if (res.ok) {
         await data.put('data/manifest.json', res.clone());
         const manifest = await res.json();
-        await Promise.all(manifest.files.filter(f => f.tier === 'core').map(f => data.add('data/' + f.file + '?v=' + f.sha256)));
+        await Promise.all(manifest.files.filter(f => f.tier === 'core' || f.tier === 'details').map(f => data.add('data/' + f.file + '?v=' + f.sha256)));
       }
     } catch (e) { /* the page loads the data itself; this copy is a second safety net */ }
     await self.skipWaiting();

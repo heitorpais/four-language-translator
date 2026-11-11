@@ -532,8 +532,21 @@ def fit(e, ref):
 
 
 def main():
-    entries = rjson(os.path.join(WORK, 'entries_enriched.json'))
-    src = {'de': rjson(os.path.join(WORK, 'de_tables.json')), 'en': load('en_entries.pkl'), 'fr': load('enw_fr.pkl'), 'pt': load('enw_pt.pkl')}
+    entries = rjson(os.path.join(WORK, 'core.json'))
+    src = {'de': {}, 'en': collections.defaultdict(list), 'fr': collections.defaultdict(list), 'pt': collections.defaultdict(list)}
+    import gzip
+    for L in list(LANGS) + ['library']:
+        fn = os.path.join(WORK, 'tables_%s.jsonl.gz' % L)
+        if not os.path.exists(fn): continue
+        for line in gzip.open(fn, 'rt', encoding='utf-8'):
+            i, t = json.loads(line)
+            if i not in entries: continue
+            lang = i.split(':')[0]
+            if lang == 'de': src['de'][i] = {'dewikt': t['dewikt'], 'enwikt': t['enwikt']}
+            else:
+                lemma = entries[i]['lemma']
+                if not src[lang].get(lemma) or all(POS_MAP.get(d['pos']) != entries[i]['pos'] for d in src[lang][lemma]):
+                    src[lang][lemma] += t['enw']
     stat = collections.defaultdict(collections.Counter); mism = []
     for i, e in entries.items():
         key = (e['lang'], e['pos'])
@@ -555,7 +568,7 @@ def main():
         for k in bad_rule: mism.append((i, k, rule.get(k, ''), ' / '.join(ref[k]), 'stored' if k in irr else 'derived from a stored form', 'ok' if k not in bad_final else 'STILL WRONG'))
         if irr: e['origin'][e['pos'] + '.irregular_forms'] = 'wiktionary'
         if e['pos'] == 'verb' and e['lang'] == 'de' and blk.get('class') != 'weak': pass
-    wjson(os.path.join(WORK, 'entries_forms.json'), entries)
+    wjson(os.path.join(WORK, 'core.json'), entries)
     rows = []
     for key in sorted(stat):
         s = stat[key]

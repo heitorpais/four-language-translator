@@ -32,6 +32,7 @@
 | en:train:noun | IPA | treɪn | ˈtɹeɪn | entries.js |
 | fr:aider:verb | IPA | e.de | ɛ.de | entries.js |
 | fr:aimer:verb | IPA | e.me | ɛ.me | entries.js |
+| fr:bus:noun | gender | m | m/f | entries.js |
 | fr:souvenir:verb | IPA | sə suv.niʁ | su.v(ə).niʁ | entries.js |
 | fr:être debout:verb | IPA | ɛtʁ də.bu | ɛ.tʁə d(ə).bu | entries.js |
 | pt:ajudar:verb | IPA | a.ʒuˈda(ʁ) | a.ʒuˈda(h) | index.html |
@@ -75,9 +76,12 @@
 
 ## Entries added because the library has them
 
-- en:cell phone:noun (from Wiktionary)
-- pt:reconhecer:verb (from Wiktionary)
-- pt:estrada:noun (from Wiktionary)
+- en:cell phone:noun (moved up from the extended or long-tail tier)
+- pt:café da manhã:noun (moved up from the extended or long-tail tier)
+- fr:bus:noun (moved up from the extended or long-tail tier)
+- fr:être debout:verb (moved up from the extended or long-tail tier)
+- de:neunzig:numeral (moved up from the extended or long-tail tier)
+- fr:quatre-vingt-dix:numeral (moved up from the extended or long-tail tier)
 
 ## Saved fields kept as origin "claude"
 
@@ -85,11 +89,10 @@
 - governs: 30
 - governs.library: 33
 - level: 99
-- more.antonyms: 10
 - more.collocations: 96
-- more.etymology: 4
+- more.etymology: 2
 - regional_variants: 46
-- sense link: 4
+- sense link: 1
 - swiss_german: 24
-- synonyms: 73
+- synonyms: 17
 - usage_note: 21

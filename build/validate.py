@@ -1,10 +1,10 @@
-"""Check the shipped data (app/data).  Exits with status 1 if any check fails.
-  1. every entry matches the format (spec section 4)
+"""Check the shipped data (app/data), all tiers.  Exits with status 1 if any check fails.
+  1. every entry matches the format of its tier (spec section 4: core full, extended and long tail reduced)
   2. every id that an entry points to exists (translations, synonyms, links.json)
   3. no core entry is missing IPA, gender (nouns), plural (nouns) or aux (verbs) unless the source has none
      (such gaps must be listed in source_gaps.json; a listed gap that is filled is an error too)
   4. no duplicate ids
-  5. manifest.json matches the files
+  5. manifest.json matches the files, and every extended/long-tail entry and form is in the bucket of its first letters
 Run:  python3 -I build/validate.py"""
 import sys, os, re, json, collections
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -16,7 +16,12 @@ TOP = {'id': str, 'lang': str, 'lemma': str, 'pos': str, 'level': (str, type(Non
        'ipa': dict, 'noun': (dict, type(None)), 'verb': (dict, type(None)), 'adjective': (dict, type(None)),
        'governs': list, 'senses': list, 'regional_variants': list, 'swiss_german': (dict, type(None)),
        'synonyms': list, 'synonyms_text': list, 'examples': list, 'more': dict, 'usage_note': (str, type(None)),
-       'origin': dict, 'verified': bool}
+       'origin': dict, 'verified': bool, 'tier': str}
+SLIM = {'ext': {'id', 'lang', 'lemma', 'pos', 'tier', 'level', 'frequency_rank', 'ipa', 'senses', 'origin'},
+        'tail': {'id', 'lang', 'lemma', 'pos', 'tier', 'senses', 'origin'}}
+SENSE = {'core': {'id', 'gloss_en', 'gloss', 'register', 'translations', 'route', 'origin'},
+         'ext': {'id', 'gloss_en', 'translations', 'route', 'origin'}, 'tail': {'id', 'translations', 'route', 'origin'}}
+ROUTES = {'de-edition', 'fr-edition', 'pt-edition', 'en-edition', 'via-en', 'via-en-unchecked', 'library', 'none'}
 NOUN = {'gender', 'plural', 'plural_alt', 'plural_rule', 'plural_regular', 'genitive', 'irregular_forms'}
 VERB = {'regular', 'class', 'aux', 'aux_regional', 'principal_parts', 'present_3sg', 'irregular_forms'}
 ADJ = {'agreement', 'comparison', 'comparison_regular', 'irregular_forms'}
@@ -26,6 +31,40 @@ errors = collections.defaultdict(list)
 
 def err(check, msg):
     errors[check].append(msg)
+
+
+def check_senses(e, F):
+    sid = set(); tier = e.get('tier')
+    for s in e['senses']:
+        keys = set(s) - {'reverse'}
+        if keys != SENSE.get(tier, set()): F('bad sense keys %s' % sorted(keys ^ SENSE.get(tier, set()))); continue
+        if s['id'] in sid: F('duplicate sense id')
+        sid.add(s['id'])
+        for l, ids in s['translations'].items():
+            if l not in LANGS or l == e['lang'] or not isinstance(ids, list): F('bad translations in ' + s['id'])
+            if s['route'].get(l) not in ROUTES: F('bad route in ' + s['id'])
+            if ids and s['route'].get(l) == 'none': F('translations with route none in ' + s['id'])
+
+
+def check_slim(e):
+    i = e.get('id', '?'); tier = e.get('tier')
+    F = lambda m: err('1 format', '%s: %s' % (i, m))
+    if tier not in SLIM: F('bad tier'); return
+    allowed = SLIM[tier] | ({'noun', 'verb'} if tier == 'ext' else set())
+    if not SLIM[tier] <= set(e): F('missing fields %s' % sorted(SLIM[tier] - set(e)))
+    if set(e) - allowed: F('unknown fields %s' % sorted(set(e) - allowed))
+    if e.get('lang') not in LANGS: F('bad lang')
+    if e.get('pos') not in POS: F('bad pos')
+    if not re.fullmatch(re.escape('%s:%s:%s' % (e.get('lang'), e.get('lemma'), e.get('pos'))) + r'(:\d+)?', i): F('id does not match lang:lemma:pos')
+    if 'noun' in e and set(e['noun']) != {'gender', 'plural'}: F('bad noun block')
+    if 'verb' in e and set(e['verb']) != {'aux', 'aux_regional'}: F('bad verb block')
+    if tier == 'ext':
+        if e['level'] is not None and e['level'] not in CEFR: F('bad level')
+        if set(e['ipa']) - {'narrow'} != {'default', 'regional'}: F('bad ipa block')
+    for k, v in e['origin'].items():
+        if v not in ORIGINS: F('bad origin value')
+        if k.split('.')[0] not in e: F('origin for a field the entry does not have: ' + k)
+    check_senses(e, F)
 
 
 def check_entry(e):
@@ -53,13 +92,8 @@ def check_entry(e):
     for g in e['governs']:
         if not {'prep', 'case', 'example_id'} <= set(g): F('bad governs item')
         elif g['example_id'] and g['example_id'] not in {x['id'] for x in e['examples']}: F('governs.example_id not among examples')
-    sid = set()
-    for s in e['senses']:
-        if not {'id', 'gloss_en', 'register', 'translations'} <= set(s): F('bad sense'); continue
-        if s['id'] in sid: F('duplicate sense id')
-        sid.add(s['id'])
-        for l, ids in s['translations'].items():
-            if l not in LANGS or l == e['lang'] or not isinstance(ids, list): F('bad translations in ' + s['id'])
+    if e['tier'] != 'core': F('tier must be core in a core file')
+    check_senses(e, F)
     xid = set()
     for x in e['examples']:
         if not {'id', 'text', 'translations', 'origin'} <= set(x): F('bad example'); continue
@@ -83,9 +117,16 @@ def check_entry(e):
         if e['origin'].get(k) not in (None, 'wiktionary'): F('ipa must come from wiktionary')
 
 
+def bkey(word, n):
+    import unicodedata
+    f = unicodedata.normalize('NFD', word.lower())
+    f = ''.join(c for c in f if unicodedata.category(c) != 'Mn').replace('ß', 'ss').replace('’', "'").strip()
+    return ''.join(c if 'a' <= c <= 'z' else '_' for c in f[:n]).ljust(n, '_')
+
+
 def main():
     manifest = rjson(os.path.join(DATA, 'manifest.json'))
-    ids = collections.Counter(); entries = {}
+    ids = collections.Counter(); entries = {}; forms_ref = []; pending_core = []; details = {}
     for f in manifest['files']:
         path = os.path.join(DATA, f['file'])
         if not os.path.exists(path): err('5 manifest', 'missing file ' + f['file']); continue
@@ -96,9 +137,44 @@ def main():
             for e in es:
                 ids[e.get('id')] += 1; entries[e.get('id')] = e
                 if e.get('lang') != f['lang']: err('1 format', '%s is in the wrong file' % e.get('id'))
+                if e.get('examples') != [] or e.get('more') is not None or e.get('origin') is not None: err('1 format', '%s: examples/more/origin belong in the details file' % e.get('id'))
+                pending_core.append(e)
+        elif f.get('tier') == 'details':
+            d = rjson(path)
+            if len(d) != f['entries']: err('5 manifest', 'entry count differs for ' + f['file'])
+            details.update(d)
+        elif f.get('tier') == 'ext':
+            d = rjson(path); k = f['prefix']
+            if len(d['entries']) != f['entries']: err('5 manifest', 'entry count differs for ' + f['file'])
+            if manifest['buckets'][f['lang']].get(k) != f['sha256'] or f['file'] != manifest['bucket_file'].replace('<lang>', f['lang']).replace('<prefix>', k): err('5 manifest', 'bucket not listed: ' + f['file'])
+            for e in d['entries']:
+                ids[e.get('id')] += 1; entries[e.get('id')] = e
+                if e.get('lang') != f['lang']: err('1 format', '%s is in the wrong file' % e.get('id'))
+                if bkey(e['lemma'], len(k)) != k: err('5 manifest', '%s is not in the bucket of its first letters (%s)' % (e['id'], k))
+                check_slim(e)
+            for w, fid in d['forms'].items():
+                if bkey(w, len(k)) != k: err('5 manifest', 'form %s is not in the bucket of its first letters (%s)' % (w, k))
+                forms_ref.append((w, fid))
+    # a core entry is checked in its full form: card data plus its details
+    for e in pending_core:
+        d = details.pop(e['id'], None)
+        if d is None: err('1 format', '%s has no details' % e['id']); continue
+        e['examples'] = d['examples']; e['more'] = d['more']; e['origin'] = d['origin']
+        if len(d['senses']) != len(e['senses']): err('1 format', '%s: details and card have different senses' % e['id']); continue
+        for s, x in zip(e['senses'], d['senses']):
+            hidden = s.pop('hidden', [])
+            s.update(x)
+            if sorted(hidden) != sorted(X for X, r in s.get('route', {}).items() if r == 'via-en-unchecked'):
+                err('1 format', '%s %s: hidden languages do not match the routes' % (e['id'], s['id']))
+        check_entry(e)
+    for i in details: err('1 format', 'details for unknown entry ' + i)
+    for L, bs in manifest['buckets'].items():
+        ks = sorted(bs)
+        for a in ks:
+            for b in ks:
+                if a != b and b.startswith(a): err('5 manifest', 'overlapping buckets %s %s/%s' % (L, a, b))
     for i, n in ids.items():
         if n > 1: err('4 duplicate ids', i)
-    for e in entries.values(): check_entry(e)
     for e in entries.values():
         for s in e.get('senses', []):
             for l, tids in s.get('translations', {}).items():
@@ -107,13 +183,17 @@ def main():
                     elif entries[t]['lang'] != l: err('2 ids exist', '%s %s -> %s is not a %s entry' % (e['id'], s['id'], t, l))
         for t in e.get('synonyms', []):
             if t not in entries: err('2 ids exist', '%s synonym -> %s' % (e['id'], t))
+    for w, fid in forms_ref:
+        for t in fid:
+            if t not in entries: err('2 ids exist', 'form %s -> %s' % (w, t))
     links = rjson(os.path.join(DATA, 'links.json'))
     for k, v in links.items():
         for t in [k] + v:
             if t not in entries: err('2 ids exist', 'links.json -> ' + t)
     gaps = rjson(os.path.join(DATA, 'source_gaps.json'))
     ngaps = collections.Counter()
-    for e in entries.values():
+    core = [e for e in entries.values() if e.get('tier') == 'core']
+    for e in core:
         actual = set(source_gaps(e)); listed = set(gaps.get(e['id'], []))
         for g in actual - listed: err('3 core fields', '%s: %s is empty but the source gap is not recorded' % (e['id'], g))
         for g in listed - actual: err('3 core fields', '%s: %s is listed as a source gap but is filled' % (e['id'], g))
@@ -121,8 +201,8 @@ def main():
     for i in gaps:
         if i not in entries: err('3 core fields', 'source_gaps.json names unknown entry ' + i)
 
-    print('entries checked:', len(entries), dict(collections.Counter(e['lang'] for e in entries.values())))
-    print('recorded source gaps (empty in Wiktionary):', {'%s %s' % k: v for k, v in sorted(ngaps.items())})
+    print('entries checked:', len(entries), dict(collections.Counter((e['lang'], e.get('tier')) for e in entries.values())), '| forms', len(forms_ref))
+    print('recorded source gaps in core (empty in Wiktionary):', {'%s %s' % k: v for k, v in sorted(ngaps.items())})
     names = ['1 format', '2 ids exist', '3 core fields', '4 duplicate ids', '5 manifest']
     for n in names:
         print('%-16s %s' % (n, 'PASS' if not errors[n] else 'FAIL (%d)' % len(errors[n])))

@@ -1,7 +1,30 @@
 {
- "german_entries": 1095,
- "with_examples": 1094,
- "with_4_examples": 1088,
- "examples": 4369,
- "examples_with_en_fr_pt": 3247
+ "de": {
+  "core entries": 8690,
+  "with examples": 8511,
+  "with 4": 8104,
+  "examples": 33205,
+  "with all three translations": 7905
+ },
+ "en": {
+  "core entries": 14784,
+  "with examples": 14648,
+  "with 4": 14346,
+  "examples": 58009,
+  "with all three translations": 29935
+ },
+ "fr": {
+  "core entries": 10110,
+  "with examples": 9776,
+  "with 4": 9298,
+  "examples": 38184,
+  "with all three translations": 10156
+ },
+ "pt": {
+  "core entries": 9838,
+  "with examples": 9517,
+  "with 4": 8513,
+  "examples": 36070,
+  "with all three translations": 8778
+ }
 }

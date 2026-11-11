@@ -6,7 +6,7 @@ Every place where the saved data and Wiktionary disagree is written to
 build/reports/library_conflicts.md.
 
 Run:  node build/library/export_library.js && python3 -I build/import_library.py"""
-import sys, os, re, collections
+import sys, os, re, json, gzip, collections
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import *
 import import_wiktionary as iw
@@ -40,8 +40,14 @@ def hl(text):
 
 
 def main():
-    iw.S = iw.Src()
-    entries = rjson(os.path.join(WORK, 'entries_tatoeba.json'))
+    import build_entries as be
+    entries = rjson(os.path.join(WORK, 'core.json'))
+    rest = {}                     # extended and long-tail ids, so a library word outside the core can be promoted
+    for L in LANGS:
+        for line in gzip.open(os.path.join(WORK, 'entries_%s.jsonl.gz' % L), 'rt', encoding='utf-8'):
+            i = line[8:line.index('"', 8)]
+            rest[i] = True
+    extra_tables = {}
     lib = rjson(os.path.join(ROOT, 'build', 'library', 'library.json'))
     conflicts = []; rule_diffs = []; created = []; claude_only = []; kept = collections.Counter()
     seen_conf = set()
@@ -56,14 +62,13 @@ def main():
         if i in entries: return entries[i]
         c = [e for e in entries.values() if e['lang'] == lang and e['lemma'] == lemma]
         if c: return c[0]
-        pc = PC.get(pos, pos)
-        avail = iw.S.target_pos(lang, lemma) if lang != 'de' else []
-        if avail:
-            p = next((x for x in avail if iw.same_pos(x, pc)), avail[0])
-            e = iw.build_linked(lang, lemma, p)
-            entries[e['id']] = e; created.append(e['id'] + ' (from Wiktionary)')
+        made = be.build_one(lang, lemma, pos)
+        if made:
+            e, t = made
+            entries[e['id']] = e; extra_tables[e['id']] = t
+            created.append(e['id'] + (' (moved up from the %s tier)' % 'extended or long-tail' if e['id'] in rest else ' (from Wiktionary)'))
             return e
-        e = iw.new_entry(lang, lemma, pos)
+        e = iw.new_entry(lang, lemma, pos); e['tier'] = 'core'
         if pos == 'noun': e['noun'] = {'gender': None, 'plural': None, 'plural_alt': [], 'plural_rule': None, 'plural_regular': None, 'genitive': None, 'irregular_forms': {}}
         if pos == 'verb': e['verb'] = {'regular': None, 'class': None, 'aux': None, 'aux_regional': {}, 'principal_parts': None, 'present_3sg': None, 'irregular_forms': {}}
         if pos == 'adjective': e['adjective'] = {'agreement': None, 'comparison': None, 'comparison_regular': None, 'irregular_forms': {}}
@@ -185,14 +190,11 @@ def main():
                 for l2 in ('en', 'fr', 'pt'):
                     if l2 != lang: tr[l2] = [ids[l2]]
                 le['senses'].append({'id': 's%d' % (len(le['senses']) + 1), 'gloss_en': R.get('sense'), 'gloss': None, 'register': None,
-                                     'translations': tr, 'route': {'de': 'library'}, 'origin': 'claude'})
+                                     'translations': tr, 'route': {l2: 'library' for l2 in tr}, 'origin': 'claude'})
                 le['origin'].setdefault('senses', 'claude')
-    wjson(os.path.join(WORK, 'entries_library.json'), entries)
-    gaps = rjson(os.path.join(WORK, 'source_gaps.json'))
-    for x in created + claude_only:
-        i = x.split(' (')[0]
-        if source_gaps(entries[i]): gaps[i] = source_gaps(entries[i])
-    wjson(os.path.join(WORK, 'source_gaps.json'), gaps)
+    wjson(os.path.join(WORK, 'core.json'), entries)
+    with gzip.open(os.path.join(WORK, 'tables_library.jsonl.gz'), 'wt', encoding='utf-8') as f:
+        for i, t in extra_tables.items(): f.write(json.dumps([i, t], ensure_ascii=False) + '\n')
 
     with open(os.path.join(REPORTS, 'library_conflicts.md'), 'w', encoding='utf-8') as f:
         f.write('# Saved library vs. Wiktionary\n\n%d saved records (24 from entries.js, 2 from the shared library, 13 inside index.html).\n\n' % len(lib))

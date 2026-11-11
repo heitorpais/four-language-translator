@@ -1,0 +1,72 @@
+# Abbreviations kept in the word lists although Wiktionary marks them as abbreviations, because they are
+# everyday words (spec, Phase 4).  Format: language|abbreviation
+de|z. B.
+de|usw.
+de|etc.
+de|bzw.
+de|d. h.
+de|ca.
+de|u. a.
+de|z. T.
+de|Nr.
+de|Dr.
+de|Hr.
+de|Fr.
+de|ggf.
+de|evtl.
+de|inkl.
+de|bzgl.
+de|vgl.
+de|s. o.
+de|u. Ä.
+de|Kita
+de|LKW
+de|Lkw
+de|PKW
+de|Pkw
+de|WG
+de|EU
+de|ok
+de|okay
+en|etc.
+en|e.g.
+en|i.e.
+en|Mr.
+en|Mrs.
+en|Ms.
+en|Dr.
+en|vs.
+en|a.m.
+en|p.m.
+en|OK
+en|okay
+en|TV
+en|ID
+en|DIY
+en|ASAP
+en|FAQ
+en|PhD
+en|CEO
+fr|etc.
+fr|p. ex.
+fr|c.-à-d.
+fr|M.
+fr|Mme
+fr|Mlle
+fr|Dr
+fr|n°
+fr|SVP
+fr|RER
+fr|SMS
+fr|TGV
+fr|ok
+pt|etc.
+pt|p. ex.
+pt|Sr.
+pt|Sra.
+pt|Dr.
+pt|Dra.
+pt|nº
+pt|vc
+pt|ok
+pt|tá

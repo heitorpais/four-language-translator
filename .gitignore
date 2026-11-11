@@ -5,3 +5,4 @@ __pycache__/
 *.pyc
 # old notes and logs from the first build attempts
 build/*.log
+build/logs/

@@ -53,8 +53,13 @@ let recent = store.get('flt:recent3', { en: [], de: [], fr: [], pt: [] });
 let toastTimer = 0;
 function toast(msg) { const t = $('#toast'); t.textContent = msg; clearTimeout(toastTimer); toastTimer = setTimeout(() => { t.textContent = ''; }, 6000); }
 
-/* ---------- data: ./data files, kept in IndexedDB ---------- */
-const D = { byId: new Map(), idx: { en: [], de: [], fr: [], pt: [] }, count: { en: 0, de: 0, fr: 0, pt: 0 }, top: {}, manifest: null, ready: false };
+/* ---------- data: ./data files, kept in IndexedDB ----------
+   core-<lang>.json      the most frequent words, card data: loaded on the first visit
+   details-<lang>.json   examples and background of the core words: loaded right after
+   ext/<lang>/<k>.json   all other words (extended and long tail) and the inflected forms, by first letters:
+                         loaded when a word starting with those letters is typed, looked up or shown */
+const D = { byId: new Map(), idx: { en: [], de: [], fr: [], pt: [] }, frows: { en: [], de: [], fr: [], pt: [] }, count: { en: 0, de: 0, fr: 0, pt: 0 },
+  entries: { en: 0, de: 0, fr: 0, pt: 0 }, top: {}, manifest: null, ready: false, details: false, buckets: new Map(), db: null };
 const DB_NAME = 'flt-data', FILES = 'files';
 function idbOpen() {
   return new Promise((res, rej) => {
@@ -67,52 +72,110 @@ const idbReq = (db, mode, fn) => new Promise((res, rej) => { const t = db.transa
 const idbGet = (db, k) => idbReq(db, 'readonly', s => s.get(k));
 const idbPut = (db, k, v) => idbReq(db, 'readwrite', s => s.put(v, k));
 const idbClear = db => idbReq(db, 'readwrite', s => s.clear());
-
+async function getFile(file, sha) {          // saved copy on this device, otherwise the network
+  let rec = null;
+  if (D.db) { try { rec = await idbGet(D.db, file); } catch (e) {} }
+  if (rec && rec.sha === sha) return rec.data;
+  const r = await fetch('data/' + file + '?v=' + sha);
+  if (!r.ok) throw new Error('A data file could not be loaded (' + file + ').');
+  const data = await r.json();
+  if (D.db) idbPut(D.db, file, { sha, data }).catch(() => {});      // saved in the background
+  return data;
+}
 async function loadData(progress) {
-  let manifest = null, db = null;
-  try { db = await idbOpen(); } catch (e) { db = null; }
-  try { const r = await fetch('data/manifest.json', { cache: 'no-cache' }); if (r.ok) manifest = await r.json(); } catch (e) {}
-  if (!manifest && db) { try { manifest = await idbGet(db, 'manifest'); } catch (e) {} }
+  let manifest = null;
+  const mf = fetch('data/manifest.json', { cache: 'no-cache' }).then(r => r.ok ? r.json() : null).catch(() => null);   // in parallel with opening the database
+  try { D.db = await idbOpen(); } catch (e) { D.db = null; }
+  manifest = await mf;
+  if (!manifest && D.db) { try { manifest = await idbGet(D.db, 'manifest'); } catch (e) {} }
   if (!manifest) throw new Error('The dictionary data could not be loaded. Connect to the internet once so the app can save its data on this device.');
   const out = {}, core = manifest.files.filter(f => f.tier === 'core');
   let done = 0;
-  for (const f of core) {
-    let rec = null;
-    if (db) { try { rec = await idbGet(db, f.file); } catch (e) {} }
-    if (!rec || rec.sha !== f.sha256) {
-      progress(`Loading the dictionary data (${done + 1} of ${core.length})…`);
-      const r = await fetch('data/' + f.file + '?v=' + f.sha256);
-      if (!r.ok) throw new Error('A data file could not be loaded (' + f.file + ').');
-      rec = { sha: f.sha256, data: await r.json() };
-      if (db) { try { await idbPut(db, f.file, rec); } catch (e) {} }
-    }
-    out[f.lang] = rec.data; done++;
-  }
-  if (db) { try { await idbPut(db, 'manifest', manifest); } catch (e) {} }
+  progress('Loading the dictionary data…');
+  await Promise.all(core.map(async f => { out[f.lang] = await getFile(f.file, f.sha256); done++; progress(`Loading the dictionary data (${done} of ${core.length})…`); }));
+  if (D.db) { try { await idbPut(D.db, 'manifest', manifest); } catch (e) {} }
   if (navigator.serviceWorker && navigator.serviceWorker.controller) {
-    navigator.serviceWorker.controller.postMessage({ type: 'prune', keep: core.map(f => 'data/' + f.file + '?v=' + f.sha256) });
+    const keep = manifest.files.filter(f => f.tier === 'core' || f.tier === 'details' || f.tier === 'ext').map(f => 'data/' + f.file + '?v=' + f.sha256);
+    navigator.serviceWorker.controller.postMessage({ type: 'prune', keep });
   }
   return { manifest, out };
 }
+async function loadDetails() {
+  const det = D.manifest.files.filter(f => f.tier === 'details');
+  await Promise.all(det.map(async f => {
+    const d = await getFile(f.file, f.sha256);
+    for (const id in d) {
+      const e = D.byId.get(id), x = d[id]; if (!e) continue;
+      e.examples = x.examples; e.more = x.more; e.origin = x.origin;
+      (x.senses || []).forEach((y, i) => { if (e.senses[i]) Object.assign(e.senses[i], y); });
+    }
+  }));
+  D.details = true;
+}
 const stripKey = (lang, k) => lang === 'en' ? k.replace(/^to\s+/, '') : lang === 'de' ? k.replace(/^sich\s+/, '') : lang === 'fr' ? k.replace(/^(se\s+|s')/, '') : k.replace(/-se$/, '');
+const rowSort = (a, b) => a.k < b.k ? -1 : a.k > b.k ? 1 : a.a - b.a || a.r - b.r;
+function addRows(lang, entries) {
+  const rows = D.idx[lang];
+  for (const e of entries) {
+    D.byId.set(e.id, e);
+    rows.push({ k: fold(e.lemma), w: e.lemma, id: e.id, r: e.frequency_rank || 1e9, a: 0 });
+    for (const v of e.regional_variants || []) if (v.form && fold(v.form) !== fold(e.lemma)) rows.push({ k: fold(v.form), w: v.form, id: e.id, r: e.frequency_rank || 1e9, a: 1 });
+  }
+  rows.sort(rowSort);
+}
 function buildIndex(out) {
+  for (const lang of Object.keys(REG)) addRows(lang, out[lang] || []);
+  const c = D.manifest.counts || {};
   for (const lang of Object.keys(REG)) {
-    const rows = [];
-    for (const e of out[lang] || []) {
-      D.byId.set(e.id, e);
-      rows.push({ k: fold(e.lemma), w: e.lemma, id: e.id, r: e.frequency_rank || 1e9, a: 0 });
-    }
-    for (const e of out[lang] || []) for (const v of e.regional_variants || []) {
-      if (v.form && !rows.some(x => x.k === fold(v.form))) rows.push({ k: fold(v.form), w: v.form, id: e.id, r: e.frequency_rank || 1e9, a: 1 });
-    }
-    rows.sort((a, b) => a.k < b.k ? -1 : a.k > b.k ? 1 : a.a - b.a || a.r - b.r);
-    D.idx[lang] = rows; D.count[lang] = (out[lang] || []).length;
-    D.top[lang] = rows.filter(x => !x.a && x.r < 1e9).sort((a, b) => a.r - b.r).slice(0, 60);
+    D.count[lang] = (c[lang] && c[lang].words_for_suggestions) || D.idx[lang].length;
+    D.entries[lang] = (c[lang] && c[lang].entries) || (out[lang] || []).length;
+    D.top[lang] = D.idx[lang].filter(x => !x.a && x.r < 1e9).sort((a, b) => a.r - b.r).slice(0, 60);
   }
   D.ready = true;
 }
+/* the extended and long-tail tiers carry only some fields: fill in the rest as empty */
+function expand(e) {
+  const x = Object.assign({ level: null, frequency_rank: null, ipa: { default: null, regional: {} }, noun: null, verb: null, adjective: null, governs: [],
+    regional_variants: [], swiss_german: null, synonyms: [], synonyms_text: [], examples: [], usage_note: null, verified: false }, e);
+  x.more = { definition: null, collocations: [], idioms: [], word_family: [], antonyms: [], etymology: null, learner_mistake: null };
+  x.origin = e.origin || {};
+  if (x.pos === 'noun') x.noun = Object.assign({ gender: null, plural: null, plural_alt: [], plural_rule: null, plural_regular: null, genitive: null, irregular_forms: {} }, e.noun || {});
+  if (x.pos === 'verb') x.verb = Object.assign({ regular: null, class: null, aux: null, aux_regional: {}, principal_parts: null, present_3sg: null, irregular_forms: {} }, e.verb || {});
+  x.senses = (e.senses || []).map(s => Object.assign({ gloss: null, gloss_en: null, register: null, route: {} }, s));
+  return x;
+}
+/* buckets: same folding as build/build_tiers.py */
+const bfold = s => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/ß/g, 'ss').replace(/’/g, "'").trim();
+const bkey = (w, n) => { const f = bfold(w); let k = ''; for (let i = 0; i < n; i++) { const c = f[i]; k += (c && c >= 'a' && c <= 'z') ? c : '_'; } return k; };
+function bucketOf(lang, word) {
+  const bs = (D.manifest && D.manifest.buckets && D.manifest.buckets[lang]) || {};
+  for (let n = 1; n <= 4; n++) { const k = bkey(word, n); if (bs[k]) return k; }
+  return null;
+}
+function loadBucket(lang, k) {
+  if (!k) return Promise.resolve();
+  const key = lang + '/' + k;
+  if (!D.buckets.has(key)) {
+    const sha = D.manifest.buckets[lang][k];
+    const file = (D.manifest.bucket_file || 'ext/<lang>/<prefix>.json').replace('<lang>', lang).replace('<prefix>', k);
+    D.buckets.set(key, getFile(file, sha).then(d => {
+      addRows(lang, (d.entries || []).filter(e => !D.byId.has(e.id)).map(expand));
+      const fr = D.frows[lang];
+      for (const f in d.forms || {}) fr.push({ k: fold(f), w: f, ids: d.forms[f] });
+      fr.sort((a, b) => a.k < b.k ? -1 : a.k > b.k ? 1 : 0);
+    }).catch(err => { D.buckets.delete(key); throw err; }));
+  }
+  return D.buckets.get(key);
+}
+const ensureWord = (lang, word) => loadBucket(lang, bucketOf(lang, word));
+const idParts = id => { const p = id.split(':'); return { lang: p[0], lemma: p[1] }; };
+async function ensureIds(ids) {
+  const need = new Map();
+  for (const id of ids) if (!D.byId.has(id)) { const { lang, lemma } = idParts(id); const k = bucketOf(lang, lemma); if (k) need.set(lang + '/' + k, [lang, k]); }
+  await Promise.all([...need.values()].map(([l, k]) => loadBucket(l, k).catch(() => {})));
+}
 function lower(rows, q) { let lo = 0, hi = rows.length; while (lo < hi) { const m = (lo + hi) >> 1; if (rows[m].k < q) lo = m + 1; else hi = m; } return lo; }
-function find(lang, word) {
+function findLoaded(lang, word) {
   const rows = D.idx[lang], k0 = fold(word), keys = [k0, stripKey(lang, k0)];
   for (const k of keys) {
     const hit = [];
@@ -125,6 +188,41 @@ function find(lang, word) {
   }
   return [];
 }
+function formRows(lang, word) {
+  const rows = D.frows[lang], out = [];
+  for (const k of new Set([fold(word), stripKey(lang, fold(word))])) for (let i = lower(rows, k); i < rows.length && rows[i].k === k; i++) out.push(rows[i]);
+  return out;
+}
+/* A typed word can be a dictionary word ("went", an old noun), an inflected form of another word ("went" of go),
+   or both. The best match comes first: exact spelling before spelling without accents, frequent tiers before
+   rare ones, the word itself before a form, then frequency, then the word class with more translations. */
+const TIER = { core: 0, ext: 1, tail: 2 };
+const POSR = { verb: 0, noun: 1, adjective: 2, adverb: 3 };
+async function find(lang, word) {
+  const w = word.trim(), lw = w.toLowerCase(), sk = stripKey(lang, lw);
+  // the letter file may be missing offline: then only the words already on this device can be found
+  let missing = false;
+  await Promise.all([ensureWord(lang, sk), sk !== lw ? ensureWord(lang, w) : null].map(p => p && p.catch(() => { missing = true; })));
+  const ssw = w.replace(/ß/g, 'ss');               // Swiss spelling: Strasse is Straße
+  const exact = x => (x === w || x.replace(/ß/g, 'ss') === ssw) ? 0 : (x.toLowerCase() === lw || stripKey(lang, x.toLowerCase()) === sk) ? 1 : 2;
+  const cand = new Map();
+  const put = (e, ex, isForm) => {
+    const nTr = e.senses.reduce((a, s) => a + Object.values(s.translations).reduce((b, l) => b + l.length, 0), 0);
+    const key = [ex, TIER[e.tier] || 0, isForm, e.frequency_rank || 1e9, -nTr, POSR[e.pos] == null ? 9 : POSR[e.pos]];
+    const old = cand.get(e.id);
+    if (!old || cmpKey(key, old.key) < 0) cand.set(e.id, { e, key, isForm });
+  };
+  for (const e of findLoaded(lang, w)) put(e, exact(e.lemma), 0);
+  const fr = formRows(lang, w);
+  if (fr.length) {
+    await ensureIds(fr.flatMap(r => r.ids));
+    for (const r of fr) for (const id of r.ids) { const e = D.byId.get(id); if (e) put(e, exact(r.w), 1); }
+  }
+  const list = [...cand.values()].sort((a, b) => cmpKey(a.key, b.key));
+  if (!list.length && missing) throw new Error('letter file not on this device');
+  return { hits: list.map(x => x.e), form: list.length && list[0].isForm ? w : null };
+}
+function cmpKey(a, b) { for (let i = 0; i < a.length; i++) if (a[i] !== b[i]) return a[i] < b[i] ? -1 : 1; return 0; }
 function suggest(lang, raw, n) {
   const q = stripKey(lang, fold(raw)), out = [], seen = new Set();
   const add = (w, tag) => { if (out.length < n && !seen.has(w)) { seen.add(w); out.push({ w, tag }); } };
@@ -135,37 +233,50 @@ function suggest(lang, raw, n) {
   for (let i = lower(rows, q); i < rows.length && rows[i].k.startsWith(q) && c.length < 3000; i++) c.push(rows[i]);
   c.sort((a, b) => (a.k === q ? 0 : 1) - (b.k === q ? 0 : 1) || a.r - b.r || a.k.length - b.k.length);
   c.forEach(x => add(x.w, ''));
+  const fr = D.frows[lang], fc = [];
+  for (let i = lower(fr, q); i < fr.length && fr[i].k.startsWith(q) && fc.length < 400; i++) fc.push(fr[i]);
+  fc.sort((a, b) => (a.k === q ? 0 : 1) - (b.k === q ? 0 : 1) || a.k.length - b.k.length);
+  fc.forEach(x => add(x.w, '→ ' + idParts(x.ids[0]).lemma));
   return out;
 }
 
 /* ---------- senses and translations ---------- */
-const hiddenRoute = (s, lang) => !!(s.route && s.route[lang] === 'via-en-unchecked');      // kept in the data, never shown
+const hiddenRoute = (s, lang) => !!((s.hidden && s.hidden.includes(lang)) || (s.route && s.route[lang] === 'via-en-unchecked'));      // kept in the data, never shown
 function trIds(s, lang) { return hiddenRoute(s, lang) ? [] : (s.translations[lang] || []).filter(id => D.byId.has(id)); }
 function visibleSenses(e) {
   return e.senses.map((s, i) => ({ s, i })).filter(({ s }) => !(e.lang !== 'de' && hiddenRoute(s, 'de')) && Object.keys(REG).some(l => l !== e.lang && trIds(s, l).length));
 }
+const linkedIds = e => [...e.senses.flatMap(s => Object.values(s.translations).flat()), ...(e.synonyms || [])];
 
 /* ---------- state ---------- */
 let state = { status: 'loading', msg: 'Loading the dictionary data…', src: { lang: 'de', word: 'stehen' }, entry: null, sense: 0, pick: {}, forms: {}, more: {}, others: [], error: '' };
-function openEntry(e, sense, word) {
+let seq = 0;
+async function openEntry(e, sense, word, form) {
+  const my = ++seq;
+  try { await ensureIds(linkedIds(e)); } catch (err) {}
+  if (my !== seq) return;
   const vis = visibleSenses(e);
   const si = (sense != null && e.senses[sense]) ? sense : (vis.length ? vis[0].i : 0);
-  state = { status: 'done', src: { lang: e.lang, word: word || e.lemma }, entry: e, sense: si, pick: {}, forms: {}, more: {}, others: state.others || [], error: '' };
+  state = { status: 'done', src: { lang: e.lang, word: word || e.lemma }, entry: e, sense: si, pick: {}, forms: {}, more: {}, others: state.others || [], form: form || null, error: '' };
   recent[e.lang] = [e.lemma, ...(recent[e.lang] || []).filter(x => x !== e.lemma)].slice(0, 8); store.set('flt:recent3', recent);
   render();
 }
-function translate(lang, word) {
+async function translate(lang, word) {
   word = String(word || '').trim(); if (!word) return;
   if (!D.ready) { toast('The dictionary data is still loading.'); return; }
-  const hits = find(lang, word);
-  if (!hits.length) {
+  const my = ++seq;
+  let res;
+  try { res = await find(lang, word); }
+  catch (err) { if (my === seq) { state = Object.assign({}, state, { status: 'error', error: 'The data for this word is not on this device yet. Connect to the internet once to load it.', near: [] }); render(); } return; }
+  if (my !== seq) return;
+  if (!res.hits.length) {
     const near = suggest(lang, word.slice(0, Math.max(2, word.length - 2)), 5).map(x => x.w);
     state = { status: 'error', src: { lang, word }, entry: null, sense: 0, pick: {}, forms: {}, more: {}, others: [], near,
-      error: `“${word}” is not in the built-in ${LNAME[lang]} data yet. The app holds ${num(D.count[lang])} ${LNAME[lang]} words and makes no entries up.` };
+      error: `“${word}” is not in the ${LNAME[lang]} data. The app holds ${num(D.count[lang])} ${LNAME[lang]} words and forms and makes no entries up.` };
     render(); return;
   }
-  state.others = hits;
-  openEntry(hits[0], null, word);
+  state.others = res.hits;
+  return openEntry(res.hits[0], null, word, res.form);
 }
 function quad() {
   const e = state.entry, s = e.senses[state.sense], q = {}, alts = {};
@@ -350,7 +461,7 @@ function exampleList(q) {
   return { donor, list };
 }
 function examplesBlock(lang, ex) {
-  if (!ex.donor) return '';
+  if (!ex.donor) return (!D.details && state.entry && state.entry.tier === 'core') ? '<p class="note" lang="en">Loading example sentences…</p>' : '';
   const items = [];
   for (const x of ex.list) {
     if (items.length >= +S.examples) break;
@@ -376,10 +487,12 @@ function sourcesLine(e, ex, lang) {
   const ai = Object.entries(e.origin || {}).filter(([, v]) => v === 'claude').map(([k]) => ({ level: 'level', swiss_german: 'Swiss German form', usage_note: 'note', 'more.learner_mistake': 'common mistake', 'examples.library': 'some sentences', senses: 'a translation link' }[k] || k.replace(/^more\./, '').replace(/_/g, ' ')));
   if (ai.length) parts.push('written by AI: ' + [...new Set(ai)].join(', '));
   if (o.includes('generated')) parts.push('regular/irregular labels and tables of forms built by rule');
+  if (e.tier && e.tier !== 'core') parts.push('short entry: this word has only basic data so far');
   return parts.length ? `<div><h3>Sources</h3><p>${esc(parts.join('; '))}.</p></div>` : '';
 }
 function moreBlock(e, ex) {
   const ms = state.more[e.lang]; if (!ms || !ms.open) return '';
+  if (!e.more && e.tier === 'core' && !D.details) return '<div class="extra" lang="en"><p>Loading the background of this word…</p></div>';
   const d = e.more || {}, lang = e.lang;
   const list = (t, a) => a && a.length ? `<div><h3>${t}</h3><ul>${a.map(x => { const [w, g] = String(x).split(' — '); return `<li><b lang="${lang}">${esc(w)}</b>${g ? ` <span lang="${lang === 'de' && t === 'Idioms' ? 'de' : 'en'}">· ${esc(g)}</span>` : ''}</li>`; }).join('')}</ul></div>` : '';
   const body = `${d.definition ? `<div><h3>Definition</h3><p>${esc(d.definition)}</p></div>` : ''}
@@ -455,7 +568,8 @@ function render(fill) {
   const vis = visibleSenses(e).filter(x => x.i !== state.sense).slice(0, 5);
   const others = (state.others || []).filter(x => x !== e).slice(0, 4);
   let srcWord = regionView(e).word; if (e.lang === 'de' && S.main.de === 'ch') srcWord = ss(srcWord);
-  st.innerHTML = `<span>From ${LNAME[e.lang]}: <b>${esc(srcWord)}</b>${sense && sense.gloss_en ? ` · ${esc(sense.gloss_en)}` : ''}</span>`
+  st.innerHTML = (state.form && fold(state.form) !== fold(e.lemma) ? `<span><b>${esc(state.form)}</b> is a form of <b>${esc(srcWord)}</b>.</span>` : '')
+    + `<span>From ${LNAME[e.lang]}: <b>${esc(srcWord)}</b>${sense && sense.gloss_en ? ` · ${esc(sense.gloss_en)}` : ''}</span>`
     + (vis.length ? `<span>Other senses:</span>${vis.map(x => `<button class="chip" data-sense="${x.i}">${esc(x.s.gloss_en || '…')}</button>`).join('')}` : '')
     + (others.length ? `<span>Same spelling:</span>${others.map(x => `<button class="chip" data-id="${esc(x.id)}">${esc(x.lemma)}<small>${esc(x.pos)}</small></button>`).join('')}` : '')
     + `<span>Try:</span>${TRY.filter(w => w !== e.lemma).slice(0, 6).map(w => `<button class="chip" data-go="de:${esc(w)}">${esc(w)}</button>`).join('')}`;
@@ -488,7 +602,11 @@ function buildSlots() {
       list.hidden = false; input.setAttribute('aria-expanded', 'true'); sel = -1;
     };
     const pick = w => { input.value = w; close(); translate(l.id, w); };
-    input.addEventListener('input', open);
+    input.addEventListener('input', () => {
+      open();
+      const v = input.value;
+      if (D.ready && v.trim()) ensureWord(l.id, stripKey(l.id, fold(v))).then(() => { if (document.activeElement === input && input.value === v) open(); }).catch(() => {});
+    });
     input.addEventListener('focus', open);
     input.addEventListener('blur', () => setTimeout(close, 120));
     input.addEventListener('keydown', e => {
@@ -508,7 +626,7 @@ function libPaint() {
   const total = D.byId.size;
   $('#lib-toggle').textContent = D.ready ? `Library (${num(total)})` : 'Library';
   if (!D.ready) { $('#lib-status').textContent = 'Loading…'; return; }
-  $('#lib-status').textContent = `${num(total)} entries are built into the app: ` + LANGS.map(l => `${l.name} ${num(D.count[l.id])}`).join(', ') + '. They are stored on this device and work without an internet connection.';
+  $('#lib-status').textContent = `The app holds ${num(LANGS.reduce((a, l) => a + D.entries[l.id], 0))} entries: ` + LANGS.map(l => `${l.name} ${num(D.entries[l.id])}`).join(', ') + `. The ${num(total)} listed here are on this device and work without an internet connection; the others load by first letter when you look them up.`;
   const q = fold($('#lib-filter').value || '');
   let items;
   if (!q) items = D.top.de.concat(D.idx.de.filter(x => !x.a && x.r < 1e9).sort((a, b) => a.r - b.r).slice(60, 400)).map(x => D.byId.get(x.id));
@@ -528,7 +646,7 @@ function initPanels() {
   const pair = (btn, panel) => { $(btn).addEventListener('click', () => { const p = $(panel); p.hidden = !p.hidden; $(btn).setAttribute('aria-expanded', String(!p.hidden)); if (!p.hidden && panel === '#library') libPaint(); }); };
   pair('#lib-toggle', '#library'); pair('#set-toggle', '#settings'); pair('#src-toggle', '#sources');
   $('#lib-filter').addEventListener('input', libPaint);
-  $('#lib-list').addEventListener('click', e => { const b = e.target.closest('[data-id]'); if (b) { const x = D.byId.get(b.dataset.id); state.others = find(x.lang, x.lemma); openEntry(x); $('#slots').scrollIntoView({ block: 'start' }); } });
+  $('#lib-list').addEventListener('click', e => { const b = e.target.closest('[data-id]'); if (b) { const x = D.byId.get(b.dataset.id); state.others = findLoaded(x.lang, x.lemma); openEntry(x); $('#slots').scrollIntoView({ block: 'start' }); } });
   const save = () => store.set('flt:settings4', S);
   [['variants', 's-variants'], ['gsw', 's-gsw'], ['slow', 's-slow'], ['links', 's-links']].forEach(([k, id]) => {
     const el = $('#' + id); el.checked = !!S[k];
@@ -566,10 +684,11 @@ async function start() {
     const { manifest, out } = await loadData(msg => { state.msg = msg; if (state.status === 'loading') render(); });
     D.manifest = manifest; buildIndex(out);
     LANGS.forEach(l => { $('#cnt-' + l.id).textContent = num(D.count[l.id]) + ' words'; });
-    $('#lex-total').textContent = `${num(D.byId.size)} entries: ` + LANGS.map(l => `${l.name} ${num(D.count[l.id])}`).join(', ') + '.';
+    $('#lex-total').textContent = `${num(LANGS.reduce((a, l) => a + D.count[l.id], 0))} words and forms, ${num(LANGS.reduce((a, l) => a + D.entries[l.id], 0))} entries: ` + LANGS.map(l => `${l.name} ${num(D.entries[l.id])}`).join(', ') + '.';
+    loadDetails().then(() => { if (state.status === 'done') render(false); }).catch(() => {});
     libPaint(); sourcesPaint();
-    const first = find('de', 'stehen')[0] || D.byId.get(D.top.de[0].id);
-    state.others = find(first.lang, first.lemma); openEntry(first);
+    const first = findLoaded('de', 'stehen')[0] || D.byId.get(D.top.de[0].id);
+    state.others = findLoaded(first.lang, first.lemma); await openEntry(first);
   } catch (err) {
     state = Object.assign(state, { status: 'error', error: String(err && err.message || err), near: [] }); render();
   }

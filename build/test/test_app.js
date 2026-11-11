@@ -23,6 +23,7 @@ const results = []; const ok = (name, pass, info) => { results.push([name, pass,
   const t0 = Date.now();
   await page.goto('http://localhost:8765/');
   await page.waitForFunction(() => window.FLT && window.FLT.D.ready, null, { timeout: 60000 });
+  await page.waitForFunction(() => window.FLT.D.details, null, { timeout: 120000 });
   ok('first visit: data loaded', true, ((Date.now() - t0) / 1000).toFixed(1) + ' s on localhost');
   await page.waitForFunction(() => navigator.serviceWorker && navigator.serviceWorker.controller || document.querySelector('#offline-state').textContent.includes('Saved'), null, { timeout: 30000 });
   await page.reload(); await page.waitForFunction(() => window.FLT && window.FLT.D.ready, null, { timeout: 60000 });
@@ -38,10 +39,10 @@ const results = []; const ok = (name, pass, info) => { results.push([name, pass,
 
   const r = await page.evaluate(async () => {
     const F = window.FLT, out = { n: 0, bad: [], formsOpened: 0, noTrans: 0, withEx: 0 };
-    const de = [...F.D.byId.values()].filter(e => e.lang === 'de');
+    const de = [...F.D.byId.values()].filter(e => e.lang === 'de' && e.tier === 'core');
     for (const e of de) {
       out.n++;
-      F.openEntry(e);
+      await F.openEntry(e);
       const card = document.querySelector('.card[data-id="' + CSS.escape(e.id) + '"]');
       const why = [];
       if (!card) why.push('no card');
@@ -68,13 +69,13 @@ const results = []; const ok = (name, pass, info) => { results.push([name, pass,
     }
     return out;
   });
-  ok('offline: every German pilot entry opens a complete card', r.bad.length === 0, `${r.n} entries, ${r.formsOpened} tables of forms opened, ${r.withEx} with example sentences, ${r.noTrans} without any translation card` + (r.bad.length ? '; problems: ' + r.bad.slice(0, 10).join(' | ') : ''));
+  ok('offline: every German core entry opens a complete card', r.bad.length === 0, `${r.n} entries, ${r.formsOpened} tables of forms opened, ${r.withEx} with example sentences, ${r.noTrans} without any translation card` + (r.bad.length ? '; problems: ' + r.bad.slice(0, 10).join(' | ') : ''));
 
   // ---- typed lookups in every slot, offline
-  const typed = await page.evaluate(() => {
+  const typed = await page.evaluate(async () => {
     const out = [];
     for (const [l, w] of [['de', 'Straße'], ['de', 'strasse'], ['en', 'house'], ['fr', 'maison'], ['pt', 'casa'], ['en', 'to go'], ['de', 'xyzzy']]) {
-      const inp = document.querySelector('#in-' + l); inp.value = w; inp.closest('form').dispatchEvent(new Event('submit', { cancelable: true }));
+      const inp = document.querySelector('#in-' + l); inp.value = w; await window.FLT.translate(l, w);
       const s = window.FLT.state; out.push([l, w, s.status, s.entry ? s.entry.id : s.error.slice(0, 50), ['en', 'de', 'fr', 'pt'].map(x => document.querySelector('#in-' + x).value).join(' | ')]);
     }
     return out;
@@ -86,30 +87,30 @@ const results = []; const ok = (name, pass, info) => { results.push([name, pass,
   ok('suggestions while typing', sug.length > 0, sug.join(', '));
 
   // ---- settings
-  const st = await page.evaluate(() => {
+  const st = await page.evaluate(async () => {
     const F = window.FLT, out = {};
-    F.translate('de', 'stehen');
+    await F.translate('de', 'stehen');
     const sel = (id, v) => { const s = document.querySelector(id); s.value = v; s.dispatchEvent(new Event('change')); };
     const deCard = () => document.querySelector('#cards .card[data-id^="de:"]');
     sel('#var-de', 'ch'); out.ch_aux = deCard().textContent.includes('sein');
-    F.translate('de', 'Straße'); out.ch_ss = deCard().querySelector('.hw').textContent; out.ch_input = document.querySelector('#in-de').value;
+    await F.translate('de', 'Straße'); out.ch_ss = deCard().querySelector('.hw').textContent; out.ch_input = document.querySelector('#in-de').value;
     sel('#var-de', 'de');
-    F.translate('de', 'stehen'); out.de_aux = /Auxiliaryhaben/.test(deCard().textContent.replace(/\s+/g, ''));
-    F.translate('pt', 'rua'); const pc = () => document.querySelector('#cards .card[data-id^="pt:"]');
+    await F.translate('de', 'stehen'); out.de_aux = /Auxiliaryhaben/.test(deCard().textContent.replace(/\s+/g, ''));
+    await F.translate('pt', 'rua'); const pc = () => document.querySelector('#cards .card[data-id^="pt:"]');
     out.pt_br = pc().querySelector('.ipa').textContent; sel('#var-pt', 'pt'); out.pt_pt = pc().querySelector('.ipa').textContent; sel('#var-pt', 'br');
     const chk = (id, v) => { const c = document.querySelector(id); c.checked = v; c.dispatchEvent(new Event('change')); };
-    F.translate('de', 'gehen');
+    await F.translate('de', 'gehen');
     chk('#s-gsw', false); out.gsw_off = !deCard().textContent.includes('Swiss German'); chk('#s-gsw', true); out.gsw_on = deCard().textContent.includes('Swiss German');
     chk('#s-links', true); out.links_on = !!deCard().querySelector('.links a'); chk('#s-links', false); out.links_off = !deCard().querySelector('.links');
-    F.translate('de', 'stehen');
+    await F.translate('de', 'stehen');
     chk('#s-variants', false); out.var_off = !deCard().textContent.includes('Variants'); chk('#s-variants', true); out.var_on = deCard().textContent.includes('Variants');
-    F.translate('de', 'Haus');
+    await F.translate('de', 'Haus');
     sel('#s-examples', '4'); out.ex4 = deCard().querySelectorAll('.ex li').length; sel('#s-examples', '2'); out.ex2 = deCard().querySelectorAll('.ex li').length;
     sel('#s-level', 'easy'); const e1 = deCard().querySelector('.ex li').textContent; sel('#s-level', 'advanced'); const e2 = deCard().querySelector('.ex li').textContent; out.level_changes = e1 !== e2; sel('#s-level', 'medium');
     sel('#s-sugg', '5'); const i = document.querySelector('#in-de'); i.value = 'a'; i.dispatchEvent(new Event('input')); out.sugg5 = document.querySelectorAll('#sg-de li').length;
     chk('#s-slow', true); out.slow = window.FLT.S.slow; chk('#s-slow', false);
     out.sources = !!document.querySelector('#sources') && document.querySelector('#sources').textContent.includes('CC BY-SA 4.0');
-    F.translate('de', 'gehen'); deCard().querySelector('[data-extra="forms"]').click(); out.red = [...deCard().querySelectorAll('.forms td.irr')].map(x => x.textContent).slice(0, 6).join(', ');
+    await F.translate('de', 'gehen'); deCard().querySelector('[data-extra="forms"]').click(); out.red = [...deCard().querySelectorAll('.forms td.irr')].map(x => x.textContent).slice(0, 6).join(', ');
     return out;
   });
   ok('setting: Swiss variant shows sein for stehen', st.ch_aux && st.de_aux, 'CH sein / DE haben');

@@ -18,7 +18,7 @@ def rows(name):
 
 
 def main():
-    entries = rjson(os.path.join(WORK, 'entries_library.json'))
+    entries = rjson(os.path.join(WORK, 'core.json'))
     by_lemma = collections.defaultdict(list)
     for e in entries.values():
         if e['lang'] == 'de': by_lemma[e['lemma']].append(e)
@@ -42,7 +42,7 @@ def main():
             e['more']['learner_mistake'] = mistake.strip(); e['origin']['more.learner_mistake'] = 'claude'; n['learner_mistake'] += 1
         if note.strip() and not e['usage_note']:
             e['usage_note'] = note.strip(); e['origin']['usage_note'] = 'claude'; n['usage_note'] += 1
-    wjson(os.path.join(WORK, 'entries_enriched.json'), entries)
+    wjson(os.path.join(WORK, 'core.json'), entries)
     nde = sum(len(v) for v in by_lemma.values())
     print('German entries', nde, 'filled now', dict(n)); print('not in data', unknown)
     print('still without level', [e['id'] for v in by_lemma.values() for e in v if not e['level']])

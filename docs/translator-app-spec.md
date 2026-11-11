@@ -169,6 +169,30 @@ Rules that go with them:
 - **German auxiliary.** `verb.aux` is the auxiliary used in Germany. Where Switzerland and Austria use another one, it goes in `verb.aux_regional` (`{"CH": "sein", "AT": "sein"}` for stehen, sitzen, liegen, hängen). `"sein/haben"` means both are standard everywhere and depend on the meaning (fahren).
 - **Owner's overrides.** Decisions that differ from Wiktionary are listed in `build/owner_overrides.json`.
 
+### 4.2 Tiers and data files (Phase 4)
+
+Every entry has a `tier` field: `core`, `ext` (extended) or `tail` (long tail).
+
+- **Core** entries have the full format of section 4. On disk they are split in two files per language, so
+  the app can be used before everything has arrived: `core-<lang>.json` holds the entries with
+  `examples: []`, `more: null` and `origin: null`, and senses without `route`, `origin`, `gloss` and `reverse`
+  (a sense lists in `hidden` the languages whose translations must not be shown). `details-<lang>.json` holds
+  `{id: {examples, more, origin, senses: [{route, origin, gloss, reverse}]}}`, the senses in the same order.
+  Both load on the first visit; `validate.py` checks each core entry with its details put back.
+- **Extended** entries hold only `id, lang, lemma, pos, tier, level, frequency_rank, ipa, senses, origin`,
+  plus `noun: {gender, plural}` or `verb: {aux, aux_regional}`. Their senses hold
+  `id, gloss_en, translations, route, origin`.
+- **Long-tail** entries hold only `id, lang, lemma, pos, tier, senses, origin`. Their senses hold
+  `id, translations, route, origin`.
+- A field missing from an extended or long-tail entry means `null` (or an empty list).
+- Extended and long-tail entries, and all inflected forms, are stored in `ext/<lang>/<prefix>.json` as
+  `{"entries": [...], "forms": {"ging": ["de:gehen:verb"], ...}}`. The prefix is the word's first letter,
+  folded (lower case, accents removed, ß → ss, anything outside a–z → `_`). A letter with too much data is
+  split into two-letter prefixes, and so on. `manifest.json` lists every prefix with its version.
+- A sense added because another entry links to this one (gehen → ir gives ir → gehen) carries `"reverse": true`.
+- Inside each translation list, the translation whose own Wiktionary entry names the source word comes first,
+  then the more frequent one.
+
 ---
 
 ## 5. Phases
