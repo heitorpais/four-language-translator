@@ -468,6 +468,9 @@ function article(lang, e, word, plural) {
   return '';
 }
 const withArt = (a, w) => a ? (a.endsWith("'") ? a + w : a + ' ' + w) : w;
+/* English verbs are shown with "to" (to go, to walk); modal verbs cannot take it (can, must) */
+const MODAL_EN = new Set(['can', 'could', 'may', 'might', 'must', 'shall', 'should', 'will', 'would', 'ought']);
+function withTo(id, w) { return w && /^en:/.test(id) && /:verb$/.test(id) && !MODAL_EN.has(w) && !/^to /i.test(w) ? 'to ' + w : w; }
 function regionView(e) {
   const lang = e.lang, main = S.main[lang], R = main.toUpperCase(), isBase = main === BASE[lang];
   const v = isBase ? null : (e.regional_variants || []).find(x => x.region === R);
@@ -477,6 +480,7 @@ function regionView(e) {
   o.ipaFrom = !isBase && !reg[R] && o.ipa ? BASE[lang] : null;     // no transcription of its own: the base region's is shown, and said so
   o.aux = e.verb ? ((!isBase && e.verb.aux_regional && e.verb.aux_regional[R]) || e.verb.aux) : null;
   o.plural = (v && v.plural) || (e.noun && !o.changed ? e.noun.plural : null);
+  o.word = withTo(e.id, o.word);
   // the other regions, where they differ
   o.accents = []; o.groups = [];
   for (const r of REG[lang]) {
@@ -687,7 +691,7 @@ const GRAM_TITLES = [[/Präteritum/, 'praeteritum'], [/Konjunktiv/, 'konjunktiv'
   [/Passé composé/, 'fr_passe'], [/Subjonctif/, 'fr_subj'], [/Infinitivo pessoal/, 'pt_infpers'], [/Futuro do subjuntivo/, 'pt_futsubj']];
 const badge = r => r === true ? `<span class="reg ok">${esc(t('reg.ok', 'regular'))}</span>` : r === false ? `<span class="reg bad">${esc(t('reg.bad', 'irregular'))}</span>` : '';
 const ipaHtml = (ipa, narrow, lang, word) => `<button class="ipa"${word ? ` data-say="${esc(word)}" data-lang="${lang}" title="${esc(t('audio.ipa', 'Tap to hear'))}"` : ''}>${narrow ? '[' : '/'}${esc(ipa)}${narrow ? ']' : '/'}</button>`;
-const lemmaOf = id => { const x = D.byId.get(id); return x ? x.lemma : null; };
+const lemmaOf = id => { const x = D.byId.get(id); return x ? withTo(id, x.lemma) : null; };
 const ROW = { usedin: 'Used in', verb: 'Verb', gov: 'Prep. + case', govx: 'Followed by', also: 'Also', gsw: 'Swiss German', elsewhere: 'Elsewhere', gender: 'Gender',
   agree: 'Agreement', compare: 'Compare', freq: 'Frequency', syn: 'Synonyms', ant: 'Opposites', fam: 'Word family', like: 'Words like this', looks: 'Looks like', vars: 'Variants' };
 const rowName = k => t('row.' + k, ROW[k]);
@@ -857,7 +861,7 @@ function familyOf(e) {
   }
   return out;
 }
-const chip = (x, cls) => `<button class="chip${cls ? ' ' + cls : ''}" data-id="${esc(x.id)}" lang="${x.lang}">${esc(x.lemma)}</button>`;
+const chip = (x, cls) => `<button class="chip${cls ? ' ' + cls : ''}" data-id="${esc(x.id)}" lang="${x.lang}">${esc(withTo(x.id, x.lemma))}</button>`;
 const isFav = e => !!P.favs[e.id];
 function toggleFav(e) { if (P.favs[e.id]) delete P.favs[e.id]; else P.favs[e.id] = { w: e.lemma, t: Date.now() }; saveP(); }
 function card(lang, e, alts, ex, i, q) {
@@ -887,9 +891,9 @@ function card(lang, e, alts, ex, i, q) {
   if (ants.length) det.push(['ant', ants.map(w => `<button class="chip" data-go="${lang}:${esc(w)}" lang="${lang}">↔ ${esc(w)}</button>`).join(' ')]);
   const fam = familyOf(e); if (fam.length) det.push(['fam', fam.map(x => chip(x)).join(' ')]);
   const like = likeThis(e); if (like.length) det.push(['like', like.map(x => chip(x)).join(' ')]);
-  const looks = q ? S.order.filter(o => o !== lang && q[o] && ['noun', 'verb', 'adjective', 'adverb'].includes(q[o].pos) && rv.word.length >= 4 && q[o].lemma.length >= 4 && similar(rv.word, q[o].lemma) >= 0.6
+  const looks = q ? S.order.filter(o => o !== lang && q[o] && ['noun', 'verb', 'adjective', 'adverb'].includes(q[o].pos) && e.lemma.length >= 4 && q[o].lemma.length >= 4 && similar(e.lemma, q[o].lemma) >= 0.6
     && !FLTLearn.FALSE_FRIENDS.some(x => (x[1] === e.lemma && x[3] === q[o].lemma) || (x[3] === e.lemma && x[1] === q[o].lemma))) : [];
-  if (looks.length) det.push(['looks', looks.map(o => `<span class="nowrap">${flag(S.main[o], true)}<span lang="${o}">${esc(q[o].lemma)}</span></span>`).join(' &nbsp;') + `<span class="sub">${esc(t('looks.sub', 'similar word: easier to remember'))}</span>`]);
+  if (looks.length) det.push(['looks', looks.map(o => `<span class="nowrap">${flag(S.main[o], true)}<span lang="${o}">${esc(withTo(q[o].id, q[o].lemma))}</span></span>`).join(' &nbsp;') + `<span class="sub">${esc(t('looks.sub', 'similar word: easier to remember'))}</span>`]);
   const fq = FLTLearn.freqLabel(e.frequency_rank);
   if (fq) det.push(['freq', `<span class="form">${esc(t('freq.' + fq, fq))}</span><span class="sub">${esc(t('freq.rank', 'number {n} in the frequency list (film subtitles)', { n: num(e.frequency_rank) }))}</span>`]);
   if (S.variants && rv.groups.length) det.push(['vars', `<ul class="vars">${rv.groups.map(g => `<li><span class="where" lang="en">${g.regions.map(r => flag(r, true) + esc(RNAME[r])).join(' &nbsp;')}</span>${g.parts.length ? `<span class="form">${esc(g.parts.join(' · '))}</span>` : ''}${g.note ? `<span class="sub" lang="en">${esc(g.note)}</span>` : ''}</li>`).join('')}</ul>`]);
@@ -966,8 +970,8 @@ function render(fill) {
     + `<button class="chip play" data-act="playall" title="${esc(t('st.playall.tip', 'Play the word in all four languages'))}">▶ ${esc(t('st.playall', 'all four'))}</button>`
     + gendersLine(q)
     + (vis.length ? `<span>${esc(t('st.senses', 'Other senses:'))}</span>${vis.map(x => `<button class="chip" data-sense="${x.i}">${esc(x.s.gloss_en || '…')}${x.s.register ? `<small>${esc(t('regi.' + x.s.register, x.s.register))}</small>` : ''}</button>`).join('')}` : '')
-    + (others.length ? `<span>${esc(t('st.same', 'Same spelling:'))}</span>${others.map(x => `<button class="chip" data-id="${esc(x.id)}">${esc(x.lemma)}<small>${esc(t('pos.' + x.pos, x.pos))}</small></button>`).join('')}` : '')
-    + (trail.length ? `<span class="trail">${esc(t('st.trail', 'Back to:'))} ${trail.map(x => `<button class="chip" data-id="${esc(x.id)}" lang="${x.lang}">${esc(x.lemma)}</button>`).join('<span class="sep">›</span>')}</span>` : '');
+    + (others.length ? `<span>${esc(t('st.same', 'Same spelling:'))}</span>${others.map(x => `<button class="chip" data-id="${esc(x.id)}">${esc(withTo(x.id, x.lemma))}<small>${esc(t('pos.' + x.pos, x.pos))}</small></button>`).join('')}` : '')
+    + (trail.length ? `<span class="trail">${esc(t('st.trail', 'Back to:'))} ${trail.map(x => `<button class="chip" data-id="${esc(x.id)}" lang="${x.lang}">${esc(withTo(x.id, x.lemma))}</button>`).join('<span class="sep">›</span>')}</span>` : '');
   if (!state.fresh) cards.classList.remove('enter');        // only a new word slides in, not a re-drawn card
   cards.innerHTML = S.order.map((l, i) => card(l, q[l], alts[l], ex, i, q)).join('');
   if (state.fresh && animOn()) { cards.classList.remove('enter'); void cards.offsetWidth; cards.classList.add('enter'); clearTimeout(render.t); render.t = setTimeout(() => cards.classList.remove('enter'), 900); }
@@ -977,10 +981,17 @@ function render(fill) {
 
 /* ---------- search: one box for any language, and one slot per language ---------- */
 function syncClear(lang) { const i = $('#in-' + lang), b = $('#clr-' + lang); if (i && b) b.hidden = !i.value; }
+/* a suggestion shows "to swim" when the word is mainly an English verb (the verb opens first) */
+function sugLabel(it) {
+  if (!it.id || !/^en:/.test(it.id)) return it.w;
+  if (/:verb$/.test(it.id)) return withTo(it.id, it.w);
+  const v = D.byId.get('en:' + it.w + ':verb'), me = D.byId.get(it.id);
+  return v && (v.pos_share == null ? !(me && me.frequency_rank === v.frequency_rank) : v.pos_share > 0.5) ? withTo(v.id, it.w) : it.w;
+}
 function suggestHtml(it, lang) {
   const e = it.id ? D.byId.get(it.id) : null;
   const art = e && e.pos === 'noun' ? article(e.lang, e, e.lemma) : '';
-  return `${lang ? flag(S.main[lang], true) : ''}${art ? `<span class="art ${gclass(e.noun.gender)}">${esc(art)}</span> ` : ''}${esc(it.w)}${e ? lvlBadge(e, true) : ''}${it.tag ? `<small>${esc(it.tag === 'recent' ? t('sg.recent', 'recent') : it.tag)}</small>` : ''}`;
+  return `${lang ? flag(S.main[lang], true) : ''}${art ? `<span class="art ${gclass(e.noun.gender)}">${esc(art)}</span> ` : ''}${esc(sugLabel(it))}${e ? lvlBadge(e, true) : ''}${it.tag ? `<small>${esc(it.tag === 'recent' ? t('sg.recent', 'recent') : it.tag)}</small>` : ''}`;
 }
 /* the input behaviour shared by the slots and the any-language box */
 function wireInput(input, list, cfg) {
@@ -1126,7 +1137,7 @@ function buildAny() {
 function paintRecent() {
   const el = $('#recent-any'); if (!el) return;
   const h = P.history.slice(0, 8);
-  el.innerHTML = h.length ? `<span>${esc(t('any.recent', 'Recent:'))}</span>` + h.map(x => `<button class="chip" data-open="${esc(x.id)}" lang="${x.id.slice(0, 2)}">${flag(S.main[x.id.slice(0, 2)], true)}${esc(x.w)}</button>`).join('') : '';
+  el.innerHTML = h.length ? `<span>${esc(t('any.recent', 'Recent:'))}</span>` + h.map(x => `<button class="chip" data-open="${esc(x.id)}" lang="${x.id.slice(0, 2)}">${flag(S.main[x.id.slice(0, 2)], true)}${esc(withTo(x.id, x.w))}</button>`).join('') : '';
 }
 async function openId(id, sense) {
   if (!D.byId.has(id)) await ensureIds([id]);
@@ -1147,7 +1158,7 @@ function wordOfDay() {
 function paintWotd() {
   const el = $('#wotd'); if (!el || !D.ready) return;
   const e = wordOfDay();
-  el.innerHTML = e ? `<span>${esc(t('wotd', 'Word of the day'))} ${lvlBadge(e, true)}</span><button class="chip" data-open="${esc(e.id)}" lang="${e.lang}">${flag(S.main[e.lang], true)}${e.pos === 'noun' ? artHtml(article(e.lang, e, e.lemma), e.noun && e.noun.gender) + ' ' : ''}${esc(e.lemma)}</button>` : '';
+  el.innerHTML = e ? `<span>${esc(t('wotd', 'Word of the day'))} ${lvlBadge(e, true)}</span><button class="chip" data-open="${esc(e.id)}" lang="${e.lang}">${flag(S.main[e.lang], true)}${e.pos === 'noun' ? artHtml(article(e.lang, e, e.lemma), e.noun && e.noun.gender) + ' ' : ''}${esc(withTo(e.id, e.lemma))}</button>` : '';
 }
 
 /* ---------- display settings: theme, text size, motion ---------- */
@@ -1260,7 +1271,7 @@ async function start() {
   } else offlineNote(t('foot.needweb', 'Offline use needs the app to be opened from its web address.'));
 }
 const API = { D, S, P, DEFAULTS, t, esc, num, flag, fold, LNAME, RNAME, REG, BASE, LOCALE, LANGS, CEFR, LVORD, levelOf, lvlBadge, article, artHtml, gclass, gname, withArt, regionView,
-  find, findLoaded, translate, openEntry, openId, ensureIds, ensureWord, speak, speakAll, voicesFor, voiceFor, get voices() { return voices; }, saveP, saveSettings, loadSettings, toast, render, applyDisplay, applyTexts,
+  find, findLoaded, translate, openEntry, openId, ensureIds, ensureWord, speak, speakAll, withTo, voicesFor, voiceFor, get voices() { return voices; }, saveP, saveSettings, loadSettings, toast, render, applyDisplay, applyTexts,
   buildSlots, paintRecent, paintWotd, tables, canForms, routeOf, firstTr: null, trIds, toggleFav, diffMark, animOn, quad, visibleSenses, idParts, sentenceHtml, regionScore, get state() { return state; } };
 window.FLT = Object.assign(API, { ready: null });
 window.FLT.ready = start();

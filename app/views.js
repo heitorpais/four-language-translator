@@ -13,7 +13,7 @@ const ALL = ['en', 'de', 'fr', 'pt'];
 const POSLIST = ['noun', 'verb', 'adjective', 'adverb', 'preposition', 'pronoun', 'conjunction', 'numeral', 'interjection', 'determiner', 'article', 'phrase'];
 const V = { tab: { explore: 'level', me: 'saved', }, xlang: null, xlevel: 'A1', xpos: 'noun', xletter: 'a', pr: null };
 const coreOf = lang => { const out = []; for (const e of A.D.byId.values()) if (e.lang === lang && e.tier === 'core') out.push(e); return out.sort((a, b) => (a.frequency_rank || 1e9) - (b.frequency_rank || 1e9)); };
-const chipOf = e => `<button class="chip" data-open="${esc(e.id)}" lang="${e.lang}">${e.pos === 'noun' && e.noun && e.noun.gender ? A.artHtml(A.article(e.lang, e, e.lemma), e.noun.gender) + ' ' : ''}${esc(e.lemma)}${A.lvlBadge(e, true)}</button>`;
+const chipOf = e => `<button class="chip" data-open="${esc(e.id)}" lang="${e.lang}">${e.pos === 'noun' && e.noun && e.noun.gender ? A.artHtml(A.article(e.lang, e, e.lemma), e.noun.gender) + ' ' : ''}${esc(A.withTo(e.id, e.lemma))}${A.lvlBadge(e, true)}</button>`;
 const langSelect = (id, val, extra) => `<select id="${id}">${(extra || []).map(([v, n]) => `<option value="${v}"${v === val ? ' selected' : ''}>${esc(n)}</option>`).join('')}${ALL.map(l => `<option value="${l}"${l === val ? ' selected' : ''}>${esc(A.LNAME[l])}</option>`).join('')}</select>`;
 const learnLang = () => A.S.learning || A.S.order[1] || 'de';
 
@@ -65,7 +65,7 @@ function paintExplore() {
     body += listChips(list, t('x.az.n', '{n} common words. Rarer words load when you look them up.', { n: A.num(list.length) }));
   } else if (tab === 'irr') {
     const list = coreOf(lang).filter(e => e.pos === 'verb' && e.verb && e.verb.regular === false && e.verb.principal_parts);
-    body = `<p class="hint">${esc(t('x.irr.n', '{n} irregular verbs, most frequent first. Changed letters are bold.', { n: A.num(list.length) }))}</p><div class="tblwrap"><table class="irrt"><thead><tr><th>${esc(t('x.irr.inf', 'Infinitive'))}</th><th>${esc(t('x.irr.past', 'Past'))}</th><th>${esc(t('x.irr.pp', 'Participle'))}</th>${lang === 'de' || lang === 'fr' ? `<th>${esc(t('row.aux', 'Auxiliary'))}</th>` : ''}<th>${esc(t('lvl.stored', 'Level'))}</th></tr></thead><tbody>${list.slice(0, 400).map(e => { const p = e.verb.principal_parts; return `<tr><td><button class="lnk" data-open="${esc(e.id)}" lang="${lang}">${esc(e.lemma)}</button></td><td lang="${lang}">${p[1] ? A.diffMark(e.lemma, p[1], true) : ''}</td><td lang="${lang}">${p[2] ? A.diffMark(e.lemma, p[2], true) : ''}</td>${lang === 'de' || lang === 'fr' ? `<td>${esc(e.verb.aux || '')}</td>` : ''}<td>${A.lvlBadge(e, true)}</td></tr>`; }).join('')}</tbody></table></div>`;
+    body = `<p class="hint">${esc(t('x.irr.n', '{n} irregular verbs, most frequent first. Changed letters are bold.', { n: A.num(list.length) }))}</p><div class="tblwrap"><table class="irrt"><thead><tr><th>${esc(t('x.irr.inf', 'Infinitive'))}</th><th>${esc(t('x.irr.past', 'Past'))}</th><th>${esc(t('x.irr.pp', 'Participle'))}</th>${lang === 'de' || lang === 'fr' ? `<th>${esc(t('row.aux', 'Auxiliary'))}</th>` : ''}<th>${esc(t('lvl.stored', 'Level'))}</th></tr></thead><tbody>${list.slice(0, 400).map(e => { const p = e.verb.principal_parts; return `<tr><td><button class="lnk" data-open="${esc(e.id)}" lang="${lang}">${esc(A.withTo(e.id, e.lemma))}</button></td><td lang="${lang}">${p[1] ? A.diffMark(e.lemma, p[1], true) : ''}</td><td lang="${lang}">${p[2] ? A.diffMark(e.lemma, p[2], true) : ''}</td>${lang === 'de' || lang === 'fr' ? `<td>${esc(e.verb.aux || '')}</td>` : ''}<td>${A.lvlBadge(e, true)}</td></tr>`; }).join('')}</tbody></table></div>`;
   } else if (tab === 'random') {
     body = `<div class="row"><button class="btn" data-x="random">🎲 ${esc(t('x.random.go', 'Show me a random word'))}</button><label class="ck"><input type="checkbox" id="x-rlevel"${V.rlevel !== false ? ' checked' : ''}> ${esc(t('x.random.mine', 'at my level ({l})', { l: A.S.myLevel }))}</label></div>`;
   } else if (tab === 'regional') {
@@ -106,7 +106,7 @@ function aboutHtml() {
 /* ---------- My words ---------- */
 function entryChipsFromMap(map, sort) {
   const ids = Object.keys(map).sort(sort || ((a, b) => (map[b].t || 0) - (map[a].t || 0)));
-  return ids.map(id => `<button class="chip" data-open="${esc(id)}" lang="${id.slice(0, 2)}">${A.flag(A.S.main[id.slice(0, 2)], true)}${esc(map[id].w || id.split(':')[1])}</button>`).join('');
+  return ids.map(id => `<button class="chip" data-open="${esc(id)}" lang="${id.slice(0, 2)}">${A.flag(A.S.main[id.slice(0, 2)], true)}${esc(A.withTo(id, map[id].w || id.split(':')[1]))}</button>`).join('');
 }
 function paintMe() {
   const el = $('#me'), P = A.P, tab = V.tab.me;
@@ -114,13 +114,13 @@ function paintMe() {
   let body = '';
   if (tab === 'saved') body = n.saved ? `<p class="hint">${esc(t('me.saved.n', '{n} words saved. Tap one to open it.', { n: A.num(n.saved) }))}</p><div class="chips">${entryChipsFromMap(P.favs)}</div><div class="row"><button class="btn" data-x="pr-saved">${esc(t('me.practice', 'Practise these words'))}</button><button class="btn" data-x="fc-open">${esc(t('fc.open', 'Flashcards: {n} due', { n: dueIds().length }))}</button></div>` : `<p class="hint">${esc(t('me.saved.none', 'No saved words yet. Tap ☆ on a card to save a word.'))}</p>`;
   else if (tab === 'lists') {
-    body = (P.lists.length ? P.lists.map((L, k) => `<div class="lst"><div class="row"><b>${esc(L.name)}</b> <small class="hint">${esc(t('me.list.n', '{n} words', { n: L.ids.length }))}</small><button class="chip" data-x="pr-list" data-k="${k}">${esc(t('me.practice.s', 'Practise'))}</button><button class="chip" data-x="list-ren" data-k="${k}">${esc(t('me.rename', 'Rename'))}</button><button class="chip" data-x="list-del" data-k="${k}">${esc(t('btn.delete', 'Delete'))}</button></div><div class="chips">${L.ids.map(id => `<button class="chip" data-open="${esc(id)}" lang="${id.slice(0, 2)}">${A.flag(A.S.main[id.slice(0, 2)], true)}${esc((L.w && L.w[id]) || id.split(':')[1])}</button>`).join('')}</div></div>`).join('') : `<p class="hint">${esc(t('me.lists.none', 'No lists yet. Use “＋ List” on a card to make one.'))}</p>`)
+    body = (P.lists.length ? P.lists.map((L, k) => `<div class="lst"><div class="row"><b>${esc(L.name)}</b> <small class="hint">${esc(t('me.list.n', '{n} words', { n: L.ids.length }))}</small><button class="chip" data-x="pr-list" data-k="${k}">${esc(t('me.practice.s', 'Practise'))}</button><button class="chip" data-x="list-ren" data-k="${k}">${esc(t('me.rename', 'Rename'))}</button><button class="chip" data-x="list-del" data-k="${k}">${esc(t('btn.delete', 'Delete'))}</button></div><div class="chips">${L.ids.map(id => `<button class="chip" data-open="${esc(id)}" lang="${id.slice(0, 2)}">${A.flag(A.S.main[id.slice(0, 2)], true)}${esc(A.withTo(id, (L.w && L.w[id]) || id.split(':')[1]))}</button>`).join('')}</div></div>`).join('') : `<p class="hint">${esc(t('me.lists.none', 'No lists yet. Use “＋ List” on a card to make one.'))}</p>`)
       + `<div class="row"><input class="text" id="me-newlist" placeholder="${esc(t('list.new', 'New list…'))}"><button class="btn sm" data-x="list-new">${esc(t('btn.add', 'Add'))}</button></div>`;
   } else if (tab === 'history') {
     const byDay = {}; P.history.forEach(h => { const d = new Date(h.t).toLocaleDateString(A.S.ui); (byDay[d] = byDay[d] || []).push(h); });
-    body = n.history ? Object.entries(byDay).map(([d, hs]) => `<div class="lst"><b>${esc(d)}</b><div class="chips">${hs.map(h => `<button class="chip" data-open="${esc(h.id)}" lang="${h.id.slice(0, 2)}">${A.flag(A.S.main[h.id.slice(0, 2)], true)}${esc(h.w)}</button>`).join('')}</div></div>`).join('') + `<button class="btn sm" data-x="hist-clear">${esc(t('me.hist.clear', 'Clear history'))}</button>` : `<p class="hint">${esc(t('me.hist.none', 'No words looked up yet.'))}</p>`;
+    body = n.history ? Object.entries(byDay).map(([d, hs]) => `<div class="lst"><b>${esc(d)}</b><div class="chips">${hs.map(h => `<button class="chip" data-open="${esc(h.id)}" lang="${h.id.slice(0, 2)}">${A.flag(A.S.main[h.id.slice(0, 2)], true)}${esc(A.withTo(h.id, h.w))}</button>`).join('')}</div></div>`).join('') + `<button class="btn sm" data-x="hist-clear">${esc(t('me.hist.clear', 'Clear history'))}</button>` : `<p class="hint">${esc(t('me.hist.none', 'No words looked up yet.'))}</p>`;
   } else if (tab === 'known') body = n.known ? `<p class="hint">${esc(t('me.known.n', '{n} words marked as known. Known words are left out of the word of the day.', { n: n.known }))}</p><div class="chips">${entryChipsFromMap(P.known)}</div>` : `<p class="hint">${esc(t('me.known.none', 'Mark a word with “I know this” on its card.'))}</p>`;
-  else if (tab === 'notes') body = n.notes ? Object.entries(P.notes).map(([id, txt]) => `<div class="lst"><button class="chip" data-open="${esc(id)}" lang="${id.slice(0, 2)}">${A.flag(A.S.main[id.slice(0, 2)], true)}${esc(id.split(':')[1])}</button> <span>${esc(txt)}</span></div>`).join('') : `<p class="hint">${esc(t('me.notes.none', 'Write a note with “✎ Note” on a card.'))}</p>`;
+  else if (tab === 'notes') body = n.notes ? Object.entries(P.notes).map(([id, txt]) => `<div class="lst"><button class="chip" data-open="${esc(id)}" lang="${id.slice(0, 2)}">${A.flag(A.S.main[id.slice(0, 2)], true)}${esc(A.withTo(id, id.split(':')[1]))}</button> <span>${esc(txt)}</span></div>`).join('') : `<p class="hint">${esc(t('me.notes.none', 'Write a note with “✎ Note” on a card.'))}</p>`;
   else if (tab === 'file') body = `<p class="hint">${esc(t('me.file.p', 'Your saved words, lists, notes, known words and history stay in this browser only. Save them to a file to keep a copy or move them to another device.'))}</p>
     <div class="row"><button class="btn" data-x="export">⬇ ${esc(t('me.export', 'Save to a file'))}</button><button class="btn" data-x="export-csv">⬇ ${esc(t('me.csv', 'Spreadsheet (CSV)'))}</button><button class="btn" data-x="export-anki">⬇ ${esc(t('me.anki', 'Anki flashcards'))}</button><button class="btn" data-x="print">🖨 ${esc(t('me.print', 'Print or PDF'))}</button><label class="btn">⬆ ${esc(t('me.import', 'Load from a file'))}<input type="file" id="me-import" accept="application/json,.json" hidden></label></div><p class="hint" id="me-file-msg" aria-live="polite"></p>`;
   el.innerHTML = `<h2>${esc(t('nav.me', 'My words'))}</h2>${tabs('me', [['saved', '★ ' + t('me.tab.saved', 'Saved') + ' ' + n.saved], ['lists', t('me.tab.lists', 'Lists') + ' ' + n.lists], ['history', t('me.tab.history', 'History')], ['known', '✓ ' + t('me.tab.known', 'Known') + ' ' + n.known], ['notes', '✎ ' + t('me.tab.notes', 'Notes') + ' ' + n.notes], ['file', t('me.tab.file', 'Export / import')]])}<div class="tabbody">${body}</div>`;
@@ -230,7 +230,7 @@ async function pool(c, lang) {
   }
   return coreOf(lang).filter(e => lvOK(e, c));
 }
-const gloss = e => { const s = e.senses.find(x => x.gloss_en) || e.senses[0]; if (!s) return ''; const ui = A.S.ui, tr = ui !== e.lang && A.trIds(s, ui)[0]; return tr ? (A.D.byId.get(tr) || {}).lemma || s.gloss_en || '' : (s.gloss_en || ''); };
+const gloss = e => { const s = e.senses.find(x => x.gloss_en) || e.senses[0]; if (!s) return ''; const ui = A.S.ui, tr = ui !== e.lang && A.trIds(s, ui)[0]; return tr ? A.withTo(tr, (A.D.byId.get(tr) || {}).lemma) || s.gloss_en || '' : (s.gloss_en || ''); };
 const firstTr = (e, to) => { for (const s of e.senses) { const ids = A.trIds(s, to); if (ids.length) return ids[0]; } return null; };
 const ART = { de: { m: 'der', f: 'die', n: 'das' }, fr: { m: 'le', f: 'la' }, pt: { m: 'o', f: 'a' } };
 const norm = s => A.fold(String(s || '')).replace(/^(der|die|das|le|la|les|l'|o|a|os|as|the|to)\s+/, '').replace(/['’]/g, "'").replace(/\s+/g, ' ').trim();
@@ -266,7 +266,7 @@ async function one(c, [e], all) {
   }
   if (c.mode === 'aux') {
     if (e.pos !== 'verb' || !rv.aux || !['haben', 'sein', 'avoir', 'être'].includes(rv.aux)) return null;
-    return Object.assign(base, { prompt: `<span class="big" lang="${lang}">${esc(e.lemma)}</span><span class="hint">${esc(gloss(e))}</span>`, choices: lang === 'de' ? ['haben', 'sein'] : ['avoir', 'être'], answer: rv.aux });
+    return Object.assign(base, { prompt: `<span class="big" lang="${lang}">${esc(rv.word)}</span><span class="hint">${esc(gloss(e))}</span>`, choices: lang === 'de' ? ['haben', 'sein'] : ['avoir', 'être'], answer: rv.aux });
   }
   if (c.mode === 'case') {
     const g = (e.governs || []).find(x => x.case && /^(Akk|Dat|Gen)$/.test(x.case)); if (!g) return null;
@@ -278,8 +278,8 @@ async function one(c, [e], all) {
     const others = shuffle((all.length >= 12 ? all : coreOf(lang)).filter(x => x !== e && x.pos === e.pos)).slice(0, 60).map(x => firstTr(x, to)).filter(x => x && x !== right);
     const opts = [...new Set([right, ...others])].slice(0, 4); if (opts.length < 3) return null;
     await A.ensureIds(opts);
-    const words = shuffle(opts).map(id => (A.D.byId.get(id) || {}).lemma).filter(Boolean);
-    const ans = (A.D.byId.get(right) || {}).lemma; if (!ans) return null;
+    const words = shuffle(opts).map(id => A.withTo(id, (A.D.byId.get(id) || {}).lemma)).filter(Boolean);
+    const ans = A.withTo(right, (A.D.byId.get(right) || {}).lemma); if (!ans) return null;
     return Object.assign(base, { to, prompt: `<span class="big" lang="${lang}">${esc(rv.word)}</span><span class="hint">${A.flag(A.S.main[lang], true)} → ${A.flag(A.S.main[to], true)}${esc(A.LNAME[to])}</span>`, choices: [...new Set(words)], answer: ans });
   }
   if (c.mode === 'gap') {
@@ -294,7 +294,7 @@ async function one(c, [e], all) {
   }
   if (c.mode === 'parts') {
     const p = e.verb && e.verb.principal_parts; if (e.pos !== 'verb' || !p || e.verb.regular !== false || !p[1] || !p[2] || /\s/.test(e.lemma)) return null;
-    return Object.assign(base, { prompt: `<span class="big" lang="${lang}">${esc(e.lemma)}</span><span class="hint">${esc(gloss(e))} · ${esc(t('pr.q.parts', 'past form, participle'))}</span>`, typed: true, two: true, answer: p[1] + ', ' + p[2], parts: [p[1], p[2]] });
+    return Object.assign(base, { prompt: `<span class="big" lang="${lang}">${esc(rv.word)}</span><span class="hint">${esc(gloss(e))} · ${esc(t('pr.q.parts', 'past form, participle'))}</span>`, typed: true, two: true, answer: p[1] + ', ' + p[2], parts: [p[1], p[2]] });
   }
   return null;
 }
@@ -358,12 +358,12 @@ function questionHtml() {
 function miniCard(e) {
   const rv = A.regionView(e), art = e.pos === 'noun' ? A.article(e.lang, e, rv.word) : '';
   const s = e.senses.find(x => ALL.some(l => l !== e.lang && A.trIds(x, l).length));
-  const tr = s ? ALL.filter(l => l !== e.lang).map(l => { const id = A.trIds(s, l)[0], x = id && A.D.byId.get(id); return x ? `<span class="nowrap">${A.flag(A.S.main[l], true)}<span lang="${l}">${esc(x.lemma)}</span></span>` : ''; }).join(' &nbsp;') : '';
+  const tr = s ? ALL.filter(l => l !== e.lang).map(l => { const id = A.trIds(s, l)[0], x = id && A.D.byId.get(id); return x ? `<span class="nowrap">${A.flag(A.S.main[l], true)}<span lang="${l}">${esc(A.withTo(x.id, x.lemma))}</span></span>` : ''; }).join(' &nbsp;') : '';
   return `<div class="minicard"><div><b class="hw sm" lang="${e.lang}">${art ? A.artHtml(art, e.noun && e.noun.gender) + ' ' : ''}${esc(rv.word)}</b> ${rv.ipa ? `<span class="ipa">/${esc(rv.ipa)}/</span>` : ''} <span class="pos">${esc(t('pos.' + e.pos, e.pos))}</span> ${A.lvlBadge(e, true)}</div>${rv.plural ? `<div class="hint">${esc(t('pr.mini.pl', 'plural'))}: ${esc(rv.plural)}</div>` : ''}${e.verb && e.verb.principal_parts ? `<div class="hint">${esc(e.verb.principal_parts.filter(Boolean).join(' · '))}${rv.aux ? ' · + ' + esc(rv.aux) : ''}</div>` : ''}<div>${tr}</div><button class="btn sm" data-open="${esc(e.id)}" data-x="pr-card">${esc(t('pr.card', 'Open the full card'))}</button></div>`;
 }
 function resultHtml() {
   const pr = V.pr, n = pr.total || pr.qs.length;
-  return `<div class="result"><p class="big">${esc(t('pr.score', '{r} of {n} right', { r: pr.right, n }))} ${pr.right === n ? '🎉' : ''}</p>${pr.wrong.length ? `<p class="hint">${esc(t('pr.saved', 'Your mistakes are saved; choose “Review my mistakes” to practise them.'))}</p><div class="chips">${pr.wrong.map(e => `<button class="chip" data-open="${esc(e.id)}" lang="${e.lang}">${esc(e.lemma)}</button>`).join('')}</div>` : ''}</div>`;
+  return `<div class="result"><p class="big">${esc(t('pr.score', '{r} of {n} right', { r: pr.right, n }))} ${pr.right === n ? '🎉' : ''}</p>${pr.wrong.length ? `<p class="hint">${esc(t('pr.saved', 'Your mistakes are saved; choose “Review my mistakes” to practise them.'))}</p><div class="chips">${pr.wrong.map(e => `<button class="chip" data-open="${esc(e.id)}" lang="${e.lang}">${esc(A.withTo(e.id, e.lemma))}</button>`).join('')}</div>` : ''}</div>`;
 }
 function focusAnswer() { const i = $('#pr-in'); if (i && !i.disabled) setTimeout(() => i.focus(), 30); else { const b = $('#pr-next'); if (b) setTimeout(() => b.focus(), 30); } }
 function judge(ok, picked) {

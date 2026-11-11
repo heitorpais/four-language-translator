@@ -58,7 +58,7 @@ const results = []; const ok = (n, p, i) => results.push([n, !!p, i == null ? ''
   await tr('de', 'essen'); const essen = await ev(() => FLT.state.entry.pos); await tr('de', 'Essen'); const Essen = await ev(() => FLT.state.entry.pos);
   ok('17 except German: essen verb, Essen noun', essen === 'verb' && Essen === 'noun', essen + ' / ' + Essen);
   await ev(() => { const i = document.querySelector('#in-any'); i.focus(); i.value = 'maison'; i.dispatchEvent(new Event('input')); });
-  await page.waitForTimeout(250); await page.keyboard.press('Enter'); await waitDone(); await page.waitForTimeout(300);
+  await page.waitForTimeout(250); await page.keyboard.press('Enter'); await page.waitForFunction(() => FLT.state.entry.lang === 'fr', null, { timeout: 8000 }).catch(() => {});
   ok('18 one search box finds the language (maison → French)', (await ev(() => FLT.state.entry.id)) === 'fr:maison:noun', await ev(() => FLT.state.entry.id));
   await ev(() => { const i = document.querySelector('#in-any'); i.value = 'Schmetterling'; i.dispatchEvent(new Event('input')); });
   await page.waitForTimeout(250); await page.keyboard.press('Enter'); await page.waitForFunction(() => FLT.state.entry.lang === 'de', null, { timeout: 8000 }).catch(() => {});
