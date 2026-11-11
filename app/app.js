@@ -242,7 +242,36 @@ function suggest(lang, raw, n) {
 
 /* ---------- senses and translations ---------- */
 const hiddenRoute = (s, lang) => !!((s.hidden && s.hidden.includes(lang)) || (s.route && s.route[lang] === 'via-en-unchecked'));      // kept in the data, never shown
-function trIds(s, lang) { return hiddenRoute(s, lang) ? [] : (s.translations[lang] || []).filter(id => D.byId.has(id)); }
+/* Regional order (data: senses[].regional {id: ["BR"] | ["+CH"] | ["-CH"] | []}, see build/regions.py):
+   a word marked for the reader's region comes first if the list also has a word for another region or the marker
+   is "+R"; words marked only for other regions (or "-R") come last; the rest keep their order. */
+const plainRegions = mk => mk ? mk.filter(x => !/^[+-]/.test(x)) : null;
+function regionScore(s, lang, ids) {
+  const m = s.regional || {}, R = S.main[lang].toUpperCase();
+  const pair = ids.some(t => { const p = plainRegions(m[t]); return p && p.length && !p.includes(R); });
+  return t => {
+    const mk = m[t]; if (!mk) return 1;
+    if (mk.includes('+' + R)) return 0;
+    if (mk.includes('-' + R)) return 2;
+    const p = plainRegions(mk);
+    if (!mk.length) return 2;
+    if (!p.length) return 1;
+    return p.includes(R) ? (pair ? 0 : 1) : 2;
+  };
+}
+function trIds(s, lang) {
+  if (hiddenRoute(s, lang)) return [];
+  const ids = (s.translations[lang] || []).filter(id => D.byId.has(id));
+  if (!s.regional || ids.length < 2) return ids;
+  const sc = regionScore(s, lang, ids), k = new Map(ids.map((t, i) => [t, sc(t) * 1000 + i]));
+  return ids.slice().sort((a, b) => k.get(a) - k.get(b));
+}
+// where a word is used, if only in some regions: from the sense it was reached through, else from the entry
+function usedIn(e, s) {
+  const p = s && s.regional ? plainRegions(s.regional[e.id]) : null;
+  if (p && (p.length || (s.regional[e.id] || []).length === 0)) return p;
+  return e.used_in || null;
+}
 function visibleSenses(e) {
   return e.senses.map((s, i) => ({ s, i })).filter(({ s }) => !(e.lang !== 'de' && hiddenRoute(s, 'de')) && Object.keys(REG).some(l => l !== e.lang && trIds(s, l).length));
 }
@@ -312,6 +341,7 @@ function regionView(e) {
   const o = { word: (v && v.form) || e.lemma, note: v ? v.note : null, changed: !!(v && v.form && v.form !== e.lemma) };
   const reg = e.ipa.regional || {};
   o.ipa = (!isBase && reg[R]) || e.ipa.default; o.narrow = !!e.ipa.narrow && o.ipa === e.ipa.default;
+  o.ipaFrom = !isBase && !reg[R] && o.ipa ? BASE[lang] : null;     // no transcription of its own: the base region's is shown, and said so
   o.aux = e.verb ? ((!isBase && e.verb.aux_regional && e.verb.aux_regional[R]) || e.verb.aux) : null;
   o.plural = (v && v.plural) || (e.noun && !o.changed ? e.noun.plural : null);
   // the other regions, where they differ
@@ -531,7 +561,11 @@ function card(l, e, alts, ex) {
     `<ul class="gov">${e.governs.map(g => { const pat = g.pattern || (e.lemma + (g.prep ? ' ' + g.prep : '') + (g.case ? ' + ' + g.case.split('/').map(c => CASENAME[c] || c).join(' / ') : '')); return `<li><span class="pat">${esc(pat)}</span>${g.meaning ? `<span class="sub" lang="en">${esc(g.meaning)}</span>` : ''}</li>`; }).join('')}</ul>`]);
   const syn = [...(e.synonyms || []).map(lemmaOf).filter(Boolean), ...(e.synonyms_text || [])].slice(0, 6);
   if (syn.length) rows.push(['Synonyms', `<span class="form">${esc(syn.join(', '))}</span>`]);
-  if (alts && alts.length > 1) rows.push(['Also', alts.map((id, i) => D.byId.get(id) === e ? '' : `<button class="chip" data-pick="${lang}:${i}" lang="${lang}">${esc(lemmaOf(id))}</button>`).join(' ')]);
+  const sn = state.entry && state.entry.senses[state.sense];
+  const chipFlags = id => { const p = sn && sn.regional ? plainRegions(sn.regional[id]) : null; return p && p.length ? p.map(r => flag(r.toLowerCase(), true)).join('') : ''; };
+  if (alts && alts.length > 1) rows.push(['Also', alts.map((id, i) => D.byId.get(id) === e ? '' : `<button class="chip" data-pick="${lang}:${i}" lang="${lang}">${chipFlags(id)}${esc(lemmaOf(id))}</button>`).join(' ')]);
+  const ui = usedIn(e, e === state.entry ? null : sn), R = S.main[lang].toUpperCase();
+  if (ui && !ui.includes(R)) rows.unshift(['Used in', ui.length ? ui.map(r => flag(r.toLowerCase(), true) + esc(RNAME[r.toLowerCase()])).join(' &nbsp;') + ` <span class="sub">not usual in ${esc(RNAME[S.main[lang]])}</span>` : '<span class="sub">regional (not one of the regions offered here)</span>']);
   if (S.variants && rv.groups.length) rows.push(['Variants',
     `<ul class="vars">${rv.groups.map(g => `<li><span class="where" lang="en">${g.regions.map(r => flag(r, true) + esc(RNAME[r])).join(' &nbsp;')}</span>${g.parts.length ? `<span class="form">${esc(g.parts.join(' · '))}</span>` : ''}${g.note ? `<span class="sub" lang="en">${esc(g.note)}</span>` : ''}</li>`).join('')}</ul>`]);
   if (S.gsw && lang === 'de' && e.swiss_german) rows.push(['Swiss German', `${flag('ch', true)}<span class="form" lang="gsw">${esc(e.swiss_german.form)}</span><span class="sub" lang="en">spoken dialect${e.swiss_german.approximate ? ', spelling is approximate' : ''}</span>`]);
@@ -540,7 +574,7 @@ function card(l, e, alts, ex) {
   let html = `<article class="card" lang="${LOCALE[lang][S.main[lang]]}" data-id="${esc(e.id)}">
     <span class="tab">${l.code}</span>
     <div><div class="hwrow"><h2 class="hw">${art ? `<span class="art">${esc(art)}</span>${art.endsWith("'") ? '' : ' '}` : ''}${esc(rv.word)}</h2>${sayBtn(head, lang)}</div>
-    <div class="pron">${rv.ipa ? ipaHtml(rv.ipa, rv.narrow) : ''}<span class="pos" lang="en">${esc(pos)}${n && n.gender ? ' · ' + esc(n.gender) : ''}</span>${e.level && CEFR[e.level] ? `<span class="lvl" lang="en">${e.level} · ${CEFR[e.level]}</span>` : ''}</div></div>
+    <div class="pron">${rv.ipa ? (rv.ipaFrom ? `<span class="ipafrom" lang="en" title="Wiktionary has no separate transcription for ${RNAME[S.main[lang]]}; this is the pronunciation of ${RNAME[rv.ipaFrom]}">${flag(rv.ipaFrom, true)}</span>` : '') + ipaHtml(rv.ipa, rv.narrow) + (rv.ipaFrom ? `<span class="sub ipanote" lang="en">as in ${RNAME[rv.ipaFrom]}</span>` : '') : ''}<span class="pos" lang="en">${esc(pos)}${n && n.gender ? ' · ' + esc(n.gender) : ''}</span>${e.level && CEFR[e.level] ? `<span class="lvl" lang="en">${e.level} · ${CEFR[e.level]}</span>` : ''}</div></div>
     ${rows.length ? `<dl>${rows.map(([x, y]) => `<dt lang="en">${x}</dt><dd>${y}</dd>`).join('')}</dl>` : ''}
     ${canForms(e) ? `<button class="more" data-extra="forms" data-lang="${lang}" lang="en" aria-expanded="${fs && fs.open ? 'true' : 'false'}">${fs && fs.open ? 'Hide forms' : 'See more forms'}</button>${formsBlock(e, rv)}` : ''}
     ${examplesBlock(lang, ex)}

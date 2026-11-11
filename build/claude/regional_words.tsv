@@ -1,0 +1,53 @@
+# Regional word preferences that Wiktionary does not mark on its senses. Origin: claude.
+# lang	region	English meanings (/-separated)	word	pos	mark	beside	not with
+#   +  this word is the usual one for that meaning in that region (listed first there; added to the list if missing)
+#   -  this word is not used for that meaning in that region (listed last there)
+# beside: the word is added to a list only when this other word is in it (gehen -> laufen); otherwise only marked
+# not with: the row does not apply to a sense that also means one of these (/-separated)
+de	CH	walk/go on foot/move on the feet/travel a distance by walking	laufen	verb	+	gehen	
+de	CH	run/move quickly on two feet/sprint/race	rennen	verb	+	laufen	execute/program/operate/function/flow/leak/work/manage/campaign/stand/be in progress/happen/extend/last/go on/take place/drip/stream
+de	CH	run/move quickly on two feet/sprint/race	laufen	verb	-		execute/program/operate/function/flow/leak/work/manage/campaign/stand/be in progress/happen/extend/last/go on/take place/drip/stream
+de	CH	mobile phone phone/mobilephone	Handy	noun	+	Natel	
+de	CH	park	parkieren	verb	+	parken	
+de	CH	grill/barbecue	grillieren	verb	+	grillen	
+de	CH	hospital	Spital	noun	+	Krankenhaus	
+de	CH	sidewalk/pavement	Trottoir	noun	+	Bürgersteig	
+de	CH	bicycle/bike	Velo	noun	+	Fahrrad	
+de	CH	cream	Rahm	noun	+	Sahne	
+de	CH	chicken	Poulet	noun	+	Hähnchen	
+de	CH	tram/streetcar	Tram	noun	+	Straßenbahn	
+de	AT	January	Jänner	noun	+	Januar	
+de	AT	cream	Obers	noun	+	Sahne	
+de	AT	potato	Erdapfel	noun	+	Kartoffel	
+de	AT	tomato	Paradeiser	noun	+	Tomate	
+de	AT	sidewalk/pavement	Gehsteig	noun	+	Bürgersteig	
+de	DE	sidewalk/pavement	Bürgersteig	noun	+	Gehsteig	
+pt	BR	breakfast	café da manhã	noun	+	pequeno-almoço	
+pt	PT	breakfast	pequeno-almoço	noun	+	café da manhã	
+pt	BR	bus	ônibus	noun	+	autocarro	
+pt	PT	bus	autocarro	noun	+	ônibus	
+pt	BR	train	trem	noun	+	comboio	
+pt	PT	train	comboio	noun	+	trem	
+pt	BR	mobile phone phone/mobilephone	celular	noun	+	telemóvel	
+pt	PT	mobile phone phone/mobilephone	telemóvel	noun	+	celular	
+pt	BR	refrigerator/fridge	geladeira	noun	+	frigorífico	
+pt	PT	refrigerator/fridge	frigorífico	noun	+	geladeira	
+pt	BR	juice	suco	noun	+	sumo	
+pt	PT	juice	sumo	noun	+	suco	
+pt	BR	ice cream	sorvete	noun	+	gelado	
+pt	PT	ice cream	gelado	noun	+	sorvete	
+pt	BR	bathroom/toilet	banheiro	noun	+	casa de banho	
+pt	PT	bathroom/toilet	casa de banho	noun	+	banheiro	
+pt	BR	screen	tela	noun	+	ecrã	
+pt	PT	screen	ecrã	noun	+	tela	
+pt	BR	team	time	noun	+	equipa	
+pt	PT	team	equipa	noun	+	equipe	
+pt	BR	user	usuário	noun	+	utilizador	
+pt	PT	user	utilizador	noun	+	usuário	
+fr	CH	seventy	septante	num	+	soixante-dix	
+fr	BE	seventy	septante	num	+	soixante-dix	
+fr	CH	ninety	nonante	num	+	quatre-vingt-dix	
+fr	BE	ninety	nonante	num	+	quatre-vingt-dix	
+fr	CH	mobile phone/cell phone/mobile/cellphone	natel	noun	+	portable	
+fr	CA	email/e-mail	courriel	noun	+	e-mail	
+fr	CA	car/automobile	char	noun	+	voiture	

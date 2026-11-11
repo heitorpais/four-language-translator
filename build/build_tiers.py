@@ -74,10 +74,10 @@ def main():
             # bookkeeping (where each field comes from, how each translation was found) waits in the details file;
             # the card keeps per sense only the languages whose translations must not be shown
             details[e['id']] = {'examples': e['examples'], 'more': e['more'], 'origin': e['origin'],
-                                'senses': [{k: s[k] for k in ('route', 'origin', 'gloss', 'reverse') if k in s} for s in e['senses']]}
+                                'senses': [{k: s[k] for k in ('route', 'origin', 'gloss', 'reverse', 'regional_origin') if k in s} for s in e['senses']]}
             senses = []
             for s in e['senses']:
-                c = {k: v for k, v in s.items() if k not in ('route', 'origin', 'gloss', 'reverse')}
+                c = {k: v for k, v in s.items() if k not in ('route', 'origin', 'gloss', 'reverse', 'regional_origin')}
                 hidden = sorted(X for X, r in s.get('route', {}).items() if r == 'via-en-unchecked')
                 if hidden: c['hidden'] = hidden
                 senses.append(c)

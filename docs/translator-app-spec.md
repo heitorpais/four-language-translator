@@ -193,6 +193,25 @@ Every entry has a `tier` field: `core`, `ext` (extended) or `tail` (long tail).
 - Inside each translation list, the translation whose own Wiktionary entry names the source word comes first,
   then the more frequent one.
 
+### 4.3 Regional words (added 11 Nov 2026)
+
+- `senses[].regional` (optional): `{translation id: markers}` for translations that are regional.
+  `["BR"]` = Wiktionary labels every matching sense of that word with these regions only (`celular` → BR);
+  `[]` = only in regions the app does not offer (Louisiana, Angola…); `"+CH"` = the usual word for this meaning
+  in that region; `"-CH"` = not used for this meaning there (laufen for "run"). Regions: DE CH AT, US GB,
+  FR CA BE CH, BR PT.
+- `senses[].regional_origin` (optional, details file): `{translation id: "claude"}` for markers that come from
+  `build/claude/regional_words.tsv` rather than from Wiktionary.
+- `used_in` (optional, any tier): the regions where the word is used, when every sense of it carries a region label.
+- A list whose first word belongs to other regions only and that has nothing for region R gets R's word from that
+  word's Wiktionary synonyms (or, for English, its other spelling: favourite → favorite).
+- The app orders each translation list for the reader's chosen region: a word marked for that region comes first
+  when the list also holds a word of another region or the marker is `+`; words of other regions only (or `-R`)
+  go last; the rest keep the order above. Chips of regional words show their flag; a card whose word is not usual
+  in the chosen region says where it is used.
+- When the chosen region has no transcription of its own, the card shows the base region's IPA with its flag and
+  "as in Germany" (or France, United States, Brazil).
+
 ---
 
 ## 5. Phases

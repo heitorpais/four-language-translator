@@ -17,6 +17,7 @@ rebuilt by the scripts). The download list is in `build/SOURCES.txt`.
 | 7 | `library/export_library.js`, `import_library.py` | Merges the entries saved in the first version of the app; writes `reports/library_conflicts.md`. |
 | 8 | `enrich_with_claude.py` | Adds the AI-written fields from `build/claude/*.tsv` where still empty. |
 | 9 | `generate_forms.py` | Builds all word forms by rule, tests them against Wiktionary, stores the exceptions in `irregular_forms`. |
+| 9b | `regions.py` | Marks regional translations from Wiktionary's region labels and `build/claude/regional_words.tsv` (celular BR / telemóvel PT, laufen for "walk" in Switzerland); fills a missing region's word from synonyms. Report: `reports/regions_report.json`. |
 | 10 | `build_tiers.py` | Writes `app/data`: core card files, core details files, letter files of the other tiers, manifest. |
 | 11 | `validate.py` | Checks `app/data`; exit status 1 on failure. |
 
@@ -27,6 +28,7 @@ rebuilt by the scripts). The download list is in `build/SOURCES.txt`.
 - `python3 -I build/test/dump_forms.py && node build/test/test_forms.js`: the JavaScript rules in `app/forms.js` give exactly the same forms as `generate_forms.py`.
 - `node build/test/test_app4.js [Mbit/s]`: opens the app in Chrome on a throttled connection, measures the first visit, looks up words of every tier and inflected forms, checks the translation order, then turns the network off.
 - `node build/test/test_app.js`: the Phase 3 test (settings, offline).
+- `node build/test/test_regions.js`: the same meaning gives the same word from any language, each region gets its own word first, and the pronunciation label follows the chosen region.
 
 ## Pilot scripts (Phases 1 to 3)
 

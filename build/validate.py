@@ -26,7 +26,12 @@ NOUN = {'gender', 'plural', 'plural_alt', 'plural_rule', 'plural_regular', 'geni
 VERB = {'regular', 'class', 'aux', 'aux_regional', 'principal_parts', 'present_3sg', 'irregular_forms'}
 ADJ = {'agreement', 'comparison', 'comparison_regular', 'irregular_forms'}
 MORE = {'definition', 'collocations', 'idioms', 'word_family', 'antonyms', 'etymology', 'learner_mistake'}
+OFFERED = {'de': ['DE', 'CH', 'AT'], 'en': ['US', 'GB'], 'fr': ['FR', 'CA', 'BE', 'CH'], 'pt': ['BR', 'PT']}
 errors = collections.defaultdict(list)
+
+
+def check_used_in(e, F):
+    if 'used_in' in e and (not isinstance(e['used_in'], list) or any(r not in OFFERED[e['lang']] for r in e['used_in'])): F('bad used_in')
 
 
 def err(check, msg):
@@ -36,7 +41,7 @@ def err(check, msg):
 def check_senses(e, F):
     sid = set(); tier = e.get('tier')
     for s in e['senses']:
-        keys = set(s) - {'reverse'}
+        keys = set(s) - {'reverse', 'regional', 'regional_origin'}
         if keys != SENSE.get(tier, set()): F('bad sense keys %s' % sorted(keys ^ SENSE.get(tier, set()))); continue
         if s['id'] in sid: F('duplicate sense id')
         sid.add(s['id'])
@@ -44,6 +49,12 @@ def check_senses(e, F):
             if l not in LANGS or l == e['lang'] or not isinstance(ids, list): F('bad translations in ' + s['id'])
             if s['route'].get(l) not in ROUTES: F('bad route in ' + s['id'])
             if ids and s['route'].get(l) == 'none': F('translations with route none in ' + s['id'])
+        listed = {x for ids in s['translations'].values() for x in ids}
+        for t, mk in s.get('regional', {}).items():
+            if t not in listed: F('regional marker for a word not in the sense: ' + t)
+            if not isinstance(mk, list) or any(not re.fullmatch(r'[+-]?(%s)' % '|'.join(OFFERED[t.split(':')[0]]), x) for x in mk): F('bad regional marker for ' + t)
+        for t, o in s.get('regional_origin', {}).items():
+            if t not in s.get('regional', {}) or o != 'claude': F('bad regional_origin for ' + t)
 
 
 def check_slim(e):
@@ -52,7 +63,8 @@ def check_slim(e):
     if tier not in SLIM: F('bad tier'); return
     allowed = SLIM[tier] | ({'noun', 'verb'} if tier == 'ext' else set())
     if not SLIM[tier] <= set(e): F('missing fields %s' % sorted(SLIM[tier] - set(e)))
-    if set(e) - allowed: F('unknown fields %s' % sorted(set(e) - allowed))
+    if set(e) - allowed - {'used_in'}: F('unknown fields %s' % sorted(set(e) - allowed - {'used_in'}))
+    check_used_in(e, F)
     if e.get('lang') not in LANGS: F('bad lang')
     if e.get('pos') not in POS: F('bad pos')
     if not re.fullmatch(re.escape('%s:%s:%s' % (e.get('lang'), e.get('lemma'), e.get('pos'))) + r'(:\d+)?', i): F('id does not match lang:lemma:pos')
@@ -73,8 +85,9 @@ def check_entry(e):
     for k, t in TOP.items():
         if k not in e: F('missing field ' + k)
         elif not isinstance(e[k], t): F('wrong type for ' + k)
-    extra = set(e) - set(TOP)
+    extra = set(e) - set(TOP) - {'used_in'}
     if extra: F('unknown fields %s' % sorted(extra))
+    check_used_in(e, F)
     if any(k not in e for k in TOP): return
     if e['lang'] not in LANGS: F('bad lang')
     if e['pos'] not in POS: F('bad pos ' + e['pos'])
