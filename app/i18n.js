@@ -2,6 +2,7 @@
    itself; a key missing here shows the English text. Written by Claude (Anthropic). */
 window.FLTI18N = {
 de: {
+"upd": "Eine neue Version der App ist bereit.", "upd.btn": "Laden",
 "msg.looking": "„{w}“ wird nachgeschlagen…",
 "rec.none": "Dieser Browser kann keinen Ton aufnehmen.",
 "rec.denied": "Das Mikrofon ist nicht erlaubt. Erlaube es im Browser, um dich aufzunehmen.",
@@ -183,6 +184,7 @@ de: {
 "pr.hint.parts": "Schreib Präteritum und Partizip.", "pr.hint.review": "Die Fragen, die du falsch hattest, bis du sie richtig beantwortest."
 },
 fr: {
+"upd": "Une nouvelle version de l'application est prête.", "upd.btn": "La charger",
 "msg.looking": "Recherche de « {w} »…",
 "rec.none": "Ce navigateur ne peut pas enregistrer de son.",
 "rec.denied": "Le micro n'est pas autorisé. Autorise-le dans le navigateur pour t'enregistrer.",
@@ -364,6 +366,7 @@ fr: {
 "pr.hint.parts": "Écris le passé et le participe.", "pr.hint.review": "Les questions ratées, jusqu'à ce que tu les réussisses."
 },
 pt: {
+"upd": "Uma nova versão do app está pronta.", "upd.btn": "Carregar",
 "msg.looking": "Procurando “{w}”…",
 "rec.none": "Este navegador não consegue gravar som.",
 "rec.denied": "O microfone não está permitido. Permita no navegador para se gravar.",

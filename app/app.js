@@ -1240,7 +1240,10 @@ async function start() {
     state = Object.assign(state, { status: 'error', error: String(err && err.message || err), near: [] }); render();
   }
   if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
-    navigator.serviceWorker.register('sw.js').then(() => navigator.serviceWorker.ready).then(() => offlineNote(t('foot.offline', 'Saved on this device: the app also works without an internet connection.')))
+    // a new version of the app: say so, with a button to load it
+    const hadController = !!navigator.serviceWorker.controller;
+    navigator.serviceWorker.addEventListener('controllerchange', () => { if (hadController) toast(t('upd', 'A new version of the app is ready.'), { label: t('upd.btn', 'Load it'), fn: () => location.reload() }); });
+    navigator.serviceWorker.register('sw.js').then(r => { r.update().catch(() => {}); return navigator.serviceWorker.ready; }).then(() => offlineNote(t('foot.offline', 'Saved on this device: the app also works without an internet connection.')))
       .catch(() => offlineNote(t('foot.nooffline', 'Offline use is not available in this browser.')));
   } else offlineNote(t('foot.needweb', 'Offline use needs the app to be opened from its web address.'));
 }

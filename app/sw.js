@@ -3,7 +3,7 @@
    - data/manifest.json: network first, saved copy when offline
    - other data files: saved copy first (their address carries a version, so a new version is a new address).
      Core and details files are saved at install; the files of the other words when first used. */
-const SHELL = 'flt-shell-v6', DATA = 'flt-data-v2';
+const SHELL = 'flt-shell-v7', DATA = 'flt-data-v2';
 const APP_FILES = ['./', 'index.html', 'app.js', 'forms.js', 'views.js', 'learn.js', 'i18n.js', 'manifest.webmanifest', 'icons/icon-180.png', 'icons/icon-192.png', 'icons/icon-512.png', 'fonts.css',
   'fonts/ibm-plex-mono-latin-400-normal.woff2', 'fonts/ibm-plex-mono-latin-500-normal.woff2', 'fonts/ibm-plex-mono-latin-ext-400-normal.woff2', 'fonts/ibm-plex-mono-latin-ext-500-normal.woff2', 'fonts/ibm-plex-sans-latin-400-normal.woff2', 'fonts/ibm-plex-sans-latin-500-normal.woff2', 'fonts/ibm-plex-sans-latin-600-normal.woff2', 'fonts/ibm-plex-sans-latin-ext-400-normal.woff2', 'fonts/ibm-plex-sans-latin-ext-500-normal.woff2', 'fonts/ibm-plex-sans-latin-ext-600-normal.woff2', 'fonts/newsreader-latin-ext-opsz-italic.woff2', 'fonts/newsreader-latin-ext-opsz-normal.woff2', 'fonts/newsreader-latin-opsz-italic.woff2', 'fonts/newsreader-latin-opsz-normal.woff2'];
 
@@ -17,7 +17,8 @@ self.addEventListener('install', event => {
       if (res.ok) {
         await data.put('data/manifest.json', res.clone());
         const manifest = await res.json();
-        await Promise.all(manifest.files.filter(f => f.tier === 'core' || f.tier === 'details').map(f => data.add('data/' + f.file + '?v=' + f.sha256)));
+        // files already saved are not downloaded again, so a new app version is ready in seconds
+        await Promise.all(manifest.files.filter(f => f.tier === 'core' || f.tier === 'details').map(async f => { const u = 'data/' + f.file + '?v=' + f.sha256; if (!(await data.match(u))) await data.add(u); }));
       }
     } catch (e) { /* the page loads the data itself; this copy is a second safety net */ }
     await self.skipWaiting();
