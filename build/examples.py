@@ -3,7 +3,9 @@
 A sentence qualifies when it contains the lemma or one of its forms from the Wiktionary tables.
 Sentences with a direct translation into all three other languages are preferred, then short everyday
 sentences (4 to 10 words).  Each example keeps its Tatoeba number and the authors' user names
-(CC BY 2.0 FR).  Reads and writes build/work/core.json (all core entries)."""
+(CC BY 2.0 FR).  Translations are only Tatoeba's direct links between the two sentences (never through a third
+language); a Portuguese translation is Brazilian where Tatoeba has one, and is marked variant "PT" when it is
+European Portuguese.  Reads and writes build/work/core.json (all core entries)."""
 import sys, os, re, bz2, gzip, json, heapq, collections
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import *
@@ -18,6 +20,33 @@ PARTICLES = {'ab', 'an', 'auf', 'aus', 'bei', 'ein', 'fest', 'her', 'hin', 'los'
              'weiter', 'um', 'durch', 'vorbei', 'raus', 'rein', 'heraus', 'herein', 'hinaus', 'statt', 'teil', 'wieder', 'über', 'unter',
              'nieder', 'fort', 'heim', 'kennen', 'da', 'dabei', 'herum', 'hoch', 'runter', 'rüber', 'frei'}
 PER_ENTRY = 4
+
+
+# European Portuguese signs (Portugal) and Brazilian signs. A Portuguese translation counts as European when it shows more
+# signs of Portugal than of Brazil; Brazilian ones are preferred, European ones are marked variant "PT".
+PT_SIGNS = [re.compile(x, re.I) for x in [
+    r"\b(estou|est[áa]s|est[áa]|estamos|est[ãa]o|estava|estavas|est[áa]vamos|estavam|estive|esteve|continu[oa]|continuam|ando|anda|andam|fic[oa]|ficam|ficou|passo|passa)\s+a\s+\w+(ar|er|ir|or)\b",
+    r"\b(tens|est[áa]s|és|podes|queres|vais|fazes|sabes|vês|dizes|tinhas|foste|querias|gostas|precisas|deves|consegues|achas|vens|sabias|estiveste|fizeste|disseste|viste|pensas|falas|comes|bebes|moras|trabalhas|chamas|pareces|lembras|importas|tiveste|percebes)\b",
+    r"\bvós\b", r"\bvosso|vossa|vossos|vossas\b",
+    r"\b(comboios?|autocarros?|telemóve(l|is)|pequeno-almoço|casa de banho|frigorífico|sumos?|ecrã|equipas?|utilizador(es)?|raparigas?|rapaz(es)?|miúd[oa]s?|fixe|talho|guarda-redes|apelidos?|contactos?|facto|óptim[oa]s?|acç[ãa]o|actua(l|is)|direcç[ãa]o|connosco|registo|percebo|percebes|bicha|casa-de-banho|pequeno almoço|propina|carris|pastelaria|portagem|telemovel|camioneta|esplanada)\b",
+    r"\w*(ónic|ómic|ómen|ónom|énc|ténis|bebé|génio|António|económ|polémic|académic|cómod|fenómen|anónim|sinónim)\w*",
+    r"\b\w+-(lo|la|los|las)-(ei|ás|á|emos|ão)\b", r"\b(dar-te-ei|dir-te-ei|far-te-ei)\b"]]
+BR_SIGNS = [re.compile(x, re.I) for x in [
+    r"\b(estou|est[áa]|estamos|est[ãa]o|estava|estavam|estive|esteve|fico|fica|ficou|continu[oa]|vou|vai|vamos|v[ãa]o)\s+\w+(ando|endo|indo|ondo)\b",
+    r"\b(você|vocês|pra|pro|né|tá|tô|a gente|cadê|legal|ônibus|trem|celular|café da manhã|banheiro|geladeira|sucos?|tela|times?|usuári[oa]s?|garot[oa]s?|moleques?|menin[oa]s?|bonde|açougue|goleiro|sobrenomes?|contato|fato|ótim[oa]s?|ação|atua(l|is)|direção|conosco|registro|entendo|fila)\b",
+    r"\w*(ônic|ômic|ômen|ênci|tênis|bebê|gênio|Antônio|econôm|polêmic|acadêmic|cômod|fenômen|anônim|sinônim)\w*"]]
+
+
+def pt_european(text):
+    p = sum(1 for r in PT_SIGNS if r.search(text)); b = sum(1 for r in BR_SIGNS if r.search(text))
+    return p > b
+
+
+def pick(o, ids, text, sent_o):
+    """the direct translation to show: Brazilian Portuguese first, then the length closest to the source sentence"""
+    if o == 'pt':
+        return min(ids, key=lambda x: (pt_european(sent_o[x][0]), abs(len(sent_o[x][0]) - len(text)), x))
+    return min(ids, key=lambda x: (abs(len(sent_o[x][0]) - len(text)), x))
 
 
 def tsv(name):
@@ -109,19 +138,22 @@ def main():
             e['examples'] = [x for x in e['examples'] if x['origin'] != 'tatoeba']
             for sc, sid, a, b, w in chosen:
                 text, user = own[sid]
-                tr, tid, credit = {}, {}, {L: user}
+                tr, tid, credit, variant = {}, {}, {L: user}, {}
+                if L == 'pt' and pt_european(text): variant['pt'] = 'PT'
                 for o in others:
                     ids = sorted(x for x in links[l3].get(sid, {}).get(L3[o], ()) if x in sent[L3[o]])
                     if ids:
-                        best = min(ids, key=lambda x: (abs(len(sent[L3[o]][x][0]) - len(text)), x))
+                        best = pick(o, ids, text, sent[L3[o]])
                         tr[o] = sent[L3[o]][best][0]; tid[o] = 't:%d' % best; credit[o] = sent[L3[o]][best][1]
+                        if o == 'pt' and pt_european(tr[o]): variant['pt'] = 'PT'
                     else:
                         tr[o] = None
                 e['examples'].append({'id': 't:%d' % sid, 'text': text, 'hl': [a, b], 'translations': tr, 'translation_ids': tid,
-                                      'credits': credit, 'origin': 'tatoeba'})
+                                      'credits': credit, 'origin': 'tatoeba', **({'variant': variant} if variant else {})})
                 nex += 1; full += all(tr.values())
             if e['examples']: e['origin']['examples'] = 'tatoeba'
             for g in e['governs']:
+                if g.get('example_id') and not any(x['id'] == g['example_id'] for x in e['examples']): g['example_id'] = None
                 if g['prep']:
                     ex = next((x for x in e['examples'] if re.search(r'\b' + re.escape(g['prep']) + r'\b', x['text'], re.I)), None)
                     if ex: g['example_id'] = ex['id']

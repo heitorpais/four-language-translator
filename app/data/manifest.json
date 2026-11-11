@@ -4,18 +4,18 @@
  "files": [
   {
    "file": "core-de.json",
-   "bytes": 9861445,
-   "gzip_bytes": 1480851,
-   "sha256": "6903a5d8225f4cff",
+   "bytes": 9861465,
+   "gzip_bytes": 1480855,
+   "sha256": "b90956c8e23976e5",
    "tier": "core",
    "lang": "de",
    "entries": 8691
   },
   {
    "file": "details-de.json",
-   "bytes": 20551524,
-   "gzip_bytes": 4745249,
-   "sha256": "8a26ccadc63dcb98",
+   "bytes": 20554979,
+   "gzip_bytes": 4746576,
+   "sha256": "cd78fc3d06c7de71",
    "tier": "details",
    "lang": "de",
    "entries": 8691
@@ -7357,9 +7357,9 @@
   },
   {
    "file": "details-en.json",
-   "bytes": 37186948,
-   "gzip_bytes": 7526924,
-   "sha256": "9de268b800487b13",
+   "bytes": 37193218,
+   "gzip_bytes": 7530421,
+   "sha256": "6a280a13243b4d2c",
    "tier": "details",
    "lang": "en",
    "entries": 14785
@@ -19552,9 +19552,9 @@
   },
   {
    "file": "details-fr.json",
-   "bytes": 21445581,
-   "gzip_bytes": 4471309,
-   "sha256": "9ee053f586540f45",
+   "bytes": 21449281,
+   "gzip_bytes": 4473304,
+   "sha256": "f2f5467d574a5318",
    "tier": "details",
    "lang": "fr",
    "entries": 10113
@@ -32187,9 +32187,9 @@
   },
   {
    "file": "details-pt.json",
-   "bytes": 19450641,
-   "gzip_bytes": 3962092,
-   "sha256": "d83c85b534799028",
+   "bytes": 19462244,
+   "gzip_bytes": 3966426,
+   "sha256": "95b19d09a6b97aa4",
    "tier": "details",
    "lang": "pt",
    "entries": 9840

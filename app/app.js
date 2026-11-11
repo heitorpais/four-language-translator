@@ -689,6 +689,9 @@ const rowName = k => t('row.' + k, ROW[k]);
 function wikiLink(lang, word) {
   return `<a href="https://en.wiktionary.org/wiki/${encodeURIComponent(word)}${({ en: '#English', de: '#German', fr: '#French', pt: '#Portuguese' })[lang]}" target="_blank" rel="noopener">Wiktionary</a>`;
 }
+/* The same example sentences on all four cards, in the same order: each card shows the sentence's own direct
+   Tatoeba translation, or a dash where there is none (never a different sentence). Sentences translated into all
+   languages come first. */
 function exampleList(q) {
   const src = state.entry;
   const donor = (src.examples && src.examples.length) ? src : (q.de && q.de.examples.length ? q.de : Object.values(q).find(x => x && x.examples.length));
@@ -696,6 +699,8 @@ function exampleList(q) {
   let list = donor.examples.slice();
   if (S.level === 'easy') list.sort((a, b) => a.text.length - b.text.length);
   if (S.level === 'advanced') list.sort((a, b) => b.text.length - a.text.length);
+  const missing = x => LANGS.filter(l => l.id !== donor.lang && q[l.id] && !(x.translations && x.translations[l.id])).length;
+  list = list.map((x, i) => [x, missing(x), i]).sort((a, b) => a[1] - b[1] || a[2] - b[2]).map(x => x[0]).slice(0, +S.examples);
   return { donor, list };
 }
 function formSet(e) {
@@ -722,14 +727,15 @@ function examplesBlock(lang, ex, e) {
   if (!ex.donor) return (!D.details && state.entry && state.entry.tier === 'core') ? `<p class="note" lang="en">${esc(t('ex.loading', 'Loading example sentences…'))}</p>` : '';
   const items = [], forms = lang === ex.donor.lang ? null : formSet(e);
   for (const x of ex.list) {
-    if (items.length >= +S.examples) break;
     let text, hl = null;
     if (lang === ex.donor.lang) { text = x.text; hl = x.hl; } else text = x.translations && x.translations[lang];
-    if (!text) continue;
+    if (!text) { items.push(`<li class="none" lang="en">— ${esc(t('ex.none', 'no direct translation of this sentence'))}</li>`); continue; }
     const who = x.origin === 'tatoeba' ? 'Tatoeba ' + (lang === ex.donor.lang ? x.id : (x.translation_ids && x.translation_ids[lang]) || x.id).replace('t:', '#') + ((x.credits && x.credits[lang]) ? ' · ' + x.credits[lang] : '') + ' · CC BY 2.0 FR' : t('src.ai', 'Written by AI');
-    items.push(`<li title="${esc(who)}" data-text="${esc(text)}">${sentenceHtml(text, hl, forms)}${sayBtn(text, lang, true, ' data-ex="1"')}</li>`);
+    const eu = lang === 'pt' && x.variant && x.variant.pt === 'PT' && S.main.pt !== 'pt'
+      ? `<span class="exvar" title="${esc(t('ex.eu', 'European Portuguese: Tatoeba has no Brazilian translation of this sentence'))}">${flag('pt', true)}</span>` : '';
+    items.push(`<li title="${esc(who)}" data-text="${esc(text)}">${eu}${sentenceHtml(text, hl, forms)}${sayBtn(text, lang, true, ' data-ex="1"')}</li>`);
   }
-  return items.length ? `<ul class="ex" lang="${lang}">${items.join('')}</ul>` : '';
+  return items.some(x => !x.includes('class="none"')) ? `<ul class="ex" lang="${lang}">${items.join('')}</ul>` : '';
 }
 function formsBlock(e, rv) {
   const fs = state.forms[e.lang]; if (!fs || !fs.open) return '';

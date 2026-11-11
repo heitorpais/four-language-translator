@@ -2,6 +2,7 @@
    itself; a key missing here shows the English text. Written by Claude (Anthropic). */
 window.FLTI18N = {
 de: {
+"ex.none": "keine direkte Übersetzung dieses Satzes", "ex.eu": "Europäisches Portugiesisch: Tatoeba hat keine brasilianische Übersetzung dieses Satzes",
 "upd": "Eine neue Version der App ist bereit.", "upd.btn": "Laden",
 "msg.looking": "„{w}“ wird nachgeschlagen…",
 "rec.none": "Dieser Browser kann keinen Ton aufnehmen.",
@@ -184,6 +185,7 @@ de: {
 "pr.hint.parts": "Schreib Präteritum und Partizip.", "pr.hint.review": "Die Fragen, die du falsch hattest, bis du sie richtig beantwortest."
 },
 fr: {
+"ex.none": "pas de traduction directe de cette phrase", "ex.eu": "Portugais européen : Tatoeba n'a pas de traduction brésilienne de cette phrase",
 "upd": "Une nouvelle version de l'application est prête.", "upd.btn": "La charger",
 "msg.looking": "Recherche de « {w} »…",
 "rec.none": "Ce navigateur ne peut pas enregistrer de son.",
@@ -366,6 +368,7 @@ fr: {
 "pr.hint.parts": "Écris le passé et le participe.", "pr.hint.review": "Les questions ratées, jusqu'à ce que tu les réussisses."
 },
 pt: {
+"ex.none": "sem tradução direta desta frase", "ex.eu": "Português europeu: o Tatoeba não tem tradução brasileira desta frase",
 "upd": "Uma nova versão do app está pronta.", "upd.btn": "Carregar",
 "msg.looking": "Procurando “{w}”…",
 "rec.none": "Este navegador não consegue gravar som.",
