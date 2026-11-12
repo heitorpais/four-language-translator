@@ -21,13 +21,13 @@ SLIM = {'ext': {'id', 'lang', 'lemma', 'pos', 'tier', 'level', 'frequency_rank',
         'tail': {'id', 'lang', 'lemma', 'pos', 'tier', 'senses', 'origin'}}
 SENSE = {'core': {'id', 'gloss_en', 'gloss', 'register', 'translations', 'route', 'origin'},
          'ext': {'id', 'gloss_en', 'translations', 'route', 'origin'}, 'tail': {'id', 'translations', 'route', 'origin'}}
-ROUTES = {'de-edition', 'fr-edition', 'pt-edition', 'cs-edition', 'en-edition', 'via-en', 'via-en-unchecked', 'library', 'none'}
+ROUTES = {'de-edition', 'fr-edition', 'pt-edition', 'cs-edition', 'it-edition', 'es-edition', 'nl-edition', 'en-edition', 'via-en', 'via-en-unchecked', 'library', 'none'}
 NOUN = {'gender', 'plural', 'plural_alt', 'plural_rule', 'plural_regular', 'genitive', 'irregular_forms'}
 OPTIONAL = {'animate', 'cases', 'gender_regional', 'aspect_pair', 'conj'}      # Czech grammar, regional genders
 VERB = {'regular', 'class', 'aux', 'aux_regional', 'principal_parts', 'present_3sg', 'irregular_forms'}
 ADJ = {'agreement', 'comparison', 'comparison_regular', 'irregular_forms'}
 MORE = {'definition', 'collocations', 'idioms', 'word_family', 'antonyms', 'etymology', 'learner_mistake'}
-OFFERED = {'de': ['DE', 'CH', 'AT'], 'en': ['US', 'GB'], 'fr': ['FR', 'CA', 'BE', 'CH'], 'pt': ['BR', 'PT'], 'cs': ['CZ']}
+OFFERED = {'de': ['DE', 'CH', 'AT'], 'en': ['US', 'GB'], 'fr': ['FR', 'CA', 'BE', 'CH'], 'pt': ['BR', 'PT'], 'cs': ['CZ'], 'it': ['IT', 'CH'], 'es': ['ES', 'MX'], 'nl': ['NL', 'BE'], 'sv': ['SE'], 'la': ['CL', 'EC']}
 errors = collections.defaultdict(list)
 CORR_KEYS = {'entry', 'issue', 'date', 'note', 'hide', 'set', 'sense', 'remove_translation', 'add_translation', 'hide_example', 'example_translation'}
 
@@ -104,7 +104,7 @@ def check_entry(e):
     for blk, keys, pos in (('noun', NOUN, 'noun'), ('verb', VERB, 'verb'), ('adjective', ADJ, 'adjective')):
         if (e[blk] is not None) != (e['pos'] == pos): F('%s block must be present exactly for pos %s' % (blk, pos))
         if e[blk] is not None and set(e[blk]) - OPTIONAL != keys: F('bad keys in %s block' % blk)
-    if e['noun'] and e['noun']['gender'] not in (None, 'm', 'f', 'n', 'm/f'): F('bad gender')
+    if e['noun'] and e['noun']['gender'] not in (None, 'm', 'f', 'n', 'm/f', 'c'): F('bad gender')
     if e['verb'] and e['verb']['principal_parts'] is not None and not isinstance(e['verb']['principal_parts'], list): F('principal_parts')
     if e['verb'] and not isinstance(e['verb']['irregular_forms'], dict): F('irregular_forms')
     if set(e['more']) != MORE: F('bad keys in more')
@@ -147,11 +147,11 @@ def main():
     manifest = rjson(os.path.join(DATA, 'manifest.json'))
     for k, c in enumerate(manifest.get('corrections') or []):          # docs/CORRECTIONS.md
         if not isinstance(c, dict) or not c.get('entry') or set(c) - CORR_KEYS: err('6 corrections', 'correction %d: bad keys %s' % (k, sorted(set(c) - CORR_KEYS) if isinstance(c, dict) else c))
-    ids = collections.Counter(); entries = {}; forms_ref = []; pending_core = []; details = {}
+    ids = collections.Counter(); entries = {}; forms_ref = []; pending_core = []; details = {}; pairs = []
     for f in manifest['files']:
         path = os.path.join(DATA, f['file'])
         if not os.path.exists(path): err('5 manifest', 'missing file ' + f['file']); continue
-        if os.path.getsize(path) != f['bytes']: err('5 manifest', 'size differs for ' + f['file'])
+        if os.path.getsize(path) != f.get('stored_bytes', f['bytes']): err('5 manifest', 'size differs for ' + f['file'])
         if f.get('tier') == 'core':
             es = rjson(path)
             if len(es) != f['entries']: err('5 manifest', 'entry count differs for ' + f['file'])
@@ -160,6 +160,8 @@ def main():
                 if e.get('lang') != f['lang']: err('1 format', '%s is in the wrong file' % e.get('id'))
                 if e.get('examples') != [] or e.get('more') is not None or e.get('origin') is not None: err('1 format', '%s: examples/more/origin belong in the details file' % e.get('id'))
                 pending_core.append(e)
+        elif f.get('tier') in ('links', 'extr') and f.get('to'):          # per language pair: translations / example translations
+            pairs.append((f['tier'], f['to'], rjson(path)))
         elif f.get('tier') == 'details':
             d = rjson(path)
             if len(d) != f['entries']: err('5 manifest', 'entry count differs for ' + f['file'])
@@ -187,7 +189,18 @@ def main():
             s.update(x)
             if sorted(hidden) != sorted(X for X, r in s.get('route', {}).items() if r == 'via-en-unchecked'):
                 err('1 format', '%s %s: hidden languages do not match the routes' % (e['id'], s['id']))
+        for x in e['examples']: x.setdefault('translations', {})
+        for tier, T, d in pairs:
+            v = d.get(e['id'])
+            if not v: continue
+            if tier == 'links':
+                for s, tids in zip(e['senses'], v):
+                    if tids: s['translations'][T] = tids
+            else:
+                for x, t in zip(e['examples'], v):
+                    if t: x['translations'][T] = t[0]
         check_entry(e)
+    pairs = None
     for i in details: err('1 format', 'details for unknown entry ' + i)
     for L, bs in manifest['buckets'].items():
         ks = sorted(bs)

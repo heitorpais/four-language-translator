@@ -9,10 +9,15 @@ European Portuguese.  Reads and writes build/work/core.json (all core entries)."
 import sys, os, re, bz2, gzip, json, heapq, collections
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import *
+import unicodedata
 
 T = os.path.join(RAW, 'tatoeba')
-L3 = {'de': 'deu', 'en': 'eng', 'fr': 'fra', 'pt': 'por', 'cs': 'ces'}
-PAIRS = [('deu', 'eng'), ('deu', 'fra'), ('deu', 'por'), ('eng', 'fra'), ('eng', 'por'), ('fra', 'por'), ('ces', 'eng'), ('ces', 'deu'), ('ces', 'fra'), ('ces', 'por')]
+L3 = {'de': 'deu', 'en': 'eng', 'fr': 'fra', 'pt': 'por', 'cs': 'ces', 'it': 'ita', 'es': 'spa', 'nl': 'nld', 'sv': 'swe', 'la': 'lat'}
+_T3 = ['deu', 'eng', 'fra', 'por', 'ces', 'ita', 'spa', 'nld', 'swe', 'lat']
+# every pair of the ten languages, read from whichever link file Tatoeba offers (deu-eng or eng-deu)
+PAIRS = [(a, b) if os.path.exists(os.path.join(RAW, 'tatoeba', '%s-%s_links.tsv.bz2' % (a, b))) else (b, a)
+         for i, a in enumerate(_T3) for b in _T3[i + 1:]
+         if os.path.exists(os.path.join(RAW, 'tatoeba', '%s-%s_links.tsv.bz2' % (a, b))) or os.path.exists(os.path.join(RAW, 'tatoeba', '%s-%s_links.tsv.bz2' % (b, a)))]
 TOK = re.compile(r"[A-Za-zÀ-ÖØ-öø-ɏ]+")
 SKIP = {'table-tags', 'inflection-template', 'class', 'auxiliary', 'abbreviation', 'diminutive', 'multiword-construction', 'romanization'}
 PRON = {'ich', 'du', 'er', 'sie', 'es', 'wir', 'ihr', 'man', 'zu', 'am'}
@@ -79,6 +84,8 @@ def main():
     stats = {}
     for L in LANGS:
         l3 = L3[L]; others = [x for x in LANGS if x != L]
+        # Latin dictionaries mark long vowels (amō); Tatoeba sentences do not: compare without the marks
+        lkey = (lambda w: ''.join(ch for ch in unicodedata.normalize('NFD', w.lower()) if not unicodedata.combining(ch))) if L == 'la' else (lambda w: w.lower())
         ents = {i: e for i, e in core.items() if e['lang'] == L and e['pos'] in POS_MAP.values()}
         exact = collections.defaultdict(set); lower = collections.defaultdict(set); pairs = collections.defaultdict(set)
         for i, e in ents.items():
@@ -99,7 +106,7 @@ def main():
             for w in forms:
                 if not TOK.fullmatch(w): continue
                 if L == 'de' and lemma[0].isupper(): exact[w].add(i)
-                else: lower[w.lower()].add(i)
+                else: lower[lkey(w)].add(i)
         cand = collections.defaultdict(list)
         own = sent[l3]
         for sid, (text, user) in own.items():
@@ -109,12 +116,13 @@ def main():
             if n < 3 or n > 13: continue
             lk = links[l3].get(sid, {})
             ntr = sum(1 for o in others if any(x in sent[L3[o]] for x in lk.get(L3[o], ())))
-            base = {4: 110, 3: 100, 2: 40, 1: 10, 0: 0}[ntr] - abs(n - 7) * 2 - (4 if not user else 0)
+            # more translated languages, better (de/en/fr/pt matter most)
+            base = (100 + 3 * (ntr - 3) if ntr >= 3 else {2: 40, 1: 10, 0: 0}[ntr]) - abs(n - 7) * 2 - (4 if not user else 0)
             lows = [t[0].lower() for t in toks]
             for k, (w, a, b) in enumerate(toks):
                 first = k == 0 or text[:a].rstrip()[-1:] in '.!?¿¡'
                 hits = set(exact.get(w, ()))
-                if L != 'de' or w.islower() or first: hits |= lower.get(w.lower(), set())
+                if L != 'de' or w.islower() or first: hits |= lower.get(lkey(w), set())
                 amb = len({ents[i]['lemma'] for i in hits})
                 for i in hits:
                     sc = base + (15 if amb == 1 else 0) - (6 if first else 0)

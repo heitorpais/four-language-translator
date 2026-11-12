@@ -5,11 +5,11 @@
 'use strict';
 
 /* ---------- regions and settings ---------- */
-const REG = { en: ['us', 'gb'], de: ['de', 'ch', 'at'], fr: ['fr', 'ca', 'be', 'ch'], pt: ['br', 'pt'], cs: ['cz'] };
-const BASE = { en: 'us', de: 'de', fr: 'fr', pt: 'br', cs: 'cz' };
-const RNAME_EN = { us: 'United States', gb: 'United Kingdom', de: 'Germany', ch: 'Switzerland', at: 'Austria', fr: 'France', ca: 'Canada', be: 'Belgium', br: 'Brazil', pt: 'Portugal', cz: 'Czechia' };
+const REG = { en: ['us', 'gb'], de: ['de', 'ch', 'at'], fr: ['fr', 'ca', 'be', 'ch'], pt: ['br', 'pt'], cs: ['cz'], it: ['it', 'ch'], es: ['es', 'mx'], nl: ['nl', 'be'], sv: ['se'], la: ['cl', 'ec'] };
+const BASE = { en: 'us', de: 'de', fr: 'fr', pt: 'br', cs: 'cz', it: 'it', es: 'es', nl: 'nl', sv: 'se', la: 'cl' };
+const RNAME_EN = { us: 'United States', gb: 'United Kingdom', de: 'Germany', ch: 'Switzerland', at: 'Austria', fr: 'France', ca: 'Canada', be: 'Belgium', br: 'Brazil', pt: 'Portugal', cz: 'Czechia', it: 'Italy', es: 'Spain', mx: 'Mexico', nl: 'Netherlands', se: 'Sweden', cl: 'Classical', ec: 'Church Latin' };
 const RNAME = new Proxy(RNAME_EN, { get: (o, k) => typeof k === 'string' && o[k] ? t('region.' + k, o[k]) : o[k] });
-const LOCALE = { en: { us: 'en-US', gb: 'en-GB' }, de: { de: 'de-DE', ch: 'de-CH', at: 'de-AT' }, fr: { fr: 'fr-FR', ca: 'fr-CA', be: 'fr-BE', ch: 'fr-CH' }, pt: { br: 'pt-BR', pt: 'pt-PT' }, cs: { cz: 'cs-CZ' } };
+const LOCALE = { en: { us: 'en-US', gb: 'en-GB' }, de: { de: 'de-DE', ch: 'de-CH', at: 'de-AT' }, fr: { fr: 'fr-FR', ca: 'fr-CA', be: 'fr-BE', ch: 'fr-CH' }, pt: { br: 'pt-BR', pt: 'pt-PT' }, cs: { cz: 'cs-CZ' }, it: { it: 'it-IT', ch: 'it-CH' }, es: { es: 'es-ES', mx: 'es-MX' }, nl: { nl: 'nl-NL', be: 'nl-BE' }, sv: { se: 'sv-SE' }, la: { cl: 'it-IT', ec: 'it-IT' } };     // no device has a Latin voice: Italian reads it the Church way
 /* every setting with its default (Settings › Reset to defaults puts these back) */
 const DEFAULTS = {
   // display
@@ -33,6 +33,13 @@ function t(key, en, vars) {
 
 /* ---------- flags ---------- */
 const FLAG_ART = {
+  it: '<rect width="20" height="40" fill="#009246"/><rect x="20" width="20" height="40" fill="#fff"/><rect x="40" width="20" height="40" fill="#CE2B37"/>',
+  es: '<rect width="60" height="40" fill="#AA151B"/><rect y="10" width="60" height="20" fill="#F1BF00"/>',
+  mx: '<rect width="20" height="40" fill="#006847"/><rect x="20" width="20" height="40" fill="#fff"/><rect x="40" width="20" height="40" fill="#CE1126"/><circle cx="30" cy="20" r="5" fill="#8C5A2B"/>',
+  nl: '<rect width="60" height="40" fill="#21468B"/><rect width="60" height="26.7" fill="#fff"/><rect width="60" height="13.3" fill="#AE1C28"/>',
+  se: '<rect width="60" height="40" fill="#006AA7"/><rect x="18" width="7" height="40" fill="#FECC00"/><rect y="16.5" width="60" height="7" fill="#FECC00"/>',
+  cl: '<rect width="60" height="40" fill="#7A1F1F"/><text x="30" y="26" text-anchor="middle" font-family="Georgia,serif" font-size="13" font-weight="700" fill="#E8C766">SPQR</text>',
+  ec: '<rect width="30" height="40" fill="#FFE000"/><rect x="30" width="30" height="40" fill="#fff"/>',
   cz: '<rect width="60" height="40" fill="#fff"/><rect y="20" width="60" height="20" fill="#D7141A"/><path d="M0,0L30,20L0,40Z" fill="#11457E"/>',
 us: '<rect width="60" height="40" fill="#B22234"/><path d="M0,4.62H60M0,10.77H60M0,16.92H60M0,23.08H60M0,29.23H60M0,35.38H60" stroke="#fff" stroke-width="3.08"/><rect width="26" height="21.54" fill="#3C3B6E"/><path d="M3,3H24M3,7H24M3,11H24M3,15H24M3,19H24" stroke="#fff" stroke-width="1.5" stroke-dasharray="0 4.1" stroke-linecap="round"/>',
 gb: '<rect width="60" height="40" fill="#012169"/><path d="M0,0L60,40M60,0L0,40" stroke="#fff" stroke-width="7"/><path d="M0,0L60,40M60,0L0,40" stroke="#C8102E" stroke-width="2.6"/><path d="M30,0v40M0,20h60" stroke="#fff" stroke-width="12"/><path d="M30,0v40M0,20h60" stroke="#C8102E" stroke-width="7"/>',
@@ -52,12 +59,17 @@ const LANGS = [
   { id: 'de', name: 'German', ph: 'Wort eingeben…', code: 'DE' },
   { id: 'fr', name: 'French', ph: 'saisir un mot…', code: 'FR' },
   { id: 'pt', name: 'Portuguese', ph: 'digite uma palavra…', code: 'PT' },
-  { id: 'cs', name: 'Czech', ph: 'napište slovo…', code: 'CS' }
+  { id: 'cs', name: 'Czech', ph: 'napište slovo…', code: 'CS' },
+  { id: 'it', name: 'Italian', ph: 'scrivi una parola…', code: 'IT' },
+  { id: 'es', name: 'Spanish', ph: 'escribe una palabra…', code: 'ES' },
+  { id: 'nl', name: 'Dutch', ph: 'typ een woord…', code: 'NL' },
+  { id: 'sv', name: 'Swedish', ph: 'skriv ett ord…', code: 'SV' },
+  { id: 'la', name: 'Latin', ph: 'verbum scribe…', code: 'LA' }
 ];
 /* the boxes on screen: 2 to 4 languages chosen from LANGS, in the reader's order (Settings › My languages) */
 const MIN_SLOTS = 2, MAX_SLOTS = 4;
 const UI_LANGS = ['en', 'de', 'fr', 'pt', 'cs'];
-const LNAME_EN = { en: 'English', de: 'German', fr: 'French', pt: 'Portuguese', cs: 'Czech' };
+const LNAME_EN = { en: 'English', de: 'German', fr: 'French', pt: 'Portuguese', cs: 'Czech', it: 'Italian', es: 'Spanish', nl: 'Dutch', sv: 'Swedish', la: 'Latin' };
 const LNAME = new Proxy(LNAME_EN, { get: (o, k) => typeof k === 'string' && o[k] ? t('lang.' + k, o[k]) : o[k] });
 const CEFR = { A1: 'basic', A2: 'elementary', B1: 'intermediate', B2: 'upper intermediate', C1: 'advanced', C2: 'academic' };
 const TRY = ['Haus', 'gehen', 'gut', 'Zeit', 'helfen', 'schön', 'anfangen', 'Kind'];
@@ -115,6 +127,14 @@ function regularForm(lang, w, k) {        // what a regular verb would have here
     if (k === 1) return end === 'er' ? st + 'e' : end === 'ir' ? st + 'is' : end === 're' ? st + 's' : null;
     return end === 'er' ? st + 'é' : end === 'ir' ? st + 'i' : end === 're' ? st + 'u' : null;
   }
+  if (lang === 'it') {
+    const st3 = w.slice(0, -3), e3 = w.slice(-3); if (!['are', 'ere', 'ire'].includes(e3)) return null;
+    return k === 1 ? st3 + 'o' : st3 + { are: 'ato', ere: 'uto', ire: 'ito' }[e3];
+  }
+  if (lang === 'es') {
+    if (!['ar', 'er', 'ir'].includes(end)) return null;
+    return k === 1 ? st + 'o' : k === 2 ? st + (end === 'ar' ? 'é' : 'í') : st + (end === 'ar' ? 'ado' : 'ido');
+  }
   if (lang === 'pt') {
     if (/[ao]r$/.test(w) && !/(ar|er|ir)$/.test(w)) return null;          // pôr and its compounds: all irregular
     if (k === 1) return st + 'o';
@@ -158,7 +178,7 @@ const cleanTyped = s => String(s || '').replace(/\s+/g, ' ').replace(/^[\s\p{P}\
    ext/<lang>/<k>.json   all other words (extended and long tail) and the inflected forms, by first letters:
                          loaded when a word starting with those letters is typed, looked up or shown */
 const D = { byId: new Map(), idx: {}, frows: {}, count: {}, entries: {}, top: {}, manifest: null, ready: false, details: false, buckets: new Map(), db: null,
-  loaded: new Set(), detailsLoaded: new Set() };          // the languages whose common words (and their details) are on this page
+  loaded: new Set(), detailsLoaded: new Set(), linksLoaded: new Set(), extrLoaded: new Set() };          // the languages whose common words (and their details) are on this page
 LANGS.forEach(l => { D.idx[l.id] = []; D.frows[l.id] = []; D.count[l.id] = 0; D.entries[l.id] = 0; D.top[l.id] = []; });
 const DB_NAME = 'flt-data', FILES = 'files';
 function idbOpen() {
@@ -172,13 +192,21 @@ const idbReq = (db, mode, fn) => new Promise((res, rej) => { const t = db.transa
 const idbGet = (db, k) => idbReq(db, 'readonly', s => s.get(k));
 const idbPut = (db, k, v) => idbReq(db, 'readwrite', s => s.put(v, k));
 const idbClear = db => idbReq(db, 'readwrite', s => s.clear());
+async function readJson(r, file) {             // data files are stored gzip-compressed (.json.gz) to keep the site small
+  if (!file.endsWith('.gz')) return r.json();
+  const buf = await r.arrayBuffer(), b = new Uint8Array(buf, 0, 2);
+  if (b[0] !== 0x1f || b[1] !== 0x8b) return JSON.parse(new TextDecoder().decode(buf));   // already unpacked on the way
+  if (typeof DecompressionStream === 'undefined') throw new Error('This browser is too old to unpack the word lists. Please update it.');
+  return new Response(new Blob([buf]).stream().pipeThrough(new DecompressionStream('gzip'))).json();
+}
+
 async function getFile(file, sha) {          // saved copy on this device, otherwise the network
   let rec = null;
   if (D.db) { try { rec = await idbGet(D.db, file); } catch (e) {} }
   if (rec && rec.sha === sha) return rec.data;
   const r = await fetch('data/' + file + '?v=' + sha);
   if (!r.ok) throw new Error('A data file could not be loaded (' + file + ').');
-  const data = await r.json();
+  const data = await readJson(r, file);
   if (D.db) idbPut(D.db, file, { sha, data }).catch(() => {});      // saved in the background
   return data;
 }
@@ -194,10 +222,14 @@ async function loadData(progress) {
   const out = {}, core = manifest.files.filter(f => f.tier === 'core' && S.order.includes(f.lang));
   let done = 0;
   progress('Loading the dictionary data…');
-  await Promise.all(core.map(async f => { out[f.lang] = await getFile(f.file, f.sha256); done++; progress(`Loading the dictionary data (${done} of ${core.length})…`); }));
+  // the translations between the chosen languages come in small pair files (links/de-fr.json), loaded together with the words
+  const lk = pairFiles(manifest, 'links', S.order), links = [];
+  await Promise.all([...core.map(async f => { out[f.lang] = await getFile(f.file, f.sha256); done++; progress(`Loading the dictionary data (${done} of ${core.length})…`); }),
+    ...lk.map(async f => { links.push([f, await getFile(f.file, f.sha256)]); })]);
+  out.__links = links;
   if (D.db) { try { await idbPut(D.db, 'manifest', manifest); } catch (e) {} }
   if (navigator.serviceWorker && navigator.serviceWorker.controller) {
-    const keep = manifest.files.filter(f => f.tier === 'core' || f.tier === 'details' || f.tier === 'ext').map(f => 'data/' + f.file + '?v=' + f.sha256);
+    const keep = manifest.files.filter(f => ['core', 'details', 'ext', 'links', 'extr'].includes(f.tier)).map(f => 'data/' + f.file + '?v=' + f.sha256);
     navigator.serviceWorker.controller.postMessage({ type: 'prune', keep });
   }
   return { manifest, out };
@@ -209,11 +241,12 @@ async function loadDetails() {
     const d = await getFile(f.file, f.sha256);
     for (const id in d) {
       const e = D.byId.get(id), x = d[id]; if (!e) continue;
-      e.examples = x.examples; e.more = x.more; e.origin = x.origin;
+      e.examples = (x.examples || []).map(ex => ex.credit !== undefined ? Object.assign({}, ex, { credits: { [e.lang]: ex.credit }, translations: {}, translation_ids: {} }) : ex); e.more = x.more; e.origin = x.origin;
       (x.senses || []).forEach((y, i) => { if (e.senses[i]) Object.assign(e.senses[i], y); });
       if (corrFor(id).length) applyCorr(e);
     }
   }));
+  await loadPairs('extr', [...D.detailsLoaded]);
   // idioms become searchable: typing "auf jemanden Häuser bauen" opens Haus
   for (const lang of new Set(det.map(f => f.lang))) {
     const rows = D.idx[lang]; let added = 0;
@@ -225,7 +258,7 @@ async function loadDetails() {
   }
   D.details = true;
 }
-const stripKey = (lang, k) => lang === 'en' ? k.replace(/^to\s+/, '') : lang === 'de' ? k.replace(/^sich\s+/, '') : lang === 'fr' ? k.replace(/^(se\s+|s')/, '') : lang === 'cs' ? k.replace(/\s+(se|si)$/, '') : k.replace(/-se$/, '');
+const stripKey = (lang, k) => lang === 'en' ? k.replace(/^to\s+/, '') : lang === 'de' ? k.replace(/^sich\s+/, '') : lang === 'fr' ? k.replace(/^(se\s+|s')/, '') : lang === 'cs' ? k.replace(/\s+(se|si)$/, '') : lang === 'nl' ? k.replace(/^zich\s+/, '') : lang === 'sv' ? k.replace(/\s+sig$/, '') : lang === 'es' ? k.replace(/(ar|er|ir)se$/, '$1') : lang === 'it' ? k.replace(/(ar|er|ir)si$/, '$1e') : k.replace(/-se$/, '');
 const rowSort = (a, b) => a.k < b.k ? -1 : a.k > b.k ? 1 : a.a - b.a || a.r - b.r;
 /* Corrections of reported mistakes: manifest.json "corrections" (format in docs/CORRECTIONS.md). They are applied to
    every entry as it is loaded, and again when its examples and background arrive. */
@@ -272,8 +305,28 @@ function indexLang(lang, entries) {
   D.top[lang] = D.idx[lang].filter(x => !x.a && x.r < 1e9).sort((a, b) => a.r - b.r).slice(0, 60);
   D.loaded.add(lang);
 }
+const pairFiles = (m, tier, langs) => m.files.filter(f => f.tier === tier && langs.includes(f.lang) && langs.includes(f.to));
+function mergeLinks(f, d) {          // per entry, per sense: the ids in the other language
+  D.linksLoaded.add(f.file);
+  for (const id in d) { const e = D.byId.get(id); if (!e) continue; d[id].forEach((ids, k) => { if (e.senses[k] && ids.length) e.senses[k].translations[f.to] = ids; }); if (corrFor(id).length) applyCorr(e); }
+}
+function mergeExamples(f, d) {      // per entry, per example: [sentence, Tatoeba id, contributor] in the other language
+  D.extrLoaded.add(f.file);
+  for (const id in d) {
+    const e = D.byId.get(id); if (!e || !e.examples) continue;
+    d[id].forEach((x, k) => { const ex = e.examples[k]; if (!ex || !x) return;
+      (ex.translations = ex.translations || {})[f.to] = x[0]; if (x[1]) (ex.translation_ids = ex.translation_ids || {})[f.to] = x[1]; if (x[2]) (ex.credits = ex.credits || {})[f.to] = x[2]; });
+    if (corrFor(id).length) applyCorr(e);
+  }
+}
+async function loadPairs(tier, langs) {
+  const done = tier === 'links' ? D.linksLoaded : D.extrLoaded, merge = tier === 'links' ? mergeLinks : mergeExamples;
+  await Promise.all(pairFiles(D.manifest, tier, langs).filter(f => !done.has(f.file)).map(async f => merge(f, await getFile(f.file, f.sha256))));
+}
 function buildIndex(out) {
+  const links = out.__links || []; delete out.__links;
   for (const lang of Object.keys(out)) indexLang(lang, out[lang]);
+  for (const [f, d] of links) mergeLinks(f, d);
   for (const l of LANGS) if (!D.count[l.id]) { const c = (D.manifest.counts || {})[l.id]; if (c) { D.count[l.id] = c.words_for_suggestions; D.entries[l.id] = c.entries; } }
   D.ready = true;
 }
@@ -282,6 +335,7 @@ async function loadLang(lang) {
   if (D.loaded.has(lang)) return;
   const f = D.manifest.files.find(x => x.tier === 'core' && x.lang === lang); if (!f) throw new Error('No data for ' + lang);
   indexLang(lang, await getFile(f.file, f.sha256));
+  await loadPairs('links', [...D.loaded]);
   loadDetails().then(() => { if (state.status === 'done') render(false); }).catch(() => {});
 }
 const dataLangs = () => (D.manifest ? [...new Set(D.manifest.files.filter(f => f.tier === 'core').map(f => f.lang))] : LANGS.map(l => l.id)).filter(l => LANGS.some(x => x.id === l));
@@ -309,7 +363,7 @@ function loadBucket(lang, k) {
   const key = lang + '/' + k;
   if (!D.buckets.has(key)) {
     const sha = D.manifest.buckets[lang][k];
-    const file = (D.manifest.bucket_file || 'ext/<lang>/<prefix>.json').replace('<lang>', lang).replace('<prefix>', k);
+    const file = (D.manifest.bucket_file || 'ext/<lang>/<prefix>.json.gz').replace('<lang>', lang).replace('<prefix>', k);
     D.buckets.set(key, getFile(file, sha).then(d => {
       addRows(lang, (d.entries || []).filter(e => !D.byId.has(e.id)).map(expand));
       const fr = D.frows[lang];
@@ -507,7 +561,7 @@ function setRoute(e, sense, replace) {
   try { history[replace ? 'replaceState' : 'pushState'](null, '', h); } catch (err) {}
 }
 async function openRoute() {
-  const m = /^#\/(en|de|fr|pt|cs)\/([^/]+)(?:\/(\d+))?$/.exec(location.hash || ''); if (m && !S.order.includes(m[1])) return false; if (!m || !D.ready) return false;
+  const m = /^#\/(en|de|fr|pt|cs|it|es|nl|sv|la)\/([^/]+)(?:\/(\d+))?$/.exec(location.hash || ''); if (m && !S.order.includes(m[1])) return false; if (!m || !D.ready) return false;
   const [w, pos] = decodeURIComponent(m[2]).split('~'), lang = m[1];
   const r = await find(lang, w).catch(() => ({ hits: [] }));
   const hit = r.hits.find(x => x.lemma === w && (!pos || x.pos === pos)) || r.hits[0];
@@ -543,7 +597,16 @@ function article(lang, e, word, plural) {
     return { m: 'le', f: 'la', 'm/f': 'le/la' }[g] || '';
   }
   if (lang === 'pt') return plural ? ({ m: 'os', f: 'as', 'm/f': 'os/as' }[g] || '') : ({ m: 'o', f: 'a', 'm/f': 'o/a' }[g] || '');
-  return '';
+  if (lang === 'es') return plural ? ({ m: 'los', f: 'las', 'm/f': 'los/las' }[g] || '') : ({ m: 'el', f: 'la', 'm/f': 'el/la' }[g] || '');
+  if (lang === 'it') {       // il libro, lo studente, l'amico; la casa, l'acqua; plural i/gli, le
+    const w = word.toLowerCase(), vow = /^[aeiouàèéìòù]/.test(w), lo = /^(s[^aeiouàèéìòù]|z|gn|ps|pn|x|y|i[aeiou])/.test(w);
+    if (g === 'f') return plural ? 'le' : vow ? "l'" : 'la';
+    if (g === 'm') return plural ? (vow || lo ? 'gli' : 'i') : vow ? "l'" : lo ? 'lo' : 'il';
+    return g === 'm/f' ? (plural ? 'i/le' : 'il/la') : '';
+  }
+  if (lang === 'nl') return plural ? 'de' : ({ m: 'de', f: 'de', c: 'de', 'm/f': 'de', n: 'het' }[g] || '');
+  if (lang === 'sv') return plural ? '' : ({ c: 'en', n: 'ett', m: 'en', f: 'en' }[g] || '');      // en bil, ett hus
+  return '';         // Czech and Latin have no articles
 }
 const withArt = (a, w) => a ? (a.endsWith("'") ? a + w : a + ' ' + w) : w;
 /* English verbs are shown with "to" (to go, to walk); modal verbs cannot take it (can, must) */
@@ -598,11 +661,42 @@ function canForms(e) {
   const b = e[e.pos]; if (!b || !['noun', 'verb', 'adjective'].includes(e.pos)) return false;
   const multi = /[ '’]/.test(e.lemma);
   if (e.lang === 'cs') return csTables(e).some(x => x.rows.length);
+  if (NEWL.includes(e.lang)) return moreTables(e).some(x => x.rows.length);
   if (e.pos === 'verb') return !!b.principal_parts && (e.lang === 'en' || !multi);
   if (e.pos === 'noun') return e.lang === 'de' ? !!(b.gender && (b.genitive || b.plural)) : !!b.plural;
   if (e.lang === 'de') return !multi;
   if (e.lang === 'en') return !!b.comparison;
   return !!b.agreement || !multi;
+}
+const NEWL = ['it', 'es', 'nl', 'sv', 'la'];
+/* Italian, Spanish, Dutch, Swedish, Latin: the forms as Wiktionary gives them (no rules) */
+function moreTables(e) {
+  const b = e[e.pos] || {}, L = e.lang, sec = (title, rows) => ({ title, rows: rows.filter(r => r && r[1]) });
+  if (e.pos === 'noun') {
+    if (L === 'la' && b.cases) {
+      const N = [['nom', 'nominative'], ['gen', 'genitive'], ['dat', 'dative'], ['acc', 'accusative'], ['abl', 'ablative'], ['voc', 'vocative']];
+      return [sec('Cases: singular · plural' + (b.plural_rule ? ' (' + b.plural_rule + ')' : ''), N.map(([k, n]) => b.cases[k] ? [n, [b.cases[k][0], b.cases[k][1]].map(x => x || '—').join(' · '), false] : null))];
+    }
+    if (L === 'sv' && b.cases) return [sec('Indefinite · definite', [['singular', `${article('sv', e, e.lemma)} ${b.cases.ind[0] || e.lemma} · ${b.cases.def[0] || '—'}`, false], ['plural', `${b.cases.ind[1] || '—'} · ${b.cases.def[1] || '—'}`, false]])];
+    return [sec('Number', [['singular', withArt(article(L, e, e.lemma), e.lemma), false], ['plural', b.plural ? withArt(article(L, e, b.plural, true), b.plural) : null, b.plural_regular === false], ...(b.plural_alt || []).map(x => ['also', x, false])])];
+  }
+  if (e.pos === 'verb') {
+    const p = b.principal_parts || [], lab = { it: ['infinitive', 'io (present)', 'participle'], es: ['infinitive', 'yo (present)', 'yo (preterite)', 'participle'], nl: ['infinitive', 'past', 'participle'],
+      sv: ['infinitive', 'present', 'preterite', 'supine'], la: ['I … (present)', 'infinitive', 'perfect', 'supine'] }[L];
+    const rows = p.map((x, i) => x ? [lab[i] || '', x, b.regular === false && i > 0] : null);
+    if (b.present_3sg && L !== 'sv') rows.push([{ it: 'lui/lei', es: 'él/ella', nl: 'hij/zij', la: 'he/she' }[L] || '3rd person', b.present_3sg, false]);
+    if (b.aux && ['it', 'nl'].includes(L)) rows.push(['auxiliary', b.aux, false]);
+    return [sec((b.class ? b.class + ': ' : '') + 'principal parts', rows)];
+  }
+  if (e.pos === 'adjective') {
+    const a = b.agreement, T = [];
+    const lab = { it: ['masculine', 'feminine', 'masculine plural', 'feminine plural'], es: ['masculine', 'feminine', 'masculine plural', 'feminine plural'], nl: ['base', 'with -e (de-words, plural)'],
+      sv: ['en-words', 'ett-words', 'plural / definite'], la: ['masculine', 'feminine', 'neuter'] }[L];
+    if (a) T.push(sec('Agreement', a.map((x, i) => [lab[i] || '', x, false])));
+    if (b.comparison) T.push(sec('Comparison', [['positive', e.lemma, false], ['comparative', b.comparison[0], false], ['superlative', b.comparison[1], false]]));
+    return T;
+  }
+  return [];
 }
 function csTables(e) {          // Czech: the forms come from Wiktionary's tables as stored (no rules)
   const b = e[e.pos] || {}, sec = (title, rows) => ({ title, rows: rows.filter(Boolean) });
@@ -628,6 +722,7 @@ function csTables(e) {          // Czech: the forms come from Wiktionary's table
 }
 function tables(e, rv) {
   if (e.lang === 'cs') return csTables(e);
+  if (NEWL.includes(e.lang)) return moreTables(e);
   const f = FLTForms.forms(e), r = FLTForms.regularForms(e), b = e[e.pos], lang = e.lang, pos = e.pos;
   const stored = b.irregular_forms || {};
   const irr = k => {
@@ -791,9 +886,9 @@ async function recordCompare(text, lang, btn) {
 }
 
 /* ---------- render ---------- */
-const GENDER = { m: 'masculine', f: 'feminine', n: 'neuter', 'm/f': 'masculine or feminine' };
+const GENDER = { m: 'masculine', f: 'feminine', n: 'neuter', 'm/f': 'masculine or feminine', c: 'common gender' };
 const gname = g => t('gender.' + g, GENDER[g] || g);
-const gclass = g => ({ m: 'g-m', f: 'g-f', n: 'g-n', 'm/f': 'g-mf' }[g] || '');
+const gclass = g => ({ m: 'g-m', f: 'g-f', n: 'g-n', 'm/f': 'g-mf', c: 'g-m' }[g] || '');
 const artHtml = (a, g) => a ? `<span class="art ${gclass(g)}" title="${esc(gname(g))}">${esc(a)}</span>` : '';
 const CASENAME = { Akk: 'Akkusativ', Dat: 'Dativ', Gen: 'Genitiv', Nom: 'Nominativ' };
 const gram = (key, label) => FLTLearn.GRAMMAR[key] ? `<button class="gram" data-gram="${key}" aria-label="${esc(t('gram.open', 'Grammar: {t}', { t: FLTLearn.GRAMMAR[key].title }))}" title="${esc(FLTLearn.GRAMMAR[key].title)}">${label || 'ⓘ'}</button>` : '';
@@ -891,7 +986,8 @@ function summary(e, rv, art) {
   const lang = e.lang, n = e.noun, v = e.verb, a = e.adjective, parts = [];
   if (e.pos === 'noun' && n) {
     if (lang === 'cs') parts.push(`<span class="form ${gclass(n.gender)}">${esc(csGender(n))}</span>${gram('gender_cs')}`);
-    else if (lang !== 'en') parts.push(`${artHtml(art, rv.gender || n.gender)}${art && !art.endsWith("'") ? ' ' : ''}<span class="form">${esc(rv.word)}</span>${gram(lang === 'de' ? 'gender_de' : 'gender_romance')}`);
+    else if (lang === 'la') parts.push(`<span class="form ${gclass(n.gender)}">${esc(gname(n.gender))}</span>${n.genitive ? ` · <span class="sub inl">genitive</span> <span class="form" lang="la">${esc(n.genitive)}</span>` : ''}${gram('cases_la')}`);
+    else if (lang !== 'en') parts.push(`${artHtml(art, rv.gender || n.gender)}${art && !art.endsWith("'") ? ' ' : ''}<span class="form">${esc(rv.word)}</span>${gram({ de: 'gender_de', nl: 'gender_nl', sv: 'gender_sv' }[lang] || 'gender_romance')}`);
     if (rv.plural) { const pa = lang === 'en' ? '' : article(lang, e, rv.plural, true); parts.push(`${pa ? `<span class="art g-pl">${esc(pa)}</span> ` : ''}<span class="form">${diffMark(rv.word, rv.plural)}</span>${n.plural_regular === false && !rv.changed ? ' ' + badge(false) : ''}${lang === 'de' ? gram('plural_de') : ''}`); }
     else if (n.plural === null && lang !== 'en' && e.tier === 'core') parts.push(`<span class="sub inl">${esc(t('sum.nopl', 'no plural'))}</span>`);
   } else if (e.pos === 'verb' && v && lang === 'cs') {           // Czech: aspect (and its partner), já-form, past
@@ -1240,7 +1336,8 @@ function buildSlots() {
 }
 const SR = window.SpeechRecognition || window.webkitSpeechRecognition || null;
 function sszKey() { document.querySelectorAll('#chars-de [data-ch="ß"]').forEach(b => { b.hidden = S.main.de === 'ch'; }); }   // no ß key in Swiss German
-const CHARS = { de: ['ä', 'ö', 'ü', 'ß', 'Ä', 'Ö', 'Ü'], fr: ['é', 'è', 'ê', 'ë', 'à', 'â', 'î', 'ï', 'ô', 'û', 'ù', 'ç', 'œ'], pt: ['á', 'à', 'â', 'ã', 'é', 'ê', 'í', 'ó', 'ô', 'õ', 'ú', 'ç'], cs: ['á', 'č', 'ď', 'é', 'ě', 'í', 'ň', 'ó', 'ř', 'š', 'ť', 'ú', 'ů', 'ý', 'ž'] };
+const CHARS = { de: ['ä', 'ö', 'ü', 'ß', 'Ä', 'Ö', 'Ü'], fr: ['é', 'è', 'ê', 'ë', 'à', 'â', 'î', 'ï', 'ô', 'û', 'ù', 'ç', 'œ'], pt: ['á', 'à', 'â', 'ã', 'é', 'ê', 'í', 'ó', 'ô', 'õ', 'ú', 'ç'], cs: ['á', 'č', 'ď', 'é', 'ě', 'í', 'ň', 'ó', 'ř', 'š', 'ť', 'ú', 'ů', 'ý', 'ž'],
+  it: ['à', 'è', 'é', 'ì', 'ò', 'ù'], es: ['á', 'é', 'í', 'ó', 'ú', 'ñ', 'ü', '¿', '¡'], nl: ['é', 'ë', 'ï', 'ij'], sv: ['å', 'ä', 'ö'], la: ['ā', 'ē', 'ī', 'ō', 'ū'] };
 /* any-language box: suggestions from all four languages; the language is the one that has the word */
 function anySuggest(v) {
   const q = stripKey('en', fold(v)); if (!q) return [];

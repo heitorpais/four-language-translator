@@ -2,6 +2,7 @@
    itself; a key missing here shows the English text. Written by Claude (Anthropic). */
 window.FLTI18N = {
 de: {
+"lang.it": "Italienisch", "lang.es": "Spanisch", "lang.nl": "Niederländisch", "lang.sv": "Schwedisch", "lang.la": "Latein", "region.it": "Italien", "region.es": "Spanien", "region.mx": "Mexiko", "region.nl": "Niederlande", "region.se": "Schweden", "region.cl": "klassisch", "region.ec": "kirchlich", "gender.c": "Utrum (en-Wort)",
 "vclass.perfective": "vollendet (perfektiv)", "vclass.imperfective": "unvollendet (imperfektiv)", "vclass.biaspectual": "beide Aspekte",
 "slot.lang": "Sprache dieses Felds",
 "cs.asp.imperfective": "unvollendet (imperfektiv)", "cs.asp.perfective": "vollendet (perfektiv)", "cs.asp.biaspectual": "beide Aspekte", "cs.asp.pair.imperfective": "vollendet", "cs.asp.pair.perfective": "unvollendet",
@@ -197,6 +198,7 @@ de: {
 "pr.hint.parts": "Schreib Präteritum und Partizip.", "pr.hint.review": "Die Fragen, die du falsch hattest, bis du sie richtig beantwortest."
 },
 fr: {
+"lang.it": "italien", "lang.es": "espagnol", "lang.nl": "néerlandais", "lang.sv": "suédois", "lang.la": "latin", "region.it": "Italie", "region.es": "Espagne", "region.mx": "Mexique", "region.nl": "Pays-Bas", "region.se": "Suède", "region.cl": "classique", "region.ec": "ecclésiastique", "gender.c": "genre commun (mot en « en »)",
 "vclass.perfective": "perfectif", "vclass.imperfective": "imperfectif", "vclass.biaspectual": "les deux aspects",
 "slot.lang": "Langue de cette case",
 "cs.asp.imperfective": "imperfectif", "cs.asp.perfective": "perfectif", "cs.asp.biaspectual": "les deux aspects", "cs.asp.pair.imperfective": "perfectif", "cs.asp.pair.perfective": "imperfectif",
@@ -392,6 +394,7 @@ fr: {
 "pr.hint.parts": "Écris le passé et le participe.", "pr.hint.review": "Les questions ratées, jusqu'à ce que tu les réussisses."
 },
 pt: {
+"lang.it": "italiano", "lang.es": "espanhol", "lang.nl": "neerlandês", "lang.sv": "sueco", "lang.la": "latim", "region.it": "Itália", "region.es": "Espanha", "region.mx": "México", "region.nl": "Países Baixos", "region.se": "Suécia", "region.cl": "clássico", "region.ec": "eclesiástico", "gender.c": "gênero comum (palavra com “en”)",
 "vclass.perfective": "perfectivo", "vclass.imperfective": "imperfectivo", "vclass.biaspectual": "os dois aspectos",
 "slot.lang": "Idioma deste campo",
 "cs.asp.imperfective": "imperfectivo", "cs.asp.perfective": "perfectivo", "cs.asp.biaspectual": "os dois aspectos", "cs.asp.pair.imperfective": "perfectivo", "cs.asp.pair.perfective": "imperfectivo",
@@ -587,6 +590,7 @@ pt: {
 "pr.hint.parts": "Escreva o passado e o particípio.", "pr.hint.review": "As perguntas que você errou, até acertar."
 },
 cs: {
+"lang.it": "italština", "lang.es": "španělština", "lang.nl": "nizozemština", "lang.sv": "švédština", "lang.la": "latina", "region.it": "Itálie", "region.es": "Španělsko", "region.mx": "Mexiko", "region.nl": "Nizozemsko", "region.se": "Švédsko", "region.cl": "klasická", "region.ec": "církevní", "gender.c": "společný rod (slova s „en“)",
 "vclass.perfective": "dokonavé", "vclass.imperfective": "nedokonavé", "vclass.biaspectual": "obouvidové",
 "slot.lang": "Jazyk tohoto pole",
 "cs.asp.imperfective": "nedokonavý",

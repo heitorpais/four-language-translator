@@ -198,7 +198,7 @@ function exportMe() {
 
 /* ---------- Practice ---------- */
 const MODES = [
-  ['gender', 'der / die / das', ['de', 'fr', 'pt', 'cs']], ['plural', 'Plural', ['de', 'fr', 'pt', 'en', 'cs']], ['aux', 'haben / sein', ['de', 'fr']], ['case', 'Preposition + case', ['de']],
+  ['gender', 'der / die / das', ['de', 'fr', 'pt', 'cs', 'it', 'es', 'nl', 'sv', 'la']], ['plural', 'Plural', ['de', 'fr', 'pt', 'en', 'cs', 'it', 'es', 'nl', 'sv', 'la']], ['aux', 'haben / sein', ['de', 'fr']], ['case', 'Preposition + case', ['de']],
   ['translate', 'Translation', ALL], ['gap', 'Fill the gap', ALL], ['listen', 'Listen and type', ALL], ['parts', 'Principal parts', ['de', 'en']],
   ['match', 'Matching game (all your languages)', ALL], ['review', 'Review my mistakes', ALL], ['cards', 'Flashcards (spaced repetition)', ALL]];
 const modeName = m => t('pr.mode.' + m[0], m[1]);
@@ -251,8 +251,9 @@ async function pool(c, lang) {
 }
 const gloss = e => { const s = e.senses.find(x => x.gloss_en) || e.senses[0]; if (!s) return ''; const ui = A.S.ui, tr = ui !== e.lang && A.trIds(s, ui)[0]; return tr ? A.withTo(tr, (A.D.byId.get(tr) || {}).lemma) || s.gloss_en || '' : (s.gloss_en || ''); };
 const firstTr = (e, to) => { for (const s of e.senses) { const ids = A.trIds(s, to); if (ids.length) return ids[0]; } return null; };
-const ART = { de: { m: 'der', f: 'die', n: 'das' }, fr: { m: 'le', f: 'la' }, pt: { m: 'o', f: 'a' }, cs: { m: 'm', f: 'f', n: 'n' } };
-const CS_G = { m: 'masculine (ten)', f: 'feminine (ta)', n: 'neuter (to)' };      // Czech has no article: the gender is chosen by name
+const ART = { de: { m: 'der', f: 'die', n: 'das' }, fr: { m: 'le', f: 'la' }, pt: { m: 'o', f: 'a' }, cs: { m: 'm', f: 'f', n: 'n' }, it: { m: 'il / lo', f: 'la' }, es: { m: 'el', f: 'la' }, nl: { m: 'de', f: 'de', n: 'het' }, sv: { c: 'en', n: 'ett' }, la: { m: 'm', f: 'f', n: 'n' } };
+const CS_G = { m: 'masculine (ten)', f: 'feminine (ta)', n: 'neuter (to)' };
+const CS_G_LA = { cs: CS_G, la: { m: 'masculine', f: 'feminine', n: 'neuter' } };       // no article: the gender is chosen by name      // Czech has no article: the gender is chosen by name
 const norm = s => A.fold(String(s || '')).replace(/^(der|die|das|le|la|les|l'|o|a|os|as|the|to)\s+/, '').replace(/['’]/g, "'").replace(/\s+/g, ' ').trim();
 async function makeQuestions(c) {
   const lang = c.lang, qs = [];
@@ -277,8 +278,8 @@ async function one(c, [e], all) {
   if (c.mode === 'gender') {
     const g = rv.gender || (e.noun && e.noun.gender);          // the gender of the chosen region (das Tram in Switzerland)
     if (e.pos !== 'noun' || !e.noun || !ART[lang] || !ART[lang][g]) return null;
-    const opts = Object.values(ART[lang]);
-    return Object.assign(base, { prompt: `<span class="big" lang="${lang}">${esc(rv.word)}</span><span class="hint">${esc(gloss(e))}</span>`, choices: opts, answer: ART[lang][g], names: lang === 'cs' ? CS_G : undefined });
+    const opts = [...new Set(Object.values(ART[lang]))];
+    return Object.assign(base, { prompt: `<span class="big" lang="${lang}">${esc(rv.word)}</span><span class="hint">${esc(gloss(e))}</span>`, choices: opts, answer: ART[lang][g], names: lang === 'cs' || lang === 'la' ? CS_G_LA[lang] : undefined });
   }
   if (c.mode === 'plural') {
     if (e.pos !== 'noun' || !e.noun || !rv.plural || rv.plural === rv.word) return null;
@@ -328,7 +329,12 @@ const IRR_COLS = {
   de: [['3sg', 'er/sie/es (present)'], [1, 'Präteritum (past)'], [2, 'Partizip II (participle)'], ['aux', 'Auxiliary']],
   en: [[1, 'Past'], [2, 'Past participle']],
   fr: [[1, 'Présent (je)'], [2, 'Participe passé (participle)'], ['aux', 'Auxiliary']],
-  pt: [[1, 'Presente (eu)'], [2, 'Pretérito (eu)'], [3, 'Particípio (participle)']] };
+  pt: [[1, 'Presente (eu)'], [2, 'Pretérito (eu)'], [3, 'Particípio (participle)']],
+  it: [[1, 'Presente (io)'], [2, 'Participio passato (participle)'], ['aux', 'Auxiliary']],
+  es: [[1, 'Presente (yo)'], [2, 'Pretérito (yo)'], [3, 'Participio (participle)']],
+  nl: [['3sg', 'hij/zij (present)'], [1, 'Verleden tijd (past)'], [2, 'Voltooid deelwoord (participle)'], ['aux', 'Auxiliary']],
+  sv: [[1, 'Presens'], [2, 'Preteritum (past)'], [3, 'Supinum (has …)']],
+  la: [[1, 'Infinitive'], [2, 'Perfect (I have …)'], [3, 'Supine / participle']] };
 function irrTable(lang, list) {
   const cols = IRR_COLS[lang] || IRR_COLS.en, ch = lang === 'de' && A.S.main.de === 'ch';
   const sw = x => ch ? String(x).replace(/ß/g, 'ss') : x;          // Swiss spelling: liess, not ließ
@@ -457,7 +463,7 @@ function matchPick(l, k) {
 const setting = (id, label, hint, control) => `<div class="set"><label for="${id}">${esc(label)}</label>${control}${hint ? `<div class="hint">${esc(hint)}</div>` : ''}</div>`;
 const check = (id, key, label, hint) => `<div class="set check"><input type="checkbox" id="${id}" data-key="${key}"${A.S[key] ? ' checked' : ''}><div><label for="${id}">${esc(label)}</label>${hint ? `<div class="hint">${esc(hint)}</div>` : ''}</div></div>`;
 const select = (id, key, opts) => `<select id="${id}" data-key="${key}">${opts.map(([v, n]) => `<option value="${v}"${String(A.S[key]) === String(v) ? ' selected' : ''}>${esc(n)}</option>`).join('')}</select>`;
-const UI_NAMES = { en: 'English', de: 'Deutsch', fr: 'Français', pt: 'Português', cs: 'Čeština' };
+const UI_NAMES = { en: 'English', de: 'Deutsch', fr: 'Français', pt: 'Português', cs: 'Čeština', it: 'Italiano', es: 'Español', nl: 'Nederlands', sv: 'Svenska', la: 'Latina' };
 function voiceRows() {
   return ALL.map(l => {
     const vs = A.voicesFor(l), cur = A.voiceFor(l);

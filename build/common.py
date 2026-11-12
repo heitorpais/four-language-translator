@@ -10,7 +10,7 @@ DATA = os.path.join(ROOT, 'app', 'data')
 for d in (CACHE, WORK, REPORTS, DATA):
     os.makedirs(d, exist_ok=True)
 
-LANGS = ('de', 'en', 'fr', 'pt', 'cs')
+LANGS = ('de', 'en', 'fr', 'pt', 'cs', 'it', 'es', 'nl', 'sv', 'la')
 ORIGINS = ('wiktionary', 'tatoeba', 'generated', 'claude')
 
 # part-of-speech names used in entry ids
@@ -56,6 +56,12 @@ def wjson(path, obj, **kw):
 
 
 def rjson(path):
+    # data files in app/data are stored gzip-compressed (<name>.json.gz) to stay under the GitHub Pages size limit
+    if not os.path.exists(path) and os.path.exists(path + '.gz'): path += '.gz'
+    if path.endswith('.gz'):
+        import gzip
+        with gzip.open(path, 'rt', encoding='utf-8') as f:
+            return json.load(f)
     with open(path, encoding='utf-8') as f:
         return json.load(f)
 

@@ -6,7 +6,7 @@ const root = path.join(__dirname, '..', '..');
 const py = JSON.parse(fs.readFileSync(path.join(root, 'build/work/forms_py.json'), 'utf8'));
 let entries = 0, forms = 0, bad = 0; const shown = [];
 for (const l of ['de', 'en', 'fr', 'pt']) {
-  for (const e of JSON.parse(fs.readFileSync(path.join(root, 'app/data/core-' + l + '.json'), 'utf8'))) {
+  for (const e of JSON.parse(require('zlib').gunzipSync(fs.readFileSync(path.join(root, 'app/data/core-' + l + '.json.gz'))).toString('utf8'))) {
     if (!(e.id in py)) continue;
     entries++;
     const js = F.forms(e), want = py[e.id];

@@ -14,9 +14,9 @@
   [
    "de",
    "noun",
-   4286,
+   4291,
    56,
-   32719,
+   32755,
    98.76,
    100.0,
    407,
@@ -133,7 +133,7 @@
    112
   ]
  ],
- "total_forms": 483601,
+ "total_forms": 483637,
  "rule_match_percent": 98.01,
  "final_match_percent": 100.0,
  "stored_irregular_forms": 4381,

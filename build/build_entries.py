@@ -23,8 +23,8 @@ from common import *
 import import_wiktionary as iw
 from prep_targets import gloss_words, norm_target, split_targets
 
-SOURCES = {'de': ['ed-de', 'enw-de'], 'en': ['enw-en'], 'fr': ['ed-fr', 'enw-fr'], 'pt': ['ed-pt', 'enw-pt'], 'cs': ['ed-cs', 'enw-cs']}
-EDITION = {'de': 'ed-de', 'fr': 'ed-fr', 'pt': 'ed-pt', 'en': 'enw-en', 'cs': 'ed-cs'}
+SOURCES = {'de': ['ed-de', 'enw-de'], 'en': ['enw-en'], 'fr': ['ed-fr', 'enw-fr'], 'pt': ['ed-pt', 'enw-pt'], 'cs': ['ed-cs', 'enw-cs'], 'it': ['ed-it', 'enw-it'], 'es': ['ed-es', 'enw-es'], 'nl': ['ed-nl', 'enw-nl'], 'sv': ['enw-sv'], 'la': ['enw-la']}
+EDITION = {'de': 'ed-de', 'fr': 'ed-fr', 'pt': 'ed-pt', 'en': 'enw-en', 'cs': 'ed-cs', 'it': 'ed-it', 'es': 'ed-es', 'nl': 'ed-nl', 'sv': 'enw-sv', 'la': 'enw-la'}
 MAX_SENSES = {'core': 6, 'ext': 3, 'tail': 2}
 GROUP = {'noun': 'noun', 'verb': 'verb', 'adjective': 'adjective', 'adverb': 'adverb'}
 _db = {}
@@ -143,7 +143,7 @@ def gloss_senses(E):
     return out
 
 
-ROUTE = {'ed-de': 'de-edition', 'ed-fr': 'fr-edition', 'ed-pt': 'pt-edition', 'ed-cs': 'cs-edition', 'enw-en': 'en-edition', 'en-gloss': 'en-edition'}
+ROUTE = {'ed-de': 'de-edition', 'ed-fr': 'fr-edition', 'ed-pt': 'pt-edition', 'ed-cs': 'cs-edition', 'ed-it': 'it-edition', 'ed-es': 'es-edition', 'ed-nl': 'nl-edition', 'enw-en': 'en-edition', 'en-gloss': 'en-edition'}
 stats = collections.Counter()
 
 

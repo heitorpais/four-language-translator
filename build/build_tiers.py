@@ -32,11 +32,20 @@ def bkey(word, n):
     return k.ljust(n, '_')
 
 
+PLAIN = ('regional.json',)        # small files the app reads as plain JSON; everything else is stored gzip-compressed
+
+
 def dump(path, obj, rel):
     raw = json.dumps(obj, ensure_ascii=False, separators=(',', ':')).encode('utf-8')
     os.makedirs(os.path.dirname(path), exist_ok=True)
-    with open(path, 'wb') as f: f.write(raw)
-    return {'file': rel, 'bytes': len(raw), 'gzip_bytes': len(gzip.compress(raw, 6)), 'sha256': hashlib.sha256(raw).hexdigest()[:16]}
+    for old in (path, path + '.gz'):
+        if os.path.exists(old): os.remove(old)
+    if rel in PLAIN:
+        with open(path, 'wb') as f: f.write(raw)
+        return {'file': rel, 'bytes': len(raw), 'stored_bytes': len(raw), 'sha256': hashlib.sha256(raw).hexdigest()[:16]}
+    gz = gzip.compress(raw, 9, mtime=0)
+    with open(path + '.gz', 'wb') as f: f.write(gz)
+    return {'file': rel + '.gz', 'bytes': len(raw), 'stored_bytes': len(gz), 'sha256': hashlib.sha256(raw).hexdigest()[:16]}
 
 
 def buckets(items, keyword, n=1):
@@ -58,7 +67,16 @@ def main():
     for d in ('ext',):
         p = os.path.join(DATA, d)
         if os.path.exists(p): shutil.rmtree(p)
+    for d in ('links', 'examples'):
+        if os.path.exists(os.path.join(DATA, d)): shutil.rmtree(os.path.join(DATA, d))
     files = []; counts = {}; bucket_index = {}
+    # a meaning whose every translation is an unchecked guess (hidden on the card) shows nothing: drop it
+    shown = lambda s: any(ids for X, ids in s['translations'].items() if s.get('route', {}).get(X) != 'via-en-unchecked')
+    dropped = 0
+    for e in core.values():
+        keep = [s for s in e['senses'] if shown(s)]
+        if keep and len(keep) < len(e['senses']): dropped += len(e['senses']) - len(keep); e['senses'] = keep
+    print('meanings with only hidden translations dropped:', dropped)
     links = collections.defaultdict(set)
     for e in core.values():
         for s in e['senses']:
@@ -83,8 +101,29 @@ def main():
                 if hidden: c['hidden'] = hidden
                 senses.append(c)
             card.append(dict(e, examples=[], more=None, origin=None, senses=senses))
+        # Links to each other language go in their own small files (links/de-fr.json: per entry, per sense, the French ids;
+        # examples/de-fr.json: per entry, per example, the French sentence). A reader who chose 3 of the 10 languages
+        # downloads only the links between those 3, so more languages do not slow the first visit.
+        lk = collections.defaultdict(dict); xt = collections.defaultdict(dict)
+        for c in card:
+            for T in LANGS:
+                if T == L: continue
+                per = [c_s['translations'].get(T) or [] for c_s in c['senses']]
+                if any(per): lk[T][c['id']] = per
+            for c_s in c['senses']: c_s['translations'] = {}
+        for i, dt in details.items():
+            for T in LANGS:
+                if T == L: continue
+                per = [[x.get('translations', {}).get(T), (x.get('translation_ids') or {}).get(T), (x.get('credits') or {}).get(T)] for x in dt['examples']]
+                if any(p[0] for p in per): xt[T][i] = per
+            dt['examples'] = [dict({k: v for k, v in x.items() if k not in ('translations', 'translation_ids', 'credits')}, credit=(x.get('credits') or {}).get(L)) for x in dt['examples']]
         info = dump(os.path.join(DATA, 'core-%s.json' % L), card, 'core-%s.json' % L); info.update(tier='core', lang=L, entries=len(ce)); files.append(info)
         info = dump(os.path.join(DATA, 'details-%s.json' % L), details, 'details-%s.json' % L); info.update(tier='details', lang=L, entries=len(details)); files.append(info)
+        os.makedirs(os.path.join(DATA, 'links'), exist_ok=True); os.makedirs(os.path.join(DATA, 'examples'), exist_ok=True)
+        for T in LANGS:
+            if T == L: continue
+            n = 'links/%s-%s.json' % (L, T); info = dump(os.path.join(DATA, n), lk[T], n); info.update(tier='links', lang=L, to=T, entries=len(lk[T])); files.append(info)
+            n = 'examples/%s-%s.json' % (L, T); info = dump(os.path.join(DATA, n), xt[T], n); info.update(tier='extr', lang=L, to=T, entries=len(xt[T])); files.append(info)
         rest = []
         for line in gzip.open(os.path.join(WORK, 'entries_%s.jsonl.gz' % L), 'rt', encoding='utf-8'):
             e = json.loads(line)
@@ -122,7 +161,7 @@ def main():
     info = dump(os.path.join(DATA, 'source_gaps.json'), gaps, 'source_gaps.json'); info.update(tier='build-info'); files.append(info)
     manifest = {'version': VERSION, 'built': datetime.date.today().isoformat(), 'files': files, 'buckets': bucket_index, 'counts': counts,
                 'fold': 'lower case, accents removed, ß -> ss; a character outside a-z counts as _',
-                'bucket_file': 'ext/<lang>/<prefix>.json',
+                'bucket_file': 'ext/<lang>/<prefix>.json.gz',
                 'sources': [
                     {'name': 'Wiktionary (English, German, French and Portuguese editions) via kaikki.org / Wiktextract', 'licence': 'CC BY-SA 4.0', 'url': 'https://kaikki.org/dictionary/rawdata.html'},
                     {'name': 'Tatoeba sentences and links', 'licence': 'CC BY 2.0 FR', 'url': 'https://tatoeba.org', 'export': '2026-11-07'},
@@ -131,12 +170,12 @@ def main():
     old = os.path.join(DATA, 'manifest.json')
     manifest['corrections'] = (rjson(old).get('corrections') if os.path.exists(old) else None) or []
     wjson(os.path.join(DATA, 'manifest.json'), manifest, indent=1)
-    core_raw = sum(f['bytes'] for f in files if f['tier'] == 'core'); core_gz = sum(f['gzip_bytes'] for f in files if f['tier'] == 'core')
+    core_raw = sum(f['bytes'] for f in files if f['tier'] == 'core'); core_gz = sum(f['stored_bytes'] for f in files if f['tier'] == 'core')
     det = [f for f in files if f['tier'] == 'details']
-    print('core details: %.1f MB raw, %.1f MB gzip' % (sum(f['bytes'] for f in det) / 1e6, sum(f['gzip_bytes'] for f in det) / 1e6))
+    print('core details: %.1f MB raw, %.1f MB gzip' % (sum(f['bytes'] for f in det) / 1e6, sum(f['stored_bytes'] for f in det) / 1e6))
     ext = [f for f in files if f['tier'] == 'ext']
     print('core files: %.1f MB raw, %.1f MB gzip' % (core_raw / 1e6, core_gz / 1e6))
-    print('extended files: %d files, %.1f MB raw, %.1f MB gzip, largest %.2f MB gzip' % (len(ext), sum(f['bytes'] for f in ext) / 1e6, sum(f['gzip_bytes'] for f in ext) / 1e6, max(f['gzip_bytes'] for f in ext) / 1e6))
+    print('extended files: %d files, %.1f MB raw, %.1f MB gzip, largest %.2f MB gzip' % (len(ext), sum(f['bytes'] for f in ext) / 1e6, sum(f['stored_bytes'] for f in ext) / 1e6, max(f['stored_bytes'] for f in ext) / 1e6))
 
 
 if __name__ == '__main__':

@@ -17,7 +17,11 @@ SRC = {'enw-en': ('enwiktionary/English.jsonl.gz', 'en'), 'enw-de': ('enwiktiona
        'enw-fr': ('enwiktionary/French.jsonl.gz', 'fr'), 'enw-pt': ('enwiktionary/Portuguese.jsonl.gz', 'pt'),
        'ed-de': ('editions/de-extract.jsonl.gz', 'de'), 'ed-fr': ('editions/fr-extract.jsonl.gz', 'fr'),
        'ed-pt': ('editions/pt-extract.jsonl.gz', 'pt'),
-       'enw-cs': ('enwiktionary/Czech.jsonl.gz', 'cs'), 'ed-cs': ('editions/cs-extract.jsonl.gz', 'cs')}
+       'enw-cs': ('enwiktionary/Czech.jsonl.gz', 'cs'), 'ed-cs': ('editions/cs-extract.jsonl.gz', 'cs'),
+       'enw-it': ('enwiktionary/Italian.jsonl.gz', 'it'), 'ed-it': ('editions/it-extract.jsonl.gz', 'it'),
+       'enw-es': ('enwiktionary/Spanish.jsonl.gz', 'es'), 'ed-es': ('editions/es-extract.jsonl.gz', 'es'),
+       'enw-nl': ('enwiktionary/Dutch.jsonl.gz', 'nl'), 'ed-nl': ('editions/nl-extract.jsonl.gz', 'nl'),
+       'enw-sv': ('enwiktionary/Swedish.jsonl.gz', 'sv'), 'enw-la': ('enwiktionary/Latin.jsonl.gz', 'la')}
 NOFORM = {'table-tags', 'inflection-template', 'class', 'romanization', 'auxiliary', 'multiword-construction'}
 
 

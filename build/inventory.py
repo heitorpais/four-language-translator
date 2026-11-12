@@ -19,7 +19,7 @@ Tiers: core = the 8,000 most frequent lemmas; extended = other lemmas that occur
 the corpus; long tail = all other lemmas.
 
 Writes build/work/inv_LANG.json and prints the counts."""
-import sys, os, re, json, zlib, bz2, sqlite3, collections
+import unicodedata, sys, os, re, json, zlib, bz2, sqlite3, collections
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import *
 
@@ -29,10 +29,11 @@ ALLOWED = {'noun', 'verb', 'adj', 'adv', 'pron', 'prep', 'conj', 'det', 'article
            'contraction', 'postp', 'phrase', 'prep_phrase', 'adv_phrase'}
 ABBR_TAGS = {'abbreviation', 'acronym', 'initialism', 'clipping-abbreviation', 'Abkürzung', 'abréviation', 'sigle', 'acronyme', 'abreviatura', 'sigla'}
 BAD_SENSE = {'misspelling', 'proscribed-spelling', 'obsolete-spelling'}
-FREQ = {'de': 'de_full.txt', 'en': 'en_full.txt', 'fr': 'fr_full.txt', 'pt': 'pt_br_full.txt', 'cs': 'cs_full.txt'}
-TATO = {'de': 'deu', 'en': 'eng', 'fr': 'fra', 'pt': 'por', 'cs': 'ces'}
+FREQ = {'de': 'de_full.txt', 'en': 'en_full.txt', 'fr': 'fr_full.txt', 'pt': 'pt_br_full.txt', 'cs': 'cs_full.txt',
+        'it': 'it_full.txt', 'es': 'es_full.txt', 'nl': 'nl_full.txt', 'sv': 'sv_full.txt', 'la': 'la_full.txt'}     # la: counted in Tatoeba (no subtitle list exists)
+TATO = {'de': 'deu', 'en': 'eng', 'fr': 'fra', 'pt': 'por', 'cs': 'ces', 'it': 'ita', 'es': 'spa', 'nl': 'nld', 'sv': 'swe', 'la': 'lat'}
 LAT = 'a-zA-Z\u00c0-\u00d6\u00d8-\u00f6\u00f8-\u024f'
-LETTERS = {l: LAT for l in ('de', 'en', 'fr', 'pt', 'cs')}
+LETTERS = {l: LAT for l in ('de', 'en', 'fr', 'pt', 'cs', 'it', 'es', 'nl', 'sv', 'la')}
 # senses with these labels do not make a word count as an everyday word, and forms with them are not used for frequency
 MARGINAL = {'obsolete', 'archaic', 'rare', 'dialectal', 'nonstandard', 'misspelling', 'pronunciation-spelling', 'eye-dialect',
             'uncommon', 'Internet', 'text-messaging', 'alternative', 'alt-of', 'historical', 'poetic', 'veraltet', 'selten', 'archaïque', 'vieilli',
@@ -41,13 +42,16 @@ MARGINAL = {'obsolete', 'archaic', 'rare', 'dialectal', 'nonstandard', 'misspell
 FORM_GLOSS = re.compile(r'pessoa do (singular|plural)|particípio|gerúndio|^(plural|feminino|masculino) de |^forma (flexionada|verbal|do|de) |conjugação'
                         r'|personne du (singulier|pluriel)|^participe|^(pluriel|féminin|masculin)( singulier| pluriel)? de |forme (conjuguée|du verbe|de) |^(première|deuxième|troisième) personne'
                         r'|^(plural|past tense|present participle|past participle|third-person singular|comparative|superlative) (form )?of '
-                        r'|^(genitiv|dativ|akuzativ|vokativ|lokál|instrumentál|nominativ) (jednotného|množného) čísla|^(\d\. )?osoba (jednotného|množného)|^tvar |^přechodník|^příčestí', re.I)
+                        r'|^(genitiv|dativ|akuzativ|vokativ|lokál|instrumentál|nominativ) (jednotného|množného) čísla|^(\d\. )?osoba (jednotného|množného)|^tvar |^přechodník|^příčestí'
+                        r'|^(plurale|femminile|participio|forma|voce verbale) |^(plural|femenino|forma|participio) de |^(meervoud|verkleinwoord|vervoeging|verbuiging|vrouwelijke vorm) van ', re.I)
 FORM_GLOSS_DE = re.compile(r'^(Nominativ|Genitiv|Dativ|Akkusativ)|\d\. Person (Singular|Plural)|^Partizip|flektierte Form|^(Plural|Variante) (von|zu|des|der)|Komparativ|Superlativ|^Imperativ|^Präteritum')
-SINGLE_OK = {'en': {'a', 'I'}, 'fr': {'a', 'à', 'y'}, 'pt': {'a', 'à', 'e', 'o'}, 'de': set(), 'cs': {'a', 'i', 'k', 'o', 's', 'u', 'v', 'z'}}
+SINGLE_OK = {'en': {'a', 'I'}, 'fr': {'a', 'à', 'y'}, 'pt': {'a', 'à', 'e', 'o'}, 'de': set(), 'cs': {'a', 'i', 'k', 'o', 's', 'u', 'v', 'z'},
+             'it': {'a', 'e', 'è', 'i', 'o'}, 'es': {'a', 'e', 'o', 'u', 'y'}, 'nl': set(), 'sv': {'i', 'å', 'ö'}, 'la': {'a', 'ā', 'e', 'ē'}}
 NAME_RESCUE = re.compile(r'month of the|day of the week|calendar', re.I)
 # pieces left when the frequency list splits words at the apostrophe (don't -> don + t)
 FRAGMENTS = {'en': {'don', 'didn', 'doesn', 'isn', 'wasn', 'aren', 'couldn', 'wouldn', 'shouldn', 'haven', 'hasn', 'weren', 'hadn', 'mustn', 'ain', 'll', 've', 're', 'won'}}
-SOURCES = {'de': ['ed-de', 'enw-de'], 'en': ['enw-en'], 'fr': ['ed-fr', 'enw-fr'], 'pt': ['ed-pt', 'enw-pt'], 'cs': ['ed-cs', 'enw-cs']}
+SOURCES = {'de': ['ed-de', 'enw-de'], 'en': ['enw-en'], 'fr': ['ed-fr', 'enw-fr'], 'pt': ['ed-pt', 'enw-pt'], 'cs': ['ed-cs', 'enw-cs'],
+           'it': ['ed-it', 'enw-it'], 'es': ['ed-es', 'enw-es'], 'nl': ['ed-nl', 'enw-nl'], 'sv': ['enw-sv'], 'la': ['enw-la']}
 
 
 def dbs(lang):
@@ -135,9 +139,11 @@ def main(lang):
     print(lang, 'lemmas', len(lem), 'forms', len(fl), dict(why), flush=True)
 
     # ---- frequency
+    # Latin dictionaries mark long vowels (amō, rosā); texts usually do not: compare without the marks
+    lk = (lambda w: ''.join(ch for ch in unicodedata.normalize('NFD', w.lower()) if not unicodedata.combining(ch))) if lang == 'la' else (lambda w: w.lower())
     # spellings by lower-case key: lemmas and words that Wiktionary calls a form of another word
     spell = collections.defaultdict(set)
-    for w in lem: spell[w.lower()].add(w)
+    for w in lem: spell[lk(w)].add(w)
     GROUP = {'noun': 'n', 'verb': 'v', 'adj': 'a', 'adv': 'adv', 'pron': 'p', 'det': 'p', 'article': 'p', 'num': 'p'}
     def compat(fpos, l):          # a form of a verb must be a verb form, etc.  ("du" is no form of the noun "article")
         g = GROUP.get(fpos)
@@ -152,11 +158,11 @@ def main(lang):
     for w in glossform:
         ls = {l for l in tables.get(w, ()) if l != w}
         if ls and w not in strong: strong[w] = ls
-    for w in strong: spell[w.lower()].add(w)
+    for w in strong: spell[lk(w)].add(w)
     weak = collections.defaultdict(set)                 # forms found only in another word's table
     for f, ls in cforms.items():
         for l in ls:
-            if l in lem: weak[f.lower()].add(l)
+            if l in lem: weak[lk(f)].add(l)
     cap = collections.Counter(); low = collections.Counter()
     tok = re.compile(r"[%s]+" % LETTERS[lang])
     with bz2.open(os.path.join(RAW, 'tatoeba', '%s_sentences_detailed.tsv.bz2' % TATO[lang]), 'rt', encoding='utf-8') as fh:

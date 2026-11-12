@@ -21,19 +21,29 @@ from common import *
 from generate_forms import forms, NEGATIVE
 
 T = os.path.join(RAW, 'tatoeba')
-L3 = {'en': 'eng', 'fr': 'fra', 'pt': 'por', 'cs': 'ces'}
+L3 = {'en': 'eng', 'fr': 'fra', 'pt': 'por', 'cs': 'ces', 'it': 'ita', 'es': 'spa', 'nl': 'nld', 'sv': 'swe', 'la': 'lat'}
 TOK = re.compile(r"[a-zà-ÿœçā-ž]+(?:['’][a-z]+)?")
 NOUN_CUE = {
     'en': 'a an the my your his her its our their this that these those some any no every each another',
     'fr': "le la les l' un une des du au aux mon ton son ma ta sa mes tes ses notre votre nos vos leur leurs ce cet cette ces",
     'pt': 'o a os as um uma uns umas do da dos das no na nos nas meu minha meus minhas seu sua seus suas nosso nossa esse essa este esta pelo pela ao aos',
     'cs': 'můj moje tvůj tvoje jeho její náš naše váš vaše jejich ten ta to ty ti tento tato toto ten jeden jedna jedno nějaký nějaká žádný žádná',
+    'it': 'il lo la i gli le un uno una del della dei degli delle al alla mio mia miei mie tuo tua suo sua nostro nostra questo questa quel quella',
+    'es': 'el la los las un una unos unas del al mi mis tu tus su sus nuestro nuestra este esta ese esa aquel',
+    'nl': 'de het een mijn jouw zijn haar ons onze hun deze dit die dat geen elke',
+    'sv': 'en ett min mitt mina din ditt dina hans hennes vår vårt våra deras den det denna detta',
+    'la': 'meus mea meum tuus tua tuum suus sua suum noster nostra hic haec hoc ille illa illud',
 }
 VERB_CUE = {
     'en': "to i you we they he she it not will would can could should must might may don't doesn't didn't won't let's never also just",
     'fr': "je j' tu il elle on nous vous ils elles ne pas peux peut pouvons pouvez peuvent veux veut voulons voulez veulent dois doit devons devez doivent vais va allons allez vont faut pour sans",
     'pt': 'eu tu ele ela nós vocês eles elas não vou vai vamos vão quero quer queremos posso pode podemos preciso precisa devo deve para sem consigo consegue',
     'cs': 'já ty on ona my vy oni chci chce chceme můžu může můžeme musím musí musíme budu bude budeme nechci nemůžu se si',
+    'it': 'io tu lui lei noi voi loro non voglio vuole posso può devo deve mi ti si ci vi',
+    'es': 'yo tú él ella nosotros ellos ellas no quiero quiere puedo puede debo debe voy va vamos me te se nos',
+    'nl': 'ik jij je hij zij we wij jullie ze niet wil kan moet ga gaat zal te',
+    'sv': 'jag du han hon vi ni de inte vill kan måste ska skulle att',
+    'la': 'ego tu nos vos non volo vult possum potest debeo debet',
 }
 
 

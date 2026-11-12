@@ -1,37 +1,72 @@
 {
  "de": {
-  "core entries": 8691,
-  "with examples": 8512,
-  "with 4": 8105,
-  "examples": 33209,
-  "with all three translations": 526
+  "core entries": 8696,
+  "with examples": 8517,
+  "with 4": 8110,
+  "examples": 33229,
+  "with all three translations": 21
  },
  "en": {
   "core entries": 14784,
   "with examples": 14648,
   "with 4": 14346,
   "examples": 58009,
-  "with all three translations": 8680
+  "with all three translations": 406
  },
  "fr": {
   "core entries": 10110,
   "with examples": 9776,
   "with 4": 9298,
   "examples": 38184,
-  "with all three translations": 180
+  "with all three translations": 12
  },
  "pt": {
   "core entries": 9838,
   "with examples": 9517,
   "with 4": 8513,
   "examples": 36070,
-  "with all three translations": 84
+  "with all three translations": 8
  },
  "cs": {
   "core entries": 8417,
   "with examples": 7201,
   "with 4": 5120,
   "examples": 24363,
-  "with all three translations": 153
+  "with all three translations": 25
+ },
+ "it": {
+  "core entries": 9724,
+  "with examples": 9529,
+  "with 4": 9029,
+  "examples": 37140,
+  "with all three translations": 9
+ },
+ "es": {
+  "core entries": 9894,
+  "with examples": 9747,
+  "with 4": 9030,
+  "examples": 37627,
+  "with all three translations": 20
+ },
+ "nl": {
+  "core entries": 9210,
+  "with examples": 8451,
+  "with 4": 6776,
+  "examples": 30366,
+  "with all three translations": 19
+ },
+ "sv": {
+  "core entries": 8716,
+  "with examples": 6463,
+  "with 4": 3800,
+  "examples": 19794,
+  "with all three translations": 26
+ },
+ "la": {
+  "core entries": 5548,
+  "with examples": 4889,
+  "with 4": 3011,
+  "examples": 15211,
+  "with all three translations": 14
  }
 }

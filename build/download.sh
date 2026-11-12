@@ -19,4 +19,14 @@ get https://kaikki.org/dictionary/Czech/kaikki.org-dictionary-Czech.jsonl.gz enw
 get https://kaikki.org/cswiktionary/raw-wiktextract-data.jsonl.gz editions/cs-extract.jsonl.gz
 get https://downloads.tatoeba.org/exports/per_language/ces/ces_sentences_detailed.tsv.bz2 tatoeba/ces_sentences_detailed.tsv.bz2
 for x in ces-eng ces-deu ces-fra ces-por; do get https://downloads.tatoeba.org/exports/per_language/ces/${x}_links.tsv.bz2 tatoeba/${x}_links.tsv.bz2; done
+# Italian, Spanish, Dutch, Swedish, Latin (added later). Latin has no subtitle list: build/frequency_la.py counts Tatoeba Latin sentences.
+for l in it es nl sv; do get https://raw.githubusercontent.com/hermitdave/FrequencyWords/master/content/2018/$l/${l}_full.txt frequency/${l}_full.txt; done
+for n in Italian Spanish Dutch Swedish Latin; do get https://kaikki.org/dictionary/$n/kaikki.org-dictionary-$n.jsonl.gz enwiktionary/$n.jsonl.gz; done
+for l in it es nl; do get https://kaikki.org/${l}wiktionary/raw-wiktextract-data.jsonl.gz editions/${l}-extract.jsonl.gz; done
+T="ces deu eng fra por ita spa nld swe lat"
+for a in ita spa nld swe lat; do
+  get https://downloads.tatoeba.org/exports/per_language/$a/${a}_sentences_detailed.tsv.bz2 tatoeba/${a}_sentences_detailed.tsv.bz2
+  for b in $T; do [ $a != $b ] && get https://downloads.tatoeba.org/exports/per_language/$a/${a}-${b}_links.tsv.bz2 tatoeba/${a}-${b}_links.tsv.bz2; done
+  for b in ces deu eng fra por; do get https://downloads.tatoeba.org/exports/per_language/$b/${b}-${a}_links.tsv.bz2 tatoeba/${b}-${a}_links.tsv.bz2; done
+done
 echo ALLDONE

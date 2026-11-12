@@ -136,6 +136,19 @@ function estimateLevel(rank) { if (!rank) return null; for (const [n, l] of BAND
 
 /* short grammar pages, opened from terms on the cards (ⓘ) */
 const GRAMMAR = {
+  gender_nl: { title: 'Dutch: de or het', body: [
+    'Dutch has two articles: de (for masculine and feminine words, the common gender) and het (for neuter words). About two thirds of nouns take de.',
+    'All plurals take de: het huis, de huizen.',
+    'Always het: diminutives in -je (het meisje, het huisje), infinitives used as nouns (het eten), and most words starting with ge- or be- (het gesprek, het begin).',
+    'The indefinite article is een for both: een man, een huis.'] },
+  gender_sv: { title: 'Swedish: en or ett', body: [
+    'Swedish nouns are en-words (common gender, about 75 %) or ett-words (neuter): en bil, ett hus.',
+    '"The" is an ending: bilen (the car), huset (the house); plural bilarna, husen.',
+    'Adjectives agree: en stor bil, ett stort hus, stora bilar.'] },
+  cases_la: { title: 'Latin cases', body: [
+    'Latin shows the role of a noun by its ending, not by word order: nominative (subject), genitive (of), dative (to/for), accusative (object), ablative (by/with/from), vocative (calling).',
+    'The dictionary form gives the nominative and the genitive (rosa, rosae), which shows the declension: -ae first, -ī second, -is third, -ūs fourth, -eī fifth.',
+    'There are no articles: rosa is "a rose" or "the rose".'] },
   gender_cs: { title: 'Czech gender', body: [
     'Every Czech noun is masculine, feminine or neuter. There is no article: the ending usually shows the gender.',
     'Masculine: most nouns ending in a consonant (dům, stůl, muž). Masculine nouns are animate (people and animals: muž, pes) or inanimate (things: dům); the two decline differently.',

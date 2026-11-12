@@ -103,6 +103,15 @@ def pick_ipa(lang, lists):
         pt = first(is_pt, False) or first(lambda t: 'portugal' in t or 'lisboa' in t, False)
         if pt and pt != default: regional['PT'] = pt
         return default, regional
+    elif lang == 'la':
+        # Classical pronunciation by default; the Church (Ecclesiastical) one as the "EC" variant
+        cl = sel(['Classical-Latin']); ec = sel(['Ecclesiastical-Latin', 'Ecclesiastical', 'Italian-Ecclesiastical']) or plain
+        default = (cl or plain or [items[0][0]])[0]
+        if ec and ec[0] != default: regional['EC'] = ec[0]
+        return default, regional
+    elif lang in ('it', 'es', 'nl', 'sv', 'cs'):
+        default = (plain or [items[0][0]])[0]
+        return default, regional
     elif lang == 'fr':
         OTHER = ['Quebec', 'Québec', 'Canada', 'Louisiana', 'Switzerland', 'Belgium', 'Canadian-French', 'Quebec-City', 'Montreal']
         ca = sel(['Quebec', 'Québec', 'Canada', 'Canadian-French'])
@@ -526,6 +535,129 @@ def czech_grammar(e, word, pc, forms, nforms, head, N, o):
         e['adjective'] = a
 
 
+IT_ACC = str.maketrans('àèéìíòóùú', 'aeeiioouu')
+
+
+def it_plain(f):
+    """Italian Wiktionary forms mark stress (pàrlo, parlàre); normal spelling keeps an accent only on the last letter (città, andò)"""
+    if not f: return f
+    return f[:-1].translate(IT_ACC) + f[-1]
+
+
+def more_grammar(lang, e, word, pc, forms, nforms, head, N, o):
+    """Italian, Spanish, Dutch, Swedish, Latin: from the English Wiktionary's head line and tables (native edition as a fallback).
+    The card fields keep the same shape as for the other languages; extra tables go in noun.cases / verb.conj."""
+    allf = forms + [(f[0], f[1]) for f in nforms]
+    bad = {'table-tags', 'inflection-template', 'error-unrecognized-form', 'class', 'canonical', 'obsolete', 'archaic', 'alternative', 'dated', 'dialectal'}
+    norm = it_plain if lang == 'it' else (lambda f: f)
+    def fw(need, forbid=()):
+        for f, t in allf:
+            ts = set(t)
+            if set(need) <= ts and not (set(forbid) & ts) and not (ts & bad) and f and f != '-' and not f.startswith('no-'): return norm(f)
+        return None
+    hm = lambda pat: re.search(r'(?:^|\s)' + re.escape(word) + r' ' + pat, head)
+    if pc == 'noun':
+        g = None
+        m = hm(r'(m or f|m or n|mf|m|f|n|c)\b') if lang != 'it' else hm(r'(m or f|mf|m|f)\b')
+        if not m and lang == 'it': m = re.search(r'(?:^|\s)\S+ (m or f|mf|m|f)\b', head)
+        if m: g = {'m or f': 'm/f', 'mf': 'm/f', 'm or n': 'm/n'}.get(m.group(1), m.group(1))
+        if g == 'm/n': g = 'n'
+        if not g:
+            gs = [GENDER.get(t) or ('c' if t == 'common' else None) for d in N for t in d['tags']]
+            gs = [x for x in gs if x]
+            if gs: g = gs[0] if len(set(gs)) == 1 else ('m/f' if lang in ('it', 'es') else gs[0])
+        n = {'gender': g, 'plural': None, 'plural_alt': [], 'plural_rule': None, 'plural_regular': None, 'genitive': None, 'irregular_forms': {}}
+        if lang in ('it', 'es', 'nl'):
+            n['plural'] = fw(['plural'], ('diminutive', 'augmentative', 'pejorative', 'feminine', 'masculine', 'derogatory', 'endearing'))
+            if not n['plural'] and re.search(r'\binvariable\b', head): n['plural'] = word
+            alt = [norm(f) for f, t in forms if t == ['plural'] and norm(f) != n['plural']]
+            n['plural_alt'] = alt[:2]
+            sg, pl = word, n['plural']
+            if pl and lang == 'it':
+                exp = {'o': sg[:-1] + 'i', 'a': (sg[:-1] + 'e') if g == 'f' else (sg[:-1] + 'i'), 'e': sg[:-1] + 'i'}.get(sg[-1:])
+                n['plural_regular'] = pl == exp or (pl == sg and sg[-1:] in 'àèéìòù'); n['plural_rule'] = {'o': '-o → -i', 'a': '-a → -e' if g == 'f' else '-a → -i', 'e': '-e → -i'}.get(sg[-1:]) if pl == exp else None
+            elif pl and lang == 'es':
+                exp = sg + 's' if sg[-1:] in 'aeiouáéó' else (sg[:-1] + 'ces' if sg.endswith('z') else sg + 'es')
+                n['plural_regular'] = pl == exp or pl == sg; n['plural_rule'] = ('adds -s' if sg[-1:] in 'aeiouáéó' else '-z → -ces' if sg.endswith('z') else 'adds -es') if pl == exp else None
+            elif pl and lang == 'nl':
+                n['plural_regular'] = pl in (sg + 's', sg + "'s", sg + 'en', sg + sg[-1] + 'en') or pl.endswith(('en', 's')) and len(pl) - len(sg) <= 3
+        elif lang == 'sv':
+            dsg = fw(['definite', 'nominative', 'singular']); ipl = fw(['indefinite', 'nominative', 'plural']); dpl = fw(['definite', 'nominative', 'plural'])
+            n['plural'] = ipl
+            if dsg or ipl: n['cases'] = {'ind': [word, ipl], 'def': [dsg, dpl]}
+            if not g and dsg: g = n['gender'] = 'n' if dsg.endswith(('et', 'at', 'tt')) and not dsg.endswith('en') else 'c'
+        elif lang == 'la':
+            cs = {}
+            for c in ('nominative', 'genitive', 'dative', 'accusative', 'ablative', 'vocative'):
+                sg_ = fw([c, 'singular']) or (word if c == 'nominative' else None); pl_ = fw([c, 'plural'])
+                if sg_ or pl_: cs[c[:3]] = [sg_, pl_]
+            n['cases'] = cs or None; n['plural'] = (cs.get('nom') or [None, None])[1]; n['genitive'] = (cs.get('gen') or [fw(['genitive'])])[0] or fw(['genitive'])
+            dm = re.search(r'(first|second|third|fourth|fifth) declension', head)
+            if dm: n['plural_rule'] = dm.group(0)
+        e['noun'] = n
+        if g or n['plural']: o['noun'] = 'wiktionary'
+    elif pc == 'verb':
+        v = {'regular': None, 'class': None, 'aux': None, 'aux_regional': {}, 'principal_parts': None, 'present_3sg': None, 'irregular_forms': {}}
+        if lang == 'it':
+            p1 = fw(['first-person', 'present', 'singular'], ('subjunctive', 'imperative')); pr = fw(['first-person', 'historic', 'past', 'singular']); pp = fw(['participle', 'past'])
+            aux = fw(['auxiliary']); v['aux'] = {'avere': 'avere', 'essere': 'essere'}.get(it_plain(aux or '').replace('é', 'e'), aux and it_plain(aux))
+            if p1 or pp:
+                v['principal_parts'] = [word, p1, pp]; st, end = word[:-3], word[-3:]
+                if end in ('are', 'ere', 'ire') and p1 and pp:
+                    exp_pp = st + {'are': 'ato', 'ere': 'uto', 'ire': 'ito'}[end]
+                    v['regular'] = pp == exp_pp and p1 in (st + 'o', st + 'isco')
+                    v['class'] = ('regular -' + end) if v['regular'] else 'irregular'
+            v['present_3sg'] = fw(['present', 'singular', 'third-person', 'indicative'])
+        elif lang == 'es':
+            p1 = fw(['first-person', 'present', 'singular'], ('subjunctive',)); pr = fw(['first-person', 'preterite', 'singular']); pp = fw(['participle', 'past'], ('feminine', 'plural'))
+            if p1 or pp:
+                v['principal_parts'] = [word, p1, pr, pp]; st, end = word[:-2], word[-2:]
+                if end in ('ar', 'er', 'ir') and p1 and pr and pp:
+                    exp = (st + 'o', st + ('é' if end == 'ar' else 'í'), st + ('ado' if end == 'ar' else 'ido'))
+                    v['regular'] = (p1, pr, pp) == exp; v['class'] = ('regular -' + end) if v['regular'] else 'irregular'
+            v['aux'] = 'haber'; v['present_3sg'] = fw(['present', 'singular', 'third-person', 'indicative'])
+        elif lang == 'nl':
+            past = fw(['first-person', 'past', 'singular'], ('subjunctive',)); pp = fw(['participle', 'past']) or fw(['past', 'participle'])
+            aux = [f for f, t in allf if 'auxiliary' in t]
+            if aux: v['aux'] = aux[0]
+            if past or pp:
+                v['principal_parts'] = [word, past, pp]
+                v['regular'] = bool(past and past.endswith(('de', 'te'))); v['class'] = 'weak' if v['regular'] else 'strong / irregular'
+            v['present_3sg'] = fw(['present', 'singular', 'third-person'], ('subjunctive',)) or fw(['present', 'second-person', 'singular'], ('formal', 'colloquial', 'archaic', 'Flanders'))
+        elif lang == 'sv':
+            pres = fw(['present'], ('passive', 'subjunctive')); pret = fw(['preterite'], ('passive', 'subjunctive')); sup = fw(['supine'], ('passive',))
+            if pres or pret:
+                v['principal_parts'] = [word, pres, pret, sup]
+                v['regular'] = bool(pret and pret.endswith(('ade', 'de', 'te', 'dde'))); v['class'] = 'weak' if v['regular'] else 'strong / irregular'
+            v['aux'] = 'ha'; v['present_3sg'] = pres
+        elif lang == 'la':
+            inf = fw(['infinitive', 'present'], ('passive',)); perf = fw(['active', 'perfect'], ('infinitive', 'participle', 'subjunctive', 'second-person', 'third-person', 'plural')); sup = fw(['supine'], ('ablative',)) or fw(['participle', 'perfect', 'passive'])
+            if inf or perf: v['principal_parts'] = [word, inf, perf, sup]
+            cm = re.search(r'(first|second|third|fourth) conjugation|irregular conjugation', head)
+            if cm: v['class'] = cm.group(0); v['regular'] = 'irregular' not in cm.group(0)
+            v['present_3sg'] = fw(['active', 'indicative', 'present', 'singular', 'third-person'])
+        e['verb'] = v
+        if v['principal_parts']: o['verb'] = 'wiktionary'
+    elif pc == 'adj':
+        a = {'agreement': None, 'comparison': None, 'comparison_regular': None, 'irregular_forms': {}}
+        if lang in ('it', 'es'):
+            f = fw(['feminine', 'singular']) or fw(['feminine'], ('plural',)); mp = fw(['masculine', 'plural']); fp = fw(['feminine', 'plural']); pl = fw(['plural'], ('masculine', 'feminine'))
+            if f or mp or pl: a['agreement'] = [word, f or word, mp or pl, fp or pl]
+        elif lang == 'nl':
+            infl = fw(['indefinite', 'plural', 'positive'])
+            if infl: a['agreement'] = [word, infl]
+        elif lang == 'sv':
+            nt = fw(['indefinite', 'neuter', 'positive', 'singular']); pl = fw(['indefinite', 'plural', 'positive'])
+            if nt or pl: a['agreement'] = [word, nt, pl]
+        elif lang == 'la':
+            f = fw(['feminine'], ('plural',)) or fw(['feminine', 'nominative', 'singular']); n = fw(['neuter'], ('plural',)) or fw(['neuter', 'nominative', 'singular'])
+            if f or n: a['agreement'] = [word, f, n]
+        comp = fw(['comparative'], ('adverbial', 'indefinite', 'feminine', 'neuter', 'plural', 'definite')); sup = fw(['superlative'], ('adverbial', 'indefinite', 'feminine', 'neuter', 'plural', 'definite'))
+        if comp and sup: a['comparison'] = [comp, sup]
+        if a['agreement'] or a['comparison']: o['adjective'] = 'wiktionary'
+        e['adjective'] = a
+
+
 def build_linked(lang, word, pc):
     pos = POS_MAP[pc]
     e = new_entry(lang, word, pos)
@@ -545,6 +677,9 @@ def build_linked(lang, word, pc):
     if lang == 'cs':
         czech_grammar(e, word, pc, forms, nforms, head, N, o)
         pc = None                     # the blocks below are for the other languages
+    elif lang in ('it', 'es', 'nl', 'sv', 'la'):
+        more_grammar(lang, e, word, pc, forms, nforms, head, N, o)
+        pc = None
     if pc == 'noun':
         gender = None
         if lang != 'en':

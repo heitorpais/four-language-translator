@@ -9,7 +9,7 @@ import sys, os, json, gzip, sqlite3, collections
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import *
 
-SOURCES = {'de': ['ed-de', 'enw-de'], 'en': ['enw-en'], 'fr': ['ed-fr', 'enw-fr'], 'pt': ['ed-pt', 'enw-pt'], 'cs': ['ed-cs', 'enw-cs']}
+SOURCES = {'de': ['ed-de', 'enw-de'], 'en': ['enw-en'], 'fr': ['ed-fr', 'enw-fr'], 'pt': ['ed-pt', 'enw-pt'], 'cs': ['ed-cs', 'enw-cs'], 'it': ['ed-it', 'enw-it'], 'es': ['ed-es', 'enw-es'], 'nl': ['ed-nl', 'enw-nl'], 'sv': ['enw-sv'], 'la': ['enw-la']}
 MAX_REV = {'core': 3, 'ext': 2, 'tail': 2}
 _db = {}
 
@@ -46,12 +46,18 @@ def main():
         lem = rjson(os.path.join(WORK, 'inv_%s.json' % L))['lemmas']
         rank[L] = {w: v['rank'] for w, v in lem.items() if v['rank']}
         del lem
-    incoming = collections.defaultdict(list)
-    for L in LANGS:
-        for line in gzip.open(os.path.join(WORK, 'links_%s.jsonl.gz' % L), 'rt', encoding='utf-8'):
-            src, tgt, r, gloss, tr, route = json.loads(line)
-            incoming[tgt].append((r, src, gloss, tr, route))
-    print('links', sum(len(v) for v in incoming.values()), flush=True)
+    # links into one language at a time (with ten languages all links together do not fit in memory)
+    def load_incoming(T=None, ids_only=False):
+        inc = collections.defaultdict(list) if not ids_only else set()
+        for L in LANGS:
+            for line in gzip.open(os.path.join(WORK, 'links_%s.jsonl.gz' % L), 'rt', encoding='utf-8'):
+                src, tgt, r, gloss, tr, route = json.loads(line)
+                if ids_only: inc.add(tgt); continue
+                if tgt.split(':', 1)[0] != T: continue
+                inc[tgt].append((r, src, gloss, tr, route))
+        return inc
+    incoming = load_incoming(ids_only=True)
+    print('link targets', len(incoming), flush=True)
     rk = lambda i: rank[i.split(':')[0]].get(i.split(':')[1], 10 ** 9)
     # every id that will exist after this pass (phrases nobody links to are dropped)
     exists = set()
@@ -66,7 +72,9 @@ def main():
     # a phrase is kept only if some entry links to it; a back-link from a phrase only if the phrase is kept
     kept_phrase = lambda i: i in exists
     st = collections.Counter()
+    del incoming
     for L in LANGS:
+        incoming = load_incoming(L); _named.clear()
         out = gzip.open(os.path.join(WORK, 'entries_%s.jsonl.gz' % L), 'wt', encoding='utf-8')
         n = 0
         for line in gzip.open(os.path.join(WORK, 'p1_%s.jsonl.gz' % L), 'rt', encoding='utf-8'):

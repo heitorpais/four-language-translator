@@ -8,7 +8,7 @@ rebuilt by the scripts). The download list is in `build/SOURCES.txt`.
 
 | Step | Script | What it does |
 |---|---|---|
-| 1 | `index_sources.py` | Reads the nine Wiktionary extracts once (English edition: English, German, French, Portuguese, Czech words; German, French, Portuguese, Czech editions) into SQLite indexes in `build/raw/db`. |
+| 1 | `index_sources.py` | Reads the Wiktionary extracts once (English edition: English, German, French, Portuguese, Czech, Italian, Spanish, Dutch, Swedish, Latin words; German, French, Portuguese, Czech, Italian, Spanish, Dutch editions) into SQLite indexes in `build/raw/db`. |
 | 2 | `inventory.py <lang>` | The cleaned word list of one language: drops proper names, abbreviations (except those in `common_abbreviations.txt`), entries that are only a form or misspelling of another word. Ranks the words with FrequencyWords (OpenSubtitles 2018) and sets the tier: core (8,000 most frequent), extended (found in the frequency list), long tail (the rest). `lemma_blocklist.txt` holds hand-removed wrong lemmas. |
 | 3 | `build_entries.py <lang>` | Builds the entries of one language: grammar, IPA, senses and translations (routes: own edition, other editions, through English). |
 | 4 | `link_entries.py` | Adds the reverse links (gehen → ir gives ir → gehen), merges them into matching senses, orders each translation list, drops phrases nobody links to. |
@@ -36,3 +36,12 @@ rebuilt by the scripts). The download list is in `build/SOURCES.txt`.
 
 `prep_german.py`, `select_lemmas.py`, `prep_targets.py`, `import_wiktionary.py`, `import_tatoeba.py` and
 `build_tiers` of the pilot built the first 1,000 German words. Phase 4 reuses their grammar and IPA rules.
+
+## Data files in app/data
+
+Everything except `manifest.json` and `regional.json` is stored gzip-compressed (`*.json.gz`): the ten languages come to about 1.3 GB
+uncompressed, over the GitHub Pages limit of 1 GB; compressed they take about 200 MB. The app unpacks them in the browser
+(`readJson` in app.js, DecompressionStream). In the manifest, `bytes` is the unpacked size and `stored_bytes` the size on disk.
+Python scripts read them with `rjson` from common.py, which finds the `.gz` file by itself.
+
+Latin has no film-subtitle frequency list: `frequency_la.py` counts the words of the Tatoeba Latin sentences instead.
