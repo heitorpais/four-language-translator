@@ -120,6 +120,9 @@ def main():
                     {'name': 'Wiktionary (English, German, French and Portuguese editions) via kaikki.org / Wiktextract', 'licence': 'CC BY-SA 4.0', 'url': 'https://kaikki.org/dictionary/rawdata.html'},
                     {'name': 'Tatoeba sentences and links', 'licence': 'CC BY 2.0 FR', 'url': 'https://tatoeba.org', 'export': '2026-11-07'},
                     {'name': 'FrequencyWords by Hermit Dave (OpenSubtitles 2018)', 'licence': 'CC BY-SA 4.0 (content), MIT (code)', 'url': 'https://github.com/hermitdave/FrequencyWords'}]}
+    # corrections from reported mistakes live in the manifest (see docs/CORRECTIONS.md); a rebuild keeps them
+    old = os.path.join(DATA, 'manifest.json')
+    manifest['corrections'] = (rjson(old).get('corrections') if os.path.exists(old) else None) or []
     wjson(os.path.join(DATA, 'manifest.json'), manifest, indent=1)
     core_raw = sum(f['bytes'] for f in files if f['tier'] == 'core'); core_gz = sum(f['gzip_bytes'] for f in files if f['tier'] == 'core')
     det = [f for f in files if f['tier'] == 'details']

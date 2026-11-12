@@ -28,6 +28,7 @@ ADJ = {'agreement', 'comparison', 'comparison_regular', 'irregular_forms'}
 MORE = {'definition', 'collocations', 'idioms', 'word_family', 'antonyms', 'etymology', 'learner_mistake'}
 OFFERED = {'de': ['DE', 'CH', 'AT'], 'en': ['US', 'GB'], 'fr': ['FR', 'CA', 'BE', 'CH'], 'pt': ['BR', 'PT']}
 errors = collections.defaultdict(list)
+CORR_KEYS = {'entry', 'issue', 'date', 'note', 'hide', 'set', 'sense', 'remove_translation', 'add_translation', 'hide_example', 'example_translation'}
 
 
 def check_used_in(e, F):
@@ -141,6 +142,8 @@ def bkey(word, n):
 
 def main():
     manifest = rjson(os.path.join(DATA, 'manifest.json'))
+    for k, c in enumerate(manifest.get('corrections') or []):          # docs/CORRECTIONS.md
+        if not isinstance(c, dict) or not c.get('entry') or set(c) - CORR_KEYS: err('6 corrections', 'correction %d: bad keys %s' % (k, sorted(set(c) - CORR_KEYS) if isinstance(c, dict) else c))
     ids = collections.Counter(); entries = {}; forms_ref = []; pending_core = []; details = {}
     for f in manifest['files']:
         path = os.path.join(DATA, f['file'])

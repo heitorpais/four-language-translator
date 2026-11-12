@@ -180,6 +180,7 @@ async function loadDetails() {
       const e = D.byId.get(id), x = d[id]; if (!e) continue;
       e.examples = x.examples; e.more = x.more; e.origin = x.origin;
       (x.senses || []).forEach((y, i) => { if (e.senses[i]) Object.assign(e.senses[i], y); });
+      if (corrFor(id).length) applyCorr(e);
     }
   }));
   // idioms become searchable: typing "auf jemanden Häuser bauen" opens Haus
@@ -195,9 +196,37 @@ async function loadDetails() {
 }
 const stripKey = (lang, k) => lang === 'en' ? k.replace(/^to\s+/, '') : lang === 'de' ? k.replace(/^sich\s+/, '') : lang === 'fr' ? k.replace(/^(se\s+|s')/, '') : k.replace(/-se$/, '');
 const rowSort = (a, b) => a.k < b.k ? -1 : a.k > b.k ? 1 : a.a - b.a || a.r - b.r;
+/* Corrections of reported mistakes: manifest.json "corrections" (format in docs/CORRECTIONS.md). They are applied to
+   every entry as it is loaded, and again when its examples and background arrive. */
+let CORR = null;
+function corrFor(id) {
+  if (!CORR) { CORR = new Map(); for (const c of (D.manifest && D.manifest.corrections) || []) { const k = c.entry; if (k) { if (!CORR.has(k)) CORR.set(k, []); CORR.get(k).push(c); } } }
+  return CORR.get(id) || [];
+}
+function setPath(o, path, v) {
+  const p = String(path).split('.'); let x = o;
+  for (let i = 0; i < p.length - 1; i++) { const k = /^\d+$/.test(p[i]) ? +p[i] : p[i]; if (x[k] == null) x[k] = /^\d+$/.test(p[i + 1]) ? [] : {}; x = x[k]; }
+  x[/^\d+$/.test(p[p.length - 1]) ? +p[p.length - 1] : p[p.length - 1]] = v;
+}
+function applyCorr(e) {
+  for (const c of corrFor(e.id)) {
+    try {
+      if (c.hide) e.hidden = true;
+      if (c.set) for (const k in c.set) setPath(e, k, c.set[k]);
+      const s = c.sense != null ? e.senses[c.sense] : null;
+      if (c.remove_translation) for (const sn of (s ? [s] : e.senses)) { const L = c.remove_translation.lang; if (sn.translations[L]) sn.translations[L] = sn.translations[L].filter(x => x !== c.remove_translation.target); }
+      if (c.add_translation && s) { const L = c.add_translation.lang, tg = c.add_translation.target, a = (s.translations[L] || []).filter(x => x !== tg); s.translations[L] = c.add_translation.first === false ? a.concat([tg]) : [tg].concat(a); }
+      if (c.hide_example && e.examples) e.examples = e.examples.filter(x => x.id !== c.hide_example.id);
+      if (c.example_translation && e.examples) { const x = e.examples.find(y => y.id === c.example_translation.id); if (x) { const L = c.example_translation.lang; if (c.example_translation.text) x.translations[L] = c.example_translation.text; else delete x.translations[L]; } }
+    } catch (err) {}
+  }
+  return e;
+}
 function addRows(lang, entries) {
   const rows = D.idx[lang];
   for (const e of entries) {
+    applyCorr(e);
+    if (e.hidden) continue;
     D.byId.set(e.id, e);
     rows.push({ k: fold(e.lemma), w: e.lemma, id: e.id, r: e.frequency_rank || 1e9, a: 0 });
     for (const v of e.regional_variants || []) if (v.form && fold(v.form) !== fold(e.lemma)) rows.push({ k: fold(v.form), w: v.form, id: e.id, r: e.frequency_rank || 1e9, a: 1 });
