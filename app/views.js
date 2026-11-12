@@ -1,4 +1,4 @@
-/* Four-Language Translator: the views around the cards.
+/* Glossarium (formerly Four-Language Translator): the views around the cards.
    Explore (by level, word type, A–Z, irregular verbs, random word, about), My words (saved, lists, history, known,
    notes, export/import), Practice (12 kinds of exercise), Settings (Display, Audio, Data), the welcome box and the
    "add to home screen" tip. Uses window.FLT from app.js; all personal data stays on this device. */
@@ -141,7 +141,7 @@ function paintMe() {
   if (imp) imp.addEventListener('change', async () => {
     const f = imp.files[0]; if (!f) return;
     try {
-      const d = JSON.parse(await f.text()); if (!d || d.app !== 'four-language-translator') throw 0;
+      const d = JSON.parse(await f.text()); if (!d || !['glossarium', 'four-language-translator'].includes(d.app)) throw 0;
       const P = A.P;
       Object.assign(P.favs, d.favs || {}); Object.assign(P.known, d.known || {}); Object.assign(P.notes, d.notes || {});
       for (const L of d.lists || []) { const o = P.lists.find(x => x.name === L.name); if (o) { L.ids.forEach(id => { if (!o.ids.includes(id)) o.ids.push(id); }); o.w = Object.assign(o.w || {}, L.w || {}); } else P.lists.push(L); }
@@ -189,11 +189,11 @@ async function printMe() {
   window.print();
 }
 function exportMe() {
-  const P = A.P, d = { app: 'four-language-translator', version: 1, saved: new Date().toISOString(), favs: P.favs, known: P.known, notes: P.notes, lists: P.lists, history: P.history, mistakes: P.mistakes, prog: P.prog, badges: P.badges, srs: P.srs };
+  const P = A.P, d = { app: 'glossarium', version: 1, saved: new Date().toISOString(), favs: P.favs, known: P.known, notes: P.notes, lists: P.lists, history: P.history, mistakes: P.mistakes, prog: P.prog, badges: P.badges, srs: P.srs };
   const url = URL.createObjectURL(new Blob([JSON.stringify(d, null, 1)], { type: 'application/json' }));
-  const a = document.createElement('a'); a.href = url; a.download = 'my-words-four-language-translator.json'; document.body.appendChild(a); a.click(); a.remove();
+  const a = document.createElement('a'); a.href = url; a.download = 'my-words-glossarium.json'; document.body.appendChild(a); a.click(); a.remove();
   setTimeout(() => URL.revokeObjectURL(url), 2000);
-  const m = $('#me-file-msg'); if (m) m.textContent = t('me.export.ok', 'Saved as my-words-four-language-translator.json in your downloads.');
+  const m = $('#me-file-msg'); if (m) m.textContent = t('me.export.ok', 'Saved as my-words-glossarium.json in your downloads.');
 }
 
 /* ---------- Practice ---------- */

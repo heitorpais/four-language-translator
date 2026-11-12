@@ -1,4 +1,4 @@
-/* Four-Language Translator. Every lookup reads the local data files in ./data (kept in IndexedDB).
+/* Glossarium (formerly Four-Language Translator). Every lookup reads the local data files in ./data (kept in IndexedDB).
    Nothing is generated or requested at lookup time. Word forms come from forms.js, learner helpers from learn.js,
    the interface texts from i18n.js; the extra views (explore, practice, my words, settings) are in views.js. */
 (function () {

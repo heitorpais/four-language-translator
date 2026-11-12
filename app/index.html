@@ -3,15 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Four-Language Translator</title>
+<title>Glossarium</title>
 <link rel="stylesheet" href="fonts.css">
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#3438a8">
-<link rel="icon" href="icons/icon-192.png">
+<link rel="icon" href="icons/icon-32.png" sizes="32x32">
+<link rel="icon" href="icons/icon-192.png" sizes="192x192">
 <link rel="apple-touch-icon" href="icons/icon-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Translator">
+<meta name="apple-mobile-web-app-title" content="Glossarium">
 <style>
 /* Layout idea: four dictionary columns side by side. Each column is a flag, a slot, then a printed-dictionary entry with a thumb-index tab. */
 :root{
@@ -423,13 +424,15 @@ i.hm3{background:color-mix(in srgb,var(--regular) 80%,var(--paper))} i.hm4{backg
 .fft{border-collapse:collapse;margin:6px 0 4px}.fft td{padding:4px 8px 4px 0;vertical-align:top;border-bottom:1px solid var(--rule)}.fft td.hint{font-size:13px}
 .langed{margin:6px 0 8px;padding-left:22px}.langed li{display:flex;align-items:center;gap:6px;margin:4px 0}.langed .fl .flag{width:24px;height:16px}
 .lang-pick{font:600 16px var(--sans);color:var(--ink);background:transparent;border:1px solid transparent;border-radius:6px;padding:2px 18px 2px 4px;max-width:8.5em;cursor:pointer}.lang-pick:hover,.lang-pick:focus{border-color:var(--rule)}
+.brand{line-height:0}.wordmark{display:inline-block;height:44px;aspect-ratio:686/200;background:var(--ink);-webkit-mask:url(icons/wordmark.png) center/contain no-repeat;mask:url(icons/wordmark.png) center/contain no-repeat}
+@media (max-width:600px){.wordmark{height:38px}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <h1 data-t="app.title">Four-Language Translator</h1>
-    <p data-t="app.intro">Type a word in any language. The other three appear at once.</p>
+    <h1 class="brand"><span class="wordmark" role="img" aria-label="Glossarium"></span></h1>
+    <p data-t="app.intro">Type a word in any language. The others appear at once.</p>
     <nav class="top" aria-label="Views">
       <button class="btn navb" id="explore-toggle" aria-expanded="false" aria-controls="explore" data-t="nav.explore">Explore</button>
       <button class="btn navb" id="practice-toggle" aria-expanded="false" aria-controls="practice" data-t="nav.practice">Practice</button>

@@ -1,4 +1,4 @@
-/* Four-Language Translator: the Progress page. Words learned, level bars, a calendar of practice days, 20 badges,
+/* Glossarium (formerly Four-Language Translator): the Progress page. Words learned, level bars, a calendar of practice days, 20 badges,
    shareable badge images and a yearly summary. Everything is stored in this browser (personal data "flt:me1", field
    prog and badges) and goes into the export file. One setting (Settings › Display › Progress and badges) turns all of
    it off: the page, the animations and the sounds.
@@ -293,7 +293,7 @@ async function frame(c, W, H) {
   const codes = ['us', 'de', 'fr', 'br'];
   for (let i = 0; i < 4; i++) { const im = await flagImg(codes[i]); c.save(); roundRect(c, W / 2 - 230 + i * 120, H - 230, 100, 66, 10); c.clip(); try { c.drawImage(im, W / 2 - 230 + i * 120, H - 230, 100, 66); } catch (e) {} c.restore(); }
   c.fillStyle = '#ffffff'; c.textAlign = 'center';
-  c.font = '600 46px "Source Serif 4", Georgia, serif'; c.fillText(t('app.title', 'Four-Language Translator'), W / 2, H - 110);
+  c.font = '600 46px "Source Serif 4", Georgia, serif'; c.fillText('Glossarium', W / 2, H - 110);
   c.font = '400 32px "IBM Plex Sans", Arial, sans-serif'; c.fillStyle = 'rgba(255,255,255,0.75)'; c.fillText(URL_, W / 2, H - 60);
 }
 async function badgeImage(k, withDate) {
