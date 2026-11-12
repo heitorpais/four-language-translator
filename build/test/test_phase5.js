@@ -159,7 +159,7 @@ const results = []; const ok = (n, p, i) => results.push([n, !!p, i == null ? ''
   await page.click('[data-tab="me:file"]');
   const [dl] = await Promise.all([page.waitForEvent('download'), page.click('[data-x="export"]')]);
   const exported = JSON.parse(fs.readFileSync(await dl.path(), 'utf8'));
-  ok('84 export to a file', exported.app === 'four-language-translator' && exported.favs['de:Apfel:noun'], dl.suggestedFilename());
+  ok('84 export to a file', exported.app === 'glossarium' && exported.favs['de:Apfel:noun'], dl.suggestedFilename());
   fs.writeFileSync('/tmp/import-test.json', JSON.stringify({ app: 'four-language-translator', favs: { 'fr:pomme:noun': { w: 'pomme', t: 1 } }, lists: [{ name: 'Import', ids: ['fr:pomme:noun'], w: { 'fr:pomme:noun': 'pomme' } }] }));
   await page.setInputFiles('#me-import', '/tmp/import-test.json'); await page.waitForTimeout(400);
   ok('84 import from a file', await ev(() => !!FLT.P.favs['fr:pomme:noun'] && FLT.P.lists.some(L => L.name === 'Import')));

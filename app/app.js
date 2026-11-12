@@ -68,7 +68,7 @@ const LANGS = [
 ];
 /* the boxes on screen: 2 to 4 languages chosen from LANGS, in the reader's order (Settings › My languages) */
 const MIN_SLOTS = 2, MAX_SLOTS = 4;
-const UI_LANGS = ['en', 'de', 'fr', 'pt', 'cs'];
+const UI_LANGS = ['en', 'de', 'fr', 'pt', 'cs', 'it', 'es', 'nl', 'sv', 'la'];
 const LNAME_EN = { en: 'English', de: 'German', fr: 'French', pt: 'Portuguese', cs: 'Czech', it: 'Italian', es: 'Spanish', nl: 'Dutch', sv: 'Swedish', la: 'Latin' };
 const LNAME = new Proxy(LNAME_EN, { get: (o, k) => typeof k === 'string' && o[k] ? t('lang.' + k, o[k]) : o[k] });
 const CEFR = { A1: 'basic', A2: 'elementary', B1: 'intermediate', B2: 'upper intermediate', C1: 'advanced', C2: 'academic' };
@@ -78,7 +78,7 @@ const TRY = ['Haus', 'gehen', 'gut', 'Zeit', 'helfen', 'schön', 'anfangen', 'Ki
 /* ---------- helpers ---------- */
 const $ = s => document.querySelector(s);
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-const num = n => Number(n).toLocaleString({ de: 'de-CH', fr: 'fr-CH', pt: 'pt-BR', cs: 'cs-CZ' }[S.ui] || 'en-US');
+const num = n => Number(n).toLocaleString({ de: 'de-CH', fr: 'fr-CH', pt: 'pt-BR', cs: 'cs-CZ', it: 'it-IT', es: 'es-ES', nl: 'nl-NL', sv: 'sv-SE', la: 'it-IT' }[S.ui] || 'en-US');
 const store = {
   get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
   set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }

@@ -74,7 +74,7 @@ select,.text{font:400 14px var(--body);color:var(--ink);background:var(--paper);
 
 /* slots */
 .slot{display:flex;flex-direction:column;gap:8px;position:relative}
-.slot-head{display:flex;align-items:center;flex-wrap:wrap;gap:6px 10px}
+.slot-head{display:flex;align-items:center;flex-wrap:nowrap;gap:6px 8px;min-width:0}.slot-head>*{flex:none}.slot-head select{min-width:0;flex:0 1 auto;field-sizing:content;text-overflow:ellipsis}
 .flag{height:30px;width:45px;border-radius:3px;display:block;box-shadow:0 0 0 1px var(--rule);flex:none}
 .flag.mini{height:12px;width:18px;border-radius:2px;display:inline-block;vertical-align:-1px;margin-right:5px}
 .lang-name{font-weight:600}
@@ -423,7 +423,7 @@ i.hm3{background:color-mix(in srgb,var(--regular) 80%,var(--paper))} i.hm4{backg
 .stdg+.stdg{margin-top:4px}
 .fft{border-collapse:collapse;margin:6px 0 4px}.fft td{padding:4px 8px 4px 0;vertical-align:top;border-bottom:1px solid var(--rule)}.fft td.hint{font-size:13px}
 .langed{margin:6px 0 8px;padding-left:22px}.langed li{display:flex;align-items:center;gap:6px;margin:4px 0}.langed .fl .flag{width:24px;height:16px}
-.lang-pick{font:600 16px var(--sans);color:var(--ink);background:transparent;border:1px solid transparent;border-radius:6px;padding:2px 18px 2px 4px;max-width:8.5em;cursor:pointer}.lang-pick:hover,.lang-pick:focus{border-color:var(--rule)}
+.lang-pick{font:600 16px var(--sans);color:var(--ink);background:transparent;border:1px solid transparent;border-radius:6px;padding:2px 18px 2px 4px;max-width:9em;cursor:pointer;flex:0 0 auto!important}.lang-pick:hover,.lang-pick:focus{border-color:var(--rule)}
 .brand{line-height:0}.wordmark{display:inline-block;height:44px;aspect-ratio:686/200;background:var(--ink);-webkit-mask:url(icons/wordmark.png) center/contain no-repeat;mask:url(icons/wordmark.png) center/contain no-repeat}
 @media (max-width:600px){.wordmark{height:38px}}
 </style>
