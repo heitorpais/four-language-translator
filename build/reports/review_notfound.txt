@@ -1,0 +1,110 @@
+en	January	noun
+en	February	noun
+en	March	noun
+en	April	noun
+en	May	noun
+en	June	noun
+en	July	noun
+sv	juli	noun
+en	August	noun
+en	September	noun
+en	November	noun
+en	December	noun
+cs	nechat si	verb
+pt	sentir falta	verb
+de	sich Sorgen machen	verb
+fr	s'inquiéter	verb
+nl	zich zorgen maken	verb
+sv	oroa sig	verb
+la	videor	verb
+sv	gifta sig	verb
+sv	lita på	verb
+fr	être d'accord	verb
+it	essere d'accordo	verb
+es	estar de acuerdo	verb
+nl	het eens zijn	verb
+cs	připojit se	verb
+cs	užívat si	verb
+fr	se réveiller	verb
+cs	probudit se	verb
+nl	op slot doen	verb
+fr	affaires	noun
+sv	affärer	noun
+cs	přední strana	noun
+la	reliquum	noun
+it	signora	noun
+la	domine	noun
+pt	com medo	adjective
+la	frigidulus	adjective
+sv	lyckligt lottad	adjective
+la	secretus	adjective
+de	ein anderer	determiner
+it	un altro	determiner
+nl	nog een	determiner
+de	wenige	determiner
+it	pochi	determiner
+es	pocos	determiner
+es	todos	pronoun
+la	omnes	pronoun
+la	quidquam	pronoun
+la	re vera	adverb
+de	heute Abend	adverb
+fr	ce soir	adverb
+pt	hoje à noite	adverb
+cs	dnes večer	adverb
+es	esta noche	adverb
+la	hac nocte	adverb
+nl	hoe dan ook	adverb
+sv	hellre	adverb
+pt	em algum lugar	adverb
+it	da qualche parte	adverb
+es	en algún lugar	adverb
+en	okay	interjection
+cs	vítejte	interjection
+en	time (occasion)	noun
+cs	tušení	noun
+fr	être juste	verb
+pt	estar certo	verb
+it	essere giusto	verb
+es	ser correcto	verb
+la	mihi	pronoun
+cs	ji	pronoun
+la	eam	pronoun
+en	you (object)	pronoun
+cs	tě	pronoun
+en	you (plural object)	pronoun
+cs	vás	pronoun
+cs	představit si	verb
+en	work (function)	verb
+en	seem (appear)	verb
+en	way (manner)	noun
+en	then (so)	adverb
+sv	hur mycket	adverb
+pt	namorada	noun
+es	novia	noun
+la	amica	noun
+en	happen (occur)	verb
+en	believe (think)	verb
+de	Nudeln	noun
+fr	pâtes	noun
+cs	těstoviny	noun
+sv	byxor	noun
+en	letter (alphabet)	noun
+en	neighbor	noun
+es	enfermera	noun
+it	notizie	noun
+es	noticias	noun
+sv	nyheter	noun
+pt	pegar emprestado	verb
+cs	půjčit si	verb
+it	prendere in prestito	verb
+en	save (money)	verb
+cs	dávat přednost	verb
+cs	relaxovat	verb
+la	suffragium fero	verb
+en	quiet (silent)	adjective
+la	tacitus	adjective
+en	single (unmarried)	adjective
+de	Haupt-	adjective
+nl	hoofd-	adjective
+sv	huvud-	adjective

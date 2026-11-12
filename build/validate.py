@@ -21,13 +21,13 @@ SLIM = {'ext': {'id', 'lang', 'lemma', 'pos', 'tier', 'level', 'frequency_rank',
         'tail': {'id', 'lang', 'lemma', 'pos', 'tier', 'senses', 'origin'}}
 SENSE = {'core': {'id', 'gloss_en', 'gloss', 'register', 'translations', 'route', 'origin'},
          'ext': {'id', 'gloss_en', 'translations', 'route', 'origin'}, 'tail': {'id', 'translations', 'route', 'origin'}}
-ROUTES = {'de-edition', 'fr-edition', 'pt-edition', 'cs-edition', 'it-edition', 'es-edition', 'nl-edition', 'en-edition', 'via-en', 'via-en-unchecked', 'library', 'none'}
+ROUTES = {'de-edition', 'fr-edition', 'pt-edition', 'cs-edition', 'it-edition', 'es-edition', 'nl-edition', 'en-edition', 'via-en', 'via-en-unchecked', 'library', 'claude', 'none'}
 NOUN = {'gender', 'plural', 'plural_alt', 'plural_rule', 'plural_regular', 'genitive', 'irregular_forms'}
 OPTIONAL = {'animate', 'cases', 'gender_regional', 'aspect_pair', 'conj'}      # Czech grammar, regional genders
 VERB = {'regular', 'class', 'aux', 'aux_regional', 'principal_parts', 'present_3sg', 'irregular_forms'}
 ADJ = {'agreement', 'comparison', 'comparison_regular', 'irregular_forms'}
 MORE = {'definition', 'collocations', 'idioms', 'word_family', 'antonyms', 'etymology', 'learner_mistake'}
-OFFERED = {'de': ['DE', 'CH', 'AT'], 'en': ['US', 'GB'], 'fr': ['FR', 'CA', 'BE', 'CH'], 'pt': ['BR', 'PT'], 'cs': ['CZ'], 'it': ['IT', 'CH'], 'es': ['ES', 'MX'], 'nl': ['NL', 'BE'], 'sv': ['SE'], 'la': ['CL', 'EC']}
+OFFERED = {'de': ['DE', 'CH', 'AT'], 'en': ['US', 'GB'], 'fr': ['FR', 'CA', 'BE', 'CH'], 'pt': ['BR', 'PT'], 'cs': ['CZ'], 'it': ['IT', 'CH'], 'es': ['ES', 'MX', 'AR'], 'nl': ['NL', 'BE'], 'sv': ['SE'], 'la': ['CL', 'EC']}
 errors = collections.defaultdict(list)
 CORR_KEYS = {'entry', 'issue', 'date', 'note', 'hide', 'set', 'sense', 'remove_translation', 'add_translation', 'hide_example', 'example_translation'}
 

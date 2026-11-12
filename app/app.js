@@ -5,11 +5,11 @@
 'use strict';
 
 /* ---------- regions and settings ---------- */
-const REG = { en: ['us', 'gb'], de: ['de', 'ch', 'at'], fr: ['fr', 'ca', 'be', 'ch'], pt: ['br', 'pt'], cs: ['cz'], it: ['it', 'ch'], es: ['es', 'mx'], nl: ['nl', 'be'], sv: ['se'], la: ['cl', 'ec'] };
+const REG = { en: ['us', 'gb'], de: ['de', 'ch', 'at'], fr: ['fr', 'ca', 'be', 'ch'], pt: ['br', 'pt'], cs: ['cz'], it: ['it', 'ch'], es: ['es', 'mx', 'ar'], nl: ['nl', 'be'], sv: ['se'], la: ['cl', 'ec'] };
 const BASE = { en: 'us', de: 'de', fr: 'fr', pt: 'br', cs: 'cz', it: 'it', es: 'es', nl: 'nl', sv: 'se', la: 'cl' };
-const RNAME_EN = { us: 'United States', gb: 'United Kingdom', de: 'Germany', ch: 'Switzerland', at: 'Austria', fr: 'France', ca: 'Canada', be: 'Belgium', br: 'Brazil', pt: 'Portugal', cz: 'Czechia', it: 'Italy', es: 'Spain', mx: 'Mexico', nl: 'Netherlands', se: 'Sweden', cl: 'Classical', ec: 'Church Latin' };
+const RNAME_EN = { us: 'United States', gb: 'United Kingdom', de: 'Germany', ch: 'Switzerland', at: 'Austria', fr: 'France', ca: 'Canada', be: 'Belgium', br: 'Brazil', pt: 'Portugal', cz: 'Czechia', it: 'Italy', es: 'Spain', mx: 'Mexico', ar: 'Argentina', nl: 'Netherlands', se: 'Sweden', cl: 'Classical', ec: 'Church Latin' };
 const RNAME = new Proxy(RNAME_EN, { get: (o, k) => typeof k === 'string' && o[k] ? t('region.' + k, o[k]) : o[k] });
-const LOCALE = { en: { us: 'en-US', gb: 'en-GB' }, de: { de: 'de-DE', ch: 'de-CH', at: 'de-AT' }, fr: { fr: 'fr-FR', ca: 'fr-CA', be: 'fr-BE', ch: 'fr-CH' }, pt: { br: 'pt-BR', pt: 'pt-PT' }, cs: { cz: 'cs-CZ' }, it: { it: 'it-IT', ch: 'it-CH' }, es: { es: 'es-ES', mx: 'es-MX' }, nl: { nl: 'nl-NL', be: 'nl-BE' }, sv: { se: 'sv-SE' }, la: { cl: 'it-IT', ec: 'it-IT' } };     // no device has a Latin voice: Italian reads it the Church way
+const LOCALE = { en: { us: 'en-US', gb: 'en-GB' }, de: { de: 'de-DE', ch: 'de-CH', at: 'de-AT' }, fr: { fr: 'fr-FR', ca: 'fr-CA', be: 'fr-BE', ch: 'fr-CH' }, pt: { br: 'pt-BR', pt: 'pt-PT' }, cs: { cz: 'cs-CZ' }, it: { it: 'it-IT', ch: 'it-CH' }, es: { es: 'es-ES', mx: 'es-MX', ar: 'es-AR' }, nl: { nl: 'nl-NL', be: 'nl-BE' }, sv: { se: 'sv-SE' }, la: { cl: 'it-IT', ec: 'it-IT' } };     // no device has a Latin voice: Italian reads it the Church way
 /* every setting with its default (Settings › Reset to defaults puts these back) */
 const DEFAULTS = {
   // display
@@ -35,6 +35,7 @@ function t(key, en, vars) {
 const FLAG_ART = {
   it: '<rect width="20" height="40" fill="#009246"/><rect x="20" width="20" height="40" fill="#fff"/><rect x="40" width="20" height="40" fill="#CE2B37"/>',
   es: '<rect width="60" height="40" fill="#AA151B"/><rect y="10" width="60" height="20" fill="#F1BF00"/>',
+  ar: '<rect width="60" height="40" fill="#74ACDF"/><rect y="13.33" width="60" height="13.34" fill="#fff"/><circle cx="30" cy="20" r="4" fill="#F6B40E" stroke="#85340A" stroke-width=".6"/>',
   mx: '<rect width="20" height="40" fill="#006847"/><rect x="20" width="20" height="40" fill="#fff"/><rect x="40" width="20" height="40" fill="#CE1126"/><circle cx="30" cy="20" r="5" fill="#8C5A2B"/>',
   nl: '<rect width="60" height="40" fill="#21468B"/><rect width="60" height="26.7" fill="#fff"/><rect width="60" height="13.3" fill="#AE1C28"/>',
   se: '<rect width="60" height="40" fill="#006AA7"/><rect x="18" width="7" height="40" fill="#FECC00"/><rect y="16.5" width="60" height="7" fill="#FECC00"/>',
@@ -612,6 +613,26 @@ const withArt = (a, w) => a ? (a.endsWith("'") ? a + w : a + ' ' + w) : w;
 /* English verbs are shown with "to" (to go, to walk); modal verbs cannot take it (can, must) */
 const MODAL_EN = new Set(['can', 'could', 'may', 'might', 'must', 'shall', 'should', 'will', 'would', 'ought']);
 function withTo(id, w) { return w && /^en:/.test(id) && /:verb$/.test(id) && !MODAL_EN.has(w) && !/^to /i.test(w) ? 'to ' + w : w; }
+// Spanish: Wiktionary gives one transcription (Spain: θ for z/ce/ci, ʝ for ll/y). Mexico and Argentina are derived by rule:
+// seseo (θ -> s) in both, and in Argentina (Río de la Plata) the ll/y sound is ʃ (sheísmo): calle [ˈkaʃe], yo [ʃo].
+function ipaRegional(e) {
+  const reg = e.ipa.regional || {};
+  if (e.lang !== 'es' || !e.ipa.default) return reg;
+  const out = Object.assign({}, reg), d = e.ipa.default, mx = d.replace(/θ/g, 's'), ar = mx.replace(/ɟ͡ʝ|ɟʝ|ʝ/g, 'ʃ');
+  if (!out.MX && mx !== d) out.MX = mx;
+  if (!out.AR && ar !== d) out.AR = ar;
+  return out;
+}
+// Argentina: vos instead of tú (voseo). Present: hablás, comés, vivís; imperative: hablá, comé, viví.
+function voseo(lemma) {
+  let w = lemma, pre = '';
+  if (/[aei]rse$/.test(w)) { w = w.slice(0, -2); pre = 'te '; }
+  const SP = { ser: ['sos', 'sé'], ir: ['vas', 'andá'], haber: ['has', ''], estar: ['estás', 'estate'], dar: ['das', 'da'], ver: ['ves', 've'] };
+  if (SP[w]) return [pre + SP[w][0], SP[w][1] && (pre ? SP[w][1] + 'te' : SP[w][1])];
+  const m = w.match(/^(.*)([aei])r$/); if (!m) return null;
+  const acc = { a: 'á', e: 'é', i: 'í' }[m[2]];
+  return [pre + m[1] + acc + 's', pre ? m[1] + acc + 'te' : m[1] + acc];
+}
 function regionView(e) {
   const lang = e.lang, main = S.main[lang], R = main.toUpperCase(), isBase = main === BASE[lang];
   const v = isBase ? null : (e.regional_variants || []).find(x => x.region === R);
@@ -621,7 +642,7 @@ function regionView(e) {
   const gOf = r => (e.noun && e.noun.gender_regional && e.noun.gender_regional[r.toUpperCase()]) || (e.noun && e.noun.gender);
   o.gender = o.article ? ({ der: 'm', die: 'f', das: 'n' }[o.article] || (e.noun && e.noun.gender)) : e.noun ? gOf(main) : null;
   if (!o.article && e.noun && o.gender !== e.noun.gender && lang === 'de') o.article = { m: 'der', f: 'die', n: 'das' }[o.gender] || null;
-  const reg = e.ipa.regional || {};
+  const reg = ipaRegional(e);
   o.ipa = (!isBase && reg[R]) || e.ipa.default; o.narrow = !!e.ipa.narrow && o.ipa === e.ipa.default;
   o.ipaFrom = !isBase && !reg[R] && o.ipa ? BASE[lang] : null;     // no transcription of its own: the base region's is shown, and said so
   if (o.changed) { o.ipa = v.ipa || null; o.narrow = false; o.ipaFrom = null; }    // another word: the common word's pronunciation does not fit
@@ -686,6 +707,7 @@ function moreTables(e) {
     const rows = p.map((x, i) => x ? [lab[i] || '', x, b.regular === false && i > 0] : null);
     if (b.present_3sg && L !== 'sv') rows.push([{ it: 'lui/lei', es: 'él/ella', nl: 'hij/zij', la: 'he/she' }[L] || '3rd person', b.present_3sg, false]);
     if (b.aux && ['it', 'nl'].includes(L)) rows.push(['auxiliary', b.aux, false]);
+    if (L === 'es' && S.main.es === 'ar') { const v = voseo(e.lemma); if (v) { rows.push(['vos (present, Argentina)', v[0], false]); if (v[1]) rows.push(['vos (imperative, Argentina)', v[1], false]); } }
     return [sec((b.class ? b.class + ': ' : '') + 'principal parts', rows)];
   }
   if (e.pos === 'adjective') {

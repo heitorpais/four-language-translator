@@ -31,7 +31,9 @@ SEL = {   # labels -> region the app offers
     'pt': {'Brazil': 'BR', 'Brazilian': 'BR', 'Portugal': 'PT', 'Portuguese': 'PT', 'Lusitanian': 'PT'},
     'cs': {},
     'it': {'Switzerland': 'CH', 'Swiss': 'CH', 'Ticino': 'CH', 'Italy': 'IT'},
-    'es': {'Spain': 'ES', 'Mexico': 'MX', 'Mexican': 'MX'},
+    'es': {'Spain': 'ES', 'in Spain': 'ES', 'Mexico': 'MX', 'Mexican': 'MX', 'Mexico-City': 'MX', 'in Mexico': 'MX',
+           'Argentina': 'AR', 'in Argentina': 'AR', 'Rioplatense': 'AR', 'Río-de-la-Plata': 'AR', 'Northwestern-Argentina': 'AR', 'Northern-Argentina': 'AR',
+           'Latin-America': ('MX', 'AR'), 'in Latin America': ('MX', 'AR'), 'America': ('MX', 'AR'), 'South-America': ('AR',)},
     'nl': {'Netherlands': 'NL', 'Belgium': 'BE', 'Flemish': 'BE', 'Flanders': 'BE'},
     'sv': {}, 'la': {'Ecclesiastical': 'EC', 'Classical': 'CL'},
 }
@@ -49,7 +51,7 @@ OTHER = {  # region labels for places the app does not offer
           'Alentejo Beira Regionalismo',
     'cs': 'Moravia Moravian Silesia Silesian Bohemia Bohemian Common-Czech Slovakia',
     'it': 'Tuscany Rome Romanesco Naples Neapolitan Sicily Sicilian Venice Northern-Italy Southern-Italy',
-    'es': 'Argentina Rioplatense Chile Colombia Peru Venezuela Cuba Caribbean Andalusia Canary Andes Central-America',
+    'es': 'Uruguay Chile Colombia Peru Venezuela Cuba Caribbean Andalusia Canary Andes Central-America Puerto-Rico Dominican-Republic Ecuador Bolivia Paraguay',
     'nl': 'Suriname Limburg Brabant Holland',
     'sv': 'Finland Finland-Swedish Gotland Skåne Norrland',
     'la': 'Medieval New-Latin Late-Latin Vulgar',
@@ -58,7 +60,7 @@ OTHER = {L: set(v.split(' ')) | {'South German', 'North German', 'Swiss Standard
 SOURCES = {'de': ['enw-de', 'ed-de'], 'en': ['enw-en'], 'fr': ['enw-fr', 'ed-fr'], 'pt': ['enw-pt', 'ed-pt'], 'cs': ['enw-cs', 'ed-cs'], 'it': ['enw-it', 'ed-it'], 'es': ['enw-es', 'ed-es'], 'nl': ['enw-nl', 'ed-nl'], 'sv': ['enw-sv'], 'la': ['enw-la']}
 DBPOS = {'adjective': 'adj', 'adverb': 'adv', 'numeral': 'num', 'pronoun': 'pron', 'preposition': 'prep',
          'conjunction': 'conj', 'interjection': 'intj', 'determiner': 'det'}
-OFFERED = {'de': ['DE', 'CH', 'AT'], 'en': ['US', 'GB'], 'fr': ['FR', 'CA', 'BE', 'CH'], 'pt': ['BR', 'PT'], 'cs': ['CZ'], 'it': ['IT', 'CH'], 'es': ['ES', 'MX'], 'nl': ['NL', 'BE'], 'sv': ['SE'], 'la': ['CL', 'EC']}
+OFFERED = {'de': ['DE', 'CH', 'AT'], 'en': ['US', 'GB'], 'fr': ['FR', 'CA', 'BE', 'CH'], 'pt': ['BR', 'PT'], 'cs': ['CZ'], 'it': ['IT', 'CH'], 'es': ['ES', 'MX', 'AR'], 'nl': ['NL', 'BE'], 'sv': ['SE'], 'la': ['CL', 'EC']}
 _db = {}
 
 
@@ -69,7 +71,10 @@ def db(src):
 
 def labels(lang, tags):
     """None: no region label; else the set of offered regions (may be empty: only elsewhere)"""
-    sel = {SEL[lang][t] for t in tags if t in SEL[lang]}
+    sel = set()
+    for t in tags:
+        v = SEL[lang].get(t)
+        if v: sel.update((v,) if isinstance(v, str) else v)
     if sel or any(t in OTHER[lang] for t in tags): return sel
     return None
 

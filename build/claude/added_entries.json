@@ -1,0 +1,16 @@
+[
+ {"id": "en:January:noun", "ipa": "ˈd͡ʒænjuˌɛɹi", "level": "A1", "rank": 4900, "gloss_en": "the first month of the year"},
+ {"id": "en:February:noun", "ipa": "ˈfɛbɹuˌɛɹi", "level": "A1", "rank": 5600, "gloss_en": "the second month of the year"},
+ {"id": "en:March:noun", "ipa": "mɑɹt͡ʃ", "level": "A1", "rank": 3800, "gloss_en": "the third month of the year"},
+ {"id": "en:April:noun", "ipa": "ˈeɪpɹəl", "level": "A1", "rank": 4500, "gloss_en": "the fourth month of the year"},
+ {"id": "en:May:noun", "ipa": "meɪ", "level": "A1", "rank": 4400, "gloss_en": "the fifth month of the year"},
+ {"id": "en:June:noun", "ipa": "d͡ʒun", "level": "A1", "rank": 4300, "gloss_en": "the sixth month of the year"},
+ {"id": "en:July:noun", "ipa": "d͡ʒʊˈlaɪ", "level": "A1", "rank": 4200, "gloss_en": "the seventh month of the year"},
+ {"id": "en:August:noun", "ipa": "ˈɔɡəst", "level": "A1", "rank": 4600, "gloss_en": "the eighth month of the year"},
+ {"id": "en:September:noun", "ipa": "sɛpˈtɛmbɚ", "level": "A1", "rank": 5000, "gloss_en": "the ninth month of the year"},
+ {"id": "en:November:noun", "ipa": "noʊˈvɛmbɚ", "level": "A1", "rank": 5200, "gloss_en": "the eleventh month of the year"},
+ {"id": "en:December:noun", "ipa": "dɪˈsɛmbɚ", "level": "A1", "rank": 4700, "gloss_en": "the twelfth month of the year"},
+ {"id": "sv:i:preposition", "ipa": "iː", "level": "A1", "rank": 12, "gloss_en": "in, inside"},
+ {"id": "sv:juli:noun", "ipa": "ˈjʉːlɪ", "level": "A1", "rank": 3322, "gloss_en": "July", "gender": "c"},
+ {"id": "de:Reis:noun", "ipa": "ʁaɪ̯s", "level": "A1", "rank": 5129, "gloss_en": "rice", "gender": "m", "plural": null}
+]

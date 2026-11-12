@@ -51,3 +51,103 @@ fr	BE	ninety	nonante	num	+	quatre-vingt-dix
 fr	CH	mobile phone/cell phone/mobile/cellphone	natel	noun	+	portable	
 fr	CA	email/e-mail	courriel	noun	+	e-mail	
 fr	CA	car/automobile	char	noun	+	voiture	
+es	ES	car/automobile	coche	noun	+	carro	
+es	MX	car/automobile	carro	noun	+	coche	
+es	AR	car/automobile	auto	noun	+	coche	
+es	ES	mobile phone/cell phone/mobile/cellphone	móvil	noun	+	celular	
+es	MX	mobile phone/cell phone/mobile/cellphone	celular	noun	+	móvil	
+es	AR	mobile phone/cell phone/mobile/cellphone	celular	noun	+	móvil	
+es	ES	computer	ordenador	noun	+	computadora	
+es	MX	computer	computadora	noun	+	ordenador	
+es	AR	computer	computadora	noun	+	ordenador	
+es	ES	strawberry	fresa	noun	+	frutilla	
+es	MX	strawberry	fresa	noun	+	frutilla	
+es	AR	strawberry	frutilla	noun	+	fresa	
+es	ES	potato	patata	noun	+	papa	
+es	MX	potato	papa	noun	+	patata	
+es	AR	potato	papa	noun	+	patata	
+es	ES	avocado	aguacate	noun	+	palta	
+es	MX	avocado	aguacate	noun	+	palta	
+es	AR	avocado	palta	noun	+	aguacate	
+es	ES	peach	melocotón	noun	+	durazno	
+es	MX	peach	durazno	noun	+	melocotón	
+es	AR	peach	durazno	noun	+	melocotón	
+es	ES	bus	autobús	noun	+	colectivo	
+es	MX	bus	camión	noun	+	autobús	
+es	AR	bus	colectivo	noun	+	autobús	
+es	ES	swimming pool/pool	piscina	noun	+	pileta	
+es	MX	swimming pool/pool	alberca	noun	+	piscina	
+es	AR	swimming pool/pool	pileta	noun	+	piscina	
+es	ES	T-shirt/tee shirt/tee	camiseta	noun	+	remera	
+es	MX	T-shirt/tee shirt/tee	playera	noun	+	camiseta	
+es	AR	T-shirt/tee shirt/tee	remera	noun	+	camiseta	
+es	ES	skirt	falda	noun	+	pollera	
+es	AR	skirt	pollera	noun	+	falda	
+es	ES	drive	conducir	verb	+	manejar	
+es	MX	drive	manejar	verb	+	conducir	
+es	AR	drive	manejar	verb	+	conducir	
+es	ES	juice	zumo	noun	+	jugo	
+es	MX	juice	jugo	noun	+	zumo	
+es	AR	juice	jugo	noun	+	zumo	
+es	ES	apartment/flat	piso	noun	+	departamento	
+es	MX	apartment/flat	departamento	noun	+	piso	
+es	AR	apartment/flat	departamento	noun	+	piso	
+es	ES	refrigerator/fridge	nevera	noun	+	frigorífico	
+es	MX	refrigerator/fridge	refrigerador	noun	+	nevera	
+es	AR	refrigerator/fridge	heladera	noun	+	nevera	
+es	ES	glasses/spectacles/eyeglasses	gafas	noun	+	anteojos	
+es	MX	glasses/spectacles/eyeglasses	lentes	noun	+	gafas	
+es	AR	glasses/spectacles/eyeglasses	anteojos	noun	+	gafas	
+es	ES	pen/ballpoint pen/ballpoint	bolígrafo	noun	+	birome	
+es	MX	pen/ballpoint pen/ballpoint	pluma	noun	+	bolígrafo	
+es	AR	pen/ballpoint pen/ballpoint	birome	noun	+	bolígrafo	
+es	ES	petrol/gasoline/gas	gasolina	noun	+	nafta	
+es	MX	petrol/gasoline/gas	gasolina	noun	+	nafta	
+es	AR	petrol/gasoline/gas	nafta	noun	+	gasolina	
+es	ES	corn/maize/sweetcorn	maíz	noun	+	choclo	
+es	MX	corn/maize/sweetcorn	elote	noun	+	maíz	
+es	AR	corn/maize/sweetcorn	choclo	noun	+	maíz	
+es	ES	bean/beans	judía	noun	+	frijol	
+es	MX	bean/beans	frijol	noun	+	judía	
+es	AR	bean/beans	poroto	noun	+	frijol	
+es	ES	butter	mantequilla	noun	+	manteca	
+es	MX	butter	mantequilla	noun	+	manteca	
+es	AR	butter	manteca	noun	+	mantequilla	
+es	ES	pineapple	piña	noun	+	ananá	
+es	MX	pineapple	piña	noun	+	ananá	
+es	AR	pineapple	ananá	noun	+	piña	
+es	ES	pea/peas	guisante	noun	+	arveja	
+es	MX	pea/peas	chícharo	noun	+	guisante	
+es	AR	pea/peas	arveja	noun	+	guisante	
+es	ES	money	dinero	noun	+	plata	
+es	AR	money	plata	noun	+	dinero	
+es	ES	work/job	trabajo	noun	+	laburo	
+es	AR	work/job	laburo	noun	+	trabajo	
+es	AR	kid/boy/child	pibe	noun	+	chico	
+es	MX	kid/boy/child	chavo	noun	+	chico	
+es	ES	jacket	chaqueta	noun	+	campera	
+es	MX	jacket	chamarra	noun	+	chaqueta	
+es	AR	jacket	campera	noun	+	chaqueta	
+es	ES	sweater/jumper/pullover	jersey	noun	+	suéter	
+es	MX	sweater/jumper/pullover	suéter	noun	+	jersey	
+es	AR	sweater/jumper/pullover	pulóver	noun	+	suéter	
+es	ES	socks/sock	calcetín	noun	+	media	
+es	MX	socks/sock	calcetín	noun	+	media	
+es	AR	socks/sock	media	noun	+	calcetín	
+es	ES	baby bottle/feeding bottle	biberón	noun	+	mamadera	
+es	AR	baby bottle/feeding bottle	mamadera	noun	+	biberón	
+es	ES	ticket	billete	noun	+	boleto	
+es	MX	ticket	boleto	noun	+	billete	
+es	AR	ticket	boleto	noun	+	billete	
+es	ES	cake	tarta	noun	+	pastel	
+es	MX	cake	pastel	noun	+	tarta	
+es	AR	cake	torta	noun	+	pastel	
+es	ES	beautiful/pretty/nice/lovely	bonito	adjective	+	lindo	
+es	AR	beautiful/pretty/nice/lovely	lindo	adjective	+	bonito	
+es	MX	beautiful/pretty/nice/lovely	bonito	adjective	+	lindo	
+es	ES	take/catch	coger	verb	+	tomar	
+es	MX	take/catch	tomar	verb	+	coger	
+es	AR	take/catch	tomar	verb	+	coger	
+es	MX	take/catch	coger	verb	-		
+es	AR	take/catch	coger	verb	-		
+es	AR	you	vos	pronoun	+	tú	

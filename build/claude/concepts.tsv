@@ -1,0 +1,1002 @@
+# Core vocabulary checked by hand (Claude): one meaning per row, the usual word in each language.
+# The review step (build/review.py) puts these words first in the matching meaning of each word, adds them if missing,
+# so the cards show the everyday translation. "-" = no single word / leave as it is. Lemmas as stored in the dictionary.
+# Base varieties: German (Germany, Swiss words come from the regional step), US English, Brazilian Portuguese, Spain Spanish.
+# pos	en	de	fr	pt	cs	it	es	nl	sv	la
+pronoun	I	ich	je	eu	já	io	yo	ik	jag	ego
+pronoun	you	du	tu	você	ty	tu	tú	jij	du	tu
+pronoun	he	er	il	ele	on	lui	él	hij	han	is
+pronoun	she	sie	elle	ela	ona	lei	ella	zij	hon	ea
+pronoun	it	es	il	ele	ono	esso	ello	het	den	-
+pronoun	we	wir	nous	nós	my	noi	nosotros	wij	vi	-
+pronoun	they	sie	ils	eles	oni	loro	ellos	zij	de	-
+pronoun	who	wer	qui	quem	kdo	chi	quién	wie	vem	quis
+pronoun	what	was	quoi	o que	co	che cosa	qué	wat	vad	quid
+pronoun	something	etwas	quelque chose	algo	něco	qualcosa	algo	iets	något	aliquid
+pronoun	nothing	nichts	rien	nada	nic	niente	nada	niets	ingenting	nihil
+pronoun	everything	alles	tout	tudo	všechno	tutto	todo	alles	allt	omnia
+pronoun	someone	jemand	quelqu'un	alguém	někdo	qualcuno	alguien	iemand	någon	aliquis
+pronoun	nobody	niemand	personne	ninguém	nikdo	nessuno	nadie	niemand	ingen	nemo
+pronoun	myself	mich	moi-même	-	sám	-	-	mezelf	-	ipse
+determiner	this	dieser	ce	este	tento	questo	este	deze	denna	hic
+determiner	that	jener	ce	esse	tamten	quello	ese	die	den där	ille
+determiner	my	mein	mon	meu	můj	mio	mi	mijn	min	meus
+determiner	your	dein	ton	seu	tvůj	tuo	tu	jouw	din	tuus
+determiner	his	sein	son	dele	jeho	suo	su	zijn	hans	-
+determiner	her	ihr	son	dela	její	suo	su	haar	hennes	-
+determiner	our	unser	notre	nosso	náš	nostro	nuestro	ons	vår	noster
+determiner	their	ihr	leur	deles	jejich	loro	su	hun	deras	-
+determiner	every	jeder	chaque	cada	každý	ogni	cada	elk	varje	quisque
+determiner	all	alle	tout	todo	všechen	tutto	todo	al	all	omnis
+determiner	some	einige	quelques	algum	některý	alcuni	alguno	sommige	några	aliquot
+determiner	no	kein	aucun	nenhum	žádný	nessuno	ningún	geen	ingen	nullus
+determiner	other	anderer	autre	outro	jiný	altro	otro	ander	annan	alius
+determiner	many	viel	beaucoup	muito	mnoho	molto	mucho	veel	många	multus
+determiner	which	welcher	quel	qual	který	quale	cuál	welk	vilken	qui
+article	the	der	le	o	-	il	el	de	-	-
+article	a	ein	un	um	-	un	un	een	en	-
+conjunction	and	und	et	e	a	e	y	en	och	et
+conjunction	or	oder	ou	ou	nebo	o	o	of	eller	aut
+conjunction	but	aber	mais	mas	ale	ma	pero	maar	men	sed
+conjunction	because	weil	parce que	porque	protože	perché	porque	omdat	eftersom	quia
+conjunction	if	wenn	si	se	jestli	se	si	als	om	si
+conjunction	that	dass	que	que	že	che	que	dat	att	ut
+conjunction	when	wenn	quand	quando	když	quando	cuando	wanneer	när	cum
+conjunction	so	also	donc	então	takže	quindi	así que	dus	så	itaque
+conjunction	than	als	que	que	než	di	que	dan	än	quam
+conjunction	as	wie	comme	como	jako	come	como	als	som	ut
+conjunction	although	obwohl	bien que	embora	ačkoli	sebbene	aunque	hoewel	fast	quamquam
+conjunction	while	während	pendant que	enquanto	zatímco	mentre	mientras	terwijl	medan	dum
+preposition	in	in	dans	em	v	in	en	in	i	in
+preposition	on	auf	sur	em	na	su	en	op	på	in
+preposition	at	an	à	em	u	a	en	bij	vid	ad
+preposition	to	zu	à	para	k	a	a	naar	till	ad
+preposition	from	von	de	de	z	da	de	van	från	ab
+preposition	with	mit	avec	com	s	con	con	met	med	cum
+preposition	without	ohne	sans	sem	bez	senza	sin	zonder	utan	sine
+preposition	for	für	pour	para	pro	per	para	voor	för	pro
+preposition	of	von	de	de	-	di	de	van	av	-
+preposition	about	über	sur	sobre	o	su	sobre	over	om	de
+preposition	under	unter	sous	sob	pod	sotto	bajo	onder	under	sub
+preposition	over	über	au-dessus de	sobre	nad	sopra	sobre	boven	över	super
+preposition	between	zwischen	entre	entre	mezi	tra	entre	tussen	mellan	inter
+preposition	before	vor	avant	antes de	před	prima	antes	voor	före	ante
+preposition	after	nach	après	depois de	po	dopo	después de	na	efter	post
+preposition	during	während	pendant	durante	během	durante	durante	tijdens	under	per
+preposition	behind	hinter	derrière	atrás de	za	dietro	detrás de	achter	bakom	post
+preposition	next to	neben	à côté de	-	vedle	accanto	al lado de	naast	bredvid	iuxta
+preposition	until	bis	jusqu'à	até	do	fino a	hasta	tot	till	usque ad
+preposition	through	durch	à travers	através de	skrz	attraverso	a través de	door	genom	per
+preposition	against	gegen	contre	contra	proti	contro	contra	tegen	mot	contra
+preposition	since	seit	depuis	desde	od	da	desde	sinds	sedan	ex
+adverb	not	nicht	ne	não	ne	non	no	niet	inte	non
+interjection	yes	ja	oui	sim	ano	sì	sí	ja	ja	ita
+interjection	no	nein	non	não	ne	no	no	nee	nej	-
+interjection	hello	hallo	bonjour	olá	ahoj	ciao	hola	hallo	hej	salve
+interjection	goodbye	tschüss	au revoir	tchau	na shledanou	arrivederci	adiós	dag	hej då	vale
+interjection	thanks	danke	merci	obrigado	děkuji	grazie	gracias	bedankt	tack	-
+interjection	please	bitte	s'il vous plaît	por favor	prosím	per favore	por favor	alsjeblieft	snälla	quaeso
+interjection	sorry	Entschuldigung	pardon	desculpa	promiňte	scusa	perdón	sorry	förlåt	-
+adverb	here	hier	ici	aqui	tady	qui	aquí	hier	här	hic
+adverb	there	dort	là	lá	tam	là	allí	daar	där	ibi
+adverb	now	jetzt	maintenant	agora	teď	ora	ahora	nu	nu	nunc
+adverb	then	dann	puis	então	pak	poi	luego	dan	sedan	tum
+adverb	today	heute	aujourd'hui	hoje	dnes	oggi	hoy	vandaag	idag	hodie
+adverb	tomorrow	morgen	demain	amanhã	zítra	domani	mañana	morgen	i morgon	cras
+adverb	yesterday	gestern	hier	ontem	včera	ieri	ayer	gisteren	igår	heri
+adverb	always	immer	toujours	sempre	vždy	sempre	siempre	altijd	alltid	semper
+adverb	never	nie	jamais	nunca	nikdy	mai	nunca	nooit	aldrig	numquam
+adverb	often	oft	souvent	frequentemente	často	spesso	a menudo	vaak	ofta	saepe
+adverb	sometimes	manchmal	parfois	às vezes	někdy	a volte	a veces	soms	ibland	interdum
+adverb	already	schon	déjà	já	už	già	ya	al	redan	iam
+adverb	still	noch	encore	ainda	ještě	ancora	todavía	nog	fortfarande	adhuc
+adverb	again	wieder	encore	de novo	znovu	di nuovo	otra vez	weer	igen	iterum
+adverb	also	auch	aussi	também	také	anche	también	ook	också	etiam
+adverb	only	nur	seulement	só	jen	solo	solo	alleen	bara	solum
+adverb	very	sehr	très	muito	velmi	molto	muy	heel	mycket	valde
+adverb	too	zu	trop	demais	příliš	troppo	demasiado	te	för	nimis
+adverb	more	mehr	plus	mais	více	più	más	meer	mera	plus
+adverb	less	weniger	moins	menos	-	meno	menos	minder	mindre	-
+adverb	well	gut	bien	bem	dobře	bene	bien	goed	bra	bene
+adverb	badly	schlecht	mal	mal	špatně	male	mal	slecht	dåligt	male
+adverb	so	so	si	tão	tak	così	tan	zo	så	tam
+adverb	how	wie	comment	como	jak	come	cómo	hoe	hur	quomodo
+adverb	why	warum	pourquoi	por que	proč	perché	por qué	waarom	varför	cur
+adverb	where	wo	où	onde	kde	dove	dónde	waar	var	ubi
+adverb	when	wann	quand	quando	kdy	quando	cuándo	wanneer	när	quando
+adverb	soon	bald	bientôt	logo	brzy	presto	pronto	gauw	snart	mox
+adverb	late	spät	tard	tarde	pozdě	tardi	tarde	laat	sent	sero
+adverb	early	früh	tôt	cedo	brzy	presto	temprano	vroeg	tidigt	mane
+adverb	almost	fast	presque	quase	téměř	quasi	casi	bijna	nästan	paene
+adverb	together	zusammen	ensemble	junto	spolu	insieme	junto	samen	tillsammans	simul
+adverb	maybe	vielleicht	peut-être	talvez	možná	forse	quizás	misschien	kanske	fortasse
+adverb	really	wirklich	vraiment	realmente	opravdu	davvero	realmente	echt	verkligen	vere
+adverb	enough	genug	assez	bastante	dost	abbastanza	bastante	genoeg	nog	satis
+adverb	far	weit	loin	longe	daleko	lontano	lejos	ver	långt	procul
+adverb	near	nah	près	perto	blízko	vicino	cerca	dichtbij	nära	prope
+adverb	down	unten	en bas	embaixo	dole	giù	abajo	beneden	ner	deorsum
+adverb	up	oben	en haut	em cima	nahoře	su	arriba	boven	upp	sursum
+adverb	outside	draußen	dehors	fora	venku	fuori	fuera	buiten	ute	foris
+adverb	inside	drinnen	dedans	dentro	uvnitř	dentro	dentro	binnen	inne	intus
+adverb	quickly	schnell	vite	rápido	rychle	velocemente	rápido	snel	snabbt	cito
+adverb	slowly	langsam	lentement	devagar	pomalu	lentamente	despacio	langzaam	-	lente
+adverb	a lot	viel	beaucoup	muito	hodně	molto	mucho	veel	mycket	multum
+adverb	a little	bisschen	un peu	um pouco	trochu	-	un poco	een beetje	lite	paulum
+noun	person	Person	personne	pessoa	osoba	persona	persona	persoon	person	persona
+noun	people	Leute	gens	gente	člověk	gente	gente	mens	folk	homo
+noun	man	Mann	homme	homem	muž	uomo	hombre	man	man	vir
+noun	woman	Frau	femme	mulher	žena	donna	mujer	vrouw	kvinna	femina
+noun	child	Kind	enfant	criança	dítě	bambino	niño	kind	barn	puer
+noun	boy	Junge	garçon	menino	chlapec	ragazzo	chico	jongen	pojke	puer
+noun	girl	Mädchen	fille	menina	dívka	ragazza	chica	meisje	flicka	puella
+noun	baby	Baby	bébé	bebê	miminko	bambino	bebé	baby	bebis	infans
+noun	friend	Freund	ami	amigo	přítel	amico	amigo	vriend	vän	amicus
+noun	family	Familie	famille	família	rodina	famiglia	familia	familie	familj	familia
+noun	mother	Mutter	mère	mãe	matka	madre	madre	moeder	mor	mater
+noun	father	Vater	père	pai	otec	padre	padre	vader	far	pater
+noun	parent	Elternteil	parent	pai	rodič	genitore	-	ouder	förälder	parens
+noun	son	Sohn	fils	filho	syn	figlio	hijo	zoon	son	filius
+noun	daughter	Tochter	fille	filha	dcera	figlia	hija	dochter	dotter	filia
+noun	brother	Bruder	frère	irmão	bratr	fratello	hermano	broer	bror	frater
+noun	sister	Schwester	sœur	irmã	sestra	sorella	hermana	zus	syster	soror
+noun	husband	Ehemann	mari	marido	manžel	marito	marido	man	make	maritus
+noun	wife	Ehefrau	femme	esposa	manželka	moglie	esposa	vrouw	fru	uxor
+noun	grandmother	Großmutter	grand-mère	avó	babička	nonna	abuela	grootmoeder	mormor	avia
+noun	grandfather	Großvater	grand-père	avô	dědeček	nonno	abuelo	grootvader	morfar	avus
+noun	uncle	Onkel	oncle	tio	strýc	zio	tío	oom	farbror	patruus
+noun	aunt	Tante	tante	tia	teta	zia	tía	tante	faster	amita
+noun	name	Name	nom	nome	jméno	nome	nombre	naam	namn	nomen
+noun	body	Körper	corps	corpo	tělo	corpo	cuerpo	lichaam	kropp	corpus
+noun	head	Kopf	tête	cabeça	hlava	testa	cabeza	hoofd	huvud	caput
+noun	face	Gesicht	visage	rosto	obličej	viso	cara	gezicht	ansikte	facies
+noun	eye	Auge	œil	olho	oko	occhio	ojo	oog	öga	oculus
+noun	ear	Ohr	oreille	orelha	ucho	orecchio	oreja	oor	öra	auris
+noun	nose	Nase	nez	nariz	nos	naso	nariz	neus	näsa	nasus
+noun	mouth	Mund	bouche	boca	ústa	bocca	boca	mond	mun	os
+noun	tooth	Zahn	dent	dente	zub	dente	diente	tand	tand	dens
+noun	hair	Haar	cheveu	cabelo	vlas	capello	pelo	haar	hår	capillus
+noun	hand	Hand	main	mão	ruka	mano	mano	hand	hand	manus
+noun	arm	Arm	bras	braço	paže	braccio	brazo	arm	arm	bracchium
+noun	leg	Bein	jambe	perna	noha	gamba	pierna	been	ben	crus
+noun	foot	Fuß	pied	pé	chodidlo	piede	pie	voet	fot	pes
+noun	finger	Finger	doigt	dedo	prst	dito	dedo	vinger	finger	digitus
+noun	heart	Herz	cœur	coração	srdce	cuore	corazón	hart	hjärta	cor
+noun	blood	Blut	sang	sangue	krev	sangue	sangre	bloed	blod	sanguis
+noun	back	Rücken	dos	costas	záda	schiena	espalda	rug	rygg	tergum
+noun	house	Haus	maison	casa	dům	casa	casa	huis	hus	domus
+noun	home	Zuhause	maison	casa	domov	casa	hogar	thuis	hem	domus
+noun	apartment	Wohnung	appartement	apartamento	byt	appartamento	piso	appartement	lägenhet	-
+noun	room	Zimmer	chambre	quarto	pokoj	stanza	habitación	kamer	rum	conclave
+noun	kitchen	Küche	cuisine	cozinha	kuchyně	cucina	cocina	keuken	kök	culina
+noun	bathroom	Badezimmer	salle de bain	banheiro	koupelna	bagno	baño	badkamer	badrum	balneum
+noun	bedroom	Schlafzimmer	chambre	quarto	ložnice	camera da letto	dormitorio	slaapkamer	sovrum	cubiculum
+noun	door	Tür	porte	porta	dveře	porta	puerta	deur	dörr	ianua
+noun	window	Fenster	fenêtre	janela	okno	finestra	ventana	raam	fönster	fenestra
+noun	wall	Wand	mur	parede	zeď	muro	pared	muur	vägg	murus
+noun	floor	Boden	sol	chão	podlaha	pavimento	suelo	vloer	golv	pavimentum
+noun	roof	Dach	toit	telhado	střecha	tetto	tejado	dak	tak	tectum
+noun	stairs	Treppe	escalier	escada	-	scala	escalera	trap	trappa	scalae
+noun	table	Tisch	table	mesa	stůl	tavolo	mesa	tafel	bord	mensa
+noun	chair	Stuhl	chaise	cadeira	židle	sedia	silla	stoel	stol	sella
+noun	bed	Bett	lit	cama	postel	letto	cama	bed	säng	lectus
+noun	key	Schlüssel	clé	chave	klíč	chiave	llave	sleutel	nyckel	clavis
+noun	garden	Garten	jardin	jardim	zahrada	giardino	jardín	tuin	trädgård	hortus
+noun	food	Essen	nourriture	comida	jídlo	cibo	comida	eten	mat	cibus
+noun	water	Wasser	eau	água	voda	acqua	agua	water	vatten	aqua
+noun	bread	Brot	pain	pão	chléb	pane	pan	brood	bröd	panis
+noun	milk	Milch	lait	leite	mléko	latte	leche	melk	mjölk	lac
+noun	meat	Fleisch	viande	carne	maso	carne	carne	vlees	kött	caro
+noun	fish	Fisch	poisson	peixe	ryba	pesce	pescado	vis	fisk	piscis
+noun	egg	Ei	œuf	ovo	vejce	uovo	huevo	ei	ägg	ovum
+noun	cheese	Käse	fromage	queijo	sýr	formaggio	queso	kaas	ost	caseus
+noun	apple	Apfel	pomme	maçã	jablko	mela	manzana	appel	äpple	malum
+noun	fruit	Obst	fruit	fruta	ovoce	frutta	fruta	fruit	frukt	fructus
+noun	vegetable	Gemüse	légume	legume	zelenina	verdura	verdura	groente	grönsak	holus
+noun	potato	Kartoffel	pomme de terre	batata	brambor	patata	patata	aardappel	potatis	-
+noun	rice	Reis	riz	arroz	rýže	riso	arroz	rijst	ris	oryza
+noun	salt	Salz	sel	sal	sůl	sale	sal	zout	salt	sal
+noun	sugar	Zucker	sucre	açúcar	cukr	zucchero	azúcar	suiker	socker	saccharum
+noun	coffee	Kaffee	café	café	káva	caffè	café	koffie	kaffe	-
+noun	tea	Tee	thé	chá	čaj	tè	té	thee	te	-
+noun	beer	Bier	bière	cerveja	pivo	birra	cerveza	bier	öl	-
+noun	wine	Wein	vin	vinho	víno	vino	vino	wijn	vin	vinum
+noun	juice	Saft	jus	suco	šťáva	succo	zumo	sap	juice	sucus
+noun	breakfast	Frühstück	petit-déjeuner	café da manhã	snídaně	colazione	desayuno	ontbijt	frukost	ientaculum
+noun	lunch	Mittagessen	déjeuner	almoço	oběd	pranzo	almuerzo	lunch	lunch	prandium
+noun	dinner	Abendessen	dîner	jantar	večeře	cena	cena	avondeten	middag	cena
+noun	time	Zeit	temps	tempo	čas	tempo	tiempo	tijd	tid	tempus
+noun	day	Tag	jour	dia	den	giorno	día	dag	dag	dies
+noun	night	Nacht	nuit	noite	noc	notte	noche	nacht	natt	nox
+noun	morning	Morgen	matin	manhã	ráno	mattina	mañana	ochtend	morgon	mane
+noun	evening	Abend	soir	noite	večer	sera	tarde	avond	kväll	vesper
+noun	afternoon	Nachmittag	après-midi	tarde	odpoledne	pomeriggio	tarde	middag	eftermiddag	-
+noun	week	Woche	semaine	semana	týden	settimana	semana	week	vecka	hebdomas
+noun	month	Monat	mois	mês	měsíc	mese	mes	maand	månad	mensis
+noun	year	Jahr	an	ano	rok	anno	año	jaar	år	annus
+noun	hour	Stunde	heure	hora	hodina	ora	hora	uur	timme	hora
+noun	minute	Minute	minute	minuto	minuta	minuto	minuto	minuut	minut	-
+noun	moment	Moment	moment	momento	okamžik	momento	momento	moment	ögonblick	momentum
+noun	weekend	Wochenende	week-end	fim de semana	víkend	fine settimana	fin de semana	weekend	helg	-
+noun	birthday	Geburtstag	anniversaire	aniversário	narozeniny	compleanno	cumpleaños	verjaardag	födelsedag	-
+noun	holiday	Urlaub	vacances	férias	dovolená	vacanza	vacaciones	vakantie	semester	feriae
+noun	city	Stadt	ville	cidade	město	città	ciudad	stad	stad	urbs
+noun	village	Dorf	village	aldeia	vesnice	villaggio	pueblo	dorp	by	vicus
+noun	country	Land	pays	país	země	paese	país	land	land	terra
+noun	street	Straße	rue	rua	ulice	strada	calle	straat	gata	via
+noun	road	Straße	route	estrada	silnice	strada	carretera	weg	väg	via
+noun	school	Schule	école	escola	škola	scuola	escuela	school	skola	schola
+noun	church	Kirche	église	igreja	kostel	chiesa	iglesia	kerk	kyrka	ecclesia
+noun	shop	Geschäft	magasin	loja	obchod	negozio	tienda	winkel	affär	taberna
+noun	market	Markt	marché	mercado	trh	mercato	mercado	markt	marknad	forum
+noun	hospital	Krankenhaus	hôpital	hospital	nemocnice	ospedale	hospital	ziekenhuis	sjukhus	valetudinarium
+noun	station	Bahnhof	gare	estação	nádraží	stazione	estación	station	station	statio
+noun	airport	Flughafen	aéroport	aeroporto	letiště	aeroporto	aeropuerto	luchthaven	flygplats	-
+noun	restaurant	Restaurant	restaurant	restaurante	restaurace	ristorante	restaurante	restaurant	restaurang	caupona
+noun	hotel	Hotel	hôtel	hotel	hotel	albergo	hotel	hotel	hotell	deversorium
+noun	office	Büro	bureau	escritório	kancelář	ufficio	oficina	kantoor	kontor	officium
+noun	bank	Bank	banque	banco	banka	banca	banco	bank	bank	argentaria
+noun	park	Park	parc	parque	park	parco	parque	park	park	-
+noun	world	Welt	monde	mundo	svět	mondo	mundo	wereld	värld	mundus
+noun	sun	Sonne	soleil	sol	slunce	sole	sol	zon	sol	sol
+noun	moon	Mond	lune	lua	měsíc	luna	luna	maan	måne	luna
+noun	star	Stern	étoile	estrela	hvězda	stella	estrella	ster	stjärna	stella
+noun	sky	Himmel	ciel	céu	nebe	cielo	cielo	lucht	himmel	caelum
+noun	weather	Wetter	temps	tempo	počasí	tempo	tiempo	weer	väder	caelum
+noun	rain	Regen	pluie	chuva	déšť	pioggia	lluvia	regen	regn	pluvia
+noun	snow	Schnee	neige	neve	sníh	neve	nieve	sneeuw	snö	nix
+noun	wind	Wind	vent	vento	vítr	vento	viento	wind	vind	ventus
+noun	sea	Meer	mer	mar	moře	mare	mar	zee	hav	mare
+noun	river	Fluss	rivière	rio	řeka	fiume	río	rivier	flod	flumen
+noun	lake	See	lac	lago	jezero	lago	lago	meer	sjö	lacus
+noun	mountain	Berg	montagne	montanha	hora	montagna	montaña	berg	berg	mons
+noun	tree	Baum	arbre	árvore	strom	albero	árbol	boom	träd	arbor
+noun	flower	Blume	fleur	flor	květina	fiore	flor	bloem	blomma	flos
+noun	forest	Wald	forêt	floresta	les	foresta	bosque	bos	skog	silva
+noun	earth	Erde	terre	terra	země	terra	tierra	aarde	jord	terra
+noun	fire	Feuer	feu	fogo	oheň	fuoco	fuego	vuur	eld	ignis
+noun	air	Luft	air	ar	vzduch	aria	aire	lucht	luft	aer
+noun	animal	Tier	animal	animal	zvíře	animale	animal	dier	djur	animal
+noun	dog	Hund	chien	cachorro	pes	cane	perro	hond	hund	canis
+noun	cat	Katze	chat	gato	kočka	gatto	gato	kat	katt	feles
+noun	horse	Pferd	cheval	cavalo	kůň	cavallo	caballo	paard	häst	equus
+noun	bird	Vogel	oiseau	pássaro	pták	uccello	pájaro	vogel	fågel	avis
+noun	cow	Kuh	vache	vaca	kráva	mucca	vaca	koe	ko	vacca
+noun	car	Auto	voiture	carro	auto	macchina	coche	auto	bil	autocinetum
+noun	bus	Bus	bus	ônibus	autobus	autobus	autobús	bus	buss	-
+noun	train	Zug	train	trem	vlak	treno	tren	trein	tåg	-
+noun	bicycle	Fahrrad	vélo	bicicleta	kolo	bicicletta	bicicleta	fiets	cykel	birota
+noun	plane	Flugzeug	avion	avião	letadlo	aereo	avión	vliegtuig	flygplan	aeroplanum
+noun	ship	Schiff	navire	navio	loď	nave	barco	schip	fartyg	navis
+noun	ticket	Fahrkarte	billet	passagem	jízdenka	biglietto	billete	kaartje	biljett	tessera
+noun	money	Geld	argent	dinheiro	peníze	denaro	dinero	geld	pengar	pecunia
+noun	price	Preis	prix	preço	cena	prezzo	precio	prijs	pris	pretium
+noun	work	Arbeit	travail	trabalho	práce	lavoro	trabajo	werk	arbete	labor
+noun	job	Job	travail	emprego	práce	lavoro	trabajo	baan	jobb	-
+noun	book	Buch	livre	livro	kniha	libro	libro	boek	bok	liber
+noun	letter	Brief	lettre	carta	dopis	lettera	carta	brief	brev	-
+noun	word	Wort	mot	palavra	slovo	parola	palabra	woord	ord	verbum
+noun	language	Sprache	langue	língua	jazyk	lingua	idioma	taal	språk	lingua
+noun	question	Frage	question	pergunta	otázka	domanda	pregunta	vraag	fråga	quaestio
+noun	answer	Antwort	réponse	resposta	odpověď	risposta	respuesta	antwoord	svar	responsum
+noun	problem	Problem	problème	problema	problém	problema	problema	probleem	problem	-
+noun	idea	Idee	idée	ideia	nápad	idea	idea	idee	idé	idea
+noun	thing	Ding	chose	coisa	věc	cosa	cosa	ding	sak	res
+noun	way	Weg	chemin	caminho	cesta	strada	camino	weg	väg	via
+noun	place	Ort	endroit	lugar	místo	posto	lugar	plaats	plats	locus
+noun	life	Leben	vie	vida	život	vita	vida	leven	liv	vita
+noun	death	Tod	mort	morte	smrt	morte	muerte	dood	död	mors
+noun	love	Liebe	amour	amor	láska	amore	amor	liefde	kärlek	amor
+noun	war	Krieg	guerre	guerra	válka	guerra	guerra	oorlog	krig	bellum
+noun	peace	Frieden	paix	paz	mír	pace	paz	vrede	fred	pax
+noun	music	Musik	musique	música	hudba	musica	música	muziek	musik	musica
+noun	song	Lied	chanson	canção	píseň	canzone	canción	lied	sång	carmen
+noun	game	Spiel	jeu	jogo	hra	gioco	juego	spel	spel	ludus
+noun	film	Film	film	filme	film	film	película	film	film	-
+noun	picture	Bild	image	imagem	obrázek	immagine	imagen	afbeelding	bild	imago
+noun	color	Farbe	couleur	cor	barva	colore	color	kleur	färg	color
+noun	phone	Telefon	téléphone	telefone	telefon	telefono	teléfono	telefoon	telefon	telephonum
+noun	mobile phone	Handy	portable	celular	mobil	cellulare	móvil	mobiel	mobil	-
+noun	computer	Computer	ordinateur	computador	počítač	computer	ordenador	computer	dator	computatrum
+noun	newspaper	Zeitung	journal	jornal	noviny	giornale	periódico	krant	tidning	-
+noun	clothes	Kleidung	vêtement	roupa	oblečení	abbigliamento	ropa	kleding	kläder	vestis
+noun	shoe	Schuh	chaussure	sapato	bota	scarpa	zapato	schoen	sko	calceus
+noun	shirt	Hemd	chemise	camisa	košile	camicia	camisa	overhemd	skjorta	-
+noun	dress	Kleid	robe	vestido	šaty	vestito	vestido	jurk	klänning	-
+noun	bag	Tasche	sac	bolsa	taška	borsa	bolsa	tas	väska	sacculus
+noun	doctor	Arzt	médecin	médico	lékař	medico	médico	arts	läkare	medicus
+noun	teacher	Lehrer	professeur	professor	učitel	insegnante	profesor	leraar	lärare	magister
+noun	student	Student	étudiant	estudante	student	studente	estudiante	student	student	discipulus
+noun	police	Polizei	police	polícia	policie	polizia	policía	politie	polis	-
+noun	king	König	roi	rei	král	re	rey	koning	kung	rex
+noun	god	Gott	dieu	deus	bůh	dio	dios	god	gud	deus
+noun	health	Gesundheit	santé	saúde	zdraví	salute	salud	gezondheid	hälsa	salus
+noun	number	Nummer	numéro	número	číslo	numero	número	nummer	nummer	numerus
+noun	part	Teil	partie	parte	část	parte	parte	deel	del	pars
+noun	end	Ende	fin	fim	konec	fine	fin	einde	slut	finis
+noun	beginning	Anfang	début	começo	začátek	inizio	principio	begin	början	initium
+verb	be	sein	être	ser	být	essere	ser	zijn	vara	sum
+verb	have	haben	avoir	ter	mít	avere	tener	hebben	ha	habeo
+verb	do	tun	faire	fazer	dělat	fare	hacer	doen	göra	facio
+verb	make	machen	faire	fazer	dělat	fare	hacer	maken	göra	facio
+verb	go	gehen	aller	ir	jít	andare	ir	gaan	gå	eo
+verb	come	kommen	venir	vir	přijít	venire	venir	komen	komma	venio
+verb	say	sagen	dire	dizer	říct	dire	decir	zeggen	säga	dico
+verb	speak	sprechen	parler	falar	mluvit	parlare	hablar	spreken	tala	loquor
+verb	talk	reden	parler	conversar	mluvit	parlare	hablar	praten	prata	colloquor
+verb	tell	erzählen	raconter	contar	vyprávět	raccontare	contar	vertellen	berätta	narro
+verb	see	sehen	voir	ver	vidět	vedere	ver	zien	se	video
+verb	look	schauen	regarder	olhar	dívat se	guardare	mirar	kijken	titta	specto
+verb	hear	hören	entendre	ouvir	slyšet	sentire	oír	horen	höra	audio
+verb	listen	zuhören	écouter	escutar	poslouchat	ascoltare	escuchar	luisteren	lyssna	ausculto
+verb	know	wissen	savoir	saber	vědět	sapere	saber	weten	veta	scio
+verb	-	kennen	connaître	conhecer	znát	conoscere	conocer	kennen	känna	nosco
+verb	think	denken	penser	pensar	myslet	pensare	pensar	denken	tänka	cogito
+verb	believe	glauben	croire	acreditar	věřit	credere	creer	geloven	tro	credo
+verb	want	wollen	vouloir	querer	chtít	volere	querer	willen	vilja	volo
+verb	can	können	pouvoir	poder	moci	potere	poder	kunnen	kunna	possum
+verb	must	müssen	devoir	dever	muset	dovere	deber	moeten	måste	debeo
+verb	give	geben	donner	dar	dát	dare	dar	geven	ge	do
+verb	take	nehmen	prendre	pegar	vzít	prendere	tomar	nemen	ta	capio
+verb	bring	bringen	apporter	trazer	přinést	portare	traer	brengen	ta med	fero
+verb	put	legen	mettre	colocar	dát	mettere	poner	leggen	lägga	pono
+verb	find	finden	trouver	encontrar	najít	trovare	encontrar	vinden	hitta	invenio
+verb	look for	suchen	chercher	procurar	hledat	cercare	buscar	zoeken	leta	quaero
+verb	get	bekommen	obtenir	conseguir	dostat	ottenere	conseguir	krijgen	få	accipio
+verb	let	lassen	laisser	deixar	nechat	lasciare	dejar	laten	låta	sino
+verb	stay	bleiben	rester	ficar	zůstat	restare	quedarse	blijven	stanna	maneo
+verb	leave	verlassen	partir	sair	odejít	partire	salir	vertrekken	lämna	relinquo
+verb	live	leben	vivre	viver	žít	vivere	vivir	leven	leva	vivo
+verb	-	wohnen	habiter	morar	bydlet	abitare	vivir	wonen	bo	habito
+verb	work	arbeiten	travailler	trabalhar	pracovat	lavorare	trabajar	werken	arbeta	laboro
+verb	eat	essen	manger	comer	jíst	mangiare	comer	eten	äta	edo
+verb	drink	trinken	boire	beber	pít	bere	beber	drinken	dricka	bibo
+verb	sleep	schlafen	dormir	dormir	spát	dormire	dormir	slapen	sova	dormio
+verb	write	schreiben	écrire	escrever	psát	scrivere	escribir	schrijven	skriva	scribo
+verb	read	lesen	lire	ler	číst	leggere	leer	lezen	läsa	lego
+verb	learn	lernen	apprendre	aprender	učit se	imparare	aprender	leren	lära	disco
+verb	teach	lehren	enseigner	ensinar	učit	insegnare	enseñar	onderwijzen	undervisa	doceo
+verb	study	studieren	étudier	estudar	studovat	studiare	estudiar	studeren	studera	studeo
+verb	understand	verstehen	comprendre	entender	rozumět	capire	entender	begrijpen	förstå	intellego
+verb	ask	fragen	demander	perguntar	ptát se	chiedere	preguntar	vragen	fråga	rogo
+verb	answer	antworten	répondre	responder	odpovědět	rispondere	responder	antwoorden	svara	respondeo
+verb	help	helfen	aider	ajudar	pomoci	aiutare	ayudar	helpen	hjälpa	adiuvo
+verb	love	lieben	aimer	amar	milovat	amare	amar	houden van	älska	amo
+verb	like	mögen	aimer	gostar	mít rád	piacere	gustar	houden van	gilla	-
+verb	need	brauchen	-	precisar	potřebovat	-	necesitar	nodig hebben	behöva	egeo
+verb	buy	kaufen	acheter	comprar	koupit	comprare	comprar	kopen	köpa	emo
+verb	sell	verkaufen	vendre	vender	prodat	vendere	vender	verkopen	sälja	vendo
+verb	pay	bezahlen	payer	pagar	platit	pagare	pagar	betalen	betala	solvo
+verb	open	öffnen	ouvrir	abrir	otevřít	aprire	abrir	openen	öppna	aperio
+verb	close	schließen	fermer	fechar	zavřít	chiudere	cerrar	sluiten	stänga	claudo
+verb	begin	beginnen	commencer	começar	začít	cominciare	empezar	beginnen	börja	incipio
+verb	end	beenden	finir	terminar	skončit	finire	terminar	eindigen	sluta	finio
+verb	wait	warten	attendre	esperar	čekat	aspettare	esperar	wachten	vänta	exspecto
+verb	run	laufen	courir	correr	běžet	correre	correr	rennen	springa	curro
+verb	walk	gehen	marcher	andar	chodit	camminare	caminar	lopen	gå	ambulo
+verb	sit	sitzen	-	sentar	sedět	sedere	sentarse	zitten	sitta	sedeo
+verb	stand	stehen	être debout	ficar em pé	stát	stare in piedi	estar de pie	staan	stå	sto
+verb	lie	liegen	-	deitar	ležet	giacere	-	liggen	ligga	iaceo
+verb	play	spielen	jouer	jogar	hrát	giocare	jugar	spelen	spela	ludo
+verb	sing	singen	chanter	cantar	zpívat	cantare	cantar	zingen	sjunga	canto
+verb	dance	tanzen	danser	dançar	tančit	ballare	bailar	dansen	dansa	salto
+verb	travel	reisen	voyager	viajar	cestovat	viaggiare	viajar	reizen	resa	-
+verb	drive	fahren	conduire	dirigir	řídit	guidare	conducir	rijden	köra	-
+verb	fly	fliegen	voler	voar	letět	volare	volar	vliegen	flyga	volo
+verb	swim	schwimmen	nager	nadar	plavat	nuotare	nadar	zwemmen	simma	nato
+verb	cook	kochen	cuisiner	cozinhar	vařit	cucinare	cocinar	koken	laga mat	coquo
+verb	wash	waschen	laver	lavar	mýt	lavare	lavar	wassen	tvätta	lavo
+verb	clean	putzen	nettoyer	limpar	uklízet	pulire	limpiar	schoonmaken	städa	purgo
+verb	call	anrufen	appeler	ligar	zavolat	chiamare	llamar	bellen	ringa	voco
+verb	show	zeigen	montrer	mostrar	ukázat	mostrare	mostrar	tonen	visa	ostendo
+verb	use	benutzen	utiliser	usar	používat	usare	usar	gebruiken	använda	utor
+verb	try	versuchen	essayer	tentar	zkusit	provare	intentar	proberen	försöka	conor
+verb	feel	fühlen	sentir	sentir	cítit	sentire	sentir	voelen	känna	sentio
+verb	remember	erinnern	se souvenir	lembrar	pamatovat si	ricordare	recordar	herinneren	minnas	memini
+verb	forget	vergessen	oublier	esquecer	zapomenout	dimenticare	olvidar	vergeten	glömma	obliviscor
+verb	change	ändern	changer	mudar	změnit	cambiare	cambiar	veranderen	ändra	muto
+verb	meet	treffen	rencontrer	encontrar	potkat	incontrare	encontrar	ontmoeten	träffa	convenio
+verb	send	schicken	envoyer	enviar	poslat	mandare	enviar	sturen	skicka	mitto
+verb	carry	tragen	porter	carregar	nést	portare	llevar	dragen	bära	porto
+verb	wear	tragen	porter	usar	nosit	indossare	llevar	dragen	-	gero
+verb	win	gewinnen	gagner	ganhar	vyhrát	vincere	ganar	winnen	vinna	vinco
+verb	lose	verlieren	perdre	perder	ztratit	perdere	perder	verliezen	förlora	amitto
+verb	die	sterben	mourir	morrer	zemřít	morire	morir	sterven	dö	morior
+verb	kill	töten	tuer	matar	zabít	uccidere	matar	doden	döda	occido
+verb	be born	geboren werden	naître	nascer	narodit se	nascere	nacer	-	-	nascor
+verb	become	werden	devenir	tornar	stát se	diventare	hacerse	worden	bli	fio
+verb	happen	passieren	arriver	acontecer	stát se	succedere	pasar	gebeuren	hända	accido
+verb	allow	erlauben	permettre	permitir	dovolit	permettere	permitir	toestaan	tillåta	permitto
+verb	follow	folgen	suivre	seguir	následovat	seguire	seguir	volgen	följa	sequor
+verb	return	zurückkommen	revenir	voltar	vrátit se	tornare	volver	terugkomen	återvända	redeo
+verb	arrive	ankommen	arriver	chegar	přijet	arrivare	llegar	aankomen	komma fram	advenio
+verb	enter	eintreten	entrer	entrar	vstoupit	entrare	entrar	binnenkomen	-	intro
+verb	fall	fallen	tomber	cair	padat	cadere	caer	vallen	falla	cado
+verb	hold	halten	tenir	segurar	držet	tenere	sostener	houden	hålla	teneo
+verb	build	bauen	construire	construir	stavět	costruire	construir	bouwen	bygga	aedifico
+verb	break	brechen	casser	quebrar	zlomit	rompere	romper	breken	bryta	frango
+verb	cut	schneiden	couper	cortar	řezat	tagliare	cortar	snijden	skära	seco
+verb	laugh	lachen	rire	rir	smát se	ridere	reír	lachen	skratta	rideo
+verb	cry	weinen	pleurer	chorar	plakat	piangere	llorar	huilen	gråta	fleo
+verb	smile	lächeln	sourire	sorrir	usmívat se	sorridere	sonreír	glimlachen	le	subrideo
+verb	hope	hoffen	espérer	esperar	doufat	sperare	esperar	hopen	hoppas	spero
+verb	choose	wählen	choisir	escolher	vybrat	scegliere	elegir	kiezen	välja	eligo
+verb	decide	entscheiden	décider	decidir	rozhodnout	decidere	decidir	beslissen	bestämma	statuo
+verb	explain	erklären	expliquer	explicar	vysvětlit	spiegare	explicar	uitleggen	förklara	explico
+verb	count	zählen	compter	contar	počítat	contare	contar	tellen	räkna	numero
+verb	sell	verkaufen	vendre	vender	prodat	vendere	vender	verkopen	sälja	vendo
+verb	rain	regnen	pleuvoir	chover	pršet	piovere	llover	regenen	regna	pluit
+verb	visit	besuchen	visiter	visitar	navštívit	visitare	visitar	bezoeken	besöka	viso
+verb	invite	einladen	inviter	convidar	pozvat	invitare	invitar	uitnodigen	bjuda in	invito
+verb	get up	aufstehen	se lever	levantar	vstát	alzarsi	levantarse	opstaan	stiga upp	surgo
+verb	sit down	setzen	asseoir	sentar	sednout	sedersi	sentarse	-	-	consido
+verb	put on	anziehen	mettre	vestir	obléknout	mettersi	ponerse	aantrekken	ta på sig	induo
+adjective	good	gut	bon	bom	dobrý	buono	bueno	goed	bra	bonus
+adjective	bad	schlecht	mauvais	ruim	špatný	cattivo	malo	slecht	dålig	malus
+adjective	big	groß	grand	grande	velký	grande	grande	groot	stor	magnus
+adjective	small	klein	petit	pequeno	malý	piccolo	pequeño	klein	liten	parvus
+adjective	long	lang	long	longo	dlouhý	lungo	largo	lang	lång	longus
+adjective	short	kurz	court	curto	krátký	corto	corto	kort	kort	brevis
+adjective	tall	groß	grand	alto	vysoký	alto	alto	lang	lång	altus
+adjective	high	hoch	haut	alto	vysoký	alto	alto	hoog	hög	altus
+adjective	low	niedrig	bas	baixo	nízký	basso	bajo	laag	låg	humilis
+adjective	new	neu	nouveau	novo	nový	nuovo	nuevo	nieuw	ny	novus
+adjective	old	alt	vieux	velho	starý	vecchio	viejo	oud	gammal	vetus
+adjective	young	jung	jeune	jovem	mladý	giovane	joven	jong	ung	iuvenis
+adjective	hot	heiß	chaud	quente	horký	caldo	caliente	heet	het	calidus
+adjective	warm	warm	chaud	quente	teplý	caldo	cálido	warm	varm	calidus
+adjective	cold	kalt	froid	frio	studený	freddo	frío	koud	kall	frigidus
+adjective	beautiful	schön	beau	bonito	krásný	bello	bonito	mooi	vacker	pulcher
+adjective	ugly	hässlich	laid	feio	ošklivý	brutto	feo	lelijk	ful	turpis
+adjective	happy	glücklich	heureux	feliz	šťastný	felice	feliz	gelukkig	glad	laetus
+adjective	sad	traurig	triste	triste	smutný	triste	triste	verdrietig	ledsen	tristis
+adjective	easy	einfach	facile	fácil	snadný	facile	fácil	makkelijk	lätt	facilis
+adjective	difficult	schwierig	difficile	difícil	těžký	difficile	difícil	moeilijk	svår	difficilis
+adjective	fast	schnell	rapide	rápido	rychlý	veloce	rápido	snel	snabb	celer
+adjective	slow	langsam	lent	lento	pomalý	lento	lento	langzaam	långsam	tardus
+adjective	right	richtig	correct	certo	správný	giusto	correcto	juist	rätt	rectus
+adjective	wrong	falsch	faux	errado	špatný	sbagliato	equivocado	fout	fel	falsus
+adjective	true	wahr	vrai	verdadeiro	pravdivý	vero	verdadero	waar	sann	verus
+adjective	important	wichtig	important	importante	důležitý	importante	importante	belangrijk	viktig	gravis
+adjective	same	gleich	même	mesmo	stejný	stesso	mismo	zelfde	samma	idem
+adjective	different	anders	différent	diferente	jiný	diverso	diferente	anders	annorlunda	diversus
+adjective	full	voll	plein	cheio	plný	pieno	lleno	vol	full	plenus
+adjective	empty	leer	vide	vazio	prázdný	vuoto	vacío	leeg	tom	vacuus
+adjective	open	offen	ouvert	aberto	otevřený	aperto	abierto	open	öppen	-
+adjective	closed	geschlossen	fermé	fechado	zavřený	chiuso	cerrado	gesloten	stängd	clausus
+adjective	free	frei	libre	livre	volný	libero	libre	vrij	fri	liber
+adjective	-	kostenlos	gratuit	grátis	zdarma	gratuito	gratis	gratis	gratis	gratuitus
+adjective	expensive	teuer	cher	caro	drahý	caro	caro	duur	dyr	carus
+adjective	cheap	billig	bon marché	barato	levný	economico	barato	goedkoop	billig	vilis
+adjective	rich	reich	riche	rico	bohatý	ricco	rico	rijk	rik	dives
+adjective	poor	arm	pauvre	pobre	chudý	povero	pobre	arm	fattig	pauper
+adjective	strong	stark	fort	forte	silný	forte	fuerte	sterk	stark	fortis
+adjective	weak	schwach	faible	fraco	slabý	debole	débil	zwak	svag	infirmus
+adjective	heavy	schwer	lourd	pesado	těžký	pesante	pesado	zwaar	tung	gravis
+adjective	light	leicht	léger	leve	lehký	leggero	ligero	licht	lätt	levis
+adjective	dark	dunkel	sombre	escuro	tmavý	scuro	oscuro	donker	mörk	obscurus
+adjective	clean	sauber	propre	limpo	čistý	pulito	limpio	schoon	ren	mundus
+adjective	dirty	schmutzig	sale	sujo	špinavý	sporco	sucio	vies	smutsig	sordidus
+adjective	sick	krank	malade	doente	nemocný	malato	enfermo	ziek	sjuk	aeger
+adjective	healthy	gesund	sain	saudável	zdravý	sano	sano	gezond	frisk	sanus
+adjective	tired	müde	fatigué	cansado	unavený	stanco	cansado	moe	trött	fessus
+adjective	hungry	hungrig	affamé	faminto	hladový	affamato	hambriento	hongerig	hungrig	-
+adjective	thirsty	durstig	assoiffé	sedento	žíznivý	assetato	sediento	dorstig	törstig	-
+adjective	nice	nett	gentil	legal	milý	simpatico	simpático	aardig	trevlig	comis
+adjective	friendly	freundlich	aimable	simpático	přátelský	gentile	amable	vriendelijk	vänlig	benignus
+adjective	angry	wütend	fâché	bravo	naštvaný	arrabbiato	enfadado	boos	arg	iratus
+adjective	quiet	ruhig	calme	quieto	tichý	tranquillo	tranquilo	rustig	tyst	quietus
+adjective	loud	laut	bruyant	alto	hlasitý	rumoroso	ruidoso	luid	högljudd	clarus
+adjective	possible	möglich	possible	possível	možný	possibile	posible	mogelijk	möjlig	possibilis
+adjective	ready	fertig	prêt	pronto	hotový	pronto	listo	klaar	klar	paratus
+adjective	sure	sicher	sûr	certo	jistý	sicuro	seguro	zeker	säker	certus
+adjective	dead	tot	mort	morto	mrtvý	morto	muerto	dood	död	mortuus
+adjective	alive	lebendig	vivant	vivo	živý	vivo	vivo	levend	levande	vivus
+adjective	first	erster	premier	primeiro	první	primo	primero	eerst	första	primus
+adjective	last	letzter	dernier	último	poslední	ultimo	último	laatst	sist	ultimus
+adjective	next	nächster	prochain	próximo	příští	prossimo	próximo	volgend	nästa	proximus
+adjective	whole	ganz	entier	inteiro	celý	intero	entero	heel	hel	totus
+adjective	own	eigen	propre	próprio	vlastní	proprio	propio	eigen	egen	proprius
+adjective	white	weiß	blanc	branco	bílý	bianco	blanco	wit	vit	albus
+adjective	black	schwarz	noir	preto	černý	nero	negro	zwart	svart	niger
+adjective	red	rot	rouge	vermelho	červený	rosso	rojo	rood	röd	ruber
+adjective	green	grün	vert	verde	zelený	verde	verde	groen	grön	viridis
+adjective	blue	blau	bleu	azul	modrý	blu	azul	blauw	blå	caeruleus
+adjective	yellow	gelb	jaune	amarelo	žlutý	giallo	amarillo	geel	gul	flavus
+adjective	brown	braun	marron	marrom	hnědý	marrone	marrón	bruin	brun	fuscus
+adjective	gray	grau	gris	cinza	šedý	grigio	gris	grijs	grå	cinereus
+adjective	pink	rosa	rose	rosa	růžový	rosa	rosa	roze	rosa	roseus
+adjective	orange	orange	orange	laranja	oranžový	arancione	naranja	oranje	orange	-
+numeral	one	eins	un	um	jeden	uno	uno	een	en	unus
+numeral	two	zwei	deux	dois	dva	due	dos	twee	två	duo
+numeral	three	drei	trois	três	tři	tre	tres	drie	tre	tres
+numeral	four	vier	quatre	quatro	čtyři	quattro	cuatro	vier	fyra	quattuor
+numeral	five	fünf	cinq	cinco	pět	cinque	cinco	vijf	fem	quinque
+numeral	six	sechs	six	seis	šest	sei	seis	zes	sex	sex
+numeral	seven	sieben	sept	sete	sedm	sette	siete	zeven	sju	septem
+numeral	eight	acht	huit	oito	osm	otto	ocho	acht	åtta	octo
+numeral	nine	neun	neuf	nove	devět	nove	nueve	negen	nio	novem
+numeral	ten	zehn	dix	dez	deset	dieci	diez	tien	tio	decem
+numeral	eleven	elf	onze	onze	jedenáct	undici	once	elf	elva	undecim
+numeral	twelve	zwölf	douze	doze	dvanáct	dodici	doce	twaalf	tolv	duodecim
+numeral	twenty	zwanzig	vingt	vinte	dvacet	venti	veinte	twintig	tjugo	viginti
+numeral	thirty	dreißig	trente	trinta	třicet	trenta	treinta	dertig	trettio	triginta
+numeral	hundred	hundert	cent	cem	sto	cento	cien	honderd	hundra	centum
+numeral	thousand	tausend	mille	mil	tisíc	mille	mil	duizend	tusen	mille
+numeral	million	Million	million	milhão	milion	milione	millón	miljoen	miljon	-
+noun	Monday	Montag	lundi	segunda-feira	pondělí	lunedì	lunes	maandag	måndag	dies Lunae
+noun	Tuesday	Dienstag	mardi	terça-feira	úterý	martedì	martes	dinsdag	tisdag	dies Martis
+noun	Wednesday	Mittwoch	mercredi	quarta-feira	středa	mercoledì	miércoles	woensdag	onsdag	dies Mercurii
+noun	Thursday	Donnerstag	jeudi	quinta-feira	čtvrtek	giovedì	jueves	donderdag	torsdag	dies Iovis
+noun	Friday	Freitag	vendredi	sexta-feira	pátek	venerdì	viernes	vrijdag	fredag	dies Veneris
+noun	Saturday	Samstag	samedi	sábado	sobota	sabato	sábado	zaterdag	lördag	-
+noun	Sunday	Sonntag	dimanche	domingo	neděle	domenica	domingo	zondag	söndag	-
+noun	January	Januar	janvier	janeiro	leden	gennaio	enero	januari	januari	Ianuarius
+noun	February	Februar	février	fevereiro	únor	febbraio	febrero	februari	februari	Februarius
+noun	March	März	mars	março	březen	marzo	marzo	maart	mars	Martius
+noun	April	April	avril	abril	duben	aprile	abril	april	april	Aprilis
+noun	May	Mai	mai	maio	květen	maggio	mayo	mei	maj	Maius
+noun	June	Juni	juin	junho	červen	giugno	junio	juni	juni	Iunius
+noun	July	Juli	juillet	julho	červenec	luglio	julio	juli	juli	Iulius
+noun	August	August	août	agosto	srpen	agosto	agosto	augustus	augusti	Augustus
+noun	September	September	septembre	setembro	září	settembre	septiembre	september	september	September
+noun	October	Oktober	octobre	outubro	říjen	ottobre	octubre	oktober	oktober	October
+noun	November	November	novembre	novembro	listopad	novembre	noviembre	november	november	November
+noun	December	Dezember	décembre	dezembro	prosinec	dicembre	diciembre	december	december	December
+noun	spring	Frühling	printemps	primavera	jaro	primavera	primavera	lente	vår	ver
+noun	summer	Sommer	été	verão	léto	estate	verano	zomer	sommar	aestas
+noun	autumn	Herbst	automne	outono	podzim	autunno	otoño	herfst	höst	autumnus
+noun	winter	Winter	hiver	inverno	zima	inverno	invierno	winter	vinter	hiems
+verb	thank	danken	remercier	agradecer	děkovat	ringraziare	agradecer	bedanken	tacka	gratias ago
+verb	mean	bedeuten	signifier	significar	znamenat	significare	significar	betekenen	betyda	significo
+verb	stop	aufhören	arrêter	parar	přestat	smettere	parar	stoppen	sluta	desino
+verb	start	anfangen	commencer	começar	začít	iniziare	empezar	beginnen	börja	incipio
+verb	keep	behalten	garder	guardar	nechat si	tenere	guardar	houden	behålla	servo
+verb	move	bewegen	bouger	mover	pohybovat	muovere	mover	bewegen	röra	moveo
+verb	turn	drehen	tourner	virar	otočit	girare	girar	draaien	vända	verto
+verb	miss	vermissen	manquer	sentir falta	chybět	mancare	echar de menos	missen	sakna	desidero
+verb	watch	anschauen	regarder	assistir	sledovat	guardare	ver	kijken	titta	specto
+verb	worry	sich Sorgen machen	s'inquiéter	preocupar	bát se	preoccuparsi	preocuparse	zich zorgen maken	oroa sig	curo
+verb	seem	scheinen	sembler	parecer	zdát se	sembrare	parecer	lijken	verka	videor
+verb	marry	heiraten	épouser	casar	oženit se	sposare	casarse	trouwen	gifta sig	nubo
+verb	save	retten	sauver	salvar	zachránit	salvare	salvar	redden	rädda	servo
+verb	hit	schlagen	frapper	bater	udeřit	colpire	golpear	slaan	slå	ferio
+verb	hurt	verletzen	blesser	machucar	zranit	ferire	herir	pijn doen	skada	laedo
+verb	catch	fangen	attraper	pegar	chytit	prendere	atrapar	vangen	fånga	capio
+verb	wish	wünschen	souhaiter	desejar	přát	desiderare	desear	wensen	önska	opto
+verb	promise	versprechen	promettre	prometer	slíbit	promettere	prometer	beloven	lova	promitto
+verb	hate	hassen	haïr	odiar	nenávidět	odiare	odiar	haten	hata	odi
+verb	trust	vertrauen	faire confiance	confiar	věřit	fidarsi	confiar	vertrouwen	lita på	confido
+verb	throw	werfen	jeter	jogar	hodit	lanciare	tirar	gooien	kasta	iacio
+verb	pull	ziehen	tirer	puxar	táhnout	tirare	tirar	trekken	dra	traho
+verb	push	drücken	pousser	empurrar	tlačit	spingere	empujar	duwen	trycka	pello
+verb	finish	beenden	finir	terminar	dokončit	finire	terminar	afmaken	avsluta	finio
+verb	touch	berühren	toucher	tocar	dotknout se	toccare	tocar	aanraken	röra	tango
+verb	spend	ausgeben	dépenser	gastar	utratit	spendere	gastar	uitgeven	spendera	impendo
+verb	hide	verstecken	cacher	esconder	schovat	nascondere	esconder	verstoppen	gömma	celo
+verb	steal	stehlen	voler	roubar	ukrást	rubare	robar	stelen	stjäla	furor
+verb	expect	erwarten	attendre	esperar	očekávat	aspettarsi	esperar	verwachten	förvänta	exspecto
+verb	grow	wachsen	grandir	crescer	růst	crescere	crecer	groeien	växa	cresco
+verb	kiss	küssen	embrasser	beijar	líbat	baciare	besar	kussen	kyssa	osculor
+verb	agree	zustimmen	être d'accord	concordar	souhlasit	essere d'accordo	estar de acuerdo	het eens zijn	hålla med	consentio
+verb	protect	schützen	protéger	proteger	chránit	proteggere	proteger	beschermen	skydda	protego
+verb	join	beitreten	rejoindre	juntar	připojit se	unirsi	unirse	meedoen	gå med	iungo
+verb	enjoy	genießen	profiter	aproveitar	užívat si	godere	disfrutar	genieten	njuta	fruor
+verb	realize	merken	se rendre compte	perceber	uvědomit si	rendersi conto	darse cuenta	beseffen	inse	animadverto
+verb	fix	reparieren	réparer	consertar	opravit	riparare	arreglar	repareren	laga	reficio
+verb	continue	fortsetzen	continuer	continuar	pokračovat	continuare	continuar	doorgaan	fortsätta	pergo
+verb	shut	zumachen	fermer	fechar	zavřít	chiudere	cerrar	dichtdoen	stänga	claudo
+verb	pick	pflücken	cueillir	colher	trhat	cogliere	recoger	plukken	plocka	carpo
+verb	-	lügen	mentir	mentir	lhát	mentire	mentir	liegen	ljuga	mentior
+verb	shoot	schießen	tirer	atirar	střílet	sparare	disparar	schieten	skjuta	-
+verb	fight	kämpfen	se battre	lutar	bojovat	combattere	luchar	vechten	slåss	pugno
+verb	check	prüfen	vérifier	verificar	zkontrolovat	controllare	comprobar	controleren	kontrollera	probo
+verb	hang	hängen	pendre	pendurar	viset	appendere	colgar	hangen	hänga	pendeo
+verb	ring	klingeln	sonner	tocar	zvonit	suonare	sonar	bellen	ringa	tinnio
+verb	burn	brennen	brûler	queimar	hořet	bruciare	quemar	branden	brinna	ardeo
+verb	wake up	aufwachen	se réveiller	acordar	probudit se	svegliarsi	despertarse	wakker worden	vakna	expergiscor
+verb	ride	reiten	monter	andar	jezdit	cavalcare	montar	rijden	rida	equito
+verb	cover	bedecken	couvrir	cobrir	zakrýt	coprire	cubrir	bedekken	täcka	tego
+verb	attack	angreifen	attaquer	atacar	zaútočit	attaccare	atacar	aanvallen	attackera	oppugno
+verb	scream	schreien	crier	gritar	křičet	urlare	gritar	schreeuwen	skrika	clamo
+verb	knock	klopfen	frapper	bater	klepat	bussare	llamar	kloppen	knacka	pulso
+verb	lock	abschließen	fermer à clé	trancar	zamknout	chiudere a chiave	cerrar con llave	op slot doen	låsa	obsero
+noun	stop	Haltestelle	arrêt	parada	zastávka	fermata	parada	halte	hållplats	statio
+noun	kind	Art	sorte	tipo	druh	tipo	tipo	soort	sort	genus
+noun	lot	Menge	beaucoup	monte	hodně	sacco	montón	heleboel	massa	-
+noun	kid	Kind	gamin	criança	děcko	bambino	niño	kind	unge	puer
+noun	guy	Typ	type	cara	chlap	tipo	tío	vent	kille	-
+noun	course	Kurs	cours	curso	kurz	corso	curso	cursus	kurs	cursus
+noun	mind	Verstand	esprit	mente	mysl	mente	mente	geest	sinne	mens
+noun	matter	Angelegenheit	affaire	assunto	záležitost	faccenda	asunto	zaak	sak	res
+noun	case	Fall	cas	caso	případ	caso	caso	geval	fall	casus
+noun	business	Geschäft	affaires	negócio	obchod	affari	negocio	zaken	affärer	negotium
+noun	plan	Plan	plan	plano	plán	piano	plan	plan	plan	consilium
+noun	story	Geschichte	histoire	história	příběh	storia	historia	verhaal	berättelse	fabula
+noun	history	Geschichte	histoire	história	dějiny	storia	historia	geschiedenis	historia	historia
+noun	order	Ordnung	ordre	ordem	pořádek	ordine	orden	orde	ordning	ordo
+noun	party	Party	fête	festa	večírek	festa	fiesta	feest	fest	convivium
+noun	chance	Chance	chance	chance	šance	possibilità	oportunidad	kans	chans	occasio
+noun	reason	Grund	raison	razão	důvod	ragione	razón	reden	anledning	causa
+noun	power	Macht	pouvoir	poder	moc	potere	poder	macht	makt	potestas
+noun	truth	Wahrheit	vérité	verdade	pravda	verità	verdad	waarheid	sanning	veritas
+noun	town	Stadt	ville	cidade	město	città	pueblo	stad	stad	oppidum
+noun	fact	Tatsache	fait	fato	fakt	fatto	hecho	feit	faktum	factum
+noun	half	Hälfte	moitié	metade	polovina	metà	mitad	helft	hälft	dimidium
+noun	front	Vorderseite	devant	frente	přední strana	davanti	frente	voorkant	framsida	frons
+noun	company	Firma	entreprise	empresa	firma	azienda	empresa	bedrijf	företag	societas
+noun	piece	Stück	morceau	pedaço	kus	pezzo	trozo	stuk	bit	frustum
+noun	voice	Stimme	voix	voz	hlas	voce	voz	stem	röst	vox
+noun	mistake	Fehler	erreur	erro	chyba	errore	error	fout	misstag	error
+noun	paper	Papier	papier	papel	papír	carta	papel	papier	papper	charta
+noun	age	Alter	âge	idade	věk	età	edad	leeftijd	ålder	aetas
+noun	law	Gesetz	loi	lei	zákon	legge	ley	wet	lag	lex
+noun	future	Zukunft	avenir	futuro	budoucnost	futuro	futuro	toekomst	framtid	futurum
+noun	team	Mannschaft	équipe	time	tým	squadra	equipo	team	lag	-
+noun	sign	Zeichen	signe	sinal	znamení	segno	señal	teken	tecken	signum
+noun	date	Datum	date	data	datum	data	fecha	datum	datum	-
+noun	step	Schritt	pas	passo	krok	passo	paso	stap	steg	gradus
+noun	line	Linie	ligne	linha	čára	linea	línea	lijn	linje	linea
+noun	side	Seite	côté	lado	strana	lato	lado	kant	sida	latus
+noun	rest	Rest	reste	resto	zbytek	resto	resto	rest	rest	reliquum
+noun	trouble	Ärger	ennui	problema	potíž	guaio	problema	moeite	problem	molestia
+noun	dream	Traum	rêve	sonho	sen	sogno	sueño	droom	dröm	somnium
+noun	luck	Glück	chance	sorte	štěstí	fortuna	suerte	geluk	tur	fortuna
+noun	test	Test	test	teste	test	prova	prueba	toets	prov	probatio
+noun	movie	Film	film	filme	film	film	película	film	film	-
+noun	boss	Chef	patron	chefe	šéf	capo	jefe	baas	chef	dominus
+noun	gun	Waffe	arme	arma	zbraň	pistola	arma	wapen	vapen	arma
+noun	secret	Geheimnis	secret	segredo	tajemství	segreto	secreto	geheim	hemlighet	secretum
+noun	surprise	Überraschung	surprise	surpresa	překvapení	sorpresa	sorpresa	verrassing	överraskning	-
+noun	control	Kontrolle	contrôle	controle	kontrola	controllo	control	controle	kontroll	-
+noun	sense	Sinn	sens	sentido	smysl	senso	sentido	zin	mening	sensus
+noun	ball	Ball	balle	bola	míč	palla	pelota	bal	boll	pila
+noun	rule	Regel	règle	regra	pravidlo	regola	regla	regel	regel	regula
+noun	fault	Schuld	faute	culpa	vina	colpa	culpa	schuld	fel	culpa
+noun	dad	Papa	papa	pai	táta	papà	papá	papa	pappa	pater
+noun	mom	Mama	maman	mãe	máma	mamma	mamá	mama	mamma	mater
+noun	lady	Dame	dame	senhora	dáma	signora	señora	dame	dam	domina
+noun	gentleman	Herr	monsieur	senhor	pán	signore	señor	heer	herre	dominus
+noun	sir	Herr	monsieur	senhor	pane	signore	señor	meneer	herr	domine
+noun	captain	Kapitän	capitaine	capitão	kapitán	capitano	capitán	kapitein	kapten	-
+noun	officer	Polizist	policier	policial	policista	poliziotto	policía	agent	polis	-
+noun	land	Land	terre	terra	země	terra	tierra	land	land	terra
+noun	interest	Interesse	intérêt	interesse	zájem	interesse	interés	belangstelling	intresse	studium
+noun	cause	Ursache	cause	causa	příčina	causa	causa	oorzaak	orsak	causa
+noun	figure	Figur	figure	figura	postava	figura	figura	figuur	figur	figura
+noun	act	Tat	acte	ato	čin	atto	acto	daad	handling	actus
+noun	report	Bericht	rapport	relatório	zpráva	rapporto	informe	verslag	rapport	relatio
+noun	force	Kraft	force	força	síla	forza	fuerza	kracht	kraft	vis
+noun	record	Rekord	record	recorde	rekord	record	récord	record	rekord	-
+noun	charge	Gebühr	frais	taxa	poplatek	tassa	cargo	kosten	avgift	-
+noun	age	Alter	âge	idade	věk	età	edad	leeftijd	ålder	aetas
+adjective	little	klein	petit	pequeno	malý	piccolo	pequeño	klein	liten	parvus
+adjective	great	großartig	génial	ótimo	skvělý	fantastico	genial	geweldig	toppen	magnificus
+adjective	fine	gut	bien	bem	dobrý	bene	bien	goed	bra	bonus
+adjective	real	echt	vrai	real	skutečný	vero	real	echt	verklig	verus
+adjective	hard	hart	dur	duro	tvrdý	duro	duro	hard	hård	durus
+adjective	pretty	hübsch	joli	bonito	hezký	carino	guapo	mooi	söt	bellus
+adjective	alone	allein	seul	sozinho	sám	solo	solo	alleen	ensam	solus
+adjective	crazy	verrückt	fou	louco	šílený	pazzo	loco	gek	galen	insanus
+adjective	dear	lieb	cher	querido	drahý	caro	querido	lief	kär	carus
+adjective	afraid	ängstlich	effrayé	com medo	vyděšený	spaventato	asustado	bang	rädd	timidus
+adjective	clear	klar	clair	claro	jasný	chiaro	claro	duidelijk	klar	clarus
+adjective	cool	kühl	frais	fresco	chladný	fresco	fresco	koel	sval	frigidulus
+adjective	stupid	dumm	stupide	burro	hloupý	stupido	estúpido	dom	dum	stultus
+adjective	funny	lustig	drôle	engraçado	vtipný	divertente	gracioso	grappig	rolig	ridiculus
+adjective	safe	sicher	sûr	seguro	bezpečný	sicuro	seguro	veilig	säker	tutus
+adjective	human	menschlich	humain	humano	lidský	umano	humano	menselijk	mänsklig	humanus
+adjective	perfect	perfekt	parfait	perfeito	dokonalý	perfetto	perfecto	perfect	perfekt	perfectus
+adjective	special	besonders	spécial	especial	zvláštní	speciale	especial	speciaal	speciell	singularis
+adjective	serious	ernst	sérieux	sério	vážný	serio	serio	serieus	allvarlig	gravis
+adjective	sweet	süß	doux	doce	sladký	dolce	dulce	zoet	söt	dulcis
+adjective	glad	froh	content	contente	rád	contento	contento	blij	glad	laetus
+adjective	strange	seltsam	étrange	estranho	divný	strano	extraño	vreemd	konstig	mirus
+adjective	lucky	glücklich	chanceux	sortudo	šťastný	fortunato	afortunado	gelukkig	lyckligt lottad	felix
+adjective	careful	vorsichtig	prudent	cuidadoso	opatrný	attento	cuidadoso	voorzichtig	försiktig	cautus
+adjective	calm	ruhig	calme	calmo	klidný	calmo	tranquilo	kalm	lugn	tranquillus
+adjective	welcome	willkommen	bienvenu	bem-vindo	vítaný	benvenuto	bienvenido	welkom	välkommen	-
+adjective	secret	geheim	secret	secreto	tajný	segreto	secreto	geheim	hemlig	secretus
+adjective	past	vergangen	passé	passado	minulý	passato	pasado	vorig	förra	praeteritus
+determiner	another	ein anderer	un autre	outro	další	un altro	otro	nog een	en annan	alius
+determiner	few	wenige	peu	poucos	málo	pochi	pocos	weinig	få	pauci
+determiner	each	jeder	chaque	cada	každý	ogni	cada	elk	varje	quisque
+determiner	both	beide	les deux	ambos	oba	entrambi	ambos	beide	båda	ambo
+determiner	such	solch	tel	tal	takový	tale	tal	zulk	sådan	talis
+pronoun	everyone	jeder	tout le monde	todos	každý	tutti	todos	iedereen	alla	omnes
+pronoun	anything	irgendetwas	quelque chose	qualquer coisa	cokoli	qualcosa	algo	iets	något	quidquam
+adverb	much	viel	beaucoup	muito	hodně	molto	mucho	veel	mycket	multum
+adverb	just	gerade	juste	apenas	právě	appena	justo	net	precis	modo
+adverb	even	sogar	même	até	dokonce	persino	incluso	zelfs	till och med	etiam
+adverb	ever	jemals	jamais	já	někdy	mai	alguna vez	ooit	någonsin	umquam
+adverb	actually	eigentlich	en fait	na verdade	vlastně	in realtà	en realidad	eigenlijk	faktiskt	re vera
+adverb	once	einmal	une fois	uma vez	jednou	una volta	una vez	eens	en gång	semel
+adverb	yet	noch	encore	ainda	ještě	ancora	todavía	nog	än	adhuc
+adverb	tonight	heute Abend	ce soir	hoje à noite	dnes večer	stasera	esta noche	vanavond	i kväll	hac nocte
+adverb	ago	vor	il y a	atrás	před	fa	hace	geleden	sedan	abhinc
+adverb	probably	wahrscheinlich	probablement	provavelmente	pravděpodobně	probabilmente	probablemente	waarschijnlijk	förmodligen	probabiliter
+adverb	exactly	genau	exactement	exatamente	přesně	esattamente	exactamente	precies	exakt	ipse
+adverb	quite	ziemlich	assez	bastante	docela	piuttosto	bastante	vrij	ganska	satis
+adverb	anyway	jedenfalls	de toute façon	de qualquer forma	stejně	comunque	de todos modos	hoe dan ook	i alla fall	utcumque
+adverb	perhaps	vielleicht	peut-être	talvez	možná	forse	quizás	misschien	kanske	fortasse
+adverb	finally	endlich	enfin	finalmente	konečně	finalmente	finalmente	eindelijk	äntligen	tandem
+adverb	rather	eher	plutôt	antes	spíše	piuttosto	más bien	eerder	hellre	potius
+adverb	somewhere	irgendwo	quelque part	em algum lugar	někde	da qualche parte	en algún lugar	ergens	någonstans	alicubi
+adverb	ahead	voraus	devant	à frente	vpředu	avanti	adelante	vooruit	framåt	ante
+adverb	away	weg	loin	embora	pryč	via	lejos	weg	bort	procul
+adverb	else	sonst	autre	mais	jinak	altro	más	anders	annars	aliter
+interjection	oh	oh	oh	oh	ó	oh	oh	o	åh	o
+interjection	hey	hey	hé	ei	hej	ehi	oye	hé	hallå	heus
+interjection	okay	okay	d'accord	tá bom	dobře	va bene	vale	oké	okej	-
+interjection	welcome	willkommen	bienvenue	bem-vindo	vítejte	benvenuto	bienvenido	welkom	välkommen	salve
+interjection	bye	tschüss	salut	tchau	ahoj	ciao	chao	doei	hej då	vale
+noun	time (occasion)	Mal	fois	vez	krát	volta	vez	keer	gång	vicis
+noun	clue	Ahnung	idée	ideia	tušení	idea	idea	idee	aning	-
+verb	be right	stimmen	être juste	estar certo	souhlasit	essere giusto	ser correcto	kloppen	stämma	-
+noun	second	Sekunde	seconde	segundo	sekunda	secondo	segundo	seconde	sekund	-
+pronoun	oneself	sich	se	se	se	si	se	zich	sig	se
+pronoun	me	mir	me	me	mi	mi	me	me	mig	mihi
+pronoun	her	sie	la	a	ji	la	la	haar	henne	eam
+pronoun	you (object)	dich	te	te	tě	te	te	je	dig	te
+pronoun	you (plural object)	euch	vous	vos	vás	vi	os	jullie	er	vos
+verb	manage	schaffen	réussir	conseguir	podařit se	riuscire	lograr	lukken	lyckas	-
+verb	serve	dienen	servir	servir	sloužit	servire	servir	dienen	tjäna	servio
+verb	discover	entdecken	découvrir	descobrir	objevit	scoprire	descubrir	ontdekken	upptäcka	invenio
+noun	fear	Angst	peur	medo	strach	paura	miedo	angst	rädsla	timor
+verb	matter	ausmachen	importer	importar	záležet	importare	importar	uitmaken	spela roll	-
+verb	imagine	vorstellen	imaginer	imaginar	představit si	immaginare	imaginar	voorstellen	föreställa	fingo
+verb	work (function)	funktionieren	marcher	funcionar	fungovat	funzionare	funcionar	werken	fungera	-
+verb	seem (appear)	scheinen	paraître	parecer	zdát se	parere	parecer	lijken	verka	-
+interjection	well done	bravo	bravo	bravo	bravo	bravo	bravo	bravo	bravo	euge
+noun	way (manner)	Art	manière	jeito	způsob	modo	manera	manier	sätt	modus
+adverb	then (so)	also	alors	então	tak	allora	entonces	dan	då	igitur
+adverb	how much	wie viel	combien	quanto	kolik	quanto	cuánto	hoeveel	hur mycket	quantum
+verb	pass	vorbeigehen	passer	passar	projít	passare	pasar	passeren	passera	transeo
+noun	boyfriend	Freund	copain	namorado	přítel	fidanzato	novio	vriend	pojkvän	amicus
+noun	girlfriend	Freundin	copine	namorada	přítelkyně	fidanzata	novia	vriendin	flickvän	amica
+verb	happen (occur)	geschehen	se passer	acontecer	stát se	succedere	suceder	gebeuren	hända	accido
+noun	faith	Glaube	foi	fé	víra	fede	fe	geloof	tro	fides
+verb	believe (think)	glauben	croire	achar	myslet	credere	creer	geloven	tro	puto
+noun	glass	Glas	verre	copo	sklenice	bicchiere	vaso	glas	glas	poculum
+noun	bottle	Flasche	bouteille	garrafa	láhev	bottiglia	botella	fles	flaska	lagoena
+noun	cup	Tasse	tasse	xícara	šálek	tazza	taza	kopje	kopp	-
+noun	plate	Teller	assiette	prato	talíř	piatto	plato	bord	tallrik	patina
+noun	knife	Messer	couteau	faca	nůž	coltello	cuchillo	mes	kniv	culter
+noun	fork	Gabel	fourchette	garfo	vidlička	forchetta	tenedor	vork	gaffel	furca
+noun	spoon	Löffel	cuillère	colher	lžíce	cucchiaio	cuchara	lepel	sked	cochlear
+noun	soup	Suppe	soupe	sopa	polévka	zuppa	sopa	soep	soppa	ius
+noun	cake	Kuchen	gâteau	bolo	dort	torta	pastel	taart	tårta	placenta
+noun	chocolate	Schokolade	chocolat	chocolate	čokoláda	cioccolato	chocolate	chocolade	choklad	-
+noun	butter	Butter	beurre	manteiga	máslo	burro	mantequilla	boter	smör	butyrum
+noun	chicken	Huhn	poulet	frango	kuře	pollo	pollo	kip	kyckling	pullus
+noun	pig	Schwein	cochon	porco	prase	maiale	cerdo	varken	gris	porcus
+noun	sheep	Schaf	mouton	ovelha	ovce	pecora	oveja	schaap	får	ovis
+noun	mouse	Maus	souris	rato	myš	topo	ratón	muis	mus	mus
+noun	tomato	Tomate	tomate	tomate	rajče	pomodoro	tomate	tomaat	tomat	-
+noun	banana	Banane	banane	banana	banán	banana	plátano	banaan	banan	-
+noun	orange	Orange	orange	laranja	pomeranč	arancia	naranja	sinaasappel	apelsin	-
+noun	lemon	Zitrone	citron	limão	citron	limone	limón	citroen	citron	-
+noun	strawberry	Erdbeere	fraise	morango	jahoda	fragola	fresa	aardbei	jordgubbe	fragum
+noun	grape	Traube	raisin	uva	hrozen	uva	uva	druif	druva	uva
+noun	onion	Zwiebel	oignon	cebola	cibule	cipolla	cebolla	ui	lök	cepa
+noun	carrot	Karotte	carotte	cenoura	mrkev	carota	zanahoria	wortel	morot	carota
+noun	salad	Salat	salade	salada	salát	insalata	ensalada	salade	sallad	acetaria
+noun	pasta	Nudeln	pâtes	macarrão	těstoviny	pasta	pasta	pasta	pasta	-
+noun	oil	Öl	huile	óleo	olej	olio	aceite	olie	olja	oleum
+noun	pepper	Pfeffer	poivre	pimenta	pepř	pepe	pimienta	peper	peppar	piper
+noun	menu	Speisekarte	menu	cardápio	jídelní lístek	menu	menú	menukaart	meny	-
+noun	bill	Rechnung	addition	conta	účet	conto	cuenta	rekening	nota	-
+noun	waiter	Kellner	serveur	garçom	číšník	cameriere	camarero	ober	servitör	minister
+noun	coat	Mantel	manteau	casaco	kabát	cappotto	abrigo	jas	rock	pallium
+noun	jacket	Jacke	veste	jaqueta	bunda	giacca	chaqueta	jas	jacka	-
+noun	trousers	Hose	pantalon	calça	kalhoty	pantaloni	pantalón	broek	byxor	bracae
+noun	skirt	Rock	jupe	saia	sukně	gonna	falda	rok	kjol	-
+noun	hat	Hut	chapeau	chapéu	klobouk	cappello	sombrero	hoed	hatt	petasus
+noun	sock	Socke	chaussette	meia	ponožka	calzino	calcetín	sok	strumpa	-
+noun	watch	Uhr	montre	relógio	hodinky	orologio	reloj	horloge	klocka	horologium
+noun	clock	Uhr	horloge	relógio	hodiny	orologio	reloj	klok	klocka	horologium
+noun	glasses	Brille	lunettes	óculos	brýle	occhiali	gafas	bril	glasögon	-
+noun	umbrella	Regenschirm	parapluie	guarda-chuva	deštník	ombrello	paraguas	paraplu	paraply	umbella
+noun	box	Kiste	boîte	caixa	krabice	scatola	caja	doos	låda	capsa
+noun	ball	Ball	balle	bola	míč	palla	pelota	bal	boll	pila
+noun	toy	Spielzeug	jouet	brinquedo	hračka	giocattolo	juguete	speelgoed	leksak	crepundia
+noun	gift	Geschenk	cadeau	presente	dárek	regalo	regalo	cadeau	present	donum
+noun	letter (alphabet)	Buchstabe	lettre	letra	písmeno	lettera	letra	letter	bokstav	littera
+noun	page	Seite	page	página	stránka	pagina	página	bladzijde	sida	pagina
+noun	sentence	Satz	phrase	frase	věta	frase	oración	zin	mening	sententia
+noun	lesson	Lektion	leçon	lição	lekce	lezione	lección	les	lektion	-
+noun	exam	Prüfung	examen	exame	zkouška	esame	examen	examen	examen	examen
+noun	class	Klasse	classe	turma	třída	classe	clase	klas	klass	classis
+noun	university	Universität	université	universidade	univerzita	università	universidad	universiteit	universitet	universitas
+noun	library	Bibliothek	bibliothèque	biblioteca	knihovna	biblioteca	biblioteca	bibliotheek	bibliotek	bibliotheca
+noun	museum	Museum	musée	museu	muzeum	museo	museo	museum	museum	museum
+noun	theater	Theater	théâtre	teatro	divadlo	teatro	teatro	theater	teater	theatrum
+noun	cinema	Kino	cinéma	cinema	kino	cinema	cine	bioscoop	bio	-
+noun	bridge	Brücke	pont	ponte	most	ponte	puente	brug	bro	pons
+noun	square	Platz	place	praça	náměstí	piazza	plaza	plein	torg	forum
+noun	corner	Ecke	coin	esquina	roh	angolo	esquina	hoek	hörna	angulus
+noun	building	Gebäude	bâtiment	prédio	budova	edificio	edificio	gebouw	byggnad	aedificium
+noun	tower	Turm	tour	torre	věž	torre	torre	toren	torn	turris
+noun	island	Insel	île	ilha	ostrov	isola	isla	eiland	ö	insula
+noun	beach	Strand	plage	praia	pláž	spiaggia	playa	strand	strand	litus
+noun	field	Feld	champ	campo	pole	campo	campo	veld	fält	ager
+noun	stone	Stein	pierre	pedra	kámen	pietra	piedra	steen	sten	lapis
+noun	sand	Sand	sable	areia	písek	sabbia	arena	zand	sand	harena
+noun	ice	Eis	glace	gelo	led	ghiaccio	hielo	ijs	is	glacies
+noun	cloud	Wolke	nuage	nuvem	mrak	nuvola	nube	wolk	moln	nubes
+noun	storm	Sturm	tempête	tempestade	bouře	tempesta	tormenta	storm	storm	tempestas
+noun	leaf	Blatt	feuille	folha	list	foglia	hoja	blad	löv	folium
+noun	grass	Gras	herbe	grama	tráva	erba	hierba	gras	gräs	herba
+noun	wood	Holz	bois	madeira	dřevo	legno	madera	hout	trä	lignum
+noun	metal	Metall	métal	metal	kov	metallo	metal	metaal	metall	metallum
+noun	gold	Gold	or	ouro	zlato	oro	oro	goud	guld	aurum
+noun	silver	Silber	argent	prata	stříbro	argento	plata	zilver	silver	argentum
+noun	iron	Eisen	fer	ferro	železo	ferro	hierro	ijzer	järn	ferrum
+noun	neighbor	Nachbar	voisin	vizinho	soused	vicino	vecino	buurman	granne	vicinus
+noun	guest	Gast	invité	convidado	host	ospite	invitado	gast	gäst	hospes
+noun	customer	Kunde	client	cliente	zákazník	cliente	cliente	klant	kund	emptor
+noun	worker	Arbeiter	ouvrier	trabalhador	dělník	lavoratore	trabajador	arbeider	arbetare	operarius
+noun	farmer	Bauer	agriculteur	agricultor	zemědělec	contadino	agricultor	boer	bonde	agricola
+noun	soldier	Soldat	soldat	soldado	voják	soldato	soldado	soldaat	soldat	miles
+noun	nurse	Krankenschwester	infirmière	enfermeira	zdravotní sestra	infermiera	enfermera	verpleegster	sjuksköterska	-
+noun	cook	Koch	cuisinier	cozinheiro	kuchař	cuoco	cocinero	kok	kock	coquus
+noun	artist	Künstler	artiste	artista	umělec	artista	artista	kunstenaar	konstnär	artifex
+noun	writer	Schriftsteller	écrivain	escritor	spisovatel	scrittore	escritor	schrijver	författare	scriptor
+noun	singer	Sänger	chanteur	cantor	zpěvák	cantante	cantante	zanger	sångare	cantor
+noun	driver	Fahrer	chauffeur	motorista	řidič	autista	conductor	chauffeur	förare	auriga
+noun	enemy	Feind	ennemi	inimigo	nepřítel	nemico	enemigo	vijand	fiende	hostis
+noun	queen	Königin	reine	rainha	královna	regina	reina	koningin	drottning	regina
+noun	president	Präsident	président	presidente	prezident	presidente	presidente	president	president	praeses
+noun	government	Regierung	gouvernement	governo	vláda	governo	gobierno	regering	regering	-
+noun	state	Staat	État	estado	stát	stato	estado	staat	stat	civitas
+noun	army	Armee	armée	exército	armáda	esercito	ejército	leger	armé	exercitus
+noun	history	Geschichte	histoire	história	historie	storia	historia	geschiedenis	historia	historia
+noun	science	Wissenschaft	science	ciência	věda	scienza	ciencia	wetenschap	vetenskap	scientia
+noun	art	Kunst	art	arte	umění	arte	arte	kunst	konst	ars
+noun	nature	Natur	nature	natureza	příroda	natura	naturaleza	natuur	natur	natura
+noun	culture	Kultur	culture	cultura	kultura	cultura	cultura	cultuur	kultur	cultura
+noun	sport	Sport	sport	esporte	sport	sport	deporte	sport	sport	-
+noun	news	Nachrichten	nouvelles	notícias	zprávy	notizie	noticias	nieuws	nyheter	nuntius
+noun	message	Nachricht	message	mensagem	zpráva	messaggio	mensaje	bericht	meddelande	nuntius
+noun	information	Information	information	informação	informace	informazione	información	informatie	information	-
+noun	internet	Internet	internet	internet	internet	internet	internet	internet	internet	interrete
+noun	email	E-Mail	courriel	e-mail	e-mail	email	correo electrónico	e-mail	mejl	-
+noun	address	Adresse	adresse	endereço	adresa	indirizzo	dirección	adres	adress	inscriptio
+noun	journey	Reise	voyage	viagem	cesta	viaggio	viaje	reis	resa	iter
+noun	trip	Ausflug	excursion	passeio	výlet	gita	excursión	uitstapje	utflykt	excursio
+noun	suitcase	Koffer	valise	mala	kufr	valigia	maleta	koffer	resväska	-
+noun	passport	Reisepass	passeport	passaporte	pas	passaporto	pasaporte	paspoort	pass	-
+noun	map	Karte	carte	mapa	mapa	mappa	mapa	kaart	karta	tabula
+noun	border	Grenze	frontière	fronteira	hranice	confine	frontera	grens	gräns	finis
+noun	direction	Richtung	direction	direção	směr	direzione	dirección	richting	riktning	-
+noun	left	links	gauche	esquerda	levice	sinistra	izquierda	links	vänster	sinistra
+noun	middle	Mitte	milieu	meio	střed	mezzo	medio	midden	mitt	medium
+noun	north	Norden	nord	norte	sever	nord	norte	noorden	norr	septentrio
+noun	south	Süden	sud	sul	jih	sud	sur	zuiden	söder	meridies
+noun	east	Osten	est	leste	východ	est	este	oosten	öster	oriens
+noun	west	Westen	ouest	oeste	západ	ovest	oeste	westen	väster	occidens
+noun	size	Größe	taille	tamanho	velikost	taglia	tamaño	grootte	storlek	magnitudo
+noun	weight	Gewicht	poids	peso	váha	peso	peso	gewicht	vikt	pondus
+noun	noise	Lärm	bruit	barulho	hluk	rumore	ruido	lawaai	buller	strepitus
+noun	smell	Geruch	odeur	cheiro	vůně	odore	olor	geur	lukt	odor
+noun	taste	Geschmack	goût	gosto	chuť	gusto	sabor	smaak	smak	sapor
+noun	pain	Schmerz	douleur	dor	bolest	dolore	dolor	pijn	smärta	dolor
+noun	illness	Krankheit	maladie	doença	nemoc	malattia	enfermedad	ziekte	sjukdom	morbus
+noun	medicine	Medikament	médicament	remédio	lék	medicina	medicamento	medicijn	medicin	medicamentum
+noun	accident	Unfall	accident	acidente	nehoda	incidente	accidente	ongeluk	olycka	casus
+noun	danger	Gefahr	danger	perigo	nebezpečí	pericolo	peligro	gevaar	fara	periculum
+noun	help	Hilfe	aide	ajuda	pomoc	aiuto	ayuda	hulp	hjälp	auxilium
+noun	advice	Rat	conseil	conselho	rada	consiglio	consejo	advies	råd	consilium
+noun	opinion	Meinung	opinion	opinião	názor	opinione	opinión	mening	åsikt	sententia
+noun	choice	Wahl	choix	escolha	volba	scelta	elección	keuze	val	electio
+noun	result	Ergebnis	résultat	resultado	výsledek	risultato	resultado	resultaat	resultat	exitus
+noun	success	Erfolg	succès	sucesso	úspěch	successo	éxito	succes	framgång	successus
+noun	example	Beispiel	exemple	exemplo	příklad	esempio	ejemplo	voorbeeld	exempel	exemplum
+noun	reason	Grund	raison	razão	důvod	ragione	razón	reden	anledning	causa
+noun	goal	Ziel	but	objetivo	cíl	obiettivo	objetivo	doel	mål	finis
+noun	rule	Regel	règle	regra	pravidlo	regola	regla	regel	regel	regula
+noun	freedom	Freiheit	liberté	liberdade	svoboda	libertà	libertad	vrijheid	frihet	libertas
+noun	hope	Hoffnung	espoir	esperança	naděje	speranza	esperanza	hoop	hopp	spes
+noun	joy	Freude	joie	alegria	radost	gioia	alegría	vreugde	glädje	gaudium
+noun	anger	Wut	colère	raiva	vztek	rabbia	ira	woede	ilska	ira
+noun	silence	Stille	silence	silêncio	ticho	silenzio	silencio	stilte	tystnad	silentium
+noun	memory	Erinnerung	souvenir	lembrança	vzpomínka	ricordo	recuerdo	herinnering	minne	memoria
+noun	thought	Gedanke	pensée	pensamento	myšlenka	pensiero	pensamiento	gedachte	tanke	cogitatio
+noun	soul	Seele	âme	alma	duše	anima	alma	ziel	själ	anima
+noun	dream	Traum	rêve	sonho	sen	sogno	sueño	droom	dröm	somnium
+verb	order	bestellen	commander	pedir	objednat	ordinare	pedir	bestellen	beställa	-
+verb	rent	mieten	louer	alugar	pronajmout	affittare	alquilar	huren	hyra	conduco
+verb	repair	reparieren	réparer	consertar	opravit	riparare	reparar	repareren	reparera	reficio
+verb	paint	malen	peindre	pintar	malovat	dipingere	pintar	schilderen	måla	pingo
+verb	draw	zeichnen	dessiner	desenhar	kreslit	disegnare	dibujar	tekenen	rita	delineo
+verb	climb	klettern	grimper	escalar	lézt	arrampicarsi	escalar	klimmen	klättra	scando
+verb	jump	springen	sauter	pular	skákat	saltare	saltar	springen	hoppa	salio
+verb	throw away	wegwerfen	jeter	jogar fora	vyhodit	buttare via	tirar	weggooien	slänga	abicio
+verb	collect	sammeln	collectionner	colecionar	sbírat	collezionare	coleccionar	verzamelen	samla	colligo
+verb	borrow	leihen	emprunter	pegar emprestado	půjčit si	prendere in prestito	pedir prestado	lenen	låna	mutuor
+verb	lend	leihen	prêter	emprestar	půjčit	prestare	prestar	lenen	låna ut	commodo
+verb	save (money)	sparen	économiser	economizar	šetřit	risparmiare	ahorrar	sparen	spara	parco
+verb	earn	verdienen	gagner	ganhar	vydělat	guadagnare	ganar	verdienen	tjäna	mereo
+verb	cost	kosten	coûter	custar	stát	costare	costar	kosten	kosta	consto
+verb	compare	vergleichen	comparer	comparar	porovnat	confrontare	comparar	vergelijken	jämföra	comparo
+verb	describe	beschreiben	décrire	descrever	popsat	descrivere	describir	beschrijven	beskriva	describo
+verb	discuss	diskutieren	discuter	discutir	diskutovat	discutere	discutir	bespreken	diskutera	disputo
+verb	prefer	bevorzugen	préférer	preferir	dávat přednost	preferire	preferir	verkiezen	föredra	malo
+verb	suggest	vorschlagen	proposer	sugerir	navrhnout	suggerire	sugerir	voorstellen	föreslå	suadeo
+verb	accept	akzeptieren	accepter	aceitar	přijmout	accettare	aceptar	accepteren	acceptera	accipio
+verb	refuse	ablehnen	refuser	recusar	odmítnout	rifiutare	rechazar	weigeren	vägra	recuso
+verb	prepare	vorbereiten	préparer	preparar	připravit	preparare	preparar	voorbereiden	förbereda	paro
+verb	organize	organisieren	organiser	organizar	organizovat	organizzare	organizar	organiseren	organisera	ordino
+verb	improve	verbessern	améliorer	melhorar	zlepšit	migliorare	mejorar	verbeteren	förbättra	emendo
+verb	increase	erhöhen	augmenter	aumentar	zvýšit	aumentare	aumentar	verhogen	öka	augeo
+verb	reduce	reduzieren	réduire	reduzir	snížit	ridurre	reducir	verminderen	minska	minuo
+verb	develop	entwickeln	développer	desenvolver	vyvinout	sviluppare	desarrollar	ontwikkelen	utveckla	explico
+verb	produce	produzieren	produire	produzir	vyrábět	produrre	producir	produceren	producera	produco
+verb	destroy	zerstören	détruire	destruir	zničit	distruggere	destruir	vernietigen	förstöra	deleo
+verb	protect	schützen	protéger	proteger	chránit	proteggere	proteger	beschermen	skydda	protego
+verb	prove	beweisen	prouver	provar	dokázat	dimostrare	demostrar	bewijzen	bevisa	probo
+verb	measure	messen	mesurer	medir	měřit	misurare	medir	meten	mäta	metior
+verb	fill	füllen	remplir	encher	naplnit	riempire	llenar	vullen	fylla	impleo
+verb	empty	leeren	vider	esvaziar	vyprázdnit	svuotare	vaciar	legen	tömma	vacuo
+verb	shake	schütteln	secouer	sacudir	třást	scuotere	sacudir	schudden	skaka	quatio
+verb	hug	umarmen	embrasser	abraçar	obejmout	abbracciare	abrazar	knuffelen	krama	amplector
+verb	shout	schreien	crier	gritar	křičet	gridare	gritar	schreeuwen	skrika	clamo
+verb	whisper	flüstern	chuchoter	sussurrar	šeptat	sussurrare	susurrar	fluisteren	viska	susurro
+verb	smell	riechen	sentir	cheirar	čichat	annusare	oler	ruiken	lukta	olfacio
+verb	taste	schmecken	goûter	provar	ochutnat	assaggiare	probar	proeven	smaka	gusto
+verb	breathe	atmen	respirer	respirar	dýchat	respirare	respirar	ademen	andas	spiro
+verb	rest	ausruhen	se reposer	descansar	odpočívat	riposare	descansar	rusten	vila	quiesco
+verb	relax	entspannen	se détendre	relaxar	relaxovat	rilassarsi	relajarse	ontspannen	koppla av	-
+verb	celebrate	feiern	fêter	comemorar	slavit	festeggiare	celebrar	vieren	fira	celebro
+verb	vote	wählen	voter	votar	volit	votare	votar	stemmen	rösta	suffragium fero
+verb	print	drucken	imprimer	imprimir	tisknout	stampare	imprimir	afdrukken	skriva ut	imprimo
+verb	download	herunterladen	télécharger	baixar	stáhnout	scaricare	descargar	downloaden	ladda ner	-
+verb	type	tippen	taper	digitar	psát	digitare	teclear	typen	skriva	-
+verb	click	klicken	cliquer	clicar	kliknout	cliccare	hacer clic	klikken	klicka	-
+adjective	interesting	interessant	intéressant	interessante	zajímavý	interessante	interesante	interessant	intressant	-
+adjective	boring	langweilig	ennuyeux	chato	nudný	noioso	aburrido	saai	tråkig	molestus
+adjective	famous	berühmt	célèbre	famoso	slavný	famoso	famoso	beroemd	berömd	clarus
+adjective	popular	beliebt	populaire	popular	populární	popolare	popular	populair	populär	popularis
+adjective	modern	modern	moderne	moderno	moderní	moderno	moderno	modern	modern	-
+adjective	ancient	antik	ancien	antigo	starověký	antico	antiguo	oud	antik	antiquus
+adjective	public	öffentlich	public	público	veřejný	pubblico	público	openbaar	offentlig	publicus
+adjective	private	privat	privé	privado	soukromý	privato	privado	privé	privat	privatus
+adjective	simple	einfach	simple	simples	jednoduchý	semplice	sencillo	eenvoudig	enkel	simplex
+adjective	normal	normal	normal	normal	normální	normale	normal	normaal	normal	-
+adjective	necessary	notwendig	nécessaire	necessário	nutný	necessario	necesario	nodig	nödvändig	necessarius
+adjective	dangerous	gefährlich	dangereux	perigoso	nebezpečný	pericoloso	peligroso	gevaarlijk	farlig	periculosus
+adjective	wonderful	wunderbar	merveilleux	maravilhoso	nádherný	meraviglioso	maravilloso	prachtig	underbar	mirabilis
+adjective	terrible	schrecklich	terrible	terrível	hrozný	terribile	terrible	verschrikkelijk	hemsk	terribilis
+adjective	excellent	ausgezeichnet	excellent	excelente	vynikající	eccellente	excelente	uitstekend	utmärkt	excellens
+adjective	delicious	lecker	délicieux	gostoso	chutný	delizioso	delicioso	lekker	god	suavis
+adjective	sweet	süß	sucré	doce	sladký	dolce	dulce	zoet	söt	dulcis
+adjective	sour	sauer	acide	azedo	kyselý	aspro	ácido	zuur	sur	acidus
+adjective	salty	salzig	salé	salgado	slaný	salato	salado	zout	salt	salsus
+adjective	soft	weich	doux	macio	měkký	morbido	blando	zacht	mjuk	mollis
+adjective	wet	nass	mouillé	molhado	mokrý	bagnato	mojado	nat	våt	umidus
+adjective	dry	trocken	sec	seco	suchý	secco	seco	droog	torr	siccus
+adjective	thick	dick	épais	grosso	tlustý	spesso	grueso	dik	tjock	crassus
+adjective	thin	dünn	mince	fino	tenký	sottile	delgado	dun	tunn	tenuis
+adjective	fat	dick	gros	gordo	tlustý	grasso	gordo	dik	tjock	pinguis
+adjective	wide	breit	large	largo	široký	largo	ancho	breed	bred	latus
+adjective	narrow	eng	étroit	estreito	úzký	stretto	estrecho	smal	smal	angustus
+adjective	deep	tief	profond	profundo	hluboký	profondo	profundo	diep	djup	altus
+adjective	round	rund	rond	redondo	kulatý	rotondo	redondo	rond	rund	rotundus
+adjective	straight	gerade	droit	reto	rovný	dritto	recto	recht	rak	rectus
+adjective	quiet (silent)	still	silencieux	silencioso	tichý	silenzioso	silencioso	stil	tyst	tacitus
+adjective	busy	beschäftigt	occupé	ocupado	zaneprázdněný	occupato	ocupado	bezig	upptagen	occupatus
+adjective	single (unmarried)	ledig	célibataire	solteiro	svobodný	single	soltero	alleenstaand	ogift	caelebs
+adjective	married	verheiratet	marié	casado	ženatý	sposato	casado	getrouwd	gift	-
+adjective	foreign	fremd	étranger	estrangeiro	cizí	straniero	extranjero	buitenlands	utländsk	peregrinus
+adjective	local	örtlich	local	local	místní	locale	local	plaatselijk	lokal	localis
+adjective	international	international	international	internacional	mezinárodní	internazionale	internacional	internationaal	internationell	-
+adjective	national	national	national	nacional	národní	nazionale	nacional	nationaal	nationell	nationalis
+adjective	political	politisch	politique	político	politický	politico	político	politiek	politisk	politicus
+adjective	social	sozial	social	social	sociální	sociale	social	sociaal	social	socialis
+adjective	natural	natürlich	naturel	natural	přírodní	naturale	natural	natuurlijk	naturlig	naturalis
+adjective	certain	sicher	certain	certo	jistý	certo	cierto	zeker	säker	certus
+adjective	probable	wahrscheinlich	probable	provável	pravděpodobný	probabile	probable	waarschijnlijk	trolig	probabilis
+adjective	real	wirklich	réel	real	skutečný	reale	real	echt	verklig	verus
+adjective	central	zentral	central	central	centrální	centrale	central	centraal	central	medius
+adjective	main	Haupt-	principal	principal	hlavní	principale	principal	hoofd-	huvud-	principalis
+adjective	general	allgemein	général	geral	obecný	generale	general	algemeen	allmän	generalis
+adjective	special	speziell	spécial	especial	speciální	speciale	especial	speciaal	speciell	specialis
