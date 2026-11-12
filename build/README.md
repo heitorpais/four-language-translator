@@ -8,7 +8,7 @@ rebuilt by the scripts). The download list is in `build/SOURCES.txt`.
 
 | Step | Script | What it does |
 |---|---|---|
-| 1 | `index_sources.py` | Reads the seven Wiktionary extracts once (English edition: English, German, French, Portuguese words; German, French, Portuguese editions) into SQLite indexes in `build/raw/db`. |
+| 1 | `index_sources.py` | Reads the nine Wiktionary extracts once (English edition: English, German, French, Portuguese, Czech words; German, French, Portuguese, Czech editions) into SQLite indexes in `build/raw/db`. |
 | 2 | `inventory.py <lang>` | The cleaned word list of one language: drops proper names, abbreviations (except those in `common_abbreviations.txt`), entries that are only a form or misspelling of another word. Ranks the words with FrequencyWords (OpenSubtitles 2018) and sets the tier: core (8,000 most frequent), extended (found in the frequency list), long tail (the rest). `lemma_blocklist.txt` holds hand-removed wrong lemmas. |
 | 3 | `build_entries.py <lang>` | Builds the entries of one language: grammar, IPA, senses and translations (routes: own edition, other editions, through English). |
 | 4 | `link_entries.py` | Adds the reverse links (gehen → ir gives ir → gehen), merges them into matching senses, orders each translation list, drops phrases nobody links to. |
@@ -18,6 +18,7 @@ rebuilt by the scripts). The download list is in `build/SOURCES.txt`.
 | 8 | `enrich_with_claude.py` | Adds the AI-written fields from `build/claude/*.tsv` where still empty. |
 | 9 | `generate_forms.py` | Builds all word forms by rule, tests them against Wiktionary, stores the exceptions in `irregular_forms`. |
 | 9b | `regions.py` | Register labels of core senses (colloquial, formal …), and marks regional translations from Wiktionary's region labels and `build/claude/regional_words.tsv` (celular BR / telemóvel PT, laufen for "walk" in Switzerland); fills a missing region's word from synonyms. Report: `reports/regions_report.json`. |
+| 9c | `swiss.py`, `fix_verbs.py`, `czech.py` | Hand-checked Swiss words (level, translations, the word used in Germany and Austria, regional genders such as das Tram), corrected irregular verb tables, Czech clean-up (English order, wrong-class meanings). |
 | 10 | `build_tiers.py` | Writes `app/data`: core card files, core details files, letter files of the other tiers, manifest. |
 | 11 | `validate.py` | Checks `app/data`; exit status 1 on failure. |
 

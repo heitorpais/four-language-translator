@@ -5,11 +5,11 @@
 'use strict';
 
 /* ---------- regions and settings ---------- */
-const REG = { en: ['us', 'gb'], de: ['de', 'ch', 'at'], fr: ['fr', 'ca', 'be', 'ch'], pt: ['br', 'pt'] };
-const BASE = { en: 'us', de: 'de', fr: 'fr', pt: 'br' };
-const RNAME_EN = { us: 'United States', gb: 'United Kingdom', de: 'Germany', ch: 'Switzerland', at: 'Austria', fr: 'France', ca: 'Canada', be: 'Belgium', br: 'Brazil', pt: 'Portugal' };
+const REG = { en: ['us', 'gb'], de: ['de', 'ch', 'at'], fr: ['fr', 'ca', 'be', 'ch'], pt: ['br', 'pt'], cs: ['cz'] };
+const BASE = { en: 'us', de: 'de', fr: 'fr', pt: 'br', cs: 'cz' };
+const RNAME_EN = { us: 'United States', gb: 'United Kingdom', de: 'Germany', ch: 'Switzerland', at: 'Austria', fr: 'France', ca: 'Canada', be: 'Belgium', br: 'Brazil', pt: 'Portugal', cz: 'Czechia' };
 const RNAME = new Proxy(RNAME_EN, { get: (o, k) => typeof k === 'string' && o[k] ? t('region.' + k, o[k]) : o[k] });
-const LOCALE = { en: { us: 'en-US', gb: 'en-GB' }, de: { de: 'de-DE', ch: 'de-CH', at: 'de-AT' }, fr: { fr: 'fr-FR', ca: 'fr-CA', be: 'fr-BE', ch: 'fr-CH' }, pt: { br: 'pt-BR', pt: 'pt-PT' } };
+const LOCALE = { en: { us: 'en-US', gb: 'en-GB' }, de: { de: 'de-DE', ch: 'de-CH', at: 'de-AT' }, fr: { fr: 'fr-FR', ca: 'fr-CA', be: 'fr-BE', ch: 'fr-CH' }, pt: { br: 'pt-BR', pt: 'pt-PT' }, cs: { cz: 'cs-CZ' } };
 /* every setting with its default (Settings › Reset to defaults puts these back) */
 const DEFAULTS = {
   // display
@@ -33,6 +33,7 @@ function t(key, en, vars) {
 
 /* ---------- flags ---------- */
 const FLAG_ART = {
+  cz: '<rect width="60" height="40" fill="#fff"/><rect y="20" width="60" height="20" fill="#D7141A"/><path d="M0,0L30,20L0,40Z" fill="#11457E"/>',
 us: '<rect width="60" height="40" fill="#B22234"/><path d="M0,4.62H60M0,10.77H60M0,16.92H60M0,23.08H60M0,29.23H60M0,35.38H60" stroke="#fff" stroke-width="3.08"/><rect width="26" height="21.54" fill="#3C3B6E"/><path d="M3,3H24M3,7H24M3,11H24M3,15H24M3,19H24" stroke="#fff" stroke-width="1.5" stroke-dasharray="0 4.1" stroke-linecap="round"/>',
 gb: '<rect width="60" height="40" fill="#012169"/><path d="M0,0L60,40M60,0L0,40" stroke="#fff" stroke-width="7"/><path d="M0,0L60,40M60,0L0,40" stroke="#C8102E" stroke-width="2.6"/><path d="M30,0v40M0,20h60" stroke="#fff" stroke-width="12"/><path d="M30,0v40M0,20h60" stroke="#C8102E" stroke-width="7"/>',
 de: '<rect width="60" height="40" fill="#000"/><rect y="13.33" width="60" height="26.67" fill="#DD0000"/><rect y="26.67" width="60" height="13.33" fill="#FFCE00"/>',
@@ -50,9 +51,13 @@ const LANGS = [
   { id: 'en', name: 'English', ph: 'type a word…', code: 'EN' },
   { id: 'de', name: 'German', ph: 'Wort eingeben…', code: 'DE' },
   { id: 'fr', name: 'French', ph: 'saisir un mot…', code: 'FR' },
-  { id: 'pt', name: 'Portuguese', ph: 'digite uma palavra…', code: 'PT' }
+  { id: 'pt', name: 'Portuguese', ph: 'digite uma palavra…', code: 'PT' },
+  { id: 'cs', name: 'Czech', ph: 'napište slovo…', code: 'CS' }
 ];
-const LNAME_EN = { en: 'English', de: 'German', fr: 'French', pt: 'Portuguese' };
+/* the boxes on screen: 2 to 4 languages chosen from LANGS, in the reader's order (Settings › My languages) */
+const MIN_SLOTS = 2, MAX_SLOTS = 4;
+const UI_LANGS = ['en', 'de', 'fr', 'pt'];
+const LNAME_EN = { en: 'English', de: 'German', fr: 'French', pt: 'Portuguese', cs: 'Czech' };
 const LNAME = new Proxy(LNAME_EN, { get: (o, k) => typeof k === 'string' && o[k] ? t('lang.' + k, o[k]) : o[k] });
 const CEFR = { A1: 'basic', A2: 'elementary', B1: 'intermediate', B2: 'upper intermediate', C1: 'advanced', C2: 'academic' };
 const TRY = ['Haus', 'gehen', 'gut', 'Zeit', 'helfen', 'schön', 'anfangen', 'Kind'];
@@ -66,12 +71,16 @@ const store = {
   get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
   set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
 };
+function cleanOrder(o) {        // 2 to 4 different languages the app knows; otherwise the default four
+  const ids = LANGS.map(l => l.id), x = Array.isArray(o) ? o.filter((l, k) => ids.includes(l) && o.indexOf(l) === k).slice(0, MAX_SLOTS) : [];
+  return x.length >= MIN_SLOTS ? x : DEFAULTS.order.slice();
+}
 function loadSettings() {
   const saved = store.get('flt:settings4', {});
   Object.assign(S, JSON.parse(JSON.stringify(DEFAULTS)), saved, { main: Object.assign({}, DEFAULTS.main, saved.main || {}), voice: Object.assign({}, DEFAULTS.voice, saved.voice || {}) });
   Object.keys(REG).forEach(l => { if (!REG[l].includes(S.main[l])) S.main[l] = BASE[l]; });
-  if (!Array.isArray(S.order) || S.order.length !== 4 || ['en', 'de', 'fr', 'pt'].some(l => !S.order.includes(l))) S.order = DEFAULTS.order.slice();
-  if (!S.ui) { const n = (navigator.language || 'en').slice(0, 2); S.ui = ['en', 'de', 'fr', 'pt'].includes(n) ? n : 'en'; }
+  S.order = cleanOrder(S.order);
+  if (!S.ui || !UI_LANGS.includes(S.ui)) { const n = (navigator.language || 'en').slice(0, 2); S.ui = UI_LANGS.includes(n) ? n : 'en'; }
 }
 loadSettings();
 const saveSettings = () => store.set('flt:settings4', S);
@@ -99,6 +108,23 @@ function levelOf(e) {
 const LVORD = { A1: 1, A2: 2, B1: 3, B2: 4, C1: 5, C2: 6 };
 const lvlBadge = (e, small) => { const v = levelOf(e); return v ? `<span class="lvl ${v.l}${small ? ' sm' : ''}" lang="en" title="${esc(v.est ? t('lvl.est', 'Level estimated from how often the word is used') : t('lvl.stored', 'Level'))}">${v.est ? '≈' : ''}${v.l}${small ? '' : ' · ' + esc(t('cefr.' + v.l, CEFR[v.l]))}</span>` : ''; };
 /* Marks the letters of `form` that are not in `base` (Tisch -> Tisch<b>e</b>, Haus -> H<b>ä</b>us<b>er</b>). */
+function regularForm(lang, w, k) {        // what a regular verb would have here (to compare with the real form)
+  const st = w.slice(0, -2), end = w.slice(-2);
+  if (lang === 'en') return /e$/.test(w) ? w + 'd' : /[^aeiou]y$/.test(w) ? w.slice(0, -1) + 'ied' : w + 'ed';
+  if (lang === 'fr') {
+    if (k === 1) return end === 'er' ? st + 'e' : end === 'ir' ? st + 'is' : end === 're' ? st + 's' : null;
+    return end === 'er' ? st + 'é' : end === 'ir' ? st + 'i' : end === 're' ? st + 'u' : null;
+  }
+  if (lang === 'pt') {
+    if (/[ao]r$/.test(w) && !/(ar|er|ir)$/.test(w)) return null;          // pôr and its compounds: all irregular
+    if (k === 1) return st + 'o';
+    if (k === 2) return end === 'ar' ? st + 'ei' : st + 'i';
+    return end === 'ar' ? st + 'ado' : st + 'ido';
+  }
+  return null;
+}
+/* a verb form marked as a whole when it is not the regular one (English, French, Portuguese) */
+const irrForm = (lang, lemma, k, f) => { const r = regularForm(lang, lemma, k); return r && fold(r) === fold(f) ? esc(f) : `<b class="chg">${esc(f)}</b>`; };
 function diffMarkRaw(base, form, vowelsOnly) { return diffMark(base, form, vowelsOnly); }
 function diffMark(base, form, vowelsOnly) {
   const a = String(base), b = String(form), n = a.length, m = b.length;
@@ -131,8 +157,9 @@ const cleanTyped = s => String(s || '').replace(/\s+/g, ' ').replace(/^[\s\p{P}\
    details-<lang>.json   examples and background of the core words: loaded right after
    ext/<lang>/<k>.json   all other words (extended and long tail) and the inflected forms, by first letters:
                          loaded when a word starting with those letters is typed, looked up or shown */
-const D = { byId: new Map(), idx: { en: [], de: [], fr: [], pt: [] }, frows: { en: [], de: [], fr: [], pt: [] }, count: { en: 0, de: 0, fr: 0, pt: 0 },
-  entries: { en: 0, de: 0, fr: 0, pt: 0 }, top: {}, manifest: null, ready: false, details: false, buckets: new Map(), db: null };
+const D = { byId: new Map(), idx: {}, frows: {}, count: {}, entries: {}, top: {}, manifest: null, ready: false, details: false, buckets: new Map(), db: null,
+  loaded: new Set(), detailsLoaded: new Set() };          // the languages whose common words (and their details) are on this page
+LANGS.forEach(l => { D.idx[l.id] = []; D.frows[l.id] = []; D.count[l.id] = 0; D.entries[l.id] = 0; D.top[l.id] = []; });
 const DB_NAME = 'flt-data', FILES = 'files';
 function idbOpen() {
   return new Promise((res, rej) => {
@@ -162,7 +189,9 @@ async function loadData(progress) {
   manifest = await mf;
   if (!manifest && D.db) { try { manifest = await idbGet(D.db, 'manifest'); } catch (e) {} }
   if (!manifest) throw new Error('The dictionary data could not be loaded. Connect to the internet once so the app can save its data on this device.');
-  const out = {}, core = manifest.files.filter(f => f.tier === 'core');
+  const has = new Set(manifest.files.filter(f => f.tier === 'core').map(f => f.lang));
+  S.order = cleanOrder(S.order.filter(l => has.has(l)));       // a language this data version does not have yet is dropped
+  const out = {}, core = manifest.files.filter(f => f.tier === 'core' && S.order.includes(f.lang));
   let done = 0;
   progress('Loading the dictionary data…');
   await Promise.all(core.map(async f => { out[f.lang] = await getFile(f.file, f.sha256); done++; progress(`Loading the dictionary data (${done} of ${core.length})…`); }));
@@ -174,7 +203,8 @@ async function loadData(progress) {
   return { manifest, out };
 }
 async function loadDetails() {
-  const det = D.manifest.files.filter(f => f.tier === 'details');
+  const det = D.manifest.files.filter(f => f.tier === 'details' && D.loaded.has(f.lang) && !D.detailsLoaded.has(f.lang));
+  det.forEach(f => D.detailsLoaded.add(f.lang));
   await Promise.all(det.map(async f => {
     const d = await getFile(f.file, f.sha256);
     for (const id in d) {
@@ -185,7 +215,7 @@ async function loadDetails() {
     }
   }));
   // idioms become searchable: typing "auf jemanden Häuser bauen" opens Haus
-  for (const lang of Object.keys(REG)) {
+  for (const lang of new Set(det.map(f => f.lang))) {
     const rows = D.idx[lang]; let added = 0;
     for (const e of D.byId.values()) if (e.lang === lang && e.tier === 'core' && e.more && e.more.idioms) for (const x of e.more.idioms) {
       const w = String(x).split(' — ')[0].trim(); if (w.length < 5 || !/\s/.test(w)) continue;
@@ -195,7 +225,7 @@ async function loadDetails() {
   }
   D.details = true;
 }
-const stripKey = (lang, k) => lang === 'en' ? k.replace(/^to\s+/, '') : lang === 'de' ? k.replace(/^sich\s+/, '') : lang === 'fr' ? k.replace(/^(se\s+|s')/, '') : k.replace(/-se$/, '');
+const stripKey = (lang, k) => lang === 'en' ? k.replace(/^to\s+/, '') : lang === 'de' ? k.replace(/^sich\s+/, '') : lang === 'fr' ? k.replace(/^(se\s+|s')/, '') : lang === 'cs' ? k.replace(/\s+(se|si)$/, '') : k.replace(/-se$/, '');
 const rowSort = (a, b) => a.k < b.k ? -1 : a.k > b.k ? 1 : a.a - b.a || a.r - b.r;
 /* Corrections of reported mistakes: manifest.json "corrections" (format in docs/CORRECTIONS.md). They are applied to
    every entry as it is loaded, and again when its examples and background arrive. */
@@ -234,16 +264,27 @@ function addRows(lang, entries) {
   }
   rows.sort(rowSort);
 }
+function indexLang(lang, entries) {
+  addRows(lang, entries || []);
+  const c = (D.manifest.counts || {})[lang];
+  D.count[lang] = (c && c.words_for_suggestions) || D.idx[lang].length;
+  D.entries[lang] = (c && c.entries) || (entries || []).length;
+  D.top[lang] = D.idx[lang].filter(x => !x.a && x.r < 1e9).sort((a, b) => a.r - b.r).slice(0, 60);
+  D.loaded.add(lang);
+}
 function buildIndex(out) {
-  for (const lang of Object.keys(REG)) addRows(lang, out[lang] || []);
-  const c = D.manifest.counts || {};
-  for (const lang of Object.keys(REG)) {
-    D.count[lang] = (c[lang] && c[lang].words_for_suggestions) || D.idx[lang].length;
-    D.entries[lang] = (c[lang] && c[lang].entries) || (out[lang] || []).length;
-    D.top[lang] = D.idx[lang].filter(x => !x.a && x.r < 1e9).sort((a, b) => a.r - b.r).slice(0, 60);
-  }
+  for (const lang of Object.keys(out)) indexLang(lang, out[lang]);
+  for (const l of LANGS) if (!D.count[l.id]) { const c = (D.manifest.counts || {})[l.id]; if (c) { D.count[l.id] = c.words_for_suggestions; D.entries[l.id] = c.entries; } }
   D.ready = true;
 }
+/* a language added in Settings: its common words, then their examples and background */
+async function loadLang(lang) {
+  if (D.loaded.has(lang)) return;
+  const f = D.manifest.files.find(x => x.tier === 'core' && x.lang === lang); if (!f) throw new Error('No data for ' + lang);
+  indexLang(lang, await getFile(f.file, f.sha256));
+  loadDetails().then(() => { if (state.status === 'done') render(false); }).catch(() => {});
+}
+const dataLangs = () => (D.manifest ? [...new Set(D.manifest.files.filter(f => f.tier === 'core').map(f => f.lang))] : LANGS.map(l => l.id)).filter(l => LANGS.some(x => x.id === l));
 /* the extended and long-tail tiers carry only some fields: fill in the rest as empty */
 function expand(e) {
   const x = Object.assign({ level: null, frequency_rank: null, ipa: { default: null, regional: {} }, noun: null, verb: null, adjective: null, governs: [],
@@ -396,9 +437,9 @@ function usedIn(e, s) {
   return e.used_in || null;
 }
 function visibleSenses(e) {
-  return e.senses.map((s, i) => ({ s, i })).filter(({ s }) => !(e.lang !== 'de' && hiddenRoute(s, 'de')) && Object.keys(REG).some(l => l !== e.lang && trIds(s, l).length));
+  return e.senses.map((s, i) => ({ s, i })).filter(({ s }) => !(e.lang !== 'de' && hiddenRoute(s, 'de')) && S.order.some(l => l !== e.lang && trIds(s, l).length));
 }
-const linkedIds = e => [...e.senses.flatMap(s => Object.values(s.translations).flat()), ...(e.synonyms || [])];
+const linkedIds = e => [...e.senses.flatMap(s => Object.values(s.translations).flat()), ...(e.synonyms || [])].filter(id => S.order.includes(id.slice(0, id.indexOf(':'))));      // only the languages on screen
 
 
 /* ---------- state ---------- */
@@ -466,7 +507,7 @@ function setRoute(e, sense, replace) {
   try { history[replace ? 'replaceState' : 'pushState'](null, '', h); } catch (err) {}
 }
 async function openRoute() {
-  const m = /^#\/(en|de|fr|pt)\/([^/]+)(?:\/(\d+))?$/.exec(location.hash || ''); if (!m || !D.ready) return false;
+  const m = /^#\/(en|de|fr|pt|cs)\/([^/]+)(?:\/(\d+))?$/.exec(location.hash || ''); if (m && !S.order.includes(m[1])) return false; if (!m || !D.ready) return false;
   const [w, pos] = decodeURIComponent(m[2]).split('~'), lang = m[1];
   const r = await find(lang, w).catch(() => ({ hits: [] }));
   const hit = r.hits.find(x => x.lemma === w && (!pos || x.pos === pos)) || r.hits[0];
@@ -480,7 +521,7 @@ window.addEventListener('popstate', () => { openRoute(); });
 function quad() {
   const e = state.entry, s = e.senses[state.sense], q = {}, alts = {};
   q[e.lang] = e;
-  for (const l of Object.keys(REG)) {
+  for (const l of S.order) {
     if (l === e.lang) continue;
     const ids = s ? trIds(s, l) : [];
     alts[l] = ids;
@@ -493,7 +534,7 @@ function quad() {
 const ss = s => String(s).replace(/ß/g, 'ss');
 const H_ASPIRE = new Set('hache haie haine hall halte hamac hamburger hameau hamster hanche handicap hangar harcèlement hardi harem hareng haricot harpe hasard hâte hausse haut hauteur héros hibou hiérarchie hockey homard honte hoquet hors housse hublot huit hurlement hutte'.split(' '));
 function article(lang, e, word, plural) {
-  const g = e.noun && e.noun.gender; if (!g) return '';
+  const g = e.noun && e.noun.gender; if (!g || lang === 'cs') return '';          // Czech has no articles
   if (lang === 'de') return plural ? 'die' : ({ m: 'der', f: 'die', n: 'das' }[g] || '');
   if (lang === 'fr') {
     if (plural) return 'les';
@@ -513,6 +554,10 @@ function regionView(e) {
   const v = isBase ? null : (e.regional_variants || []).find(x => x.region === R);
   const o = { word: (v && v.form) || e.lemma, note: v ? v.note : null, changed: !!(v && v.form && v.form !== e.lemma) };
   o.article = o.changed && v.article ? v.article : null;      // Sahne -> der Rahm: the Swiss word has its own gender
+  // the same word with another gender in this region (das Tram in Switzerland, die Tram in Germany)
+  const gOf = r => (e.noun && e.noun.gender_regional && e.noun.gender_regional[r.toUpperCase()]) || (e.noun && e.noun.gender);
+  o.gender = o.article ? ({ der: 'm', die: 'f', das: 'n' }[o.article] || (e.noun && e.noun.gender)) : e.noun ? gOf(main) : null;
+  if (!o.article && e.noun && o.gender !== e.noun.gender && lang === 'de') o.article = { m: 'der', f: 'die', n: 'das' }[o.gender] || null;
   const reg = e.ipa.regional || {};
   o.ipa = (!isBase && reg[R]) || e.ipa.default; o.narrow = !!e.ipa.narrow && o.ipa === e.ipa.default;
   o.ipaFrom = !isBase && !reg[R] && o.ipa ? BASE[lang] : null;     // no transcription of its own: the base region's is shown, and said so
@@ -530,7 +575,9 @@ function regionView(e) {
     const rv = base ? null : (e.regional_variants || []).find(x => x.region === RR);
     const parts = [];
     const w = (rv && rv.form) || e.lemma;
-    if (w !== o.word) parts.push(withArt(rv && rv.article ? rv.article : (e.noun ? article(lang, e, w) : ''), w));
+    const gR = e.noun && e.noun.gender_regional && e.noun.gender_regional[RR];
+    const artR = rv && rv.article ? rv.article : gR && lang === 'de' ? { m: 'der', f: 'die', n: 'das' }[gR] : e.noun ? article(lang, e, w) : '';
+    if (w !== o.word || (e.noun && lang === 'de' && (gR || e.noun.gender) !== o.gender)) parts.push(withArt(artR, w));
     if (rv && rv.plural && rv.plural !== o.plural) parts.push('pl. ' + rv.plural);
     const ax = e.verb ? ((!base && e.verb.aux_regional && e.verb.aux_regional[RR]) || e.verb.aux) : null;
     if (ax && ax !== o.aux) parts.push('auxiliary ' + ax);
@@ -550,13 +597,37 @@ const frJe = w => /^[aeiouyhàâéèêîôûœ]/i.test(w) ? "j'" + w : 'je ' + w
 function canForms(e) {
   const b = e[e.pos]; if (!b || !['noun', 'verb', 'adjective'].includes(e.pos)) return false;
   const multi = /[ '’]/.test(e.lemma);
+  if (e.lang === 'cs') return csTables(e).some(x => x.rows.length);
   if (e.pos === 'verb') return !!b.principal_parts && (e.lang === 'en' || !multi);
   if (e.pos === 'noun') return e.lang === 'de' ? !!(b.gender && (b.genitive || b.plural)) : !!b.plural;
   if (e.lang === 'de') return !multi;
   if (e.lang === 'en') return !!b.comparison;
   return !!b.agreement || !multi;
 }
+function csTables(e) {          // Czech: the forms come from Wiktionary's tables as stored (no rules)
+  const b = e[e.pos] || {}, sec = (title, rows) => ({ title, rows: rows.filter(Boolean) });
+  if (e.pos === 'noun' && b.cases) {
+    const N = [['nom', '1 nominativ (who? what?)'], ['gen', '2 genitiv (of whom?)'], ['dat', '3 dativ (to whom?)'], ['acc', '4 akuzativ (whom? what?)'], ['voc', '5 vokativ (calling)'], ['loc', '6 lokál (about whom?)'], ['ins', '7 instrumentál (with whom?)']];
+    return [sec('Pády (cases): singular · plural', N.map(([k, n]) => b.cases[k] ? [n, [b.cases[k][0], b.cases[k][1]].map(x => x || '—').join(' · '), false] : null))];
+  }
+  if (e.pos === 'verb' && b.conj) {
+    const c = b.conj, pr = ['já', 'ty', 'on/ona/ono', 'my', 'vy', 'oni'], T = [];
+    if (c.present) T.push(sec(b.class === 'perfective' ? 'Budoucí čas (future: a perfective verb has no present)' : 'Přítomný čas (present)', c.present.map((x, i) => x ? [pr[i], x, false] : null)));
+    if (b.class !== 'perfective') T.push(sec('Budoucí čas (future)', [['já', 'budu ' + e.lemma, false], ['on/ona', 'bude ' + e.lemma, false]]));
+    if (c.past) T.push(sec('Minulý čas (past)', [c.past.m ? ['on', c.past.m, false] : null, c.past.m ? ['já (man)', c.past.m + ' jsem', false] : null, c.past.f ? ['ona', c.past.f, false] : null, c.past.n ? ['ono', c.past.n, false] : null, c.past.pl ? ['oni', c.past.pl, false] : null]));
+    if (c.imperative) T.push(sec('Rozkazovací způsob (commands)', [c.imperative[0] ? ['ty', c.imperative[0] + '!', false] : null, c.imperative[1] ? ['vy', c.imperative[1] + '!', false] : null]));
+    return T;
+  }
+  if (e.pos === 'adjective') {
+    const a = b.agreement, T = [];
+    if (a) T.push(sec('Shoda (agreement)', [['masculine', a[0], false], ['feminine', a[1], false], ['neuter', a[2], false], a[3] ? ['plural (people)', a[3], false] : null]));
+    if (b.comparison) T.push(sec('Stupňování (comparison)', [['positive', e.lemma, false], ['comparative', b.comparison[0], false], ['superlative', b.comparison[1], false]]));
+    return T;
+  }
+  return [];
+}
 function tables(e, rv) {
+  if (e.lang === 'cs') return csTables(e);
   const f = FLTForms.forms(e), r = FLTForms.regularForms(e), b = e[e.pos], lang = e.lang, pos = e.pos;
   const stored = b.irregular_forms || {};
   const irr = k => {
@@ -815,12 +886,19 @@ function moreBlock(e, ex) {
   return `<div class="extra" lang="en">${body.trim() ? body : `<p>${esc(t('more.none', 'No background is stored for this word yet.'))}</p>`}${sourcesLine(e, ex, lang)}<p><a href="${esc(issue)}" target="_blank" rel="noopener">⚑ ${esc(t('report', 'Report a mistake in this entry'))}</a> <span class="hint">${esc(t('report.h', '(opens GitHub; a free account is needed)'))}</span></p></div>`;
 }
 /* the short grammar line under the headword: "der Tisch · die Tische", "geht · ging · ist gegangen" */
+const csGender = n => ({ m: n.animate === true ? 'masculine animate' : n.animate === false ? 'masculine inanimate' : 'masculine', f: 'feminine', n: 'neuter' }[n.gender] || '');
 function summary(e, rv, art) {
   const lang = e.lang, n = e.noun, v = e.verb, a = e.adjective, parts = [];
   if (e.pos === 'noun' && n) {
-    if (lang !== 'en') parts.push(`${artHtml(art, n.gender)}${art && !art.endsWith("'") ? ' ' : ''}<span class="form">${esc(rv.word)}</span>${gram(lang === 'de' ? 'gender_de' : 'gender_romance')}`);
+    if (lang === 'cs') parts.push(`<span class="form ${gclass(n.gender)}">${esc(csGender(n))}</span>${gram('gender_cs')}`);
+    else if (lang !== 'en') parts.push(`${artHtml(art, rv.gender || n.gender)}${art && !art.endsWith("'") ? ' ' : ''}<span class="form">${esc(rv.word)}</span>${gram(lang === 'de' ? 'gender_de' : 'gender_romance')}`);
     if (rv.plural) { const pa = lang === 'en' ? '' : article(lang, e, rv.plural, true); parts.push(`${pa ? `<span class="art g-pl">${esc(pa)}</span> ` : ''}<span class="form">${diffMark(rv.word, rv.plural)}</span>${n.plural_regular === false && !rv.changed ? ' ' + badge(false) : ''}${lang === 'de' ? gram('plural_de') : ''}`); }
     else if (n.plural === null && lang !== 'en' && e.tier === 'core') parts.push(`<span class="sub inl">${esc(t('sum.nopl', 'no plural'))}</span>`);
+  } else if (e.pos === 'verb' && v && lang === 'cs') {           // Czech: aspect (and its partner), já-form, past
+    const c = v.conj || {};
+    if (v.class) parts.push(`<span class="sub inl">${esc(t('cs.asp.' + v.class, v.class))}${v.aspect_pair ? ` · ${esc(t('cs.asp.pair.' + v.class, v.class === 'perfective' ? 'imperfective' : 'perfective'))}: <button class="lnk" data-go="cs:${esc(v.aspect_pair)}" lang="cs">${esc(v.aspect_pair)}</button>` : ''}</span>${gram('aspect_cs')}`);
+    if (c.present && c.present[0]) parts.push(`<span class="form">já ${esc(c.present[0])}</span>`);
+    if (c.past && c.past.m) parts.push(`<span class="form">on ${esc(c.past.m)}</span>`);
   } else if (e.pos === 'verb' && v) {
     const pp = v.principal_parts;
     if (pp) {
@@ -828,9 +906,9 @@ function summary(e, rv, art) {
       const diffMark = (a, b, vowels) => irr ? diffMarkRaw(a, b, vowels) : esc(b);
       if (lang === 'de') { const ax = (rv.aux || 'haben').split('/').map(x => x === 'sein' ? 'ist' : 'hat').join('/'); const p2 = pp[2] && pp[2].startsWith('ge') && !base.startsWith('ge') ? 'ge' + diffMark(base, pp[2].slice(2), true) : pp[2] && diffMark(base, pp[2], true); [v.present_3sg && diffMark(base, v.present_3sg, true), pp[1] && diffMark(base, pp[1], true), p2 ? esc(ax) + ' ' + p2 : null].filter(Boolean).forEach(x => parts.push(`<span class="form">${x}</span>`)); }
       else if (lang === 'en' && v.class === 'modal') { if (pp[1]) parts.push(`<span class="form">${esc(pp[1])}</span>`); parts.push(`<span class="sub inl">${esc(t('sum.modal', 'modal verb: no -s, no participle'))}</span>`); }
-      else if (lang === 'en') { const f = FLTForms.forms(e); [f['3sg'] && esc(f['3sg']), pp[1] && diffMark(base, pp[1], true), pp[2] && 'has ' + diffMark(base, pp[2], true)].filter(Boolean).forEach(x => parts.push(`<span class="form">${x}</span>`)); }
+      else if (lang === 'en') { const f = FLTForms.forms(e); [f['3sg'] && esc(f['3sg']), pp[1] && (irr ? irrForm('en', base, 1, pp[1]) : esc(pp[1])), pp[2] && 'has ' + (irr ? irrForm('en', base, 2, pp[2]) : esc(pp[2]))].filter(Boolean).forEach(x => parts.push(`<span class="form">${x}</span>`)); }
       else if (lang === 'fr') [pp[1] ? esc(frJe(pp[1])) : null, pp[2] ? (rv.aux === 'être' ? 'je suis ' + esc(pp[2]) + '(e)' : "j'ai " + esc(pp[2])) : null].filter(Boolean).forEach(x => parts.push(`<span class="form">${x}</span>`));
-      else pp.slice(1).filter(Boolean).forEach(x => parts.push(`<span class="form">${diffMark(base, x, true)}</span>`));
+      else pp.slice(1).forEach((x, k) => { if (x) parts.push(`<span class="form">${irr ? irrForm(lang, base, k + 1, x) : esc(x)}</span>`); });
     }
     if (rv.aux && (lang === 'de' || lang === 'fr')) parts.push(`<button class="aux"${lang === 'de' ? ' data-gram="perfect_de"' : lang === 'fr' ? ' data-gram="fr_passe"' : ''} title="${esc(t('row.aux', 'Auxiliary'))}">+ ${esc(rv.aux.replace('/', ' / '))}</button>`);
   } else if (e.pos === 'adjective' && a) {
@@ -860,7 +938,8 @@ function genderHint(e) {
   return `<p class="tip" lang="en">💡 ${t('hint.gender.exc', 'Exception: most nouns ending in <b>-{end}</b> are {g} ({art}, {p} %), this one is not.', { end: esc(r.end), g: esc(gname(r.g)), art: artHtml(art, r.g), p: pct })}</p>`;
 }
 function falseFriends(e) {
-  return FLTLearn.FALSE_FRIENDS.filter(x => (x[0] === e.lang && x[1] === e.lemma) || (x[2] === e.lang && x[3] === e.lemma))
+  const mine = new Set([S.speak, ...S.order].filter(Boolean));      // only languages on screen or the one I speak
+  return FLTLearn.FALSE_FRIENDS.filter(x => ((x[0] === e.lang && x[1] === e.lemma) && mine.has(x[2])) || ((x[2] === e.lang && x[3] === e.lemma) && mine.has(x[0])))
     .map(x => { const other = x[0] === e.lang ? [x[2], x[3]] : [x[0], x[1]]; return `<p class="warn" lang="en">⚠ ${t('ff.title', 'False friend with {lang} “{w}”.', { lang: esc(LNAME[other[0]]), w: esc(other[1]) })} ${esc(x[4])}</p>`; }).join('');
 }
 /* verbs with the same vowel change (singen sang gesungen ~ trinken trank getrunken); nouns with the same plural */
@@ -955,7 +1034,7 @@ function card(lang, e, alts, ex, i, q) {
   const lv = lvlBadge(e);
   let html = `<article class="card${known ? ' known' : ''}" lang="${LOCALE[lang][S.main[lang]]}" data-id="${esc(e.id)}" data-lang="${lang}" style="--i:${i}">
     <span class="tab">${l.code}</span>
-    <div class="hwrow"><button class="star${fav ? ' on' : ''}" data-act="fav" aria-pressed="${fav}" aria-label="${esc(fav ? t('act.unsave', 'Remove from my words') : t('act.save', 'Save to my words'))}" title="${esc(fav ? t('act.unsave', 'Remove from my words') : t('act.save', 'Save to my words'))}">${fav ? '★' : '☆'}</button><h2 class="hw${rv.word.length > 13 ? ' xl' : rv.word.length > 8 ? ' lg' : ''}">${art ? artHtml(art, n && n.gender) + (art.endsWith("'") ? '' : ' ') : ''}${esc(rv.word)}</h2>${sayBtn(head, lang)}<button class="loop${loop === lang ? ' on' : ''}" data-act="loop" aria-pressed="${loop === lang}" aria-label="${esc(t('audio.loop', 'Repeat the word'))}" title="${esc(t('audio.loop', 'Repeat the word'))}">⟲</button></div>
+    <div class="hwrow"><button class="star${fav ? ' on' : ''}" data-act="fav" aria-pressed="${fav}" aria-label="${esc(fav ? t('act.unsave', 'Remove from my words') : t('act.save', 'Save to my words'))}" title="${esc(fav ? t('act.unsave', 'Remove from my words') : t('act.save', 'Save to my words'))}">${fav ? '★' : '☆'}</button><h2 class="hw${rv.word.length > 13 ? ' xl' : rv.word.length > 8 ? ' lg' : ''}">${art ? artHtml(art, rv.gender || (n && n.gender)) + (art.endsWith("'") ? '' : ' ') : ''}${esc(rv.word)}</h2>${sayBtn(head, lang)}<button class="loop${loop === lang ? ' on' : ''}" data-act="loop" aria-pressed="${loop === lang}" aria-label="${esc(t('audio.loop', 'Repeat the word'))}" title="${esc(t('audio.loop', 'Repeat the word'))}">⟲</button></div>
     <div class="pron">${rv.ipa ? (rv.ipaFrom ? `<span class="ipafrom" lang="en" title="${esc(t('ipa.from.tip', 'Wiktionary has no separate transcription for {r}; this is the pronunciation of {b}', { r: RNAME[S.main[lang]], b: RNAME[rv.ipaFrom] }))}">${flag(rv.ipaFrom, true)}</span>` : '') + ipaHtml(rv.ipa, rv.narrow, lang, head) + (rv.ipaFrom ? `<span class="sub ipanote" lang="en">${esc(t('ipa.asin', 'as in {b}', { b: RNAME[rv.ipaFrom] }))}</span>` : '') : ''}<span class="pos" lang="en">${esc(t('pos.' + pos, pos))}${n && n.gender ? ' · ' + esc((rv.article && { der: 'm', die: 'f', das: 'n' }[rv.article]) || n.gender) : ''}</span>${lv}${regTag(e === state.entry ? sn : null)}${e.verified ? `<span class="ver" lang="en" title="${esc(t('ver.tip', 'Checked by a person'))}">✓ ${esc(t('ver', 'checked'))}</span>` : ''}</div>
     ${summary(e, rv, art)}
     <div class="acts" lang="en">
@@ -1157,7 +1236,7 @@ function buildSlots() {
 }
 const SR = window.SpeechRecognition || window.webkitSpeechRecognition || null;
 function sszKey() { document.querySelectorAll('#chars-de [data-ch="ß"]').forEach(b => { b.hidden = S.main.de === 'ch'; }); }   // no ß key in Swiss German
-const CHARS = { de: ['ä', 'ö', 'ü', 'ß', 'Ä', 'Ö', 'Ü'], fr: ['é', 'è', 'ê', 'ë', 'à', 'â', 'î', 'ï', 'ô', 'û', 'ù', 'ç', 'œ'], pt: ['á', 'à', 'â', 'ã', 'é', 'ê', 'í', 'ó', 'ô', 'õ', 'ú', 'ç'] };
+const CHARS = { de: ['ä', 'ö', 'ü', 'ß', 'Ä', 'Ö', 'Ü'], fr: ['é', 'è', 'ê', 'ë', 'à', 'â', 'î', 'ï', 'ô', 'û', 'ù', 'ç', 'œ'], pt: ['á', 'à', 'â', 'ã', 'é', 'ê', 'í', 'ó', 'ô', 'õ', 'ú', 'ç'], cs: ['á', 'č', 'ď', 'é', 'ě', 'í', 'ň', 'ó', 'ř', 'š', 'ť', 'ú', 'ů', 'ý', 'ž'] };
 /* any-language box: suggestions from all four languages; the language is the one that has the word */
 function anySuggest(v) {
   const q = stripKey('en', fold(v)); if (!q) return [];
@@ -1237,6 +1316,8 @@ function applyTexts() {         // the fixed texts of the page, in the interface
 document.addEventListener('click', ev => {
   const g = ev.target.closest('[data-gram]'); if (g && window.FLTViews) { ev.stopPropagation(); FLTViews.grammar(g.dataset.gram); return; }
   const o = ev.target.closest('[data-open]'); if (o) { openId(o.dataset.open); return; }
+  const gw = ev.target.closest('.panel [data-go], #explore [data-go]');     // a word link in a page (False friends): look it up
+  if (gw) { const i = gw.dataset.go.indexOf(':'); translate(gw.dataset.go.slice(0, i), gw.dataset.go.slice(i + 1)); const c = $('#cards'); if (c) setTimeout(() => c.scrollIntoView({ behavior: animOn() ? 'smooth' : 'auto', block: 'start' }), 300); return; }
 }, true);
 $('#status').addEventListener('click', ev => {
   const b = ev.target.closest('button'); if (!b) return;
@@ -1300,6 +1381,21 @@ document.addEventListener('keydown', ev => {
 });
 
 /* ---------- boot ---------- */
+function paintCounts() { S.order.forEach(l => { const el = $('#cnt-' + l); if (el) el.textContent = t('slot.count', '{n} words', { n: num(D.count[l]) }); }); }
+function paintTotal() {
+  const el = $('#lex-total'); if (!el) return;
+  const ls = dataLangs().filter(l => D.count[l]);
+  el.textContent = t('foot.total', '{n} words and forms, {e} entries:', { n: num(ls.reduce((a, l) => a + D.count[l], 0)), e: num(ls.reduce((a, l) => a + D.entries[l], 0)) }) + ' ' + ls.map(l => `${LNAME[l]} ${num(D.entries[l])}`).join(', ') + '.';
+}
+/* Settings › My languages: 2 to 4 boxes, any of the app's languages, in this order */
+async function setLanguages(order) {
+  const o = cleanOrder(order.filter(l => dataLangs().includes(l)));
+  for (const l of o) if (!D.loaded.has(l)) { state.msg = t('lang.loading', 'Loading {lang}…', { lang: LNAME[l] }); toast(state.msg); await loadLang(l); }
+  S.order = o; if (S.learning && !o.includes(S.learning)) S.learning = o.find(l => l !== S.speak) || null;
+  saveSettings(); buildSlots(); paintCounts(); paintTotal();
+  if (window.FLTViews) FLTViews.syncLangs();
+  if (state.entry) { const e = state.entry; await openEntry(e, state.sense, null, null, { noRoute: true, noPlay: true }); } else render();
+}
 function offlineNote(text) { const el = $('#offline-state'); if (el) el.textContent = text; }
 async function start() {
   applyDisplay(); applyTexts(); buildAny(); buildSlots(); render();
@@ -1307,14 +1403,15 @@ async function start() {
   try {
     const { manifest, out } = await loadData(msg => { state.msg = msg; if (state.status === 'loading') render(); });
     D.manifest = manifest; buildIndex(out);
-    LANGS.forEach(l => { $('#cnt-' + l.id).textContent = t('slot.count', '{n} words', { n: num(D.count[l.id]) }); });
-    $('#lex-total').textContent = t('foot.total', '{n} words and forms, {e} entries:', { n: num(LANGS.reduce((a, l) => a + D.count[l.id], 0)), e: num(LANGS.reduce((a, l) => a + D.entries[l.id], 0)) }) + ' ' + LANGS.map(l => `${LNAME[l.id]} ${num(D.entries[l.id])}`).join(', ') + '.';
+    paintCounts();
+    paintTotal();
     loadDetails().then(() => { if (state.status === 'done') render(false); if (window.FLTViews) FLTViews.dataReady(); }).catch(() => {});
     paintRecent(); paintWotd();
     if (window.FLTViews) FLTViews.dataReady();
     let opened = await openRoute().catch(() => false);
     if (!opened && P.last && P.last.id) { await ensureIds([P.last.id]); const e = D.byId.get(P.last.id); if (e) { state.others = findLoaded(e.lang, e.lemma); await openEntry(e, P.last.sense, null, null, { noRoute: true, noPlay: true }); opened = true; } }
-    if (!opened) { const first = findLoaded('de', 'stehen')[0] || D.byId.get(D.top.de[0].id); state.others = findLoaded(first.lang, first.lemma); await openEntry(first, null, null, null, { noRoute: true, noPlay: true }); }
+    if (!opened) { const fl = S.learning && S.order.includes(S.learning) ? S.learning : S.order.includes('de') ? 'de' : S.order[1] || S.order[0];
+      const first = (fl === 'de' && findLoaded('de', 'stehen')[0]) || D.byId.get((D.top[fl][5] || D.top[fl][0]).id); state.others = findLoaded(first.lang, first.lemma); await openEntry(first, null, null, null, { noRoute: true, noPlay: true }); }
   } catch (err) {
     state = Object.assign(state, { status: 'error', error: String(err && err.message || err), near: [] }); render();
   }
@@ -1326,7 +1423,7 @@ async function start() {
       .catch(() => offlineNote(t('foot.nooffline', 'Offline use is not available in this browser.')));
   } else offlineNote(t('foot.needweb', 'Offline use needs the app to be opened from its web address.'));
 }
-const API = { D, S, P, DEFAULTS, t, esc, num, flag, fold, LNAME, RNAME, REG, BASE, LOCALE, LANGS, CEFR, LVORD, levelOf, lvlBadge, article, artHtml, gclass, gname, withArt, regionView,
+const API = { regularForm, setLanguages, dataLangs, cleanOrder, MIN_SLOTS, MAX_SLOTS, UI_LANGS,  D, S, P, DEFAULTS, t, esc, num, flag, fold, LNAME, RNAME, REG, BASE, LOCALE, LANGS, CEFR, LVORD, levelOf, lvlBadge, article, artHtml, gclass, gname, withArt, regionView,
   getFile, find, findLoaded, translate, openEntry, openId, ensureIds, ensureWord, speak, speakAll, withTo, voicesFor, voiceFor, get voices() { return voices; }, saveP, saveSettings, loadSettings, toast, render, applyDisplay, applyTexts,
   buildSlots, paintRecent, paintWotd, tables, canForms, routeOf, firstTr: null, trIds, toggleFav, diffMark, animOn, quad, visibleSenses, idParts, sentenceHtml, regionScore, get state() { return state; } };
 window.FLT = Object.assign(API, { ready: null });

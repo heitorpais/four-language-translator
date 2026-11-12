@@ -544,7 +544,7 @@ def fit(e, ref):
 
 def main():
     entries = rjson(os.path.join(WORK, 'core.json'))
-    src = {'de': {}, 'en': collections.defaultdict(list), 'fr': collections.defaultdict(list), 'pt': collections.defaultdict(list)}
+    src = {'de': {}, 'en': collections.defaultdict(list), 'fr': collections.defaultdict(list), 'pt': collections.defaultdict(list), 'cs': collections.defaultdict(list)}
     import gzip
     for L in list(LANGS) + ['library']:
         fn = os.path.join(WORK, 'tables_%s.jsonl.gz' % L)

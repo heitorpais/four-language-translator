@@ -76,6 +76,44 @@ const FALSE_FRIENDS = [
   ['pt', 'gripe', 'en', 'gripe', 'Portuguese gripe = flu. English gripe = complaint (reclamação).'],
   ['pt', 'injúria', 'en', 'injury', 'Portuguese injúria = insult. English injury = ferimento, lesão.'],
   ['pt', 'polvo', 'fr', 'poulpe', ''],
+  // German and Portuguese
+  ['de', 'Mappe', 'pt', 'mapa', 'German Mappe = folder. Portuguese mapa = map (Karte).'],
+  ['de', 'Dose', 'pt', 'dose', 'German Dose = can, tin. Portuguese dose = dose (Dosis).'],
+  ['de', 'Gymnasium', 'pt', 'ginásio', 'German Gymnasium = academic high school. Portuguese ginásio = gym (Turnhalle, Fitnessstudio).'],
+  ['de', 'Kollege', 'pt', 'colégio', 'German Kollege = colleague. Portuguese colégio = school (Schule).'],
+  ['de', 'Novelle', 'pt', 'novela', 'German Novelle = novella, short novel. Portuguese novela = soap opera (Seifenoper).'],
+  ['de', 'Notiz', 'pt', 'notícia', 'German Notiz = note. Portuguese notícia = news (Nachricht).'],
+  ['de', 'Karton', 'pt', 'cartão', 'German Karton = cardboard box. Portuguese cartão = card (Karte).'],
+  ['de', 'Billion', 'pt', 'bilhão', 'German Billion = a million million (10¹²). Portuguese bilhão = a thousand million (Milliarde).'],
+  ['de', 'Dom', 'pt', 'dom', 'German Dom = cathedral. Portuguese dom = gift, talent (Gabe).'],
+  ['de', 'Marmelade', 'pt', 'marmelada', 'German Marmelade = jam. Portuguese marmelada = quince paste (Quittenbrot).'],
+  ['de', 'Termin', 'pt', 'término', 'German Termin = appointment. Portuguese término = end (Ende).'],
+  ['de', 'Pulver', 'pt', 'pólvora', 'German Pulver = powder. Portuguese pólvora = gunpowder (Schiesspulver).'],
+  ['de', 'Mode', 'pt', 'modo', 'German Mode = fashion. Portuguese modo = way, manner (Art, Weise).'],
+  ['de', 'Zigarre', 'pt', 'cigarro', 'German Zigarre = cigar. Portuguese cigarro = cigarette (Zigarette).'],
+  ['de', 'Rock', 'pt', 'rock', 'German Rock = skirt (also rock music). Portuguese rock = only rock music; skirt is saia.'],
+  // German and French
+  ['de', 'blamieren', 'fr', 'blâmer', 'German blamieren = to embarrass. French blâmer = to blame (tadeln).'],
+  ['de', 'Konkurs', 'fr', 'concours', 'German Konkurs = bankruptcy. French concours = competition, contest (Wettbewerb).'],
+  ['de', 'Promotion', 'fr', 'promotion', 'German Promotion = doctorate. French promotion = promotion, special offer (Beförderung, Sonderangebot).'],
+  ['de', 'Lokal', 'fr', 'local', 'German Lokal = pub, restaurant. French local = premises, room (Räumlichkeit).'],
+  ['de', 'Gymnasium', 'fr', 'gymnase', 'German Gymnasium = academic high school. French gymnase = gym (Turnhalle).'],
+  ['de', 'Bluse', 'fr', 'blouse', 'German Bluse = blouse. French blouse = also a smock or lab coat (Kittel).'],
+  ['de', 'Dose', 'fr', 'dose', 'German Dose = can, tin. French dose = dose (Dosis).'],
+  ['de', 'Kommode', 'fr', 'commode', 'German Kommode = chest of drawers. French commode = also an adjective: convenient, easy (bequem).'],
+  // French and Portuguese
+  ['fr', 'attendre', 'pt', 'atender', 'French attendre = to wait (esperar). Portuguese atender = to answer, to serve (répondre, servir).'],
+  ['fr', 'pourtant', 'pt', 'portanto', 'French pourtant = however (porém). Portuguese portanto = therefore (donc).'],
+  ['fr', 'logo', 'pt', 'logo', 'French logo = logo only. Portuguese logo = also soon, right away (bientôt).'],
+  ['fr', 'grade', 'pt', 'grade', 'French grade = rank (posto). Portuguese grade = railing, grid; also class schedule (grille).'],
+  ['fr', 'costume', 'pt', 'costume', 'French costume = suit (terno). Portuguese costume = habit, custom (habitude).'],
+  ['fr', 'rouge', 'pt', 'roxo', 'French rouge = red (vermelho). Portuguese roxo = purple (violet).'],
+  ['fr', 'tasse', 'pt', 'taça', 'French tasse = cup (xícara). Portuguese taça = wine glass, trophy (verre à pied, coupe).'],
+  ['fr', 'garçon', 'pt', 'garçom', 'French garçon = boy (menino). Portuguese garçom = waiter (serveur).'],
+  ['fr', 'talon', 'pt', 'talão', 'French talon = heel (calcanhar). Portuguese talão = stub, counterfoil (souche).'],
+  ['fr', 'prendre', 'pt', 'prender', 'French prendre = to take (pegar). Portuguese prender = to arrest, to fasten (arrêter, attacher).'],
+  ['fr', 'procurer', 'pt', 'procurar', 'French procurer = to obtain (conseguir). Portuguese procurar = to look for (chercher).'],
+  ['fr', 'propre', 'pt', 'próprio', 'French propre = also clean (limpo). Portuguese próprio = own, proper only (propre à).'],
 ].filter(x => x[4]);
 
 /* gender rules: [lang, ending, gender] */
@@ -88,6 +126,7 @@ const GENDER_RULES = [
   ['fr', 'ment', 'm'], ['fr', 'age', 'm'], ['fr', 'isme', 'm'], ['fr', 'eau', 'm'], ['fr', 'oir', 'm'], ['fr', 'et', 'm'], ['fr', 'ier', 'm'], ['fr', 'eur', 'm'],
   ['pt', 'ção', 'f'], ['pt', 'são', 'f'], ['pt', 'dade', 'f'], ['pt', 'agem', 'f'], ['pt', 'ude', 'f'], ['pt', 'ência', 'f'], ['pt', 'ância', 'f'], ['pt', 'eza', 'f'],
   ['pt', 'mento', 'm'], ['pt', 'ismo', 'm'], ['pt', 'or', 'm'], ['pt', 'ema', 'm'], ['pt', 'ário', 'm'], ['pt', 'eiro', 'm'], ['pt', 'ão', 'm'],
+  ['cs', 'ost', 'f'], ['cs', 'ice', 'f'], ['cs', 'ka', 'f'], ['cs', 'a', 'f'], ['cs', 'ení', 'n'], ['cs', 'ství', 'n'], ['cs', 'o', 'n'], ['cs', 'tel', 'm'], ['cs', 'ník', 'm'],
 ];
 
 /* CEFR estimate from the frequency rank (most frequent words first) */
@@ -97,6 +136,18 @@ function estimateLevel(rank) { if (!rank) return null; for (const [n, l] of BAND
 
 /* short grammar pages, opened from terms on the cards (ⓘ) */
 const GRAMMAR = {
+  gender_cs: { title: 'Czech gender', body: [
+    'Every Czech noun is masculine, feminine or neuter. There is no article: the ending usually shows the gender.',
+    'Masculine: most nouns ending in a consonant (dům, stůl, muž). Masculine nouns are animate (people and animals: muž, pes) or inanimate (things: dům); the two decline differently.',
+    'Feminine: most nouns ending in -a (žena, kniha), many in -e/-ě (růže, země) and some in a consonant (kost, píseň).',
+    'Neuter: most nouns ending in -o (město, okno), -í (náměstí) and -e (moře, kuře).',
+    'Adjectives and past forms of verbs agree with the gender: dobrý muž, dobrá žena, dobré město; on byl, ona byla, ono bylo.'] },
+  aspect_cs: { title: 'Czech verb aspect', body: [
+    'Most Czech verbs come in pairs: an imperfective verb for an action in progress or repeated (dělat, psát, číst) and a perfective verb for one completed action (udělat, napsat, přečíst).',
+    'Imperfective verbs have a present (dělám = I am doing / I do) and a future with budu (budu dělat = I will be doing).',
+    'Perfective verbs have no present: their present forms mean the future (udělám = I will do it, I will get it done).',
+    'Both have a past: dělal jsem (I was doing / used to do), udělal jsem (I did it, I got it done).',
+    'Verbs of motion have a third form for regular or round trips: jít (go now, on foot), chodit (go regularly).'] },
   cases: { title: 'German cases: Nominativ, Akkusativ, Dativ, Genitiv', text: [
     'German shows the role of a noun in the sentence by its case, mostly visible on the article.',
     'Nominativ: the subject. Der Hund schläft.',

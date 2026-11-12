@@ -470,6 +470,62 @@ def form_with(forms, need, forbid=()):
     return None
 
 
+CASES = ('nominative', 'genitive', 'dative', 'accusative', 'vocative', 'locative', 'instrumental')
+
+
+def czech_grammar(e, word, pc, forms, nforms, head, N, o):
+    """Czech: gender and animacy, the seven cases; aspect, present tense, past (l-participle), imperative; adjective agreement.
+    From the English Wiktionary's head line and inflection tables, with the Czech Wiktionary's forms as a fallback."""
+    allf = forms + [(f[0], f[1]) for f in nforms]
+    good = lambda f: f and f != '-' and not f.startswith('no-') and ' ' not in f.strip()
+    def fw(need, forbid=()):
+        for f, t in allf:
+            ts = set(t)
+            if set(need) <= ts and not (set(forbid) & ts) and good(f) and not ts & {'table-tags', 'inflection-template', 'error-unrecognized-form'}: return f
+        return None
+    if pc == 'noun':
+        g = None; anim = None
+        m = re.search(r'(?:^|\s)' + re.escape(word) + r' (m|f|n)(?: (anim|inan))?\b', head)
+        if m: g = m.group(1); anim = {'anim': True, 'inan': False}.get(m.group(2))
+        if not g:
+            gs = [GENDER[t] for d in N for t in d['tags'] if t in GENDER]
+            if gs: g = gs[0]
+            if 'animate' in [t for d in N for t in d['tags']]: anim = True
+            elif 'inanimate' in [t for d in N for t in d['tags']]: anim = False
+        cases = {}
+        for c in CASES:
+            sg = fw([c, 'singular']) or (word if c == 'nominative' else None); pl = fw([c, 'plural'])
+            if sg or pl: cases[c[:3]] = [sg, pl]
+        pl = (cases.get('nom') or [None, None])[1]
+        e['noun'] = {'gender': g, 'plural': pl, 'plural_alt': [], 'plural_rule': None, 'plural_regular': None, 'genitive': (cases.get('gen') or [None])[0],
+                     'irregular_forms': {}, 'animate': anim if g == 'm' else None, 'cases': cases or None}
+        if g or pl: o['noun'] = 'wiktionary'
+    elif pc == 'verb':
+        asp = 'perfective' if re.search(r'(?:^|\s)' + re.escape(word) + r' pf\b', head) else 'imperfective' if re.search(r'(?:^|\s)' + re.escape(word) + r' impf\b', head) else \
+              'biaspectual' if re.search(r'(?:^|\s)' + re.escape(word) + r' (biasp|impf or pf|pf or impf)\b', head) else None
+        if not asp:
+            ts = {t for d in N for t in d['tags']}
+            asp = 'perfective' if 'perfective' in ts else 'imperfective' if ('imperfective' in ts or 'imperfect' in ts) else None
+        pair = re.search(r'\((?:imperfective|perfective) ([^\s,)]+)', head)
+        pres = [fw([p, n, 'present', 'indicative'], ('imperative',)) for n in ('singular', 'plural') for p in ('first-person', 'second-person', 'third-person')]
+        past = {k: fw(['participle', 'past', 'singular'] + t, ('passive',)) for k, t in (('m', ['masculine']), ('f', ['feminine']), ('n', ['neuter']))}
+        past['pl'] = fw(['participle', 'past', 'plural', 'masculine', 'animate'], ('passive',))
+        imp = [fw(['imperative', 'second-person', 'singular']), fw(['imperative', 'second-person', 'plural'])]
+        fut = [fw(['first-person', 'singular'], ('present', 'imperative', 'participle', 'past'))] if asp != 'perfective' else []
+        v = {'regular': None, 'class': asp, 'aux': None, 'aux_regional': {}, 'principal_parts': [word, pres[0], past['m']] if (pres[0] or past['m']) else None,
+             'present_3sg': pres[2], 'irregular_forms': {}, 'aspect_pair': pair.group(1) if pair else None,
+             'conj': {'present': pres if any(pres) else None, 'past': past if any(past.values()) else None, 'imperative': imp if any(imp) else None, 'future_1sg': fut[0] if fut else None}}
+        e['verb'] = v
+        if asp or v['principal_parts']: o['verb'] = 'wiktionary'
+    elif pc == 'adj':
+        a = {'agreement': None, 'comparison': None, 'comparison_regular': None, 'irregular_forms': {}}
+        f = fw(['feminine', 'nominative', 'singular']); n = fw(['neuter', 'nominative', 'singular']); pl = fw(['animate', 'masculine', 'nominative', 'plural'])
+        if f or n: a['agreement'] = [word, f or word, n or word, pl]; o['adjective'] = 'wiktionary'
+        comp = fw(['comparative']); sup = fw(['superlative'])
+        if comp and sup: a['comparison'] = [comp, sup]; a['comparison_regular'] = None
+        e['adjective'] = a
+
+
 def build_linked(lang, word, pc):
     pos = POS_MAP[pc]
     e = new_entry(lang, word, pos)
@@ -486,6 +542,9 @@ def build_linked(lang, word, pc):
     forms = [f for d in E for f in d['forms']]
     nforms = [f for d in N for f in d['forms']]
     head = ' '.join(h for d in E for h in d['head'])
+    if lang == 'cs':
+        czech_grammar(e, word, pc, forms, nforms, head, N, o)
+        pc = None                     # the blocks below are for the other languages
     if pc == 'noun':
         gender = None
         if lang != 'en':

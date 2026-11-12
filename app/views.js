@@ -9,7 +9,8 @@ const $ = s => document.querySelector(s);
 const t = (k, en, v) => A.t(k, en, v), esc = s => A.esc(s);
 const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 const LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
-const ALL = ['en', 'de', 'fr', 'pt'];
+const ALL = ['en', 'de', 'fr', 'pt'];      // the languages on screen, in the reader's order (kept in step with A.S.order by syncLangs)
+function syncLangs() { ALL.length = 0; ALL.push(...A.S.order); if (window.FLTProgress && FLTProgress.syncLangs) FLTProgress.syncLangs(A.S.order); }
 const POSLIST = ['noun', 'verb', 'adjective', 'adverb', 'preposition', 'pronoun', 'conjunction', 'numeral', 'interjection', 'determiner', 'article', 'phrase'];
 const V = { tab: { explore: 'level', me: 'saved', }, xlang: null, xlevel: 'A1', xpos: 'noun', xletter: 'a', pr: null };
 const coreOf = lang => { const out = []; for (const e of A.D.byId.values()) if (e.lang === lang && e.tier === 'core') out.push(e); return out.sort((a, b) => (a.frequency_rank || 1e9) - (b.frequency_rank || 1e9)); };
@@ -68,10 +69,18 @@ function paintExplore() {
     const list = all.filter(e => A.fold(e.lemma)[0] === V.xletter).sort((a, b) => A.fold(a.lemma) < A.fold(b.lemma) ? -1 : 1);
     body += listChips(list, t('x.az.n', '{n} common words. Rarer words load when you look them up.', { n: A.num(list.length) }));
   } else if (tab === 'irr') {
-    const list = coreOf(lang).filter(e => e.pos === 'verb' && e.verb && e.verb.regular === false && e.verb.principal_parts);
-    body = `<p class="hint">${esc(t('x.irr.n', '{n} irregular verbs, most frequent first. Changed letters are bold.', { n: A.num(list.length) }))}</p><div class="tblwrap"><table class="irrt"><thead><tr><th>${esc(t('x.irr.inf', 'Infinitive'))}</th><th>${esc(t('x.irr.past', 'Past'))}</th><th>${esc(t('x.irr.pp', 'Participle'))}</th>${lang === 'de' || lang === 'fr' ? `<th>${esc(t('row.aux', 'Auxiliary'))}</th>` : ''}<th>${esc(t('lvl.stored', 'Level'))}</th></tr></thead><tbody>${list.slice(0, 400).map(e => { const p = e.verb.principal_parts; return `<tr><td><button class="lnk" data-open="${esc(e.id)}" lang="${lang}">${esc(A.withTo(e.id, e.lemma))}</button></td><td lang="${lang}">${p[1] ? A.diffMark(e.lemma, p[1], true) : ''}</td><td lang="${lang}">${p[2] ? A.diffMark(e.lemma, p[2], true) : ''}</td>${lang === 'de' || lang === 'fr' ? `<td>${esc(e.verb.aux || '')}</td>` : ''}<td>${A.lvlBadge(e, true)}</td></tr>`; }).join('')}</tbody></table></div>`;
+    const list = coreOf(lang).filter(e => e.pos === 'verb' && e.verb && e.verb.regular === false && e.verb.principal_parts && e.verb.principal_parts.slice(1).some(Boolean));
+    body = irrTable(lang, list);
   } else if (tab === 'random') {
     body = `<div class="row"><button class="btn" data-x="random">🎲 ${esc(t('x.random.go', 'Show me a random word'))}</button><label class="ck"><input type="checkbox" id="x-rlevel"${V.rlevel !== false ? ' checked' : ''}> ${esc(t('x.random.mine', 'at my level ({l})', { l: A.S.myLevel }))}</label></div>`;
+  } else if (tab === 'ff') {
+    // false friends between this language and the other languages on screen; the language I speak first
+    const mine = [A.S.speak, ...A.S.order].filter((l, k, a) => l && l !== lang && a.indexOf(l) === k);
+    const pairs = FLTLearn.FALSE_FRIENDS.filter(x => (x[0] === lang && mine.includes(x[2])) || (x[2] === lang && mine.includes(x[0])))
+      .map(x => x[0] === lang ? { w: x[1], ol: x[2], ow: x[3], note: x[4] } : { w: x[3], ol: x[0], ow: x[1], note: x[4] });
+    body = `<p class="hint">${esc(t('x.ff.p', 'Words that look alike in two of your languages but mean something else. They are also marked on the word cards.'))}</p>`
+      + mine.map(o => { const ps = pairs.filter(p => p.ol === o); return ps.length ? `<div class="lst"><b>${A.flag(A.S.main[lang], true)}${esc(A.LNAME[lang])} ↔ ${A.flag(A.S.main[o], true)}${esc(A.LNAME[o])}</b> <span class="hint">${A.num(ps.length)}</span><table class="fft">${ps.map(p => `<tr><td><button class="lnk" data-go="${lang}:${esc(p.w)}" lang="${lang}">${esc(p.w)}</button></td><td>≠</td><td><button class="lnk" data-go="${o}:${esc(p.ow)}" lang="${o}">${esc(p.ow)}</button></td><td class="hint" lang="en">${esc(p.note)}</td></tr>`).join('')}</table></div>` : ''; }).join('')
+      + (pairs.length ? '' : `<p class="hint">${esc(t('x.ff.none', 'No false friends listed for this language yet.'))}</p>`);
   } else if (tab === 'regional') {
     const regs = A.REG[lang].map(r => r.toUpperCase()), by = {};
     regs.forEach(r => { by[r] = []; });
@@ -81,7 +90,7 @@ function paintExplore() {
   } else if (tab === 'about') body = aboutHtml();
   el.innerHTML = `<h2>${esc(t('nav.explore', 'Explore'))}</h2>
     <div class="row"><label for="x-lang">${esc(t('x.lang', 'Language'))}</label>${langSelect('x-lang', lang)}</div>
-    ${tabs('explore', [['level', t('x.tab.level', 'By level')], ['pos', t('x.tab.pos', 'By word type')], ['az', t('x.tab.az', 'A–Z')], ['irr', t('x.tab.irr', 'Irregular verbs')], ['random', t('x.tab.random', 'Random word')], ['regional', t('x.tab.reg', 'Regional words')], ['about', t('x.tab.about', 'About the dictionary')]])}
+    ${tabs('explore', [['level', t('x.tab.level', 'By level')], ['pos', t('x.tab.pos', 'By word type')], ['az', t('x.tab.az', 'A–Z')], ['irr', t('x.tab.irr', 'Irregular verbs')], ['random', t('x.tab.random', 'Random word')], ['regional', t('x.tab.reg', 'Regional words')], ['ff', t('x.tab.ff', 'False friends')], ['about', t('x.tab.about', 'About the dictionary')]])}
     <div class="tabbody">${body}</div>`;
 }
 function listChips(list, head) {
@@ -189,12 +198,13 @@ function exportMe() {
 
 /* ---------- Practice ---------- */
 const MODES = [
-  ['gender', 'der / die / das', ['de', 'fr', 'pt']], ['plural', 'Plural', ['de', 'fr', 'pt', 'en']], ['aux', 'haben / sein', ['de', 'fr']], ['case', 'Preposition + case', ['de']],
+  ['gender', 'der / die / das', ['de', 'fr', 'pt', 'cs']], ['plural', 'Plural', ['de', 'fr', 'pt', 'en', 'cs']], ['aux', 'haben / sein', ['de', 'fr']], ['case', 'Preposition + case', ['de']],
   ['translate', 'Translation', ALL], ['gap', 'Fill the gap', ALL], ['listen', 'Listen and type', ALL], ['parts', 'Principal parts', ['de', 'en']],
-  ['match', 'Matching game (4 languages)', ALL], ['review', 'Review my mistakes', ALL], ['cards', 'Flashcards (spaced repetition)', ALL]];
+  ['match', 'Matching game (all your languages)', ALL], ['review', 'Review my mistakes', ALL], ['cards', 'Flashcards (spaced repetition)', ALL]];
 const modeName = m => t('pr.mode.' + m[0], m[1]);
 function practiceDefaults() {
-  return { mode: 'gender', lang: A.S.learning && A.S.learning !== 'en' ? A.S.learning : 'de', to: A.S.speak || 'en', level: 'mine', source: 'all', list: 0 };
+  const l = learnLang(), m = MODES.find(x => x[0] === (['de', 'fr', 'pt'].includes(l) ? 'gender' : 'translate'));      // English has no der/die/das: it starts with Translation
+  return { mode: m[0], lang: l, want: l, to: A.S.speak && A.S.speak !== l ? A.S.speak : ALL.find(x => x !== l), level: 'mine', source: 'all', list: 0 };
 }
 function paintPractice() {
   const el = $('#practice');
@@ -204,7 +214,9 @@ function paintPractice() {
   if (V.pr && V.pr.q) { el.innerHTML = `<h2>${esc(t('nav.practice', 'Practice'))}</h2>${questionHtml()}`; focusAnswer(); return; }
   const mode = MODES.find(m => m[0] === c.mode) || MODES[0];
   const langs = mode[2];
-  if (!langs.includes(c.lang)) c.lang = langs[0];
+  // the language chosen last (or the one being learned) comes back when the exercise offers it; der/die/das has no English
+  const want = c.want || learnLang();
+  c.lang = langs.includes(want) ? want : langs.includes(learnLang()) ? learnLang() : langs.includes(c.lang) ? c.lang : langs[0];
   el.innerHTML = `<h2>${esc(t('nav.practice', 'Practice'))}</h2>
   ${V.pr && V.pr.done ? resultHtml() : ''}
   <div class="prset">
@@ -220,7 +232,7 @@ function paintPractice() {
 function modeHint(m) {
   return { cards: 'Your saved words and lists. Each card comes back after a gap that grows when you know it (SM-2).', gender: 'Choose the article of the noun.', plural: 'Type the plural.', aux: 'Which auxiliary forms the perfect tense?', case: 'Which case follows the preposition or verb?',
     translate: 'Choose the right translation.', gap: 'Type the missing word of the example sentence.', listen: 'Listen to the word and type it.', parts: 'Type the past form and the participle.',
-    match: 'Find the same word in all four languages.', review: 'The questions you got wrong before, until you get them right.' }[m] || '';
+    match: 'Find the same word in all your languages.', review: 'The questions you got wrong before, until you get them right.' }[m] || '';
 }
 const lvOK = (e, c) => { if (c.level === 'all') return true; const v = A.levelOf(e); if (!v) return false; return c.level === 'mine' ? A.LVORD[v.l] <= A.LVORD[A.S.myLevel] : v.l === c.level; };
 async function pool(c, lang) {
@@ -239,7 +251,8 @@ async function pool(c, lang) {
 }
 const gloss = e => { const s = e.senses.find(x => x.gloss_en) || e.senses[0]; if (!s) return ''; const ui = A.S.ui, tr = ui !== e.lang && A.trIds(s, ui)[0]; return tr ? A.withTo(tr, (A.D.byId.get(tr) || {}).lemma) || s.gloss_en || '' : (s.gloss_en || ''); };
 const firstTr = (e, to) => { for (const s of e.senses) { const ids = A.trIds(s, to); if (ids.length) return ids[0]; } return null; };
-const ART = { de: { m: 'der', f: 'die', n: 'das' }, fr: { m: 'le', f: 'la' }, pt: { m: 'o', f: 'a' } };
+const ART = { de: { m: 'der', f: 'die', n: 'das' }, fr: { m: 'le', f: 'la' }, pt: { m: 'o', f: 'a' }, cs: { m: 'm', f: 'f', n: 'n' } };
+const CS_G = { m: 'masculine (ten)', f: 'feminine (ta)', n: 'neuter (to)' };      // Czech has no article: the gender is chosen by name
 const norm = s => A.fold(String(s || '')).replace(/^(der|die|das|le|la|les|l'|o|a|os|as|the|to)\s+/, '').replace(/['’]/g, "'").replace(/\s+/g, ' ').trim();
 async function makeQuestions(c) {
   const lang = c.lang, qs = [];
@@ -262,9 +275,10 @@ async function one(c, [e], all) {
   const lang = e.lang, rv = A.regionView(e);
   const base = { mode: c.mode, e, lang };
   if (c.mode === 'gender') {
-    if (e.pos !== 'noun' || !e.noun || !ART[lang] || !ART[lang][e.noun.gender]) return null;
+    const g = rv.gender || (e.noun && e.noun.gender);          // the gender of the chosen region (das Tram in Switzerland)
+    if (e.pos !== 'noun' || !e.noun || !ART[lang] || !ART[lang][g]) return null;
     const opts = Object.values(ART[lang]);
-    return Object.assign(base, { prompt: `<span class="big" lang="${lang}">${esc(rv.word)}</span><span class="hint">${esc(gloss(e))}</span>`, choices: opts, answer: ART[lang][e.noun.gender] });
+    return Object.assign(base, { prompt: `<span class="big" lang="${lang}">${esc(rv.word)}</span><span class="hint">${esc(gloss(e))}</span>`, choices: opts, answer: ART[lang][g], names: lang === 'cs' ? CS_G : undefined });
   }
   if (c.mode === 'plural') {
     if (e.pos !== 'noun' || !e.noun || !rv.plural || rv.plural === rv.word) return null;
@@ -304,6 +318,35 @@ async function one(c, [e], all) {
     return Object.assign(base, { prompt: `<span class="big" lang="${lang}">${esc(rv.word)}</span><span class="hint">${esc(gloss(e))} · ${esc(t('pr.q.parts', 'past form, participle'))}</span>`, typed: true, two: true, answer: p[1] + ', ' + p[2], parts: [p[1], p[2]] });
   }
   return null;
+}
+/* Irregular verbs: each language has its own principal parts (Wiktionary's order in principal_parts):
+   de  infinitive, Präteritum, Partizip II   (+ er/sie/es present, auxiliary)
+   en  infinitive, past, past participle
+   fr  infinitive, présent (je), participe passé   (+ auxiliary)
+   pt  infinitive, presente (eu), pretérito perfeito (eu), particípio */
+const IRR_COLS = {
+  de: [['3sg', 'er/sie/es (present)'], [1, 'Präteritum (past)'], [2, 'Partizip II (participle)'], ['aux', 'Auxiliary']],
+  en: [[1, 'Past'], [2, 'Past participle']],
+  fr: [[1, 'Présent (je)'], [2, 'Participe passé (participle)'], ['aux', 'Auxiliary']],
+  pt: [[1, 'Presente (eu)'], [2, 'Pretérito (eu)'], [3, 'Particípio (participle)']] };
+function irrTable(lang, list) {
+  const cols = IRR_COLS[lang] || IRR_COLS.en, ch = lang === 'de' && A.S.main.de === 'ch';
+  const sw = x => ch ? String(x).replace(/ß/g, 'ss') : x;          // Swiss spelling: liess, not ließ
+  const cell = (e, k) => {
+    const v = e.verb, p = v.principal_parts;
+    if (k === 'aux') return `<td>${esc(v.aux || '')}</td>`;
+    const f = k === '3sg' ? v.present_3sg : p[k];
+    if (!f || f === '-') return '<td></td>';
+    const base = k === '3sg' ? e.lemma.replace(/n$/, '') : e.lemma;
+    // German ge- is the regular participle prefix, not a change of the word: only the stem is compared (ge|gang|en)
+    if (lang === 'de' && k === 2 && /^ge/.test(f) && !/^ge/.test(e.lemma)) return `<td lang="${lang}">ge${A.diffMark(sw(base), sw(f.slice(2)), true)}</td>`;
+    if (lang === 'de') return `<td lang="${lang}">${A.diffMark(sw(base), sw(f), true)}</td>`;      // German: the changed stem vowel (geben, gibt, gab)
+    // English, French, Portuguese: a form that does not follow the regular pattern is marked as a whole (had, went; suis; sou, fui)
+    const reg = A.regularForm(lang, e.lemma, k);
+    return `<td lang="${lang}">${reg && A.fold(f) === A.fold(reg) ? esc(f) : `<b class="chg">${esc(f)}</b>`}</td>`;
+  };
+  const hint = lang === 'de' ? t('x.irr.n', '{n} irregular verbs, most frequent first. Changed letters are bold.', { n: A.num(list.length) }) : t('x.irr.n2', '{n} irregular verbs, most frequent first. Forms that do not follow the regular pattern are in bold.', { n: A.num(list.length) });
+  return `<p class="hint">${esc(hint)}</p><div class="tblwrap"><table class="irrt"><thead><tr><th>${esc(t('x.irr.inf', 'Infinitive'))}</th>${cols.map(([k, n]) => `<th>${esc(t('x.irr.' + lang + '.' + k, n))}</th>`).join('')}<th>${esc(t('lvl.stored', 'Level'))}</th></tr></thead><tbody>${list.slice(0, 400).map(e => `<tr><td><button class="lnk" data-open="${esc(e.id)}" lang="${lang}">${esc(sw(A.withTo(e.id, e.lemma)))}</button></td>${cols.map(([k]) => cell(e, k)).join('')}<td>${A.lvlBadge(e, true)}</td></tr>`).join('')}</tbody></table></div>`;
 }
 /* ---------- flashcards: SM-2 spaced repetition over saved words and lists ---------- */
 const DAY = 864e5;
@@ -351,7 +394,7 @@ function questionHtml() {
   const head = `<div class="prhead"><span>${esc(t('pr.qn', 'Question {i} of {n}', { i: pr.i + 1, n }))}</span><span>✓ ${pr.right}</span><button class="chip" data-x="pr-stop">${esc(t('pr.stop', 'Stop'))}</button></div>`;
   if (q.mode === 'match') {
     const cols = q.cols || (q.cols = ALL.map(l => shuffle(q.rows.map((r, k) => ({ k, e: r[l] })))));
-    return head + `<p class="hint">${esc(t('pr.hint.match', 'Find the same word in all four languages.'))} ${esc(t('pr.match.how', 'Tap one word in each column.'))}</p><div class="match">${ALL.map((l, ci) => `<div class="mcol"><div class="mh">${A.flag(A.S.main[l], true)}${esc(A.LNAME[l])}</div>${cols[ci].map(x => { const done = (q.done || []).includes(x.k), sel = pr.sel[l] === x.k; return `<button class="mw${done ? ' ok' : ''}${sel ? ' sel' : ''}" data-mlang="${l}" data-mk="${x.k}" lang="${l}"${done ? ' disabled' : ''}>${esc(A.regionView(x.e).word)}</button>`; }).join('')}</div>`).join('')}</div><div id="pr-fb" aria-live="polite">${pr.state === 'next' ? `<button class="btn primary" data-x="pr-next">${esc(t('pr.next', 'Next'))}</button>` : ''}</div>`;
+    return head + `<p class="hint">${esc(t('pr.hint.match', 'Find the same word in all your languages.'))} ${esc(t('pr.match.how', 'Tap one word in each column.'))}</p><div class="match">${ALL.map((l, ci) => `<div class="mcol"><div class="mh">${A.flag(A.S.main[l], true)}${esc(A.LNAME[l])}</div>${cols[ci].map(x => { const done = (q.done || []).includes(x.k), sel = pr.sel[l] === x.k; return `<button class="mw${done ? ' ok' : ''}${sel ? ' sel' : ''}" data-mlang="${l}" data-mk="${x.k}" lang="${l}"${done ? ' disabled' : ''}>${esc(A.regionView(x.e).word)}</button>`; }).join('')}</div>`).join('')}</div><div id="pr-fb" aria-live="polite">${pr.state === 'next' ? `<button class="btn primary" data-x="pr-next">${esc(t('pr.next', 'Next'))}</button>` : ''}</div>`;
   }
   let ans = '';
   if (q.choices) ans = `<div class="choices">${q.choices.map(ch => { let cls = ''; if (pr.state) { if (ch === q.answer) cls = ' ok'; else if (ch === pr.picked) cls = ' bad'; } return `<button class="choice${cls}" data-ch="${esc(ch)}"${pr.state ? ' disabled' : ''} lang="${q.lang}">${q.mode === 'gender' && A.ART_G ? '' : ''}${esc(q.names ? q.names[ch] : ch)}</button>`; }).join('')}</div>`;
@@ -414,7 +457,7 @@ function matchPick(l, k) {
 const setting = (id, label, hint, control) => `<div class="set"><label for="${id}">${esc(label)}</label>${control}${hint ? `<div class="hint">${esc(hint)}</div>` : ''}</div>`;
 const check = (id, key, label, hint) => `<div class="set check"><input type="checkbox" id="${id}" data-key="${key}"${A.S[key] ? ' checked' : ''}><div><label for="${id}">${esc(label)}</label>${hint ? `<div class="hint">${esc(hint)}</div>` : ''}</div></div>`;
 const select = (id, key, opts) => `<select id="${id}" data-key="${key}">${opts.map(([v, n]) => `<option value="${v}"${String(A.S[key]) === String(v) ? ' selected' : ''}>${esc(n)}</option>`).join('')}</select>`;
-const UI_NAMES = { en: 'English', de: 'Deutsch', fr: 'Français', pt: 'Português' };
+const UI_NAMES = { en: 'English', de: 'Deutsch', fr: 'Français', pt: 'Português', cs: 'Čeština' };
 function voiceRows() {
   return ALL.map(l => {
     const vs = A.voicesFor(l), cur = A.voiceFor(l);
@@ -425,7 +468,7 @@ function paintSettings() {
   const el = $('#settings');
   el.innerHTML = `<h2>${esc(t('nav.settings', 'Settings'))}</h2>
   <h3 class="grp">${esc(t('set.g.display', 'Display'))}</h3><div class="sets">
-    ${setting('s-ui', t('set.ui', 'Interface language'), t('set.ui.h', 'The language of buttons and explanations.'), select('s-ui', 'ui', ALL.map(l => [l, UI_NAMES[l]])))}
+    ${setting('s-ui', t('set.ui', 'Interface language'), t('set.ui.h', 'The language of buttons and explanations.'), select('s-ui', 'ui', A.UI_LANGS.map(l => [l, UI_NAMES[l]])))}
     ${setting('s-theme', t('set.theme', 'Colours'), t('set.theme.h', '“Device” follows your device’s light or dark mode.'), select('s-theme', 'theme', [['system', t('set.theme.system', 'Device')], ['light', t('set.theme.light', 'Light')], ['dark', t('set.theme.dark', 'Dark')], ['midnight', t('set.theme.midnight', 'Midnight (black)')]]))}
     ${setting('s-size', t('set.size', 'Text size'), t('set.size.h', 'Makes all text and buttons larger or smaller.'), select('s-size', 'textSize', [[90, '90 %'], [100, '100 %'], [115, '115 %'], [130, '130 %'], [150, '150 %']]))}
     ${setting('s-mylevel', t('set.mylevel', 'My level'), t('set.mylevel.h', 'Used for the word of the day and for practice.'), select('s-mylevel', 'myLevel', LEVELS.map(l => [l, l + ' · ' + t('cefr.' + l, A.CEFR[l])])))}
@@ -439,7 +482,7 @@ function paintSettings() {
     ${setting('s-level', t('set.level', 'Sentence difficulty'), t('set.level.h', 'Easy shows the shortest stored sentences first, Advanced the longest.'), select('s-level', 'level', [['easy', t('set.level.easy', 'Easy (A1 to A2)')], ['medium', t('set.level.medium', 'Medium (A2 to B1)')], ['advanced', t('set.level.adv', 'Advanced (B2 to C1)')]]))}
     ${setting('s-sugg', t('set.sugg', 'Suggestions while typing'), t('set.sugg.h', 'How many words the list under a box shows.'), select('s-sugg', 'sugg', [[5, '5'], [8, '8'], [12, '12'], [20, '20']]))}
     ${check('s-links', 'links', t('set.links', 'Show outside dictionary links'), t('set.links.h', 'Off by default. Adds Wiktionary links for checking an entry.'))}
-    <div class="set"><label>${esc(t('set.langs', 'My languages'))}</label><div class="hint">${esc(t('set.langs.now', 'I speak {s}, I am learning {l}. The four boxes follow this order.', { s: A.LNAME[A.S.speak || 'en'], l: A.LNAME[learnLang()] }))}</div><div><button class="btn sm" data-x="onboard">${esc(t('set.langs.change', 'Change my languages'))}</button></div></div>
+    <div class="set"><label>${esc(t('set.langs', 'My languages'))}</label><div class="hint">${esc(t('set.langs.now2', 'I speak {s}, I am learning {l}. The boxes on the page follow this list: 2 to 4 languages.', { s: A.LNAME[A.S.speak || 'en'], l: A.LNAME[learnLang()] }))}</div>${langEditor()}<div><button class="btn sm" data-x="onboard">${esc(t('set.langs.change', 'Change my languages'))}</button></div></div>
   </div>
   <h3 class="grp">${esc(t('set.g.audio', 'Audio'))}</h3><div class="sets">
     ${check('s-slow', 'slow', t('set.slow', 'Slow speech'), t('set.slow.h', 'Plays everything slowly. Without this, hold a speaker button to hear one word slowly.'))}
@@ -472,15 +515,25 @@ function paintSettings() {
   });
 }
 
-/* ---------- welcome: I speak / I'm learning (arranges the four boxes) ---------- */
+/* Settings › My languages: one row per box (language, move up, remove) and "Add a language" */
+function langEditor() {
+  const o = A.S.order, av = A.dataLangs(), free = av.filter(l => !o.includes(l));
+  const opt = (sel, k) => av.map(l => `<option value="${l}"${l === sel ? ' selected' : ''}>${esc(A.LNAME[l])}</option>`).join('');
+  return `<ol class="langed">${o.map((l, k) => `<li><span class="fl">${A.flag(A.S.main[l], true)}</span><select data-lslot="${k}" aria-label="${esc(t('set.langs.box', 'Box {n}', { n: k + 1 }))}">${opt(l, k)}</select>
+    <button class="btn sm" data-x="lang-up" data-k="${k}"${k ? '' : ' disabled'} aria-label="${esc(t('set.langs.up', 'Move up'))}" title="${esc(t('set.langs.up', 'Move up'))}">↑</button>
+    <button class="btn sm" data-x="lang-rm" data-k="${k}"${o.length > A.MIN_SLOTS ? '' : ' disabled'} aria-label="${esc(t('set.langs.rm', 'Remove this box'))}" title="${esc(t('set.langs.rm', 'Remove this box'))}">✕</button></li>`).join('')}</ol>
+    ${o.length < A.MAX_SLOTS && free.length ? `<div class="row"><select id="lang-add">${free.map(l => `<option value="${l}">${esc(A.LNAME[l])}</option>`).join('')}</select><button class="btn sm" data-x="lang-add">${esc(t('set.langs.add', '+ Add a language'))}</button></div>` : ''}`;
+}
+async function changeLangs(o) { await A.setLanguages(o); paintSettings(); }
+/* ---------- welcome: I speak / I'm learning (arranges the boxes) ---------- */
 function onboard() {
   const el = $('#welcome'); const S = A.S;
   if (!V.ob) { const sp0 = S.speak || S.ui || 'en'; V.ob = { speak: sp0, learn: S.learning || (sp0 === 'de' ? 'en' : 'de'), level: S.myLevel }; }
   const sp = V.ob.speak, le = V.ob.learn;
   el.hidden = false;
   el.innerHTML = `<h2>${esc(t('ob.title', 'Welcome'))}</h2><p>${esc(t('ob.p', 'Tell the app which languages you know, so it can put them in the right order. You can change this later in Settings.'))}</p>
-  <div class="obrow"><span>${esc(t('ob.speak', 'I speak'))}</span>${ALL.map(l => `<button class="chip${l === sp ? ' sel' : ''}" data-ob="speak" data-l="${l}">${A.flag(BASEF(l), true)}${esc(UI_NAMES[l])}</button>`).join('')}</div>
-  <div class="obrow"><span>${esc(t('ob.learn', 'I am learning'))}</span>${ALL.map(l => `<button class="chip${l === le ? ' sel' : ''}" data-ob="learn" data-l="${l}">${A.flag(BASEF(l), true)}${esc(UI_NAMES[l])}</button>`).join('')}</div>
+  <div class="obrow"><span>${esc(t('ob.speak', 'I speak'))}</span>${A.dataLangs().map(l => `<button class="chip${l === sp ? ' sel' : ''}" data-ob="speak" data-l="${l}">${A.flag(BASEF(l), true)}${esc(UI_NAMES[l])}</button>`).join('')}</div>
+  <div class="obrow"><span>${esc(t('ob.learn', 'I am learning'))}</span>${A.dataLangs().map(l => `<button class="chip${l === le ? ' sel' : ''}" data-ob="learn" data-l="${l}">${A.flag(BASEF(l), true)}${esc(UI_NAMES[l])}</button>`).join('')}</div>
   <div class="obrow"><span>${esc(t('ob.level', 'My level'))}</span>${LEVELS.map(l => `<button class="chip${l === V.ob.level ? ' sel' : ''}" data-ob="level" data-l="${l}">${l}</button>`).join('')}</div>
   <div class="row"><button class="btn primary" data-x="ob-done">${esc(t('ob.go', 'Start'))}</button><button class="btn" data-x="ob-skip">${esc(t('ob.skip', 'Skip'))}</button></div>`;
 }
@@ -488,9 +541,11 @@ const BASEF = l => A.S.main[l];
 function onboardDone(skip) {
   const S = A.S;
   if (!skip && V.ob) {
-    S.speak = V.ob.speak; S.learning = V.ob.learn === V.ob.speak ? null : V.ob.learn; S.myLevel = V.ob.level; S.ui = V.ob.speak;
-    S.order = [V.ob.speak, ...(S.learning ? [S.learning] : []), ...ALL.filter(l => l !== V.ob.speak && l !== S.learning)];
-    A.saveSettings();
+    S.speak = V.ob.speak; S.learning = V.ob.learn === V.ob.speak ? null : V.ob.learn; S.myLevel = V.ob.level; if (A.UI_LANGS.includes(V.ob.speak)) S.ui = V.ob.speak;
+    // the language I speak first, then the one I learn, then the others I had (as many boxes as before)
+    const n = Math.max(A.MIN_SLOTS, S.order.length), rest = [...S.order, ...A.DEFAULTS.order, ...A.dataLangs()];
+    const o = [V.ob.speak, ...(S.learning ? [S.learning] : [])]; for (const l of rest) if (o.length < n && !o.includes(l)) o.push(l);
+    A.saveSettings(); A.setLanguages(o);
   }
   try { localStorage.setItem('flt:onboarded', '1'); } catch (e) {}
   V.ob = null;
@@ -530,6 +585,9 @@ document.addEventListener('click', async ev => {
   const nav = ev.target.closest('.navb'); if (nav) { togglePanel(nav.id.replace('-toggle', '')); return; }
   const x = ev.target.closest('[data-x]'); if (!x) return;
   const k = x.dataset.x, P = A.P;
+  if (k === 'lang-up') { const o = A.S.order.slice(), i = +x.dataset.k; [o[i - 1], o[i]] = [o[i], o[i - 1]]; changeLangs(o); return; }
+  if (k === 'lang-rm') { changeLangs(A.S.order.filter((l, i) => i !== +x.dataset.k)); return; }
+  if (k === 'lang-add') { const v = $('#lang-add').value; if (v) changeLangs([...A.S.order, v]); return; }
   if (k === 'random') { const lang = V.xlang || learnLang(), mine = $('#x-rlevel') ? $('#x-rlevel').checked : true; V.rlevel = mine; const list = coreOf(lang).filter(e => ['noun', 'verb', 'adjective', 'adverb'].includes(e.pos) && (!mine || (A.levelOf(e) || {}).l === A.S.myLevel)); if (list.length) A.openId(list[Math.floor(Math.random() * list.length)].id); }
   else if (k === 'more') { V.more = true; paintExplore(); }
   else if (k === 'export') exportMe();
@@ -566,6 +624,10 @@ function confirmInline(btn, q) {        // second tap confirms, so no browser di
   btn.dataset.sure = '1'; btn.textContent = q; setTimeout(() => { delete btn.dataset.sure; }, 4000); return false;
 }
 document.addEventListener('change', ev => {
+  if (ev.target.dataset && ev.target.dataset.lslot != null) {          // another language in a box: two boxes swap if it was already shown
+    const o = A.S.order.slice(), i = +ev.target.dataset.lslot, v = ev.target.value, j = o.indexOf(v);
+    if (j >= 0) o[j] = o[i]; o[i] = v; changeLangs(o); return;
+  }
   const id = ev.target.id;
   if (id === 'x-lang') { V.xlang = ev.target.value; V.more = false; paintExplore(); }
   else if (['pr-mode', 'pr-lang', 'pr-to', 'pr-level', 'pr-src'].includes(id)) { readPracticeForm(); V.pr = null; paintPractice(); }
@@ -573,12 +635,12 @@ document.addEventListener('change', ev => {
 document.addEventListener('submit', ev => { if (ev.target.id === 'pr-form') { ev.preventDefault(); const v = $('#pr-in').value; if (v.trim()) checkTyped(v); } });
 function readPracticeForm() {
   const c = V.pc || (V.pc = practiceDefaults()), g = id => { const e = $('#' + id); return e ? e.value : null; };
-  c.mode = g('pr-mode') || c.mode; c.lang = g('pr-lang') || c.lang; c.to = g('pr-to') || c.to; c.level = g('pr-level') || c.level; c.source = g('pr-src') || c.source;
+  c.mode = g('pr-mode') || c.mode; if (g('pr-lang') && g('pr-lang') !== c.lang) c.want = g('pr-lang'); c.lang = g('pr-lang') || c.lang; c.to = g('pr-to') || c.to; c.level = g('pr-level') || c.level; c.source = g('pr-src') || c.source;
 }
 
 window.FLTViews = {
   init(api) {
-    A = api;
+    A = api; syncLangs();
     try { localStorage.setItem('flt:visits', String((+localStorage.getItem('flt:visits') || 0) + 1)); } catch (e) {}
     if (window.FLTProgress) FLTProgress.init(api);
     navBadges(); counter(); paintSettings();          // the settings exist from the start (hidden), so they can be read and set any time
@@ -589,7 +651,7 @@ window.FLTViews = {
   voicesChanged() { if (A && !$('#settings').hidden) paintSettings(); },
   afterRender() { if (A) A.paintRecent(); },
   dataReady() { if (!A) return; if (window.FLTProgress) FLTProgress.dataReady(); for (const p of ['explore', 'practice', 'me']) if (!$('#' + p).hidden) paint(p); },
-  closePanels, togglePanel, onboard, grammar, sm2,
+  closePanels, togglePanel, onboard, grammar, sm2, syncLangs,
   get practice() { return V; }
 };
 })();

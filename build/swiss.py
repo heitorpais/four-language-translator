@@ -107,6 +107,12 @@ Traktandum|noun|C1|Tagesordnungspunkt|agenda item,item|point|item
 NO_REVERSE = {'Plausch', 'Absenz', 'Advokat', 'Leibchen', 'Camion', 'Töff', 'Pult'}
 DROP = {('hoi', 's1'), ('Beiz', 's2')}     # wrong meanings in the source (hoi: 'presence', Beiz: 'hawking')
 GENDER = {'Spital': 'n'}          # das Spital in Switzerland and Austria
+# the same noun with another gender in Switzerland or Austria (Duden, Variantenwörterbuch des Deutschen)
+REGIONAL_GENDER = {
+    'Tram': {'CH': 'n'}, 'E-Mail': {'CH': 'n', 'AT': 'n'}, 'Mail': {'CH': 'n', 'AT': 'n'}, 'SMS': {'CH': 'n'},
+    'Cola': {'CH': 'n', 'AT': 'n'}, 'Foto': {'CH': 'f'}, 'Match': {'CH': 'm'}, 'Radio': {'CH': 'm'},
+    'Dessert': {'CH': 'm'}, 'Joghurt': {'AT': 'n'}, 'Service': {'AT': 'n'}, 'Taxi': {'CH': 'n'},
+}
 POS_OK = {'noun', 'verb', 'adjective', 'adverb', 'interjection', 'preposition', 'particle'}
 
 
@@ -189,6 +195,14 @@ def main():
             e['standard'] = {'DE': with_art(std)}
             if at != '=': e['standard']['AT'] = with_art(at)
         done.append(i)
+    rg = 0
+    for lemma, regs in REGIONAL_GENDER.items():
+        i = 'de:%s:noun' % lemma
+        e = core.get(i) or rest.get(i)
+        if not (e and e.get('noun')): continue
+        regs = {R: g for R, g in regs.items() if g != e['noun'].get('gender')}
+        if regs: e['noun']['gender_regional'] = regs; rg += 1
+    print('regional genders:', rg)
     # the other way round: a common word of Germany shows the Swiss word when Switzerland is chosen (Sahne -> der Rahm)
     added = 0
     for i in done:

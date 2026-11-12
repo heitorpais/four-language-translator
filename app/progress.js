@@ -9,7 +9,7 @@
 let A = null;
 const $ = s => document.querySelector(s);
 const t = (k, en, v) => A.t(k, en, v), esc = s => A.esc(s);
-const ALL = ['de', 'en', 'fr', 'pt'];
+const ALL = ['de', 'en', 'fr', 'pt'];          // the languages on screen (FLTViews keeps it in step)
 const LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
 const day = d => { const x = d ? new Date(d) : new Date(); return x.getFullYear() + '-' + String(x.getMonth() + 1).padStart(2, '0') + '-' + String(x.getDate()).padStart(2, '0'); };
 const parseDay = s => { const [y, m, d] = s.split('-').map(Number); return new Date(y, m - 1, d); };
@@ -145,7 +145,7 @@ function evaluate(reg) {
   out['first-quiz'] = { ok: (g.quizzes || 0) > 0 };
   for (const b of BADGES.filter(x => x.g === 'mile')) for (const l of ALL) out[b.k + ':' + l] = { ok: byLang[l].length >= b.n, have: byLang[l].length, need: b.n };
   for (const b of BADGES.filter(x => x.g === 'level')) for (const l of ALL) { const ids = lv[l][b.lv]; let n = 0; for (const id of ids) if (g.words[id] && g.words[id].l) n++; out[b.k + ':' + l] = { ok: ids.size > 0 && n >= ids.size, have: n, need: ids.size }; }
-  const four = fourLang(learned); out.four = { ok: four >= 100, have: four, need: 100 };
+  const four = fourLang(learned); out.four = { ok: ALL.length >= 4 && four >= 100, have: four, need: 100 };      // needs four languages on screen
   out.gender50 = { ok: (g.best.gender || 0) >= 50, have: g.best.gender || 0, need: 50 };
   out.plural50 = { ok: (g.best.plural || 0) >= 50, have: g.best.plural || 0, need: 50 };
   out.case50 = { ok: (g.best.case || 0) >= 50, have: g.best.case || 0, need: 50 };
@@ -402,6 +402,7 @@ document.addEventListener('click', async ev => {
 });
 
 window.FLTProgress = {
+  syncLangs(o) { ALL.length = 0; ALL.push(...o); },
   init(api) { A = api; prog(); },
   dataReady() { setTimeout(() => check(true), 6000); }, // after the first-visit downloads, so the badge check never slows them
   record, quizDone, opened, saved, paint, check, evaluate, BADGES, yearData,

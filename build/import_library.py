@@ -78,7 +78,7 @@ def main():
     for n, R in enumerate(lib):
         src = R['_source']; pos = R['pos']
         ids = {}
-        for lang in LANGS:
+        for lang in [l for l in LANGS if l in R]:
             L = R[lang]; lemma = lemma_of(lang, L['word'])
             e = find(lang, lemma, pos); ids[lang] = e['id']; o = e['origin']; i = e['id']
             wikt = i not in claude_only
@@ -164,14 +164,14 @@ def main():
                     if v.get(k): rv[k] = strip_art(v[k]) if k == 'plural' else v[k]
                 e['regional_variants'].append(rv); keep('regional_variants')
         # ---- the saved example sentences (same sentence in all four languages)
-        for lang in LANGS:
+        for lang in [l for l in LANGS if l in R]:
             e = entries[ids[lang]]
             exs = R[lang].get('examples', [])
             for k, x in enumerate(exs):
                 text, h = hl(x)
                 if any(y['text'] == text for y in e['examples']) or sum(1 for y in e['examples'] if y['origin'] == 'claude') >= 2: continue
                 tr = {}
-                for l2 in LANGS:
+                for l2 in [x for x in LANGS if x in R]:
                     if l2 != lang and k < len(R[l2].get('examples', [])): tr[l2] = R[l2]['examples'][k].replace('*', '')
                 e['examples'].append({'id': 'lib:%d:%d' % (n, k), 'text': text, 'hl': h, 'translations': tr,
                                       'translation_ids': {}, 'credits': {}, 'origin': 'claude'})

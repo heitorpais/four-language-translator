@@ -9,7 +9,7 @@ import sys, os, json, gzip, sqlite3, collections
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import *
 
-SOURCES = {'de': ['ed-de', 'enw-de'], 'en': ['enw-en'], 'fr': ['ed-fr', 'enw-fr'], 'pt': ['ed-pt', 'enw-pt']}
+SOURCES = {'de': ['ed-de', 'enw-de'], 'en': ['enw-en'], 'fr': ['ed-fr', 'enw-fr'], 'pt': ['ed-pt', 'enw-pt'], 'cs': ['ed-cs', 'enw-cs']}
 MAX_REV = {'core': 3, 'ext': 2, 'tail': 2}
 _db = {}
 

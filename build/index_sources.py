@@ -2,8 +2,8 @@
 read any word quickly without holding the big files in memory.
 
   python3 -I build/index_sources.py SOURCE      SOURCE is one of:
-    enw-en enw-de enw-fr enw-pt     English Wiktionary, entries for English / German / French / Portuguese words
-    ed-de ed-fr ed-pt               German / French / Portuguese Wiktionary, entries for words of their own language
+    enw-en enw-de enw-fr enw-pt enw-cs   English Wiktionary, entries for English / German / French / Portuguese / Czech words
+    ed-de ed-fr ed-pt ed-cs              German / French / Portuguese / Czech Wiktionary, entries for words of their own language
 
 Writes build/raw/db/SOURCE.sqlite with three tables:
   entry(lang, word, pos, data)   one slim JSON record per Wiktionary entry (zlib-compressed)
@@ -16,7 +16,8 @@ from common import *
 SRC = {'enw-en': ('enwiktionary/English.jsonl.gz', 'en'), 'enw-de': ('enwiktionary/German.jsonl.gz', 'de'),
        'enw-fr': ('enwiktionary/French.jsonl.gz', 'fr'), 'enw-pt': ('enwiktionary/Portuguese.jsonl.gz', 'pt'),
        'ed-de': ('editions/de-extract.jsonl.gz', 'de'), 'ed-fr': ('editions/fr-extract.jsonl.gz', 'fr'),
-       'ed-pt': ('editions/pt-extract.jsonl.gz', 'pt')}
+       'ed-pt': ('editions/pt-extract.jsonl.gz', 'pt'),
+       'enw-cs': ('enwiktionary/Czech.jsonl.gz', 'cs'), 'ed-cs': ('editions/cs-extract.jsonl.gz', 'cs')}
 NOFORM = {'table-tags', 'inflection-template', 'class', 'romanization', 'auxiliary', 'multiword-construction'}
 
 

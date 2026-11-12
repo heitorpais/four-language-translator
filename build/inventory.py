@@ -29,24 +29,25 @@ ALLOWED = {'noun', 'verb', 'adj', 'adv', 'pron', 'prep', 'conj', 'det', 'article
            'contraction', 'postp', 'phrase', 'prep_phrase', 'adv_phrase'}
 ABBR_TAGS = {'abbreviation', 'acronym', 'initialism', 'clipping-abbreviation', 'Abkürzung', 'abréviation', 'sigle', 'acronyme', 'abreviatura', 'sigla'}
 BAD_SENSE = {'misspelling', 'proscribed-spelling', 'obsolete-spelling'}
-FREQ = {'de': 'de_full.txt', 'en': 'en_full.txt', 'fr': 'fr_full.txt', 'pt': 'pt_br_full.txt'}
-TATO = {'de': 'deu', 'en': 'eng', 'fr': 'fra', 'pt': 'por'}
+FREQ = {'de': 'de_full.txt', 'en': 'en_full.txt', 'fr': 'fr_full.txt', 'pt': 'pt_br_full.txt', 'cs': 'cs_full.txt'}
+TATO = {'de': 'deu', 'en': 'eng', 'fr': 'fra', 'pt': 'por', 'cs': 'ces'}
 LAT = 'a-zA-Z\u00c0-\u00d6\u00d8-\u00f6\u00f8-\u024f'
-LETTERS = {l: LAT for l in ('de', 'en', 'fr', 'pt')}
+LETTERS = {l: LAT for l in ('de', 'en', 'fr', 'pt', 'cs')}
 # senses with these labels do not make a word count as an everyday word, and forms with them are not used for frequency
 MARGINAL = {'obsolete', 'archaic', 'rare', 'dialectal', 'nonstandard', 'misspelling', 'pronunciation-spelling', 'eye-dialect',
             'uncommon', 'Internet', 'text-messaging', 'alternative', 'alt-of', 'historical', 'poetic', 'veraltet', 'selten', 'archaïque', 'vieilli',
-            'désuet', 'arcaico', 'obsoleto', 'raro', 'regional', 'Southern-US', 'Appalachia', 'Scotland', 'Northern-England', 'Multicultural-London-English'}
+            'désuet', 'arcaico', 'obsoleto', 'raro', 'regional', 'zastarale', 'zastaralé', 'knižně', 'nářečně', 'expresivně-zastarale', 'Southern-US', 'Appalachia', 'Scotland', 'Northern-England', 'Multicultural-London-English'}
 # definitions that only describe an inflected form ("terceira pessoa do singular do presente de ser")
 FORM_GLOSS = re.compile(r'pessoa do (singular|plural)|particípio|gerúndio|^(plural|feminino|masculino) de |^forma (flexionada|verbal|do|de) |conjugação'
                         r'|personne du (singulier|pluriel)|^participe|^(pluriel|féminin|masculin)( singulier| pluriel)? de |forme (conjuguée|du verbe|de) |^(première|deuxième|troisième) personne'
-                        r'|^(plural|past tense|present participle|past participle|third-person singular|comparative|superlative) (form )?of ', re.I)
+                        r'|^(plural|past tense|present participle|past participle|third-person singular|comparative|superlative) (form )?of '
+                        r'|^(genitiv|dativ|akuzativ|vokativ|lokál|instrumentál|nominativ) (jednotného|množného) čísla|^(\d\. )?osoba (jednotného|množného)|^tvar |^přechodník|^příčestí', re.I)
 FORM_GLOSS_DE = re.compile(r'^(Nominativ|Genitiv|Dativ|Akkusativ)|\d\. Person (Singular|Plural)|^Partizip|flektierte Form|^(Plural|Variante) (von|zu|des|der)|Komparativ|Superlativ|^Imperativ|^Präteritum')
-SINGLE_OK = {'en': {'a', 'I'}, 'fr': {'a', 'à', 'y'}, 'pt': {'a', 'à', 'e', 'o'}, 'de': set()}
+SINGLE_OK = {'en': {'a', 'I'}, 'fr': {'a', 'à', 'y'}, 'pt': {'a', 'à', 'e', 'o'}, 'de': set(), 'cs': {'a', 'i', 'k', 'o', 's', 'u', 'v', 'z'}}
 NAME_RESCUE = re.compile(r'month of the|day of the week|calendar', re.I)
 # pieces left when the frequency list splits words at the apostrophe (don't -> don + t)
 FRAGMENTS = {'en': {'don', 'didn', 'doesn', 'isn', 'wasn', 'aren', 'couldn', 'wouldn', 'shouldn', 'haven', 'hasn', 'weren', 'hadn', 'mustn', 'ain', 'll', 've', 're', 'won'}}
-SOURCES = {'de': ['ed-de', 'enw-de'], 'en': ['enw-en'], 'fr': ['ed-fr', 'enw-fr'], 'pt': ['ed-pt', 'enw-pt']}
+SOURCES = {'de': ['ed-de', 'enw-de'], 'en': ['enw-en'], 'fr': ['ed-fr', 'enw-fr'], 'pt': ['ed-pt', 'enw-pt'], 'cs': ['ed-cs', 'enw-cs']}
 
 
 def dbs(lang):

@@ -2,8 +2,8 @@
    - app files (index.html, app.js, forms.js, views.js, learn.js, i18n.js, icons): served from the saved copy, refreshed in the background
    - data/manifest.json: network first, saved copy when offline
    - other data files: saved copy first (their address carries a version, so a new version is a new address).
-     Core and details files are saved at install; the files of the other words when first used. */
-const SHELL = 'flt-shell-v20', DATA = 'flt-data-v2';
+     Each file is saved when the page first uses it, so only the chosen languages are downloaded. */
+const SHELL = 'flt-shell-v22', DATA = 'flt-data-v2';
 const APP_FILES = ['./', 'index.html', 'app.js', 'forms.js', 'views.js', 'progress.js', 'learn.js', 'i18n.js', 'manifest.webmanifest', 'icons/icon-180.png', 'icons/icon-192.png', 'icons/icon-512.png', 'fonts.css',
   'fonts/ibm-plex-mono-latin-400-normal.woff2', 'fonts/ibm-plex-mono-latin-500-normal.woff2', 'fonts/ibm-plex-mono-latin-ext-400-normal.woff2', 'fonts/ibm-plex-mono-latin-ext-500-normal.woff2', 'fonts/ibm-plex-sans-latin-400-normal.woff2', 'fonts/ibm-plex-sans-latin-500-normal.woff2', 'fonts/ibm-plex-sans-latin-600-normal.woff2', 'fonts/ibm-plex-sans-latin-ext-400-normal.woff2', 'fonts/ibm-plex-sans-latin-ext-500-normal.woff2', 'fonts/ibm-plex-sans-latin-ext-600-normal.woff2', 'fonts/source-serif-4-latin-ext-opsz-italic.woff2', 'fonts/source-serif-4-latin-ext-opsz-normal.woff2', 'fonts/source-serif-4-latin-opsz-italic.woff2', 'fonts/source-serif-4-latin-opsz-normal.woff2'];
 
@@ -16,9 +16,7 @@ self.addEventListener('install', event => {
       const res = await fetch('data/manifest.json', { cache: 'no-cache' });
       if (res.ok) {
         await data.put('data/manifest.json', res.clone());
-        const manifest = await res.json();
-        // files already saved are not downloaded again, so a new app version is ready in seconds
-        await Promise.all(manifest.files.filter(f => f.tier === 'core' || f.tier === 'details').map(async f => { const u = 'data/' + f.file + '?v=' + f.sha256; if (!(await data.match(u))) await data.add(u); }));
+        // the data files are saved when the page loads them: only the languages the reader chose (2 to 4 of them)
       }
     } catch (e) { /* the page loads the data itself; this copy is a second safety net */ }
     await self.skipWaiting();

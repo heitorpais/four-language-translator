@@ -21,17 +21,19 @@ from common import *
 from generate_forms import forms, NEGATIVE
 
 T = os.path.join(RAW, 'tatoeba')
-L3 = {'en': 'eng', 'fr': 'fra', 'pt': 'por'}
-TOK = re.compile(r"[a-zà-ÿœç]+(?:['’][a-z]+)?")
+L3 = {'en': 'eng', 'fr': 'fra', 'pt': 'por', 'cs': 'ces'}
+TOK = re.compile(r"[a-zà-ÿœçā-ž]+(?:['’][a-z]+)?")
 NOUN_CUE = {
     'en': 'a an the my your his her its our their this that these those some any no every each another',
     'fr': "le la les l' un une des du au aux mon ton son ma ta sa mes tes ses notre votre nos vos leur leurs ce cet cette ces",
     'pt': 'o a os as um uma uns umas do da dos das no na nos nas meu minha meus minhas seu sua seus suas nosso nossa esse essa este esta pelo pela ao aos',
+    'cs': 'můj moje tvůj tvoje jeho její náš naše váš vaše jejich ten ta to ty ti tento tato toto ten jeden jedna jedno nějaký nějaká žádný žádná',
 }
 VERB_CUE = {
     'en': "to i you we they he she it not will would can could should must might may don't doesn't didn't won't let's never also just",
     'fr': "je j' tu il elle on nous vous ils elles ne pas peux peut pouvons pouvez peuvent veux veut voulons voulez veulent dois doit devons devez doivent vais va allons allez vont faut pour sans",
     'pt': 'eu tu ele ela nós vocês eles elas não vou vai vamos vão quero quer queremos posso pode podemos preciso precisa devo deve para sem consigo consegue',
+    'cs': 'já ty on ona my vy oni chci chce chceme můžu může můžeme musím musí musíme budu bude budeme nechci nemůžu se si',
 }
 
 

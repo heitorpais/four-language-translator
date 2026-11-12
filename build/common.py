@@ -10,7 +10,7 @@ DATA = os.path.join(ROOT, 'app', 'data')
 for d in (CACHE, WORK, REPORTS, DATA):
     os.makedirs(d, exist_ok=True)
 
-LANGS = ('de', 'en', 'fr', 'pt')
+LANGS = ('de', 'en', 'fr', 'pt', 'cs')
 ORIGINS = ('wiktionary', 'tatoeba', 'generated', 'claude')
 
 # part-of-speech names used in entry ids

@@ -21,12 +21,13 @@ SLIM = {'ext': {'id', 'lang', 'lemma', 'pos', 'tier', 'level', 'frequency_rank',
         'tail': {'id', 'lang', 'lemma', 'pos', 'tier', 'senses', 'origin'}}
 SENSE = {'core': {'id', 'gloss_en', 'gloss', 'register', 'translations', 'route', 'origin'},
          'ext': {'id', 'gloss_en', 'translations', 'route', 'origin'}, 'tail': {'id', 'translations', 'route', 'origin'}}
-ROUTES = {'de-edition', 'fr-edition', 'pt-edition', 'en-edition', 'via-en', 'via-en-unchecked', 'library', 'none'}
+ROUTES = {'de-edition', 'fr-edition', 'pt-edition', 'cs-edition', 'en-edition', 'via-en', 'via-en-unchecked', 'library', 'none'}
 NOUN = {'gender', 'plural', 'plural_alt', 'plural_rule', 'plural_regular', 'genitive', 'irregular_forms'}
+OPTIONAL = {'animate', 'cases', 'gender_regional', 'aspect_pair', 'conj'}      # Czech grammar, regional genders
 VERB = {'regular', 'class', 'aux', 'aux_regional', 'principal_parts', 'present_3sg', 'irregular_forms'}
 ADJ = {'agreement', 'comparison', 'comparison_regular', 'irregular_forms'}
 MORE = {'definition', 'collocations', 'idioms', 'word_family', 'antonyms', 'etymology', 'learner_mistake'}
-OFFERED = {'de': ['DE', 'CH', 'AT'], 'en': ['US', 'GB'], 'fr': ['FR', 'CA', 'BE', 'CH'], 'pt': ['BR', 'PT']}
+OFFERED = {'de': ['DE', 'CH', 'AT'], 'en': ['US', 'GB'], 'fr': ['FR', 'CA', 'BE', 'CH'], 'pt': ['BR', 'PT'], 'cs': ['CZ']}
 errors = collections.defaultdict(list)
 CORR_KEYS = {'entry', 'issue', 'date', 'note', 'hide', 'set', 'sense', 'remove_translation', 'add_translation', 'hide_example', 'example_translation'}
 
@@ -73,7 +74,7 @@ def check_slim(e):
     if e.get('lang') not in LANGS: F('bad lang')
     if e.get('pos') not in POS: F('bad pos')
     if not re.fullmatch(re.escape('%s:%s:%s' % (e.get('lang'), e.get('lemma'), e.get('pos'))) + r'(:\d+)?', i): F('id does not match lang:lemma:pos')
-    if 'noun' in e and set(e['noun']) != {'gender', 'plural'}: F('bad noun block')
+    if 'noun' in e and set(e['noun']) - OPTIONAL != {'gender', 'plural'}: F('bad noun block')
     if 'verb' in e and set(e['verb']) != {'aux', 'aux_regional'}: F('bad verb block')
     if tier == 'ext':
         if e['level'] is not None and e['level'] not in CEFR: F('bad level')
@@ -102,7 +103,7 @@ def check_entry(e):
     elif e['ipa']['default'] is not None and (not e['ipa']['default'] or e['ipa']['default'][0] in '/[\\'): F('ipa not cleaned')
     for blk, keys, pos in (('noun', NOUN, 'noun'), ('verb', VERB, 'verb'), ('adjective', ADJ, 'adjective')):
         if (e[blk] is not None) != (e['pos'] == pos): F('%s block must be present exactly for pos %s' % (blk, pos))
-        if e[blk] is not None and set(e[blk]) != keys: F('bad keys in %s block' % blk)
+        if e[blk] is not None and set(e[blk]) - OPTIONAL != keys: F('bad keys in %s block' % blk)
     if e['noun'] and e['noun']['gender'] not in (None, 'm', 'f', 'n', 'm/f'): F('bad gender')
     if e['verb'] and e['verb']['principal_parts'] is not None and not isinstance(e['verb']['principal_parts'], list): F('principal_parts')
     if e['verb'] and not isinstance(e['verb']['irregular_forms'], dict): F('irregular_forms')

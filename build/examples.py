@@ -1,4 +1,4 @@
-"""Phase 4: attach up to 4 Tatoeba sentences to every core entry, in all four languages.
+"""Phase 4: attach up to 4 Tatoeba sentences to every core entry, in all five languages.
 
 A sentence qualifies when it contains the lemma or one of its forms from the Wiktionary tables.
 Sentences with a direct translation into all three other languages are preferred, then short everyday
@@ -11,8 +11,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import *
 
 T = os.path.join(RAW, 'tatoeba')
-L3 = {'de': 'deu', 'en': 'eng', 'fr': 'fra', 'pt': 'por'}
-PAIRS = [('deu', 'eng'), ('deu', 'fra'), ('deu', 'por'), ('eng', 'fra'), ('eng', 'por'), ('fra', 'por')]
+L3 = {'de': 'deu', 'en': 'eng', 'fr': 'fra', 'pt': 'por', 'cs': 'ces'}
+PAIRS = [('deu', 'eng'), ('deu', 'fra'), ('deu', 'por'), ('eng', 'fra'), ('eng', 'por'), ('fra', 'por'), ('ces', 'eng'), ('ces', 'deu'), ('ces', 'fra'), ('ces', 'por')]
 TOK = re.compile(r"[A-Za-zÀ-ÖØ-öø-ɏ]+")
 SKIP = {'table-tags', 'inflection-template', 'class', 'auxiliary', 'abbreviation', 'diminutive', 'multiword-construction', 'romanization'}
 PRON = {'ich', 'du', 'er', 'sie', 'es', 'wir', 'ihr', 'man', 'zu', 'am'}
@@ -109,7 +109,7 @@ def main():
             if n < 3 or n > 13: continue
             lk = links[l3].get(sid, {})
             ntr = sum(1 for o in others if any(x in sent[L3[o]] for x in lk.get(L3[o], ())))
-            base = {3: 100, 2: 40, 1: 10, 0: 0}[ntr] - abs(n - 7) * 2 - (4 if not user else 0)
+            base = {4: 110, 3: 100, 2: 40, 1: 10, 0: 0}[ntr] - abs(n - 7) * 2 - (4 if not user else 0)
             lows = [t[0].lower() for t in toks]
             for k, (w, a, b) in enumerate(toks):
                 first = k == 0 or text[:a].rstrip()[-1:] in '.!?¿¡'

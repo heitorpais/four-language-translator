@@ -13,5 +13,7 @@ python3 -I build/generate_forms.py
 python3 -I build/pos_share.py
 python3 -I build/regions.py
 python3 -I build/swiss.py
+python3 -I build/fix_verbs.py
+python3 -I build/czech.py
 python3 -I build/build_tiers.py
 python3 -I build/validate.py

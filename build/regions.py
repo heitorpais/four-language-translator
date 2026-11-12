@@ -29,6 +29,7 @@ SEL = {   # labels -> region the app offers
     'fr': {'France': 'FR', 'Quebec': 'CA', 'Québec': 'CA', 'Canada': 'CA', 'Canadian': 'CA', 'North-America': 'CA',
            'Montreal': 'CA', 'Belgium': 'BE', 'Belgique': 'BE', 'Switzerland': 'CH', 'Suisse': 'CH'},
     'pt': {'Brazil': 'BR', 'Brazilian': 'BR', 'Portugal': 'PT', 'Portuguese': 'PT', 'Lusitanian': 'PT'},
+    'cs': {},
 }
 OTHER = {  # region labels for places the app does not offer
     'de': 'Liechtenstein Bavaria Bavarian Bayern Southern-Germany South-German South German Süddeutschland Northern-Germany '
@@ -42,12 +43,13 @@ OTHER = {  # region labels for places the app does not offer
     'pt': 'Azores Angola Mozambique Moçambique Madeira São-Paulo Rio-de-Janeiro North-Brazil Northeast-Brazil South-Brazil '
           'Southern-Brazil Bahia Minas-Gerais Paraná Guinea-Bissau Africa Macau Uruguay Caipira Trás-os-Montes Galicia Minho '
           'Alentejo Beira Regionalismo',
+    'cs': 'Moravia Moravian Silesia Silesian Bohemia Bohemian Common-Czech Slovakia',
 }
 OTHER = {L: set(v.split(' ')) | {'South German', 'North German', 'Swiss Standard German', 'Austrian German', 'Rio Grande do Sul'} for L, v in OTHER.items()}
-SOURCES = {'de': ['enw-de', 'ed-de'], 'en': ['enw-en'], 'fr': ['enw-fr', 'ed-fr'], 'pt': ['enw-pt', 'ed-pt']}
+SOURCES = {'de': ['enw-de', 'ed-de'], 'en': ['enw-en'], 'fr': ['enw-fr', 'ed-fr'], 'pt': ['enw-pt', 'ed-pt'], 'cs': ['enw-cs', 'ed-cs']}
 DBPOS = {'adjective': 'adj', 'adverb': 'adv', 'numeral': 'num', 'pronoun': 'pron', 'preposition': 'prep',
          'conjunction': 'conj', 'interjection': 'intj', 'determiner': 'det'}
-OFFERED = {'de': ['DE', 'CH', 'AT'], 'en': ['US', 'GB'], 'fr': ['FR', 'CA', 'BE', 'CH'], 'pt': ['BR', 'PT']}
+OFFERED = {'de': ['DE', 'CH', 'AT'], 'en': ['US', 'GB'], 'fr': ['FR', 'CA', 'BE', 'CH'], 'pt': ['BR', 'PT'], 'cs': ['CZ']}
 _db = {}
 
 
