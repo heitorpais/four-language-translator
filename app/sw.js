@@ -3,7 +3,7 @@
    - data/manifest.json: network first, saved copy when offline
    - other data files: saved copy first (their address carries a version, so a new version is a new address).
      Core and details files are saved at install; the files of the other words when first used. */
-const SHELL = 'flt-shell-v18', DATA = 'flt-data-v2';
+const SHELL = 'flt-shell-v19', DATA = 'flt-data-v2';
 const APP_FILES = ['./', 'index.html', 'app.js', 'forms.js', 'views.js', 'progress.js', 'learn.js', 'i18n.js', 'manifest.webmanifest', 'icons/icon-180.png', 'icons/icon-192.png', 'icons/icon-512.png', 'fonts.css',
   'fonts/ibm-plex-mono-latin-400-normal.woff2', 'fonts/ibm-plex-mono-latin-500-normal.woff2', 'fonts/ibm-plex-mono-latin-ext-400-normal.woff2', 'fonts/ibm-plex-mono-latin-ext-500-normal.woff2', 'fonts/ibm-plex-sans-latin-400-normal.woff2', 'fonts/ibm-plex-sans-latin-500-normal.woff2', 'fonts/ibm-plex-sans-latin-600-normal.woff2', 'fonts/ibm-plex-sans-latin-ext-400-normal.woff2', 'fonts/ibm-plex-sans-latin-ext-500-normal.woff2', 'fonts/ibm-plex-sans-latin-ext-600-normal.woff2', 'fonts/source-serif-4-latin-ext-opsz-italic.woff2', 'fonts/source-serif-4-latin-ext-opsz-normal.woff2', 'fonts/source-serif-4-latin-opsz-italic.woff2', 'fonts/source-serif-4-latin-opsz-normal.woff2'];
 

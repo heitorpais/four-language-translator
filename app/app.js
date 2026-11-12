@@ -921,7 +921,7 @@ function card(lang, e, alts, ex, i, q) {
   if (lang === 'de' && e.standard) {          // a Swiss word: what Germany and Austria say (Velo -> das Fahrrad), on the front of the card
     const gs = [];
     for (const r of REG.de) { if (r === 'ch') continue; const w = e.standard[r.toUpperCase()] || e.standard.DE, g = gs.find(x => x.w === w); if (g) g.r.push(r); else gs.push({ w, r: [r] }); }
-    ess.push(['std', gs.map(g => `<span class="nowrap">${g.r.map(r => flag(r, true) + esc(RNAME[r])).join(' &nbsp;')}: <b class="form" lang="de">${esc(g.w)}</b></span>`).join(' &nbsp; ')]);
+    ess.push(['std', gs.map(g => `<div class="stdg">${g.r.map(r => `<span class="nowrap">${flag(r, true)}${esc(RNAME[r])}</span>`).join(' &nbsp;')}: <b class="form nowrap" lang="de">${esc(g.w)}</b></div>`).join('')]);
   }
   if (S.gsw && lang === 'de' && e.swiss_german) ess.push(['gsw', `${flag('ch', true)}<span class="form" lang="gsw">${esc(e.swiss_german.form)}</span><span class="sub" lang="en">${esc(t('gsw.sub', 'spoken dialect'))}${e.swiss_german.approximate ? ', ' + esc(t('gsw.approx', 'spelling is approximate')) : ''}</span>`]);
   // details (folded in compact mode)
