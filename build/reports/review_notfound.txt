@@ -1,15 +1,3 @@
-en	January	noun
-en	February	noun
-en	March	noun
-en	April	noun
-en	May	noun
-en	June	noun
-en	July	noun
-sv	juli	noun
-en	August	noun
-en	September	noun
-en	November	noun
-en	December	noun
 cs	nechat si	verb
 pt	sentir falta	verb
 de	sich Sorgen machen	verb
@@ -108,3 +96,6 @@ en	single (unmarried)	adjective
 de	Haupt-	adjective
 nl	hoofd-	adjective
 sv	huvud-	adjective
+cs	titulky	noun
+sv	undertext	noun
+en	answer (the phone)	verb
