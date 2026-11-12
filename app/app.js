@@ -512,9 +512,11 @@ function regionView(e) {
   const lang = e.lang, main = S.main[lang], R = main.toUpperCase(), isBase = main === BASE[lang];
   const v = isBase ? null : (e.regional_variants || []).find(x => x.region === R);
   const o = { word: (v && v.form) || e.lemma, note: v ? v.note : null, changed: !!(v && v.form && v.form !== e.lemma) };
+  o.article = o.changed && v.article ? v.article : null;      // Sahne -> der Rahm: the Swiss word has its own gender
   const reg = e.ipa.regional || {};
   o.ipa = (!isBase && reg[R]) || e.ipa.default; o.narrow = !!e.ipa.narrow && o.ipa === e.ipa.default;
   o.ipaFrom = !isBase && !reg[R] && o.ipa ? BASE[lang] : null;     // no transcription of its own: the base region's is shown, and said so
+  if (o.changed) { o.ipa = v.ipa || null; o.narrow = false; o.ipaFrom = null; }    // another word: the common word's pronunciation does not fit
   o.aux = e.verb ? ((!isBase && e.verb.aux_regional && e.verb.aux_regional[R]) || e.verb.aux) : null;
   o.plural = (v && v.plural) || (e.noun && !o.changed ? e.noun.plural : null);
   o.word = withTo(e.id, o.word);
@@ -524,7 +526,7 @@ function regionView(e) {
     if (r === main) continue;
     const RR = r.toUpperCase(), base = r === BASE[lang];
     const ip = (!base && reg[RR]) || e.ipa.default;
-    if (ip && ip !== o.ipa) { const a = o.accents.find(x => x.ipa === ip); if (a) a.regions.push(r); else o.accents.push({ regions: [r], ipa: ip, narrow: !!e.ipa.narrow && ip === e.ipa.default }); }
+    if (ip && ip !== o.ipa && !o.changed) { const a = o.accents.find(x => x.ipa === ip); if (a) a.regions.push(r); else o.accents.push({ regions: [r], ipa: ip, narrow: !!e.ipa.narrow && ip === e.ipa.default }); }
     const rv = base ? null : (e.regional_variants || []).find(x => x.region === RR);
     const parts = [];
     const w = (rv && rv.form) || e.lemma;
@@ -730,7 +732,7 @@ const badge = r => r === true ? `<span class="reg ok">${esc(t('reg.ok', 'regular
 const ipaHtml = (ipa, narrow, lang, word) => `<button class="ipa"${word ? ` data-say="${esc(word)}" data-lang="${lang}" title="${esc(t('audio.ipa', 'Tap to hear'))}"` : ''}>${narrow ? '[' : '/'}${esc(ipa)}${narrow ? ']' : '/'}</button>`;
 const lemmaOf = id => { const x = D.byId.get(id); return x ? withTo(id, x.lemma) : null; };
 const ROW = { usedin: 'Used in', verb: 'Verb', gov: 'Prep. + case', govx: 'Followed by', also: 'Also', gsw: 'Swiss German', elsewhere: 'Elsewhere', gender: 'Gender',
-  agree: 'Agreement', compare: 'Compare', freq: 'Frequency', syn: 'Synonyms', ant: 'Opposites', fam: 'Word family', like: 'Words like this', looks: 'Looks like', vars: 'Variants' };
+  agree: 'Agreement', compare: 'Compare', freq: 'Frequency', syn: 'Synonyms', ant: 'Opposites', fam: 'Word family', like: 'Words like this', looks: 'Looks like', vars: 'Variants', std: 'Elsewhere' };
 const rowName = k => t('row.' + k, ROW[k]);
 function wikiLink(lang, word) {
   return `<a href="https://en.wiktionary.org/wiki/${encodeURIComponent(word)}${({ en: '#English', de: '#German', fr: '#French', pt: '#Portuguese' })[lang]}" target="_blank" rel="noopener">Wiktionary</a>`;
@@ -817,7 +819,7 @@ function summary(e, rv, art) {
   const lang = e.lang, n = e.noun, v = e.verb, a = e.adjective, parts = [];
   if (e.pos === 'noun' && n) {
     if (lang !== 'en') parts.push(`${artHtml(art, n.gender)}${art && !art.endsWith("'") ? ' ' : ''}<span class="form">${esc(rv.word)}</span>${gram(lang === 'de' ? 'gender_de' : 'gender_romance')}`);
-    if (rv.plural) { const pa = lang === 'en' ? '' : article(lang, e, rv.plural, true); parts.push(`${pa ? `<span class="art g-pl">${esc(pa)}</span> ` : ''}<span class="form">${diffMark(rv.word, rv.plural)}</span>${n.plural_regular === false ? ' ' + badge(false) : ''}${lang === 'de' ? gram('plural_de') : ''}`); }
+    if (rv.plural) { const pa = lang === 'en' ? '' : article(lang, e, rv.plural, true); parts.push(`${pa ? `<span class="art g-pl">${esc(pa)}</span> ` : ''}<span class="form">${diffMark(rv.word, rv.plural)}</span>${n.plural_regular === false && !rv.changed ? ' ' + badge(false) : ''}${lang === 'de' ? gram('plural_de') : ''}`); }
     else if (n.plural === null && lang !== 'en' && e.tier === 'core') parts.push(`<span class="sub inl">${esc(t('sum.nopl', 'no plural'))}</span>`);
   } else if (e.pos === 'verb' && v) {
     const pp = v.principal_parts;
@@ -905,7 +907,7 @@ function card(lang, e, alts, ex, i, q) {
   const l = LANGS.find(x => x.id === lang);
   if (!e) return `<article class="card empty" data-lang="${lang}" style="--i:${i}"><span class="tab">${l.code}</span><p class="note" lang="en">${esc(t('card.none', 'No {lang} translation for this meaning in the data.', { lang: LNAME[lang] }))}</p></article>`;
   const pos = e.pos, rv = regionView(e), n = e.noun, v = e.verb, a = e.adjective;
-  const art = pos === 'noun' ? article(lang, e, rv.word) : '';
+  const art = pos === 'noun' ? (rv.article || article(lang, e, rv.word)) : '';
   const sn = state.entry && state.entry.senses[state.sense];
   const ess = [], det = [], notes = [];
   // essentials, in the same order on every card
@@ -916,6 +918,11 @@ function card(lang, e, alts, ex, i, q) {
     `<ul class="gov">${e.governs.map(g => { const cases = g.case ? g.case.split('/') : []; const pat = g.pattern || (e.lemma + (g.prep ? ' ' + g.prep : '')); return `<li><span class="pat">${esc(pat)}</span>${cases.map(c => ` <button class="case c-${esc(c)}" data-gram="cases" title="${esc(CASENAME[c] || c)}">${esc(c)}</button>`).join('')}${g.meaning ? `<span class="sub" lang="en">${esc(g.meaning)}</span>` : ''}</li>`; }).join('')}</ul>`]);
   const chipFlags = id => { const p = sn && sn.regional ? plainRegions(sn.regional[id]) : null; return p && p.length ? p.map(r => flag(r.toLowerCase(), true)).join('') : ''; };
   if (alts && alts.length > 1) ess.push(['also', alts.map((id, k) => D.byId.get(id) === e ? '' : `<button class="chip" data-pick="${lang}:${k}" lang="${lang}">${chipFlags(id)}${esc(lemmaOf(id))}</button>`).join(' ')]);
+  if (lang === 'de' && e.standard) {          // a Swiss word: what Germany and Austria say (Velo -> das Fahrrad), on the front of the card
+    const gs = [];
+    for (const r of REG.de) { if (r === 'ch') continue; const w = e.standard[r.toUpperCase()] || e.standard.DE, g = gs.find(x => x.w === w); if (g) g.r.push(r); else gs.push({ w, r: [r] }); }
+    ess.push(['std', gs.map(g => `<span class="nowrap">${g.r.map(r => flag(r, true) + esc(RNAME[r])).join(' &nbsp;')}: <b class="form" lang="de">${esc(g.w)}</b></span>`).join(' &nbsp; ')]);
+  }
   if (S.gsw && lang === 'de' && e.swiss_german) ess.push(['gsw', `${flag('ch', true)}<span class="form" lang="gsw">${esc(e.swiss_german.form)}</span><span class="sub" lang="en">${esc(t('gsw.sub', 'spoken dialect'))}${e.swiss_german.approximate ? ', ' + esc(t('gsw.approx', 'spelling is approximate')) : ''}</span>`]);
   // details (folded in compact mode)
   if (rv.accents.length) det.push(['elsewhere', rv.accents.map(x => `<span style="white-space:nowrap;margin-right:10px">${x.regions.map(r => flag(r, true)).join('')}${ipaHtml(x.ipa, x.narrow)}</span>`).join('')]);
@@ -931,7 +938,8 @@ function card(lang, e, alts, ex, i, q) {
   const looks = q ? S.order.filter(o => o !== lang && q[o] && ['noun', 'verb', 'adjective', 'adverb'].includes(q[o].pos) && e.lemma.length >= 4 && q[o].lemma.length >= 4 && similar(e.lemma, q[o].lemma) >= 0.6
     && !FLTLearn.FALSE_FRIENDS.some(x => (x[1] === e.lemma && x[3] === q[o].lemma) || (x[3] === e.lemma && x[1] === q[o].lemma))) : [];
   if (looks.length) det.push(['looks', looks.map(o => `<span class="nowrap">${flag(S.main[o], true)}<span lang="${o}">${esc(withTo(q[o].id, q[o].lemma))}</span></span>`).join(' &nbsp;') + `<span class="sub">${esc(t('looks.sub', 'similar word: easier to remember'))}</span>`]);
-  const fq = FLTLearn.freqLabel(e.frequency_rank);
+  const fq = e.level_ch ? null : FLTLearn.freqLabel(e.frequency_rank);
+  if (e.level_ch) det.push(['freq', `<span class="form">${esc(t('freq.ch', 'common in Switzerland'))}</span><span class="sub">${esc(t('freq.ch.sub', 'Swiss word. The frequency list (film subtitles) comes from Germany, so it does not show how common it is here.'))}</span>`]);
   if (fq) det.push(['freq', `<span class="form">${esc(t('freq.' + fq, fq))}</span><span class="sub">${esc(t('freq.rank', 'number {n} in the frequency list (film subtitles)', { n: num(e.frequency_rank) }))}</span>`]);
   if (S.variants && rv.groups.length) det.push(['vars', `<ul class="vars">${rv.groups.map(g => `<li><span class="where" lang="en">${g.regions.map(r => flag(r, true) + esc(RNAME[r])).join(' &nbsp;')}</span>${g.parts.length ? `<span class="form">${esc(g.parts.join(' · '))}</span>` : ''}${g.note ? `<span class="sub" lang="en">${esc(g.note)}</span>` : ''}</li>`).join('')}</ul>`]);
   // notes
@@ -948,7 +956,7 @@ function card(lang, e, alts, ex, i, q) {
   let html = `<article class="card${known ? ' known' : ''}" lang="${LOCALE[lang][S.main[lang]]}" data-id="${esc(e.id)}" data-lang="${lang}" style="--i:${i}">
     <span class="tab">${l.code}</span>
     <div class="hwrow"><button class="star${fav ? ' on' : ''}" data-act="fav" aria-pressed="${fav}" aria-label="${esc(fav ? t('act.unsave', 'Remove from my words') : t('act.save', 'Save to my words'))}" title="${esc(fav ? t('act.unsave', 'Remove from my words') : t('act.save', 'Save to my words'))}">${fav ? '★' : '☆'}</button><h2 class="hw">${art ? artHtml(art, n && n.gender) + (art.endsWith("'") ? '' : ' ') : ''}${esc(rv.word)}</h2>${sayBtn(head, lang)}<button class="loop${loop === lang ? ' on' : ''}" data-act="loop" aria-pressed="${loop === lang}" aria-label="${esc(t('audio.loop', 'Repeat the word'))}" title="${esc(t('audio.loop', 'Repeat the word'))}">⟲</button></div>
-    <div class="pron">${rv.ipa ? (rv.ipaFrom ? `<span class="ipafrom" lang="en" title="${esc(t('ipa.from.tip', 'Wiktionary has no separate transcription for {r}; this is the pronunciation of {b}', { r: RNAME[S.main[lang]], b: RNAME[rv.ipaFrom] }))}">${flag(rv.ipaFrom, true)}</span>` : '') + ipaHtml(rv.ipa, rv.narrow, lang, head) + (rv.ipaFrom ? `<span class="sub ipanote" lang="en">${esc(t('ipa.asin', 'as in {b}', { b: RNAME[rv.ipaFrom] }))}</span>` : '') : ''}<span class="pos" lang="en">${esc(t('pos.' + pos, pos))}${n && n.gender ? ' · ' + esc(n.gender) : ''}</span>${lv}${regTag(e === state.entry ? sn : null)}${e.verified ? `<span class="ver" lang="en" title="${esc(t('ver.tip', 'Checked by a person'))}">✓ ${esc(t('ver', 'checked'))}</span>` : ''}</div>
+    <div class="pron">${rv.ipa ? (rv.ipaFrom ? `<span class="ipafrom" lang="en" title="${esc(t('ipa.from.tip', 'Wiktionary has no separate transcription for {r}; this is the pronunciation of {b}', { r: RNAME[S.main[lang]], b: RNAME[rv.ipaFrom] }))}">${flag(rv.ipaFrom, true)}</span>` : '') + ipaHtml(rv.ipa, rv.narrow, lang, head) + (rv.ipaFrom ? `<span class="sub ipanote" lang="en">${esc(t('ipa.asin', 'as in {b}', { b: RNAME[rv.ipaFrom] }))}</span>` : '') : ''}<span class="pos" lang="en">${esc(t('pos.' + pos, pos))}${n && n.gender ? ' · ' + esc((rv.article && { der: 'm', die: 'f', das: 'n' }[rv.article]) || n.gender) : ''}</span>${lv}${regTag(e === state.entry ? sn : null)}${e.verified ? `<span class="ver" lang="en" title="${esc(t('ver.tip', 'Checked by a person'))}">✓ ${esc(t('ver', 'checked'))}</span>` : ''}</div>
     ${summary(e, rv, art)}
     <div class="acts" lang="en">
       <button class="act${known ? ' on' : ''}" data-act="known" aria-pressed="${known}">${known ? '✓ ' + esc(t('act.known', 'Known')) : esc(t('act.know', 'I know this'))}</button>
@@ -1071,13 +1079,19 @@ function wireInput(input, list, cfg) {
   });
   /* Enter opens the selected or the top suggestion. Phone keyboards often send no Enter key while a word is being
      typed, only a form submission, so the form's submit does the same. */
-  function enter() {
+  async function enter() {
     clearTimeout(timer);
     const v = cleanTyped(input.value);
     if (v) items = cfg.items(input.value);
-    const exact = items.find(it => fold(it.w) === fold(v));
-    const it = sel >= 0 && !list.hidden ? items[sel] : (exact || items[0] || (v ? { w: v } : null));
-    close(); if (!it) return;
+    const exact = items.find(it => fold(it.w) === fold(v)), chosen = sel >= 0 && !list.hidden ? items[sel] : null;
+    close();
+    let it = chosen || exact;
+    if (!it && v) {      // a word that exists as typed (Rahm) wins over the first suggestion (Rahmen); a part of a word (Kartof) opens the suggestion
+      const real = (await Promise.all(cfg.langs().map(l => find(l, v).catch(() => ({ hits: [] }))))).some(r => r.hits.some(h => fold(h.lemma) === fold(v)));
+      it = real ? { w: v } : (items[0] || { w: v });
+    }
+    if (!it) it = items[0] || null;
+    if (!it) return;
     input.value = typedW(it); cfg.go(it);
     if (matchMedia('(pointer: coarse)').matches) input.blur();      // on a phone: close the keyboard so the cards show
   }
@@ -1262,7 +1276,7 @@ $('#cards').addEventListener('click', ev => {
   else if (act === 'list-new') { const inp = $('#newlist-' + lang), name = inp.value.trim(); if (!name) return; let L = P.lists.find(x => x.name === name); if (!L) P.lists.push(L = { name, ids: [], w: {} }); if (!L.ids.includes(e.id)) { L.ids.push(e.id); L.w = L.w || {}; L.w[e.id] = e.lemma; } saveP(); render(false); toast(t('list.added', 'Added to “{l}”.', { l: name })); }
   else if (act === 'link') { const url = location.href.split('#')[0] + routeOf(e, null); try { navigator.clipboard.writeText(url).then(() => toast(t('link.copied', 'Link copied: {u}', { u: url })), () => toast(url)); } catch (err) { toast(url); } }
   else if (act === 'loop') toggleLoop(lang);
-  else if (act === 'record') { const rv = regionView(e); recordCompare(withArt(e.pos === 'noun' ? article(lang, e, rv.word) : '', rv.word), lang, a); }
+  else if (act === 'record') { const rv = regionView(e); recordCompare(withArt(e.pos === 'noun' ? (rv.article || article(lang, e, rv.word)) : '', rv.word), lang, a); }
   else if (act === 'readtable') {
     const T = tables(e, regionView(e)), x = T[+a.dataset.k]; if (!x) return;
     const lab = r => r[0] && /^[\p{Ll}/ ]+$/u.test(r[0]) && r[0].length < 20 ? r[0] + ' ' : '';
