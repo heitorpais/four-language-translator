@@ -105,6 +105,7 @@ Traktandum|noun|C1|Tagesordnungspunkt|agenda item,item|point|item
 
 # words Switzerland uses next to the common word (Spass, Lastwagen, T-Shirt …): no Swiss form replaces the common word
 NO_REVERSE = {'Plausch', 'Absenz', 'Advokat', 'Leibchen', 'Camion', 'Töff', 'Pult'}
+DROP = {('hoi', 's1'), ('Beiz', 's2')}     # wrong meanings in the source (hoi: 'presence', Beiz: 'hawking')
 GENDER = {'Spital': 'n'}          # das Spital in Switzerland and Austria
 POS_OK = {'noun', 'verb', 'adjective', 'adverb', 'interjection', 'preposition', 'particle'}
 
@@ -150,13 +151,16 @@ def main():
         old = next((s for s in senses if s['id'] == 'sch'), None)
         if old: senses.remove(old)
         # an existing sense that already means the Swiss meaning (it has the first English word) moves up and is completed
-        same = next((s for s in senses if want['en'] and want['en'][0] in s['translations'].get('en', [])), None)
+        same = next((s for s in senses if set(want['en']) & set(s['translations'].get('en', []))), None)
         if same and not old:
             senses.remove(same)
             for L, t in want.items():
                 have = same['translations'].get(L) or []
                 if not have and t:
                     same['translations'][L] = t; same['route'][L] = 'library'
+                elif t:          # the everyday word first (vélo before bicyclette); the others stay after it
+                    same['translations'][L] = list(dict.fromkeys(t + have))
+                    if same['route'].get(L) in (None, 'none'): same['route'][L] = 'library'
             senses.insert(0, same)
         else:
             s = {'id': 'sch'}
@@ -166,6 +170,10 @@ def main():
             s['route'] = {L: ('library' if t else 'none') for L, t in want.items()}
             s['origin'] = 'claude'
             senses.insert(0, s)
+        # meanings found only the other way round (from an English or French entry) are often wrong for the Swiss word
+        # (Velo: "the back seat of a motorcycle"); the hand-checked meaning replaces them
+        e['senses'] = [x for k, x in enumerate(senses) if k == 0 or not (x.get('reverse') or (lemma, x['id']) in DROP
+                       or not any(x['translations'].values()))]
         e['used_in'] = sorted(set(e.get('used_in') or []) | {'CH'})
         e['level_ch'] = level
         if lemma in GENDER and e.get('noun'): e['noun']['gender'] = GENDER[lemma]
