@@ -362,6 +362,57 @@ button.case{border:0}
 }
 .ex li.none{font:400 13px var(--body);color:var(--muted);border-left-style:dashed}
 .exvar{margin-right:5px}
+
+/* Progress page */
+.sm-nav{font-size:13px}
+.sm-nav[hidden]{display:none}
+.pg-langs{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.pg-lang{border:1px solid var(--rule);border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:6px}
+.pg-lang-h{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.pg-lang-h span{margin-left:auto;font:500 13px var(--mono);color:var(--muted)}
+.pg-bar{display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:8px}
+.pg-track{height:8px;background:var(--paper);border-radius:4px;overflow:hidden;border:1px solid var(--rule)}
+.pg-track div{height:100%;background:var(--regular);border-radius:4px}
+.pg-num{font:400 12px var(--mono);color:var(--muted);min-width:78px;text-align:right}
+.hm-wrap{overflow-x:auto;padding-bottom:6px}
+.hm-months{display:grid;font:400 11px var(--mono);color:var(--muted);height:16px;margin-left:0}
+.hm-grid{display:flex;gap:3px}
+.hm-col{display:flex;flex-direction:column;gap:3px}
+.hm-col i,.hm-legend i{display:block;width:11px;height:11px;border-radius:2px;background:var(--paper);border:1px solid var(--rule)}
+.hm-legend{display:flex;align-items:center;gap:4px;font-size:12px;color:var(--muted);flex-wrap:wrap;margin-top:4px}
+.hm-legend i{display:inline-block}
+i.hm1{background:color-mix(in srgb,var(--regular) 30%,var(--paper))} i.hm2{background:color-mix(in srgb,var(--regular) 55%,var(--paper))}
+i.hm3{background:color-mix(in srgb,var(--regular) 80%,var(--paper))} i.hm4{background:var(--regular)} i.hm-x{visibility:hidden}
+.pg-g{font:600 13px var(--body);color:var(--muted);margin:14px 0 6px;text-transform:uppercase;letter-spacing:.06em}
+.badges{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.badge{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--rule);border-radius:10px;padding:10px 12px;background:var(--surface)}
+.badge.off{opacity:.55;filter:grayscale(1)}
+.badge.on{border-color:color-mix(in srgb,#e0a100 55%,var(--rule))}
+.bicon{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-size:24px;background:var(--paper);border:2px solid var(--rule)}
+.badge.on .bicon{border-color:#e0a100;background:color-mix(in srgb,#e0a100 12%,var(--surface))}
+.bicon .flag{width:28px;height:19px}
+.lvlicon{font:700 15px var(--mono)}
+.bt{display:flex;flex-direction:column;gap:2px;min-width:0}
+.bt b{font:600 15px var(--body)}
+.bt span{font-size:13px;color:var(--muted)}
+.bt small{font:400 12px var(--mono);color:var(--muted)}
+.bl{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.bll{display:inline-flex;align-items:center;gap:3px;font-size:11px;opacity:.45}
+.bll.on{opacity:1}
+.bll small{font-size:11px}
+.shareb{font-size:12px;margin-left:4px}
+.yr{border:2px solid #e0a100;border-radius:12px;padding:14px;margin:10px 0;background:color-mix(in srgb,#e0a100 7%,var(--surface))}
+.yr h3{margin:0 0 6px;font:600 14px var(--mono);color:#b07d00}
+.yr-big{font:500 24px var(--display);margin:0 0 8px}
+.yr-row{display:flex;flex-wrap:wrap;gap:6px 18px;margin-bottom:8px;font-size:14px}
+.pg-test{border:1px dashed var(--irregular);border-radius:8px;padding:8px 10px;margin:8px 0}
+.sh-prev{max-width:320px;margin:8px 0;border-radius:10px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.25)}
+#badge-pop{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);z-index:50;display:flex;align-items:center;gap:12px;background:var(--surface);color:var(--ink);border:2px solid #e0a100;border-radius:14px;padding:10px 14px;box-shadow:0 8px 30px rgba(0,0,0,.3);max-width:min(560px,94vw)}
+#badge-pop[hidden]{display:none}
+#badge-pop div{display:flex;flex-direction:column;font-size:13px}
+#badge-pop .bicon{border-color:#e0a100}
+.anim #badge-pop .bicon.pop{animation:pop .6s cubic-bezier(.3,1.6,.5,1) 2}
+@media (max-width:640px){.badges{grid-template-columns:1fr}.pg-langs{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -372,6 +423,7 @@ button.case{border:0}
     <nav class="top" aria-label="Views">
       <button class="btn navb" id="explore-toggle" aria-expanded="false" aria-controls="explore" data-t="nav.explore">Explore</button>
       <button class="btn navb" id="practice-toggle" aria-expanded="false" aria-controls="practice" data-t="nav.practice">Practice</button>
+      <button class="btn navb sm-nav" id="progress-toggle" aria-expanded="false" aria-controls="progress" data-t="nav.progress">Progress</button>
       <button class="btn navb" id="me-toggle" aria-expanded="false" aria-controls="me">My words</button>
       <button class="btn navb" id="settings-toggle" aria-expanded="false" aria-controls="settings" data-t="nav.settings">Settings</button>
       <button class="btn navb" id="sources-toggle" aria-expanded="false" aria-controls="sources" data-t="nav.sources">Sources &amp; licences</button>
@@ -393,6 +445,8 @@ button.case{border:0}
 
   <section id="explore" class="panel" hidden aria-label="Explore"></section>
   <section id="practice" class="panel" hidden aria-label="Practice"></section>
+  <section id="progress" class="panel" hidden aria-label="Progress"></section>
+  <section id="share-box" class="panel" hidden aria-label="Share"></section>
   <section id="me" class="panel" hidden aria-label="My words"></section>
   <section id="settings" class="panel" hidden aria-label="Settings"></section>
   <section id="grammar" class="panel" hidden aria-label="Grammar"></section>
@@ -419,9 +473,11 @@ button.case{border:0}
   </footer>
 </div>
 <div id="print-area"></div>
+<div id="badge-pop" role="status" aria-live="polite" hidden></div>
 <script src="i18n.js"></script>
 <script src="learn.js"></script>
 <script src="forms.js"></script>
+<script src="progress.js"></script>
 <script src="views.js"></script>
 <script src="app.js"></script>
 </body>

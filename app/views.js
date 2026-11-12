@@ -26,7 +26,7 @@ function grammar(key) {
 }
 
 /* ---------- panels ---------- */
-const PANELS = ['explore', 'practice', 'me', 'settings', 'sources', 'grammar'];
+const PANELS = ['explore', 'practice', 'progress', 'me', 'settings', 'sources', 'grammar'];
 function togglePanel(name, force) {
   for (const p of PANELS) {
     const el = $('#' + p), btn = $('#' + p + '-toggle'); if (!el) continue;
@@ -36,7 +36,11 @@ function togglePanel(name, force) {
   }
 }
 function closePanels() { PANELS.forEach(p => { const el = $('#' + p); if (el) el.hidden = true; const b = $('#' + p + '-toggle'); if (b) b.setAttribute('aria-expanded', 'false'); }); }
-function paint(p) { if (p === 'explore') paintExplore(); else if (p === 'me') paintMe(); else if (p === 'practice') paintPractice(); else if (p === 'settings') paintSettings(); }
+function paint(p) { if (p === 'progress' && window.FLTProgress) FLTProgress.paint(); else if (p === 'explore') paintExplore(); else if (p === 'me') paintMe(); else if (p === 'practice') paintPractice(); else if (p === 'settings') paintSettings(); }
+function navBadges() {         // the Progress link is hidden while badges are off
+  const b = $('#progress-toggle'); if (!b) return;
+  b.hidden = A.S.badges === false; if (b.hidden && !$('#progress').hidden) togglePanel('progress', false);
+}
 function counter() {
   const n = Object.keys(A.P.favs).length, b = $('#me-toggle');
   if (b) b.textContent = t('nav.me', 'My words') + (n ? ' · ' + t('nav.saved', '{n} saved', { n }) : '');
@@ -134,6 +138,8 @@ function paintMe() {
       for (const L of d.lists || []) { const o = P.lists.find(x => x.name === L.name); if (o) { L.ids.forEach(id => { if (!o.ids.includes(id)) o.ids.push(id); }); o.w = Object.assign(o.w || {}, L.w || {}); } else P.lists.push(L); }
       const seen = new Set(P.history.map(h => h.id)); P.history = P.history.concat((d.history || []).filter(h => !seen.has(h.id))).sort((a, b) => b.t - a.t).slice(0, 300);
       P.mistakes = (P.mistakes || []).concat(d.mistakes || []).slice(-200);
+      if (d.prog && (!P.prog || !Object.keys(P.prog.words || {}).length)) P.prog = d.prog;
+      P.badges = Object.assign({}, d.badges || {}, P.badges || {}); P.srs = Object.assign({}, d.srs || {}, P.srs || {});
       A.saveP(); paintMe(); $('#me-file-msg').textContent = t('me.import.ok', 'Loaded. Your words from the file were added.');
     } catch (e) { $('#me-file-msg').textContent = t('me.import.bad', 'This file is not a word list from this app.'); }
   });
@@ -174,7 +180,7 @@ async function printMe() {
   window.print();
 }
 function exportMe() {
-  const P = A.P, d = { app: 'four-language-translator', version: 1, saved: new Date().toISOString(), favs: P.favs, known: P.known, notes: P.notes, lists: P.lists, history: P.history, mistakes: P.mistakes };
+  const P = A.P, d = { app: 'four-language-translator', version: 1, saved: new Date().toISOString(), favs: P.favs, known: P.known, notes: P.notes, lists: P.lists, history: P.history, mistakes: P.mistakes, prog: P.prog, badges: P.badges, srs: P.srs };
   const url = URL.createObjectURL(new Blob([JSON.stringify(d, null, 1)], { type: 'application/json' }));
   const a = document.createElement('a'); a.href = url; a.download = 'my-words-four-language-translator.json'; document.body.appendChild(a); a.click(); a.remove();
   setTimeout(() => URL.revokeObjectURL(url), 2000);
@@ -206,7 +212,7 @@ function paintPractice() {
     ${c.mode === 'match' || c.mode === 'review' || c.mode === 'cards' ? '' : `<div class="set"><label for="pr-lang">${esc(t('pr.lang', 'Language'))}</label><select id="pr-lang">${langs.map(l => `<option value="${l}"${l === c.lang ? ' selected' : ''}>${esc(A.LNAME[l])}</option>`).join('')}</select></div>`}
     ${c.mode === 'translate' ? `<div class="set"><label for="pr-to">${esc(t('pr.to', 'Answer in'))}</label>${langSelect('pr-to', c.to, [['any', t('pr.any', 'Any language (mixed)')]])}</div>` : ''}
     ${c.mode === 'review' || c.mode === 'cards' ? '' : `<div class="set"><label for="pr-level">${esc(t('pr.level', 'Level'))}</label><select id="pr-level">${[['mine', t('pr.level.mine', 'My level and below ({l})', { l: A.S.myLevel })], ['all', t('pr.level.all', 'All levels')], ...LEVELS.map(l => [l, l + ' · ' + t('cefr.' + l, A.CEFR[l])])].map(([v, n]) => `<option value="${v}"${v === c.level ? ' selected' : ''}>${esc(n)}</option>`).join('')}</select></div>
-    <div class="set"><label for="pr-src">${esc(t('pr.src', 'Words'))}</label><select id="pr-src"><option value="all"${c.source === 'all' ? ' selected' : ''}>${esc(t('pr.src.all', 'All common words'))}</option><option value="saved"${c.source === 'saved' ? ' selected' : ''}>${esc(t('pr.src.saved', 'Only my saved words'))}</option>${A.P.lists.map((L, k) => `<option value="list:${k}"${c.source === 'list:' + k ? ' selected' : ''}>${esc(t('pr.src.list', 'List: {l}', { l: L.name }))}</option>`).join('')}</select></div>`}
+    <div class="set"><label for="pr-src">${esc(t('pr.src', 'Words'))}</label><select id="pr-src"><option value="all"${c.source === 'all' ? ' selected' : ''}>${esc(t('pr.src.all', 'All common words'))}</option><option value="saved"${c.source === 'saved' ? ' selected' : ''}>${esc(t('pr.src.saved', 'Only my saved words'))}</option><option value="reg:de:CH"${c.source === 'reg:de:CH' ? ' selected' : ''}>${esc(t('pr.src.ch', 'Swiss words (Helvetisms)'))}</option><option value="reg:pt:BRPT"${c.source === 'reg:pt:BRPT' ? ' selected' : ''}>${esc(t('pr.src.brpt', 'Brazil vs. Portugal'))}</option>${A.P.lists.map((L, k) => `<option value="list:${k}"${c.source === 'list:' + k ? ' selected' : ''}>${esc(t('pr.src.list', 'List: {l}', { l: L.name }))}</option>`).join('')}</select></div>`}
   </div>
   <div class="row">${c.mode === 'cards' ? `<button class="btn primary" data-x="fc-start">${esc(t('fc.start', 'Start: {n} cards due', { n: dueIds().length }))}</button><span class="hint">${esc(t('fc.deck', '{n} words in your flashcards (saved words and lists)', { n: deckIds().length }))}</span>` : `<button class="btn primary" data-x="pr-start">${esc(t('pr.start', 'Start: 10 questions'))}</button><span class="hint">${esc(t('pr.mistakes', '{n} mistakes saved for review', { n: (A.P.mistakes || []).length }))}</span>`}</div>
   <p class="hint" id="pr-msg" aria-live="polite"></p>`;
@@ -220,6 +226,7 @@ const lvOK = (e, c) => { if (c.level === 'all') return true; const v = A.levelOf
 async function pool(c, lang) {
   let ids = null;
   if (c.source === 'saved') ids = Object.keys(A.P.favs);
+  else if (c.source && c.source.startsWith('reg:')) { const f = (A.D.manifest.files || []).find(x => x.tier === 'regional'); const r = f ? await A.getFile(f.file, f.sha256).catch(() => ({})) : {}; const [, L, R] = c.source.split(':'); ids = R === 'BRPT' ? [...((r[L] || {}).BR || []), ...((r[L] || {}).PT || [])] : ((r[L] || {})[R] || []).slice(); }
   else if (c.source && c.source.startsWith('list:')) { const L = A.P.lists[+c.source.slice(5)]; ids = L ? L.ids.slice() : []; }
   if (ids) {
     await A.ensureIds(ids);
@@ -370,6 +377,7 @@ function judge(ok, picked) {
   const pr = V.pr, q = pr.q;
   pr.state = ok ? 'right' : 'wrong'; pr.picked = picked;
   const P = A.P;
+  if (window.FLTProgress && q.e) FLTProgress.record(q.e.id, ok, q.mode);
   if (ok) { pr.right++; if (q.review) P.mistakes = (P.mistakes || []).filter(m => !(m.id === q.e.id && m.mode === q.mode)); }
   else { pr.wrong.push(q.e); P.mistakes = (P.mistakes || []).filter(m => !(m.id === q.e.id && m.mode === q.mode)).concat([{ mode: q.mode, id: q.e.id, to: q.to, t: Date.now() }]).slice(-200); }
   A.saveP(); paintPractice();
@@ -383,7 +391,7 @@ function checkTyped(v) {
 function nextQ() {
   const pr = V.pr;
   pr.i++; pr.state = null; pr.typed = ''; pr.picked = null; pr.sel = {};
-  if (pr.i >= pr.qs.length) { pr.q = null; pr.done = true; if (pr.qs[0] && pr.qs[0].mode === 'match') pr.total = pr.qs.reduce((a, q) => a + q.rows.length, 0); paintPractice(); return; }
+  if (pr.i >= pr.qs.length) { pr.q = null; pr.done = true; if (window.FLTProgress) FLTProgress.quizDone(); if (pr.qs[0] && pr.qs[0].mode === 'match') pr.total = pr.qs.reduce((a, q) => a + q.rows.length, 0); paintPractice(); return; }
   pr.q = pr.qs[pr.i]; paintPractice();
   if (pr.q.say) setTimeout(() => A.speak(pr.q.say, pr.q.sayLang), 250);
 }
@@ -392,6 +400,7 @@ function matchPick(l, k) {
   pr.sel[l] = k;
   if (ALL.every(x => pr.sel[x] != null)) {
     const ks = ALL.map(x => pr.sel[x]), ok = ks.every(x => x === ks[0]);
+    if (ok && window.FLTProgress) ALL.forEach(l => { const x = q.rows[ks[0]][l]; if (x) FLTProgress.record(x.id, true, 'match'); });
     if (ok) { q.done.push(ks[0]); pr.right++; } else { const e = q.rows[ks[0]].de || q.rows[ks[0]][learnLang()]; pr.wrong.push(e); A.P.mistakes = (A.P.mistakes || []).concat([{ mode: 'translate', id: e.id, to: 'any', t: Date.now() }]).slice(-200); A.saveP(); }
     pr.sel = {};
     paintPractice();
@@ -421,6 +430,7 @@ function paintSettings() {
     ${setting('s-size', t('set.size', 'Text size'), t('set.size.h', 'Makes all text and buttons larger or smaller.'), select('s-size', 'textSize', [[90, '90 %'], [100, '100 %'], [115, '115 %'], [130, '130 %'], [150, '150 %']]))}
     ${setting('s-mylevel', t('set.mylevel', 'My level'), t('set.mylevel.h', 'Used for the word of the day and for practice.'), select('s-mylevel', 'myLevel', LEVELS.map(l => [l, l + ' · ' + t('cefr.' + l, A.CEFR[l])])))}
     ${check('s-compact', 'compact', t('set.compact', 'Compact cards'), t('set.compact.h', 'Shows the essentials first; the rest opens with “All details”.'))}
+    ${check('s-badges', 'badges', t('set.badges', 'Progress, badges and streaks'), t('set.badges.h', 'Shows the Progress page, badges and their animation and sound. Off hides all of it; nothing is lost.'))}
     ${check('s-gcolor', 'gcolor', t('set.gcolor', 'Colours for der, die, das'), t('set.gcolor.h', 'Masculine blue ■, feminine red ●, neuter green ▲. The shapes stay when the colours are off.'))}
     ${check('s-anim', 'anim', t('set.anim', 'Animations'), t('set.anim.h', 'Cards slide in, flags turn, the star bounces. Always off when your device asks for reduced motion.'))}
     ${check('s-variants', 'variants', t('set.variants', 'Show other regions'), t('set.variants.h', 'When another country spells or says the word differently, list its form with the flag.'))}
@@ -433,6 +443,7 @@ function paintSettings() {
   </div>
   <h3 class="grp">${esc(t('set.g.audio', 'Audio'))}</h3><div class="sets">
     ${check('s-slow', 'slow', t('set.slow', 'Slow speech'), t('set.slow.h', 'Plays everything slowly. Without this, hold a speaker button to hear one word slowly.'))}
+    ${check('s-sounds', 'sounds', t('set.sounds', 'Sounds'), t('set.sounds.h', 'A soft chime when you earn a badge.'))}
     ${check('s-autoplay', 'autoplay', t('set.autoplay', 'Say the word when a card opens'), t('set.autoplay.h', 'Off by default.'))}
     ${check('s-playall', 'playAll', t('set.playall', 'Play all four languages after a lookup'), t('set.playall.h', 'Off by default. The ▶ button above the cards does the same on request.'))}
     ${voiceRows()}
@@ -449,6 +460,7 @@ function paintSettings() {
     A.saveSettings(); A.applyDisplay();
     if (k === 'ui') { A.applyTexts(); A.buildSlots(); counter(); paintSettings(); A.paintRecent(); A.paintWotd(); }
     if (k === 'myLevel') A.paintWotd();
+    if (k === 'badges') navBadges();
     if (A.state.status === 'done') A.render(false);
   }));
   el.querySelectorAll('[data-voice]').forEach(c => c.addEventListener('change', () => { A.S.voice[c.dataset.voice] = c.value; A.saveSettings(); }));
@@ -512,7 +524,7 @@ document.addEventListener('click', async ev => {
   const ps = ev.target.closest('[data-xpos]'); if (ps) { V.xpos = ps.dataset.xpos; V.more = false; paintExplore(); return; }
   const lt = ev.target.closest('[data-xletter]'); if (lt) { V.xletter = lt.dataset.xletter; V.more = false; paintExplore(); return; }
   const ob = ev.target.closest('[data-ob]'); if (ob) { V.ob[ob.dataset.ob] = ob.dataset.l; if (ob.dataset.ob === 'speak') { A.S.ui = ob.dataset.l; A.applyTexts(); } onboard(); return; }
-  const fg = ev.target.closest('[data-fc]'); if (fg && V.fc) { const id = V.fc.ids[V.fc.i]; A.P.srs[id] = sm2(A.P.srs[id], +fg.dataset.fc); A.saveP(); if (+fg.dataset.fc < 3) V.fc.ids.push(id); V.fc.i++; V.fc.done++; V.fc.flipped = false; paintPractice(); return; }
+  const fg = ev.target.closest('[data-fc]'); if (fg && V.fc) { const id = V.fc.ids[V.fc.i]; A.P.srs[id] = sm2(A.P.srs[id], +fg.dataset.fc); A.saveP(); if (window.FLTProgress) { FLTProgress.record(id, +fg.dataset.fc >= 3, 'cards'); if (V.fc.i + 1 >= V.fc.ids.length && +fg.dataset.fc >= 3) FLTProgress.quizDone(); } if (+fg.dataset.fc < 3) V.fc.ids.push(id); V.fc.i++; V.fc.done++; V.fc.flipped = false; paintPractice(); return; }
   const ch = ev.target.closest('.choice'); if (ch && V.pr && V.pr.q && !V.pr.state) { judge(ch.dataset.ch === V.pr.q.answer, ch.dataset.ch); return; }
   const mw = ev.target.closest('.mw'); if (mw && V.pr && V.pr.q) { matchPick(mw.dataset.mlang, +mw.dataset.mk); return; }
   const nav = ev.target.closest('.navb'); if (nav) { togglePanel(nav.id.replace('-toggle', '')); return; }
@@ -568,14 +580,15 @@ window.FLTViews = {
   init(api) {
     A = api;
     try { localStorage.setItem('flt:visits', String((+localStorage.getItem('flt:visits') || 0) + 1)); } catch (e) {}
-    counter(); paintSettings();          // the settings exist from the start (hidden), so they can be read and set any time
+    if (window.FLTProgress) FLTProgress.init(api);
+    navBadges(); counter(); paintSettings();          // the settings exist from the start (hidden), so they can be read and set any time
     let done = null; try { done = localStorage.getItem('flt:onboarded'); } catch (e) { done = '1'; }
     if (!done) onboard(); else maybeInstallTip();
   },
   counter() { if (A) counter(); },
   voicesChanged() { if (A && !$('#settings').hidden) paintSettings(); },
   afterRender() { if (A) A.paintRecent(); },
-  dataReady() { if (!A) return; for (const p of ['explore', 'practice', 'me']) if (!$('#' + p).hidden) paint(p); },
+  dataReady() { if (!A) return; if (window.FLTProgress) FLTProgress.dataReady(); for (const p of ['explore', 'practice', 'me']) if (!$('#' + p).hidden) paint(p); },
   closePanels, togglePanel, onboard, grammar, sm2,
   get practice() { return V; }
 };

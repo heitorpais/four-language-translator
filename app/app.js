@@ -16,7 +16,7 @@ const DEFAULTS = {
   ui: null, theme: 'system', textSize: 100, compact: true, anim: true, gcolor: true, variants: true, gsw: true, links: false,
   examples: 2, level: 'medium', sugg: 8, order: ['en', 'de', 'fr', 'pt'], speak: null, learning: null, myLevel: 'A2',
   // audio
-  slow: false, autoplay: false, playAll: false, voice: { en: '', de: '', fr: '', pt: '' },
+  slow: false, autoplay: false, playAll: false, sounds: true, badges: true, voice: { en: '', de: '', fr: '', pt: '' },
   main: { en: 'us', de: 'de', fr: 'fr', pt: 'br' }
 };
 const S = JSON.parse(JSON.stringify(DEFAULTS));
@@ -427,6 +427,7 @@ function commit(e, opts) {
   P.last = { id: e.id, sense: state.sense };
   P.looks[e.id] = (P.looks[e.id] || 0) + 1;
   state.trail = [...(state.trail || []).filter(x => x !== e.id), e.id].slice(-8);
+  if (window.FLTProgress) FLTProgress.opened(e);
   saveP();
   if (P.looks[e.id] >= 3 && !P.favs[e.id] && !P.offered[e.id]) {
     P.offered[e.id] = 1; saveP();
@@ -898,7 +899,7 @@ function familyOf(e) {
 }
 const chip = (x, cls) => `<button class="chip${cls ? ' ' + cls : ''}" data-id="${esc(x.id)}" lang="${x.lang}">${esc(withTo(x.id, x.lemma))}</button>`;
 const isFav = e => !!P.favs[e.id];
-function toggleFav(e) { if (P.favs[e.id]) delete P.favs[e.id]; else P.favs[e.id] = { w: e.lemma, t: Date.now() }; saveP(); }
+function toggleFav(e) { if (P.favs[e.id]) delete P.favs[e.id]; else P.favs[e.id] = { w: e.lemma, t: Date.now() }; saveP(); if (window.FLTProgress) FLTProgress.saved(); }
 function card(lang, e, alts, ex, i, q) {
   const l = LANGS.find(x => x.id === lang);
   if (!e) return `<article class="card empty" data-lang="${lang}" style="--i:${i}"><span class="tab">${l.code}</span><p class="note" lang="en">${esc(t('card.none', 'No {lang} translation for this meaning in the data.', { lang: LNAME[lang] }))}</p></article>`;
@@ -1306,7 +1307,7 @@ async function start() {
   } else offlineNote(t('foot.needweb', 'Offline use needs the app to be opened from its web address.'));
 }
 const API = { D, S, P, DEFAULTS, t, esc, num, flag, fold, LNAME, RNAME, REG, BASE, LOCALE, LANGS, CEFR, LVORD, levelOf, lvlBadge, article, artHtml, gclass, gname, withArt, regionView,
-  find, findLoaded, translate, openEntry, openId, ensureIds, ensureWord, speak, speakAll, withTo, voicesFor, voiceFor, get voices() { return voices; }, saveP, saveSettings, loadSettings, toast, render, applyDisplay, applyTexts,
+  getFile, find, findLoaded, translate, openEntry, openId, ensureIds, ensureWord, speak, speakAll, withTo, voicesFor, voiceFor, get voices() { return voices; }, saveP, saveSettings, loadSettings, toast, render, applyDisplay, applyTexts,
   buildSlots, paintRecent, paintWotd, tables, canForms, routeOf, firstTr: null, trIds, toggleFav, diffMark, animOn, quad, visibleSenses, idParts, sentenceHtml, regionScore, get state() { return state; } };
 window.FLT = Object.assign(API, { ready: null });
 window.FLT.ready = start();

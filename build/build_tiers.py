@@ -65,6 +65,7 @@ def main():
             for ids in s['translations'].values():
                 for t in ids:
                     if t in core: links[e['id']].add(t); links[t].add(e['id'])
+    regional = {}
     for L in LANGS:
         ce = sorted((e for e in core.values() if e['lang'] == L), key=lambda e: (e['frequency_rank'] or 10 ** 9, e['id']))
         # the card data loads first; examples and background ("more") follow in a second file
@@ -105,12 +106,16 @@ def main():
             rel = 'ext/%s/%s.json' % (L, k)
             info = dump(os.path.join(DATA, rel), obj, rel); info.update(tier='ext', lang=L, prefix=k, entries=len(obj['entries']), forms=len(obj['forms']))
             files.append(info); bucket_index[L][k] = info['sha256']
+        # words used only in some regions (Helvetisms, Brazil vs Portugal …), common and less common ones: for practice and badges
+        for e in list(ce) + [x for x in rest if x['tier'] == 'ext']:
+            for R in e.get('used_in') or []: regional.setdefault(L, {}).setdefault(R, []).append(e['id'])
         tiers = collections.Counter(e['tier'] for e in rest)
         counts[L] = {'core': len(ce), 'extended': tiers['ext'], 'long_tail': tiers['tail'], 'entries': len(ce) + len(rest),
                      'lemmas': len({e['lemma'] for e in list(ce) + rest}), 'inflected_forms': len(forms),
                      'words_for_suggestions': len({e['lemma'] for e in list(ce) + rest} | {f for f, _ in forms})}
         print(L, counts[L], 'buckets', len(bk), flush=True)
     info = dump(os.path.join(DATA, 'links.json'), {k: sorted(v) for k, v in sorted(links.items())}, 'links.json'); info.update(tier='links'); files.append(info)
+    info = dump(os.path.join(DATA, 'regional.json'), regional, 'regional.json'); info.update(tier='regional'); files.append(info)
     gaps = {i: source_gaps(e) for i, e in core.items() if source_gaps(e)}
     info = dump(os.path.join(DATA, 'source_gaps.json'), gaps, 'source_gaps.json'); info.update(tier='build-info'); files.append(info)
     manifest = {'version': VERSION, 'built': datetime.date.today().isoformat(), 'files': files, 'buckets': bucket_index, 'counts': counts,
