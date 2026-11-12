@@ -56,7 +56,7 @@ const LANGS = [
 ];
 /* the boxes on screen: 2 to 4 languages chosen from LANGS, in the reader's order (Settings › My languages) */
 const MIN_SLOTS = 2, MAX_SLOTS = 4;
-const UI_LANGS = ['en', 'de', 'fr', 'pt'];
+const UI_LANGS = ['en', 'de', 'fr', 'pt', 'cs'];
 const LNAME_EN = { en: 'English', de: 'German', fr: 'French', pt: 'Portuguese', cs: 'Czech' };
 const LNAME = new Proxy(LNAME_EN, { get: (o, k) => typeof k === 'string' && o[k] ? t('lang.' + k, o[k]) : o[k] });
 const CEFR = { A1: 'basic', A2: 'elementary', B1: 'intermediate', B2: 'upper intermediate', C1: 'advanced', C2: 'academic' };
@@ -66,7 +66,7 @@ const TRY = ['Haus', 'gehen', 'gut', 'Zeit', 'helfen', 'schön', 'anfangen', 'Ki
 /* ---------- helpers ---------- */
 const $ = s => document.querySelector(s);
 const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-const num = n => Number(n).toLocaleString({ de: 'de-CH', fr: 'fr-CH', pt: 'pt-BR' }[S.ui] || 'en-US');
+const num = n => Number(n).toLocaleString({ de: 'de-CH', fr: 'fr-CH', pt: 'pt-BR', cs: 'cs-CZ' }[S.ui] || 'en-US');
 const store = {
   get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
   set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
@@ -1181,7 +1181,7 @@ function buildSlots() {
   const order = S.order.map(id => LANGS.find(l => l.id === id));
   $('#slots').innerHTML = order.map((l, k) => `
    <div class="slot" data-lang="${l.id}" style="--i:${k}">
-     <div class="slot-head"><span id="flag-${l.id}" class="fl">${flag(S.main[l.id])}</span><span class="lang-name">${esc(LNAME[l.id])}</span><kbd class="key" title="${esc(t('kb.slot', 'Press {n} to jump here', { n: k + 1 }))}">${k + 1}</kbd>
+     <div class="slot-head"><span id="flag-${l.id}" class="fl">${flag(S.main[l.id])}</span><select class="lang-pick" id="lp-${l.id}" aria-label="${esc(t('slot.lang', 'Language of this box'))}">${dataLangs().map(x => `<option value="${x}"${x === l.id ? ' selected' : ''}>${esc(LNAME[x])}</option>`).join('')}</select><kbd class="key" title="${esc(t('kb.slot', 'Press {n} to jump here', { n: k + 1 }))}">${k + 1}</kbd>
        <select id="var-${l.id}" aria-label="${esc(t('slot.variant', 'Main variant of {lang}', { lang: LNAME[l.id] }))}">${REG[l.id].map(r => `<option value="${r}"${r === S.main[l.id] ? ' selected' : ''}>${esc(RNAME[r])}</option>`).join('')}</select>
      </div>
      <form class="field" autocomplete="off">
@@ -1195,6 +1195,10 @@ function buildSlots() {
    </div>`).join('');
   order.forEach(l => {
     const input = $('#in-' + l.id), list = $('#sg-' + l.id);
+    $('#lp-' + l.id).addEventListener('change', ev => {         // another language in this box; if it is already in another box, the two swap
+      const o = S.order.slice(), i = o.indexOf(l.id), v = ev.target.value, j = o.indexOf(v);
+      if (j >= 0) o[j] = l.id; o[i] = v; setLanguages(o);
+    });
     $('#var-' + l.id).addEventListener('change', ev => {
       S.main[l.id] = ev.target.value; saveSettings();
       const fl = $('#flag-' + l.id); fl.innerHTML = flag(S.main[l.id]);
