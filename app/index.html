@@ -372,7 +372,11 @@ button.case{border:0}
 .pg-lang-h span{margin-left:auto;font:500 13px var(--mono);color:var(--muted)}
 .pg-bar{display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:8px}
 .pg-track{height:8px;background:var(--paper);border-radius:4px;overflow:hidden;border:1px solid var(--rule)}
-.pg-track div{height:100%;background:var(--regular);border-radius:4px}
+.pg-track{display:flex}
+.pg-track div{height:100%;background:var(--regular)}
+.pg-track div.half{background:var(--regular);opacity:.35}
+.pg-num small{color:var(--regular);font-weight:600}
+.pg-lang-h i{font-style:normal;color:var(--regular)}
 .pg-num{font:400 12px var(--mono);color:var(--muted);min-width:78px;text-align:right}
 .hm-wrap{overflow-x:auto;padding-bottom:6px}
 .hm-months{display:grid;font:400 11px var(--mono);color:var(--muted);height:16px;margin-left:0}

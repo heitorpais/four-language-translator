@@ -92,6 +92,7 @@ const animOn = () => S.anim && !reducedMotion();
 function levelOf(e) {
   if (!e) return null;
   if (e.level) return { l: e.level, est: false };
+  if (e.level_ch) return { l: e.level_ch, est: true };          // Swiss words: hand-set level (the frequency list is from Germany)
   const l = FLTLearn.estimateLevel(e.frequency_rank);
   return l ? { l, est: true } : null;
 }
@@ -1018,8 +1019,10 @@ function render(fill) {
 /* ---------- search: one box for any language, and one slot per language ---------- */
 function syncClear(lang) { const i = $('#in-' + lang), b = $('#clr-' + lang); if (i && b) b.hidden = !i.value; }
 /* a suggestion shows "to swim" when the word is mainly an English verb (the verb opens first) */
+const chSpell = (id, w) => (S.main.de === 'ch' && /^de:/.test(id || '')) ? String(w).replace(/ß/g, 'ss') : w;   // Swiss spelling while typing
+const typedW = it => chSpell(it.id || (it.lang ? it.lang + ':' : ''), it.w);
 function sugLabel(it) {
-  if (!it.id || !/^en:/.test(it.id)) return it.w;
+  if (!it.id || !/^en:/.test(it.id)) return typedW(it);
   if (/:verb$/.test(it.id)) return withTo(it.id, it.w);
   const v = D.byId.get('en:' + it.w + ':verb'), me = D.byId.get(it.id);
   return v && (v.pos_share == null ? !(me && me.frequency_rank === v.frequency_rank) : v.pos_share > 0.5) ? withTo(v.id, it.w) : it.w;
@@ -1040,7 +1043,7 @@ function wireInput(input, list, cfg) {
     list.innerHTML = items.map((it, i) => `<li role="option" data-i="${i}">${suggestHtml(it, it.lang && cfg.flags ? it.lang : null)}</li>`).join('');
     list.hidden = false; input.setAttribute('aria-expanded', 'true'); sel = -1;
   };
-  const pick = it => { input.value = it.w; close(); cfg.go(it); };
+  const pick = it => { input.value = typedW(it); close(); cfg.go(it); };
   input.addEventListener('input', () => {
     open(); if (cfg.after) cfg.after();
     const v = input.value;
@@ -1075,7 +1078,7 @@ function wireInput(input, list, cfg) {
     const exact = items.find(it => fold(it.w) === fold(v));
     const it = sel >= 0 && !list.hidden ? items[sel] : (exact || items[0] || (v ? { w: v } : null));
     close(); if (!it) return;
-    input.value = it.w; cfg.go(it);
+    input.value = typedW(it); cfg.go(it);
     if (matchMedia('(pointer: coarse)').matches) input.blur();      // on a phone: close the keyboard so the cards show
   }
   input.closest('form').addEventListener('submit', ev => { ev.preventDefault(); enter(); });
@@ -1104,6 +1107,7 @@ function buildSlots() {
       const fl = $('#flag-' + l.id); fl.innerHTML = flag(S.main[l.id]);
       if (animOn()) { fl.classList.remove('flip'); void fl.offsetWidth; fl.classList.add('flip'); }
       if (state.status === 'done') render();
+      sszKey();
     });
     $('#clr-' + l.id).addEventListener('click', () => { input.value = ''; syncClear(l.id); input.focus(); });
     input.addEventListener('input', () => syncClear(l.id));
@@ -1115,6 +1119,7 @@ function buildSlots() {
     });
     const bar = $('#chars-' + l.id);
     if (bar) {          // special characters under the box while typing
+      sszKey();
       input.addEventListener('focus', () => { bar.hidden = false; });
       input.addEventListener('blur', () => setTimeout(() => { if (document.activeElement !== input) bar.hidden = true; }, 150));
       bar.addEventListener('mousedown', ev => {
@@ -1137,7 +1142,8 @@ function buildSlots() {
   });
 }
 const SR = window.SpeechRecognition || window.webkitSpeechRecognition || null;
-const CHARS = { de: ['ä', 'ö', 'ü', 'ß', 'Ä', 'Ö', 'Ü'], fr: ['é', 'è', 'ê', 'ë', 'à', 'â', 'î', 'ï', 'ô', 'û', 'ù', 'ç', 'œ', 'É'], pt: ['á', 'à', 'â', 'ã', 'é', 'ê', 'í', 'ó', 'ô', 'õ', 'ú', 'ç'] };
+function sszKey() { document.querySelectorAll('#chars-de [data-ch="ß"]').forEach(b => { b.hidden = S.main.de === 'ch'; }); }   // no ß key in Swiss German
+const CHARS = { de: ['ä', 'ö', 'ü', 'ß', 'Ä', 'Ö', 'Ü'], fr: ['é', 'è', 'ê', 'ë', 'à', 'â', 'î', 'ï', 'ô', 'û', 'ù', 'ç', 'œ'], pt: ['á', 'à', 'â', 'ã', 'é', 'ê', 'í', 'ó', 'ô', 'õ', 'ú', 'ç'] };
 /* any-language box: suggestions from all four languages; the language is the one that has the word */
 function anySuggest(v) {
   const q = stripKey('en', fold(v)); if (!q) return [];

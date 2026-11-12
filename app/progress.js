@@ -222,9 +222,11 @@ function langsHtml() {
   const g = prog(), lv = coreLevels();
   return `<div class="pg-langs">${ALL.map(l => {
     const n = Object.keys(g.words).filter(id => id.startsWith(l + ':') && g.words[id].l).length;
-    const bars = LEVELS.filter(x => lv[l][x].size).map(x => { const ids = lv[l][x]; let k = 0; for (const id of ids) if (g.words[id] && g.words[id].l) k++; const p = ids.size ? Math.round(100 * k / ids.size) : 0;
-      return `<div class="pg-bar"><span class="lvl sm ${x}">${x}</span><div class="pg-track" role="progressbar" aria-valuenow="${k}" aria-valuemax="${ids.size}" aria-label="${x}"><div style="width:${p}%"></div></div><span class="pg-num">${A.num(k)} / ${A.num(ids.size)}</span></div>`; }).join('');
-    return `<div class="pg-lang"><div class="pg-lang-h">${A.flag(A.S.main[l])}<b>${esc(A.LNAME[l])}</b><span>${esc(t('pg.learned', '{n} words learned', { n: A.num(n) }))}</span></div>${bars}</div>`;
+    const m = Object.keys(g.words).filter(id => id.startsWith(l + ':') && !g.words[id].l && g.words[id].d.length).length;   // right on 1 or 2 days so far
+    const bars = LEVELS.filter(x => lv[l][x].size).map(x => { const ids = lv[l][x]; let k = 0, h = 0; for (const id of ids) { const w = g.words[id]; if (w && w.l) k++; else if (w && w.d.length) h++; }
+      const p = 100 * k / ids.size, q = 100 * h / ids.size, vis = v => v > 0 ? Math.max(v, 1.5) : 0;
+      return `<div class="pg-bar"><span class="lvl sm ${x}">${x}</span><div class="pg-track" role="progressbar" aria-valuenow="${k}" aria-valuemax="${ids.size}" aria-label="${x}"><div style="width:${vis(p)}%"></div><div class="half" style="width:${vis(q)}%"></div></div><span class="pg-num">${A.num(k)} / ${A.num(ids.size)}${h ? `<small title="${esc(t('pg.half.tip', 'Answered right on 1 or 2 days so far'))}"> +${A.num(h)}</small>` : ''}</span></div>`; }).join('');
+    return `<div class="pg-lang"><div class="pg-lang-h">${A.flag(A.S.main[l])}<b>${esc(A.LNAME[l])}</b><span>${esc(t('pg.learned', '{n} words learned', { n: A.num(n) }))}${m ? `<br><i>${esc(t('pg.half', '{n} on the way', { n: A.num(m) }))}</i>` : ''}</span></div>${bars}</div>`;
   }).join('')}</div>`;
 }
 function badgeTile(b, st) {
@@ -264,7 +266,7 @@ async function paint() {
   const showYear = now.getMonth() === 0 || TEST;
   const nEarned = Object.keys(A.P.badges).length;
   el.innerHTML = `<h2>${esc(t('nav.progress', 'Progress'))}</h2>
-    <p class="hint">${esc(t('pg.intro', 'Only practice counts. A word is learned when you answered it right on 3 different days.'))}</p>
+    <p class="hint">${esc(t('pg.intro', 'Only practice counts. A word is learned when you answered it right on 3 different days; the light part of each bar shows words on the way (right on 1 or 2 days so far).'))}</p>
     ${TEST ? testHtml() : ''}
     ${showYear ? yearHtml(now.getMonth() === 0 && !TEST ? now.getFullYear() - 1 : (TEST ? now.getFullYear() : now.getFullYear() - 1)) : ''}
     <h3 class="grp">${esc(t('pg.words', 'Words learned'))}</h3>${langsHtml()}

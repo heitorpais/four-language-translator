@@ -64,10 +64,11 @@ def check_slim(e):
     if tier not in SLIM: F('bad tier'); return
     allowed = SLIM[tier] | ({'noun', 'verb'} if tier == 'ext' else set())
     if not SLIM[tier] <= set(e): F('missing fields %s' % sorted(SLIM[tier] - set(e)))
-    if set(e) - allowed - {'used_in', 'pos_share', 'pos_order'}: F('unknown fields %s' % sorted(set(e) - allowed - {'used_in', 'pos_share', 'pos_order'}))
+    if set(e) - allowed - {'used_in', 'pos_share', 'pos_order', 'level_ch'}: F('unknown fields %s' % sorted(set(e) - allowed - {'used_in', 'pos_share', 'pos_order', 'level_ch'}))
     if 'pos_order' in e and not isinstance(e['pos_order'], int): F('bad pos_order')
     if 'pos_share' in e and not (isinstance(e['pos_share'], (int, float)) and 0 <= e['pos_share'] <= 1): F('bad pos_share')
     check_used_in(e, F)
+    if 'level_ch' in e and e['level_ch'] not in CEFR: F('bad level_ch')
     if e.get('lang') not in LANGS: F('bad lang')
     if e.get('pos') not in POS: F('bad pos')
     if not re.fullmatch(re.escape('%s:%s:%s' % (e.get('lang'), e.get('lemma'), e.get('pos'))) + r'(:\d+)?', i): F('id does not match lang:lemma:pos')
@@ -88,7 +89,7 @@ def check_entry(e):
     for k, t in TOP.items():
         if k not in e: F('missing field ' + k)
         elif not isinstance(e[k], t): F('wrong type for ' + k)
-    extra = set(e) - set(TOP) - {'used_in', 'pos_share', 'pos_order'}
+    extra = set(e) - set(TOP) - {'used_in', 'pos_share', 'pos_order', 'level_ch'}
     if extra: F('unknown fields %s' % sorted(extra))
     check_used_in(e, F)
     if any(k not in e for k in TOP): return

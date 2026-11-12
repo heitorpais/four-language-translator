@@ -107,8 +107,10 @@ def main():
             info = dump(os.path.join(DATA, rel), obj, rel); info.update(tier='ext', lang=L, prefix=k, entries=len(obj['entries']), forms=len(obj['forms']))
             files.append(info); bucket_index[L][k] = info['sha256']
         # words used only in some regions (Helvetisms, Brazil vs Portugal …), common and less common ones: for practice and badges
-        for e in list(ce) + [x for x in rest if x['tier'] == 'ext']:
-            for R in e.get('used_in') or []: regional.setdefault(L, {}).setdefault(R, []).append(e['id'])
+        for e in list(ce) + [x for x in rest if x['tier'] == 'ext' or 'level_ch' in x]:
+            for R in e.get('used_in') or []:
+                if L == 'de' and R == 'CH' and 'level_ch' not in e: continue      # Swiss words: only the hand-checked list (swiss.py)
+                regional.setdefault(L, {}).setdefault(R, []).append(e['id'])
         tiers = collections.Counter(e['tier'] for e in rest)
         counts[L] = {'core': len(ce), 'extended': tiers['ext'], 'long_tail': tiers['tail'], 'entries': len(ce) + len(rest),
                      'lemmas': len({e['lemma'] for e in list(ce) + rest}), 'inflected_forms': len(forms),
