@@ -22,7 +22,7 @@ const CLIENT_ID = '316855053502-q0r0qoj6o65dkc3nj6s2fm0qsjmhqk3d.apps.googleuser
 const FOUNDERS = 1000;
 const FLAG = 'flt:acct', DIRTY = 'flt:acct-dirty', CACHE = 'flt:acct-profile';
 let fb = null, auth = null, db = null, user = null, profile = null, state = 'off', lastSync = 0, pushTimer = 0, msg = '', silent = false;
-let gis = null, tokenClient = null, editing = false, viewing = null;
+let gis = null, tokenClient = null, editing = false, viewing = null, mode = 'create', fresh = false;
 const A = () => window.FLT;
 const AV = () => window.FLTAvatars;
 const t = (k, en, v) => (A() && A().t ? A().t(k, en, v) : (v ? en.replace(/\{(\w+)\}/g, (m, x) => v[x] != null ? v[x] : m) : en));
@@ -77,8 +77,9 @@ async function gotToken(resp) {
   if (!resp || !resp.access_token) { state = 'off'; msg = t('acct.err', 'Signing in did not work. Check the internet connection and try again.'); paintAll(); return; }
   try {
     await load();
+    fresh = true;
     await fb.signInWithCredential(auth, fb.GoogleAuthProvider.credential(null, resp.access_token));
-    editing = true; openPanel();
+    openPanel();
   } catch (e) { state = 'off'; msg = t('acct.err', 'Signing in did not work. Check the internet connection and try again.') + ' (' + (e && e.code || e) + ')'; paintAll(); }
 }
 function gisError(e) {
@@ -144,8 +145,10 @@ function refreshViews() { try { const V = window.FLTViews; if (V) { V.counter();
 async function loadProfile() {
   try { const s = await fb.getDoc(fb.doc(db, 'profiles', user.uid)); profile = s.exists() ? s.data() : null; }
   catch (e) { profile = null; }
+  fresh = false;
   ls.set(CACHE, profile ? JSON.stringify({ username: profile.username, avatar: profile.avatar.startsWith('data:') ? '' : profile.avatar, memberNo: profile.memberNo }) : null);
-  if (!profile) editing = true;
+  if (!profile) { editing = true; if (fresh && mode === 'login') msg = t('acct.nofound', 'There is no Glossarium account for this Google account yet. Create your profile below.'); }
+  else if (fresh) msg = t('acct.back', 'Welcome back, @{u}!', { u: profile.username });
   paintAll();
 }
 const USER_RE = /^[a-z0-9_.]{3,20}$/;
@@ -233,7 +236,7 @@ function cornerHtml() {
   const p = profile || (ls.get(FLAG) && cached);
   if (p && p.username) return `<button class="corner-btn" data-acct-x="panel" aria-label="${esc(t('prof.mine', 'My profile'))}">${avatarImg(profile ? profile.avatar : p.avatar, 'pfp sm')}<span class="un">@${esc(p.username)}</span>${badgeHtml(p)}</button>`;
   if (user || ls.get(FLAG)) return `<button class="corner-btn" data-acct-x="panel">${avatarImg('', 'pfp sm')}<span class="un">${esc(t('prof.finish', 'Finish your profile'))}</span></button>`;
-  return `<button class="corner-btn none" data-acct-x="panel"><span class="no-acct">${esc(t('acct.none', 'No account'))}</span><span class="create">${esc(t('acct.create', 'Create one'))}</span></button>`;
+  return `<div class="corner-none"><span class="no-acct">${esc(t('acct.none', 'No account'))}</span><button class="corner-link" data-acct-x="panel" data-mode="create">${esc(t('acct.create', 'Create one'))}</button><button class="corner-link small" data-acct-x="panel" data-mode="login">${esc(t('acct.have', 'I already have an account'))}</button></div>`;
 }
 function profileCard(p, own) {
   const nat = (p.nationality || []).map(c => `<span class="tag">${flagEmoji(c)} ${esc(countryName(c))}</span>`).join(' ');
@@ -258,7 +261,7 @@ function newDraft() {
     avatar: p.avatar || 'preset:' + AV().names[Math.floor(Math.random() * AV().names.length)],
     nationality: (p.nationality || []).slice(),
     speaks: (p.speaks || (S.speak ? [{ l: S.speak, lv: 'native' }] : [])).map(x => Object.assign({}, x)),
-    learning: (p.learning || (S.learning ? [{ l: S.learning, lv: '' }] : [])).map(x => Object.assign({}, x)),
+    learning: (p.learning || (S.learning && S.learning !== S.speak ? [{ l: S.learning, lv: '' }] : [])).filter(x => !(p.speaks || (S.speak ? [{ l: S.speak }] : [])).some(y => y.l === x.l)).map(x => Object.assign({}, x)),
     bio: p.bio || '', nameState: p.username ? 'free' : '', useLangs: !p.username
   };
 }
@@ -268,7 +271,8 @@ function langRows(kind) {
     <select data-lv="${kind}" data-i="${i}" aria-label="${esc(t('prof.level.of', 'Level in {lang}', { lang: langName(x.l) }))}" class="${need && !x.lv ? 'missing' : ''}">
       <option value="">${esc(t('prof.level.choose', 'Choose the level…'))}</option>${levels.map(v => `<option value="${v}"${x.lv === v ? ' selected' : ''}>${esc(v === 'native' ? t('prof.native', 'Native') : v)}</option>`).join('')}</select>
     <button class="chip" data-acct-x="lang-del" data-kind="${kind}" data-i="${i}" aria-label="${esc(t('prof.remove', 'Remove'))}">×</button></div>`).join('');
-  const used = new Set(arr.map(x => x.l));
+  const other = kind === 'speaks' ? draft.learning : draft.speaks;
+  const used = new Set(arr.concat(other).map(x => x.l));          // a language you speak cannot also be one you are learning, and the other way round
   const opts = sortedLangs().filter(l => !used.has(l)).map(l => `<option value="${l}">${esc(langName(l))}</option>`).join('');
   return `${rows}<div class="lrow"><select data-add="${kind}"><option value="">${esc(kind === 'speaks' ? t('prof.add.speak', '+ Add a language you speak') : t('prof.add.learn', '+ Add a language you are learning'))}</option>${opts}</select></div>`;
 }
@@ -300,8 +304,13 @@ function accountControls() {
 }
 const G_LOGO = '<svg width="16" height="16" viewBox="0 0 48 48" aria-hidden="true" style="vertical-align:-3px;margin-right:6px"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.6 5.4 2.7 13.3l7.9 6.1C12.5 13.6 17.8 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.6c0-1.6-.1-3.1-.4-4.6H24v9h12.4c-.5 2.9-2.2 5.3-4.6 6.9l7.4 5.7c4.3-4 6.9-9.9 6.9-17z"/><path fill="#FBBC05" d="M10.6 28.6c-.5-1.4-.8-3-.8-4.6s.3-3.2.8-4.6l-7.9-6.1C1 16.6 0 20.2 0 24s1 7.4 2.7 10.7l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.4-5.7c-2.1 1.4-4.8 2.3-8.5 2.3-6.2 0-11.5-4.1-13.4-9.9l-7.9 6.1C6.6 42.6 14.6 48 24 48z"/></svg>';
 function signInHtml() {
+  const dis = state === 'syncing' ? 'disabled' : '';
+  if (mode === 'login') return `<p>${esc(t('acct.login.p', 'Sign in with the Google account you used to create your Glossarium account.'))}</p>
+    <div class="row"><button class="btn" data-acct-x="in" ${dis}>${G_LOGO}${esc(t('acct.signin.g', 'Sign in with Google'))}</button></div>
+    <p class="hint">${esc(t('acct.login.new', 'No account yet?'))} <button class="lnk" data-acct-x="mode" data-mode="create">${esc(t('acct.create.btn', 'Create an account'))}</button> · <a href="privacy/">${esc(t('acct.privacy', 'Privacy'))}</a></p>`;
   return `<p>${esc(t('acct.why', 'With a free account you get a profile, your words on all your devices, and, for the first {n} accounts, the founding-member badge ✦.', { n: FOUNDERS }))}</p>
-    <div class="row"><button class="btn" data-acct-x="in" ${state === 'syncing' ? 'disabled' : ''}>${G_LOGO}${esc(t('acct.signin', 'Continue with Google'))}</button> <a href="privacy/">${esc(t('acct.privacy', 'Privacy'))}</a></div>
+    <div class="row"><button class="btn" data-acct-x="in" ${dis}>${G_LOGO}${esc(t('acct.signin', 'Continue with Google'))}</button></div>
+    <p class="hint">${esc(t('acct.have', 'I already have an account'))}: <button class="lnk" data-acct-x="mode" data-mode="login">${esc(t('acct.signin.short', 'Sign in'))}</button> · <a href="privacy/">${esc(t('acct.privacy', 'Privacy'))}</a></p>
     <p class="hint">${esc(t('acct.optional', 'Optional: the dictionary works the same without an account.'))}</p>`;
 }
 function panelHtml() {
@@ -312,7 +321,7 @@ function panelHtml() {
     const body = v.loading ? `<p class="hint">${esc(t('prof.loading', 'Loading…'))}</p>` : v.missing ? `<p>${esc(t('prof.missing', 'There is no profile called @{n}.', { n: v.name }))}</p>` : profileCard(v.p, user && v.p.username === (profile && profile.username));
     return `${close}<h2>${esc(t('prof.title', 'Profile'))}</h2>${body}`;
   }
-  if (!user) return `${close}<h2>${esc(t('acct.title', 'Account'))}</h2>${ls.get(FLAG) ? `<p class="hint">${esc(t('prof.loading', 'Loading…'))}</p>` : signInHtml()}${note}`;
+  if (!user) return `${close}<h2>${esc(mode === 'login' ? t('acct.login.t', 'Sign in') : t('acct.title', 'Create an account'))}</h2>${ls.get(FLAG) ? `<p class="hint">${esc(t('prof.loading', 'Loading…'))}</p>` : signInHtml()}${note}`;
   if (editing || !profile) {
     if (!draft) draft = newDraft();
     return `${close}<h2>${esc(profile ? t('prof.edit', 'Edit profile') : t('prof.new', 'Create your profile'))}</h2>${editorHtml()}${note}`;
@@ -322,7 +331,7 @@ function panelHtml() {
 function boxHtml() {          // the short version in "My words" and Settings → Data
   if (user && profile) return `<div class="acct-box"><div class="row">${avatarImg(profile.avatar, 'pfp sm')}<b>@${esc(profile.username)}</b>${badgeHtml(profile)} <button class="btn sm" data-acct-x="panel">${esc(t('prof.mine', 'My profile'))}</button></div>${accountControls()}</div>`;
   if (user) return `<div class="acct-box"><div class="row"><button class="btn" data-acct-x="panel">${esc(t('prof.finish', 'Finish your profile'))}</button></div></div>`;
-  return `<div class="acct-box"><p class="hint">${esc(t('acct.off', 'Create a free account to keep your words, lists, notes and progress on all your devices.'))}</p><div class="row"><button class="btn" data-acct-x="panel">${esc(t('acct.create.btn', 'Create an account'))}</button></div></div>`;
+  return `<div class="acct-box"><p class="hint">${esc(t('acct.off', 'Create a free account to keep your words, lists, notes and progress on all your devices.'))}</p><div class="row"><button class="btn" data-acct-x="panel" data-mode="create">${esc(t('acct.create.btn', 'Create an account'))}</button><button class="btn" data-acct-x="panel" data-mode="login">${esc(t('acct.have', 'I already have an account'))}</button></div></div>`;
 }
 function ago(ms) { const m = Math.round((Date.now() - ms) / 60000); return m < 1 ? t('acct.now', 'just now') : t('acct.min', '{n} min ago', { n: m }); }
 
@@ -367,7 +376,7 @@ async function submit() {
   if (!draft.speaks.length) return err(t('prof.err.speaks', 'Add at least one language you speak.'));
   if (draft.speaks.length > 1 && draft.speaks.some(x => !x.lv)) { paintPanel(); return err(t('prof.err.levels', 'Choose your level in every language you speak.')); }
   if (draft.learning.some(x => !x.lv)) { paintPanel(); return err(t('prof.err.learnlv', 'Choose your level in every language you are learning.')); }
-  const speaks = draft.speaks.map(x => ({ l: x.l, lv: x.lv || 'native' })), learning = draft.learning.map(x => ({ l: x.l, lv: x.lv }));
+  const speaks = draft.speaks.map(x => ({ l: x.l, lv: x.lv || 'native' })), spoken = new Set(speaks.map(x => x.l)), learning = draft.learning.filter(x => !spoken.has(x.l)).map(x => ({ l: x.l, lv: x.lv }));
   const d = { username: draft.username, avatar: draft.avatar, nationality: draft.nationality.slice(0, 3), speaks, learning, bio: draft.bio.slice(0, 200) };
   const isNew = !profile;
   try { err(t('acct.syncing', 'Saving…')); await saveProfile(d); }
@@ -408,7 +417,9 @@ document.addEventListener('click', ev => {
   const b = ev.target.closest('[data-acct-x]'); if (!b) return;
   const k = b.dataset.acctX;
   if (b.closest('#prof-form') && k !== 'cancel') ev.preventDefault();
-  if (k === 'panel') { viewing = null; const el = $('#account'); if (el && !el.hidden && !b.closest('[data-acct]')) closePanel(); else openPanel(); }
+  if (b.dataset.mode) { mode = b.dataset.mode; msg = ''; }
+  if (k === 'mode') { paintPanel(); return; }
+  if (k === 'panel') { viewing = null; const el = $('#account'); if (el && !el.hidden && !b.closest('[data-acct]') && !b.dataset.mode) closePanel(); else openPanel(); }
   else if (k === 'close') closePanel();
   else if (k === 'in') signIn();
   else if (k === 'out') signOutNow();
@@ -426,6 +437,7 @@ document.addEventListener('change', async ev => {
   else if (el.dataset.add && el.value) {
     readForm(); const kind = el.dataset.add;
     draft[kind].push({ l: el.value, lv: kind === 'speaks' && !draft.speaks.length ? 'native' : '' });
+    const other = kind === 'speaks' ? 'learning' : 'speaks'; draft[other] = draft[other].filter(x => x.l !== el.value);
     paintPanel();
     const missing = document.querySelector(`select[data-lv="${kind}"].missing`); if (missing) missing.focus();
   }
