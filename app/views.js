@@ -57,8 +57,11 @@ function paintExplore() {
   const tab = V.tab.explore;
   if (tab === 'level') {
     body = `<div class="row">${LEVELS.map(l => `<button class="lvl ${l} big${V.xlevel === l ? ' sel' : ''}" data-xlevel="${l}">${l} · ${esc(t('cefr.' + l, A.CEFR[l]))}</button>`).join('')}</div>`;
-    const list = coreOf(lang).filter(e => { const v = A.levelOf(e); return v && v.l === V.xlevel; });
-    body += listChips(list, t('x.level.n', '{n} words at level {l}', { n: A.num(list.length), l: V.xlevel }));
+    const core = coreOf(lang).filter(e => { const v = A.levelOf(e); return v && v.l === V.xlevel; });
+    const ext = rareAtLevel(lang, V.xlevel), have = new Set(core.map(e => e.id));
+    const list = core.concat(ext.filter(e => !have.has(e.id)));
+    body += ext === LOADING ? `<p class="hint">${esc(t('msg.loading2', 'Loading…'))}</p>` : '';
+    body += listChips(list, ext.length >= 2000 ? t('x.level.top', 'The {n} most common words at level {l}. Rarer ones open when you look them up.', { n: A.num(list.length), l: V.xlevel }) : t('x.level.n', '{n} words at level {l}', { n: A.num(list.length), l: V.xlevel }));
   } else if (tab === 'pos') {
     const all = coreOf(lang), have = POSLIST.filter(p => all.some(e => e.pos === p));
     body = `<div class="row">${have.map(p => `<button class="chip${V.xpos === p ? ' sel' : ''}" data-xpos="${p}">${esc(t('pos.' + p, p))} <small>${A.num(all.filter(e => e.pos === p).length)}</small></button>`).join('')}</div>`;
@@ -69,7 +72,9 @@ function paintExplore() {
     const list = all.filter(e => A.fold(e.lemma)[0] === V.xletter).sort((a, b) => A.fold(a.lemma) < A.fold(b.lemma) ? -1 : 1);
     body += listChips(list, t('x.az.n', '{n} common words. Rarer words load when you look them up.', { n: A.num(list.length) }));
   } else if (tab === 'irr') {
-    const list = coreOf(lang).filter(e => e.pos === 'verb' && e.verb && e.verb.regular === false && e.verb.principal_parts && e.verb.principal_parts.slice(1).some(Boolean));
+    const lvOrd = e => { const v = A.levelOf(e); return v ? A.LVORD[v.l] : 9; };
+    const list = coreOf(lang).filter(e => e.pos === 'verb' && e.verb && e.verb.regular === false && e.verb.principal_parts && e.verb.principal_parts.slice(1).some(Boolean))
+      .sort((a, b) => lvOrd(a) - lvOrd(b) || (a.frequency_rank || 1e9) - (b.frequency_rank || 1e9));          // A1 first, then A2 …, the most common first within a level
     body = irrTable(lang, list);
   } else if (tab === 'random') {
     body = `<div class="row"><button class="btn" data-x="random">🎲 ${esc(t('x.random.go', 'Show me a random word'))}</button><label class="ck"><input type="checkbox" id="x-rlevel"${V.rlevel !== false ? ' checked' : ''}> ${esc(t('x.random.mine', 'at my level ({l})', { l: A.S.myLevel }))}</label></div>`;
@@ -93,6 +98,20 @@ function paintExplore() {
     ${tabs('explore', [['level', t('x.tab.level', 'By level')], ['pos', t('x.tab.pos', 'By word type')], ['az', t('x.tab.az', 'A–Z')], ['irr', t('x.tab.irr', 'Irregular verbs')], ['random', t('x.tab.random', 'Random word')], ['regional', t('x.tab.reg', 'Regional words')], ['ff', t('x.tab.ff', 'False friends')], ['about', t('x.tab.about', 'About the dictionary')]])}
     <div class="tabbody">${body}</div>`;
 }
+/* the rarer words of a level (outside the core list): data/levels/<lang>.json, loaded the first time it is needed */
+const LOADING = []; const rare = {};
+function rareAtLevel(lang, lv) {
+  const r = rare[lang];
+  if (r === undefined) {
+    rare[lang] = null;
+    fetch('data/levels/' + lang + '.json?v=' + encodeURIComponent((A.D.manifest && A.D.manifest.built) || ''))
+      .then(x => x.ok ? x.json() : {}).catch(() => ({}))
+      .then(d => { rare[lang] = d || {}; if (!$('#explore').hidden) paintExplore(); });
+    return LOADING;
+  }
+  if (r === null) return LOADING;
+  return (r[lv] || []).map(([id, rank, g]) => { const [l, lemma, pos] = id.split(':'); return A.D.byId.get(id) || { id, lang: l, lemma, pos, tier: 'ext', level: null, frequency_rank: rank, noun: pos === 'noun' ? { gender: g || null } : null }; });
+}
 function listChips(list, head) {
   const max = V.more ? 2000 : 300;
   return `${head ? `<p class="hint">${esc(head)}</p>` : ''}<div class="chips">${list.slice(0, max).map(chipOf).join('')}</div>${list.length > max ? `<button class="more" data-x="more">${esc(t('x.more', 'Show more ({n})', { n: A.num(list.length - max) }))}</button>` : ''}`;
@@ -112,7 +131,7 @@ function aboutHtml() {
   ${LEVELS.map(x => row(x + ' · ' + t('cefr.' + x, A.CEFR[x]), l => A.num(lv[l][x]))).join('')}
   ${row(t('about.est', 'Levels estimated from frequency'), l => A.num(lv[l].est))}
   </tbody></table></div>
-  <p class="hint">${esc(t('about.lvl', 'Levels marked ≈ are estimated from how often a word is used in film subtitles (most frequent 600 words A1, up to 1,500 A2, 3,000 B1, 5,500 B2, 9,000 C1). Levels without ≈ were written by AI for German words.'))}</p>
+  <p class="hint">${esc(t('about.lvl2', 'Most levels are estimated from how often a word is used in film subtitles (the most frequent 600 words A1, up to 1,500 A2, 3,000 B1, 5,500 B2, 9,000 C1, rarer words C2). For many German words the level was set by hand.'))}</p>
   <p class="hint">${esc(t('about.ver', 'Data version {v}, built {d}.', { v: m.version || '', d: m.built || '' }))}</p>`;
 }
 
@@ -534,33 +553,93 @@ function langEditor() {
     ${o.length < A.MAX_SLOTS && free.length ? `<div class="row"><select id="lang-add">${free.map(l => `<option value="${l}">${esc(A.LNAME[l])}</option>`).join('')}</select><button class="btn sm" data-x="lang-add">${esc(t('set.langs.add', '+ Add a language'))}</button></div>` : ''}`;
 }
 async function changeLangs(o) { await A.setLanguages(o); paintSettings(); }
-/* ---------- welcome: I speak / I'm learning (arranges the boxes) ---------- */
+document.addEventListener('change', ev => { const x = ev.target.closest && ev.target.closest('[data-oblv]'); if (!x || !V.ob) return; V.ob[x.dataset.oblv][+x.dataset.i].lv = x.value; x.classList.toggle('missing', !x.value); });
+/* ---------- first visit: welcome, interface language, languages I speak (with levels), languages I learn (with levels), tutorial ---------- */
+const SPEAK_LV = ['native', 'C2', 'C1', 'B2', 'B1', 'A2', 'A1'];
+const lvName = v => v === 'native' ? t('ob.native', 'Native') : v;
+const TOUR = [
+  ['🔎', 'ob.t1.h', 'Look up a word in any language', 'ob.t1.p', 'Type a word in the big search field, in any of the ten languages. Glossarium finds it and shows it in all your languages at once, side by side.'],
+  ['🗂', 'ob.t2.h', 'Read the cards', 'ob.t2.p', 'Each card shows the word with its gender in colour (blue masculine, red feminine, green neuter), the plural, the pronunciation 🔊, its level (A1 to C2) and examples. Tap “See more forms” for every conjugation and declension.'],
+  ['★', 'ob.t3.h', 'Keep what you learn', 'ob.t3.p', 'Save a word with ☆, mark it “I know this”, add it to a list or write a note. Everything is in “My words”, and with a free account it is on all your devices.'],
+  ['🧭', 'ob.t4.h', 'Explore, practise, progress', 'ob.t4.p', 'Explore browses words by level, word type, irregular verbs or false friends. Practice has many kinds of exercises. Progress shows your level bars, practice days and badges.'],
+  ['💬', 'ob.t5.h', 'The Reading Room', 'ob.t5.p', 'Every word has its own conversation: ask why, share a tip or a regional word. The best notes appear right on the card. In the Community you can find learners and add friends.'],
+  ['⚙', 'ob.t6.h', 'Make it yours', 'ob.t6.p', 'In Settings you change your languages, levels, regions (for example Swiss German), the voice and the look. Add Glossarium to your home screen and it works offline, like an app.']
+];
+function obDefaults() {
+  const S = A.S, ui = A.UI_LANGS.includes(S.ui) ? S.ui : 'en';
+  return { step: 0, ui, speaks: (S.speaksAll || [{ l: S.speak || ui, lv: 'native' }]).map(x => Object.assign({}, x)),
+    learns: (S.learningAll || (S.learning && S.learning !== (S.speak || ui) ? [{ l: S.learning, lv: S.myLevel || 'A1' }] : [])).map(x => Object.assign({}, x)), slide: 0, err: '' };
+}
+function obChips(kind) {
+  const o = V.ob, mine = o[kind], other = kind === 'speaks' ? o.learns : o.speaks, has = l => mine.some(x => x.l === l);
+  return `<div class="obgrid">${A.dataLangs().filter(l => !other.some(x => x.l === l)).map(l => `<button class="chip${has(l) ? ' sel' : ''}" data-ob="${kind}" data-l="${l}" aria-pressed="${has(l)}">${A.flag(BASEF(l), true)}${esc(UI_NAMES[l])}</button>`).join('')}</div>`;
+}
+function obLevels(kind) {
+  const o = V.ob, list = o[kind], levels = kind === 'speaks' ? SPEAK_LV : LEVELS;
+  if (!list.length) return '';
+  const need = kind === 'learns' || list.length > 1;
+  return `<div class="oblv">${list.map((x, i) => `<label class="oblv-row"><span>${A.flag(BASEF(x.l), true)}${esc(UI_NAMES[x.l])}</span><select data-oblv="${kind}" data-i="${i}" class="${need && !x.lv ? 'missing' : ''}"><option value="">${esc(t('ob.level.choose', 'Choose your level…'))}</option>${levels.map(v => `<option value="${v}"${x.lv === v ? ' selected' : ''}>${esc(lvName(v))}${v !== 'native' ? ' · ' + esc(t('cefr.' + v, A.CEFR[v])) : ''}</option>`).join('')}</select></label>`).join('')}</div>`;
+}
 function onboard() {
-  const el = $('#welcome'); const S = A.S;
-  if (!V.ob) { const sp0 = S.speak || S.ui || 'en'; V.ob = { speak: sp0, learn: S.learning || (sp0 === 'de' ? 'en' : 'de'), level: S.myLevel }; }
-  const sp = V.ob.speak, le = V.ob.learn;
-  el.hidden = false;
-  el.innerHTML = `<h2>${esc(t('ob.title', 'Welcome'))}</h2><p>${esc(t('ob.p', 'Tell the app which languages you know, so it can put them in the right order. You can change this later in Settings.'))}</p>
-  <div class="obrow"><span>${esc(t('ob.speak', 'I speak'))}</span>${A.dataLangs().map(l => `<button class="chip${l === sp ? ' sel' : ''}" data-ob="speak" data-l="${l}">${A.flag(BASEF(l), true)}${esc(UI_NAMES[l])}</button>`).join('')}</div>
-  <div class="obrow"><span>${esc(t('ob.learn', 'I am learning'))}</span>${A.dataLangs().map(l => `<button class="chip${l === le ? ' sel' : ''}" data-ob="learn" data-l="${l}">${A.flag(BASEF(l), true)}${esc(UI_NAMES[l])}</button>`).join('')}</div>
-  <div class="obrow"><span>${esc(t('ob.level', 'My level'))}</span>${LEVELS.map(l => `<button class="chip${l === V.ob.level ? ' sel' : ''}" data-ob="level" data-l="${l}">${l}</button>`).join('')}</div>
-  <div class="row"><button class="btn primary" data-x="ob-done">${esc(t('ob.go', 'Start'))}</button><button class="btn" data-x="ob-skip">${esc(t('ob.skip', 'Skip'))}</button></div>`;
+  const el = $('#welcome');
+  if (!V.ob) V.ob = obDefaults();
+  const o = V.ob, later = `<p class="hint">${esc(t('ob.later', 'You can change this later in Settings.'))}</p>`;
+  const dots = n => `<div class="obdots">${[0, 1, 2, 3, 4].map(k => `<span class="${k === n ? 'on' : k < n ? 'done' : ''}"></span>`).join('')}</div>`;
+  const nav = (next, back, skip) => `<div class="row obnav">${back ? `<button class="btn" data-x="ob-back">${esc(t('ob.back', '← Back'))}</button>` : ''}<button class="btn primary" data-x="${next[0]}">${esc(next[1])}</button>${skip ? `<button class="lnk" data-x="ob-skip">${esc(skip)}</button>` : ''}</div>`;
+  const err = o.err ? `<p class="hint err" aria-live="polite">${esc(o.err)}</p>` : '';
+  let body = '';
+  if (o.step === 0) body = `<div class="obwelcome"><span class="wordmark big" role="img" aria-label="Glossarium"></span>
+      <h2 class="obh">${esc(t('ob.w.h', 'Welcome to Glossarium!'))}</h2>
+      <p class="oblead">${esc(t('ob.w.p1', 'Our goal is to make language learning accessible to everyone. That is why Glossarium is free and has no ads, and always will.'))}</p>
+      <p>${esc(t('ob.w.p2', 'Let’s set it up for you. It takes less than a minute.'))}</p>
+      <p class="obsign">${esc(t('ob.w.p3', 'Enjoy!'))}</p></div>${nav(['ob-next', t('ob.w.go', 'Let’s begin')], false, t('ob.w.skip', 'Skip the setup'))}`;
+  else if (o.step === 1) body = `${dots(1)}<h2 class="obh">${esc(t('ob.ui.h', 'Which language should the app speak?'))}</h2><p>${esc(t('ob.ui.p', 'Buttons, menus and explanations will be in this language.'))}</p>
+      <div class="obgrid">${A.UI_LANGS.map(l => `<button class="chip${o.ui === l ? ' sel' : ''}" data-ob="ui" data-l="${l}" aria-pressed="${o.ui === l}">${A.flag(BASEF(l), true)}${esc(UI_NAMES[l])}</button>`).join('')}</div>${later}${nav(['ob-next', t('ob.next', 'Next →')], true)}`;
+  else if (o.step === 2) body = `${dots(2)}<h2 class="obh">${esc(t('ob.sp.h', 'Which languages do you already speak?'))}</h2><p>${esc(t('ob.sp.p', 'Choose one or more. If you choose more than one, tell us your level in each.'))}</p>${obChips('speaks')}${obLevels('speaks')}${later}${err}${nav(['ob-next', t('ob.next', 'Next →')], true)}`;
+  else if (o.step === 3) body = `${dots(3)}<h2 class="obh">${esc(t('ob.le.h', 'Which languages are you learning?'))}</h2><p>${esc(t('ob.le.p', 'Choose one or more, and your current level in each. Your word of the day and your practice follow it.'))}</p>${obChips('learns')}${obLevels('learns')}${later}${err}${nav(['ob-next', t('ob.next', 'Next →')], true)}`;
+  else {
+    const k = o.slide, sl = TOUR[k];
+    body = `${dots(4)}<p class="obstep">${esc(t('ob.tour', 'How Glossarium works'))} · ${k + 1}/${TOUR.length}</p>
+      <div class="obslide"><div class="obicon" aria-hidden="true">${sl[0]}</div><h2 class="obh">${esc(t(sl[1], sl[2]))}</h2><p>${esc(t(sl[3], sl[4]))}</p></div>
+      <div class="row obnav">${k > 0 ? `<button class="btn" data-x="ob-prev">${esc(t('ob.back', '← Back'))}</button>` : `<button class="btn" data-x="ob-back">${esc(t('ob.back', '← Back'))}</button>`}<button class="btn primary" data-x="${k < TOUR.length - 1 ? 'ob-slide' : 'ob-done'}">${esc(k < TOUR.length - 1 ? t('ob.next', 'Next →') : t('ob.start', 'Start using Glossarium'))}</button><button class="lnk" data-x="ob-done">${esc(t('ob.tour.skip', 'Skip the tour'))}</button></div>`;
+  }
+  el.hidden = false; el.classList.add('ob-modal');
+  el.innerHTML = `<div class="ob-box" role="dialog" aria-modal="true" aria-label="${esc(t('ob.w.h', 'Welcome to Glossarium!'))}">${body}</div>`;
+  document.body.classList.add('ob-open');
+}
+function obNext() {
+  const o = V.ob; o.err = '';
+  if (o.step === 1 && !o.spTouched) { o.speaks = [{ l: o.ui, lv: 'native' }]; o.learns = o.learns.filter(x => x.l !== o.ui); }
+  if (o.step === 2) {
+    if (!o.speaks.length) { o.err = t('ob.err.sp', 'Choose at least one language you speak.'); return onboard(); }
+    if (o.speaks.length > 1 && o.speaks.some(x => !x.lv)) { o.err = t('ob.err.lv', 'Choose your level in every language.'); return onboard(); }
+    if (o.speaks.length === 1 && !o.speaks[0].lv) o.speaks[0].lv = 'native';
+  }
+  if (o.step === 3) {
+    if (!o.learns.length) { o.err = t('ob.err.le', 'Choose at least one language you are learning.'); return onboard(); }
+    if (o.learns.some(x => !x.lv)) { o.err = t('ob.err.lv', 'Choose your level in every language.'); return onboard(); }
+  }
+  o.step++; onboard();
 }
 const BASEF = l => A.S.main[l];
 function onboardDone(skip) {
-  const S = A.S;
-  if (!skip && V.ob) {
-    S.speak = V.ob.speak; S.learning = V.ob.learn === V.ob.speak ? null : V.ob.learn; S.myLevel = V.ob.level; if (A.UI_LANGS.includes(V.ob.speak)) S.ui = V.ob.speak;
-    // the language I speak first, then the one I learn, then the others I had (as many boxes as before)
-    const n = Math.max(A.MIN_SLOTS, S.order.length), rest = [...S.order, ...A.DEFAULTS.order, ...A.dataLangs()];
-    const o = [V.ob.speak, ...(S.learning ? [S.learning] : [])]; for (const l of rest) if (o.length < n && !o.includes(l)) o.push(l);
-    A.saveSettings(); A.setLanguages(o);
-  }
+  const S = A.S, o = V.ob;
+  if (!skip && o && o.step >= 4) {
+    if (A.UI_LANGS.includes(o.ui)) S.ui = o.ui;
+    const sp = o.speaks.find(x => x.lv === 'native') || o.speaks[0], le = o.learns[0];
+    S.speak = sp.l; S.learning = le ? le.l : null; S.myLevel = le ? le.lv : S.myLevel;
+    S.speaksAll = o.speaks.map(x => ({ l: x.l, lv: x.lv || 'native' })); S.learningAll = o.learns.map(x => ({ l: x.l, lv: x.lv }));
+    // the boxes: the language I speak best, the languages I learn, then my other languages (2 to 4)
+    const order = [...new Set([sp.l, ...o.learns.map(x => x.l), ...o.speaks.map(x => x.l)])].slice(0, A.MAX_SLOTS);
+    const rest = [...S.order, ...A.DEFAULTS.order]; for (const l of rest) if (order.length < A.MIN_SLOTS && !order.includes(l)) order.push(l);
+    A.saveSettings(); A.setLanguages(order);
+  } else if (o && o.ui && A.UI_LANGS.includes(o.ui) && o.step > 1) { S.ui = o.ui; A.saveSettings(); }
   try { localStorage.setItem('flt:onboarded', '1'); } catch (e) {}
   V.ob = null;
-  $('#welcome').hidden = true;
+  const el = $('#welcome'); el.hidden = true; el.classList.remove('ob-modal'); document.body.classList.remove('ob-open');
   A.applyDisplay(); A.applyTexts(); A.buildSlots(); counter(); A.paintRecent(); A.paintWotd();
-  if (A.state.status === 'done') A.render(); else A.render();
+  A.render();
+  if (window.FLTSync) FLTSync.paint();
   maybeInstallTip();
 }
 
@@ -587,7 +666,13 @@ document.addEventListener('click', async ev => {
   const lv = ev.target.closest('[data-xlevel]'); if (lv) { V.xlevel = lv.dataset.xlevel; V.more = false; paintExplore(); return; }
   const ps = ev.target.closest('[data-xpos]'); if (ps) { V.xpos = ps.dataset.xpos; V.more = false; paintExplore(); return; }
   const lt = ev.target.closest('[data-xletter]'); if (lt) { V.xletter = lt.dataset.xletter; V.more = false; paintExplore(); return; }
-  const ob = ev.target.closest('[data-ob]'); if (ob) { V.ob[ob.dataset.ob] = ob.dataset.l; if (ob.dataset.ob === 'speak') { A.S.ui = ob.dataset.l; A.applyTexts(); } onboard(); return; }
+  const ob = ev.target.closest('[data-ob]');
+  if (ob) {
+    const k = ob.dataset.ob, l = ob.dataset.l, o = V.ob; o.err = '';
+    if (k === 'ui') { o.ui = l; A.S.ui = l; A.applyTexts(); }
+    else { if (k === 'speaks') o.spTouched = true; const list = o[k], i = list.findIndex(x => x.l === l); if (i >= 0) list.splice(i, 1); else list.push({ l, lv: k === 'speaks' && !list.length ? 'native' : '' }); }
+    onboard(); return;
+  }
   const fg = ev.target.closest('[data-fc]'); if (fg && V.fc) { const id = V.fc.ids[V.fc.i]; A.P.srs[id] = sm2(A.P.srs[id], +fg.dataset.fc); A.saveP(); if (window.FLTProgress) { FLTProgress.record(id, +fg.dataset.fc >= 3, 'cards'); if (V.fc.i + 1 >= V.fc.ids.length && +fg.dataset.fc >= 3) FLTProgress.quizDone(); } if (+fg.dataset.fc < 3) V.fc.ids.push(id); V.fc.i++; V.fc.done++; V.fc.flipped = false; paintPractice(); return; }
   const ch = ev.target.closest('.choice'); if (ch && V.pr && V.pr.q && !V.pr.state) { judge(ch.dataset.ch === V.pr.q.answer, ch.dataset.ch); return; }
   const mw = ev.target.closest('.mw'); if (mw && V.pr && V.pr.q) { matchPick(mw.dataset.mlang, +mw.dataset.mk); return; }
@@ -625,6 +710,10 @@ document.addEventListener('click', async ev => {
   else if (k === 'onboard') { closePanels(); V.ob = null; onboard(); $('#welcome').scrollIntoView({ block: 'start' }); }
   else if (k === 'ob-done') onboardDone(false);
   else if (k === 'ob-skip') onboardDone(true);
+  else if (k === 'ob-next') obNext();
+  else if (k === 'ob-back') { V.ob.err = ''; V.ob.step = Math.max(0, V.ob.step - 1); onboard(); }
+  else if (k === 'ob-slide') { V.ob.slide++; onboard(); }
+  else if (k === 'ob-prev') { V.ob.slide = Math.max(0, V.ob.slide - 1); onboard(); }
   else if (k === 'install') { if (installEvt) { installEvt.prompt(); installEvt.userChoice.finally(() => { installEvt = null; maybeInstallTip(); }); } }
   else if (k === 'tip-off') { try { localStorage.setItem('flt:tip-off', '1'); } catch (e) {} maybeInstallTip(); }
 });

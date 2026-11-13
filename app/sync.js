@@ -40,7 +40,7 @@ const LEVELS_LEARN = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
 function dn(type, code) { try { return new Intl.DisplayNames([uiLang(), 'en'], { type }).of(code) || code; } catch (e) { return code; } }
 const countryName = c => dn('region', c);
 const langName = l => (A() && A().LNAME && A().LNAME[l]) || dn('language', l);
-const flagEmoji = c => c && c.length === 2 && c !== 'XK' ? String.fromCodePoint(...[...c.toUpperCase()].map(ch => 0x1F1A5 + ch.charCodeAt(0))) : '';
+const flagEmoji = c => c && /^[A-Z]{2}$/.test(c) ? `<img class="cflag" src="flags/${c.toLowerCase()}.svg" alt="" loading="lazy">` : '';          // drawn flags (flag-icons, MIT): the same shape for every country
 const levelName = lv => lv === 'native' ? t('prof.native', 'Native') : lv;
 const sortedCountries = () => COUNTRIES.slice().sort((a, b) => countryName(a).localeCompare(countryName(b), uiLang()));
 const sortedLangs = () => APP_LANGS.concat(MORE_LANGS.slice().sort((a, b) => langName(a).localeCompare(langName(b), uiLang())));
@@ -188,17 +188,24 @@ async function saveProfile(d) {
   }
   ls.set(CACHE, JSON.stringify({ username: profile.username, avatar: profile.avatar.startsWith('data:') ? '' : profile.avatar, memberNo: profile.memberNo }));
 }
+function showInCommunity() {
+  const el = $('#community');
+  comm.keepView = true;
+  if (el && el.hidden && window.FLTViews && FLTViews.togglePanel) FLTViews.togglePanel('community', true); else paintComm();
+  comm.keepView = false;
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
 async function viewProfile(name) {
-  viewing = { name, loading: true }; openPanel();
+  viewing = { name, loading: true }; showInCommunity();
   try {
     await load();
     const n = await fb.getDoc(fb.doc(db, 'usernames', name));
-    if (!n.exists()) { viewing = { name, missing: true }; paintPanel(); return; }
+    if (!n.exists()) { viewing = { name, missing: true }; paintComm(); return; }
     const p = await fb.getDoc(fb.doc(db, 'profiles', n.data().uid));
     viewing = p.exists() ? { name, p: p.data(), uid: n.data().uid } : { name, missing: true };
     if (user && !comm.relsLoaded) { try { await loadRels(); } catch (e) {} }
   } catch (e) { viewing = { name, missing: true }; }
-  paintPanel();
+  paintComm();
 }
 async function deleteAll() {
   if (!user) return;
@@ -268,8 +275,8 @@ function newDraft() {
     username: p.username || ((g.email || '').split('@')[0] || '').toLowerCase().replace(/[^a-z0-9_.]/g, '').slice(0, 20),
     avatar: p.avatar || 'preset:' + AV().names[Math.floor(Math.random() * AV().names.length)],
     nationality: (p.nationality || []).slice(),
-    speaks: (p.speaks || (S.speak ? [{ l: S.speak, lv: 'native' }] : [])).map(x => Object.assign({}, x)),
-    learning: (p.learning || (S.learning && S.learning !== S.speak ? [{ l: S.learning, lv: '' }] : [])).filter(x => !(p.speaks || (S.speak ? [{ l: S.speak }] : [])).some(y => y.l === x.l)).map(x => Object.assign({}, x)),
+    speaks: (p.speaks || S.speaksAll || (S.speak ? [{ l: S.speak, lv: 'native' }] : [])).map(x => Object.assign({}, x)),
+    learning: (p.learning || S.learningAll || (S.learning && S.learning !== S.speak ? [{ l: S.learning, lv: '' }] : [])).filter(x => !(p.speaks || S.speaksAll || (S.speak ? [{ l: S.speak }] : [])).some(y => y.l === x.l)).map(x => Object.assign({}, x)),
     bio: p.bio || '', nameState: p.username ? 'free' : '', useLangs: !p.username
   };
 }
@@ -289,7 +296,7 @@ function editorHtml() {
   const nameNote = { free: t('prof.name.free', '✓ Available'), taken: t('prof.name.taken', 'Already taken'), bad: t('prof.name.bad', '3 to 20 letters a–z, digits, dots or underscores'), checking: t('prof.name.checking', 'Checking…') }[d.nameState] || '';
   const avs = AV().names.map(n => `<button class="av${d.avatar === 'preset:' + n ? ' sel' : ''}" data-acct-x="av" data-av="preset:${n}" aria-label="${esc(n)}">${avatarImg('preset:' + n, 'pfp md')}</button>`).join('')
     + (d.avatar.startsWith('data:') ? `<button class="av sel" data-acct-x="av" data-av="${esc(d.avatar)}">${avatarImg(d.avatar, 'pfp md')}</button>` : '');
-  const natOpts = sortedCountries().filter(c => !d.nationality.includes(c)).map(c => `<option value="${c}">${flagEmoji(c)} ${esc(countryName(c))}</option>`).join('');
+  const natOpts = sortedCountries().filter(c => !d.nationality.includes(c)).map(c => `<option value="${c}">${esc(countryName(c))}</option>`).join('');
   return `<form class="prof-edit" id="prof-form" autocomplete="off">
   <div class="f"><label for="prof-name">${esc(t('prof.username', 'Username'))}</label><div class="row"><span class="at">@</span><input class="text" id="prof-name" maxlength="20" value="${esc(d.username)}" spellcheck="false"><span class="hint ${d.nameState}">${esc(nameNote)}</span></div></div>
   <div class="f"><label>${esc(t('prof.picture', 'Profile picture'))}</label><div class="avs">${avs}</div>
@@ -324,7 +331,7 @@ function signInHtml() {
 function panelHtml() {
   const note = msg ? `<p class="hint msg" aria-live="polite">${esc(msg)}</p>` : '';
   const close = `<button class="close" data-acct-x="close" aria-label="${esc(t('btn.close', 'Close'))}">×</button>`;
-  if (viewing) {
+  if (false) {
     const v = viewing;
     const own = user && v.uid === user.uid;
     const body = v.loading ? `<p class="hint">${esc(t('prof.loading', 'Loading…'))}</p>` : v.missing ? `<p>${esc(t('prof.missing', 'There is no profile called @{n}.', { n: v.name }))}</p>` : profileCard(v.p, own, v.uid) + (own ? '' : `<div class="row fr">${friendBtn(v.uid)}</div>${reportHtml(v.uid)}`);
@@ -497,8 +504,15 @@ function listHtml() {
   return (people.length ? `<ul class="people">${people.map(personRow).join('')}</ul>` : `<p class="hint">${esc(empty)}</p>`) + more;
 }
 function paintList() { const el = $('#comm-list'); if (el) el.innerHTML = listHtml(); }
+function profileViewHtml() {
+  const v = viewing, own = user && v.uid === user.uid;
+  const body = v.loading ? `<p class="hint">${esc(t('prof.loading', 'Loading…'))}</p>` : v.missing ? `<p>${esc(t('prof.missing', 'There is no profile called @{n}.', { n: v.name }))}</p>`
+    : profileCard(v.p, own, v.uid) + (own ? '' : `<div class="row fr">${friendBtn(v.uid)}</div>${reportHtml(v.uid)}`);
+  return `<h2>${esc(t('nav.community', 'Community'))}</h2><p class="crumbs"><button class="lnk" data-acct-x="back-list">← ${esc(t('comm.back', 'All people'))}</button></p>${body}`;
+}
 function paintComm() {
   const el = $('#community'); if (!el || el.hidden) return;
+  if (viewing) { el.innerHTML = profileViewHtml(); return; }
   const nReq = pendingIn(), nFr = [...comm.rels.values()].filter(r => r.status === 'accepted').length;
   const tab = (k, label) => `<button class="tabb${comm.tab === k ? ' on' : ''}" data-acct-x="ctab" data-tab="${k}" aria-pressed="${comm.tab === k}">${esc(label)}</button>`;
   el.innerHTML = `<h2>${esc(t('nav.community', 'Community'))}</h2>
@@ -510,6 +524,7 @@ function paintComm() {
 }
 async function openCommunity() {
   comm.err = '';
+  if (!comm.keepView) { viewing = null; if (/^#\/@/.test(location.hash)) history.replaceState(null, '', location.pathname + location.search); }
   paintComm();
   if (!comm.list.length) await loadPage();
   if (user && !comm.relsLoaded) { try { await loadRels(); } catch (e) {} paintComm(); }
@@ -531,7 +546,7 @@ async function sendReport(uid, why) {
   if (!user) { mode = 'create'; openPanel(); return; }
   try { await fb.addDoc(fb.collection(db, 'reports'), { about: uid, by: user.uid, why: String(why).slice(0, 300), t: Date.now() }); toastMsg(t('comm.reported', 'Thank you. The report was sent.')); }
   catch (e) { toastMsg(t('comm.fail', 'That did not work. Try again.')); }
-  comm.report = null; paintPanel();
+  comm.report = null; paintPanel(); paintComm();
 }
 function reportHtml(uid) {
   if (!user || uid === user.uid) return '';
@@ -549,6 +564,7 @@ document.addEventListener('click', ev => {
   if (k === 'mode') { paintPanel(); return; }
   if (k === 'panel') { viewing = null; const el = $('#account'); if (el && !el.hidden && !b.closest('[data-acct]') && !b.dataset.mode) closePanel(); else openPanel(); }
   else if (k === 'close') closePanel();
+  else if (k === 'back-list') { viewing = null; if (/^#\/@/.test(location.hash)) history.replaceState(null, '', location.pathname + location.search); paintComm(); }
   else if (k === 'in') signIn();
   else if (k === 'out') signOutNow();
   else if (k === 'sync') pull();
@@ -561,8 +577,8 @@ document.addEventListener('click', ev => {
   else if (k === 'ctab') { comm.tab = b.dataset.tab; paintComm(); }
   else if (k === 'view') { location.hash = '#/@' + b.dataset.name; }
   else if (k === 'fr-add' || k === 'fr-ok' || k === 'fr-del') friendAct(k, b.dataset.uid);
-  else if (k === 'rep') { comm.report = b.dataset.uid; paintPanel(); }
-  else if (k === 'rep-x') { comm.report = null; paintPanel(); }
+  else if (k === 'rep') { comm.report = b.dataset.uid; paintComm(); }
+  else if (k === 'rep-x') { comm.report = null; paintComm(); }
   else if (k === 'rep-send') sendReport(b.dataset.uid, b.dataset.why);
   else if (k === 'lang-del') { readForm(); draft[b.dataset.kind].splice(+b.dataset.i, 1); paintPanel(); }
 });

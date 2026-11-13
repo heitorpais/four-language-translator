@@ -137,8 +137,8 @@ service cloud.firestore {
           || (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['replies', 'lastAt', 'lastBy']) && notBlocked() && paced()
               && request.resource.data.replies == resource.data.replies + 1 && request.resource.data.lastAt == request.time && request.resource.data.lastBy == request.auth.uid)
           || (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['best']) && resource.data.uid == request.auth.uid)
-          || (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['body', 'title']) && resource.data.uid == request.auth.uid
-              && request.resource.data.body.size() <= 2000 && request.resource.data.title.size() <= 120)
+          || (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['body', 'title', 'edited']) && resource.data.uid == request.auth.uid
+              && request.resource.data.body.size() <= 2000 && request.resource.data.title.size() <= 120 && request.resource.data.edited == request.time)
           || (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['hidden']) && isAdmin()));
       allow delete: if signedIn() && (resource.data.uid == request.auth.uid || isAdmin());
 
@@ -150,7 +150,7 @@ service cloud.firestore {
           && authorFields(request.resource.data);
         allow update: if signedIn() && (
             (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['score']) && resource.data.uid != request.auth.uid && voteDelta(tid, rid))
-            || (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['body']) && resource.data.uid == request.auth.uid && request.resource.data.body.size() <= 2000)
+            || (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['body', 'edited']) && resource.data.uid == request.auth.uid && request.resource.data.body.size() <= 2000 && request.resource.data.edited == request.time)
             || (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['hidden']) && isAdmin()));
         allow delete: if signedIn() && (resource.data.uid == request.auth.uid || isAdmin());
       }

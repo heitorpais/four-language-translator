@@ -20,9 +20,9 @@ const TYPES = {
 };
 const typeName = k => t(TYPES[k][1], TYPES[k][2]);
 const NOTE_TYPES = ['tip', 'regional', 'trick', 'example'];         // shown on the card as community notes when voted up
-const SECTIONS = [['general', '☕', 'Introductions & chat'], ['grammar', '§', 'Grammar'], ['swiss', '🇨🇭', 'Swiss German & dialects'], ['tips', '✎', 'Tips & resources'], ['feedback', '✉', 'Glossarium: ideas & problems']];
+const SECTIONS = [['general', '☕', 'Introductions & chat'], ['grammar', '§', 'Grammar'], ['swiss', 'FLAG:ch', 'Swiss German & dialects'], ['tips', '✎', 'Tips & resources'], ['feedback', '✉', 'Glossarium: ideas & problems']];
 const secName = s => { const g = SECTIONS.find(x => x[0] === s); if (g) return t('forum.sec.' + g[0], g[2]); if (s && s.startsWith('l-')) return lname(s.slice(2)); return s; };
-const secIcon = s => { const g = SECTIONS.find(x => x[0] === s); return g ? g[1] : '❧'; };
+const secIcon = s => { const g = SECTIONS.find(x => x[0] === s); if (g && g[1].startsWith('FLAG:')) return A() ? A().flag(g[1].slice(5), true) : ''; return g ? g[1] : '❧'; };
 
 /* ---------- reading: straight from the database's web address ---------- */
 function decode(v) {
@@ -77,11 +77,11 @@ async function loadProfiles(uids) {
 function author(x) {
   const p = profiles.get(x.uid) || {}, S = SY();
   const pic = S ? S.avatarImg(p.avatar || '', 'pfp sm') : '';
-  return `<button class="au" data-fx="profile" data-name="${esc(x.username)}">${pic}<b>@${esc(x.username)}</b>${S ? S.specialHtml(x.uid) + S.badgeHtml(p) : ''}</button>${x.native ? `<span class="native" title="${esc(t('forum.native.tip', 'Native speaker of {lang}', { lang: lname(x.lang) }))}">${esc(t('forum.native', 'Native speaker'))}</span>` : ''}<span class="when">${esc(ago(x.t))}</span>`;
+  return `<button class="au" data-fx="profile" data-name="${esc(x.username)}">${pic}<b>@${esc(x.username)}</b>${S ? S.specialHtml(x.uid) + S.badgeHtml(p) : ''}</button>${x.native ? `<span class="native" title="${esc(t('forum.native.tip', 'Native speaker of {lang}', { lang: lname(x.lang) }))}">${esc(t('forum.native', 'Native speaker'))}</span>` : ''}<span class="when">${esc(ago(x.t))}${x.edited ? ' · ' + esc(t('forum.edited', 'edited')) : ''}</span>`;
 }
 
 /* ---------- state ---------- */
-const F = { view: 'home', section: null, threads: [], thread: null, replies: [], word: null, wordIds: [], wordThreads: [], q: '', loading: false, err: '', myVotes: {}, follows: null, compose: null, reportFor: null, admin: null };
+const F = { editing: null, view: 'home', section: null, threads: [], thread: null, replies: [], word: null, wordIds: [], wordThreads: [], q: '', loading: false, err: '', myVotes: {}, follows: null, compose: null, reportFor: null, admin: null };
 const linked = new Map();           // entry id -> threads about it or its translations (from the last cards)
 
 function panel() { return $('#forum'); }
@@ -216,6 +216,23 @@ async function setBest(rid) {
   const S = SY(); try { await S.fb.setDoc(S.fb.doc(S.db, 'threads', F.thread.id), { best: F.thread.best === rid ? '' : rid }, { merge: true }); F.thread.best = F.thread.best === rid ? '' : rid; } catch (e) { toast(friendly(e)); }
   paint();
 }
+/* share a conversation or a reply: the link opens the conversation (glossarium-app.ch/#/r/<id>, a reply adds ~<reply id>) */
+async function share(id) {
+  const th = F.thread, isThread = id === th.id;
+  const url = location.origin + location.pathname + '#/r/' + th.id + (isThread ? '' : '~' + id);
+  const title = th.title || (th.kind === 'word' ? t('forum.about', 'About “{w}”', { w: th.lemma }) : 'Glossarium');
+  const text = (isThread ? th.body : (F.replies.find(r => r.id === id) || {}).body || '').replace(/\[\[(?:[a-z]{2}:)?([^\]\n]+)\]\]/g, '$1').slice(0, 140);
+  try { if (navigator.share) { await navigator.share({ title: title + ' · Glossarium', text, url }); return; } } catch (e) { if (e && e.name === 'AbortError') return; }
+  try { await navigator.clipboard.writeText(url); toast(t('forum.copied', 'Link copied. Paste it anywhere to share.')); }
+  catch (e) { window.prompt(t('forum.copy', 'Copy this link:'), url); }
+}
+async function saveEdit(kind, id, body, title) {
+  const S = SY(), fb = S.fb, ref = kind === 'thread' ? fb.doc(S.db, 'threads', id) : fb.doc(S.db, 'threads', F.thread.id, 'replies', id);
+  const data = { body, edited: fb.serverTimestamp() }; if (kind === 'thread' && title != null) data.title = title;
+  await fb.setDoc(ref, data, { merge: true });
+  const obj = kind === 'thread' ? F.thread : F.replies.find(r => r.id === id);
+  Object.assign(obj, { body, edited: Date.now() }); if (kind === 'thread' && title != null) obj.title = title;
+}
 async function remove(kind, id) {
   const S = SY(); if (!S || !S.user) return;
   try {
@@ -330,6 +347,8 @@ function postHtml(x, kind) {
   const tools = [];
   if (kind === 'reply' && u && th.uid === u.uid) tools.push(`<button class="lnk small" data-fx="best" data-id="${esc(x.id)}">${best ? esc(t('forum.best.undo', 'Not the best answer')) : esc(t('forum.best.mark', '✓ Best answer'))}</button>`);
   if (u && !mine) tools.push(`<button class="lnk small" data-fx="report" data-kind="${kind}" data-id="${esc(x.id)}" data-uid="${esc(x.uid)}">${esc(t('forum.report', 'Report'))}</button>`);
+  tools.unshift(`<button class="lnk small" data-fx="share" data-id="${esc(x.id)}">${esc(t('forum.share', 'Share'))}</button>`);
+  if (mine) tools.push(`<button class="lnk small" data-fx="edit" data-kind="${kind}" data-id="${esc(x.id)}">${esc(t('forum.edit', 'Edit'))}</button>`);
   if (mine) tools.push(`<button class="lnk small" data-fx="del" data-kind="${kind}" data-id="${esc(x.id)}">${esc(t('forum.delete', 'Delete'))}</button>`);
   if (isAdmin() && !mine) tools.push(`<button class="lnk small adm" data-fx="hide" data-kind="${kind}" data-id="${esc(x.id)}">${esc(t('forum.hide', 'Hide (admin)'))}</button><button class="lnk small adm" data-fx="block" data-uid="${esc(x.uid)}">${esc(t('forum.block', 'Block (admin)'))}</button>`);
   const rep = F.reportFor && F.reportFor.id === x.id ? `<div class="report"><p>${esc(t('forum.r.why', 'What is wrong with this post?'))}</p><div class="row">${[['rude', t('forum.r.rude', 'Rude or offensive')], ['spam', t('forum.r.spam', 'Spam or advertising')], ['wrong', t('forum.r.wrong', 'Wrong or misleading')], ['other', t('comm.r.other', 'Something else')]].map(([k, l]) => `<button class="chip" data-fx="report-send" data-why="${k}">${esc(l)}</button>`).join('')}<button class="lnk small" data-fx="report-x">${esc(t('btn.cancel', 'Cancel'))}</button></div></div>` : '';
@@ -337,7 +356,8 @@ function postHtml(x, kind) {
     <div class="post-b"><div class="post-h">${author(x)}${best ? `<span class="best-l">✓ ${esc(t('forum.best', 'Best answer'))}</span>` : ''}</div>
     ${kind === 'thread' && x.title ? `<h3>${esc(x.title)}</h3>` : ''}
     ${kind === 'thread' ? `<p class="ty-l"><span class="ty">${TYPES[x.type][0]}</span> ${esc(typeName(x.type))}${x.region ? ` · <span class="rg">${esc(x.region)}</span>` : ''}${x.kind === 'word' ? ` · ${esc(lname(x.lang))}: <button class="wlink" data-fw="${esc(x.lemma)}" data-fl="${esc(x.lang)}">${esc(x.lemma)}</button>` : ''}</p>` : ''}
-    <div class="body">${rich(x.body)}</div><div class="tools">${tools.join(' · ')}</div>${rep}</div></article>`;
+    ${F.editing && F.editing.id === x.id ? `<form class="compose" id="f-edit" data-kind="${kind}" data-id="${esc(x.id)}">${kind === 'thread' && x.kind === 'forum' ? `<input class="text" id="f-etitle" maxlength="120" value="${esc(x.title)}">` : ''}<textarea class="text" id="f-ebody" rows="4" maxlength="2000">${esc(x.body)}</textarea><div class="row"><button class="btn primary sm" type="submit">${esc(t('btn.save', 'Save'))}</button><button class="btn sm" type="button" data-fx="edit-x">${esc(t('btn.cancel', 'Cancel'))}</button><span class="hint" id="f-emsg" aria-live="polite"></span></div></form>`
+      : `<div class="body">${rich(x.body)}</div><div class="tools">${tools.join(' · ')}</div>${rep}`}</div></article>`;
 }
 function body() {
   if (F.loading) return `<p class="hint">${esc(t('prof.loading', 'Loading…'))}</p>`;
@@ -403,6 +423,9 @@ document.addEventListener('click', async ev => {
   else if (k === 'compose') { if (!(await needAccount())) return; F.compose = { type: F.view === 'word' ? 'question' : 'post' }; paint(); const x = $('#f-title') || $('#f-body'); if (x) x.focus(); }
   else if (k === 'compose-x') { F.compose = null; paint(); }
   else if (k === 'vote') vote(b.dataset.target, +b.dataset.v);
+  else if (k === 'edit') { F.editing = { kind: b.dataset.kind, id: b.dataset.id }; paint(); const x = $('#f-ebody'); if (x) x.focus(); }
+  else if (k === 'edit-x') { F.editing = null; paint(); }
+  else if (k === 'share') share(b.dataset.id);
   else if (k === 'best') setBest(b.dataset.id);
   else if (k === 'del') remove(b.dataset.kind, b.dataset.id);
   else if (k === 'hide') hide(b.dataset.kind, b.dataset.id);
@@ -421,6 +444,16 @@ document.addEventListener('input', ev => {
 });
 function readCompose() { if (!F.compose) F.compose = {}; const ti = $('#f-title'), bo = $('#f-body'), rg = $('#f-region'); if (ti) F.compose.title = ti.value; if (bo) F.compose.body = bo.value; if (rg) F.compose.region = rg.value; }
 document.addEventListener('submit', async ev => {
+  if (ev.target.id === 'f-edit') {
+    ev.preventDefault();
+    const f = ev.target, b = ($('#f-ebody').value || '').trim(), ti = $('#f-etitle') ? $('#f-etitle').value.trim() : null, msg = $('#f-emsg'), say = m => { if (msg) msg.textContent = m; };
+    if (b.length < 2) return say(t('forum.short', 'Write a little more.'));
+    if (ti !== null && ti.length < 3) return say(t('forum.need.title', 'Give your conversation a title.'));
+    if (tooRude(b + ' ' + (ti || ''))) return say(t('forum.rude', 'Please write without insults or swear words.'));
+    say(t('acct.syncing', 'Saving…'));
+    try { await saveEdit(f.dataset.kind, f.dataset.id, b, ti); F.editing = null; paint(); } catch (e) { say(friendly(e)); }
+    return;
+  }
   if (ev.target.id === 'f-compose') {
     ev.preventDefault(); readCompose();
     const c = F.compose, kind = ev.target.dataset.kind, msg = $('#f-msg'), say = m => { if (msg) msg.textContent = m; };
@@ -453,11 +486,14 @@ async function goWord(word, lang) {
   const c = $('#cards'); if (c) c.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
+function route() { const m = /^#\/r\/([A-Za-z0-9]+)(?:~([A-Za-z0-9]+))?$/.exec(location.hash || ''); if (!m) return; openThread(m[1]).then(() => { if (m[2]) { const el = document.querySelector(`[data-fx="share"][data-id="${m[2]}"]`); const post = el && el.closest('.post'); if (post) { post.classList.add('flash'); post.scrollIntoView({ behavior: 'smooth', block: 'center' }); } } }); }
+window.addEventListener('hashchange', route);
 window.FLTForum = { openWord, cards, paint, bell, openThread };
 function start() {
   const S = window.FLTSync && window.FLTSync.api;
   if (S) S.onAuth.push(() => { F.follows = null; bell(); paint(); });
   paintBell();
+  setTimeout(route, 400);
 }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
 })();

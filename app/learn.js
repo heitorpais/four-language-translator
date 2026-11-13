@@ -3,7 +3,7 @@
    GENDER_RULES:  endings that usually give a gender; the app checks each rule against its own data and shows a
                   rule only where it holds for at least 80 % of the nouns with that ending.
    GRAMMAR:       short grammar pages in English, linked from terms on the cards.
-   Level estimate: where no level is stored, the level is estimated from the word's frequency rank and shown as "≈". */
+   Level estimate: where no level is stored, the level is estimated from the word's frequency rank and shown like any other level. */
 (function () {
 'use strict';
 const FALSE_FRIENDS = [

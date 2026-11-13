@@ -223,8 +223,8 @@ kbd.key{font:500 10.5px var(--mono);color:var(--muted);border:1px solid var(--ru
 .lvl.A1{color:var(--A1)} .lvl.A2{color:var(--A2)} .lvl.B1{color:var(--B1)} .lvl.B2{color:var(--B2)} .lvl.C1{color:var(--C1)} .lvl.C2{color:var(--C2)}
 .lvl.sm{font-size:10.5px;padding:0 4px;margin-left:5px;border-width:1px}
 button.lvl.big{font:500 13px var(--mono);padding:4px 10px;border-radius:6px;cursor:pointer;background:var(--surface)}
-button.lvl.big.sel{background:currentColor}
-button.lvl.big.sel{color:var(--surface)}
+button.lvl.big.sel{color:var(--surface);border-color:transparent}
+button.lvl.big.sel.A1{background:var(--A1)}button.lvl.big.sel.A2{background:var(--A2)}button.lvl.big.sel.B1{background:var(--B1)}button.lvl.big.sel.B2{background:var(--B2)}button.lvl.big.sel.C1{background:var(--C1)}button.lvl.big.sel.C2{background:var(--C2)}
 /* case badges */
 .case{font:600 11px var(--mono);border-radius:4px;padding:1px 6px;color:#fff}
 .case.c-Akk{background:var(--akk)} .case.c-Dat{background:var(--dat)} .case.c-Gen{background:var(--gen)} .case.c-Nom{background:var(--g-pl)}
@@ -579,6 +579,7 @@ nav.top .btn{font-size:17.5px}
 #upd-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 14px;background:var(--accent-soft);border:1px solid var(--accent);border-radius:2px;padding:8px 14px;margin:-8px 0 4px;text-align:center}
 
 /* community (sync.js) */
+.cflag{width:21px;height:14px;object-fit:cover;border-radius:2px;box-shadow:0 0 0 1px var(--rule);vertical-align:-2px;display:inline-block}
 .special{margin-left:4px;filter:drop-shadow(0 1px 1px rgba(60,35,15,.3))}
 .comm-search{max-width:560px;margin:4px 0 10px}
 .tabs .tabb{border:0;border-bottom:2px solid transparent;background:none;color:var(--muted);font:400 16px var(--body);padding:4px 10px;cursor:pointer}
@@ -597,6 +598,7 @@ nav.top .btn{font-size:17.5px}
 .report p{margin:0 0 6px}.lnk.small{font-size:14px;color:var(--muted)}
 
 /* The Reading Room (forum.js) */
+.post.flash{animation:flash 2.4s ease-out}@keyframes flash{0%{background:var(--mark)}100%{background:transparent}}
 #forum .crumbs{margin:-4px 0 10px;color:var(--muted)}
 .f-search{max-width:560px;margin:0 0 12px}
 .secs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin:6px 0 18px}
@@ -639,6 +641,35 @@ nav.top .btn{font-size:17.5px}
 .cn-h{font-variant:small-caps;letter-spacing:.1em;color:var(--accent);font-size:13px}
 .cn .ty{width:18px;height:18px;font-size:11px;vertical-align:1px}
 .talk-n{font-weight:600}
+
+/* first visit: welcome, languages, tour (views.js) */
+#welcome.ob-modal{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(30,18,8,.55);border:0;box-shadow:none;border-radius:0;margin:0;max-width:none}
+#welcome.ob-modal[hidden]{display:none}
+body.ob-open{overflow:hidden}
+.ob-box{background:var(--paper);width:min(640px,100%);max-height:calc(100vh - 32px);overflow:auto;padding:30px 32px 24px;border-radius:2px;box-shadow:inset 0 0 0 8px var(--paper),inset 0 0 0 9px var(--rule),inset 0 0 0 12px var(--paper),inset 0 0 0 13px var(--rule),inset 0 0 70px var(--vign),0 20px 60px rgba(0,0,0,.45)}
+@media (max-width:600px){.ob-box{padding:24px 18px 18px}}
+.obwelcome{text-align:center}
+.wordmark.big{height:70px;display:inline-block}
+.obh{font:600 28px/1.2 var(--display);margin:6px 0 10px;color:var(--ink);text-transform:none;letter-spacing:0;font-variant:normal}
+.ob-box .obh::before{content:none}
+.oblead{font-size:19px}
+.obsign{font-style:normal;color:var(--accent);font-variant:small-caps;letter-spacing:.08em;font-size:18px}
+.obgrid{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.obgrid .chip{font-size:16px;padding:5px 12px}
+.obgrid .chip.sel{background:var(--accent);color:var(--surface);border-color:var(--accent)}
+.oblv{display:flex;flex-direction:column;gap:6px;margin:12px 0 4px;border-top:1px solid var(--rule);padding-top:10px}
+.oblv-row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.oblv-row span{display:flex;align-items:center;gap:6px}
+.oblv select.missing{border-color:var(--irregular);box-shadow:0 0 0 1px var(--irregular)}
+.obnav{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:16px}
+.obnav .lnk{margin-left:auto;color:var(--muted)}
+.obwelcome+.obnav{justify-content:center}.obwelcome+.obnav .lnk{margin-left:0}
+.obdots{display:flex;gap:6px;justify-content:center;margin-bottom:6px}
+.obdots span{width:8px;height:8px;border-radius:50%;background:var(--rule)}
+.obdots span.done{background:var(--gold)}.obdots span.on{background:var(--accent)}
+.obstep{text-align:center;color:var(--muted);font-variant:small-caps;letter-spacing:.08em;margin:0}
+.obslide{text-align:center;min-height:190px}
+.obicon{font-size:44px;line-height:1;margin:14px 0 4px}
 </style>
 </head>
 <body>
@@ -650,8 +681,8 @@ nav.top .btn{font-size:17.5px}
       <button class="btn navb" id="explore-toggle" aria-expanded="false" aria-controls="explore" data-t="nav.explore">Explore</button>
       <button class="btn navb" id="practice-toggle" aria-expanded="false" aria-controls="practice" data-t="nav.practice">Practice</button>
       <button class="btn navb sm-nav" id="progress-toggle" aria-expanded="false" aria-controls="progress" data-t="nav.progress">Progress</button>
-      <button class="btn navb" id="forum-toggle" aria-expanded="false" aria-controls="forum">Reading Room</button>
-      <button class="btn navb" id="community-toggle" aria-expanded="false" aria-controls="community">Community</button>
+      <button class="btn navb" id="forum-toggle" aria-expanded="false" aria-controls="forum" data-t="nav.forum">Reading Room</button>
+      <button class="btn navb" id="community-toggle" aria-expanded="false" aria-controls="community" data-t="nav.community">Community</button>
       <button class="btn navb" id="me-toggle" aria-expanded="false" aria-controls="me">My words</button>
       <button class="btn navb" id="settings-toggle" aria-expanded="false" aria-controls="settings" data-t="nav.settings">Settings</button>
       <button class="btn navb" id="sources-toggle" aria-expanded="false" aria-controls="sources" data-t="nav.sources">Sources &amp; licences</button>
@@ -688,6 +719,7 @@ nav.top .btn{font-size:17.5px}
     <p><b>Written by AI.</b> The language level (A1 to C2), the Swiss German form, the common mistake and the notes were written by Claude (Anthropic), as were the entries carried over from the first version of this app. They are not checked against a printed dictionary. Swiss German has no fixed spelling, so those forms are approximate.</p>
     <p><b>Fonts.</b> EB Garamond (Georg Duffner and Octavio Pardo), Cormorant Garamond (Christian Thalmann), Source Serif 4 (Adobe), IBM Plex Sans and IBM Plex Mono (IBM Corp.), licence <a href="https://openfontlicense.org" target="_blank" rel="noopener">SIL Open Font License 1.1</a>. They are part of the app, so nothing is loaded from the internet.</p>
     <p><b>Sign-in.</b> Signing in with Google is optional and uses Firebase (Google), licence <a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="noopener">Apache 2.0</a>. Saved words are kept in Zürich; see the <a href="privacy/">privacy page</a>.</p>
+    <p><b>Country flags.</b> The flags in profiles and the Community are from <a href="https://github.com/lipis/flag-icons" target="_blank" rel="noopener">flag-icons</a> by Panayiotis Lipiridis, licence MIT.</p>
     <p><b>Learner helpers.</b> False friends, the gender tips from word endings and the regional word list were written by Claude (Anthropic); each gender tip is shown only where the app's own data confirms it for at least 80 % of the nouns. Levels marked ≈ are estimated from word frequency.</p>
     <p><b>Built by rule.</b> Tables of forms and the regular or irregular labels are computed from the Wiktionary forms.</p>
     <p class="hint">Under "More about this word" every card lists where its own content comes from. <span id="src-version"></span></p>

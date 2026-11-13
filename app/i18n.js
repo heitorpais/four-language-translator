@@ -5328,3 +5328,181 @@ la: {
 "x.irr.la.3": "supinum / participium"
 }
 };
+
+/* first-visit setup and tour (views.js), level texts (13 Nov 2026) */
+(function (T) {
+const add = (l, o) => { T[l] = Object.assign(T[l] || {}, o); };
+add('de', {
+"ob.native": "Muttersprache", "ob.level.choose": "Niveau wählen…", "ob.later": "Du kannst das später in den Einstellungen ändern.", "ob.back": "← Zurück", "ob.next": "Weiter →",
+"ob.w.h": "Willkommen bei Glossarium!", "ob.w.p1": "Unser Ziel ist es, Sprachenlernen für alle zugänglich zu machen. Darum ist Glossarium kostenlos und ohne Werbung, und das bleibt so.",
+"ob.w.p2": "Richten wir es für dich ein. Das dauert weniger als eine Minute.", "ob.w.p3": "Viel Freude!", "ob.w.go": "Los geht’s", "ob.w.skip": "Einrichtung überspringen",
+"ob.ui.h": "In welcher Sprache soll die App mit dir sprechen?", "ob.ui.p": "Knöpfe, Menüs und Erklärungen erscheinen in dieser Sprache.",
+"ob.sp.h": "Welche Sprachen sprichst du schon?", "ob.sp.p": "Wähle eine oder mehrere. Wenn du mehr als eine wählst, gib dein Niveau in jeder an.",
+"ob.le.h": "Welche Sprachen lernst du?", "ob.le.p": "Wähle eine oder mehrere und dein aktuelles Niveau in jeder. Wort des Tages und Übungen richten sich danach.",
+"ob.tour": "So funktioniert Glossarium", "ob.tour.skip": "Rundgang überspringen", "ob.start": "Glossarium benutzen",
+"ob.err.sp": "Wähle mindestens eine Sprache, die du sprichst.", "ob.err.lv": "Wähle dein Niveau in jeder Sprache.", "ob.err.le": "Wähle mindestens eine Sprache, die du lernst.",
+"ob.t1.h": "Ein Wort in jeder Sprache nachschlagen", "ob.t1.p": "Tippe ein Wort ins grosse Suchfeld, in einer der zehn Sprachen. Glossarium findet es und zeigt es sofort in all deinen Sprachen nebeneinander.",
+"ob.t2.h": "Die Karten lesen", "ob.t2.p": "Jede Karte zeigt das Wort mit seinem Genus in Farbe (blau männlich, rot weiblich, grün sächlich), die Mehrzahl, die Aussprache 🔊, das Niveau (A1 bis C2) und Beispiele. Unter «Mehr Formen» findest du alle Konjugationen und Deklinationen.",
+"ob.t3.h": "Behalte, was du lernst", "ob.t3.p": "Speichere ein Wort mit ☆, markiere es mit «Kenne ich», füge es einer Liste hinzu oder schreib eine Notiz. Alles steht unter «Meine Wörter», und mit einem kostenlosen Konto auf all deinen Geräten.",
+"ob.t4.h": "Entdecken, üben, Fortschritt", "ob.t4.p": "«Entdecken» zeigt Wörter nach Niveau, Wortart, unregelmässigen Verben oder falschen Freunden. «Üben» hat viele Übungsarten. «Fortschritt» zeigt deine Niveaubalken, Übungstage und Abzeichen.",
+"ob.t5.h": "Der Lesesaal", "ob.t5.p": "Jedes Wort hat sein eigenes Gespräch: frag nach dem Warum, teile einen Tipp oder ein regionales Wort. Die besten Notizen erscheinen direkt auf der Karte. In der Community findest du andere Lernende und Freunde.",
+"ob.t6.h": "Mach es zu deinem", "ob.t6.p": "In den Einstellungen änderst du Sprachen, Niveaus, Regionen (zum Beispiel Schweizerdeutsch), die Stimme und das Aussehen. Leg Glossarium auf deinen Startbildschirm, dann funktioniert es auch offline wie eine App.",
+"about.lvl2": "Die meisten Niveaus sind danach geschätzt, wie oft ein Wort in Filmuntertiteln vorkommt (die 600 häufigsten Wörter A1, bis 1500 A2, 3000 B1, 5500 B2, 9000 C1, seltenere C2). Bei vielen deutschen Wörtern wurde das Niveau von Hand festgelegt.",
+"x.level.top": "Die {n} häufigsten Wörter auf Niveau {l}. Seltenere öffnen sich, wenn du sie nachschlägst.", "msg.loading2": "Wird geladen…"
+});
+add('fr', {
+"ob.native": "Langue maternelle", "ob.level.choose": "Choisir le niveau…", "ob.later": "Tu pourras le changer plus tard dans les Réglages.", "ob.back": "← Retour", "ob.next": "Suivant →",
+"ob.w.h": "Bienvenue sur Glossarium !", "ob.w.p1": "Notre but est de rendre l’apprentissage des langues accessible à tous. C’est pourquoi Glossarium est gratuit et sans publicité, et le restera.",
+"ob.w.p2": "Configurons-le pour toi. Cela prend moins d’une minute.", "ob.w.p3": "Bon apprentissage !", "ob.w.go": "C’est parti", "ob.w.skip": "Passer la configuration",
+"ob.ui.h": "Dans quelle langue l’application doit-elle te parler ?", "ob.ui.p": "Les boutons, menus et explications seront dans cette langue.",
+"ob.sp.h": "Quelles langues parles-tu déjà ?", "ob.sp.p": "Choisis-en une ou plusieurs. Si tu en choisis plusieurs, indique ton niveau dans chacune.",
+"ob.le.h": "Quelles langues apprends-tu ?", "ob.le.p": "Choisis-en une ou plusieurs, avec ton niveau actuel dans chacune. Le mot du jour et les exercices s’y adaptent.",
+"ob.tour": "Comment fonctionne Glossarium", "ob.tour.skip": "Passer la visite", "ob.start": "Commencer",
+"ob.err.sp": "Choisis au moins une langue que tu parles.", "ob.err.lv": "Choisis ton niveau dans chaque langue.", "ob.err.le": "Choisis au moins une langue que tu apprends.",
+"ob.t1.h": "Chercher un mot dans n’importe quelle langue", "ob.t1.p": "Tape un mot dans le grand champ de recherche, dans l’une des dix langues. Glossarium le trouve et l’affiche aussitôt dans toutes tes langues, côte à côte.",
+"ob.t2.h": "Lire les fiches", "ob.t2.p": "Chaque fiche montre le mot avec son genre en couleur (bleu masculin, rouge féminin, vert neutre), le pluriel, la prononciation 🔊, le niveau (A1 à C2) et des exemples. « Voir plus de formes » donne toutes les conjugaisons et déclinaisons.",
+"ob.t3.h": "Garder ce que tu apprends", "ob.t3.p": "Enregistre un mot avec ☆, marque-le « Je connais », ajoute-le à une liste ou écris une note. Tout se trouve dans « Mes mots », et avec un compte gratuit sur tous tes appareils.",
+"ob.t4.h": "Explorer, s’exercer, progresser", "ob.t4.p": "Explorer parcourt les mots par niveau, type, verbes irréguliers ou faux amis. S’exercer propose de nombreux exercices. Progrès montre tes barres de niveau, tes jours d’exercice et tes badges.",
+"ob.t5.h": "La salle de lecture", "ob.t5.p": "Chaque mot a sa propre conversation : demande pourquoi, partage une astuce ou un mot régional. Les meilleures notes apparaissent sur la fiche. Dans la Communauté, trouve d’autres apprenants et ajoute des amis.",
+"ob.t6.h": "À ta façon", "ob.t6.p": "Dans les Réglages, tu changes tes langues, niveaux, régions (par exemple le suisse allemand), la voix et l’apparence. Ajoute Glossarium à ton écran d’accueil : il fonctionne hors ligne, comme une application.",
+"about.lvl2": "La plupart des niveaux sont estimés d’après la fréquence d’un mot dans les sous-titres de films (les 600 mots les plus fréquents A1, jusqu’à 1 500 A2, 3 000 B1, 5 500 B2, 9 000 C1, les plus rares C2). Pour beaucoup de mots allemands, le niveau a été fixé à la main.",
+"x.level.top": "Les {n} mots les plus fréquents du niveau {l}. Les plus rares s’ouvrent quand tu les cherches.", "msg.loading2": "Chargement…"
+});
+add('pt', {
+"ob.native": "Língua materna", "ob.level.choose": "Escolha o nível…", "ob.later": "Você pode mudar isso depois nas Configurações.", "ob.back": "← Voltar", "ob.next": "Avançar →",
+"ob.w.h": "Bem-vindo ao Glossarium!", "ob.w.p1": "Nosso objetivo é tornar o aprendizado de idiomas acessível a todos. Por isso o Glossarium é gratuito e sem anúncios, e sempre será.",
+"ob.w.p2": "Vamos configurá-lo para você. Leva menos de um minuto.", "ob.w.p3": "Aproveite!", "ob.w.go": "Vamos começar", "ob.w.skip": "Pular a configuração",
+"ob.ui.h": "Em que idioma o app deve falar com você?", "ob.ui.p": "Botões, menus e explicações aparecerão nesse idioma.",
+"ob.sp.h": "Quais idiomas você já fala?", "ob.sp.p": "Escolha um ou mais. Se escolher mais de um, diga o seu nível em cada um.",
+"ob.le.h": "Quais idiomas você está aprendendo?", "ob.le.p": "Escolha um ou mais, com o seu nível atual em cada um. A palavra do dia e os exercícios seguem esse nível.",
+"ob.tour": "Como o Glossarium funciona", "ob.tour.skip": "Pular o tour", "ob.start": "Começar a usar",
+"ob.err.sp": "Escolha pelo menos um idioma que você fala.", "ob.err.lv": "Escolha o seu nível em cada idioma.", "ob.err.le": "Escolha pelo menos um idioma que você está aprendendo.",
+"ob.t1.h": "Procure uma palavra em qualquer idioma", "ob.t1.p": "Digite uma palavra no grande campo de busca, em qualquer um dos dez idiomas. O Glossarium a encontra e mostra na hora em todos os seus idiomas, lado a lado.",
+"ob.t2.h": "Leia os cartões", "ob.t2.p": "Cada cartão mostra a palavra com o gênero em cor (azul masculino, vermelho feminino, verde neutro), o plural, a pronúncia 🔊, o nível (A1 a C2) e exemplos. Em “Ver mais formas” estão todas as conjugações e declinações.",
+"ob.t3.h": "Guarde o que você aprende", "ob.t3.p": "Salve uma palavra com ☆, marque “Eu sei esta”, adicione a uma lista ou escreva uma nota. Tudo fica em “Minhas palavras” e, com uma conta gratuita, em todos os seus aparelhos.",
+"ob.t4.h": "Explorar, praticar, progredir", "ob.t4.p": "Explorar mostra palavras por nível, classe, verbos irregulares ou falsos cognatos. Praticar tem muitos tipos de exercício. Progresso mostra suas barras de nível, dias de prática e medalhas.",
+"ob.t5.h": "A Sala de Leitura", "ob.t5.p": "Cada palavra tem sua própria conversa: pergunte o porquê, compartilhe uma dica ou uma palavra regional. As melhores notas aparecem no próprio cartão. Na Comunidade você encontra outros aprendizes e adiciona amigos.",
+"ob.t6.h": "Do seu jeito", "ob.t6.p": "Nas Configurações você muda idiomas, níveis, regiões (por exemplo, alemão suíço), a voz e a aparência. Adicione o Glossarium à tela de início e ele funciona offline, como um app.",
+"about.lvl2": "A maioria dos níveis é estimada pela frequência da palavra em legendas de filmes (as 600 mais frequentes A1, até 1.500 A2, 3.000 B1, 5.500 B2, 9.000 C1, as mais raras C2). Para muitas palavras alemãs, o nível foi definido à mão.",
+"x.level.top": "As {n} palavras mais frequentes do nível {l}. As mais raras abrem quando você as procura.", "msg.loading2": "Carregando…"
+});
+add('cs', {
+"ob.native": "Rodný jazyk", "ob.level.choose": "Zvol úroveň…", "ob.later": "Později to můžeš změnit v Nastavení.", "ob.back": "← Zpět", "ob.next": "Dál →",
+"ob.w.h": "Vítej v Glossariu!", "ob.w.p1": "Naším cílem je zpřístupnit učení jazyků všem. Proto je Glossarium zdarma a bez reklam, a tak to zůstane.",
+"ob.w.p2": "Pojďme ho pro tebe nastavit. Zabere to necelou minutu.", "ob.w.p3": "Užij si to!", "ob.w.go": "Začneme", "ob.w.skip": "Přeskočit nastavení",
+"ob.ui.h": "Jakým jazykem má aplikace mluvit?", "ob.ui.p": "Tlačítka, nabídky a vysvětlivky budou v tomto jazyce.",
+"ob.sp.h": "Kterými jazyky už mluvíš?", "ob.sp.p": "Vyber jeden nebo více. Když vybereš víc než jeden, uveď u každého svou úroveň.",
+"ob.le.h": "Které jazyky se učíš?", "ob.le.p": "Vyber jeden nebo více a u každého svou současnou úroveň. Řídí se jí slovo dne a cvičení.",
+"ob.tour": "Jak Glossarium funguje", "ob.tour.skip": "Přeskočit prohlídku", "ob.start": "Začít používat",
+"ob.err.sp": "Vyber aspoň jeden jazyk, kterým mluvíš.", "ob.err.lv": "Zvol svou úroveň v každém jazyce.", "ob.err.le": "Vyber aspoň jeden jazyk, který se učíš.",
+"ob.t1.h": "Vyhledej slovo v jakémkoli jazyce", "ob.t1.p": "Napiš slovo do velkého vyhledávacího pole, v kterémkoli z deseti jazyků. Glossarium ho najde a hned ukáže ve všech tvých jazycích vedle sebe.",
+"ob.t2.h": "Čti karty", "ob.t2.p": "Každá karta ukazuje slovo s rodem v barvě (modrá mužský, červená ženský, zelená střední), množné číslo, výslovnost 🔊, úroveň (A1 až C2) a příklady. Pod „Další tvary“ najdeš všechna časování a skloňování.",
+"ob.t3.h": "Uchovej si, co se naučíš", "ob.t3.p": "Ulož slovo pomocí ☆, označ ho „Znám“, přidej ho do seznamu nebo napiš poznámku. Všechno je v „Moje slova“ a s bezplatným účtem na všech tvých zařízeních.",
+"ob.t4.h": "Objevuj, procvičuj, postupuj", "ob.t4.p": "Objevovat ukazuje slova podle úrovně, slovního druhu, nepravidelných sloves nebo falešných přátel. Procvičování má mnoho druhů cvičení. Pokrok ukazuje tvé úrovně, dny cvičení a odznaky.",
+"ob.t5.h": "Čítárna", "ob.t5.p": "Každé slovo má svůj rozhovor: zeptej se proč, poděl se o tip nebo regionální slovo. Nejlepší poznámky se objeví přímo na kartě. V Komunitě najdeš další studenty a přátele.",
+"ob.t6.h": "Podle tebe", "ob.t6.p": "V Nastavení měníš jazyky, úrovně, regiony (například švýcarskou němčinu), hlas a vzhled. Přidej si Glossarium na plochu a bude fungovat i offline jako aplikace.",
+"about.lvl2": "Většina úrovní je odhadnuta podle toho, jak často se slovo vyskytuje ve filmových titulcích (600 nejčastějších slov A1, do 1 500 A2, 3 000 B1, 5 500 B2, 9 000 C1, vzácnější C2). U mnoha německých slov byla úroveň stanovena ručně.",
+"x.level.top": "{n} nejčastějších slov na úrovni {l}. Vzácnější se otevřou, když je vyhledáš.", "msg.loading2": "Načítá se…"
+});
+add('it', {
+"ob.native": "Madrelingua", "ob.level.choose": "Scegli il livello…", "ob.later": "Potrai cambiarlo più tardi nelle Impostazioni.", "ob.back": "← Indietro", "ob.next": "Avanti →",
+"ob.w.h": "Benvenuto su Glossarium!", "ob.w.p1": "Il nostro obiettivo è rendere l’apprendimento delle lingue accessibile a tutti. Per questo Glossarium è gratuito e senza pubblicità, e lo resterà.",
+"ob.w.p2": "Configuriamolo per te. Ci vuole meno di un minuto.", "ob.w.p3": "Buon divertimento!", "ob.w.go": "Iniziamo", "ob.w.skip": "Salta la configurazione",
+"ob.ui.h": "In quale lingua deve parlarti l’app?", "ob.ui.p": "Pulsanti, menu e spiegazioni saranno in questa lingua.",
+"ob.sp.h": "Quali lingue parli già?", "ob.sp.p": "Scegline una o più. Se ne scegli più di una, indica il tuo livello in ciascuna.",
+"ob.le.h": "Quali lingue stai imparando?", "ob.le.p": "Scegline una o più, con il tuo livello attuale in ciascuna. La parola del giorno e gli esercizi lo seguono.",
+"ob.tour": "Come funziona Glossarium", "ob.tour.skip": "Salta il tour", "ob.start": "Inizia a usarlo",
+"ob.err.sp": "Scegli almeno una lingua che parli.", "ob.err.lv": "Scegli il tuo livello in ogni lingua.", "ob.err.le": "Scegli almeno una lingua che stai imparando.",
+"ob.t1.h": "Cerca una parola in qualsiasi lingua", "ob.t1.p": "Scrivi una parola nel grande campo di ricerca, in una delle dieci lingue. Glossarium la trova e la mostra subito in tutte le tue lingue, una accanto all’altra.",
+"ob.t2.h": "Leggi le schede", "ob.t2.p": "Ogni scheda mostra la parola con il genere a colori (blu maschile, rosso femminile, verde neutro), il plurale, la pronuncia 🔊, il livello (da A1 a C2) ed esempi. In “Altre forme” trovi tutte le coniugazioni e declinazioni.",
+"ob.t3.h": "Conserva ciò che impari", "ob.t3.p": "Salva una parola con ☆, segnala “La conosco”, aggiungila a una lista o scrivi una nota. Tutto è in “Le mie parole” e, con un account gratuito, su tutti i tuoi dispositivi.",
+"ob.t4.h": "Esplora, esercitati, progredisci", "ob.t4.p": "Esplora mostra le parole per livello, categoria, verbi irregolari o falsi amici. Esercizi offre molti tipi di attività. Progressi mostra le barre di livello, i giorni di esercizio e i distintivi.",
+"ob.t5.h": "La Sala di lettura", "ob.t5.p": "Ogni parola ha la sua conversazione: chiedi il perché, condividi un consiglio o una parola regionale. Le note migliori compaiono sulla scheda. Nella Comunità trovi altri studenti e aggiungi amici.",
+"ob.t6.h": "A modo tuo", "ob.t6.p": "Nelle Impostazioni cambi lingue, livelli, regioni (per esempio lo svizzero tedesco), la voce e l’aspetto. Aggiungi Glossarium alla schermata Home e funziona anche offline, come un’app.",
+"about.lvl2": "La maggior parte dei livelli è stimata da quanto spesso una parola compare nei sottotitoli dei film (le 600 parole più frequenti A1, fino a 1500 A2, 3000 B1, 5500 B2, 9000 C1, le più rare C2). Per molte parole tedesche il livello è stato fissato a mano.",
+"x.level.top": "Le {n} parole più frequenti del livello {l}. Le più rare si aprono quando le cerchi.", "msg.loading2": "Caricamento…"
+});
+add('es', {
+"ob.native": "Lengua materna", "ob.level.choose": "Elige el nivel…", "ob.later": "Puedes cambiarlo más tarde en Ajustes.", "ob.back": "← Atrás", "ob.next": "Siguiente →",
+"ob.w.h": "¡Bienvenido a Glossarium!", "ob.w.p1": "Nuestro objetivo es que aprender idiomas sea accesible para todos. Por eso Glossarium es gratis y sin anuncios, y siempre lo será.",
+"ob.w.p2": "Vamos a configurarlo para ti. Tarda menos de un minuto.", "ob.w.p3": "¡Que lo disfrutes!", "ob.w.go": "Empecemos", "ob.w.skip": "Saltar la configuración",
+"ob.ui.h": "¿En qué idioma debe hablarte la app?", "ob.ui.p": "Botones, menús y explicaciones aparecerán en este idioma.",
+"ob.sp.h": "¿Qué idiomas hablas ya?", "ob.sp.p": "Elige uno o varios. Si eliges más de uno, indica tu nivel en cada uno.",
+"ob.le.h": "¿Qué idiomas estás aprendiendo?", "ob.le.p": "Elige uno o varios, con tu nivel actual en cada uno. La palabra del día y los ejercicios se adaptan a él.",
+"ob.tour": "Cómo funciona Glossarium", "ob.tour.skip": "Saltar la visita", "ob.start": "Empezar a usarlo",
+"ob.err.sp": "Elige al menos un idioma que hables.", "ob.err.lv": "Elige tu nivel en cada idioma.", "ob.err.le": "Elige al menos un idioma que estés aprendiendo.",
+"ob.t1.h": "Busca una palabra en cualquier idioma", "ob.t1.p": "Escribe una palabra en el gran campo de búsqueda, en cualquiera de los diez idiomas. Glossarium la encuentra y la muestra al instante en todos tus idiomas, uno al lado del otro.",
+"ob.t2.h": "Lee las fichas", "ob.t2.p": "Cada ficha muestra la palabra con su género en color (azul masculino, rojo femenino, verde neutro), el plural, la pronunciación 🔊, el nivel (A1 a C2) y ejemplos. En «Ver más formas» están todas las conjugaciones y declinaciones.",
+"ob.t3.h": "Guarda lo que aprendes", "ob.t3.p": "Guarda una palabra con ☆, márcala «La conozco», añádela a una lista o escribe una nota. Todo está en «Mis palabras» y, con una cuenta gratuita, en todos tus dispositivos.",
+"ob.t4.h": "Explora, practica, progresa", "ob.t4.p": "Explorar recorre palabras por nivel, categoría, verbos irregulares o falsos amigos. Practicar tiene muchos tipos de ejercicio. Progreso muestra tus barras de nivel, días de práctica e insignias.",
+"ob.t5.h": "La Sala de lectura", "ob.t5.p": "Cada palabra tiene su propia conversación: pregunta por qué, comparte un consejo o una palabra regional. Las mejores notas aparecen en la ficha. En la Comunidad encuentras a otros estudiantes y añades amigos.",
+"ob.t6.h": "A tu manera", "ob.t6.p": "En Ajustes cambias idiomas, niveles, regiones (por ejemplo, el alemán suizo), la voz y el aspecto. Añade Glossarium a tu pantalla de inicio y funcionará sin conexión, como una app.",
+"about.lvl2": "La mayoría de los niveles se estiman según lo frecuente que es una palabra en los subtítulos de películas (las 600 más frecuentes A1, hasta 1500 A2, 3000 B1, 5500 B2, 9000 C1, las más raras C2). En muchas palabras alemanas el nivel se fijó a mano.",
+"x.level.top": "Las {n} palabras más frecuentes del nivel {l}. Las más raras se abren cuando las buscas.", "msg.loading2": "Cargando…"
+});
+add('nl', {
+"ob.native": "Moedertaal", "ob.level.choose": "Kies je niveau…", "ob.later": "Je kunt dit later wijzigen in Instellingen.", "ob.back": "← Terug", "ob.next": "Verder →",
+"ob.w.h": "Welkom bij Glossarium!", "ob.w.p1": "Ons doel is talen leren voor iedereen toegankelijk te maken. Daarom is Glossarium gratis en zonder advertenties, en dat blijft zo.",
+"ob.w.p2": "Laten we het voor je instellen. Het duurt nog geen minuut.", "ob.w.p3": "Veel plezier!", "ob.w.go": "Aan de slag", "ob.w.skip": "Instellen overslaan",
+"ob.ui.h": "In welke taal moet de app met je praten?", "ob.ui.p": "Knoppen, menu’s en uitleg verschijnen in deze taal.",
+"ob.sp.h": "Welke talen spreek je al?", "ob.sp.p": "Kies er één of meer. Kies je er meer dan één, geef dan bij elke taal je niveau aan.",
+"ob.le.h": "Welke talen leer je?", "ob.le.p": "Kies er één of meer, met je huidige niveau in elke taal. Het woord van de dag en de oefeningen volgen dat niveau.",
+"ob.tour": "Zo werkt Glossarium", "ob.tour.skip": "Rondleiding overslaan", "ob.start": "Beginnen",
+"ob.err.sp": "Kies minstens één taal die je spreekt.", "ob.err.lv": "Kies je niveau in elke taal.", "ob.err.le": "Kies minstens één taal die je leert.",
+"ob.t1.h": "Zoek een woord in elke taal", "ob.t1.p": "Typ een woord in het grote zoekveld, in een van de tien talen. Glossarium vindt het en toont het meteen in al je talen naast elkaar.",
+"ob.t2.h": "Lees de kaarten", "ob.t2.p": "Elke kaart toont het woord met zijn geslacht in kleur (blauw mannelijk, rood vrouwelijk, groen onzijdig), het meervoud, de uitspraak 🔊, het niveau (A1 tot C2) en voorbeelden. Onder ‘Meer vormen’ staan alle vervoegingen en verbuigingen.",
+"ob.t3.h": "Bewaar wat je leert", "ob.t3.p": "Bewaar een woord met ☆, markeer het als ‘Ken ik’, zet het in een lijst of schrijf een notitie. Alles staat onder ‘Mijn woorden’, en met een gratis account op al je apparaten.",
+"ob.t4.h": "Ontdekken, oefenen, vooruitgang", "ob.t4.p": "Ontdekken toont woorden per niveau, woordsoort, onregelmatige werkwoorden of valse vrienden. Oefenen heeft veel soorten oefeningen. Vooruitgang toont je niveaubalken, oefendagen en badges.",
+"ob.t5.h": "De Leeszaal", "ob.t5.p": "Elk woord heeft zijn eigen gesprek: vraag waarom, deel een tip of een regionaal woord. De beste notities verschijnen op de kaart zelf. In de Community vind je andere leerders en voeg je vrienden toe.",
+"ob.t6.h": "Naar jouw smaak", "ob.t6.p": "In Instellingen wijzig je talen, niveaus, regio’s (bijvoorbeeld Zwitserduits), de stem en het uiterlijk. Zet Glossarium op je beginscherm, dan werkt het ook offline, als een app.",
+"about.lvl2": "De meeste niveaus zijn geschat op basis van hoe vaak een woord in filmondertitels voorkomt (de 600 meest gebruikte woorden A1, tot 1500 A2, 3000 B1, 5500 B2, 9000 C1, zeldzamere C2). Bij veel Duitse woorden is het niveau met de hand bepaald.",
+"x.level.top": "De {n} meest gebruikte woorden op niveau {l}. Zeldzamere openen als je ze opzoekt.", "msg.loading2": "Laden…"
+});
+add('sv', {
+"ob.native": "Modersmål", "ob.level.choose": "Välj nivå…", "ob.later": "Du kan ändra det senare under Inställningar.", "ob.back": "← Tillbaka", "ob.next": "Nästa →",
+"ob.w.h": "Välkommen till Glossarium!", "ob.w.p1": "Vårt mål är att göra språkinlärning tillgänglig för alla. Därför är Glossarium gratis och utan reklam, och det kommer det alltid att vara.",
+"ob.w.p2": "Vi ställer in det åt dig. Det tar mindre än en minut.", "ob.w.p3": "Ha det så roligt!", "ob.w.go": "Sätt igång", "ob.w.skip": "Hoppa över inställningen",
+"ob.ui.h": "Vilket språk ska appen tala med dig?", "ob.ui.p": "Knappar, menyer och förklaringar visas på det här språket.",
+"ob.sp.h": "Vilka språk talar du redan?", "ob.sp.p": "Välj ett eller flera. Väljer du fler än ett, ange din nivå i varje.",
+"ob.le.h": "Vilka språk lär du dig?", "ob.le.p": "Välj ett eller flera och din nuvarande nivå i varje. Dagens ord och övningarna följer den.",
+"ob.tour": "Så fungerar Glossarium", "ob.tour.skip": "Hoppa över rundturen", "ob.start": "Börja använda",
+"ob.err.sp": "Välj minst ett språk som du talar.", "ob.err.lv": "Välj din nivå i varje språk.", "ob.err.le": "Välj minst ett språk som du lär dig.",
+"ob.t1.h": "Slå upp ett ord på vilket språk som helst", "ob.t1.p": "Skriv ett ord i det stora sökfältet, på något av de tio språken. Glossarium hittar det och visar det direkt på alla dina språk sida vid sida.",
+"ob.t2.h": "Läs korten", "ob.t2.p": "Varje kort visar ordet med genus i färg (blått maskulinum, rött femininum, grönt neutrum), pluralis, uttalet 🔊, nivån (A1 till C2) och exempel. Under ”Fler former” finns alla böjningar.",
+"ob.t3.h": "Behåll det du lär dig", "ob.t3.p": "Spara ett ord med ☆, markera ”Jag kan det”, lägg till det i en lista eller skriv en anteckning. Allt finns under ”Mina ord”, och med ett gratiskonto på alla dina enheter.",
+"ob.t4.h": "Utforska, öva, gå framåt", "ob.t4.p": "Utforska visar ord efter nivå, ordklass, oregelbundna verb eller falska vänner. Öva har många sorters övningar. Framsteg visar dina nivåstaplar, övningsdagar och märken.",
+"ob.t5.h": "Läsesalen", "ob.t5.p": "Varje ord har sitt eget samtal: fråga varför, dela ett tips eller ett regionalt ord. De bästa anteckningarna visas direkt på kortet. I Gemenskapen hittar du andra som lär sig och lägger till vänner.",
+"ob.t6.h": "Gör det till ditt", "ob.t6.p": "Under Inställningar ändrar du språk, nivåer, regioner (till exempel schweizertyska), rösten och utseendet. Lägg Glossarium på hemskärmen så fungerar det offline, som en app.",
+"about.lvl2": "De flesta nivåer är uppskattade efter hur ofta ett ord förekommer i filmtexter (de 600 vanligaste orden A1, upp till 1 500 A2, 3 000 B1, 5 500 B2, 9 000 C1, ovanligare C2). För många tyska ord har nivån satts för hand.",
+"x.level.top": "De {n} vanligaste orden på nivå {l}. Ovanligare öppnas när du slår upp dem.", "msg.loading2": "Laddar…"
+});
+add('la', {
+"ob.native": "Lingua patria", "ob.level.choose": "Gradum elige…", "ob.later": "Postea in Optionibus mutare potes.", "ob.back": "← Retro", "ob.next": "Porro →",
+"ob.w.h": "Salve in Glossario!", "ob.w.p1": "Propositum nostrum est ut linguarum studium omnibus pateat. Ideo Glossarium gratuitum est et sine praeconiis, et semper erit.",
+"ob.w.p2": "Tibi id paremus. Minus quam minutam capit.", "ob.w.p3": "Fruere!", "ob.w.go": "Incipiamus", "ob.w.skip": "Apparatum praeteri",
+"ob.ui.h": "Qua lingua applicatio tecum loquatur?", "ob.ui.p": "Bullae, indices et explanationes hac lingua apparebunt.",
+"ob.sp.h": "Quas linguas iam loqueris?", "ob.sp.p": "Elige unam vel plures. Si plures eligis, gradum tuum in singulis indica.",
+"ob.le.h": "Quas linguas discis?", "ob.le.p": "Elige unam vel plures, cum gradu tuo praesenti in singulis. Verbum diei et exercitationes eum sequuntur.",
+"ob.tour": "Quomodo Glossarium operetur", "ob.tour.skip": "Iter praeteri", "ob.start": "Incipe uti",
+"ob.err.sp": "Elige saltem unam linguam quam loqueris.", "ob.err.lv": "Gradum tuum in omni lingua elige.", "ob.err.le": "Elige saltem unam linguam quam discis.",
+"ob.t1.h": "Verbum quavis lingua quaere", "ob.t1.p": "Verbum in magnum campum quaerendi scribe, qualibet ex decem linguis. Glossarium id invenit et statim omnibus tuis linguis iuxta ostendit.",
+"ob.t2.h": "Chartas lege", "ob.t2.p": "Quaeque charta verbum cum genere colorato ostendit (caeruleum masculinum, rubrum femininum, viride neutrum), pluralem, pronuntiationem 🔊, gradum (A1 ad C2) et exempla. Sub «Plures formae» omnes coniugationes et declinationes sunt.",
+"ob.t3.h": "Serva quae discis", "ob.t3.p": "Verbum signo ☆ serva, «Hoc scio» nota, indici adde aut adnotationem scribe. Omnia in «Verbis meis» sunt, et ratione gratuita in omnibus tuis instrumentis.",
+"ob.t4.h": "Explora, exerce, profice", "ob.t4.p": "Explorare verba per gradum, genus vocabuli, verba irregularia vel falsos amicos ostendit. Exercitatio multa genera habet. Progressus gradus, dies exercitationis et insignia ostendit.",
+"ob.t5.h": "Atrium lectionis", "ob.t5.p": "Quodque verbum colloquium suum habet: cur quaere, consilium aut verbum regionale communica. Optimae adnotationes in ipsa charta apparent. In Communitate alios discipulos invenis et amicos addis.",
+"ob.t6.h": "Tuum fac", "ob.t6.p": "In Optionibus linguas, gradus, regiones (exempli gratia Helvetico-Germanicam), vocem et speciem mutas. Glossarium in tabula prima pone, et sine conexu ut applicatio operatur.",
+"about.lvl2": "Plurimi gradus ex frequentia verbi in subtitulis pellicularum aestimantur (DC verba frequentissima A1, usque ad MD A2, MMM B1, VD B2, IX milia C1, rariora C2). Multis verbis Germanicis gradus manu statutus est.",
+"x.level.top": "{n} verba frequentissima gradus {l}. Rariora aperiuntur cum ea quaeris.", "msg.loading2": "Oneratur…"
+});
+})(window.FLTI18N);
+/* menu names for the Reading Room and the Community, and the Discuss button */
+(function (T) {
+const N = { de: ['Lesesaal', 'Community', 'Diskutieren', 'Teilen', 'Bearbeiten', 'bearbeitet'], fr: ['Salle de lecture', 'Communauté', 'Discuter', 'Partager', 'Modifier', 'modifié'],
+  pt: ['Sala de Leitura', 'Comunidade', 'Discutir', 'Compartilhar', 'Editar', 'editado'], cs: ['Čítárna', 'Komunita', 'Diskutovat', 'Sdílet', 'Upravit', 'upraveno'],
+  it: ['Sala di lettura', 'Comunità', 'Discuti', 'Condividi', 'Modifica', 'modificato'], es: ['Sala de lectura', 'Comunidad', 'Comentar', 'Compartir', 'Editar', 'editado'],
+  nl: ['Leeszaal', 'Community', 'Bespreken', 'Delen', 'Bewerken', 'bewerkt'], sv: ['Läsesalen', 'Gemenskap', 'Diskutera', 'Dela', 'Redigera', 'redigerad'],
+  la: ['Atrium lectionis', 'Communitas', 'Disputa', 'Communica', 'Muta', 'mutatum'] };
+for (const [l, v] of Object.entries(N)) T[l] = Object.assign(T[l] || {}, { 'nav.forum': v[0], 'nav.community': v[1], 'act.talk': v[2], 'forum.share': v[3], 'forum.edit': v[4], 'forum.edited': v[5] });
+{ const B = { de: 'Alle Personen', fr: 'Tout le monde', pt: 'Todas as pessoas', cs: 'Všichni lidé', it: 'Tutte le persone', es: 'Todas las personas', nl: 'Iedereen', sv: 'Alla personer', la: 'Omnes homines' };
+  for (const [l, v] of Object.entries(B)) T[l] = Object.assign(T[l] || {}, { 'comm.back': v }); }
+})(window.FLTI18N);

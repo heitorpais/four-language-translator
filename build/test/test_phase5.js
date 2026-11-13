@@ -34,11 +34,18 @@ const results = []; const ok = (n, p, i) => results.push([n, !!p, i == null ? ''
 
   // ---- welcome box: I speak / I'm learning arranges the slots (93)
   ok('93 welcome box on first visit', await ev(() => !document.querySelector('#welcome').hidden));
-  await page.click('[data-ob="speak"][data-l="pt"]'); await page.click('[data-ob="learn"][data-l="de"]'); await page.click('[data-ob="level"][data-l="A1"]');
-  await page.click('[data-x="ob-done"]');
+  // new flow: welcome → interface language → languages I speak (with levels) → languages I learn (with levels) → tour
+  await page.click('[data-x="ob-next"]'); await page.click('[data-ob="ui"][data-l="pt"]'); await page.click('[data-x="ob-next"]');
+  // Portuguese is pre-selected (the interface language); add English, with a level for each
+  await page.click('[data-ob="speaks"][data-l="en"]'); await page.selectOption('select[data-oblv="speaks"][data-i="1"]', 'C1');
+  await page.click('[data-x="ob-next"]');
+  await page.click('[data-ob="learns"][data-l="de"]'); await page.click('[data-ob="learns"][data-l="fr"]');
+  await page.selectOption('select[data-oblv="learns"][data-i="0"]', 'A1'); await page.selectOption('select[data-oblv="learns"][data-i="1"]', 'A2');
+  await page.click('[data-x="ob-next"]');
+  await page.click('.obnav [data-x="ob-done"].lnk');          // skip the tour: the choices are kept
   const order = await ev(() => [...document.querySelectorAll('#slots .slot')].map(s => s.dataset.lang).join(','));
-  ok('93 slots follow I speak / I am learning', order === 'pt,de,en,fr', order);
-  ok('94 interface switches to the language spoken (Portuguese)', (await ev(() => document.querySelector('#practice-toggle').textContent)) === 'Praticar');
+  ok('93 slots follow I speak / I am learning', order === 'pt,de,fr,en', order);
+  ok('94 interface in the language chosen (Portuguese)', (await ev(() => document.querySelector('#practice-toggle').textContent)) === 'Praticar');
   await ev(() => { FLT.S.ui = 'en'; FLT.saveSettings(); FLT.applyTexts(); FLT.buildSlots(); });
 
   // ---- searching
@@ -228,7 +235,7 @@ const results = []; const ok = (n, p, i) => results.push([n, !!p, i == null ? ''
   // ---- audio
   await tr('de', 'Haus'); await ev(() => { window.__spoken.length = 0; });
   await page.click('#status [data-act="playall"]'); await page.waitForTimeout(1600);
-  ok('71 play all four', (await ev(() => window.__spoken.map(s => s.lang.slice(0, 2)).join(','))) === 'pt,de,en,fr', await ev(() => window.__spoken.map(s => s.text).join(', ')));
+  ok('71 play all four', (await ev(() => window.__spoken.map(s => s.lang.slice(0, 2)).join(','))) === 'pt,de,fr,en', await ev(() => window.__spoken.map(s => s.text).join(', ')));
   await ev(() => { window.__spoken.length = 0; document.querySelector('#cards .card[data-lang="de"] button.ipa').click(); });
   ok('72 tap the IPA to hear the word', (await ev(() => window.__spoken[0] && window.__spoken[0].text)) === 'das Haus');
   await ev(() => { window.__spoken.length = 0; });

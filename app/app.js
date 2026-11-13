@@ -119,7 +119,7 @@ function levelOf(e) {
   return l ? { l, est: true } : null;
 }
 const LVORD = { A1: 1, A2: 2, B1: 3, B2: 4, C1: 5, C2: 6 };
-const lvlBadge = (e, small) => { const v = levelOf(e); return v ? `<span class="lvl ${v.l}${small ? ' sm' : ''}" lang="en" title="${esc(v.est ? t('lvl.est', 'Level estimated from how often the word is used') : t('lvl.stored', 'Level'))}">${v.est ? '≈' : ''}${v.l}${small ? '' : ' · ' + esc(t('cefr.' + v.l, CEFR[v.l]))}</span>` : ''; };
+const lvlBadge = (e, small) => { const v = levelOf(e); return v ? `<span class="lvl ${v.l}${small ? ' sm' : ''}" lang="en" title="${esc(v.est ? t('lvl.est', 'Level estimated from how often the word is used') : t('lvl.stored', 'Level'))}">${v.l}${small ? '' : ' · ' + esc(t('cefr.' + v.l, CEFR[v.l]))}</span>` : ''; };
 /* Marks the letters of `form` that are not in `base` (Tisch -> Tisch<b>e</b>, Haus -> H<b>ä</b>us<b>er</b>). */
 function regularForm(lang, w, k) {        // what a regular verb would have here (to compare with the real form)
   const st = w.slice(0, -2), end = w.slice(-2);
@@ -1422,10 +1422,16 @@ async function openId(id, sense) {
   const top = $('#slots'); if (top && top.getBoundingClientRect().top < 0) top.scrollIntoView({ block: 'start', behavior: animOn() ? 'smooth' : 'auto' });
 }
 /* word of the day: a word of the language being learned, at the reader's level, the same all day */
+/* words that should never be the word of the day: vulgar, offensive, sexual or crude (by their labels or their English meaning) */
+const RUDE_REG = /vulgar|offensive|derogatory|slang|euphemistic/;
+const RUDE_GLOSS = /\b(boob|boobs|tits?|titty|breasts?|nipples?|penis|dick|cock|prick|vagina|pussy|cunt|vulva|testicles?|balls|scrotum|butt|buttocks|arse|ass|arsehole|asshole|bum|anus|fuck\w*|shit\w*|crap|piss\w*|fart\w*|turd|poo|bitch\w*|bastard|whore|slut|hooker|prostitut\w*|sex\w*|erotic|horny|naked|nude|condom|orgasm|masturbat\w*|rape|drunk|idiot|stupid|moron|dumb|damn\w*|bloody|hell|kill\w*|murder\w*|suicide|corpse|vomit\w*|puke|diarrh\w*|excrement|faeces|feces|urine|urinate|drugs?|cocaine|heroin|weed|nazi\w*)\b/i;
+function unsuitable(e) {
+  return (e.senses || []).some(s => (s.register && RUDE_REG.test(s.register)) || RUDE_GLOSS.test(s.gloss_en || ''));
+}
 function wordOfDay() {
   const lang = S.learning || (S.order[1] || 'de'), lv = S.myLevel;
   const c = [];
-  for (const r of D.idx[lang]) { if (r.a) continue; const e = D.byId.get(r.id); if (e && e.tier === 'core' && ['noun', 'verb', 'adjective'].includes(e.pos) && !P.known[e.id]) { const x = levelOf(e); if (x && x.l === lv) c.push(e); } }
+  for (const r of D.idx[lang]) { if (r.a) continue; const e = D.byId.get(r.id); if (e && e.tier === 'core' && ['noun', 'verb', 'adjective'].includes(e.pos) && !P.known[e.id] && !unsuitable(e)) { const x = levelOf(e); if (x && x.l === lv) c.push(e); } }
   if (!c.length) return null;
   c.sort((a, b) => a.id < b.id ? -1 : 1);
   const day = Math.floor(Date.now() / 864e5);
