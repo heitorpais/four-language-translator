@@ -279,7 +279,7 @@ async function paint() {
 /* ---------- share images ---------- */
 function roundRect(c, x, y, w, h, r) { c.beginPath(); c.moveTo(x + r, y); c.arcTo(x + w, y, x + w, y + h, r); c.arcTo(x + w, y + h, x, y + h, r); c.arcTo(x, y + h, x, y, r); c.arcTo(x, y, x + w, y, r); c.closePath(); }
 function wrap(c, text, x, y, maxW, lh) { const words = String(text).split(' '); let line = ''; for (const w of words) { const tl = line ? line + ' ' + w : w; if (c.measureText(tl).width > maxW && line) { c.fillText(line, x, y); line = w; y += lh; } else line = tl; } if (line) c.fillText(line, x, y); return y + lh; }
-const URL_ = 'heitorpais.github.io/four-language-translator';
+const URL_ = 'glossarium-app.ch';
 async function flagImg(code) {
   const svg = A.flag(code).replace('<svg', '<svg xmlns="http://www.w3.org/2000/svg" width="180" height="120"');
   const img = new Image(); img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
