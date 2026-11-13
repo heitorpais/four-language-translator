@@ -1488,7 +1488,7 @@ $('#cards').addEventListener('click', ev => {
   const a = ev.target.closest('[data-act]'); if (!a || !e) return;
   const act = a.dataset.act;
   if (act === 'fav') { toggleFav(e); render(false); if (animOn()) { const st = document.querySelector(`#cards .card[data-lang="${lang}"] .star`); if (st) st.classList.add('pop'); } toast(isFav(e) ? t('fav.added', 'Saved to your words.') : t('fav.removed', 'Removed from your words.')); }
-  else if (act === 'known') { if (P.known[e.id]) delete P.known[e.id]; else P.known[e.id] = { w: e.lemma, t: Date.now() }; saveP(); render(false); }
+  else if (act === 'known') { if (P.known[e.id]) delete P.known[e.id]; else P.known[e.id] = { w: e.lemma, t: Date.now() }; saveP(); render(false); if (window.FLTProgress) { FLTProgress.saved(); const pg = $('#progress'); if (pg && !pg.hidden) FLTProgress.paint(); } }
   else if (act === 'note' || act === 'list') { state.panel[lang] = state.panel[lang] === act ? null : act; render(false); const f = $(act === 'note' ? '#note-' + lang : '#newlist-' + lang); if (f && act === 'note') f.focus(); }
   else if (act === 'note-save') { const v = $('#note-' + lang).value.trim(); if (v) P.notes[e.id] = v; else delete P.notes[e.id]; saveP(); state.panel[lang] = null; render(false); }
   else if (act === 'note-del') { delete P.notes[e.id]; saveP(); state.panel[lang] = null; render(false); }
@@ -1534,6 +1534,13 @@ async function setLanguages(order) {
   if (window.FLTViews) FLTViews.syncLangs();
   if (state.entry) { const e = state.entry; await openEntry(e, state.sense, null, null, { noRoute: true, noPlay: true }); } else render();
 }
+function showUpdate() {          // a bar at the top of the page that stays until it is used
+  if ($('#upd-bar')) return;
+  const b = document.createElement('div'); b.id = 'upd-bar';
+  b.innerHTML = `<span>${esc(t('upd', 'A new version of the app is ready.'))}</span><button class="btn sm primary" type="button">${esc(t('upd.btn2', 'Update now'))}</button>`;
+  b.querySelector('button').addEventListener('click', () => location.reload());
+  const w = $('.wrap'); w.insertBefore(b, w.firstChild);
+}
 function offlineNote(text) { const el = $('#offline-state'); if (el) el.textContent = text; }
 async function start() {
   applyDisplay(); applyTexts(); buildAny(); buildSlots(); render();
@@ -1556,7 +1563,11 @@ async function start() {
   if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
     // a new version of the app: say so, with a button to load it
     const hadController = !!navigator.serviceWorker.controller;
-    navigator.serviceWorker.addEventListener('controllerchange', () => { if (hadController) toast(t('upd', 'A new version of the app is ready.'), { label: t('upd.btn', 'Load it'), fn: () => location.reload() }); });
+    navigator.serviceWorker.addEventListener('controllerchange', () => { if (hadController) showUpdate(); });
+    // installed on the home screen (iOS) the app is rarely reloaded: look for a new version whenever it comes back to the screen, and every 30 minutes
+    const look = () => navigator.serviceWorker.getRegistration().then(r => r && r.update()).catch(() => {});
+    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') look(); });
+    setInterval(look, 30 * 60 * 1000);
     navigator.serviceWorker.register('sw.js').then(r => { r.update().catch(() => {}); return navigator.serviceWorker.ready; }).then(() => offlineNote(t('foot.offline', 'Saved on this device: the app also works without an internet connection.')))
       .catch(() => offlineNote(t('foot.nooffline', 'Offline use is not available in this browser.')));
   } else offlineNote(t('foot.needweb', 'Offline use needs the app to be opened from its web address.'));

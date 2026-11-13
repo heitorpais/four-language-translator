@@ -52,7 +52,10 @@ function opened(e) {               // Explorer badge: the only badge that counts
 function saved() { if (A) check(); }
 
 /* ---------- what counts ---------- */
-const learnedIds = () => { const g = prog(); return Object.keys(g.words).filter(id => g.words[id].l); };
+// a word counts as learned when it was answered right on 3 different days, or when the reader marked it "I know this"
+const isKnown = id => !!(A.P.known && A.P.known[id]);
+const isLearned = id => { const w = prog().words[id]; return !!(w && w.l) || isKnown(id); };
+const learnedIds = () => { const g = prog(); return [...new Set(Object.keys(g.words).filter(id => g.words[id].l).concat(Object.keys(A.P.known || {})))]; };
 function coreLevels() {            // core entries per language and level (the totals of the level bars)
   if (coreLevels.c && coreLevels.n === A.D.byId.size) return coreLevels.c;
   const c = {}; ALL.forEach(l => { c[l] = {}; LEVELS.forEach(x => { c[l][x] = new Set(); }); });
@@ -144,7 +147,7 @@ function evaluate(reg) {
   out['first-save'] = { ok: Object.keys(P.favs).length > 0 || !!P.badges['first-save'] };
   out['first-quiz'] = { ok: (g.quizzes || 0) > 0 };
   for (const b of BADGES.filter(x => x.g === 'mile')) for (const l of ALL) out[b.k + ':' + l] = { ok: byLang[l].length >= b.n, have: byLang[l].length, need: b.n };
-  for (const b of BADGES.filter(x => x.g === 'level')) for (const l of ALL) { const ids = lv[l][b.lv]; let n = 0; for (const id of ids) if (g.words[id] && g.words[id].l) n++; out[b.k + ':' + l] = { ok: ids.size > 0 && n >= ids.size, have: n, need: ids.size }; }
+  for (const b of BADGES.filter(x => x.g === 'level')) for (const l of ALL) { const ids = lv[l][b.lv]; let n = 0; for (const id of ids) if (isLearned(id)) n++; out[b.k + ':' + l] = { ok: ids.size > 0 && n >= ids.size, have: n, need: ids.size }; }
   const four = fourLang(learned); out.four = { ok: ALL.length >= 4 && four >= 100, have: four, need: 100 };      // needs four languages on screen
   out.gender50 = { ok: (g.best.gender || 0) >= 50, have: g.best.gender || 0, need: 50 };
   out.plural50 = { ok: (g.best.plural || 0) >= 50, have: g.best.plural || 0, need: 50 };
@@ -156,7 +159,7 @@ function evaluate(reg) {
     out.swiss = { ok: nch >= 50, have: nch, need: 50 }; out.brazil = { ok: nbr >= 50, have: nbr, need: 50 };
   }
   let bestIrr = { have: 0, lang: 'de' };
-  for (const l of ALL) { const top = irregularTop(l); if (top.length < 100) continue; const n = top.filter(id => g.words[id] && g.words[id].l).length; if (n > bestIrr.have || (n === bestIrr.have && l === 'de')) bestIrr = { have: n, lang: l }; }
+  for (const l of ALL) { const top = irregularTop(l); if (top.length < 100) continue; const n = top.filter(id => isLearned(id)).length; if (n > bestIrr.have || (n === bestIrr.have && l === 'de')) bestIrr = { have: n, lang: l }; }
   out.irregular = { ok: bestIrr.have >= 100, have: bestIrr.have, need: 100, lang: bestIrr.lang };
   const ws = weeks(g.days); out.week = { ok: ws.length > 0 }; out.month = { ok: monthsOfWeeks(ws) };
   const ol = LEVELS.filter(x => g.opened[x]).length; out.explorer = { ok: ol === 6, have: ol, need: 6 };
@@ -221,12 +224,12 @@ function heatmap() {
 function langsHtml() {
   const g = prog(), lv = coreLevels();
   return `<div class="pg-langs">${ALL.map(l => {
-    const n = Object.keys(g.words).filter(id => id.startsWith(l + ':') && g.words[id].l).length;
-    const m = Object.keys(g.words).filter(id => id.startsWith(l + ':') && !g.words[id].l && g.words[id].d.length).length;   // right on 1 or 2 days so far
-    const bars = LEVELS.filter(x => lv[l][x].size).map(x => { const ids = lv[l][x]; let k = 0, h = 0; for (const id of ids) { const w = g.words[id]; if (w && w.l) k++; else if (w && w.d.length) h++; }
+    const n = learnedIds().filter(id => id.startsWith(l + ':')).length;
+    const m = Object.keys(g.words).filter(id => id.startsWith(l + ':') && !isLearned(id) && g.words[id].d.length).length;   // right on 1 or 2 days so far
+    const bars = LEVELS.filter(x => lv[l][x].size).map(x => { const ids = lv[l][x]; let k = 0, h = 0; for (const id of ids) { const w = g.words[id]; if (isLearned(id)) k++; else if (w && w.d.length) h++; }
       const p = 100 * k / ids.size, q = 100 * h / ids.size, vis = v => v > 0 ? Math.max(v, 1.5) : 0;
       return `<div class="pg-bar"><span class="lvl sm ${x}">${x}</span><div class="pg-track" role="progressbar" aria-valuenow="${k}" aria-valuemax="${ids.size}" aria-label="${x}"><div style="width:${vis(p)}%"></div><div class="half" style="width:${vis(q)}%"></div></div><span class="pg-num">${A.num(k)} / ${A.num(ids.size)}${h ? `<small title="${esc(t('pg.half.tip', 'Answered right on 1 or 2 days so far'))}"> +${A.num(h)}</small>` : ''}</span></div>`; }).join('');
-    return `<div class="pg-lang"><div class="pg-lang-h">${A.flag(A.S.main[l])}<b>${esc(A.LNAME[l])}</b><span>${esc(t('pg.learned', '{n} words learned', { n: A.num(n) }))}${m ? `<br><i>${esc(t('pg.half', '{n} on the way', { n: A.num(m) }))}</i>` : ''}</span></div>${bars}</div>`;
+    return `<div class="pg-lang"><div class="pg-lang-h">${A.flag(A.S.main[l])}<b>${esc(A.LNAME[l])}</b><span>${esc((n === 1 ? t('pg.learned1', '1 word learned') : t('pg.learned', '{n} words learned', { n: A.num(n) })))}${m ? `<br><i>${esc(t('pg.half', '{n} on the way', { n: A.num(m) }))}</i>` : ''}</span></div>${bars}</div>`;
   }).join('')}</div>`;
 }
 function badgeTile(b, st) {
@@ -245,6 +248,7 @@ function yearData(y) {
   const per = {}; ALL.forEach(l => { per[l] = 0; });
   let total = 0, top = null;
   for (const id in g.words) { const w = g.words[id]; if (w.l && w.l >= from && w.l <= to) { per[id.slice(0, 2)]++; total++; } if (!top || w.n > g.words[top].n) top = id; }
+  for (const [id, k] of Object.entries(A.P.known || {})) { const w = g.words[id], d = day(k.t); if (!(w && w.l) && d >= from && d <= to && per[id.slice(0, 2)] != null) { per[id.slice(0, 2)]++; total++; } }
   const badges = Object.entries(A.P.badges).filter(([, v]) => v.date >= from && v.date <= to).map(([k]) => k);
   const topE = top && A.D.byId.get(top);
   return { y, total, per, streak: longestStreak(g.days, from, to), badges, top: top ? { id: top, w: topE ? A.withTo(top, topE.lemma) : top.split(':')[1], n: g.words[top].n } : null };
@@ -266,7 +270,7 @@ async function paint() {
   const showYear = now.getMonth() === 0 || TEST;
   const nEarned = Object.keys(A.P.badges).length;
   el.innerHTML = `<h2>${esc(t('nav.progress', 'Progress'))}</h2>
-    <p class="hint">${esc(t('pg.intro', 'Only practice counts. A word is learned when you answered it right on 3 different days; the light part of each bar shows words on the way (right on 1 or 2 days so far).'))}</p>
+    <p class="hint">${esc(t('pg.intro2', 'A word counts as learned when you mark it “I know this” or answer it right in practice on 3 different days; the light part of each bar shows words on the way (right on 1 or 2 days so far).'))}</p>
     ${TEST ? testHtml() : ''}
     ${showYear ? yearHtml(now.getMonth() === 0 && !TEST ? now.getFullYear() - 1 : (TEST ? now.getFullYear() : now.getFullYear() - 1)) : ''}
     <h3 class="grp">${esc(t('pg.words', 'Words learned'))}</h3>${langsHtml()}
