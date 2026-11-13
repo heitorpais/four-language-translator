@@ -27,7 +27,7 @@ function grammar(key) {
 }
 
 /* ---------- panels ---------- */
-const PANELS = ['explore', 'practice', 'progress', 'community', 'me', 'settings', 'sources', 'grammar'];
+const PANELS = ['explore', 'practice', 'progress', 'forum', 'community', 'me', 'settings', 'sources', 'grammar'];
 function togglePanel(name, force) {
   for (const p of PANELS) {
     const el = $('#' + p), btn = $('#' + p + '-toggle'); if (!el) continue;
@@ -37,7 +37,7 @@ function togglePanel(name, force) {
   }
 }
 function closePanels() { PANELS.forEach(p => { const el = $('#' + p); if (el) el.hidden = true; const b = $('#' + p + '-toggle'); if (b) b.setAttribute('aria-expanded', 'false'); }); }
-function paint(p) { if (p === 'progress' && window.FLTProgress) FLTProgress.paint(); else if (p === 'explore') paintExplore(); else if (p === 'me') paintMe(); else if (p === 'practice') paintPractice(); else if (p === 'settings') paintSettings(); else if (p === 'community' && window.FLTSync) FLTSync.paintCommunity(); }
+function paint(p) { if (p === 'progress' && window.FLTProgress) FLTProgress.paint(); else if (p === 'explore') paintExplore(); else if (p === 'me') paintMe(); else if (p === 'practice') paintPractice(); else if (p === 'settings') paintSettings(); else if (p === 'community' && window.FLTSync) FLTSync.paintCommunity(); else if (p === 'forum' && window.FLTForum) FLTForum.paint(); }
 function navBadges() {         // the Progress link is hidden while badges are off
   const b = $('#progress-toggle'); if (!b) return;
   b.hidden = A.S.badges === false; if (b.hidden && !$('#progress').hidden) togglePanel('progress', false);

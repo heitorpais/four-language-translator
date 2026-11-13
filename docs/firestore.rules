@@ -84,10 +84,89 @@ service cloud.firestore {
       allow delete: if signedIn() && request.auth.uid in [resource.data.a, resource.data.b];
     }
 
+    // ---------- The Reading Room (forum) ----------
+    function isAdmin() { return signedIn() && request.auth.token.email == 'heitorpaisch@gmail.com' && request.auth.token.email_verified == true; }
+    function notBlocked() { return !exists(/databases/$(database)/documents/blocked/$(request.auth.uid)); }
+    function limits() { return /databases/$(database)/documents/limits/$(request.auth.uid); }
+    function paced() { return existsAfter(limits()) && getAfter(limits()).data.t == request.time; }
+    function nativeIn(lang) {
+      return exists(/databases/$(database)/documents/profiles/$(request.auth.uid))
+        && {'l': lang, 'lv': 'native'} in get(/databases/$(database)/documents/profiles/$(request.auth.uid)).data.speaks;
+    }
+    function authorFields(d) {
+      return d.uid == request.auth.uid && d.t == request.time
+        && d.username == get(/databases/$(database)/documents/profiles/$(request.auth.uid)).data.username
+        && d.native == nativeIn(d.lang)
+        && d.body is string && d.body.size() >= 2 && d.body.size() <= 2000
+        && d.score == 0 && d.hidden == false;
+    }
+    function voteDelta(target, field) {
+      let vp = /databases/$(database)/documents/threads/$(target)/votes/$(request.auth.uid + '_' + field);
+      return (!exists(vp) && existsAfter(vp) && request.resource.data.score == resource.data.score + getAfter(vp).data.v)
+          || (exists(vp) && !existsAfter(vp) && request.resource.data.score == resource.data.score - get(vp).data.v);
+    }
+
+    // a person's posting pace: one post or reply every 15 seconds at most
+    match /limits/{uid} {
+      allow read: if isMe(uid);
+      allow create: if isMe(uid) && request.resource.data.keys().hasOnly(['t']) && request.resource.data.t == request.time;
+      allow update: if isMe(uid) && request.resource.data.keys().hasOnly(['t']) && request.resource.data.t == request.time
+        && request.time > resource.data.t + duration.value(15, 's');
+    }
+    // accounts the owner has stopped from posting
+    match /blocked/{uid} {
+      allow read: if isMe(uid) || isAdmin();
+      allow write: if isAdmin();
+    }
+    // what a person follows and when they last looked (private)
+    match /follows/{uid} {
+      allow read, write: if isMe(uid);
+    }
+    match /threads/{tid} {
+      allow read: if resource.data.hidden == false || isAdmin();
+      allow create: if signedIn() && notBlocked() && paced()
+        && request.resource.data.keys().hasOnly(['kind', 'section', 'word', 'lemma', 'lang', 'type', 'region', 'title', 'body', 'uid', 'username', 'native', 't', 'lastAt', 'lastBy', 'replies', 'score', 'best', 'hidden'])
+        && request.resource.data.kind in ['word', 'forum']
+        && request.resource.data.type in ['question', 'tip', 'regional', 'trick', 'example', 'mistake', 'post']
+        && request.resource.data.title is string && request.resource.data.title.size() <= 120
+        && request.resource.data.lastAt == request.time && request.resource.data.lastBy == request.auth.uid
+        && request.resource.data.replies == 0 && request.resource.data.best == ''
+        && authorFields(request.resource.data);
+      allow update: if signedIn() && (
+          (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['score']) && resource.data.uid != request.auth.uid && voteDelta(tid, 'thread'))
+          || (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['replies', 'lastAt', 'lastBy']) && notBlocked() && paced()
+              && request.resource.data.replies == resource.data.replies + 1 && request.resource.data.lastAt == request.time && request.resource.data.lastBy == request.auth.uid)
+          || (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['best']) && resource.data.uid == request.auth.uid)
+          || (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['body', 'title']) && resource.data.uid == request.auth.uid
+              && request.resource.data.body.size() <= 2000 && request.resource.data.title.size() <= 120)
+          || (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['hidden']) && isAdmin()));
+      allow delete: if signedIn() && (resource.data.uid == request.auth.uid || isAdmin());
+
+      match /replies/{rid} {
+        allow read: if resource.data.hidden == false || isAdmin();
+        allow create: if signedIn() && notBlocked() && paced()
+          && request.resource.data.keys().hasOnly(['body', 'uid', 'username', 'native', 'lang', 't', 'score', 'hidden'])
+          && request.resource.data.lang == get(/databases/$(database)/documents/threads/$(tid)).data.lang
+          && authorFields(request.resource.data);
+        allow update: if signedIn() && (
+            (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['score']) && resource.data.uid != request.auth.uid && voteDelta(tid, rid))
+            || (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['body']) && resource.data.uid == request.auth.uid && request.resource.data.body.size() <= 2000)
+            || (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['hidden']) && isAdmin()));
+        allow delete: if signedIn() && (resource.data.uid == request.auth.uid || isAdmin());
+      }
+      // one vote per person and post: id "<person>_thread" or "<person>_<reply id>", value +1 or -1
+      match /votes/{vid} {
+        allow read: if signedIn() && vid.matches(request.auth.uid + '_.*');
+        allow create: if signedIn() && vid.matches(request.auth.uid + '_.*') && request.resource.data.keys().hasOnly(['v']) && request.resource.data.v in [1, -1];
+        allow delete: if signedIn() && vid.matches(request.auth.uid + '_.*');
+      }
+    }
+
     // reports about profiles: anyone signed in can send one; only the owner of the project reads them (in the console)
     match /reports/{id} {
+      allow read, delete: if isAdmin();
       allow create: if signedIn()
-        && request.resource.data.keys().hasOnly(['about', 'by', 'why', 't'])
+        && request.resource.data.keys().hasOnly(['about', 'by', 'why', 't', 'kind', 'thread', 'reply'])
         && request.resource.data.by == request.auth.uid
         && request.resource.data.why is string && request.resource.data.why.size() <= 300;
     }

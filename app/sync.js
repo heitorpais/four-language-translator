@@ -70,6 +70,7 @@ async function load() {
     user = u || null;
     if (user) { ls.set(FLAG, '1'); state = 'syncing'; paintAll(); await loadProfile(); await pull(); try { await loadRels(); paintComm(); } catch (e) {} }
     else { ls.set(FLAG, null); ls.set(CACHE, null); profile = null; state = 'off'; comm.rels = new Map(); comm.relsLoaded = false; paintRequests(); paintAll(); paintComm(); }
+    try { (window.FLTSync.api.onAuth || []).forEach(f => f(user)); } catch (e) {}
   });
   return fb;
 }
@@ -587,7 +588,8 @@ document.addEventListener('submit', ev => { if (ev.target.id === 'prof-form') { 
 function route() { const m = /^#\/@([a-z0-9_.]{3,20})$/.exec(location.hash || ''); if (m) viewProfile(m[1]); }
 window.addEventListener('hashchange', route);
 
-window.FLTSync = { paint: paintAll, changed, open: openPanel, paintCommunity: openCommunity, get signedIn() { return !!user; }, get profile() { return profile; } };
+window.FLTSync = { paint: paintAll, changed, open: openPanel, paintCommunity: openCommunity,
+  api: { load, get fb() { return fb; }, get db() { return db; }, get user() { return user; }, get profile() { return profile; }, avatarImg, badgeHtml, specialHtml, openCreate() { mode = 'create'; msg = t('forum.need', 'Create an account to write in the Reading Room.'); openPanel(); }, onAuth: [] }, get signedIn() { return !!user; }, get profile() { return profile; } };
 function start() {
   ensureDom(); paintAll(); route();
   if (ls.get(FLAG) && /^https?:$/.test(location.protocol)) load().catch(() => {});      // has an account on this device: reconnect quietly

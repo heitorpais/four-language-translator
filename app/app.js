@@ -1175,8 +1175,10 @@ function card(lang, e, alts, ex, i, q) {
       <button class="act${pan === 'note' ? ' on' : ''}" data-act="note">✎ ${esc(t('act.note', 'Note'))}</button>
       <button class="act${pan === 'list' ? ' on' : ''}" data-act="list">＋ ${esc(t('act.list', 'List'))}</button>
       <button class="act" data-act="link">🔗 ${esc(t('act.link', 'Link'))}</button>
+      <button class="act talk-b" data-act="talk" title="${esc(t('act.talk.tip', 'Questions, tips and regional notes about this word'))}">💬 ${esc(t('act.talk', 'Discuss'))}<span class="talk-n" data-tn="${esc(e.id)}"></span></button>
       <button class="act rec-b" data-act="record" title="${esc(t('rec.tip', 'Record yourself saying the word, then hear it next to the voice'))}">🎙 ${esc(t('act.record', 'Record me'))}</button>
     </div>
+    <div class="cnotes" data-cn="${esc(e.id)}"></div>
     ${pan === 'note' ? `<div class="pan"><textarea id="note-${lang}" rows="3" aria-label="${esc(t('act.note', 'Note'))}">${esc(P.notes[e.id] || '')}</textarea><div class="row"><button class="btn sm" data-act="note-save">${esc(t('btn.save', 'Save'))}</button>${P.notes[e.id] ? `<button class="btn sm" data-act="note-del">${esc(t('btn.delete', 'Delete'))}</button>` : ''}</div></div>` : ''}
     ${pan === 'list' ? `<div class="pan">${P.lists.map((L, k) => `<label class="ck"><input type="checkbox" data-act="list-tog" data-k="${k}"${L.ids.includes(e.id) ? ' checked' : ''}> ${esc(L.name)} <small>${L.ids.length}</small></label>`).join('')}<div class="row"><input class="text" id="newlist-${lang}" placeholder="${esc(t('list.new', 'New list…'))}"><button class="btn sm" data-act="list-new">${esc(t('btn.add', 'Add'))}</button></div></div>` : ''}
     ${ess.length ? `<dl>${rowsHtml(ess)}</dl>` : ''}
@@ -1234,6 +1236,7 @@ function render(fill) {
   if (state.fresh && animOn()) { cards.classList.remove('enter'); void cards.offsetWidth; cards.classList.add('enter'); clearTimeout(render.t); render.t = setTimeout(() => cards.classList.remove('enter'), 900); }
   state.fresh = false;
   if (window.FLTViews) FLTViews.afterRender();
+  if (window.FLTForum) FLTForum.cards(q);
 }
 
 /* ---------- search: one box for any language, and one slot per language ---------- */
@@ -1491,6 +1494,7 @@ $('#cards').addEventListener('click', ev => {
   else if (act === 'known') { const was = !!P.known[e.id]; if (was) delete P.known[e.id]; else P.known[e.id] = { w: e.lemma, t: Date.now() }; saveP(); render(false);
     const c = window.FLTProgress && FLTProgress.levelCount ? FLTProgress.levelCount(e) : null;
     toast(was ? t('known.off', '“{w}” is no longer marked as known.', { w: e.lemma }) : c ? t('known.on.lvl', '✓ “{w}” marked as known. {lang} {lvl}: {k} of {n} words.', { w: e.lemma, lang: LNAME[e.lang], lvl: c.lvl, k: num(c.k), n: num(c.n) }) : t('known.on', '✓ “{w}” marked as known.', { w: e.lemma }), { label: t('nav.progress', 'Progress'), fn: () => { const b = $('#progress-toggle'); if (b && $('#progress').hidden) b.click(); const pg = $('#progress'); if (pg) pg.scrollIntoView({ behavior: 'smooth' }); } }); if (window.FLTProgress) { FLTProgress.saved(); const pg = $('#progress'); if (pg && !pg.hidden) FLTProgress.paint(); } }
+  else if (act === 'talk') { if (window.FLTForum) FLTForum.openWord(e); }
   else if (act === 'note' || act === 'list') { state.panel[lang] = state.panel[lang] === act ? null : act; render(false); const f = $(act === 'note' ? '#note-' + lang : '#newlist-' + lang); if (f && act === 'note') f.focus(); }
   else if (act === 'note-save') { const v = $('#note-' + lang).value.trim(); if (v) P.notes[e.id] = v; else delete P.notes[e.id]; saveP(); state.panel[lang] = null; render(false); }
   else if (act === 'note-del') { delete P.notes[e.id]; saveP(); state.panel[lang] = null; render(false); }

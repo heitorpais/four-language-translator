@@ -595,6 +595,50 @@ nav.top .btn{font-size:17.5px}
 .req-dot{display:inline-block;min-width:18px;padding:0 5px;border-radius:9px;background:var(--accent);color:var(--surface);font:600 12px/18px var(--body);text-align:center;text-decoration:none;font-variant:normal;letter-spacing:0}
 .report{border:1px solid var(--rule);padding:8px 12px;margin-top:8px;background:var(--surface)}
 .report p{margin:0 0 6px}.lnk.small{font-size:14px;color:var(--muted)}
+
+/* The Reading Room (forum.js) */
+#forum .crumbs{margin:-4px 0 10px;color:var(--muted)}
+.f-search{max-width:560px;margin:0 0 12px}
+.secs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;margin:6px 0 18px}
+.sec{display:flex;align-items:center;gap:10px;text-align:left;border:1px solid var(--rule);background:var(--surface);border-radius:2px;padding:10px 12px;font:400 16px var(--body);color:var(--ink);cursor:pointer;box-shadow:inset 0 0 0 2px var(--surface),inset 0 0 0 3px var(--rule)}
+.sec:hover{border-color:var(--accent)}.sec .si{width:26px;text-align:center;font-size:18px}.sec .si .flag{width:24px;height:16px}
+.threads{list-style:none;margin:0 0 12px;padding:0}
+.th{border-bottom:1px solid var(--rule)}
+.th-b{display:flex;flex-direction:column;gap:2px;width:100%;border:0;background:none;text-align:left;padding:9px 2px 9px 34px;position:relative;font:inherit;color:var(--ink);cursor:pointer}
+.th-b:hover .th-t{color:var(--accent)}
+.th-b>.ty{position:absolute;left:4px;top:9px}
+.th-m{font-size:14px;color:var(--muted)}
+.ty{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border:1px solid var(--rule);border-radius:50%;font-size:13px;color:var(--accent);background:var(--surface)}
+.f-lg{font-variant:small-caps;letter-spacing:.06em;color:var(--accent)}
+.compose{display:flex;flex-direction:column;gap:8px;margin:10px 0 16px;max-width:720px}
+.compose textarea,.compose input.text{width:100%;max-width:none;font:inherit}
+.ty-opt{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--rule);border-radius:2px;padding:3px 9px;cursor:pointer;font-size:15px;background:var(--surface)}
+.ty-opt.on{border-color:var(--accent);background:var(--accent-soft)}.ty-opt input{display:none}
+.post{display:flex;gap:12px;border-bottom:1px solid var(--rule);padding:12px 0}
+.post.op{border-bottom:3px double var(--rule)}
+.post.best{background:rgba(59,107,52,.07);box-shadow:inset 3px 0 0 var(--regular);padding-left:8px}
+.votes{display:flex;flex-direction:column;align-items:center;gap:0;min-width:34px}
+.vb{border:0;background:none;color:var(--muted);cursor:pointer;font-size:15px;line-height:1.2;padding:2px 6px}
+.vb.on{color:var(--accent)}.vb:disabled{opacity:.35;cursor:default}
+.votes .sc{font-weight:600}
+.post-b{flex:1;min-width:0}
+.post-h{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;font-size:15px}
+.post-h .au{display:inline-flex;align-items:center;gap:6px;border:0;background:none;padding:0;font:inherit;color:var(--ink);cursor:pointer}
+.post-h .when{color:var(--muted);font-size:14px}
+.native{border:1px solid var(--regular);color:var(--regular);border-radius:2px;padding:0 6px;font-size:13px;font-variant:small-caps;letter-spacing:.04em}
+.best-l{color:var(--regular);font-weight:600;font-size:14px}
+.post h3{margin:6px 0 2px;font:600 22px/1.2 var(--display)}
+.ty-l{margin:4px 0;color:var(--muted);font-size:14px}
+.post .body{margin:6px 0;overflow-wrap:anywhere}
+.post .tools{font-size:14px}.lnk.adm{color:#9b1c1c}
+.thread-tools{display:flex;gap:10px;align-items:center;margin:8px 0}
+.wlink{border:0;background:none;padding:0 2px;font:inherit;color:var(--accent);border-bottom:1px dotted var(--accent);cursor:pointer}
+.rg{font-variant:small-caps;letter-spacing:.05em;color:var(--accent)}
+.cnotes:empty{display:none}
+.cnotes{border-top:1px solid var(--rule);padding-top:8px;display:flex;flex-direction:column;gap:6px;font-size:15px}
+.cn-h{font-variant:small-caps;letter-spacing:.1em;color:var(--accent);font-size:13px}
+.cn .ty{width:18px;height:18px;font-size:11px;vertical-align:1px}
+.talk-n{font-weight:600}
 </style>
 </head>
 <body>
@@ -606,6 +650,7 @@ nav.top .btn{font-size:17.5px}
       <button class="btn navb" id="explore-toggle" aria-expanded="false" aria-controls="explore" data-t="nav.explore">Explore</button>
       <button class="btn navb" id="practice-toggle" aria-expanded="false" aria-controls="practice" data-t="nav.practice">Practice</button>
       <button class="btn navb sm-nav" id="progress-toggle" aria-expanded="false" aria-controls="progress" data-t="nav.progress">Progress</button>
+      <button class="btn navb" id="forum-toggle" aria-expanded="false" aria-controls="forum">Reading Room</button>
       <button class="btn navb" id="community-toggle" aria-expanded="false" aria-controls="community">Community</button>
       <button class="btn navb" id="me-toggle" aria-expanded="false" aria-controls="me">My words</button>
       <button class="btn navb" id="settings-toggle" aria-expanded="false" aria-controls="settings" data-t="nav.settings">Settings</button>
@@ -630,6 +675,7 @@ nav.top .btn{font-size:17.5px}
   <section id="practice" class="panel" hidden aria-label="Practice"></section>
   <section id="progress" class="panel" hidden aria-label="Progress"></section>
   <section id="share-box" class="panel" hidden aria-label="Share"></section>
+  <section id="forum" class="panel" hidden aria-label="Reading Room"></section>
   <section id="community" class="panel" hidden aria-label="Community"></section>
   <section id="me" class="panel" hidden aria-label="My words"></section>
   <section id="settings" class="panel" hidden aria-label="Settings"></section>
@@ -668,5 +714,6 @@ nav.top .btn{font-size:17.5px}
 <script src="app.js"></script>
 <script src="avatars.js"></script>
 <script src="sync.js"></script>
+<script src="forum.js"></script>
 </body>
 </html>
