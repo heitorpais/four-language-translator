@@ -53,7 +53,9 @@ pt: '<rect width="60" height="40" fill="#DA291C"/><rect width="24" height="40" f
 be: '<rect width="60" height="40" fill="#EF3340"/><rect width="40" height="40" fill="#FDDA24"/><rect width="20" height="40" fill="#000"/>',
 ca: '<rect width="60" height="40" fill="#fff"/><rect width="15" height="40" fill="#D80621"/><rect x="45" width="15" height="40" fill="#D80621"/><path d="M30,7L27.6,11.5L25,10.2L26.2,16.5L22.8,13.2L22.2,15L18,14.2L19.4,18.5L17.6,19.6L24.5,25L23.7,27.5L29.4,26.8L29.2,32.5H30.8L30.6,26.8L36.3,27.5L35.5,25L42.4,19.6L40.6,18.5L42,14.2L37.8,15L37.2,13.2L33.8,16.5L35,10.2L32.4,11.5Z" fill="#D80621"/>'
 };
-const flag = (c, mini) => FLAG_ART[c] ? `<svg class="flag${mini ? ' mini' : ''}" viewBox="0 0 60 40" preserveAspectRatio="none" aria-hidden="true">${FLAG_ART[c]}</svg>` : '';
+const SQUARE = { ch: '<rect width="32" height="32" fill="#DA291C"/><path d="M13,6h6v7h7v6h-7v7h-6v-7h-7v-6h7z" fill="#fff"/>' };      // Switzerland's flag is square
+const flag = (c, mini) => SQUARE[c] ? `<svg class="flag sq${mini ? ' mini' : ''}" viewBox="0 0 32 32" aria-hidden="true">${SQUARE[c]}</svg>`
+  : FLAG_ART[c] ? `<svg class="flag${mini ? ' mini' : ''}" viewBox="0 0 60 40" preserveAspectRatio="none" aria-hidden="true">${FLAG_ART[c]}</svg>` : '';
 const SPEAKER = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9v6h4l5 4V5L7 9H3zm11.5 3a4 4 0 0 0-2-3.46v6.92a4 4 0 0 0 2-3.46zm-2-8.3v2.1a7 7 0 0 1 0 12.4v2.1a9 9 0 0 0 0-16.6z"/></svg>';
 const LANGS = [
   { id: 'en', name: 'English', ph: 'type a word…', code: 'EN' },

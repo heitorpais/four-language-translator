@@ -112,7 +112,7 @@ const results = []; const ok = (n, p, i) => results.push([n, !!p, i == null ? ''
   ok('35 level badges coloured by level', /class="lvl (A1|A2|B1|B2|C1|C2)/.test(helfen));
   await ev(() => { const s = document.querySelector('#var-pt'); s.value = 'br'; s.dispatchEvent(new Event('change')); });
   await tr('pt', 'rua'); ok('36 regional flags only where different', !(await card('pt')).includes('Used in'));
-  await tr('de', 'gehen'); ok('37 Swiss German line with the flag', /Swiss German/.test(await card('de')) && /class="flag mini"/.test(await cardHtml('de')));
+  await tr('de', 'gehen'); ok('37 Swiss German line with the flag', /Swiss German/.test(await card('de')) && /class="flag (sq )?mini"/.test(await cardHtml('de')));
   ok('38 other translations as chips', await ev(() => document.querySelectorAll('#cards [data-pick]').length > 0));
   ok('39 headword stays at the top of a long card (sticky)', (await ev(() => getComputedStyle(document.querySelector('#cards .hwrow')).position)) === 'sticky');
   await ev(() => { FLT.S.compact = false; FLT.render(false); });

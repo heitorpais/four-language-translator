@@ -40,7 +40,7 @@ const LEVELS_LEARN = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
 function dn(type, code) { try { return new Intl.DisplayNames([uiLang(), 'en'], { type }).of(code) || code; } catch (e) { return code; } }
 const countryName = c => dn('region', c);
 const langName = l => (A() && A().LNAME && A().LNAME[l]) || dn('language', l);
-const flagEmoji = c => c && /^[A-Z]{2}$/.test(c) ? `<img class="cflag" src="flags/${c.toLowerCase()}.svg" alt="" loading="lazy">` : '';          // drawn flags (flag-icons, MIT): the same shape for every country
+const flagEmoji = c => c && /^[A-Z]{2}$/.test(c) ? `<img class="cflag${c === 'CH' || c === 'VA' ? ' sq' : ''}" src="flags/${c.toLowerCase()}.svg" alt="" loading="lazy">` : '';          // drawn flags (flag-icons, MIT): Switzerland and the Vatican are square, as their real flags are
 const levelName = lv => lv === 'native' ? t('prof.native', 'Native') : lv;
 const sortedCountries = () => COUNTRIES.slice().sort((a, b) => countryName(a).localeCompare(countryName(b), uiLang()));
 const sortedLangs = () => APP_LANGS.concat(MORE_LANGS.slice().sort((a, b) => langName(a).localeCompare(langName(b), uiLang())));
