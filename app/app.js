@@ -611,8 +611,8 @@ function article(lang, e, word, plural) {
 }
 const withArt = (a, w) => a ? (a.endsWith("'") ? a + w : a + ' ' + w) : w;
 /* English verbs are shown with "to" (to go, to walk); modal verbs cannot take it (can, must) */
-const MODAL_EN = new Set(['can', 'could', 'may', 'might', 'must', 'shall', 'should', 'will', 'would', 'ought']);
-function withTo(id, w) { return w && /^en:/.test(id) && /:verb$/.test(id) && !MODAL_EN.has(w) && !/^to /i.test(w) ? 'to ' + w : w; }
+const MODAL_EN = new Set(['can', 'could', 'may', 'might', 'must', 'shall', 'should', 'will', 'would', 'ought', 'cannot']);   // and no 'to' before contractions (can't, don't…)
+function withTo(id, w) { return w && /^en:/.test(id) && /:verb$/.test(id) && !MODAL_EN.has(w) && !/n['’]t$/i.test(w) && !/^to /i.test(w) ? 'to ' + w : w; }
 // Spanish: Wiktionary gives one transcription (Spain: θ for z/ce/ci, ʝ for ll/y). Mexico and Argentina are derived by rule:
 // seseo (θ -> s) in both, and in Argentina (Río de la Plata) the ll/y sound is ʃ (sheísmo): calle [ˈkaʃe], yo [ʃo].
 function ipaRegional(e) {
