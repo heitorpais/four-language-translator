@@ -562,7 +562,8 @@ function setRoute(e, sense, replace) {
   try { history[replace ? 'replaceState' : 'pushState'](null, '', h); } catch (err) {}
 }
 async function openRoute() {
-  const m = /^#\/(en|de|fr|pt|cs|it|es|nl|sv|la)\/([^/]+)(?:\/(\d+))?$/.exec(location.hash || ''); if (m && !S.order.includes(m[1])) return false; if (!m || !D.ready) return false;
+  const m = /^#\/(en|de|fr|pt|cs|it|es|nl|sv|la)\/([^/]+)(?:\/(\d+))?$/.exec(location.hash || ''); if (!m || !D.ready) return false;
+  if (!S.order.includes(m[1])) { try { await setLanguages([...S.order.slice(0, MAX_SLOTS - 1), m[1]]); } catch (err) { return false; } }      // a link to a word in a language that is not on screen (from a word page): bring that language in
   const [w, pos] = decodeURIComponent(m[2]).split('~'), lang = m[1];
   const r = await find(lang, w).catch(() => ({ hits: [] }));
   const hit = r.hits.find(x => x.lemma === w && (!pos || x.pos === pos)) || r.hits[0];
@@ -1561,7 +1562,7 @@ async function start() {
   } else offlineNote(t('foot.needweb', 'Offline use needs the app to be opened from its web address.'));
 }
 const API = { regularForm, setLanguages, dataLangs, cleanOrder, MIN_SLOTS, MAX_SLOTS, UI_LANGS,  D, S, P, DEFAULTS, t, esc, num, flag, fold, LNAME, RNAME, REG, BASE, LOCALE, LANGS, CEFR, LVORD, levelOf, lvlBadge, article, artHtml, gclass, gname, withArt, regionView,
-  getFile, find, findLoaded, translate, openEntry, openId, ensureIds, ensureWord, speak, speakAll, withTo, voicesFor, voiceFor, get voices() { return voices; }, saveP, saveSettings, loadSettings, toast, render, applyDisplay, applyTexts,
+  getFile, loadLang, cleanGloss, find, findLoaded, translate, openEntry, openId, ensureIds, ensureWord, speak, speakAll, withTo, voicesFor, voiceFor, get voices() { return voices; }, saveP, saveSettings, loadSettings, toast, render, applyDisplay, applyTexts,
   buildSlots, paintRecent, paintWotd, tables, canForms, routeOf, firstTr: null, trIds, toggleFav, diffMark, animOn, quad, visibleSenses, idParts, sentenceHtml, regionScore, get state() { return state; } };
 window.FLT = Object.assign(API, { ready: null });
 window.FLT.ready = start();

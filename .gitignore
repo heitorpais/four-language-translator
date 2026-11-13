@@ -6,3 +6,5 @@ __pycache__/
 # old notes and logs from the first build attempts
 build/*.log
 build/logs/
+# word pages: list exported from the app, rebuilt by build/pages/export.js
+build/pages/words.json
