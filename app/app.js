@@ -1563,7 +1563,8 @@ async function start() {
   if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
     // a new version of the app: say so, with a button to load it
     const hadController = !!navigator.serviceWorker.controller;
-    navigator.serviceWorker.addEventListener('controllerchange', () => { if (hadController) showUpdate(); });
+    const loadedAt = Date.now();
+    navigator.serviceWorker.addEventListener('controllerchange', () => { if (!hadController) return; if (Date.now() - loadedAt < 8000) location.reload(); else showUpdate(); });      // just opened: take the new version at once; in use: ask
     // installed on the home screen (iOS) the app is rarely reloaded: look for a new version whenever it comes back to the screen, and every 30 minutes
     const look = () => navigator.serviceWorker.getRegistration().then(r => r && r.update()).catch(() => {});
     document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') look(); });

@@ -1,11 +1,11 @@
 /* Service worker: keeps the app and its data on the device so it opens without a connection.
-   - app files (index.html, app.js, forms.js, views.js, learn.js, i18n.js, icons): served from the saved copy, refreshed in the background
+   - app files (index.html, app.js, forms.js, views.js, learn.js, i18n.js, icons): the newest from the network when online, else the saved copy
    - data/manifest.json: network first, saved copy when offline
    - other data files: saved copy first (their address carries a version, so a new version is a new address).
      Each file is saved when the page first uses it, so only the chosen languages are downloaded. */
-const SHELL = 'flt-shell-v45', DATA = 'flt-data-v2';
+const SHELL = 'flt-shell-v47', DATA = 'flt-data-v2';
 const APP_FILES = ['./', 'index.html', 'app.js', 'forms.js', 'views.js', 'progress.js', 'learn.js', 'i18n.js', 'avatars.js', 'sync.js', 'manifest.webmanifest', 'icons/icon-180.png', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/icon-32.png', 'icons/icon-maskable-512.png', 'icons/wordmark.png', 'icons/wood.jpg', 'icons/wood-dark.jpg', 'fonts.css',
-  'fonts/eb-garamond-latin-wght-normal.woff2', 'fonts/eb-garamond-latin-ext-wght-normal.woff2', 'fonts/cormorant-garamond-latin-wght-normal.woff2', 'fonts/cormorant-garamond-latin-ext-wght-normal.woff2', 'fonts/ibm-plex-mono-latin-400-normal.woff2', 'fonts/ibm-plex-mono-latin-500-normal.woff2', 'fonts/ibm-plex-mono-latin-ext-400-normal.woff2', 'fonts/ibm-plex-mono-latin-ext-500-normal.woff2', 'fonts/ibm-plex-sans-latin-400-normal.woff2', 'fonts/ibm-plex-sans-latin-500-normal.woff2', 'fonts/ibm-plex-sans-latin-600-normal.woff2', 'fonts/ibm-plex-sans-latin-ext-400-normal.woff2', 'fonts/ibm-plex-sans-latin-ext-500-normal.woff2', 'fonts/ibm-plex-sans-latin-ext-600-normal.woff2', 'fonts/source-serif-4-latin-ext-opsz-italic.woff2', 'fonts/source-serif-4-latin-ext-opsz-normal.woff2', 'fonts/source-serif-4-latin-opsz-italic.woff2', 'fonts/source-serif-4-latin-opsz-normal.woff2'];
+  'fonts/eb-garamond-latin-wght-normal.woff2', 'fonts/eb-garamond-latin-ext-wght-normal.woff2', 'fonts/cormorant-garamond-latin-wght-normal.woff2', 'fonts/cormorant-garamond-latin-ext-wght-normal.woff2', 'fonts/source-serif-4-latin-ext-opsz-italic.woff2', 'fonts/source-serif-4-latin-ext-opsz-normal.woff2', 'fonts/source-serif-4-latin-opsz-italic.woff2', 'fonts/source-serif-4-latin-opsz-normal.woff2'];
 
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
@@ -63,12 +63,18 @@ self.addEventListener('fetch', event => {
   }
   const page = (url.origin + url.pathname).slice(self.registration.scope.length);
   if (req.mode === 'navigate' && page !== '' && page !== 'index.html') return;     // word pages (de/Haus/ …) are plain web pages, not the app
+  // app files: the newest version from the network when online (so an update shows at once, also in the home-screen app),
+  // the saved copy when offline or when the network takes longer than 4 seconds
   event.respondWith((async () => {
     const c = await caches.open(SHELL);
     const key = (req.mode === 'navigate' || path === '') ? 'index.html' : path;
+    const net = fetch(req, { cache: 'no-cache' }).then(r => { if (r.ok) c.put(key, r.clone()); return r; }).catch(() => null);
     const hit = await c.match(key);
-    const refresh = fetch(req).then(r => { if (r.ok) c.put(key, r.clone()); return r; }).catch(() => null);
-    if (hit) { event.waitUntil(refresh); return hit; }
-    return (await refresh) || new Response('Offline', { status: 504 });
+    if (!hit) return (await net) || new Response('Offline', { status: 504 });
+    const slow = new Promise(res => setTimeout(() => res(null), 4000));
+    const r = await Promise.race([net, slow]);
+    if (r && r.ok) return r;
+    event.waitUntil(net);
+    return hit;
   })());
 });
