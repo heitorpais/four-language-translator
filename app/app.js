@@ -1488,7 +1488,9 @@ $('#cards').addEventListener('click', ev => {
   const a = ev.target.closest('[data-act]'); if (!a || !e) return;
   const act = a.dataset.act;
   if (act === 'fav') { toggleFav(e); render(false); if (animOn()) { const st = document.querySelector(`#cards .card[data-lang="${lang}"] .star`); if (st) st.classList.add('pop'); } toast(isFav(e) ? t('fav.added', 'Saved to your words.') : t('fav.removed', 'Removed from your words.')); }
-  else if (act === 'known') { if (P.known[e.id]) delete P.known[e.id]; else P.known[e.id] = { w: e.lemma, t: Date.now() }; saveP(); render(false); if (window.FLTProgress) { FLTProgress.saved(); const pg = $('#progress'); if (pg && !pg.hidden) FLTProgress.paint(); } }
+  else if (act === 'known') { const was = !!P.known[e.id]; if (was) delete P.known[e.id]; else P.known[e.id] = { w: e.lemma, t: Date.now() }; saveP(); render(false);
+    const c = window.FLTProgress && FLTProgress.levelCount ? FLTProgress.levelCount(e) : null;
+    toast(was ? t('known.off', '“{w}” is no longer marked as known.', { w: e.lemma }) : c ? t('known.on.lvl', '✓ “{w}” marked as known. {lang} {lvl}: {k} of {n} words.', { w: e.lemma, lang: LNAME[e.lang], lvl: c.lvl, k: num(c.k), n: num(c.n) }) : t('known.on', '✓ “{w}” marked as known.', { w: e.lemma }), { label: t('nav.progress', 'Progress'), fn: () => { const b = $('#progress-toggle'); if (b && $('#progress').hidden) b.click(); const pg = $('#progress'); if (pg) pg.scrollIntoView({ behavior: 'smooth' }); } }); if (window.FLTProgress) { FLTProgress.saved(); const pg = $('#progress'); if (pg && !pg.hidden) FLTProgress.paint(); } }
   else if (act === 'note' || act === 'list') { state.panel[lang] = state.panel[lang] === act ? null : act; render(false); const f = $(act === 'note' ? '#note-' + lang : '#newlist-' + lang); if (f && act === 'note') f.focus(); }
   else if (act === 'note-save') { const v = $('#note-' + lang).value.trim(); if (v) P.notes[e.id] = v; else delete P.notes[e.id]; saveP(); state.panel[lang] = null; render(false); }
   else if (act === 'note-del') { delete P.notes[e.id]; saveP(); state.panel[lang] = null; render(false); }

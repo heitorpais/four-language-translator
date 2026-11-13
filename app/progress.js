@@ -410,6 +410,12 @@ window.FLTProgress = {
   init(api) { A = api; prog(); },
   dataReady() { setTimeout(() => check(true), 6000); }, // after the first-visit downloads, so the badge check never slows them
   record, quizDone, opened, saved, paint, check, evaluate, BADGES, yearData,
+  levelCount(e) {          // for the "I know this" message: how far this word's level bar is now
+    const v = A.levelOf(e); if (!v) return null;
+    const ids = (coreLevels()[e.lang] || {})[v.l]; if (!ids || !ids.has(e.id)) return null;
+    let k = 0; for (const id of ids) if (isLearned(id)) k++;
+    return { lvl: v.l, k, n: ids.size };
+  },
   set test(v) { TEST = v; }, get test() { return TEST; },
   _testEarn: testEarn, _testYear: testYear, _badgeImage: badgeImage, _yearImage: yearImage
 };
