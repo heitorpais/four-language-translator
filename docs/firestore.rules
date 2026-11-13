@@ -66,7 +66,7 @@ service cloud.firestore {
     // friendships: one document per pair of accounts (id "<a>_<b>", a < b); only the two people can see it.
     // One sends a request (pending), only the other can accept it, either can remove it.
     match /friends/{pair} {
-      allow read: if signedIn() && request.auth.uid in [resource.data.a, resource.data.b];
+      allow read: if signedIn() && (resource.data.a == request.auth.uid || resource.data.b == request.auth.uid);
       allow create: if signedIn()
         && request.resource.data.keys().hasOnly(['a', 'b', 'from', 'status', 't'])
         && request.resource.data.a < request.resource.data.b
