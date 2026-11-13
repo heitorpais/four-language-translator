@@ -353,12 +353,14 @@ function ago(ms) { const m = Math.round((Date.now() - ms) / 60000); return m < 1
 
 function ensureDom() {
   if (!$('#acct-corner')) { const h = $('header'); if (h) h.insertAdjacentHTML('beforeend', '<div id="acct-corner"></div>'); }
+  if (!$('#help-corner')) { const h = $('header'); if (h) h.insertAdjacentHTML('afterbegin', '<button id="help-corner" class="corner-help" data-x="ob-replay"></button>'); }
   if (!$('#account')) { const h = $('header'); if (h) h.insertAdjacentHTML('afterend', '<section id="account" class="panel" hidden aria-label="Account"></section>'); }
 }
 function paintPanel() { const el = $('#account'); if (el && !el.hidden) el.innerHTML = panelHtml(); }
 function paintAll() {
   ensureDom();
   const c = $('#acct-corner'); if (c) c.innerHTML = cornerHtml();
+  const hc = $('#help-corner'); if (hc) hc.textContent = t('help.how', 'How to use Glossarium');
   document.querySelectorAll('[data-acct]').forEach(el => { el.innerHTML = boxHtml(); });
   paintPanel();
 }

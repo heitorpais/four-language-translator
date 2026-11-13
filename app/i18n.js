@@ -5505,4 +5505,6 @@ const N = { de: ['Lesesaal', 'Community', 'Diskutieren', 'Teilen', 'Bearbeiten',
 for (const [l, v] of Object.entries(N)) T[l] = Object.assign(T[l] || {}, { 'nav.forum': v[0], 'nav.community': v[1], 'act.talk': v[2], 'forum.share': v[3], 'forum.edit': v[4], 'forum.edited': v[5] });
 { const B = { de: 'Alle Personen', fr: 'Tout le monde', pt: 'Todas as pessoas', cs: 'Všichni lidé', it: 'Tutte le persone', es: 'Todas las personas', nl: 'Iedereen', sv: 'Alla personer', la: 'Omnes homines' };
   for (const [l, v] of Object.entries(B)) T[l] = Object.assign(T[l] || {}, { 'comm.back': v }); }
+{ const H = { de: 'So funktioniert Glossarium', fr: 'Comment utiliser Glossarium', pt: 'Como usar o Glossarium', cs: 'Jak používat Glossarium', it: 'Come usare Glossarium', es: 'Cómo usar Glossarium', nl: 'Zo werkt Glossarium', sv: 'Så använder du Glossarium', la: 'Quomodo Glossario utaris' };
+  for (const [l, v] of Object.entries(H)) T[l] = Object.assign(T[l] || {}, { 'help.how': v }); }
 })(window.FLTI18N);

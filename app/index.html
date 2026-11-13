@@ -534,6 +534,9 @@ nav.top .btn{font-size:17.5px}
 /* account corner, profile pictures, profile card and editor (sync.js) */
 .wrap{position:relative}
 #acct-corner{position:absolute;top:26px;right:30px}
+#help-corner{position:absolute;top:30px;left:30px}
+@media (max-width:700px){#help-corner{position:static;align-self:flex-start;margin:0 0 4px}}
+.corner-help{border:0;background:none;padding:0 2px;color:var(--muted);font:400 13px var(--body);text-decoration:underline;text-underline-offset:3px;cursor:pointer}.corner-help::before{content:'?';display:inline-block;width:15px;height:15px;line-height:14px;margin-right:5px;border:1px solid currentColor;border-radius:50%;text-align:center;font-size:11px;text-decoration:none}.corner-help:hover{color:var(--accent)}
 .corner-btn{display:flex;align-items:center;gap:8px;border:1px solid var(--rule);background:var(--surface);color:var(--ink);border-radius:999px;padding:3px 12px 3px 3px;font:400 15px var(--body);cursor:pointer;box-shadow:0 1px 3px rgba(60,35,15,.15)}
 .corner-btn:hover{border-color:var(--accent)}
 .corner-btn.none{padding:6px 14px;border-radius:2px;flex-direction:column;gap:0;line-height:1.15}

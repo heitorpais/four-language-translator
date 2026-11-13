@@ -553,7 +553,7 @@ function langEditor() {
     ${o.length < A.MAX_SLOTS && free.length ? `<div class="row"><select id="lang-add">${free.map(l => `<option value="${l}">${esc(A.LNAME[l])}</option>`).join('')}</select><button class="btn sm" data-x="lang-add">${esc(t('set.langs.add', '+ Add a language'))}</button></div>` : ''}`;
 }
 async function changeLangs(o) { await A.setLanguages(o); paintSettings(); }
-document.addEventListener('change', ev => { const x = ev.target.closest && ev.target.closest('[data-oblv]'); if (!x || !V.ob) return; V.ob[x.dataset.oblv][+x.dataset.i].lv = x.value; x.classList.toggle('missing', !x.value); });
+document.addEventListener('change', ev => { const x = ev.target.closest && ev.target.closest('[data-oblv]'); if (!x || !V.ob) return; V.ob[x.dataset.oblv][+x.dataset.i].lv = x.value; V.ob.dirty = true; x.classList.toggle('missing', !x.value); });
 /* ---------- first visit: welcome, interface language, languages I speak (with levels), languages I learn (with levels), tutorial ---------- */
 const SPEAK_LV = ['native', 'C2', 'C1', 'B2', 'B1', 'A2', 'A1'];
 const lvName = v => v === 'native' ? t('ob.native', 'Native') : v;
@@ -616,7 +616,7 @@ function obNext() {
     if (o.speaks.length === 1 && !o.speaks[0].lv) o.speaks[0].lv = 'native';
   }
   if (o.step === 3) {
-    if (!o.learns.length) { o.err = t('ob.err.le', 'Choose at least one language you are learning.'); return onboard(); }
+    if (!o.learns.length && !(o.replay && !o.dirty)) { o.err = t('ob.err.le', 'Choose at least one language you are learning.'); return onboard(); }
     if (o.learns.some(x => !x.lv)) { o.err = t('ob.err.lv', 'Choose your level in every language.'); return onboard(); }
   }
   o.step++; onboard();
@@ -624,7 +624,8 @@ function obNext() {
 const BASEF = l => A.S.main[l];
 function onboardDone(skip) {
   const S = A.S, o = V.ob;
-  if (!skip && o && o.step >= 4) {
+  if (o && o.replay && !o.dirty) {}
+  else if (!skip && o && o.step >= 4) {
     if (A.UI_LANGS.includes(o.ui)) S.ui = o.ui;
     const sp = o.speaks.find(x => x.lv === 'native') || o.speaks[0], le = o.learns[0];
     S.speak = sp.l; S.learning = le ? le.l : null; S.myLevel = le ? le.lv : S.myLevel;
@@ -668,7 +669,7 @@ document.addEventListener('click', async ev => {
   const lt = ev.target.closest('[data-xletter]'); if (lt) { V.xletter = lt.dataset.xletter; V.more = false; paintExplore(); return; }
   const ob = ev.target.closest('[data-ob]');
   if (ob) {
-    const k = ob.dataset.ob, l = ob.dataset.l, o = V.ob; o.err = '';
+    const k = ob.dataset.ob, l = ob.dataset.l, o = V.ob; o.err = ''; o.dirty = true;
     if (k === 'ui') { o.ui = l; A.S.ui = l; A.applyTexts(); }
     else { if (k === 'speaks') o.spTouched = true; const list = o[k], i = list.findIndex(x => x.l === l); if (i >= 0) list.splice(i, 1); else list.push({ l, lv: k === 'speaks' && !list.length ? 'native' : '' }); }
     onboard(); return;
@@ -710,6 +711,7 @@ document.addEventListener('click', async ev => {
   else if (k === 'onboard') { closePanels(); V.ob = null; onboard(); $('#welcome').scrollIntoView({ block: 'start' }); }
   else if (k === 'ob-done') onboardDone(false);
   else if (k === 'ob-skip') onboardDone(true);
+  else if (k === 'ob-replay') { V.ob = Object.assign(obDefaults(), { replay: true, spTouched: true }); onboard(); }
   else if (k === 'ob-next') obNext();
   else if (k === 'ob-back') { V.ob.err = ''; V.ob.step = Math.max(0, V.ob.step - 1); onboard(); }
   else if (k === 'ob-slide') { V.ob.slide++; onboard(); }
