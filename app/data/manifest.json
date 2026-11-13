@@ -89486,5 +89486,301 @@
    "url": "https://github.com/hermitdave/FrequencyWords"
   }
  ],
- "corrections": []
+ "corrections": [
+  {
+   "entry": "de:Sie:noun",
+   "issue": 2,
+   "date": "2026-11-13",
+   "note": "the noun 'die Sie' (a female) is rare, not A1; level/frequency/gloss came from the pronoun",
+   "set": {
+    "level": "C1",
+    "frequency_rank": null,
+    "senses.0.gloss_en": "a female (person or animal), as in 'Is it a he or a she?'"
+   }
+  },
+  {
+   "entry": "de:Sie:noun",
+   "issue": 2,
+   "date": "2026-11-13",
+   "note": "Spanish 'vosotros' is not a translation of the noun 'die Sie'",
+   "remove_translation": {
+    "lang": "es",
+    "target": "es:vosotros:pronoun"
+   }
+  },
+  {
+   "entry": "de:Sie:noun",
+   "issue": 2,
+   "date": "2026-11-13",
+   "note": "example uses the pronoun Sie, not the noun",
+   "hide_example": {
+    "id": "t:457929"
+   }
+  },
+  {
+   "entry": "de:Sie:noun",
+   "issue": 2,
+   "date": "2026-11-13",
+   "note": "example uses the pronoun Sie, not the noun",
+   "hide_example": {
+    "id": "t:361960"
+   }
+  },
+  {
+   "entry": "de:Sie:noun",
+   "issue": 2,
+   "date": "2026-11-13",
+   "note": "example uses the pronoun Sie, not the noun",
+   "hide_example": {
+    "id": "t:361113"
+   }
+  },
+  {
+   "entry": "de:Sie:noun",
+   "issue": 2,
+   "date": "2026-11-13",
+   "note": "example uses the pronoun Sie, not the noun",
+   "hide_example": {
+    "id": "t:13313917"
+   }
+  },
+  {
+   "entry": "de:Rom:noun",
+   "issue": 4,
+   "date": "2026-11-13",
+   "note": "Rom here is a member of the Roma people, not the city of Rome",
+   "set": {
+    "senses.0.gloss_en": "a Rom (a member of the Roma people)"
+   }
+  },
+  {
+   "entry": "de:Rom:noun",
+   "issue": 4,
+   "date": "2026-11-13",
+   "note": "Czech Řím is the city of Rome",
+   "remove_translation": {
+    "lang": "cs",
+    "target": "cs:Řím:noun"
+   }
+  },
+  {
+   "entry": "de:Rom:noun",
+   "issue": 4,
+   "date": "2026-11-13",
+   "note": "example is about the city of Rome",
+   "hide_example": {
+    "id": "t:7712194"
+   }
+  },
+  {
+   "entry": "de:Rom:noun",
+   "issue": 4,
+   "date": "2026-11-13",
+   "note": "example is about the city of Rome",
+   "hide_example": {
+    "id": "t:836147"
+   }
+  },
+  {
+   "entry": "de:Rom:noun",
+   "issue": 4,
+   "date": "2026-11-13",
+   "note": "example is about the city of Rome",
+   "hide_example": {
+    "id": "t:591434"
+   }
+  },
+  {
+   "entry": "pt:êxito:noun",
+   "issue": 5,
+   "date": "2026-11-13",
+   "note": "in current Brazilian Portuguese êxito means success; the old sense 'result, end, effect' gave misleading translations",
+   "set": {
+    "senses.0.hidden": [
+     "en",
+     "de",
+     "fr",
+     "pt",
+     "cs",
+     "it",
+     "es",
+     "nl",
+     "sv",
+     "la"
+    ]
+   }
+  },
+  {
+   "entry": "de:Russ:noun",
+   "issue": 6,
+   "date": "2026-11-13",
+   "note": "Russ (Swiss spelling of Ruß, soot) is not B1; the frequency rank came from 'Russe' (Russian); not used in Austria",
+   "set": {
+    "level": "C1",
+    "frequency_rank": null,
+    "used_in": [
+     "CH"
+    ]
+   }
+  },
+  {
+   "entry": "de:Russ:noun",
+   "issue": 6,
+   "date": "2026-11-13",
+   "note": "example is about Russians (Russe), not soot",
+   "hide_example": {
+    "id": "t:12400519"
+   }
+  },
+  {
+   "entry": "de:Russ:noun",
+   "issue": 6,
+   "date": "2026-11-13",
+   "note": "example is about Russians (Russe), not soot",
+   "hide_example": {
+    "id": "t:607712"
+   }
+  },
+  {
+   "entry": "de:Russ:noun",
+   "issue": 6,
+   "date": "2026-11-13",
+   "note": "example is about Russians (Russe), not soot",
+   "hide_example": {
+    "id": "t:12710321"
+   }
+  },
+  {
+   "entry": "de:verbinden:verb",
+   "issue": 8,
+   "date": "2026-11-13",
+   "note": "not a translation of verbinden 'to bandage'",
+   "sense": 0,
+   "remove_translation": {
+    "lang": "en",
+    "target": "en:link:verb"
+   }
+  },
+  {
+   "entry": "de:verbinden:verb",
+   "issue": 8,
+   "date": "2026-11-13",
+   "note": "not a translation of verbinden 'to bandage'",
+   "sense": 0,
+   "remove_translation": {
+    "lang": "en",
+    "target": "en:weld:verb"
+   }
+  },
+  {
+   "entry": "de:verbinden:verb",
+   "issue": 8,
+   "date": "2026-11-13",
+   "note": "not a translation of verbinden 'to bandage'",
+   "sense": 0,
+   "remove_translation": {
+    "lang": "fr",
+    "target": "fr:connecter:verb"
+   }
+  },
+  {
+   "entry": "de:verbinden:verb",
+   "issue": 8,
+   "date": "2026-11-13",
+   "note": "not a translation of verbinden 'to bandage'",
+   "sense": 0,
+   "remove_translation": {
+    "lang": "fr",
+    "target": "fr:raccorder:verb"
+   }
+  },
+  {
+   "entry": "de:verbinden:verb",
+   "issue": 8,
+   "date": "2026-11-13",
+   "note": "not a translation of verbinden 'to bandage'",
+   "sense": 0,
+   "remove_translation": {
+    "lang": "it",
+    "target": "it:cablare:verb"
+   }
+  },
+  {
+   "entry": "de:verbinden:verb",
+   "issue": 8,
+   "date": "2026-11-13",
+   "note": "not a translation of verbinden 'to bandage'",
+   "sense": 0,
+   "remove_translation": {
+    "lang": "it",
+    "target": "it:connettersi:verb"
+   }
+  },
+  {
+   "entry": "de:verbinden:verb",
+   "issue": 8,
+   "date": "2026-11-13",
+   "note": "not a translation of verbinden 'to bandage'",
+   "sense": 0,
+   "remove_translation": {
+    "lang": "es",
+    "target": "es:empastar:verb"
+   }
+  },
+  {
+   "entry": "de:verbinden:verb",
+   "issue": 8,
+   "date": "2026-11-13",
+   "note": "not a translation of verbinden 'to bandage'",
+   "sense": 0,
+   "remove_translation": {
+    "lang": "pt",
+    "target": "pt:copular:verb"
+   }
+  },
+  {
+   "entry": "de:verbinden:verb",
+   "issue": 8,
+   "date": "2026-11-13",
+   "note": "not a translation of verbinden 'to bandage'",
+   "sense": 0,
+   "remove_translation": {
+    "lang": "pt",
+    "target": "pt:afiliar:verb"
+   }
+  },
+  {
+   "entry": "de:verbinden:verb",
+   "issue": 8,
+   "date": "2026-11-13",
+   "note": "not a translation of verbinden 'to bandage'",
+   "sense": 0,
+   "remove_translation": {
+    "lang": "sv",
+    "target": "sv:sammanlänka:verb"
+   }
+  },
+  {
+   "entry": "de:verbinden:verb",
+   "issue": 8,
+   "date": "2026-11-13",
+   "note": "Brazilian Portuguese for 'to bandage' is enfaixar",
+   "sense": 0,
+   "add_translation": {
+    "lang": "pt",
+    "target": "pt:enfaixar:verb"
+   }
+  },
+  {
+   "entry": "de:verbinden:verb",
+   "issue": 8,
+   "date": "2026-11-13",
+   "note": "Czech podrobit means 'to subject', not 'to put through'",
+   "sense": 3,
+   "remove_translation": {
+    "lang": "cs",
+    "target": "cs:podrobit:verb"
+   }
+  }
+ ]
 }
