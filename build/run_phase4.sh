@@ -17,5 +17,8 @@ python3 -I build/fix_verbs.py
 python3 -I build/czech.py
 python3 -I build/add_entries.py
 python3 -I build/review.py
+python3 -I build/minor_borrowed.py
+python3 -I build/pos_first.py
+python3 -I build/notes.py
 python3 -I build/build_tiers.py
 python3 -I build/validate.py

@@ -203,6 +203,17 @@ async function readJson(r, file) {             // data files are stored gzip-com
   return new Response(new Blob([buf]).stream().pipeThrough(new DecompressionStream('gzip'))).json();
 }
 
+/* Saving to the device copies the whole object on the main thread, so during the first load the saves wait until the
+   app is usable (a few hundred milliseconds sooner on a first visit) */
+const saveQ = [];
+function saveLater(k, v) {
+  if (D.ready) { idbPut(D.db, k, v).catch(() => {}); return; }
+  saveQ.push([k, v]);
+}
+function flushSaves() {
+  const next = () => { const x = saveQ.shift(); if (!x || !D.db) return; idbPut(D.db, x[0], x[1]).catch(() => {}).then(() => setTimeout(next, 30)); };
+  setTimeout(next, 1200);
+}
 async function getFile(file, sha) {          // saved copy on this device, otherwise the network
   let rec = null;
   if (D.db) { try { rec = await idbGet(D.db, file); } catch (e) {} }
@@ -210,7 +221,7 @@ async function getFile(file, sha) {          // saved copy on this device, other
   const r = await fetch('data/' + file + '?v=' + sha);
   if (!r.ok) throw new Error('A data file could not be loaded (' + file + ').');
   const data = await readJson(r, file);
-  if (D.db) idbPut(D.db, file, { sha, data }).catch(() => {});      // saved in the background
+  if (D.db) saveLater(file, { sha, data });      // saved in the background
   return data;
 }
 async function loadData(progress) {
@@ -230,7 +241,7 @@ async function loadData(progress) {
   await Promise.all([...core.map(async f => { out[f.lang] = await getFile(f.file, f.sha256); done++; progress(`Loading the dictionary data (${done} of ${core.length})…`); }),
     ...lk.map(async f => { links.push([f, await getFile(f.file, f.sha256)]); })]);
   out.__links = links;
-  if (D.db) { try { await idbPut(D.db, 'manifest', manifest); } catch (e) {} }
+  if (D.db) saveLater('manifest', manifest);
   if (navigator.serviceWorker && navigator.serviceWorker.controller) {
     const keep = manifest.files.filter(f => ['core', 'details', 'ext', 'links', 'extr'].includes(f.tier)).map(f => 'data/' + f.file + '?v=' + f.sha256);
     navigator.serviceWorker.controller.postMessage({ type: 'prune', keep });
@@ -332,6 +343,7 @@ function buildIndex(out) {
   for (const [f, d] of links) mergeLinks(f, d);
   for (const l of LANGS) if (!D.count[l.id]) { const c = (D.manifest.counts || {})[l.id]; if (c) { D.count[l.id] = c.words_for_suggestions; D.entries[l.id] = c.entries; } }
   D.ready = true;
+  if (saveQ.length) flushSaves();
 }
 /* a language added in Settings: its common words, then their examples and background */
 async function loadLang(lang) {

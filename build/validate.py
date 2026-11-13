@@ -175,9 +175,14 @@ def main():
                 if e.get('lang') != f['lang']: err('1 format', '%s is in the wrong file' % e.get('id'))
                 if bkey(e['lemma'], len(k)) != k: err('5 manifest', '%s is not in the bucket of its first letters (%s)' % (e['id'], k))
                 check_slim(e)
+                # keep only what the later checks read, with shared id strings: the full ten languages do not fit in memory otherwise
+                I = sys.intern
+                entries[e.get('id')] = {'lang': e.get('lang'), 'tier': e.get('tier'), 'synonyms': [I(t) for t in e.get('synonyms', [])],
+                                        'senses': [{'translations': {l: [I(t) for t in v] for l, v in x.get('translations', {}).items()}} for x in e.get('senses', [])]}
             for w, fid in d['forms'].items():
                 if bkey(w, len(k)) != k: err('5 manifest', 'form %s is not in the bucket of its first letters (%s)' % (w, k))
-                forms_ref.append((w, fid))
+                for t in fid: forms_ref.append(sys.intern(t))
+            d = None
     # a core entry is checked in its full form: card data plus its details
     for e in pending_core:
         d = details.pop(e['id'], None)
@@ -217,9 +222,8 @@ def main():
                     elif entries[t]['lang'] != l: err('2 ids exist', '%s %s -> %s is not a %s entry' % (e['id'], s['id'], t, l))
         for t in e.get('synonyms', []):
             if t not in entries: err('2 ids exist', '%s synonym -> %s' % (e['id'], t))
-    for w, fid in forms_ref:
-        for t in fid:
-            if t not in entries: err('2 ids exist', 'form %s -> %s' % (w, t))
+    for t in set(forms_ref):
+        if t not in entries: err('2 ids exist', 'form -> %s' % t)
     links = rjson(os.path.join(DATA, 'links.json'))
     for k, v in links.items():
         for t in [k] + v:
@@ -235,7 +239,7 @@ def main():
     for i in gaps:
         if i not in entries: err('3 core fields', 'source_gaps.json names unknown entry ' + i)
 
-    print('entries checked:', len(entries), dict(collections.Counter((e['lang'], e.get('tier')) for e in entries.values())), '| forms', len(forms_ref))
+    print('entries checked:', len(entries), dict(collections.Counter((e['lang'], e.get('tier')) for e in entries.values())), '| form links', len(forms_ref))
     print('recorded source gaps in core (empty in Wiktionary):', {'%s %s' % k: v for k, v in sorted(ngaps.items())})
     names = ['1 format', '2 ids exist', '3 core fields', '4 duplicate ids', '5 manifest']
     for n in names:

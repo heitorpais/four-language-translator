@@ -19,6 +19,7 @@ rebuilt by the scripts). The download list is in `build/SOURCES.txt`.
 | 9 | `generate_forms.py` | Builds all word forms by rule, tests them against Wiktionary, stores the exceptions in `irregular_forms`. |
 | 9b | `regions.py` | Register labels of core senses (colloquial, formal …), and marks regional translations from Wiktionary's region labels and `build/claude/regional_words.tsv` (celular BR / telemóvel PT, laufen for "walk" in Switzerland); fills a missing region's word from synonyms. Report: `reports/regions_report.json`. |
 | 9c | `swiss.py`, `fix_verbs.py`, `czech.py` | Hand-checked Swiss words (level, translations, the word used in Germany and Austria, regional genders such as das Tram), corrected irregular verb tables, Czech clean-up (English order, wrong-class meanings). |
+| 9d | `review.py`, `minor_borrowed.py`, `pos_first.py`, `notes.py` | Hand-checked corrections (`build/claude/review.tsv`: wrong translations and meanings that only came in through other languages' links), entries made only of such borrowed meanings become minor (no rank or level), the hand-checked order of parts of speech (`build/claude/pos_first.tsv`), and learner notes for the languages other than German (`build/claude/notes_<lang>.tsv`). |
 | 10 | `build_tiers.py` | Writes `app/data`: core card files, core details files, letter files of the other tiers, manifest. |
 | 11 | `validate.py` | Checks `app/data`; exit status 1 on failure. |
 
@@ -30,6 +31,7 @@ rebuilt by the scripts). The download list is in `build/SOURCES.txt`.
 - `node build/test/test_app4.js [Mbit/s]`: opens the app in Chrome on a throttled connection, measures the first visit, looks up words of every tier and inflected forms, checks the translation order, then turns the network off.
 - `node build/test/test_app.js`: the Phase 3 test (settings, offline).
 - `node build/test/test_phase5.js`: the Phase 5 features (search, cards, views, practice, audio with a stand-in voice, personal data, settings, export), 135 checks.
+- `python3 -I build/validate.py` needs about 5 GB of memory with all ten languages.
 - `node build/test/test_regions.js`: the same meaning gives the same word from any language, each region gets its own word first, and the pronunciation label follows the chosen region.
 
 ## Pilot scripts (Phases 1 to 3)
