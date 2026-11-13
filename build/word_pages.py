@@ -113,6 +113,7 @@ def main():
                 body.append(f'<article>\n<p class="kicker">{e(NAME[l])} · {e(NATIVE[l])}</p>\n<h1 lang="{l}">{e(x["shown"])}</h1>\n'
                             f'<p class="facts">{ipa}{e(" · ".join(facts))} {lvl}</p>\n')
                 senses = [s for k, s in enumerate(x['senses']) if k == 0 or s.get('gloss')]      # a later meaning without an explanation would be unclear
+                seen = set(); senses = [s for s in senses if not (s.get('gloss') in seen or seen.add(s.get('gloss')))]      # the same explanation twice is one meaning for a reader
                 for k, s in enumerate(senses):
                     gloss = f'<h2>{k + 1}. {e(s["gloss"])}</h2>\n' if s.get('gloss') and len(senses) > 1 else (f'<h2>{e(s["gloss"])}</h2>\n' if s.get('gloss') else '')
                     rows = []
