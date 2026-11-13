@@ -134,9 +134,9 @@ function paintMe() {
     body = n.history ? Object.entries(byDay).map(([d, hs]) => `<div class="lst"><b>${esc(d)}</b><div class="chips">${hs.map(h => `<button class="chip" data-open="${esc(h.id)}" lang="${h.id.slice(0, 2)}">${A.flag(A.S.main[h.id.slice(0, 2)], true)}${esc(A.withTo(h.id, h.w))}</button>`).join('')}</div></div>`).join('') + `<button class="btn sm" data-x="hist-clear">${esc(t('me.hist.clear', 'Clear history'))}</button>` : `<p class="hint">${esc(t('me.hist.none', 'No words looked up yet.'))}</p>`;
   } else if (tab === 'known') body = n.known ? `<p class="hint">${esc(t('me.known.n', '{n} words marked as known. Known words are left out of the word of the day.', { n: n.known }))}</p><div class="chips">${entryChipsFromMap(P.known)}</div>` : `<p class="hint">${esc(t('me.known.none', 'Mark a word with “I know this” on its card.'))}</p>`;
   else if (tab === 'notes') body = n.notes ? Object.entries(P.notes).map(([id, txt]) => `<div class="lst"><button class="chip" data-open="${esc(id)}" lang="${id.slice(0, 2)}">${A.flag(A.S.main[id.slice(0, 2)], true)}${esc(A.withTo(id, id.split(':')[1]))}</button> <span>${esc(txt)}</span></div>`).join('') : `<p class="hint">${esc(t('me.notes.none', 'Write a note with “✎ Note” on a card.'))}</p>`;
-  else if (tab === 'file') body = `<p class="hint">${esc(t('me.file.p', 'Your saved words, lists, notes, known words and history stay in this browser only. Save them to a file to keep a copy or move them to another device.'))}</p>
+  else if (tab === 'file') body = `<p class="hint">${esc(t('me.file.p2', 'Your saved words, lists, notes, known words and history stay in this browser unless you sign in with Google. You can also save them to a file to keep a copy.'))}</p>
     <div class="row"><button class="btn" data-x="export">⬇ ${esc(t('me.export', 'Save to a file'))}</button><button class="btn" data-x="export-csv">⬇ ${esc(t('me.csv', 'Spreadsheet (CSV)'))}</button><button class="btn" data-x="export-anki">⬇ ${esc(t('me.anki', 'Anki flashcards'))}</button><button class="btn" data-x="print">🖨 ${esc(t('me.print', 'Print or PDF'))}</button><label class="btn">⬆ ${esc(t('me.import', 'Load from a file'))}<input type="file" id="me-import" accept="application/json,.json" hidden></label></div><p class="hint" id="me-file-msg" aria-live="polite"></p>`;
-  el.innerHTML = `<h2>${esc(t('nav.me', 'My words'))}</h2>${tabs('me', [['saved', '★ ' + t('me.tab.saved', 'Saved') + ' ' + n.saved], ['lists', t('me.tab.lists', 'Lists') + ' ' + n.lists], ['history', t('me.tab.history', 'History')], ['known', '✓ ' + t('me.tab.known', 'Known') + ' ' + n.known], ['notes', '✎ ' + t('me.tab.notes', 'Notes') + ' ' + n.notes], ['file', t('me.tab.file', 'Export / import')]])}<div class="tabbody">${body}</div>`;
+  el.innerHTML = `<h2>${esc(t('nav.me', 'My words'))}</h2><div class="acct" data-acct></div>${tabs('me', [['saved', '★ ' + t('me.tab.saved', 'Saved') + ' ' + n.saved], ['lists', t('me.tab.lists', 'Lists') + ' ' + n.lists], ['history', t('me.tab.history', 'History')], ['known', '✓ ' + t('me.tab.known', 'Known') + ' ' + n.known], ['notes', '✎ ' + t('me.tab.notes', 'Notes') + ' ' + n.notes], ['file', t('me.tab.file', 'Export / import')]])}<div class="tabbody">${body}</div>`;
   const imp = $('#me-import');
   if (imp) imp.addEventListener('change', async () => {
     const f = imp.files[0]; if (!f) return;
@@ -152,6 +152,7 @@ function paintMe() {
       A.saveP(); paintMe(); $('#me-file-msg').textContent = t('me.import.ok', 'Loaded. Your words from the file were added.');
     } catch (e) { $('#me-file-msg').textContent = t('me.import.bad', 'This file is not a word list from this app.'); }
   });
+  if (window.FLTSync) FLTSync.paint();
 }
 /* the saved words and lists as rows in all four languages */
 async function myRows() {
@@ -499,7 +500,8 @@ function paintSettings() {
   </div>
   <h3 class="grp">${esc(t('set.g.data', 'Data'))}</h3><div class="sets">
     <div class="set"><label for="s-clear">${esc(t('set.clear', 'Saved copy of the dictionary'))}</label><div><button class="btn" id="s-clear">${esc(t('set.clear.btn', 'Clear recent words and the saved copy'))}</button></div><div class="hint" id="s-clear-msg" aria-live="polite">${esc(t('set.clear.h', 'Your saved words and lists are kept. The dictionary is loaded again next time you are online.'))}</div></div>
-    <div class="set"><label>${esc(t('set.mywords', 'My words'))}</label><div><button class="btn" data-x="go-file">${esc(t('set.mywords.btn', 'Export or import my words'))}</button></div><div class="hint">${esc(t('set.mywords.h', 'Saved words, lists, notes and history stay only in this browser.'))}</div></div>
+    <div class="set"><label>${esc(t('acct.label', 'Google account'))}</label><div data-acct></div></div>
+    <div class="set"><label>${esc(t('set.mywords', 'My words'))}</label><div><button class="btn" data-x="go-file">${esc(t('set.mywords.btn', 'Export or import my words'))}</button></div><div class="hint">${esc(t('set.mywords.h2', 'Saved words, lists, notes and history stay in this browser, unless you sign in with Google.'))}</div></div>
     <div class="set"><label>${esc(t('set.install', 'Use it like an app'))}</label>${installHtml()}</div>
     <div class="set"><label>${esc(t('set.reset', 'Reset'))}</label><div><button class="btn" data-x="reset">${esc(t('set.reset.btn', 'Reset all settings to defaults'))}</button></div><div class="hint">${esc(t('set.reset.h', 'Your words, lists and notes are not touched.'))}</div></div>
   </div>`;
@@ -519,6 +521,7 @@ function paintSettings() {
     try { await new Promise((res, rej) => { const r = indexedDB.open('flt-data', 1); r.onsuccess = () => { const db = r.result, tx = db.transaction('files', 'readwrite'); tx.objectStore('files').clear(); tx.oncomplete = res; tx.onerror = rej; }; r.onerror = rej; }); msg = t('set.clear.ok2', 'Cleared the recent words and the saved copy of the data. The data is loaded again the next time you open the app with an internet connection.'); } catch (e) {}
     $('#s-clear-msg').textContent = msg;
   });
+  if (window.FLTSync) FLTSync.paint();
 }
 
 /* Settings › My languages: one row per box (language, move up, remove) and "Add a language" */

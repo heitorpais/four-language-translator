@@ -144,7 +144,7 @@ def main():
     open(os.path.join(APP, 'words', 'index.html'), 'w').write(page('en', 'Word lists in 10 languages | Glossarium',
         'Browse the most common words of English, German, French, Portuguese, Czech, Italian, Spanish, Dutch, Swedish and Latin, each translated into the nine others.',
         '/words/', f'<h1>Word lists</h1>\n<p class="lead">Choose a language.</p>\n<ul class="langs">{items}</ul>\n'))
-    urls.append(SITE + '/words/')
+    urls.append(SITE + '/words/'); urls.append(SITE + '/privacy/')
     today = datetime.date.today().isoformat()
     with open(os.path.join(APP, 'sitemap.xml'), 'w') as f:
         f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')

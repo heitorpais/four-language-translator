@@ -518,12 +518,17 @@ footer b{font-style:normal;font-variant:small-caps;letter-spacing:.05em}
 :root{--body:"EB Garamond", "Source Serif 4", Georgia, serif; --display:"Cormorant Garamond", "EB Garamond", Georgia, serif; --mono:"EB Garamond", "Source Serif 4", Georgia, serif}
 body{font-size:17.5px;font-variant-numeric:oldstyle-nums proportional-nums}
 em,i,.hw .art,.field input::placeholder{font-style:normal}
-.hw{font-weight:600;font-size:34px;letter-spacing:.005em}
+.hw{font-weight:600;font-size:31px;letter-spacing:.005em}
 .field input,.any .field input{font-family:var(--body);font-size:19px}
 nav.top .btn,.btn,.chip,.panel h2,.forms h3,.extra h3,.tab{font-family:var(--body)}
 nav.top .btn{font-size:17.5px}
 .ipa{font-family:"Charis SIL","Doulos SIL","Source Serif 4","Noto Sans",serif;font-size:15px}
 .lvl,kbd.key,.gov .pat{font-variant-numeric:lining-nums;letter-spacing:.02em}
+
+/* Google account box (sync.js) */
+.acct-box{background:var(--surface);border:1px solid var(--rule);border-radius:2px;padding:10px 14px;margin:0 0 14px;box-shadow:inset 0 0 0 3px var(--surface),inset 0 0 0 4px var(--rule)}
+.acct-box p{margin:0 0 6px}.acct-box .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.set .acct-box{margin:0}
 </style>
 </head>
 <body>
@@ -568,6 +573,7 @@ nav.top .btn{font-size:17.5px}
     <p><b>FrequencyWords.</b> Word frequencies come from <a href="https://github.com/hermitdave/FrequencyWords" target="_blank" rel="noopener">FrequencyWords</a> by Hermit Dave, counted from the OpenSubtitles 2018 corpus. Licence CC BY-SA 4.0 for the lists.</p>
     <p><b>Written by AI.</b> The language level (A1 to C2), the Swiss German form, the common mistake and the notes were written by Claude (Anthropic), as were the entries carried over from the first version of this app. They are not checked against a printed dictionary. Swiss German has no fixed spelling, so those forms are approximate.</p>
     <p><b>Fonts.</b> EB Garamond (Georg Duffner and Octavio Pardo), Cormorant Garamond (Christian Thalmann), Source Serif 4 (Adobe), IBM Plex Sans and IBM Plex Mono (IBM Corp.), licence <a href="https://openfontlicense.org" target="_blank" rel="noopener">SIL Open Font License 1.1</a>. They are part of the app, so nothing is loaded from the internet.</p>
+    <p><b>Sign-in.</b> Signing in with Google is optional and uses Firebase (Google), licence <a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="noopener">Apache 2.0</a>. Saved words are kept in Zürich; see the <a href="privacy/">privacy page</a>.</p>
     <p><b>Learner helpers.</b> False friends, the gender tips from word endings and the regional word list were written by Claude (Anthropic); each gender tip is shown only where the app's own data confirms it for at least 80 % of the nouns. Levels marked ≈ are estimated from word frequency.</p>
     <p><b>Built by rule.</b> Tables of forms and the regular or irregular labels are computed from the Wiktionary forms.</p>
     <p class="hint">Under "More about this word" every card lists where its own content comes from. <span id="src-version"></span></p>
@@ -580,6 +586,7 @@ nav.top .btn{font-size:17.5px}
 
   <footer>
     <p><b data-t="foot.words">Words.</b> <span id="lex-total">Loading the dictionary data…</span> <span data-t="foot.words2">They power the suggestions and the cards. Nothing is written or looked up on the internet when you search.</span></p>
+    <p><a href="privacy/">Privacy</a> · <a href="words/">Word lists</a></p>
     <p><b data-t="foot.entries">Entries.</b> <span data-t="foot.entries2">Every entry ships with the app and is built from Wiktionary and Tatoeba; see Sources &amp; licences.</span> <span id="offline-state"></span></p>
   </footer>
 </div>
@@ -591,5 +598,6 @@ nav.top .btn{font-size:17.5px}
 <script src="progress.js"></script>
 <script src="views.js"></script>
 <script src="app.js"></script>
+<script src="sync.js"></script>
 </body>
 </html>

@@ -99,7 +99,7 @@ loadSettings();
 const saveSettings = () => store.set('flt:settings4', S);
 /* personal data, only on this device: favourites, known words, notes, own lists, history, practice mistakes */
 const P = Object.assign({ favs: {}, known: {}, notes: {}, lists: [], history: [], mistakes: [], looks: {}, offered: {}, last: null, srs: {} }, store.get('flt:me1', {}));
-const saveP = () => { store.set('flt:me1', P); if (window.FLTViews) FLTViews.counter(); };
+const saveP = () => { store.set('flt:me1', P); if (window.FLTViews) FLTViews.counter(); if (window.FLTSync) FLTSync.changed(); };
 let recent = store.get('flt:recent3', { en: [], de: [], fr: [], pt: [] });
 let toastTimer = 0;
 function toast(msg, action) {
