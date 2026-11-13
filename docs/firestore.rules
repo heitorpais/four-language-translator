@@ -63,5 +63,33 @@ service cloud.firestore {
         && (!existsAfter(/databases/$(database)/documents/profiles/$(request.auth.uid))
             || getAfter(/databases/$(database)/documents/profiles/$(request.auth.uid)).data.username != name);
     }
+    // friendships: one document per pair of accounts (id "<a>_<b>", a < b); only the two people can see it.
+    // One sends a request (pending), only the other can accept it, either can remove it.
+    match /friends/{pair} {
+      allow read: if signedIn() && request.auth.uid in [resource.data.a, resource.data.b];
+      allow create: if signedIn()
+        && request.resource.data.keys().hasOnly(['a', 'b', 'from', 'status', 't'])
+        && request.resource.data.a < request.resource.data.b
+        && pair == request.resource.data.a + '_' + request.resource.data.b
+        && request.resource.data.from == request.auth.uid
+        && request.auth.uid in [request.resource.data.a, request.resource.data.b]
+        && request.resource.data.status == 'pending'
+        && exists(/databases/$(database)/documents/profiles/$(request.resource.data.a))
+        && exists(/databases/$(database)/documents/profiles/$(request.resource.data.b));
+      allow update: if signedIn() && resource.data.status == 'pending'
+        && request.auth.uid != resource.data.from
+        && request.auth.uid in [resource.data.a, resource.data.b]
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 't'])
+        && request.resource.data.status == 'accepted';
+      allow delete: if signedIn() && request.auth.uid in [resource.data.a, resource.data.b];
+    }
+
+    // reports about profiles: anyone signed in can send one; only the owner of the project reads them (in the console)
+    match /reports/{id} {
+      allow create: if signedIn()
+        && request.resource.data.keys().hasOnly(['about', 'by', 'why', 't'])
+        && request.resource.data.by == request.auth.uid
+        && request.resource.data.why is string && request.resource.data.why.size() <= 300;
+    }
   }
 }

@@ -68,8 +68,8 @@ async function load() {
   auth = fb.getAuth(app); db = fb.getFirestore(app);
   fb.onAuthStateChanged(auth, async u => {
     user = u || null;
-    if (user) { ls.set(FLAG, '1'); state = 'syncing'; paintAll(); await loadProfile(); await pull(); }
-    else { ls.set(FLAG, null); ls.set(CACHE, null); profile = null; state = 'off'; paintAll(); }
+    if (user) { ls.set(FLAG, '1'); state = 'syncing'; paintAll(); await loadProfile(); await pull(); try { await loadRels(); paintComm(); } catch (e) {} }
+    else { ls.set(FLAG, null); ls.set(CACHE, null); profile = null; state = 'off'; comm.rels = new Map(); comm.relsLoaded = false; paintRequests(); paintAll(); paintComm(); }
   });
   return fb;
 }
@@ -194,7 +194,8 @@ async function viewProfile(name) {
     const n = await fb.getDoc(fb.doc(db, 'usernames', name));
     if (!n.exists()) { viewing = { name, missing: true }; paintPanel(); return; }
     const p = await fb.getDoc(fb.doc(db, 'profiles', n.data().uid));
-    viewing = p.exists() ? { name, p: p.data() } : { name, missing: true };
+    viewing = p.exists() ? { name, p: p.data(), uid: n.data().uid } : { name, missing: true };
+    if (user && !comm.relsLoaded) { try { await loadRels(); } catch (e) {} }
   } catch (e) { viewing = { name, missing: true }; }
   paintPanel();
 }
@@ -202,7 +203,9 @@ async function deleteAll() {
   if (!user) return;
   if (!confirmDelete()) return;
   try {
+    try { await loadRels(); } catch (e) {}
     const batch = fb.writeBatch(db);
+    for (const rel of comm.rels.values()) batch.delete(fb.doc(db, 'friends', rel.id));
     batch.delete(fb.doc(db, 'users', user.uid));
     if (profile) { batch.delete(fb.doc(db, 'profiles', user.uid)); batch.delete(fb.doc(db, 'usernames', profile.username)); }
     await batch.commit();
@@ -318,7 +321,8 @@ function panelHtml() {
   const close = `<button class="close" data-acct-x="close" aria-label="${esc(t('btn.close', 'Close'))}">×</button>`;
   if (viewing) {
     const v = viewing;
-    const body = v.loading ? `<p class="hint">${esc(t('prof.loading', 'Loading…'))}</p>` : v.missing ? `<p>${esc(t('prof.missing', 'There is no profile called @{n}.', { n: v.name }))}</p>` : profileCard(v.p, user && v.p.username === (profile && profile.username));
+    const own = user && v.uid === user.uid;
+    const body = v.loading ? `<p class="hint">${esc(t('prof.loading', 'Loading…'))}</p>` : v.missing ? `<p>${esc(t('prof.missing', 'There is no profile called @{n}.', { n: v.name }))}</p>` : profileCard(v.p, own) + (own ? '' : `<div class="row fr">${friendBtn(v.uid)}</div>${reportHtml(v.uid)}`);
     return `${close}<h2>${esc(t('prof.title', 'Profile'))}</h2>${body}`;
   }
   if (!user) return `${close}<h2>${esc(mode === 'login' ? t('acct.login.t', 'Sign in') : t('acct.title', 'Create an account'))}</h2>${ls.get(FLAG) ? `<p class="hint">${esc(t('prof.loading', 'Loading…'))}</p>` : signInHtml()}${note}`;
@@ -412,6 +416,125 @@ function resizeImage(file) {
   });
 }
 
+/* ---------- community: everyone's profile, search, friends ---------- */
+const comm = { list: [], last: null, done: false, loading: false, q: '', tab: 'all', found: null, rels: new Map(), relProfiles: new Map(), relsLoaded: false, report: null };
+const pairId = (x, y) => [x, y].sort().join('_');
+async function loadRels() {
+  if (!user) { comm.rels = new Map(); comm.relsLoaded = true; return; }
+  const col = fb.collection(db, 'friends'), m = new Map();
+  for (const side of ['a', 'b']) {
+    const snap = await fb.getDocs(fb.query(col, fb.where(side, '==', user.uid)));
+    snap.forEach(d => { const x = d.data(); m.set(side === 'a' ? x.b : x.a, Object.assign({ id: d.id }, x)); });
+  }
+  comm.rels = m; comm.relsLoaded = true;
+  for (const uid of m.keys()) if (!comm.relProfiles.has(uid)) { try { const p = await fb.getDoc(fb.doc(db, 'profiles', uid)); if (p.exists()) comm.relProfiles.set(uid, Object.assign({ uid }, p.data())); } catch (e) {} }
+  paintRequests();
+}
+const pendingIn = () => [...comm.rels.values()].filter(x => x.status === 'pending' && x.from !== (user && user.uid)).length;
+function paintRequests() {
+  const n = pendingIn(), b = $('#community-toggle');
+  if (b) b.innerHTML = esc(t('nav.community', 'Community')) + (n ? ` <span class="req-dot" title="${esc(t('comm.req.tip', 'Friend requests'))}">${n}</span>` : '');
+}
+async function loadPage() {
+  if (comm.loading || comm.done) return;
+  comm.loading = true; paintComm();
+  try {
+    await load();
+    const parts = [fb.collection(db, 'profiles'), fb.orderBy('memberNo'), fb.limit(60)];
+    if (comm.last) parts.push(fb.startAfter(comm.last));
+    const snap = await fb.getDocs(fb.query(...parts));
+    snap.forEach(d => comm.list.push(Object.assign({ uid: d.id }, d.data())));
+    comm.last = snap.docs[snap.docs.length - 1] || comm.last;
+    if (snap.size < 60) comm.done = true;
+  } catch (e) { comm.err = t('comm.err', 'The community could not be loaded. Check the internet connection.'); }
+  comm.loading = false; paintComm();
+}
+let searchTimer = 0;
+function search(q) {
+  comm.q = q.trim().toLowerCase().replace(/^@/, '');
+  clearTimeout(searchTimer);
+  if (!comm.q) { comm.found = null; paintList(); return; }
+  searchTimer = setTimeout(async () => {
+    const q0 = comm.q, out = new Map();
+    const match = p => p.username.includes(q0) || (p.bio || '').toLowerCase().includes(q0)
+      || (p.nationality || []).some(c => countryName(c).toLowerCase().includes(q0))
+      || (p.speaks || []).concat(p.learning || []).some(x => langName(x.l).toLowerCase().includes(q0));
+    comm.list.filter(match).forEach(p => out.set(p.uid, p));
+    try {
+      const snap = await fb.getDocs(fb.query(fb.collection(db, 'profiles'), fb.where('username', '>=', q0), fb.where('username', '<', q0 + ''), fb.limit(30)));
+      snap.forEach(d => out.set(d.id, Object.assign({ uid: d.id }, d.data())));
+    } catch (e) {}
+    if (comm.q === q0) { comm.found = [...out.values()].sort((a, b) => a.memberNo - b.memberNo); paintList(); }
+  }, 250);
+}
+function friendBtn(uid) {
+  if (user && uid === user.uid) return `<span class="hint">${esc(t('comm.you', 'You'))}</span>`;
+  const rel = comm.rels.get(uid);
+  if (!rel) return `<button class="btn sm" data-acct-x="fr-add" data-uid="${uid}">${esc(t('comm.add', '+ Add friend'))}</button>`;
+  if (rel.status === 'accepted') return `<span class="tag ok">✓ ${esc(t('comm.friends', 'Friends'))}</span><button class="chip" data-acct-x="fr-del" data-uid="${uid}" title="${esc(t('comm.unfriend', 'Remove friend'))}">×</button>`;
+  if (rel.from === (user && user.uid)) return `<span class="hint">${esc(t('comm.sent', 'Request sent'))}</span><button class="chip" data-acct-x="fr-del" data-uid="${uid}">${esc(t('btn.cancel', 'Cancel'))}</button>`;
+  return `<button class="btn sm primary" data-acct-x="fr-ok" data-uid="${uid}">${esc(t('comm.accept', 'Accept'))}</button><button class="btn sm" data-acct-x="fr-del" data-uid="${uid}">${esc(t('comm.decline', 'Decline'))}</button>`;
+}
+function personRow(p) {
+  const nat = (p.nationality || []).map(flagEmoji).join(' ');
+  const sp = (p.speaks || []).map(x => langName(x.l)).join(', '), le = (p.learning || []).map(x => langName(x.l)).join(', ');
+  return `<li class="person"><button class="who" data-acct-x="view" data-name="${esc(p.username)}">${avatarImg(p.avatar, 'pfp md')}<span class="who-t"><span class="who-n"><b>@${esc(p.username)}</b> ${badgeHtml(p)} <span class="flags">${nat}</span></span>
+    <small>${sp ? esc(t('prof.speaks', 'Speaks')) + ' ' + esc(sp) : ''}${le ? ' · ' + esc(t('prof.learning', 'Learning')) + ' ' + esc(le) : ''}</small></span></button><span class="fr">${friendBtn(p.uid)}</span></li>`;
+}
+function listHtml() {
+  let people;
+  if (comm.tab === 'friends') people = [...comm.rels.entries()].filter(([, r]) => r.status === 'accepted').map(([u]) => comm.relProfiles.get(u)).filter(Boolean);
+  else if (comm.tab === 'requests') people = [...comm.rels.entries()].filter(([, r]) => r.status === 'pending').map(([u]) => comm.relProfiles.get(u)).filter(Boolean);
+  else people = comm.found || comm.list;
+  if (comm.q && comm.tab !== 'all') people = people.filter(p => p.username.includes(comm.q));
+  const empty = comm.tab === 'friends' ? t('comm.nofriends', 'No friends yet. Find people under “Everyone” and add them.') : comm.tab === 'requests' ? t('comm.noreq', 'No friend requests.') : comm.q ? t('comm.nofound', 'Nobody found for “{q}”.', { q: comm.q }) : comm.loading ? t('prof.loading', 'Loading…') : t('comm.empty', 'No profiles yet.');
+  const more = comm.tab === 'all' && !comm.q && !comm.done ? `<button class="btn sm" data-acct-x="more" ${comm.loading ? 'disabled' : ''}>${esc(t('comm.more', 'Show more'))}</button>` : '';
+  return (people.length ? `<ul class="people">${people.map(personRow).join('')}</ul>` : `<p class="hint">${esc(empty)}</p>`) + more;
+}
+function paintList() { const el = $('#comm-list'); if (el) el.innerHTML = listHtml(); }
+function paintComm() {
+  const el = $('#community'); if (!el || el.hidden) return;
+  const nReq = pendingIn(), nFr = [...comm.rels.values()].filter(r => r.status === 'accepted').length;
+  const tab = (k, label) => `<button class="tabb${comm.tab === k ? ' on' : ''}" data-acct-x="ctab" data-tab="${k}" aria-pressed="${comm.tab === k}">${esc(label)}</button>`;
+  el.innerHTML = `<h2>${esc(t('nav.community', 'Community'))}</h2>
+    ${user ? '' : `<p class="hint">${esc(t('comm.signin', 'Create an account to add friends and appear here yourself.'))} <button class="lnk" data-acct-x="panel" data-mode="create">${esc(t('acct.create.btn', 'Create an account'))}</button></p>`}
+    <div class="field comm-search"><input id="comm-q" type="search" placeholder="${esc(t('comm.search', 'Search by username, language or country…'))}" value="${esc(comm.q)}" aria-label="${esc(t('comm.search.l', 'Search people'))}"></div>
+    <div class="tabs">${tab('all', t('comm.everyone', 'Everyone'))}${user ? tab('friends', t('comm.friends', 'Friends') + (nFr ? ' ' + nFr : '')) + tab('requests', t('comm.requests', 'Requests') + (nReq ? ' ' + nReq : '')) : ''}</div>
+    ${comm.err ? `<p class="hint err">${esc(comm.err)}</p>` : ''}
+    <div id="comm-list">${listHtml()}</div>`;
+}
+async function openCommunity() {
+  comm.err = '';
+  paintComm();
+  if (!comm.list.length) await loadPage();
+  if (user && !comm.relsLoaded) { try { await loadRels(); } catch (e) {} paintComm(); }
+}
+async function friendAct(k, uid) {
+  if (!user) { mode = 'create'; msg = t('comm.need', 'Create an account first to add friends.'); openPanel(); return; }
+  if (!profile) { msg = t('comm.needprof', 'Finish your profile first.'); openPanel(); return; }
+  const id = pairId(user.uid, uid), ref = fb.doc(db, 'friends', id), [a, b] = [user.uid, uid].sort();
+  try {
+    if (k === 'fr-add') { const x = { a, b, from: user.uid, status: 'pending', t: Date.now() }; await fb.setDoc(ref, x); comm.rels.set(uid, Object.assign({ id }, x)); }
+    else if (k === 'fr-ok') { const r0 = comm.rels.get(uid), x = { a: r0.a, b: r0.b, from: r0.from, status: 'accepted', t: Date.now() }; await fb.setDoc(ref, x); comm.rels.set(uid, Object.assign({ id }, x)); }
+    else if (k === 'fr-del') { await fb.deleteDoc(ref); comm.rels.delete(uid); }
+    if (!comm.relProfiles.has(uid)) { const p = comm.list.concat(comm.found || []).find(x => x.uid === uid) || (viewing && viewing.p && viewing.uid === uid ? Object.assign({ uid }, viewing.p) : null); if (p) comm.relProfiles.set(uid, p); }
+  } catch (e) { toastMsg(t('comm.fail', 'That did not work. Try again.')); }
+  paintRequests(); paintComm(); paintPanel();
+}
+function toastMsg(m) { try { A().toast(m); } catch (e) {} }
+async function sendReport(uid, why) {
+  if (!user) { mode = 'create'; openPanel(); return; }
+  try { await fb.addDoc(fb.collection(db, 'reports'), { about: uid, by: user.uid, why: String(why).slice(0, 300), t: Date.now() }); toastMsg(t('comm.reported', 'Thank you. The report was sent.')); }
+  catch (e) { toastMsg(t('comm.fail', 'That did not work. Try again.')); }
+  comm.report = null; paintPanel();
+}
+function reportHtml(uid) {
+  if (!user || uid === user.uid) return '';
+  if (comm.report !== uid) return `<button class="lnk small" data-acct-x="rep" data-uid="${uid}">${esc(t('comm.report', 'Report this profile'))}</button>`;
+  const reasons = [['name', t('comm.r.name', 'Offensive username')], ['pic', t('comm.r.pic', 'Offensive picture')], ['text', t('comm.r.text', 'Offensive text')], ['spam', t('comm.r.spam', 'Spam or fake')], ['other', t('comm.r.other', 'Something else')]];
+  return `<div class="report"><p>${esc(t('comm.r.why', 'What is wrong with this profile?'))}</p><div class="row">${reasons.map(([k, l]) => `<button class="chip" data-acct-x="rep-send" data-uid="${uid}" data-why="${k}">${esc(l)}</button>`).join('')}<button class="lnk small" data-acct-x="rep-x">${esc(t('btn.cancel', 'Cancel'))}</button></div></div>`;
+}
+
 /* ---------- events ---------- */
 document.addEventListener('click', ev => {
   const b = ev.target.closest('[data-acct-x]'); if (!b) return;
@@ -429,6 +552,13 @@ document.addEventListener('click', ev => {
   else if (k === 'cancel') { editing = false; draft = null; paintPanel(); }
   else if (k === 'av') { readForm(); draft.avatar = b.dataset.av; paintPanel(); }
   else if (k === 'nat-del') { readForm(); draft.nationality = draft.nationality.filter(c => c !== b.dataset.c); paintPanel(); }
+  else if (k === 'more') loadPage();
+  else if (k === 'ctab') { comm.tab = b.dataset.tab; paintComm(); }
+  else if (k === 'view') { location.hash = '#/@' + b.dataset.name; }
+  else if (k === 'fr-add' || k === 'fr-ok' || k === 'fr-del') friendAct(k, b.dataset.uid);
+  else if (k === 'rep') { comm.report = b.dataset.uid; paintPanel(); }
+  else if (k === 'rep-x') { comm.report = null; paintPanel(); }
+  else if (k === 'rep-send') sendReport(b.dataset.uid, b.dataset.why);
   else if (k === 'lang-del') { readForm(); draft[b.dataset.kind].splice(+b.dataset.i, 1); paintPanel(); }
 });
 document.addEventListener('change', async ev => {
@@ -448,19 +578,24 @@ document.addEventListener('change', async ev => {
     paintPanel();
   }
 });
-document.addEventListener('input', ev => { if (ev.target.id === 'prof-name' && draft) { draft.username = ev.target.value.trim().toLowerCase(); checkName(); } });
+document.addEventListener('input', ev => { if (ev.target.id === 'comm-q') { search(ev.target.value); return; } if (ev.target.id === 'prof-name' && draft) { draft.username = ev.target.value.trim().toLowerCase(); checkName(); } });
 document.addEventListener('submit', ev => { if (ev.target.id === 'prof-form') { ev.preventDefault(); submit(); } });
 function route() { const m = /^#\/@([a-z0-9_.]{3,20})$/.exec(location.hash || ''); if (m) viewProfile(m[1]); }
 window.addEventListener('hashchange', route);
 
-window.FLTSync = { paint: paintAll, changed, open: openPanel, get signedIn() { return !!user; }, get profile() { return profile; } };
+window.FLTSync = { paint: paintAll, changed, open: openPanel, paintCommunity: openCommunity, get signedIn() { return !!user; }, get profile() { return profile; } };
 function start() {
   ensureDom(); paintAll(); route();
   if (ls.get(FLAG) && /^https?:$/.test(location.protocol)) load().catch(() => {});      // has an account on this device: reconnect quietly
   if (/acct-test/.test(location.search) && /^(localhost|127\.)/.test(location.hostname)) {      // tests only: a pretend account, no network
     const names = new Set(['taken_name']);
     fb = { doc: (d, c, id) => ({ c, id }), getDoc: async r => ({ exists: () => r.c === 'usernames' && names.has(r.id), data: () => ({ uid: 'other' }) }),
-      runTransaction: async (d, fn) => fn({ get: async r => ({ exists: () => false, data: () => ({}) }), set: () => {} }), writeBatch: () => ({ set() {}, delete() {}, commit: async () => {} }) };
+      runTransaction: async (d, fn) => fn({ get: async r => ({ exists: () => false, data: () => ({}) }), set: () => {} }), writeBatch: () => ({ set() {}, delete() {}, commit: async () => {} }),
+      collection: (d, c) => c, query: (c, ...q) => ({ c, q }), where: (...a) => a, orderBy: () => 0, limit: () => 0, startAfter: () => 0, setDoc: async () => {}, deleteDoc: async () => {}, addDoc: async () => {},
+      getDocs: async q => { const ppl = q.c !== 'profiles' ? [] : [['u1', 'heitor', 1, ['BR'], [{ l: 'pt', lv: 'native' }, { l: 'en', lv: 'C1' }], [{ l: 'de', lv: 'B1' }]], ['u2', 'anna.m', 2, ['CH'], [{ l: 'de', lv: 'native' }], [{ l: 'pt', lv: 'A2' }]], ['u3', 'lucas', 3, ['FR'], [{ l: 'fr', lv: 'native' }], [{ l: 'es', lv: 'A1' }]]]
+        .map(([id, u, no, nat, sp, le]) => ({ id, data: () => ({ username: u, memberNo: no, nationality: nat, speaks: sp, learning: le, avatar: 'preset:' + ['owl', 'globe', 'quill'][no - 1], bio: '', created: 1763000000000 }) }));
+        const w = (q.q || []).find(x => Array.isArray(x) && x[0] === 'username' && x[1] === '>='); const out = w ? ppl.filter(d => d.data().username.startsWith(w[2])) : ppl;
+        return { size: out.length, docs: out, forEach: f => out.forEach(f) }; } };
     user = { uid: 'test', email: 'heitor.pais@example.com', displayName: 'Heitor' }; profile = null; editing = true; state = 'on'; openPanel();
   }
 }
