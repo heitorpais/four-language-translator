@@ -149,7 +149,7 @@ async function loadProfile() {
   paintAll();
 }
 const USER_RE = /^[a-z0-9_.]{3,20}$/;
-const RESERVED = new Set(['admin', 'administrator', 'glossarium', 'support', 'help', 'moderator', 'mod', 'staff', 'team', 'official', 'root', 'system', 'null', 'undefined', 'anonymous', 'heitor']);
+const RESERVED = new Set(['admin', 'administrator', 'glossarium', 'support', 'help', 'moderator', 'mod', 'staff', 'team', 'official', 'root', 'system', 'null', 'undefined', 'anonymous']);
 async function nameFree(name) {
   if (!USER_RE.test(name) || /^[._]|[._]$|\.\./.test(name)) return 'bad';
   if (RESERVED.has(name) && !(profile && profile.username === name)) return 'taken';
