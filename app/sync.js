@@ -227,6 +227,10 @@ async function signOutNow() {
 }
 
 /* ---------- drawing ---------- */
+/* special marks given by hand to particular accounts (by account id, so they stay when the username changes) */
+const CROWN = '<svg viewBox="0 0 24 18" width="1.15em" height="0.86em" aria-hidden="true" style="vertical-align:-1px"><path d="M2 15h20l-1-11-5.2 5L12 1 8.2 9 3 4z" fill="#c9a227" stroke="#7a5a10" stroke-width="1.1" stroke-linejoin="round"/><circle cx="12" cy="1.6" r="1.4" fill="#c9a227" stroke="#7a5a10" stroke-width=".8"/><circle cx="3" cy="4" r="1.2" fill="#c9a227" stroke="#7a5a10" stroke-width=".8"/><circle cx="21" cy="4" r="1.2" fill="#c9a227" stroke="#7a5a10" stroke-width=".8"/><rect x="2" y="15" width="20" height="2.4" rx=".6" fill="#b08a1e" stroke="#7a5a10" stroke-width=".8"/></svg>';
+const SPECIAL = { ZmwIr89qhOaY2vBQQdYzoR1McQJ3: { mark: CROWN, title: 'Queen' } };          // @hanicka
+const specialHtml = uid => { const x = uid && SPECIAL[uid]; return x ? `<span class="special" title="${esc(x.title)}" aria-label="${esc(x.title)}">${x.mark}</span>` : ''; };
 const founder = p => p && p.memberNo && p.memberNo <= FOUNDERS;
 function badgeHtml(p, big) {
   if (!founder(p)) return '';
@@ -237,15 +241,15 @@ const avatarImg = (v, cls) => `<img class="${cls || 'pfp'}" src="${esc(AV().avat
 function cornerHtml() {
   const cached = (() => { try { return JSON.parse(ls.get(CACHE) || 'null'); } catch (e) { return null; } })();
   const p = profile || (ls.get(FLAG) && cached);
-  if (p && p.username) return `<button class="corner-btn" data-acct-x="panel" aria-label="${esc(t('prof.mine', 'My profile'))}">${avatarImg(profile ? profile.avatar : p.avatar, 'pfp sm')}<span class="un">@${esc(p.username)}</span>${badgeHtml(p)}</button>`;
+  if (p && p.username) return `<button class="corner-btn" data-acct-x="panel" aria-label="${esc(t('prof.mine', 'My profile'))}">${avatarImg(profile ? profile.avatar : p.avatar, 'pfp sm')}<span class="un">@${esc(p.username)}</span>${specialHtml(user && user.uid)}${badgeHtml(p)}</button>`;
   if (user || ls.get(FLAG)) return `<button class="corner-btn" data-acct-x="panel">${avatarImg('', 'pfp sm')}<span class="un">${esc(t('prof.finish', 'Finish your profile'))}</span></button>`;
   return `<div class="corner-none"><span class="no-acct">${esc(t('acct.none', 'No account'))}</span><button class="corner-link" data-acct-x="panel" data-mode="create">${esc(t('acct.create', 'Create one'))}</button><button class="corner-link small" data-acct-x="panel" data-mode="login">${esc(t('acct.have', 'I already have an account'))}</button></div>`;
 }
-function profileCard(p, own) {
+function profileCard(p, own, uid) {
   const nat = (p.nationality || []).map(c => `<span class="tag">${flagEmoji(c)} ${esc(countryName(c))}</span>`).join(' ');
   const langs = (arr, kind) => (arr || []).map(x => `<span class="tag">${esc(langName(x.l))}${x.lv ? ` <small>${esc(levelName(x.lv))}</small>` : ''}</span>`).join(' ');
   const since = p.created ? new Date(p.created).toLocaleDateString(uiLang(), { year: 'numeric', month: 'long' }) : '';
-  return `<div class="prof-card">${avatarImg(p.avatar, 'pfp lg')}<div class="prof-main"><h3>@${esc(p.username)}</h3>${badgeHtml(p, true)}
+  return `<div class="prof-card">${avatarImg(p.avatar, 'pfp lg')}<div class="prof-main"><h3>@${esc(p.username)}${specialHtml(uid)}</h3>${badgeHtml(p, true)}
     ${p.bio ? `<p class="bio">${esc(p.bio)}</p>` : ''}
     ${nat ? `<p><span class="lbl">${esc(t('prof.nat', 'Nationality'))}</span> ${nat}</p>` : ''}
     ${(p.speaks || []).length ? `<p><span class="lbl">${esc(t('prof.speaks', 'Speaks'))}</span> ${langs(p.speaks)}</p>` : ''}
@@ -322,7 +326,7 @@ function panelHtml() {
   if (viewing) {
     const v = viewing;
     const own = user && v.uid === user.uid;
-    const body = v.loading ? `<p class="hint">${esc(t('prof.loading', 'Loading…'))}</p>` : v.missing ? `<p>${esc(t('prof.missing', 'There is no profile called @{n}.', { n: v.name }))}</p>` : profileCard(v.p, own) + (own ? '' : `<div class="row fr">${friendBtn(v.uid)}</div>${reportHtml(v.uid)}`);
+    const body = v.loading ? `<p class="hint">${esc(t('prof.loading', 'Loading…'))}</p>` : v.missing ? `<p>${esc(t('prof.missing', 'There is no profile called @{n}.', { n: v.name }))}</p>` : profileCard(v.p, own, v.uid) + (own ? '' : `<div class="row fr">${friendBtn(v.uid)}</div>${reportHtml(v.uid)}`);
     return `${close}<h2>${esc(t('prof.title', 'Profile'))}</h2>${body}`;
   }
   if (!user) return `${close}<h2>${esc(mode === 'login' ? t('acct.login.t', 'Sign in') : t('acct.title', 'Create an account'))}</h2>${ls.get(FLAG) ? `<p class="hint">${esc(t('prof.loading', 'Loading…'))}</p>` : signInHtml()}${note}`;
@@ -330,10 +334,10 @@ function panelHtml() {
     if (!draft) draft = newDraft();
     return `${close}<h2>${esc(profile ? t('prof.edit', 'Edit profile') : t('prof.new', 'Create your profile'))}</h2>${editorHtml()}${note}`;
   }
-  return `${close}<h2>${esc(t('prof.mine', 'My profile'))}</h2>${profileCard(profile, true)}<div class="row"><button class="btn sm" data-acct-x="edit">${esc(t('prof.edit', 'Edit profile'))}</button></div><hr>${accountControls()}${note}`;
+  return `${close}<h2>${esc(t('prof.mine', 'My profile'))}</h2>${profileCard(profile, true, user && user.uid)}<div class="row"><button class="btn sm" data-acct-x="edit">${esc(t('prof.edit', 'Edit profile'))}</button></div><hr>${accountControls()}${note}`;
 }
 function boxHtml() {          // the short version in "My words" and Settings → Data
-  if (user && profile) return `<div class="acct-box"><div class="row">${avatarImg(profile.avatar, 'pfp sm')}<b>@${esc(profile.username)}</b>${badgeHtml(profile)} <button class="btn sm" data-acct-x="panel">${esc(t('prof.mine', 'My profile'))}</button></div>${accountControls()}</div>`;
+  if (user && profile) return `<div class="acct-box"><div class="row">${avatarImg(profile.avatar, 'pfp sm')}<b>@${esc(profile.username)}</b>${specialHtml(user && user.uid)}${badgeHtml(profile)} <button class="btn sm" data-acct-x="panel">${esc(t('prof.mine', 'My profile'))}</button></div>${accountControls()}</div>`;
   if (user) return `<div class="acct-box"><div class="row"><button class="btn" data-acct-x="panel">${esc(t('prof.finish', 'Finish your profile'))}</button></div></div>`;
   return `<div class="acct-box"><p class="hint">${esc(t('acct.off', 'Create a free account to keep your words, lists, notes and progress on all your devices.'))}</p><div class="row"><button class="btn" data-acct-x="panel" data-mode="create">${esc(t('acct.create.btn', 'Create an account'))}</button><button class="btn" data-acct-x="panel" data-mode="login">${esc(t('acct.have', 'I already have an account'))}</button></div></div>`;
 }
@@ -478,7 +482,7 @@ function friendBtn(uid) {
 function personRow(p) {
   const nat = (p.nationality || []).map(flagEmoji).join(' ');
   const sp = (p.speaks || []).map(x => langName(x.l)).join(', '), le = (p.learning || []).map(x => langName(x.l)).join(', ');
-  return `<li class="person"><button class="who" data-acct-x="view" data-name="${esc(p.username)}">${avatarImg(p.avatar, 'pfp md')}<span class="who-t"><span class="who-n"><b>@${esc(p.username)}</b> ${badgeHtml(p)} <span class="flags">${nat}</span></span>
+  return `<li class="person"><button class="who" data-acct-x="view" data-name="${esc(p.username)}">${avatarImg(p.avatar, 'pfp md')}<span class="who-t"><span class="who-n"><b>@${esc(p.username)}</b>${specialHtml(p.uid)} ${badgeHtml(p)} <span class="flags">${nat}</span></span>
     <small>${sp ? esc(t('prof.speaks', 'Speaks')) + ' ' + esc(sp) : ''}${le ? ' · ' + esc(t('prof.learning', 'Learning')) + ' ' + esc(le) : ''}</small></span></button><span class="fr">${friendBtn(p.uid)}</span></li>`;
 }
 function listHtml() {
