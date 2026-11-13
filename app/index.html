@@ -427,12 +427,11 @@ i.hm3{background:color-mix(in srgb,var(--regular) 80%,var(--paper))} i.hm4{backg
 .brand{line-height:0}.wordmark{display:inline-block;height:44px;aspect-ratio:686/200;background:var(--ink);-webkit-mask:url(icons/wordmark.png) center/contain no-repeat;mask:url(icons/wordmark.png) center/contain no-repeat}
 @media (max-width:600px){.wordmark{height:38px}}
 
-/* Wooden desk behind the page: the app sits on it like a sheet of paper. The grain is drawn by the browser (no image to download). */
-:root{--wood:#7a4c2c;--wood-grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='800'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.0035 0.11' numOctaves='4' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .2 0 0 0 0 .1 0 0 0 0 .04 2.2 0 0 0 -.85'/%3E%3C/filter%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.02 0.6' numOctaves='2' seed='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .95 0 0 0 0 .75 0 0 0 0 .5 1.2 0 0 0 -.62'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
-  --paper:#f5f0e6; --rule:#ddd4c3}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--wood:#2e1c11;--paper:#0f1318;--rule:#2c3440}}
-:root[data-theme="dark"]{--wood:#2e1c11;--paper:#0f1318;--rule:#2c3440}
-body{background:var(--wood-grain),linear-gradient(180deg,rgba(255,220,170,.10),rgba(0,0,0,.18)),var(--wood);background-attachment:fixed}
+/* Wooden desk behind the page: the app sits on it like a sheet of paper. The grain is a small picture repeated; it scrolls with the page (a fixed or drawn background made scrolling slow). */
+:root{--wood:#7a4c2c url(icons/wood.jpg);--paper:#f5f0e6; --rule:#ddd4c3}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--wood:#2e1c11 url(icons/wood-dark.jpg);--paper:#0f1318;--rule:#2c3440}}
+:root[data-theme="dark"]{--wood:#2e1c11 url(icons/wood-dark.jpg);--paper:#0f1318;--rule:#2c3440}
+body{background:var(--wood)}
 .wrap{background:var(--paper);margin:28px auto;max-width:min(1360px,calc(100% - 64px));border-radius:6px;box-shadow:0 1px 2px rgba(25,12,4,.35),0 14px 40px rgba(25,12,4,.45)}
 @media (max-width:600px){.wrap{margin:10px;max-width:none;border-radius:5px}}
 .brand{filter:drop-shadow(0 1px 1px rgba(60,35,15,.28)) drop-shadow(0 4px 7px rgba(60,35,15,.22))}
@@ -440,6 +439,68 @@ body{background:var(--wood-grain),linear-gradient(180deg,rgba(255,220,170,.10),r
 :root[data-theme="midnight"] body{background:#000}
 :root[data-theme="midnight"] .wrap{box-shadow:none;margin-top:0;margin-bottom:0}
 @media print{body{background:none}.wrap{box-shadow:none;margin:0}}
+
+/* ===== Old library look: parchment pages, iron-gall ink, oxblood and gold, serif type, printed rules and ornaments ===== */
+:root{
+  --paper:#ecdfc2; --surface:#f6eedb; --ink:#2b1d12; --muted:#6c5741; --rule:#c2ab82;
+  --accent:#7a1f1f; --accent-soft:#ead6b8; --gold:#9a7428;
+  --regular:#2f5d2a; --irregular:#9b1c1c; --mark:#f0d88a;
+  --g-m:#2c4f86; --g-f:#8e2a4f; --g-n:#3b6b34; --g-pl:#6c5f52;
+  --A1:#3b6b34;--A2:#5f7a1f;--B1:#8a6a0e;--B2:#a4511a;--C1:#9b2a1c;--C2:#5e2d7a;--akk:#2c4f86;--dat:#8a4a14;--gen:#5e2d7a;
+  --body:"Source Serif 4", "Iowan Old Style", Georgia, serif;
+  --vign:rgba(120,80,30,.22)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#1e150f; --surface:#2a1e15; --ink:#ecdfc4; --muted:#b39e7e; --rule:#4f3b27;
+  --accent:#d9ad5b; --accent-soft:#3b2a1a; --gold:#d9ad5b; --regular:#8fc27e; --irregular:#e98a74; --mark:#5a4512;
+  --g-m:#8fb0e6; --g-f:#e695b4; --g-n:#8fc27e; --g-pl:#b0a493;
+  --A1:#8fc27e;--A2:#b6c96a;--B1:#e3c25a;--B2:#e9a064;--C1:#e98a74;--C2:#c4a0e0;--akk:#8fb0e6;--dat:#e9a064;--gen:#c4a0e0;--vign:rgba(0,0,0,.45)}}
+:root[data-theme="dark"]{
+  --paper:#1e150f; --surface:#2a1e15; --ink:#ecdfc4; --muted:#b39e7e; --rule:#4f3b27;
+  --accent:#d9ad5b; --accent-soft:#3b2a1a; --gold:#d9ad5b; --regular:#8fc27e; --irregular:#e98a74; --mark:#5a4512;
+  --g-m:#8fb0e6; --g-f:#e695b4; --g-n:#8fc27e; --g-pl:#b0a493;
+  --A1:#8fc27e;--A2:#b6c96a;--B1:#e3c25a;--B2:#e9a064;--C1:#e98a74;--C2:#c4a0e0;--akk:#8fb0e6;--dat:#e9a064;--gen:#c4a0e0;--vign:rgba(0,0,0,.45)}
+:root[data-theme="midnight"]{--gold:#c9a45a;--vign:transparent}
+body{font-size:16px}
+/* the page: a printed frame line and darker, aged edges */
+.wrap{border-radius:2px;box-shadow:inset 0 0 0 10px var(--paper),inset 0 0 0 11px var(--rule),inset 0 0 0 14px var(--paper),inset 0 0 0 15px var(--rule),inset 0 0 90px var(--vign),0 1px 2px rgba(25,12,4,.35),0 14px 40px rgba(25,12,4,.45);padding:40px 38px 48px}
+@media (max-width:600px){.wrap{padding:26px 18px 36px;box-shadow:inset 0 0 0 6px var(--paper),inset 0 0 0 7px var(--rule),inset 0 0 50px var(--vign),0 6px 20px rgba(25,12,4,.45)}}
+:root[data-theme="midnight"] .wrap{box-shadow:none}
+/* masthead: centred title, motto in italics, a double rule and an ornament */
+header{flex-direction:column;text-align:center;gap:6px;padding-bottom:18px;border-bottom:3px double var(--rule);position:relative}
+header::after{content:"❦";position:absolute;left:50%;bottom:-.8em;transform:translateX(-50%);background:var(--paper);color:var(--accent);padding:0 .5em;font:400 20px/1 var(--display)}
+h1.brand{margin:0}
+.wordmark{height:62px}
+@media (max-width:600px){.wordmark{height:46px}}
+header p{flex:none;font-style:italic;color:var(--muted);font-size:16px}
+/* navigation: words separated by middle dots, like an old site's menu */
+nav.top{justify-content:center;gap:2px 0}
+nav.top .btn{border:0;background:none;border-radius:0;padding:2px 10px;font:400 16px var(--display);font-variant:small-caps;letter-spacing:.06em;color:var(--accent);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;text-decoration-color:var(--rule)}
+nav.top .btn+.btn::before{content:"·";color:var(--muted);margin:0 10px 0 -10px;display:inline-block;text-decoration:none}
+nav.top .btn:hover{text-decoration-color:currentColor}
+nav.top .btn[aria-expanded="true"]{background:none;font-weight:700;text-decoration-color:currentColor}
+@media (max-width:600px){nav.top .btn{padding:2px 7px;font-size:15px}nav.top .btn+.btn::before{content:none}}
+/* buttons, chips, fields: square corners and serif type */
+.btn,.chip,select,.text,.field,.sugg,.panel,.card,.forms,.extra,.tip-bar,.say,kbd.key,.lvl,.gov .pat,button.lvl.big{border-radius:2px}
+.say{border-radius:50%}
+.btn,.chip{font-family:var(--display);background:var(--surface)}
+.btn{font-variant:small-caps;letter-spacing:.04em;font-size:15px}
+.btn.primary{background:var(--accent);color:var(--surface)}
+.field{border:1px solid var(--rule);box-shadow:inset 0 1px 3px rgba(60,35,15,.15)}
+.field input{font-family:var(--display)}
+.field input::placeholder{font-style:italic}
+.panel{box-shadow:inset 0 0 0 3px var(--surface),inset 0 0 0 4px var(--rule);padding:20px 24px}
+#welcome{border:1px solid var(--accent);box-shadow:inset 0 0 0 3px var(--surface),inset 0 0 0 4px var(--accent)}
+.panel h2,.forms h3,.extra h3{font:400 15px var(--display);font-variant:small-caps;text-transform:lowercase;letter-spacing:.12em;color:var(--accent)}
+.panel h2::before{content:"❧ ";color:var(--gold);letter-spacing:0}
+/* entries: index cards from a card catalogue, with a leather thumb tab */
+.card{box-shadow:inset 0 0 0 3px var(--surface),inset 0 0 0 4px var(--rule),0 2px 5px rgba(60,35,15,.18)}
+.tab{background:var(--accent);color:var(--surface);font-family:var(--display);font-variant:small-caps;letter-spacing:.1em;border-radius:2px 0 0 2px;box-shadow:inset 0 0 0 1px var(--gold)}
+.forms,.extra{background:var(--paper);border:1px solid var(--rule)}
+.sugg{box-shadow:0 8px 22px rgba(40,20,5,.3)}
+a{color:var(--accent)}
+.recent,.wotd{font-style:italic}
+footer{max-width:none;text-align:center;font-style:italic;border-top:3px double var(--rule);padding-top:16px}
+footer b{font-style:normal;font-variant:small-caps;letter-spacing:.05em}
 </style>
 </head>
 <body>
