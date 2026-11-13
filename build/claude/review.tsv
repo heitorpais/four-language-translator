@@ -10519,3 +10519,1620 @@ first	it:buio:noun	*	pt:escuridão:noun
 drop-tr	it:ladro:adjective	*	*	*
 drop-tr	it:nudo:adjective	*	sv	bar
 first	it:nudo:adjective	*	sv:naken:adjective
+drop-tr	nl:getuige:preposition	*	*	*
+first	nl:troep:noun	*	en:mess:noun
+first	nl:troep:noun	*	de:Durcheinander:noun
+first	nl:troep:noun	*	fr:bazar:noun
+first	nl:troep:noun	*	es:desorden:noun
+drop-tr	nl:afspreken:verb	*	pt	concordar
+first	nl:afspreken:verb	*	pt:combinar:verb
+drop-tr	nl:uitleg:noun	*	de	Lesart
+first	nl:uitleg:noun	*	de:Erklärung:noun
+drop-tr	nl:ernstig:adjective	*	sv	seriös
+first	nl:ernstig:adjective	*	sv:allvarlig:adjective
+drop-tr	nl:leider:noun	*	fr	cape
+drop-tr	nl:leider:noun	*	cs	šéf
+drop-tr	nl:leider:noun	*	it	capo
+first	nl:leider:noun	*	fr:chef:noun
+first	nl:leider:noun	*	cs:vůdce:noun
+first	nl:leider:noun	*	it:leader:noun
+drop-tr	nl:schijnen:verb	*	sv	slå
+first	nl:schijnen:verb	*	sv:verka:verb
+first	nl:schijnen:verb	*	cs:zdát:verb
+drop-tr	nl:rollen:verb	*	de	kullern
+first	nl:rollen:verb	*	de:rollen:verb
+drop-tr	nl:lot:noun	*	la	pars
+first	nl:lot:noun	*	la:fatum:noun
+drop-tr	nl:verrassen:verb	*	de	überrumpeln
+first	nl:verrassen:verb	*	de:überraschen:verb
+drop-tr	nl:onthouden:verb	*	it	memorizzare
+first	nl:onthouden:verb	*	it:ricordare:verb
+first	nl:onthouden:verb	*	pt:lembrar:verb
+drop-tr	nl:motor:noun	*	la	autobirota
+drop-tr	nl:zwijgen:verb	*	en	shut up
+drop-tr	nl:zwijgen:verb	*	fr	taire
+first	nl:zwijgen:verb	*	en:be silent:verb
+first	nl:zwijgen:verb	*	fr:se taire:verb
+drop-tr	nl:merken:verb	*	pt	ver
+drop-tr	nl:merken:verb	*	es	apercibirse
+first	nl:merken:verb	*	pt:notar:verb
+first	nl:merken:verb	*	es:notar:verb
+drop-tr	nl:graf:adverb	*	*	*
+drop-tr	nl:werkelijk:adjective	*	fr	vraiment
+drop-tr	nl:werkelijk:adjective	*	pt	mesmo
+drop-tr	nl:werkelijk:adjective	*	es	realmente
+first	nl:werkelijk:adjective	*	fr:réel:adjective
+first	nl:werkelijk:adjective	*	pt:real:adjective
+first	nl:werkelijk:adjective	*	es:real:adjective
+drop-tr	nl:verantwoordelijk:adjective	*	fr	correspondant
+first	nl:verantwoordelijk:adjective	*	fr:responsable:adjective
+drop-tr	nl:verantwoordelijk:adverb	*	*	*
+first	nl:ophalen:verb	*	fr:aller chercher:verb
+drop-tr	nl:aanbieden:verb	*	en	tender
+drop-tr	nl:aanbieden:verb	*	it	presentare
+drop-tr	nl:aanbieden:verb	*	cs	předložit
+first	nl:aanbieden:verb	*	en:offer:verb
+first	nl:aanbieden:verb	*	it:offrire:verb
+first	nl:aanbieden:verb	*	cs:nabídnout:verb
+first	nl:aanbieden:verb	*	fr:offrir:verb
+drop-tr	nl:bevallen:verb	*	pt	prazer
+first	nl:bevallen:verb	*	pt:agradar:verb
+drop-tr	nl:officier:noun	*	it	agente
+first	nl:officier:noun	*	it:ufficiale:noun
+first	nl:vannacht:adverb	*	fr:cette nuit:adverb
+first	nl:vannacht:adverb	*	es:esta noche:adverb
+first	nl:vannacht:adverb	*	pt:esta noite:adverb
+drop-tr	nl:straffen:verb	*	en	sentence
+first	nl:straffen:verb	*	en:punish:verb
+drop-tr	nl:verzinnen:verb	*	cs	razit
+drop-tr	nl:verzinnen:verb	*	it	creare
+drop-tr	nl:verzinnen:verb	*	de	erdenken
+first	nl:verzinnen:verb	*	cs:vymyslet:verb
+first	nl:verzinnen:verb	*	it:inventare:verb
+first	nl:verzinnen:verb	*	de:ausdenken:verb
+drop-tr	nl:lui:noun	*	pt	pessoa
+drop-tr	nl:lui:noun	*	cs	člověk
+first	nl:lui:noun	*	pt:gente:noun
+first	nl:lui:noun	*	cs:lidé:noun
+first	nl:nek:noun	*	en:neck:noun
+first	nl:nek:noun	*	de:Hals:noun
+drop-tr	nl:opschieten:verb	*	fr	dépêcher
+first	nl:opschieten:verb	*	fr:se dépêcher:verb
+first	nl:opschieten:verb	*	pt:apressar-se:verb
+first	nl:opschieten:verb	*	it:sbrigarsi:verb
+drop-tr	nl:tegenhouden:verb	*	en	hold
+first	nl:tegenhouden:verb	*	en:stop:verb
+drop-tr	nl:vasthouden:verb	*	pt	pegar
+first	nl:vasthouden:verb	*	pt:segurar:verb
+drop-tr	nl:basis:noun	*	de	Stützpunkt
+drop-tr	nl:basis:noun	*	es	basa
+drop-tr	nl:basis:noun	*	cs	základna
+first	nl:basis:noun	*	de:Basis:noun
+first	nl:basis:noun	*	es:base:noun
+first	nl:basis:noun	*	cs:základ:noun
+drop-tr	nl:opdracht:noun	*	en	mission
+drop-tr	nl:opdracht:noun	*	fr	commission
+drop-tr	nl:opdracht:noun	*	cs	mise
+first	nl:opdracht:noun	*	en:assignment:noun
+first	nl:opdracht:noun	*	fr:tâche:noun
+first	nl:opdracht:noun	*	cs:úkol:noun
+drop-tr	nl:aangenaam:adjective	*	pt	bonito
+drop-tr	nl:aangenaam:adjective	*	cs	hezký
+first	nl:aangenaam:adjective	*	pt:agradável:adjective
+first	nl:aangenaam:adjective	*	cs:příjemný:adjective
+drop-tr	nl:boodschappen:noun	*	fr	provision
+drop-tr	nl:boodschappen:noun	*	es	alimento
+drop-tr	nl:boodschappen:noun	*	de	Lebensmittel
+first	nl:boodschappen:noun	*	fr:courses:noun
+first	nl:boodschappen:noun	*	es:compras:noun
+first	nl:boodschappen:noun	*	de:Einkäufe:noun
+drop-tr	nl:bossen:verb	*	*	*
+drop-tr	nl:behoorlijk:adverb	*	de	zünftig
+drop-tr	nl:behoorlijk:adverb	*	fr	convenablement
+drop-tr	nl:behoorlijk:adverb	*	es	debidamente
+first	nl:behoorlijk:adverb	*	de:ziemlich:adverb
+first	nl:behoorlijk:adverb	*	fr:assez:adverb
+first	nl:behoorlijk:adverb	*	es:bastante:adverb
+drop-tr	nl:directeur:noun	*	it	capo
+first	nl:directeur:noun	*	it:direttore:noun
+drop-tr	nl:boord:noun	*	fr	orée
+drop-tr	nl:boord:noun	*	sv	bord
+first	nl:boord:noun	*	fr:bord:noun
+first	nl:leiding:noun	*	en:management:noun
+first	nl:leiding:noun	*	de:Leitung:noun
+first	nl:leiding:noun	*	fr:direction:noun
+first	nl:leiding:noun	*	pt:direção:noun
+first	nl:leiding:noun	*	it:direzione:noun
+first	nl:leiding:noun	*	cs:vedení:noun
+drop-tr	nl:uitzien:verb	*	pt	resguardar
+drop-tr	nl:uitzien:verb	*	es	aparecer
+drop-tr	nl:uitzien:verb	*	it	guardare
+first	nl:uitzien:verb	*	pt:parecer:verb
+first	nl:uitzien:verb	*	es:parecer:verb
+first	nl:uitzien:verb	*	it:sembrare:verb
+drop-tr	nl:ineens:adverb	*	pt	imediatamente
+drop-tr	nl:ineens:adverb	*	it	subito
+first	nl:ineens:adverb	*	pt:de repente:adverb
+first	nl:ineens:adverb	*	it:all'improvviso:adverb
+drop-tr	nl:toestemming:noun	*	pt	aprovação
+first	nl:toestemming:noun	*	pt:permissão:noun
+drop-tr	nl:publiek:adjective	*	de	Publikum
+first	nl:publiek:adjective	*	de:öffentlich:adjective
+drop-tr	nl:daten:verb	*	es	pololear
+first	nl:daten:verb	*	es:salir:verb
+drop-tr	nl:kloten:verb	*	fr	roubignole
+drop-tr	nl:broeder:noun	*	pt	frade
+drop-tr	nl:broeder:noun	*	es	fraile
+first	nl:broeder:noun	*	pt:irmão:noun
+first	nl:broeder:noun	*	es:hermano:noun
+drop-tr	nl:verdorie:interjection	*	fr	nom d’un petit bonhomme
+first	nl:verdorie:interjection	*	fr:zut:interjection
+drop-tr	nl:lijnen:verb	*	es	enflaquecer
+first	nl:lijnen:verb	*	es:adelgazar:verb
+drop-tr	nl:bedoeling:noun	*	cs	účel
+first	nl:bedoeling:noun	*	cs:úmysl:noun
+drop-tr	nl:overvallen:verb	*	fr	embusquer
+drop-tr	nl:overvallen:verb	*	it	scippare
+first	nl:overvallen:verb	*	fr:attaquer:verb
+first	nl:overvallen:verb	*	it:rapinare:verb
+drop-tr	nl:toevallig:adjective	*	fr	aléatoire
+drop-tr	nl:toevallig:adjective	*	pt	aleatório
+first	nl:toevallig:adjective	*	fr:fortuit:adjective
+first	nl:toevallig:adjective	*	pt:acidental:adjective
+drop-tr	nl:eng:adjective	*	it	pauroso
+first	nl:eng:adjective	*	it:spaventoso:adjective
+first	nl:eng:adjective	*	fr:effrayant:adjective
+drop-tr	nl:wraak:noun	*	fr	revanche
+first	nl:wraak:noun	*	fr:vengeance:noun
+drop-tr	nl:opsluiten:verb	*	en	incarcerate
+drop-tr	nl:opsluiten:verb	*	fr	confiner
+first	nl:opsluiten:verb	*	en:lock up:verb
+first	nl:opsluiten:verb	*	fr:enfermer:verb
+drop-tr	nl:verdedigen:verb	*	it	preconizzare
+first	nl:verdedigen:verb	*	it:difendere:verb
+drop-tr	nl:dringen:verb	*	es	apremiar
+first	nl:dringen:verb	*	es:empujar:verb
+drop-tr	nl:smaken:verb	*	es	paladear
+first	nl:smaken:verb	*	es:saber:verb
+drop-tr	nl:bruiloft:noun	*	it	sposalizio
+first	nl:bruiloft:noun	*	it:matrimonio:noun
+drop-tr	nl:schatten:verb	*	cs	vážit si
+drop-tr	nl:schatten:verb	*	es	apreciar
+first	nl:schatten:verb	*	cs:odhadnout:verb
+first	nl:schatten:verb	*	es:estimar:verb
+drop-tr	nl:zak:noun	*	es	bolso
+first	nl:zak:noun	*	es:bolsa:noun
+drop-tr	nl:manen:verb	*	en	rebuke
+first	nl:manen:verb	*	en:urge:verb
+drop-tr	nl:proces:noun	*	fr	tâche
+drop-tr	nl:proces:noun	*	sv	fall
+first	nl:proces:noun	*	fr:procès:noun
+first	nl:proces:noun	*	sv:rättegång:noun
+first	nl:proces:noun	*	cs:proces:noun
+drop-tr	nl:homo:noun	*	de	Schwuchtel
+drop-tr	nl:homo:noun	*	pt	bicha
+drop-tr	nl:homo:noun	*	es	maricón
+drop-tr	nl:homo:noun	*	la	cinaedus
+first	nl:homo:noun	*	de:Schwuler:noun
+first	nl:homo:noun	*	pt:gay:noun
+first	nl:homo:noun	*	es:gay:noun
+drop-tr	nl:oppakken:verb	*	de	ergreifen
+drop-tr	nl:oppakken:verb	*	fr	appréhender
+first	nl:oppakken:verb	*	de:aufheben:verb
+first	nl:oppakken:verb	*	fr:ramasser:verb
+drop-tr	nl:officieel:adjective	*	de	behördlich
+first	nl:officieel:adjective	*	de:offiziell:adjective
+drop-tr	nl:eenmaal:adverb	*	fr	jadis
+first	nl:eenmaal:adverb	*	fr:une fois:adverb
+drop-tr	nl:toegang:noun	*	sv	väg
+first	nl:toegang:noun	*	sv:tillgång:noun
+drop-tr	nl:onmiddellijk:adverb	*	es	ya
+first	nl:onmiddellijk:adverb	*	es:inmediatamente:adverb
+drop-tr	nl:vlak:noun	*	fr	plaine
+first	nl:vlak:noun	*	fr:plan:noun
+drop-tr	nl:gedragen:verb	*	fr	conduire
+drop-tr	nl:gedragen:verb	*	cs	postupovat
+first	nl:gedragen:verb	*	fr:se comporter:verb
+first	nl:gedragen:verb	*	cs:chovat se:verb
+first	nl:last:noun	*	es:carga:noun
+drop-tr	sv:sluten:adjective	*	fr	privé
+first	sv:sluten:adjective	*	fr:fermé:adjective
+drop-tr	sv:endast:adverb	*	de	allein
+first	sv:endast:adverb	*	de:nur:adverb
+drop-tr	sv:spänna:verb	*	en	cock
+first	sv:spänna:verb	*	en:tighten:verb
+drop-tr	sv:klippa:verb	*	en	like
+drop-tr	sv:klippa:verb	*	de	knipsen
+first	sv:klippa:verb	*	en:cut:verb
+first	sv:klippa:verb	*	de:schneiden:verb
+first	sv:klippa:verb	*	fr:couper:verb
+first	sv:klippa:verb	*	pt:cortar:verb
+first	sv:klippa:verb	*	it:tagliare:verb
+first	sv:klippa:verb	*	es:cortar:verb
+first	sv:klippa:verb	*	nl:knippen:verb
+first	sv:klippa:verb	*	cs:stříhat:verb
+drop-tr	sv:nåd:noun	*	fr	pitié
+first	sv:nåd:noun	*	fr:grâce:noun
+drop-tr	sv:kollega:noun	*	es	compañero
+first	sv:kollega:noun	*	es:colega:noun
+drop-tr	sv:sänka:verb	*	pt	descer
+first	sv:sänka:verb	*	pt:baixar:verb
+first	sv:sänka:verb	*	nl:verlagen:verb
+drop-tr	sv:modig:adjective	*	pt	bravo
+first	sv:modig:adjective	*	pt:corajoso:adjective
+drop-tr	sv:skämt:noun	*	de	Spaß
+drop-tr	sv:skämt:noun	*	fr	badinage
+first	sv:skämt:noun	*	de:Witz:noun
+first	sv:skämt:noun	*	fr:blague:noun
+drop-tr	sv:tända:verb	*	de	anmachen
+first	sv:tända:verb	*	de:anzünden:verb
+first	sv:närma:verb	*	de:nähern:verb
+drop-tr	sv:rå:adjective	*	pt	bruto
+first	sv:rå:adjective	*	pt:cru:adjective
+first	sv:ladda:verb	*	cs:nabít:verb
+first	sv:ladda:verb	*	it:caricare:verb
+drop-tr	sv:umgås:verb	*	es	alternar
+first	sv:umgås:verb	*	es:socializar:verb
+first	sv:umgås:verb	*	fr:fréquenter:verb
+drop-tr	sv:strida:verb	*	en	contend
+first	sv:strida:verb	*	en:fight:verb
+first	sv:strida:verb	*	de:kämpfen:verb
+drop-tr	sv:sky:verb	*	es	cielo
+drop-tr	sv:ihjäl:adverb	*	en	death
+first	sv:ihjäl:adverb	*	en:to death:adverb
+drop-tr	sv:hustru:noun	*	es	mujer
+drop-tr	sv:hustru:noun	*	nl	vrouw
+drop-tr	sv:hustru:noun	*	de	Frau
+first	sv:hustru:noun	*	es:esposa:noun
+first	sv:hustru:noun	*	nl:echtgenote:noun
+first	sv:hustru:noun	*	de:Ehefrau:noun
+drop-tr	sv:rakt:adverb	*	de	stracks
+first	sv:rakt:adverb	*	de:geradeaus:adverb
+drop-tr	sv:tillgång:noun	*	de	Angebot
+drop-tr	sv:tillgång:noun	*	en	supply
+first	sv:tillgång:noun	*	de:Zugang:noun
+first	sv:tillgång:noun	*	en:access:noun
+drop-tr	sv:bak:adverb	*	nl	krent
+first	sv:bak:adverb	*	nl:achter:adverb
+drop-tr	sv:våning:noun	*	la	diaeta
+first	sv:våning:noun	*	en:floor:noun
+first	sv:våning:noun	*	de:Stockwerk:noun
+first	sv:våning:noun	*	fr:étage:noun
+first	sv:våning:noun	*	pt:andar:noun
+first	sv:våning:noun	*	it:piano:noun
+first	sv:våning:noun	*	es:piso:noun
+first	sv:våning:noun	*	nl:verdieping:noun
+first	sv:våning:noun	*	cs:patro:noun
+drop-tr	sv:fånge:noun	*	pt	preso
+first	sv:fånge:noun	*	pt:prisioneiro:noun
+drop-tr	sv:varelse:noun	*	es	entidad
+first	sv:varelse:noun	*	es:criatura:noun
+drop-tr	sv:attack:noun	*	pt	investida
+drop-tr	sv:attack:noun	*	fr	assaut
+first	sv:attack:noun	*	pt:ataque:noun
+first	sv:attack:noun	*	fr:attaque:noun
+drop-tr	sv:satsa:verb	*	fr	mettre
+first	sv:satsa:verb	*	fr:miser:verb
+drop-tr	sv:anmäla:verb	*	fr	annoncer
+drop-tr	sv:anmäla:verb	*	es	notificar
+first	sv:anmäla:verb	*	fr:signaler:verb
+first	sv:anmäla:verb	*	es:denunciar:verb
+drop-tr	sv:koll:noun	*	fr	examen
+first	sv:koll:noun	*	fr:vérification:noun
+drop-tr	sv:mästare:noun	*	es	maese
+first	sv:mästare:noun	*	es:maestro:noun
+drop-tr	sv:sakta:adjective	*	de	verlangsamen
+first	sv:sakta:adjective	*	de:langsam:adjective
+drop-tr	sv:sakta:adverb	*	de	sutje
+first	sv:sakta:adverb	*	de:langsam:adverb
+drop-tr	sv:farväl:interjection	*	pt	ambanine
+drop-tr	sv:farväl:interjection	*	es	chao
+drop-tr	sv:farväl:interjection	*	de	ade
+first	sv:farväl:interjection	*	pt:adeus:interjection
+first	sv:farväl:interjection	*	es:adiós:interjection
+first	sv:farväl:interjection	*	de:lebe wohl:interjection
+drop-tr	sv:jude:noun	*	cs	Židovka
+first	sv:jude:noun	*	cs:Žid:noun
+drop-tr	sv:förvåna:verb	*	fr	frapper
+drop-tr	sv:förvåna:verb	*	de	verwundern
+first	sv:förvåna:verb	*	fr:étonner:verb
+first	sv:förvåna:verb	*	de:erstaunen:verb
+drop-tr	sv:vild:adjective	*	pt	silvestre
+first	sv:vild:adjective	*	pt:selvagem:adjective
+drop-tr	sv:definitivt:adverb	*	de	entschieden
+drop-tr	sv:definitivt:adverb	*	fr	décidément
+first	sv:definitivt:adverb	*	de:definitiv:adverb
+first	sv:definitivt:adverb	*	fr:définitivement:adverb
+drop-tr	sv:gumma:noun	*	pt	idoso
+drop-tr	sv:gumma:noun	*	es	anciano
+drop-tr	sv:gumma:noun	*	nl	grootmoeder
+first	sv:gumma:noun	*	pt:idosa:noun
+first	sv:gumma:noun	*	es:anciana:noun
+drop-tr	sv:löjtnant:noun	*	de	Oberleutnant
+first	sv:löjtnant:noun	*	de:Leutnant:noun
+drop-tr	sv:röv:interjection	*	*	*
+drop-tr	sv:respektera:verb	*	de	achten
+first	sv:respektera:verb	*	de:respektieren:verb
+first	sv:respektera:verb	*	cs:respektovat:verb
+first	sv:respektera:verb	*	it:rispettare:verb
+first	sv:respektera:verb	*	es:respetar:verb
+drop-tr	sv:löfte:noun	*	cs	přísaha
+drop-tr	sv:löfte:noun	*	it	giuramento
+first	sv:löfte:noun	*	cs:slib:noun
+first	sv:löfte:noun	*	it:promessa:noun
+drop-tr	sv:begravning:noun	*	de	Leiche
+first	sv:begravning:noun	*	de:Beerdigung:noun
+drop-tr	sv:skugga:verb	*	cs	stín
+drop-tr	sv:naken:adjective	*	de	frei
+first	sv:naken:adjective	*	de:nackt:adjective
+first	sv:duga:verb	*	de:taugen:verb
+drop-tr	sv:stycke:noun	*	it	parte
+first	sv:stycke:noun	*	it:pezzo:noun
+drop-tr	sv:lyda:verb	*	de	befolgen
+first	sv:lyda:verb	*	de:gehorchen:verb
+first	sv:råda:verb	*	en:advise:verb
+drop-tr	sv:gubbe:noun	*	en	older
+first	sv:gubbe:noun	*	en:old man:noun
+first	sv:gubbe:noun	*	de:Alter:noun
+first	sv:gubbe:noun	*	fr:vieux:noun
+first	sv:gubbe:noun	*	pt:velho:noun
+first	sv:gubbe:noun	*	es:viejo:noun
+first	sv:gubbe:noun	*	it:vecchio:noun
+first	sv:gubbe:noun	*	cs:stařec:noun
+drop-tr	sv:fruktansvärd:adjective	*	de	erbärmlich
+first	sv:fruktansvärd:adjective	*	de:furchtbar:adjective
+drop-tr	sv:lyfta:verb	*	es	subir
+first	sv:lyfta:verb	*	es:levantar:verb
+drop-tr	sv:kommissarie:noun	*	de	Leiter
+first	sv:kommissarie:noun	*	de:Kommissar:noun
+drop-tr	sv:förvandla:verb	*	es	cambiar
+first	sv:förvandla:verb	*	es:transformar:verb
+drop-tr	sv:avsky:noun	*	pt	ódio
+drop-tr	sv:avsky:noun	*	cs	nenávist
+drop-tr	sv:avsky:noun	*	es	repelo
+first	sv:avsky:noun	*	pt:asco:noun
+first	sv:avsky:noun	*	cs:odpor:noun
+first	sv:avsky:noun	*	es:asco:noun
+drop-tr	sv:inspektör:noun	*	pt	superintendente
+first	sv:inspektör:noun	*	pt:inspetor:noun
+drop-tr	sv:somna:verb	*	fr	endormir
+first	sv:somna:verb	*	fr:s'endormir:verb
+drop-tr	sv:omedelbar:adjective	*	en	direct
+drop-tr	sv:omedelbar:adjective	*	cs	přímý
+first	sv:omedelbar:adjective	*	en:immediate:adjective
+first	sv:omedelbar:adjective	*	cs:okamžitý:adjective
+first	sv:omedelbar:adjective	*	it:immediato:adjective
+drop-tr	sv:total:adjective	*	fr	tout
+drop-tr	sv:total:adjective	*	it	intero
+drop-tr	sv:total:adjective	*	nl	volledig
+first	sv:total:adjective	*	fr:total:adjective
+first	sv:total:adjective	*	it:totale:adjective
+first	sv:total:adjective	*	nl:totaal:adjective
+drop-tr	sv:orka:interjection	*	*	*
+drop-tr	sv:orka:verb	*	en	will
+first	sv:orka:verb	*	en:manage:verb
+first	sv:orka:verb	*	de:schaffen:verb
+drop-tr	sv:befinna:verb	*	en	condition
+first	sv:befinna:verb	*	de:befinden:verb
+drop-tr	sv:alternativ:noun	*	pt	alternativo
+first	sv:alternativ:noun	*	pt:alternativa:noun
+first	sv:godkänna:verb	*	en:approve:verb
+first	sv:godkänna:verb	*	de:genehmigen:verb
+first	sv:godkänna:verb	*	fr:approuver:verb
+first	sv:godkänna:verb	*	pt:aprovar:verb
+first	sv:godkänna:verb	*	it:approvare:verb
+first	sv:godkänna:verb	*	es:aprobar:verb
+first	sv:godkänna:verb	*	nl:goedkeuren:verb
+first	sv:godkänna:verb	*	cs:schválit:verb
+drop-tr	sv:strunt:noun	*	es	pamplina
+first	sv:strunt:noun	*	es:tontería:noun
+drop-tr	sv:cell:noun	*	pt	célula
+drop-tr	sv:cell:noun	*	cs	buňka
+drop-tr	sv:cell:noun	*	es	célula
+first	sv:cell:noun	*	pt:cela:noun
+first	sv:cell:noun	*	cs:cela:noun
+first	sv:cell:noun	*	es:celda:noun
+drop-tr	sv:förmåga:noun	*	fr	pouvoir
+first	sv:förmåga:noun	*	fr:capacité:noun
+drop-tr	sv:uppmärksamhet:noun	*	de	Achtung
+drop-tr	sv:uppmärksamhet:noun	*	cs	pozor
+first	sv:uppmärksamhet:noun	*	de:Aufmerksamkeit:noun
+first	sv:uppmärksamhet:noun	*	cs:pozornost:noun
+drop-tr	fr:disputer:verb	*	de	disputieren
+drop-tr	fr:disputer:verb	*	en	fight
+drop-tr	fr:disputer:verb	*	it	contestare
+drop-tr	fr:disputer:verb	*	es	discutir
+first	fr:disputer:verb	*	de:streiten:verb
+first	fr:disputer:verb	*	en:argue:verb
+first	fr:disputer:verb	*	it:litigare:verb
+first	fr:disputer:verb	*	es:discutir:verb
+drop-tr	fr:tableau:noun	*	es	índice
+first	fr:tableau:noun	*	en:picture:noun
+first	fr:tableau:noun	*	es:cuadro:noun
+drop-tr	fr:lier:verb	*	es	ligar
+first	fr:lier:verb	*	es:atar:verb
+drop-tr	fr:annuler:verb	*	de	aufheben
+drop-tr	fr:annuler:verb	*	it	revocare
+first	fr:annuler:verb	*	de:absagen:verb
+first	fr:annuler:verb	*	it:annullare:verb
+drop-tr	fr:moquer:verb	*	pt	brincar
+first	fr:moquer:verb	*	pt:zombar:verb
+drop-tr	fr:spectacle:noun	*	pt	cena
+first	fr:spectacle:noun	*	pt:espetáculo:noun
+drop-tr	fr:lien:noun	*	en	nexus
+drop-tr	fr:lien:noun	*	pt	liame
+first	fr:lien:noun	*	en:link:noun
+first	fr:lien:noun	*	pt:ligação:noun
+first	fr:lien:noun	*	de:Verbindung:noun
+drop-tr	fr:installer:verb	*	de	einsetzen
+drop-tr	fr:installer:verb	*	it	mettere
+first	fr:installer:verb	*	de:installieren:verb
+first	fr:installer:verb	*	it:installare:verb
+drop-tr	fr:violer:verb	*	it	manomettere
+first	fr:violer:verb	*	it:violare:verb
+drop-tr	fr:résoudre:verb	*	es	dirimir
+first	fr:résoudre:verb	*	es:resolver:verb
+drop-tr	fr:entraîner:verb	*	en	carry
+first	fr:entraîner:verb	*	en:train:verb
+drop-tr	fr:gâcher:verb	*	de	pfuschen
+drop-tr	fr:gâcher:verb	*	en	blow
+drop-tr	fr:gâcher:verb	*	pt	borrar
+drop-tr	fr:gâcher:verb	*	it	scompigliare
+drop-tr	fr:gâcher:verb	*	es	desmadrar
+first	fr:gâcher:verb	*	de:verderben:verb
+first	fr:gâcher:verb	*	en:spoil:verb
+first	fr:gâcher:verb	*	pt:estragar:verb
+first	fr:gâcher:verb	*	it:rovinare:verb
+first	fr:gâcher:verb	*	es:arruinar:verb
+first	fr:gâcher:verb	*	nl:verpesten:verb
+drop-tr	fr:sou:conjunction	*	*	*
+drop-tr	fr:salaud:adjective	*	*	*
+drop-tr	fr:salaud:noun	*	de	Hundsfott
+drop-tr	fr:salaud:noun	*	en	louse
+first	fr:salaud:noun	*	de:Mistkerl:noun
+first	fr:salaud:noun	*	en:bastard:noun
+drop-tr	fr:joindre:verb	*	nl	samenstellen
+first	fr:joindre:verb	*	nl:verbinden:verb
+first	fr:dépendre:verb	*	en:depend:verb
+first	fr:dépendre:verb	*	de:abhängen:verb
+first	fr:dépendre:verb	*	pt:depender:verb
+first	fr:dépendre:verb	*	cs:záviset:verb
+first	fr:dépendre:verb	*	it:dipendere:verb
+first	fr:dépendre:verb	*	es:depender:verb
+first	fr:dépendre:verb	*	nl:afhangen:verb
+first	fr:dépendre:verb	*	sv:bero:verb
+drop-tr	fr:espace:noun	*	en	room
+drop-tr	fr:espace:noun	*	de	Platz
+drop-tr	fr:espace:noun	*	sv	avstånd
+first	fr:espace:noun	*	en:space:noun
+first	fr:espace:noun	*	de:Raum:noun
+first	fr:espace:noun	*	sv:utrymme:noun
+drop-tr	fr:renvoyer:verb	*	de	ausweisen
+drop-tr	fr:renvoyer:verb	*	en	resend
+drop-tr	fr:renvoyer:verb	*	cs	zvracet
+drop-tr	fr:renvoyer:verb	*	nl	aanhouden
+first	fr:renvoyer:verb	*	de:zurückschicken:verb
+first	fr:renvoyer:verb	*	en:send back:verb
+first	fr:renvoyer:verb	*	cs:vrátit:verb
+first	fr:renvoyer:verb	*	nl:terugsturen:verb
+drop-tr	fr:refaire:verb	*	nl	overmaken
+first	fr:refaire:verb	*	nl:overdoen:verb
+drop-tr	fr:partenaire:noun	*	cs	spoluhráč
+drop-tr	fr:partenaire:noun	*	es	socio
+first	fr:partenaire:noun	*	cs:partner:noun
+first	fr:partenaire:noun	*	es:compañero:noun
+first	fr:pression:noun	*	en:pressure:noun
+first	fr:pression:noun	*	de:Druck:noun
+first	fr:pression:noun	*	pt:pressão:noun
+first	fr:pression:noun	*	cs:tlak:noun
+first	fr:pression:noun	*	it:pressione:noun
+first	fr:pression:noun	*	es:presión:noun
+first	fr:pression:noun	*	nl:druk:noun
+first	fr:pression:noun	*	sv:tryck:noun
+drop-tr	fr:sexy:adjective	*	it	eccitante
+first	fr:sexy:adjective	*	it:sexy:adjective
+drop-tr	fr:nerveux:noun	*	*	*
+first	fr:costume:noun	*	en:suit:noun
+first	fr:costume:noun	*	de:Anzug:noun
+first	fr:costume:noun	*	pt:terno:noun
+first	fr:costume:noun	*	cs:oblek:noun
+first	fr:costume:noun	*	it:abito:noun
+first	fr:costume:noun	*	es:traje:noun
+first	fr:costume:noun	*	nl:pak:noun
+first	fr:costume:noun	*	sv:kostym:noun
+drop-tr	fr:transformer:verb	*	de	machen
+drop-tr	fr:transformer:verb	*	pt	mudar
+drop-tr	fr:transformer:verb	*	it	cambiare
+first	fr:transformer:verb	*	de:verwandeln:verb
+first	fr:transformer:verb	*	pt:transformar:verb
+first	fr:transformer:verb	*	it:trasformare:verb
+drop-tr	fr:enchanté:adjective	*	de	bezaubernd
+first	fr:enchanté:adjective	*	de:verzaubert:adjective
+drop-tr	fr:divorcer:verb	*	nl	uiteengaan
+first	fr:divorcer:verb	*	nl:scheiden:verb
+drop-tr	fr:étage:noun	*	en	stage
+drop-tr	fr:étage:noun	*	it	stadio
+first	fr:étage:noun	*	en:floor:noun
+first	fr:étage:noun	*	it:piano:noun
+first	fr:étage:noun	*	pt:andar:noun
+first	fr:étage:noun	*	nl:verdieping:noun
+first	fr:étage:noun	*	sv:våning:noun
+drop-tr	fr:gay:adjective	*	la	cinaedus
+drop-tr	fr:gay:noun	*	la	cinaedus
+drop-tr	fr:coller:verb	*	cs	lpět
+first	fr:coller:verb	*	cs:lepit:verb
+drop-tr	fr:salope:adjective	*	*	*
+drop-tr	fr:félicitations:interjection	*	cs	gratulovat
+first	fr:félicitations:interjection	*	cs:gratulace:noun
+drop-tr	fr:enterrer:verb	*	it	affossare
+first	fr:enterrer:verb	*	it:seppellire:verb
+drop-tr	fr:concerner:verb	*	cs	být
+first	fr:concerner:verb	*	cs:týkat se:verb
+drop-tr	fr:assister:verb	*	es	ayudar
+drop-tr	fr:assister:verb	*	it	partecipare
+first	fr:assister:verb	*	es:asistir:verb
+first	fr:assister:verb	*	it:assistere:verb
+drop-tr	fr:allumer:verb	*	en	inflame
+first	fr:allumer:verb	*	en:turn on:verb
+first	fr:allumer:verb	*	de:anzünden:verb
+first	fr:allumer:verb	*	es:encender:verb
+first	fr:enfermer:verb	*	en:lock up:verb
+first	fr:enfermer:verb	*	de:einsperren:verb
+first	fr:enfermer:verb	*	pt:trancar:verb
+first	fr:enfermer:verb	*	it:rinchiudere:verb
+drop-tr	fr:envers:preposition	*	de	nach
+drop-tr	fr:envers:preposition	*	es	sobre
+drop-tr	fr:envers:preposition	*	sv	om
+first	fr:envers:preposition	*	de:gegenüber:preposition
+first	fr:envers:preposition	*	es:hacia:preposition
+first	fr:envers:preposition	*	sv:mot:preposition
+drop-tr	fr:ennuyer:verb	*	de	ärgern
+drop-tr	fr:ennuyer:verb	*	cs	trápit
+first	fr:ennuyer:verb	*	de:langweilen:verb
+first	fr:ennuyer:verb	*	cs:nudit:verb
+drop-tr	fr:voleur:adjective	*	*	*
+drop-tr	fr:crise:noun	*	en	fit
+first	fr:crise:noun	*	en:crisis:noun
+drop-tr	fr:ha:noun	*	*	*
+drop-tr	fr:immédiatement:adverb	*	en	forthwith
+drop-tr	fr:immédiatement:adverb	*	de	gleich
+drop-tr	fr:immédiatement:adverb	*	es	altiro
+first	fr:immédiatement:adverb	*	en:immediately:adverb
+first	fr:immédiatement:adverb	*	de:sofort:adverb
+first	fr:immédiatement:adverb	*	es:inmediatamente:adverb
+drop-tr	fr:fouiller:verb	*	en	dig
+drop-tr	fr:fouiller:verb	*	de	wühlen
+drop-tr	fr:fouiller:verb	*	pt	escavar
+drop-tr	fr:fouiller:verb	*	it	scavare
+drop-tr	fr:fouiller:verb	*	nl	uitgraven
+first	fr:fouiller:verb	*	en:search:verb
+first	fr:fouiller:verb	*	de:durchsuchen:verb
+first	fr:fouiller:verb	*	pt:revistar:verb
+first	fr:fouiller:verb	*	it:frugare:verb
+first	fr:fouiller:verb	*	nl:doorzoeken:verb
+drop-tr	fr:enfoiré:adjective	*	*	*
+drop-tr	fr:puissant:noun	*	*	*
+drop-tr	fr:puissant:adjective	*	it	forte
+first	fr:puissant:adjective	*	it:potente:adjective
+first	fr:veiller:verb	*	es:velar:verb
+drop-tr	fr:exciter:verb	*	it	spingere
+drop-tr	fr:exciter:verb	*	pt	estimular
+first	fr:exciter:verb	*	it:eccitare:verb
+first	fr:exciter:verb	*	pt:excitar:verb
+drop-tr	fr:serrer:verb	*	de	spannen
+drop-tr	fr:serrer:verb	*	pt	esticar
+first	fr:serrer:verb	*	de:drücken:verb
+first	fr:serrer:verb	*	pt:apertar:verb
+drop-tr	fr:attacher:verb	*	pt	determinar
+drop-tr	fr:attacher:verb	*	es	fijar
+first	fr:attacher:verb	*	pt:prender:verb
+first	fr:attacher:verb	*	es:atar:verb
+drop-tr	fr:déplacer:verb	*	pt	mexer
+drop-tr	fr:déplacer:verb	*	it	traslocare
+first	fr:déplacer:verb	*	pt:deslocar:verb
+first	fr:déplacer:verb	*	it:spostare:verb
+first	fr:stop:interjection	*	es:alto:interjection
+drop-tr	fr:adresser:verb	*	it	mandare
+first	fr:adresser:verb	*	it:indirizzare:verb
+drop-tr	fr:éloigner:verb	*	pt	distanciar
+first	fr:éloigner:verb	*	pt:afastar:verb
+drop-tr	fr:signal:noun	*	de	Stichwort
+first	fr:signal:noun	*	de:Signal:noun
+drop-tr	fr:poche:adjective	*	*	*
+drop-tr	fr:poche:noun	*	pt	bolsa
+first	fr:poche:noun	*	pt:bolso:noun
+drop-tr	fr:empreinte:noun	*	en	track
+drop-tr	fr:empreinte:noun	*	pt	rasto
+first	fr:empreinte:noun	*	en:imprint:noun
+first	fr:empreinte:noun	*	pt:pegada:noun
+drop-tr	fr:utile:noun	*	*	*
+drop-tr	fr:sorcier:adjective	*	*	*
+drop-tr	fr:sorcier:noun	*	cs	čarodějnice
+first	fr:sorcier:noun	*	cs:čaroděj:noun
+drop-tr	fr:excuse-moi:interjection	*	en	sorry
+drop-tr	fr:excuse-moi:interjection	*	es	permiso
+drop-tr	fr:excuse-moi:interjection	*	pt	licença
+first	fr:excuse-moi:interjection	*	en:excuse me:phrase
+first	fr:excuse-moi:interjection	*	es:perdona:interjection
+first	fr:excuse-moi:interjection	*	pt:desculpa:interjection
+drop-tr	fr:changement:noun	*	it	mutamento
+first	fr:changement:noun	*	it:cambiamento:noun
+drop-tr	fr:rigoler:verb	*	en	kid
+first	fr:rigoler:verb	*	en:laugh:verb
+drop-tr	fr:repartir:verb	*	en	restart
+first	fr:repartir:verb	*	en:leave again:verb
+drop-tr	fr:malin:adjective	*	pt	mau
+drop-tr	fr:malin:adjective	*	cs	zhoubný
+drop-tr	fr:malin:adjective	*	it	maligno
+first	fr:malin:adjective	*	pt:esperto:adjective
+first	fr:malin:adjective	*	cs:chytrý:adjective
+first	fr:malin:adjective	*	it:furbo:adjective
+drop-tr	fr:imbécile:noun	*	de	Ross
+first	fr:imbécile:noun	*	de:Idiot:noun
+drop-tr	cs:bývalý:adjective	*	pt	anterior
+drop-tr	cs:bývalý:adjective	*	it	precedente
+drop-tr	cs:bývalý:adjective	*	es	antiguo
+drop-tr	cs:bývalý:adjective	*	nl	vorig
+first	cs:bývalý:adjective	*	pt:ex:adjective
+first	cs:bývalý:adjective	*	it:ex:adjective
+first	cs:bývalý:adjective	*	es:ex:adjective
+first	cs:bývalý:adjective	*	nl:voormalig:adjective
+first	cs:bývalý:adjective	*	sv:före detta:adjective
+first	cs:obléct:verb	*	pt:vestir:verb
+first	cs:obléct:verb	*	it:vestire:verb
+first	cs:falešný:adjective	*	en:fake:adjective
+first	cs:falešný:adjective	*	pt:falso:adjective
+first	cs:falešný:adjective	*	it:falso:adjective
+first	cs:falešný:adjective	*	es:falso:adjective
+first	cs:falešný:adjective	*	nl:vals:adjective
+first	cs:falešný:adjective	*	sv:falsk:adjective
+drop-tr	cs:ovládat:verb	*	en	govern
+drop-tr	cs:ovládat:verb	*	nl	regelen
+first	cs:ovládat:verb	*	en:control:verb
+first	cs:ovládat:verb	*	nl:beheersen:verb
+drop-tr	cs:kafe:noun	*	de	Schockelmei
+first	cs:kafe:noun	*	en:coffee:noun
+first	cs:kafe:noun	*	de:Kaffee:noun
+first	cs:kafe:noun	*	pt:café:noun
+first	cs:kafe:noun	*	it:caffè:noun
+first	cs:kafe:noun	*	es:café:noun
+first	cs:kafe:noun	*	nl:koffie:noun
+first	cs:kafe:noun	*	sv:kaffe:noun
+first	cs:trošku:adverb	*	de:ein bisschen:adverb
+first	cs:trošku:adverb	*	fr:un peu:adverb
+first	cs:trošku:adverb	*	pt:um pouco:adverb
+first	cs:trošku:adverb	*	it:un po':adverb
+first	cs:trošku:adverb	*	es:un poco:adverb
+first	cs:trošku:adverb	*	nl:een beetje:adverb
+first	cs:trošku:adverb	*	sv:lite:adverb
+drop-tr	cs:vašich:pronoun	*	*	*
+drop-tr	cs:laskavost:noun	*	fr	amabilité
+drop-tr	cs:laskavost:noun	*	es	amabilidad
+first	cs:laskavost:noun	*	fr:faveur:noun
+first	cs:laskavost:noun	*	es:favor:noun
+first	cs:laskavost:noun	*	it:favore:noun
+drop-tr	cs:ztráta:noun	*	pt	prejuízo
+first	cs:ztráta:noun	*	pt:perda:noun
+first	cs:litovat:verb	*	en:regret:verb
+first	cs:smát:verb	*	de:lachen:verb
+first	cs:smát:verb	*	pt:rir:verb
+first	cs:smát:verb	*	it:ridere:verb
+first	cs:smát:verb	*	es:reír:verb
+first	cs:smát:verb	*	nl:lachen:verb
+first	cs:smát:verb	*	sv:skratta:verb
+drop-tr	cs:bránit:verb	*	de	schützen
+drop-tr	cs:bránit:verb	*	pt	proteger
+drop-tr	cs:bránit:verb	*	it	proteggere
+drop-tr	cs:bránit:verb	*	es	proteger
+first	cs:bránit:verb	*	de:verteidigen:verb
+first	cs:bránit:verb	*	pt:defender:verb
+first	cs:bránit:verb	*	it:difendere:verb
+first	cs:bránit:verb	*	es:defender:verb
+drop-tr	cs:pokus:noun	*	es	ensayo
+first	cs:pokus:noun	*	es:intento:noun
+drop-tr	cs:vzhled:noun	*	de	Gestalt
+drop-tr	cs:vzhled:noun	*	it	atteggiamento
+drop-tr	cs:vzhled:noun	*	es	vista
+first	cs:vzhled:noun	*	de:Aussehen:noun
+first	cs:vzhled:noun	*	it:aspetto:noun
+first	cs:vzhled:noun	*	es:aspecto:noun
+first	cs:oddělení:noun	*	en:department:noun
+first	cs:oddělení:noun	*	de:Abteilung:noun
+first	cs:oddělení:noun	*	fr:service:noun
+first	cs:oddělení:noun	*	pt:departamento:noun
+first	cs:oddělení:noun	*	it:reparto:noun
+first	cs:oddělení:noun	*	es:departamento:noun
+first	cs:oddělení:noun	*	nl:afdeling:noun
+first	cs:oddělení:noun	*	sv:avdelning:noun
+drop-tr	cs:vyšetřování:noun	*	fr	inquisition
+first	cs:vyšetřování:noun	*	fr:enquête:noun
+drop-tr	cs:stávat:verb	*	en	stand
+first	cs:stávat:verb	*	en:happen:verb
+first	cs:stávat:verb	*	de:passieren:verb
+drop-tr	cs:výběr:noun	*	en	choosing
+drop-tr	cs:výběr:noun	*	pt	opção
+drop-tr	cs:výběr:noun	*	it	opzione
+drop-tr	cs:výběr:noun	*	nl	optie
+drop-tr	cs:výběr:noun	*	sv	valmöjlighet
+first	cs:výběr:noun	*	en:choice:noun
+first	cs:výběr:noun	*	pt:escolha:noun
+first	cs:výběr:noun	*	it:scelta:noun
+first	cs:výběr:noun	*	nl:keuze:noun
+first	cs:výběr:noun	*	sv:val:noun
+drop-tr	cs:smlouva:noun	*	es	convenio
+first	cs:smlouva:noun	*	es:contrato:noun
+drop-tr	cs:koule:noun	*	es	pella
+first	cs:koule:noun	*	es:bola:noun
+drop-tr	cs:důstojník:noun	*	pt	agente
+drop-tr	cs:důstojník:noun	*	it	agente
+first	cs:důstojník:noun	*	pt:oficial:noun
+first	cs:důstojník:noun	*	it:ufficiale:noun
+drop-tr	cs:ochránit:verb	*	fr	défendre
+first	cs:ochránit:verb	*	fr:protéger:verb
+first	cs:ochránit:verb	*	pt:proteger:verb
+first	cs:ochránit:verb	*	it:proteggere:verb
+first	cs:ochránit:verb	*	es:proteger:verb
+drop-tr	cs:maminka:noun	*	es	madre
+drop-tr	cs:maminka:noun	*	nl	moeder
+first	cs:maminka:noun	*	es:mamá:noun
+first	cs:maminka:noun	*	nl:mama:noun
+drop-tr	cs:zajistit:verb	*	it	procurare
+first	cs:zajistit:verb	*	it:assicurare:verb
+drop-tr	cs:riskovat:verb	*	fr	hasarder
+first	cs:riskovat:verb	*	fr:risquer:verb
+drop-tr	cs:kost:noun	*	de	Bein
+drop-tr	cs:kost:noun	*	fr	arête
+first	cs:kost:noun	*	de:Knochen:noun
+first	cs:kost:noun	*	fr:os:noun
+drop-tr	cs:zasraný:adjective	*	de	verfickt
+first	cs:zasraný:adjective	*	de:beschissen:adjective
+drop-tr	cs:uzavřít:verb	*	es	meter
+drop-tr	cs:uzavřít:verb	*	pt	cercar
+drop-tr	cs:uzavřít:verb	*	fr	enfermer
+first	cs:uzavřít:verb	*	es:cerrar:verb
+first	cs:uzavřít:verb	*	pt:fechar:verb
+first	cs:uzavřít:verb	*	fr:fermer:verb
+first	cs:ovšem:conjunction	*	de:jedoch:adverb
+drop-tr	cs:prostor:noun	*	sv	rum
+first	cs:prostor:noun	*	sv:utrymme:noun
+drop-tr	cs:zrušit:verb	*	fr	résilier
+first	cs:zrušit:verb	*	fr:annuler:verb
+drop-tr	cs:tlak:noun	*	sv	press
+first	cs:tlak:noun	*	sv:tryck:noun
+drop-tr	cs:video:noun	*	nl	film
+first	cs:video:noun	*	nl:video:noun
+drop-tr	cs:zcela:adverb	*	fr	tout
+drop-tr	cs:zcela:adverb	*	de	ganz
+first	cs:zcela:adverb	*	fr:complètement:adverb
+first	cs:zcela:adverb	*	de:völlig:adverb
+drop-tr	cs:legrace:noun	*	pt	piada
+drop-tr	cs:legrace:noun	*	es	gracia
+first	cs:legrace:noun	*	pt:diversão:noun
+first	cs:legrace:noun	*	es:diversión:noun
+drop-tr	cs:kdysi:adverb	*	es	anteriormente
+first	cs:kdysi:adverb	*	es:antaño:adverb
+drop-tr	cs:otisk:noun	*	de	Eindruck
+drop-tr	cs:otisk:noun	*	es	impresión
+first	cs:otisk:noun	*	de:Abdruck:noun
+first	cs:otisk:noun	*	es:huella:noun
+first	cs:blížit:verb	*	de:nähern:verb
+first	cs:blížit:verb	*	fr:approcher:verb
+drop-tr	cs:podstata:noun	*	pt	essencial
+first	cs:podstata:noun	*	pt:essência:noun
+first	cs:považovat:verb	*	de:betrachten:verb
+first	cs:poslechnout:verb	*	en:obey:verb
+first	cs:poslechnout:verb	*	de:gehorchen:verb
+first	cs:poslechnout:verb	*	fr:obéir:verb
+drop-tr	cs:titulek:noun	*	it	titolo
+drop-tr	cs:titulek:noun	*	nl	kop
+first	cs:titulek:noun	*	it:sottotitolo:noun
+first	cs:titulek:noun	*	nl:ondertitel:noun
+drop-tr	cs:hezky:adverb	*	it	bellamente
+first	cs:hezky:adverb	*	it:bene:adverb
+first	cs:dotknout:verb	*	de:berühren:verb
+drop-tr	cs:soudce:noun	*	it	arbitro
+first	cs:soudce:noun	*	it:giudice:noun
+drop-tr	cs:zařízení:noun	*	fr	unité
+drop-tr	cs:zařízení:noun	*	de	Anlage
+first	cs:zařízení:noun	*	fr:appareil:noun
+first	cs:zařízení:noun	*	de:Gerät:noun
+drop-tr	cs:mýlit:verb	*	en	mislead
+drop-tr	cs:mýlit:verb	*	de	irreführen
+drop-tr	cs:mýlit:verb	*	fr	tromper
+first	cs:mýlit:verb	*	en:be wrong:verb
+first	cs:mýlit:verb	*	de:irren:verb
+first	cs:mýlit:verb	*	fr:se tromper:verb
+first	cs:doopravdy:adverb	*	de:wirklich:adverb
+drop-tr	cs:oblečený:adjective	*	de	bekleiden
+first	cs:oblečený:adjective	*	de:bekleidet:adjective
+drop-tr	cs:dosáhnout:verb	*	es	tocar
+drop-tr	cs:dosáhnout:verb	*	de	reichen
+first	cs:dosáhnout:verb	*	es:alcanzar:verb
+first	cs:dosáhnout:verb	*	de:erreichen:verb
+drop-tr	cs:směšný:adjective	*	pt	engraçado
+first	cs:směšný:adjective	*	pt:ridículo:adjective
+first	cs:týkat:verb	*	de:betreffen:verb
+first	cs:týkat:verb	*	fr:concerner:verb
+first	cs:týkat:verb	*	it:riguardare:verb
+first	cs:týkat:verb	*	es:concernir:verb
+drop-tr	cs:sračka:noun	*	it	porcheria
+first	cs:sračka:noun	*	it:merda:noun
+drop-tr	cs:potvrdit:verb	*	pt	garantir
+drop-tr	cs:potvrdit:verb	*	fr	attester
+first	cs:potvrdit:verb	*	pt:confirmar:verb
+first	cs:potvrdit:verb	*	fr:confirmer:verb
+drop-tr	cs:vstávat:verb	*	pt	levantar
+first	cs:vstávat:verb	*	pt:levantar-se:verb
+drop-tr	cs:zadržet:verb	*	en	repress
+drop-tr	cs:zadržet:verb	*	pt	achar
+first	cs:zadržet:verb	*	en:hold back:verb
+first	cs:zadržet:verb	*	pt:deter:verb
+drop-tr	cs:kód:noun	*	pt	codificação
+first	cs:kód:noun	*	pt:código:noun
+drop-tr	cs:pokaždé:adverb	*	en	always
+drop-tr	cs:pokaždé:adverb	*	de	immer
+first	cs:pokaždé:adverb	*	en:every time:adverb
+first	cs:pokaždé:adverb	*	de:jedes Mal:adverb
+drop-tr	cs:plánovat:verb	*	it	inventare
+drop-tr	cs:plánovat:verb	*	es	pensar
+first	cs:plánovat:verb	*	it:pianificare:verb
+first	cs:plánovat:verb	*	es:planear:verb
+first	cs:lístek:noun	*	en:ticket:noun
+first	cs:lístek:noun	*	de:Fahrkarte:noun
+first	cs:lístek:noun	*	fr:billet:noun
+first	cs:lístek:noun	*	pt:bilhete:noun
+first	cs:lístek:noun	*	it:biglietto:noun
+first	cs:lístek:noun	*	es:billete:noun
+first	cs:lístek:noun	*	nl:kaartje:noun
+first	cs:lístek:noun	*	sv:biljett:noun
+drop-tr	cs:nazdar:interjection	*	la	salveo
+first	cs:nazdar:interjection	*	la:salve:interjection
+drop-tr	cs:omluva:noun	*	en	excuse
+first	cs:omluva:noun	*	en:apology:noun
+drop-tr	cs:událost:noun	*	it	accadimento
+first	cs:událost:noun	*	it:evento:noun
+first	cs:podařit:verb	*	de:gelingen:verb
+first	cs:podařit:verb	*	fr:réussir:verb
+first	cs:podařit:verb	*	it:riuscire:verb
+first	cs:podařit:verb	*	es:lograr:verb
+drop-tr	cs:blbec:noun	*	it	coglione
+drop-tr	cs:blbec:noun	*	es	zopenco
+first	cs:blbec:noun	*	it:idiota:noun
+first	cs:blbec:noun	*	es:idiota:noun
+drop-tr	cs:dostávat:verb	*	pt	ganhar
+drop-tr	cs:dostávat:verb	*	es	tocar
+first	cs:dostávat:verb	*	pt:receber:verb
+first	cs:dostávat:verb	*	es:recibir:verb
+drop-tr	cs:najmout:verb	*	de	dingen
+drop-tr	cs:najmout:verb	*	it	noleggiare
+drop-tr	cs:najmout:verb	*	es	alquilar
+drop-tr	cs:najmout:verb	*	nl	huren
+drop-tr	cs:najmout:verb	*	sv	hyra
+drop-tr	cs:najmout:verb	*	fr	louer
+first	cs:najmout:verb	*	de:einstellen:verb
+first	cs:najmout:verb	*	it:assumere:verb
+first	cs:najmout:verb	*	es:contratar:verb
+first	cs:najmout:verb	*	nl:inhuren:verb
+first	cs:najmout:verb	*	sv:anställa:verb
+first	cs:najmout:verb	*	fr:embaucher:verb
+drop-tr	cs:kéž:particle	*	en	let
+drop-tr	cs:kéž:particle	*	fr	vivement
+first	cs:kéž:particle	*	en:if only:interjection
+first	cs:kéž:particle	*	fr:pourvu que:conjunction
+drop-tr	cs:princ:noun	*	la	regulus
+first	cs:princ:noun	*	la:princeps:noun
+drop-tr	en:hire:verb	*	de	heuern
+drop-tr	en:hire:verb	*	it	noleggiare
+drop-tr	en:hire:verb	*	es	alquilar
+first	en:hire:verb	*	de:einstellen:verb
+first	en:hire:verb	*	it:assumere:verb
+first	en:hire:verb	*	es:contratar:verb
+drop-tr	en:copy:interjection	*	*	*
+drop-tr	en:copy:noun	*	es	transcripción
+first	en:copy:noun	*	es:copia:noun
+drop-tr	en:copy:verb	*	nl	namaken
+first	en:copy:verb	*	nl:kopiëren:verb
+drop-tr	en:gay:noun	*	pt	bicha
+drop-tr	en:gay:noun	*	it	finocchio
+first	en:gay:noun	*	pt:gay:noun
+first	en:gay:noun	*	it:gay:noun
+drop-tr	en:tape:verb	*	es	atar
+drop-tr	en:further:adverb	*	es	acullá
+first	en:further:adverb	*	es:más allá:adverb
+first	en:hunt:verb	*	de:jagen:verb
+first	en:hunt:verb	*	fr:chasser:verb
+first	en:hunt:verb	*	pt:caçar:verb
+first	en:hunt:verb	*	it:cacciare:verb
+first	en:hunt:verb	*	es:cazar:verb
+first	en:hunt:verb	*	nl:jagen:verb
+first	en:hunt:verb	*	sv:jaga:verb
+drop-tr	en:correct:noun	*	*	*
+drop-tr	en:correct:adjective	*	it	esatto
+first	en:correct:adjective	*	it:corretto:adjective
+drop-tr	en:department:noun	*	fr	ministère
+first	en:department:noun	*	fr:département:noun
+drop-tr	en:leader:noun	*	cs	velitel
+drop-tr	en:leader:noun	*	it	capo
+first	en:leader:noun	*	cs:vůdce:noun
+first	en:leader:noun	*	it:leader:noun
+drop-tr	en:chase:verb	*	es	corretear
+drop-tr	en:chase:verb	*	pt	caçar
+drop-tr	en:chase:verb	*	fr	chasser
+first	en:chase:verb	*	es:perseguir:verb
+first	en:chase:verb	*	pt:perseguir:verb
+first	en:chase:verb	*	fr:poursuivre:verb
+drop-tr	en:gas:adjective	*	*	*
+drop-tr	en:trap:verb	*	de	verschütten
+first	en:trap:verb	*	de:fangen:verb
+drop-tr	en:fee:verb	*	*	*
+drop-tr	en:bone:noun	*	de	Bein
+first	en:bone:noun	*	de:Knochen:noun
+drop-tr	en:bone:verb	*	it	diliscare
+first	en:bone:verb	*	it:disossare:verb
+drop-tr	en:otherwise:adjective	*	*	*
+drop-tr	en:awesome:adjective	*	de	fürchterlich
+drop-tr	en:awesome:adjective	*	fr	bonnard
+drop-tr	en:awesome:adjective	*	cs	strašný
+first	en:awesome:adjective	*	de:toll:adjective
+first	en:awesome:adjective	*	fr:génial:adjective
+first	en:awesome:adjective	*	cs:úžasný:adjective
+drop-tr	en:awesome:noun	*	*	*
+drop-tr	en:mum:verb	*	*	*
+drop-tr	en:freak:adjective	*	*	*
+drop-tr	en:add:noun	*	*	*
+drop-tr	en:add:verb	*	de	zugeben
+first	en:add:verb	*	de:hinzufügen:verb
+drop-tr	en:innocent:adjective	*	cs	bezelstný
+first	en:innocent:adjective	*	cs:nevinný:adjective
+first	en:innocent:adjective	*	it:innocente:adjective
+drop-tr	en:bury:verb	*	de	vergraben
+drop-tr	en:bury:verb	*	it	sotterrare
+first	en:bury:verb	*	de:begraben:verb
+first	en:bury:verb	*	it:seppellire:verb
+drop-tr	en:feeling:noun	*	it	senso
+first	en:feeling:noun	*	it:sensazione:noun
+drop-tr	en:ourselves:pronoun	*	pt	nós
+first	en:ourselves:pronoun	*	pt:nos:pronoun
+drop-tr	en:target:noun	*	nl	roos
+first	en:target:noun	*	nl:doelwit:noun
+drop-tr	en:target:verb	*	es	asestar
+first	en:target:verb	*	es:apuntar:verb
+drop-tr	en:crash:adjective	*	*	*
+drop-tr	en:guilty:noun	*	*	*
+drop-tr	en:bunch:noun	*	nl	wis
+first	en:bunch:noun	*	nl:bos:noun
+drop-tr	en:bunch:verb	*	de	anordnen
+drop-tr	en:bunch:verb	*	pt	bolar
+first	en:bunch:verb	*	de:bündeln:verb
+drop-tr	en:flight:noun	*	it	fuga
+first	en:flight:noun	*	it:volo:noun
+drop-tr	en:flight:verb	*	*	*
+drop-tr	en:freeze:noun	*	es	pacheco
+drop-tr	en:include:verb	*	it	contare
+drop-tr	en:include:verb	*	fr	comprendre
+first	en:include:verb	*	it:includere:verb
+first	en:include:verb	*	fr:inclure:verb
+drop-tr	en:offer:noun	*	sv	förslag
+first	en:offer:noun	*	sv:erbjudande:noun
+drop-tr	en:offer:verb	*	cs	dopřát
+drop-tr	en:offer:verb	*	nl	voorstellen
+first	en:offer:verb	*	cs:nabídnout:verb
+first	en:offer:verb	*	nl:aanbieden:verb
+drop-tr	en:twice:adverb	*	pt	duplamente
+drop-tr	en:twice:adverb	*	es	doblemente
+drop-tr	en:twice:adverb	*	sv	dubbelt
+first	en:twice:adverb	*	pt:duas vezes:adverb
+first	en:twice:adverb	*	es:dos veces:adverb
+first	en:twice:adverb	*	sv:två gånger:adverb
+first	en:twice:adverb	*	fr:deux fois:adverb
+first	en:twice:adverb	*	it:due volte:adverb
+drop-tr	en:indeed:adverb	*	es	sí que
+first	en:indeed:adverb	*	es:de hecho:adverb
+drop-tr	en:claim:verb	*	it	reclamare
+first	en:claim:verb	*	it:rivendicare:verb
+drop-tr	en:character:noun	*	cs	chlápek
+drop-tr	en:character:noun	*	es	mishule
+first	en:character:noun	*	cs:postava:noun
+first	en:character:noun	*	es:personaje:noun
+drop-tr	en:fellow:noun	*	it	amico
+drop-tr	en:fellow:noun	*	es	fellow
+first	en:fellow:noun	*	it:compagno:noun
+first	en:fellow:noun	*	es:compañero:noun
+drop-tr	en:buck:noun	*	it	lepre
+drop-tr	en:buck:noun	*	es	corcovo
+drop-tr	en:buck:noun	*	nl	rammelaar
+first	en:buck:noun	*	it:maschio:noun
+first	en:buck:noun	*	es:macho:noun
+first	en:buck:noun	*	nl:bok:noun
+drop-tr	en:bore:verb	*	nl	vermoeien
+first	en:bore:verb	*	nl:vervelen:verb
+drop-tr	en:pregnant:adjective	*	fr	enceint
+drop-tr	en:pregnant:adjective	*	pt	grávido
+drop-tr	en:pregnant:adjective	*	cs	těhotný
+drop-tr	en:pregnant:adjective	*	it	gravido
+first	en:pregnant:adjective	*	fr:enceinte:adjective
+first	en:pregnant:adjective	*	pt:grávida:adjective
+first	en:pregnant:adjective	*	cs:těhotná:adjective
+first	en:pregnant:adjective	*	it:incinta:adjective
+first	en:madam:noun	*	it:signora:noun
+drop-tr	en:fresh:adverb	*	*	*
+drop-tr	en:fresh:noun	*	*	*
+drop-tr	en:fresh:adjective	*	fr	récent
+drop-tr	en:fresh:adjective	*	it	giovane
+drop-tr	en:fresh:adjective	*	cs	svěží
+first	en:fresh:adjective	*	fr:frais:adjective
+first	en:fresh:adjective	*	it:fresco:adjective
+first	en:fresh:adjective	*	cs:čerstvý:adjective
+first	en:fresh:adjective	*	es:fresco:adjective
+drop-tr	en:ow:noun	*	*	*
+drop-tr	la:varius:adjective	*	pt	vário
+first	la:varius:adjective	*	pt:variado:adjective
+first	la:problema:noun	*	de:Problem:noun
+first	la:problema:noun	*	fr:problème:noun
+first	la:problema:noun	*	cs:problém:noun
+drop-tr	la:puteus:noun	*	nl	bron
+first	la:puteus:noun	*	nl:put:noun
+drop-tr	la:frigus:noun	*	it	freddezza
+first	la:frigus:noun	*	it:freddo:noun
+drop-tr	la:amplexus:noun	*	it	abbracciata
+first	la:amplexus:noun	*	it:abbraccio:noun
+first	la:amplexus:noun	*	fr:étreinte:noun
+first	la:amplexus:noun	*	es:abrazo:noun
+drop-tr	la:possideo:verb	*	en	have
+drop-tr	la:possideo:verb	*	de	haben
+drop-tr	la:possideo:verb	*	fr	avoir
+drop-tr	la:possideo:verb	*	pt	ter
+drop-tr	la:possideo:verb	*	cs	mít
+drop-tr	la:possideo:verb	*	it	avere
+drop-tr	la:possideo:verb	*	es	tener
+first	la:possideo:verb	*	en:possess:verb
+first	la:possideo:verb	*	de:besitzen:verb
+first	la:possideo:verb	*	fr:posséder:verb
+first	la:possideo:verb	*	pt:possuir:verb
+first	la:possideo:verb	*	cs:vlastnit:verb
+first	la:possideo:verb	*	it:possedere:verb
+first	la:possideo:verb	*	es:poseer:verb
+drop-tr	la:pactum:noun	*	cs	soulad
+first	la:pactum:noun	*	cs:dohoda:noun
+first	la:iaponensis:adjective	*	de:japanisch:adjective
+first	la:iaponensis:adjective	*	fr:japonais:adjective
+first	la:iaponensis:adjective	*	it:giapponese:adjective
+first	la:iaponensis:adjective	*	es:japonés:adjective
+first	la:iaponensis:adjective	*	pt:japonês:adjective
+drop-tr	la:propero:verb	*	it	accelerare
+first	la:propero:verb	*	de:eilen:verb
+first	la:propero:verb	*	pt:apressar-se:verb
+first	la:propero:verb	*	es:apresurarse:verb
+first	la:propero:verb	*	it:affrettarsi:verb
+drop-tr	la:difficultas:noun	*	en	trouble
+first	la:difficultas:noun	*	en:difficulty:noun
+first	la:difficultas:noun	*	de:Schwierigkeit:noun
+first	la:difficultas:noun	*	fr:difficulté:noun
+drop-tr	la:punctum:noun	*	fr	pointe
+drop-tr	la:punctum:noun	*	pt	ponta
+drop-tr	la:punctum:noun	*	es	punta
+drop-tr	la:punctum:noun	*	sv	spets
+first	la:punctum:noun	*	fr:point:noun
+first	la:punctum:noun	*	pt:ponto:noun
+first	la:punctum:noun	*	es:punto:noun
+first	la:punctum:noun	*	sv:punkt:noun
+drop-tr	la:cavus:adjective	*	it	vuotato
+first	la:cavus:adjective	*	it:cavo:adjective
+drop-tr	la:nuntium:noun	*	en	news
+first	la:nuntium:noun	*	en:message:noun
+first	la:nuntium:noun	*	fr:message:noun
+first	la:nuntium:noun	*	es:mensaje:noun
+drop-tr	la:mendax:adjective	*	en	mendacious
+first	la:mendax:adjective	*	en:lying:adjective
+drop-tr	la:en:noun	*	*	*
+first	la:en:interjection	*	en:behold:interjection
+first	la:en:interjection	*	de:siehe:interjection
+first	la:en:interjection	*	fr:voici:preposition
+first	la:en:interjection	*	it:ecco:adverb
+drop-tr	la:scelus:noun	*	en	wicked
+first	la:scelus:noun	*	en:crime:noun
+first	la:scelus:noun	*	de:Verbrechen:noun
+first	la:scelus:noun	*	fr:crime:noun
+first	la:scelus:noun	*	pt:crime:noun
+first	la:scelus:noun	*	it:delitto:noun
+first	la:scelus:noun	*	es:crimen:noun
+drop-tr	la:intra:preposition	*	en	inside
+first	la:intra:preposition	*	en:within:preposition
+first	la:intra:preposition	*	de:innerhalb:preposition
+first	la:intra:preposition	*	fr:dans:preposition
+first	la:intra:preposition	*	it:entro:preposition
+first	la:intra:preposition	*	es:dentro de:preposition
+drop-tr	la:superbus:adjective	*	it	insolente
+first	la:superbus:adjective	*	it:orgoglioso:adjective
+first	la:natio:noun	*	en:nation:noun
+first	la:natio:noun	*	de:Nation:noun
+first	la:natio:noun	*	fr:nation:noun
+first	la:natio:noun	*	pt:nação:noun
+first	la:natio:noun	*	it:nazione:noun
+first	la:natio:noun	*	es:nación:noun
+first	la:natio:noun	*	nl:natie:noun
+first	la:natio:noun	*	sv:nation:noun
+first	la:natio:noun	*	cs:národ:noun
+drop-tr	la:certamen:noun	*	fr	match
+first	la:certamen:noun	*	fr:concours:noun
+first	la:aranea:noun	*	es:araña:noun
+drop-tr	la:cupidus:adjective	*	en	fond
+first	la:cupidus:adjective	*	en:eager:adjective
+drop-tr	la:primogenitus:adjective	*	pt	ancião
+drop-tr	la:primogenitus:adjective	*	cs	starý
+first	la:primogenitus:adjective	*	pt:primogênito:adjective
+first	la:primogenitus:adjective	*	cs:prvorozený:adjective
+drop-tr	la:severus:adjective	*	en	serious
+first	la:severus:adjective	*	en:severe:adjective
+drop-tr	la:valetudo:noun	*	en	illness
+drop-tr	la:valetudo:noun	*	de	Krankheit
+drop-tr	la:valetudo:noun	*	it	malattia
+first	la:valetudo:noun	*	en:health:noun
+first	la:valetudo:noun	*	de:Gesundheit:noun
+first	la:valetudo:noun	*	it:salute:noun
+drop-tr	la:subito:adverb	*	it	repentinamente
+first	la:subito:adverb	*	it:improvvisamente:adverb
+drop-tr	la:praemium:noun	*	en	advantage
+first	la:praemium:noun	*	en:reward:noun
+first	la:praemium:noun	*	de:Belohnung:noun
+first	la:praemium:noun	*	fr:récompense:noun
+first	la:praemium:noun	*	pt:prêmio:noun
+first	la:praemium:noun	*	it:premio:noun
+first	la:praemium:noun	*	es:premio:noun
+first	la:praemium:noun	*	nl:beloning:noun
+first	la:praemium:noun	*	sv:belöning:noun
+first	la:praemium:noun	*	cs:odměna:noun
+drop-tr	la:incertus:noun	*	it	forse
+drop-tr	la:commentarius:noun	*	cs	blok
+first	la:commentarius:noun	*	cs:zápisník:noun
+drop-tr	la:proelium:noun	*	de	Kampf
+first	la:proelium:noun	*	de:Schlacht:noun
+drop-tr	la:calor:noun	*	it	riscaldamento
+first	la:calor:noun	*	it:calore:noun
+drop-tr	la:gloria:noun	*	en	honor
+first	la:gloria:noun	*	en:glory:noun
+drop-tr	la:species:noun	*	it	spettacolo
+first	la:species:noun	*	it:aspetto:noun
+drop-tr	la:infelix:adjective	*	fr	malencontreux
+drop-tr	la:infelix:adjective	*	pt	desafortunado
+first	la:infelix:adjective	*	fr:malheureux:adjective
+first	la:infelix:adjective	*	pt:infeliz:adjective
+drop-tr	la:idcirco:adverb	*	fr	aussi
+first	la:idcirco:adverb	*	fr:c'est pourquoi:adverb
+drop-tr	la:adversus:preposition	*	en	opposite
+first	la:adversus:preposition	*	en:against:preposition
+first	la:adversus:preposition	*	de:gegen:preposition
+drop-tr	la:agnosco:verb	*	en	know
+drop-tr	la:agnosco:verb	*	de	kennen
+drop-tr	la:agnosco:verb	*	fr	connaître
+drop-tr	la:agnosco:verb	*	pt	conhecer
+drop-tr	la:agnosco:verb	*	cs	znát
+drop-tr	la:agnosco:verb	*	it	conoscere
+first	la:agnosco:verb	*	en:recognize:verb
+first	la:agnosco:verb	*	de:erkennen:verb
+first	la:agnosco:verb	*	fr:reconnaître:verb
+first	la:agnosco:verb	*	pt:reconhecer:verb
+first	la:agnosco:verb	*	cs:poznat:verb
+first	la:agnosco:verb	*	it:riconoscere:verb
+drop-tr	la:doctor:noun	*	es	educador
+first	la:doctor:noun	*	es:maestro:noun
+drop-tr	la:campus:noun	*	en	opportunity
+first	la:campus:noun	*	en:field:noun
+first	la:campus:noun	*	de:Feld:noun
+first	la:campus:noun	*	fr:champ:noun
+first	la:campus:noun	*	pt:campo:noun
+first	la:campus:noun	*	it:campo:noun
+first	la:campus:noun	*	es:campo:noun
+first	la:campus:noun	*	nl:veld:noun
+first	la:campus:noun	*	sv:fält:noun
+first	la:campus:noun	*	cs:pole:noun
+drop-tr	la:sonus:noun	*	it	rumore
+first	la:sonus:noun	*	it:suono:noun
+drop-tr	la:plurimus:adjective	*	sv	fler
+first	la:plurimus:adjective	*	sv:flest:adjective
+drop-tr	la:nota:noun	*	en	sign
+drop-tr	la:nota:noun	*	it	impronta
+first	la:nota:noun	*	en:mark:noun
+first	la:nota:noun	*	it:segno:noun
+drop-tr	la:sepulcrum:noun	*	es	fosa
+first	la:sepulcrum:noun	*	es:tumba:noun
+drop-tr	la:iocus:noun	*	fr	badinage
+drop-tr	la:iocus:noun	*	es	chanza
+first	la:iocus:noun	*	fr:plaisanterie:noun
+first	la:iocus:noun	*	es:broma:noun
+drop-tr	la:aliqui:determiner	*	de	welcher
+drop-tr	la:aliqui:determiner	*	nl	wat
+first	la:aliqui:determiner	*	de:irgendein:determiner
+first	la:aliqui:determiner	*	nl:enig:determiner
+drop-tr	la:aequalis:adjective	*	en	like
+first	la:aequalis:adjective	*	en:equal:adjective
+first	la:aequalis:adjective	*	de:gleich:adjective
+first	la:aequalis:adjective	*	fr:égal:adjective
+first	la:aequalis:adjective	*	pt:igual:adjective
+first	la:aequalis:adjective	*	it:uguale:adjective
+first	la:aequalis:adjective	*	es:igual:adjective
+drop-tr	la:immortalis:adjective	*	fr	impérissable
+first	la:immortalis:adjective	*	fr:immortel:adjective
+drop-tr	la:impetus:noun	*	fr	agression
+drop-tr	la:impetus:noun	*	pt	agressão
+drop-tr	la:impetus:noun	*	it	assalto
+first	la:impetus:noun	*	fr:attaque:noun
+first	la:impetus:noun	*	pt:ataque:noun
+first	la:impetus:noun	*	it:attacco:noun
+drop-tr	la:voluptas:noun	*	de	Wollust
+drop-tr	la:voluptas:noun	*	pt	voluptuosidade
+first	la:voluptas:noun	*	de:Vergnügen:noun
+first	la:voluptas:noun	*	pt:prazer:noun
+drop-tr	la:honor:noun	*	it	carica
+first	la:honor:noun	*	it:onore:noun
+drop-tr	la:materia:noun	*	it	sostanza
+first	la:materia:noun	*	it:materia:noun
+first	la:fumus:noun	*	it:fumo:noun
+drop-tr	la:famulus:adjective	*	*	*
+drop-tr	la:famulus:noun	*	fr	esclave
+drop-tr	la:famulus:noun	*	es	empleado
+first	la:famulus:noun	*	fr:serviteur:noun
+first	la:famulus:noun	*	es:sirviente:noun
+drop-tr	la:saltem:adverb	*	pt	sequer
+drop-tr	la:saltem:adverb	*	cs	málo
+drop-tr	la:saltem:adverb	*	es	siquiera
+first	la:saltem:adverb	*	pt:pelo menos:adverb
+first	la:saltem:adverb	*	cs:alespoň:adverb
+first	la:saltem:adverb	*	es:al menos:adverb
+first	la:insectum:noun	*	pt:inseto:noun
+first	la:insectum:noun	*	es:insecto:noun
+first	la:insectum:noun	*	cs:hmyz:noun
+first	la:insectum:noun	*	nl:insect:noun
+first	la:insectum:noun	*	sv:insekt:noun
+drop-tr	de:Lage:noun	*	pt	local
+drop-tr	de:Lage:noun	*	es	sitio
+first	de:Lage:noun	*	en:situation:noun
+first	de:Lage:noun	*	fr:situation:noun
+first	de:Lage:noun	*	pt:situação:noun
+first	de:Lage:noun	*	it:situazione:noun
+first	de:Lage:noun	*	es:situación:noun
+drop-tr	de:sowieso:interjection	*	*	*
+drop-tr	de:sowieso:particle	*	fr	bien sûr
+first	de:sowieso:particle	*	fr:de toute façon:adverb
+drop-tr	de:reißen:verb	*	es	romper
+first	de:reißen:verb	*	es:rasgar:verb
+drop-tr	de:landen:verb	*	fr	aborder
+drop-tr	de:landen:verb	*	cs	vysadit
+first	de:landen:verb	*	fr:atterrir:verb
+first	de:landen:verb	*	cs:přistát:verb
+drop-tr	de:trauen:verb	*	it	fidare
+first	de:trauen:verb	*	it:fidarsi:verb
+first	de:trauen:verb	*	nl:vertrouwen:verb
+drop-tr	de:Held:noun	*	la	vir
+first	de:Held:noun	*	la:heros:noun
+drop-tr	de:warnen:verb	*	es	avisar
+first	de:warnen:verb	*	es:advertir:verb
+drop-tr	de:Blick:noun	*	pt	mirada
+drop-tr	de:Blick:noun	*	es	vistazo
+first	de:Blick:noun	*	pt:olhar:noun
+first	de:Blick:noun	*	es:mirada:noun
+drop-tr	de:vermutlich:adverb	*	fr	supposément
+first	de:vermutlich:adverb	*	fr:probablement:adverb
+first	de:klappen:verb	*	en:work out:verb
+first	de:klappen:verb	*	fr:marcher:verb
+first	de:klappen:verb	*	pt:dar certo:verb
+first	de:klappen:verb	*	it:funzionare:verb
+first	de:klappen:verb	*	es:funcionar:verb
+first	de:klappen:verb	*	nl:lukken:verb
+first	de:klappen:verb	*	sv:funka:verb
+first	de:aufnehmen:verb	*	en:record:verb
+drop-tr	de:erleben:verb	*	fr	connaître
+first	de:erleben:verb	*	fr:vivre:verb
+drop-tr	de:führen:verb	*	pt	levar
+drop-tr	de:führen:verb	*	es	llevar
+first	de:führen:verb	*	pt:conduzir:verb
+first	de:führen:verb	*	es:guiar:verb
+drop-tr	de:Schlag:noun	*	es	especie
+drop-tr	de:Schlag:noun	*	it	battito
+drop-tr	de:Schlag:noun	*	en	beat
+first	de:Schlag:noun	*	es:golpe:noun
+first	de:Schlag:noun	*	it:colpo:noun
+first	de:Schlag:noun	*	en:blow:noun
+drop-tr	de:diesmal:adverb	*	es	de esta
+first	de:diesmal:adverb	*	es:esta vez:adverb
+first	de:diesmal:adverb	*	fr:cette fois:adverb
+first	de:diesmal:adverb	*	pt:desta vez:adverb
+first	de:diesmal:adverb	*	it:questa volta:adverb
+first	de:diesmal:adverb	*	sv:den här gången:adverb
+drop-tr	de:nämlich:adverb	*	es	especialmente
+first	de:nämlich:adverb	*	es:es decir:adverb
+first	de:befinden:verb	*	en:be located:verb
+drop-tr	de:wild:adjective	*	pt	feroz
+first	de:wild:adjective	*	pt:selvagem:adjective
+drop-tr	de:übrigens:adverb	*	fr	au fait
+drop-tr	de:übrigens:adverb	*	it	d'altronde
+first	de:übrigens:adverb	*	fr:d'ailleurs:adverb
+first	de:übrigens:adverb	*	it:a proposito:adverb
+drop-tr	de:fressen:verb	*	pt	alimentar
+first	de:fressen:verb	*	pt:comer:verb
+first	de:verbinden:verb	*	en:connect:verb
+first	de:verbinden:verb	*	fr:relier:verb
+first	de:verbinden:verb	*	pt:ligar:verb
+first	de:verbinden:verb	*	it:collegare:verb
+first	de:verbinden:verb	*	es:conectar:verb
+first	de:verbinden:verb	*	nl:verbinden:verb
+first	de:verbinden:verb	*	sv:förbinda:verb
+first	de:verbinden:verb	*	cs:spojit:verb
+first	de:vergeben:verb	*	en:forgive:verb
+first	de:vergeben:verb	*	fr:pardonner:verb
+first	de:vergeben:verb	*	pt:perdoar:verb
+first	de:vergeben:verb	*	it:perdonare:verb
+first	de:vergeben:verb	*	es:perdonar:verb
+first	de:vergeben:verb	*	nl:vergeven:verb
+first	de:vergeben:verb	*	sv:förlåta:verb
+first	de:vergeben:verb	*	cs:odpustit:verb
+drop-tr	de:indem:adverb	*	*	*
+drop-tr	de:indem:conjunction	*	it	siccome
+drop-tr	de:indem:conjunction	*	cs	prostřednictvím
+drop-tr	de:weder:adverb	*	la	neuter
+drop-tr	de:Mädel:noun	*	es	niña
+first	de:Mädel:noun	*	es:chica:noun
+first	de:gemein:adjective	*	en:mean:adjective
+first	de:gemein:adjective	*	fr:méchant:adjective
+first	de:gemein:adjective	*	pt:malvado:adjective
+first	de:gemein:adjective	*	cs:podlý:adjective
+first	de:gemein:adjective	*	it:cattivo:adjective
+first	de:gemein:adjective	*	es:malo:adjective
+first	de:gemein:adjective	*	nl:gemeen:adjective
+first	de:gemein:adjective	*	sv:elak:adjective
+drop-tr	de:nachher:adverb	*	en	thereafter
+drop-tr	de:nachher:adverb	*	cs	pozdější
+drop-tr	de:nachher:adverb	*	nl	zo
+first	de:nachher:adverb	*	en:afterwards:adverb
+first	de:nachher:adverb	*	cs:potom:adverb
+first	de:nachher:adverb	*	nl:straks:adverb
+drop-tr	de:empfangen:verb	*	pt	ganhar
+first	de:empfangen:verb	*	pt:receber:verb
+drop-tr	de:verurteilen:verb	*	pt	sentenciar
+first	de:verurteilen:verb	*	pt:condenar:verb
+first	de:einfallen:verb	*	en:occur:verb
+first	de:einfallen:verb	*	fr:venir à l'esprit:verb
+first	de:einfallen:verb	*	pt:ocorrer:verb
+first	de:einfallen:verb	*	it:venire in mente:verb
+first	de:einfallen:verb	*	es:ocurrir:verb
+first	de:einfallen:verb	*	nl:invallen:verb
+first	de:einfallen:verb	*	sv:komma på:verb
+first	de:einfallen:verb	*	cs:napadnout:verb
+first	de:ausziehen:verb	*	en:take off:verb
+first	de:ausziehen:verb	*	fr:enlever:verb
+first	de:ausziehen:verb	*	pt:tirar:verb
+first	de:ausziehen:verb	*	it:togliere:verb
+first	de:ausziehen:verb	*	es:quitarse:verb
+first	de:ausziehen:verb	*	nl:uittrekken:verb
+first	de:ausziehen:verb	*	sv:ta av:verb
+first	de:ausziehen:verb	*	cs:svléknout:verb
+drop-tr	de:einsperren:verb	*	en	immure
+drop-tr	de:einsperren:verb	*	pt	emparedar
+first	de:einsperren:verb	*	en:lock up:verb
+first	de:einsperren:verb	*	pt:trancar:verb
+drop-tr	de:verursachen:verb	*	cs	stát
+first	de:verursachen:verb	*	cs:způsobit:verb
+drop-tr	de:vernünftig:adjective	*	pt	cordato
+drop-tr	de:vernünftig:adjective	*	fr	sage
+first	de:vernünftig:adjective	*	pt:sensato:adjective
+first	de:vernünftig:adjective	*	fr:raisonnable:adjective
+drop-tr	de:rauf:adverb	*	fr	par ici
+first	de:rauf:adverb	*	fr:en haut:adverb
+drop-tr	de:Hure:noun	*	cs	čubka
+first	de:Hure:noun	*	cs:kurva:noun
+drop-tr	de:dadurch:adverb	*	it	col
+drop-tr	de:dadurch:adverb	*	es	por allí
+drop-tr	de:dadurch:adverb	*	sv	genom
+first	de:dadurch:adverb	*	it:così:adverb
+first	de:dadurch:adverb	*	es:así:adverb
+first	de:dadurch:adverb	*	sv:därigenom:adverb
+drop-tr	de:zusehen:verb	*	es	contemplar
+first	de:zusehen:verb	*	es:mirar:verb
+drop-tr	de:dringend:adjective	*	nl	nijpend
+first	de:dringend:adjective	*	nl:dringend:adjective
+drop-tr	de:empfinden:verb	*	en	sense
+first	de:empfinden:verb	*	en:feel:verb
+drop-tr	de:verwirren:verb	*	cs	plést
+first	de:verwirren:verb	*	cs:zmást:verb
+drop-tr	de:durchsuchen:verb	*	pt	procurar
+drop-tr	de:durchsuchen:verb	*	it	cercare
+drop-tr	de:durchsuchen:verb	*	es	inspeccionar
+drop-tr	de:durchsuchen:verb	*	nl	zoeken
+first	de:durchsuchen:verb	*	pt:revistar:verb
+first	de:durchsuchen:verb	*	it:perquisire:verb
+first	de:durchsuchen:verb	*	es:registrar:verb
+first	de:durchsuchen:verb	*	nl:doorzoeken:verb
+drop-tr	de:Code:noun	*	pt	codificação
+first	de:Code:noun	*	pt:código:noun
+drop-tr	de:zweimal:adverb	*	pt	duplamente
+drop-tr	de:zweimal:adverb	*	es	doblemente
+first	de:zweimal:adverb	*	pt:duas vezes:adverb
+first	de:zweimal:adverb	*	es:dos veces:adverb
+first	de:zweimal:adverb	*	fr:deux fois:adverb
+drop-tr	de:zweimal:numeral	*	pt	duplamente
+drop-tr	de:zweimal:numeral	*	es	doblemente
+first	de:zweimal:numeral	*	pt:duas vezes:adverb
+first	de:zweimal:numeral	*	es:dos veces:adverb
+first	de:Weib:noun	*	en:woman:noun
+drop-tr	de:schwul:adjective	*	nl	homofiel
+drop-tr	de:schwul:adjective	*	la	cinaedus
+first	de:schwul:adjective	*	nl:homo:adjective
+drop-tr	de:Vorstellung:noun	*	en	imagination
+first	de:Vorstellung:noun	*	en:idea:noun
+drop-tr	de:Geräusch:noun	*	pt	som
+first	de:Geräusch:noun	*	pt:ruído:noun
+drop-tr	de:nerven:verb	*	cs	vadit
+first	de:nerven:verb	*	cs:otravovat:verb
+drop-tr	de:Ware:noun	*	nl	artikel
+first	de:Ware:noun	*	nl:waar:noun
+drop-tr	de:neulich:adverb	*	pt	ultimamente
+drop-tr	de:neulich:adverb	*	it	ultimamente
+drop-tr	de:neulich:adverb	*	es	últimamente
+first	de:neulich:adverb	*	pt:recentemente:adverb
+first	de:neulich:adverb	*	it:di recente:adverb
+first	de:neulich:adverb	*	es:recientemente:adverb
+drop-tr	de:ehe:conjunction	*	es	antes
+first	de:ehe:conjunction	*	es:antes de que:conjunction
+first	de:weshalb:adverb	*	en:why:adverb
+drop-tr	de:weshalb:conjunction	*	en	ergo
+first	de:weshalb:conjunction	*	en:therefore:adverb
+drop-tr	de:selbstverständlich:adjective	*	fr	bien entendu
+first	de:selbstverständlich:adjective	*	fr:évident:adjective
+drop-tr	de:woanders:adverb	*	pt	alhures
+first	de:woanders:adverb	*	pt:em outro lugar:adverb
+drop-tr	de:folgend:adjective	*	it	successivo
+first	de:folgend:adjective	*	it:seguente:adjective
+drop-tr	de:Mühe:noun	*	en	trouble
+drop-tr	de:Mühe:noun	*	it	pena
+first	de:Mühe:noun	*	en:effort:noun
+first	de:Mühe:noun	*	it:fatica:noun
+drop-tr	de:Braut:noun	*	fr	fiancée
+first	de:Braut:noun	*	fr:mariée:noun
+first	de:Braut:noun	*	es:novia:noun
+drop-tr	de:begraben:verb	*	it	sotterrare
+drop-tr	de:begraben:verb	*	es	soterrar
+first	de:begraben:verb	*	it:seppellire:verb
+first	de:begraben:verb	*	es:enterrar:verb
+drop-tr	de:ungewöhnlich:adjective	*	pt	singular
+drop-tr	de:ungewöhnlich:adjective	*	it	straordinario
+first	de:ungewöhnlich:adjective	*	pt:incomum:adjective
+first	de:ungewöhnlich:adjective	*	it:insolito:adjective
+drop-tr	de:streng:adjective	*	it	rigoroso
+first	de:streng:adjective	*	it:severo:adjective
+drop-tr	de:streng:adverb	*	fr	fin
+drop-tr	de:streng:adverb	*	es	firme
+drop-tr	pt:reconhecer:verb	*	fr	retrouver
+first	pt:reconhecer:verb	*	fr:reconnaître:verb
+drop-tr	pt:moço:adjective	*	de	Junge
+first	pt:moço:adjective	*	de:jung:adjective
+drop-tr	pt:equipamento:noun	*	fr	équipage
+first	pt:equipamento:noun	*	fr:équipement:noun
+drop-tr	pt:limitar:verb	*	de	befristen
+first	pt:limitar:verb	*	de:begrenzen:verb
+drop-tr	pt:porcaria:interjection	*	es	cónchale
+first	pt:porcaria:interjection	*	es:mierda:interjection
+drop-tr	pt:revistar:verb	*	de	filzen
+first	pt:revistar:verb	*	de:durchsuchen:verb
+drop-tr	pt:ansioso:adjective	*	de	angespannt
+drop-tr	pt:ansioso:adjective	*	fr	inquiet
+first	pt:ansioso:adjective	*	de:ängstlich:adjective
+first	pt:ansioso:adjective	*	fr:anxieux:adjective
+drop-tr	pt:cego:adjective	*	fr	doux
+drop-tr	pt:cego:adjective	*	es	romo
+first	pt:cego:adjective	*	fr:aveugle:adjective
+first	pt:cego:adjective	*	es:ciego:adjective
+drop-tr	pt:cego:noun	*	fr	doux
+first	pt:cego:noun	*	fr:aveugle:noun
+drop-tr	pt:enlouquecer:verb	*	en	go nuts
+first	pt:enlouquecer:verb	*	en:go mad:verb
+first	pt:enlouquecer:verb	*	es:enloquecer:verb
+drop-tr	pt:centena:noun	*	en	many
+first	pt:centena:noun	*	en:hundred:noun
+drop-tr	pt:fábrica:noun	*	cs	závod
+first	pt:fábrica:noun	*	cs:továrna:noun
+drop-tr	pt:atrasado:adjective	*	de	überfällig
+drop-tr	pt:atrasado:adjective	*	fr	attardé
+drop-tr	pt:atrasado:adjective	*	it	arretrato
+first	pt:atrasado:adjective	*	de:verspätet:adjective
+first	pt:atrasado:adjective	*	fr:en retard:adjective
+first	pt:atrasado:adjective	*	it:in ritardo:adjective
+drop-tr	pt:declarar:verb	*	cs	deklarovat
+first	pt:declarar:verb	*	cs:prohlásit:verb
+drop-tr	pt:empregado:adjective	*	it	domestico
+first	pt:empregado:adjective	*	it:impiegato:adjective
+drop-tr	pt:empregado:noun	*	es	dependiente
+first	pt:empregado:noun	*	es:empleado:noun
+drop-tr	pt:inspetor:adjective	*	*	*
+drop-tr	pt:presença:noun	*	de	Gegenwart
+first	pt:presença:noun	*	de:Anwesenheit:noun
+drop-tr	pt:produto:noun	*	cs	výsledek
+drop-tr	pt:produto:noun	*	nl	resultaat
+first	pt:produto:noun	*	cs:produkt:noun
+first	pt:produto:noun	*	nl:product:noun
+drop-tr	pt:deter:verb	*	nl	detineren
+drop-tr	pt:deter:verb	*	it	trattenersi
+first	pt:deter:verb	*	nl:aanhouden:verb
+first	pt:deter:verb	*	it:fermare:verb
+drop-tr	pt:artigo:noun	*	cs	člen
+drop-tr	pt:artigo:noun	*	nl	lidwoord
+first	pt:artigo:noun	*	cs:článek:noun
+first	pt:artigo:noun	*	nl:artikel:noun
+drop-tr	pt:resistir:verb	*	en	last
+drop-tr	pt:resistir:verb	*	de	ausharren
+first	pt:resistir:verb	*	en:resist:verb
+first	pt:resistir:verb	*	de:widerstehen:verb
+drop-tr	pt:ativar:verb	*	fr	déclencher
+drop-tr	pt:ativar:verb	*	cs	spustit
+drop-tr	pt:ativar:verb	*	it	innescare
+first	pt:ativar:verb	*	fr:activer:verb
+first	pt:ativar:verb	*	cs:aktivovat:verb
+first	pt:ativar:verb	*	it:attivare:verb
+drop-tr	pt:exigir:verb	*	es	demandar
+first	pt:exigir:verb	*	es:exigir:verb
+first	pt:lobo:noun	*	en:wolf:noun
+first	pt:lobo:noun	*	de:Wolf:noun
+first	pt:lobo:noun	*	fr:loup:noun
+first	pt:lobo:noun	*	cs:vlk:noun
+first	pt:lobo:noun	*	it:lupo:noun
+first	pt:lobo:noun	*	es:lobo:noun
+first	pt:lobo:noun	*	nl:wolf:noun
+first	pt:lobo:noun	*	sv:varg:noun
+first	pt:lobo:noun	*	la:lupus:noun
+drop-tr	pt:prostituta:noun	*	it	zoccola
+drop-tr	pt:prostituta:noun	*	en	whore
+first	pt:prostituta:noun	*	it:prostituta:noun
+first	pt:prostituta:noun	*	en:prostitute:noun
+drop-tr	pt:grau:noun	*	nl	booggraad
+first	pt:grau:noun	*	nl:graad:noun
+drop-tr	pt:instante:adjective	*	*	*
+drop-tr	pt:botão:noun	*	de	Schaltfläche
+drop-tr	pt:botão:noun	*	nl	drukknop
+first	pt:botão:noun	*	de:Knopf:noun
+first	pt:botão:noun	*	nl:knop:noun
+drop-tr	pt:alertar:verb	*	de	verständigen
+first	pt:alertar:verb	*	de:warnen:verb
+drop-tr	pt:unir:verb	*	it	congiungere
+first	pt:unir:verb	*	it:unire:verb
+drop-tr	pt:escravo:adjective	*	*	*
+drop-tr	pt:atrair:verb	*	es	llamar
+drop-tr	pt:atrair:verb	*	de	anlocken
+first	pt:atrair:verb	*	es:atraer:verb
+first	pt:atrair:verb	*	de:anziehen:verb
+drop-tr	pt:surgir:verb	*	es	nacer
+first	pt:surgir:verb	*	es:surgir:verb
+drop-tr	pt:registro:noun	*	de	Datensatz
+first	pt:registro:noun	*	de:Aufzeichnung:noun
+drop-tr	pt:apaixonado:adjective	*	de	leidenschaftlich
+drop-tr	pt:apaixonado:adjective	*	it	invaghito
+drop-tr	pt:apaixonado:adjective	*	es	embelesado
+first	pt:apaixonado:adjective	*	de:verliebt:adjective
+first	pt:apaixonado:adjective	*	it:innamorato:adjective
+first	pt:apaixonado:adjective	*	es:enamorado:adjective
+drop-tr	pt:uniforme:adjective	*	cs	jednotvárný
+first	pt:uniforme:adjective	*	cs:jednotný:adjective
+drop-tr	pt:ousar:verb	*	it	permettersi
+first	pt:ousar:verb	*	it:osare:verb
+drop-tr	pt:sorriso:noun	*	nl	lach
+first	pt:sorriso:noun	*	nl:glimlach:noun
+drop-tr	pt:romper:verb	*	it	scassare
+first	pt:romper:verb	*	it:rompere:verb
+drop-tr	pt:delicioso:adjective	*	it	eccellente
+first	pt:delicioso:adjective	*	it:delizioso:adjective
+drop-tr	pt:cabo:noun	*	de	Korporal
+drop-tr	pt:cabo:noun	*	nl	korporaal
+drop-tr	pt:cabo:noun	*	it	capo
+first	pt:cabo:noun	*	de:Kabel:noun
+first	pt:cabo:noun	*	nl:kabel:noun
+first	pt:cabo:noun	*	it:cavo:noun
+drop-tr	pt:claramente:adverb	*	es	decididamente
+first	pt:claramente:adverb	*	es:claramente:adverb
+first	pt:claramente:adverb	*	de:deutlich:adverb
+drop-tr	pt:perfeitamente:adverb	*	de	bestens
+first	pt:perfeitamente:adverb	*	de:perfekt:adverb
+drop-tr	pt:sujeito:adjective	*	*	*
+drop-tr	pt:ferido:adjective	*	nl	geblesseerd
+first	pt:ferido:adjective	*	nl:gewond:adjective
+drop-tr	pt:negociar:verb	*	de	handeln
+first	pt:negociar:verb	*	de:verhandeln:verb
+drop-tr	pt:interior:noun	*	de	Bauch
+first	pt:interior:noun	*	de:Inneres:noun

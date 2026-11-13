@@ -348,7 +348,7 @@ function expand(e) {
   x.origin = e.origin || {};
   if (x.pos === 'noun') x.noun = Object.assign({ gender: null, plural: null, plural_alt: [], plural_rule: null, plural_regular: null, genitive: null, irregular_forms: {} }, e.noun || {});
   if (x.pos === 'verb') x.verb = Object.assign({ regular: null, class: null, aux: null, aux_regional: {}, principal_parts: null, present_3sg: null, irregular_forms: {} }, e.verb || {});
-  x.senses = (e.senses || []).map(s => Object.assign({ gloss: null, gloss_en: null, register: null, route: {} }, s));
+  x.senses = (e.senses || []).map(s => { const o = Object.assign({ gloss: null, gloss_en: null, register: null, route: {} }, s); o.gloss_en = cleanGloss(o.gloss_en); return o; });
   return x;
 }
 /* buckets: same folding as build/build_tiers.py */
@@ -611,7 +611,21 @@ function article(lang, e, word, plural) {
 }
 const withArt = (a, w) => a ? (a.endsWith("'") ? a + w : a + ' ' + w) : w;
 /* English verbs are shown with "to" (to go, to walk); modal verbs cannot take it (can, must) */
-const MODAL_EN = new Set(['can', 'could', 'may', 'might', 'must', 'shall', 'should', 'will', 'would', 'ought', 'cannot']);   // and no 'to' before contractions (can't, don't…)
+const MODAL_EN = new Set(['can', 'could', 'may', 'might', 'must', 'shall', 'should', 'will', 'would', 'ought', 'cannot', "can't", "couldn't", "mustn't", "shouldn't", "won't", "wouldn't", "shan't", "mayn't", "mightn't", "needn't", "oughtn't", 'can not', 'could not', 'must not', 'should not', 'will not', 'would not', 'may not', 'might not', 'shall not', 'need not', 'ought to']);
+// English glosses built automatically sometimes put "to" before modal verbs ("to cannot", "to must") or before words that are not verbs at all.
+const GLOSS_JUNK = new Set(['to necessary', 'to allowed', 'to duty', 'to power', 'to be to', 'to owe, to duty']);
+function cleanGloss(g) {
+  if (!g || !/\bto /.test(g)) return g;
+  const parts = g.split(/,\s*/), keepWill = parts.some(p => /^to (bequeath|wish|want|desire|make over)$/.test(p)), keepCan = parts.some(p => /^to (bottle|pack|preserve|tin|jar)$/.test(p));
+  const out = [];
+  for (let p of parts) {
+    if (GLOSS_JUNK.has(p)) continue;
+    const m = p.match(/^to (.+)$/);
+    if (m && MODAL_EN.has(m[1]) && !(m[1] === 'will' && keepWill) && !(m[1] === 'can' && keepCan)) p = m[1];
+    if (!out.includes(p)) out.push(p);
+  }
+  return out.join(', ') || g;
+}
 function withTo(id, w) { return w && /^en:/.test(id) && /:verb$/.test(id) && !MODAL_EN.has(w) && !/n['’]t$/i.test(w) && !/^to /i.test(w) ? 'to ' + w : w; }
 // Spanish: Wiktionary gives one transcription (Spain: θ for z/ce/ci, ʝ for ll/y). Mexico and Argentina are derived by rule:
 // seseo (θ -> s) in both, and in Argentina (Río de la Plata) the ll/y sound is ʃ (sheísmo): calle [ˈkaʃe], yo [ʃo].
