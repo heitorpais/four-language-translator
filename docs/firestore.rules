@@ -1,0 +1,67 @@
+rules_version = '2';
+// Glossarium: who may read and write what in the database (Firebase project glossarium-25071).
+// Published in the Firebase console under Firestore Database -> Rules.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function isMe(uid) { return signedIn() && request.auth.uid == uid; }
+    function counter() { return /databases/$(database)/documents/meta/members; }
+    function validProfile() {
+      let d = request.resource.data;
+      return d.keys().hasOnly(['username', 'avatar', 'nationality', 'speaks', 'learning', 'bio', 'memberNo', 'created', 'updated'])
+        && d.username is string && d.username.matches('^[a-z0-9_.]{3,20}$')
+        && d.avatar is string && d.avatar.size() < 150000
+        && d.nationality is list && d.nationality.size() <= 3
+        && d.speaks is list && d.speaks.size() >= 1 && d.speaks.size() <= 20
+        && d.learning is list && d.learning.size() <= 20
+        && d.bio is string && d.bio.size() <= 200
+        && d.memberNo is int && d.created is int && d.updated is int;
+    }
+
+    // private: the copy of "My words"
+    match /users/{uid} {
+      allow read, write: if isMe(uid);
+    }
+
+    // public: how many accounts exist; goes up by exactly one when someone creates their profile
+    match /meta/members {
+      allow read: if true;
+      allow create: if signedIn() && request.resource.data.n == 1
+        && !exists(/databases/$(database)/documents/profiles/$(request.auth.uid))
+        && getAfter(/databases/$(database)/documents/profiles/$(request.auth.uid)).data.memberNo == 1;
+      allow update: if signedIn() && request.resource.data.n == resource.data.n + 1
+        && !exists(/databases/$(database)/documents/profiles/$(request.auth.uid))
+        && getAfter(/databases/$(database)/documents/profiles/$(request.auth.uid)).data.memberNo == request.resource.data.n;
+    }
+
+    // public profiles
+    match /profiles/{uid} {
+      allow read: if true;
+      allow create: if isMe(uid) && validProfile()
+        && ((!exists(counter()) && getAfter(counter()).data.n == 1)
+            || (exists(counter()) && getAfter(counter()).data.n == get(counter()).data.n + 1))
+        && request.resource.data.memberNo == getAfter(counter()).data.n
+        && getAfter(/databases/$(database)/documents/usernames/$(request.resource.data.username)).data.uid == uid;
+      allow update: if isMe(uid) && validProfile()
+        && request.resource.data.memberNo == resource.data.memberNo
+        && request.resource.data.created == resource.data.created
+        && (request.resource.data.username == resource.data.username
+            || getAfter(/databases/$(database)/documents/usernames/$(request.resource.data.username)).data.uid == uid);
+      allow delete: if isMe(uid);
+    }
+
+    // public: which account a username belongs to (one username per account, no duplicates)
+    match /usernames/{name} {
+      allow read: if true;
+      allow create: if signedIn() && request.resource.data.keys().hasOnly(['uid'])
+        && request.resource.data.uid == request.auth.uid
+        && name.matches('^[a-z0-9_.]{3,20}$')
+        && getAfter(/databases/$(database)/documents/profiles/$(request.auth.uid)).data.username == name;
+      allow update: if signedIn() && resource.data.uid == request.auth.uid && request.resource.data.uid == request.auth.uid
+        && request.resource.data.keys().hasOnly(['uid']);
+      allow delete: if signedIn() && resource.data.uid == request.auth.uid
+        && (!existsAfter(/databases/$(database)/documents/profiles/$(request.auth.uid))
+            || getAfter(/databases/$(database)/documents/profiles/$(request.auth.uid)).data.username != name);
+    }
+  }
+}

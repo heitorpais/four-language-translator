@@ -529,6 +529,46 @@ nav.top .btn{font-size:17.5px}
 .acct-box{background:var(--surface);border:1px solid var(--rule);border-radius:2px;padding:10px 14px;margin:0 0 14px;box-shadow:inset 0 0 0 3px var(--surface),inset 0 0 0 4px var(--rule)}
 .acct-box p{margin:0 0 6px}.acct-box .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .set .acct-box{margin:0}
+
+/* account corner, profile pictures, profile card and editor (sync.js) */
+.wrap{position:relative}
+#acct-corner{position:absolute;top:26px;right:30px}
+.corner-btn{display:flex;align-items:center;gap:8px;border:1px solid var(--rule);background:var(--surface);color:var(--ink);border-radius:999px;padding:3px 12px 3px 3px;font:400 15px var(--body);cursor:pointer;box-shadow:0 1px 3px rgba(60,35,15,.15)}
+.corner-btn:hover{border-color:var(--accent)}
+.corner-btn.none{padding:6px 14px;border-radius:2px;flex-direction:column;gap:0;line-height:1.15}
+.corner-btn .no-acct{font-size:13px;color:var(--muted)}
+.corner-btn .create{color:var(--accent);font-variant:small-caps;letter-spacing:.05em;text-decoration:underline;text-underline-offset:3px}
+.corner-btn .un{max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media (max-width:700px){#acct-corner{position:static;align-self:flex-end;margin:-6px 0 0}.corner-btn .un{max-width:110px}}
+.pfp{border-radius:50%;object-fit:cover;background:var(--paper);box-shadow:0 0 0 1px var(--rule)}
+.pfp.sm{width:30px;height:30px}.pfp.md{width:48px;height:48px}.pfp.lg{width:96px;height:96px;box-shadow:0 0 0 2px var(--surface),0 0 0 3px var(--gold,#9a7428)}
+.founder{color:#9a7428;font-weight:600}
+.founder.big{display:inline-block;border:1px solid #9a7428;border-radius:2px;padding:0 8px;font-variant:small-caps;letter-spacing:.05em;margin:2px 0 6px;background:rgba(154,116,40,.08)}
+.founder .no{font-variant:normal;font-weight:400;color:var(--muted)}
+#account{position:relative}
+#account .close{position:absolute;top:10px;right:14px;border:0;background:none;font:400 26px/1 var(--body);color:var(--muted);cursor:pointer}
+#account hr{border:0;border-top:1px solid var(--rule);margin:16px 0}
+.prof-card{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap;margin-bottom:10px}
+.prof-card h3{margin:0;font:600 28px/1.1 var(--display)}
+.prof-card p{margin:4px 0}.prof-card .bio{font-size:17px}
+.prof-card .lbl{color:var(--muted);font-variant:small-caps;letter-spacing:.06em;margin-right:6px}
+.tag{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--rule);background:var(--surface);border-radius:2px;padding:1px 8px;margin:2px 2px 2px 0;font-size:15px}
+.tag small{color:var(--muted)}.tag .x{border:0;background:none;color:var(--muted);cursor:pointer;font-size:16px;padding:0 0 0 2px}
+.prof-edit{display:flex;flex-direction:column;gap:16px;max-width:640px}
+.prof-edit .f>label{display:block;font-variant:small-caps;letter-spacing:.06em;color:var(--accent);margin-bottom:4px}
+.prof-edit .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.prof-edit .at{font-size:18px;color:var(--muted)}
+.prof-edit #prof-name{max-width:220px;font-size:17px}
+.prof-edit textarea{width:100%;max-width:520px;font:inherit}
+.prof-edit .hint.free{color:var(--regular)}.prof-edit .hint.taken,.prof-edit .hint.bad,.prof-edit .err{color:var(--irregular)}
+.avs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.av{border:2px solid transparent;background:none;border-radius:50%;padding:1px;cursor:pointer;line-height:0}
+.av.sel{border-color:var(--accent)}
+.lrow{display:flex;align-items:center;gap:8px;margin:4px 0}
+.lrow .lname{min-width:140px}
+.lrow select.missing{border-color:var(--irregular);box-shadow:0 0 0 1px var(--irregular)}
+.chk{display:flex;gap:8px;align-items:center}
+.acct-box .row img{margin-right:4px}
 </style>
 </head>
 <body>
@@ -598,6 +638,7 @@ nav.top .btn{font-size:17.5px}
 <script src="progress.js"></script>
 <script src="views.js"></script>
 <script src="app.js"></script>
+<script src="avatars.js"></script>
 <script src="sync.js"></script>
 </body>
 </html>
