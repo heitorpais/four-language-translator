@@ -17258,3 +17258,173 @@ sense-first	de:Vampir:noun	s3
 sense-first	de:Anzug:noun	s4
 sense-first	de:Star:noun	s4
 sense-first	de:Gang:noun	s4
+drop-tr	de:Maus:noun	*	en	mousekin
+drop-tr	de:Großmutter:noun	*	pt	nona
+drop-tr	de:Schutz:noun	*	pt	anteparo
+drop-tr	de:empfangen:verb	*	en	copy
+drop-tr	de:aufregen:verb	*	pt	excitar
+drop-tr	de:Zigarette:noun	*	pt	bagana
+drop-tr	de:interessieren:verb	*	pt	desapegar
+drop-tr	de:verletzen:verb	*	pt	doer
+drop-tr	de:Untersuchung:noun	*	pt	teste
+drop-tr	de:dringend:adjective	*	en	instant
+drop-tr	de:dringend:adjective	*	pt	instante
+drop-tr	de:schwul:adjective	*	pt	viado
+drop-tr	de:Bastard:noun	*	pt	viado
+drop-tr	de:Vorstellung:noun	*	en	apprehension
+drop-tr	de:Ware:noun	*	pt	viatura
+drop-tr	de:Ergebnis:noun	*	pt	resulta
+drop-tr	de:ignorieren:verb	*	pt	desconhecer
+drop-tr	de:ausgezeichnet:adjective	*	pt	altamente
+drop-tr	de:weglaufen:verb	*	en	elope
+drop-tr	de:versichern:verb	*	pt	assertar
+drop-tr	de:nirgendwo:adverb	*	pt	nenhures
+drop-tr	de:gewöhnlich:adjective	*	pt	vulgar
+drop-tr	de:gewöhnlich:adjective	*	en	straight
+drop-tr	de:abgesehen:adverb	*	en	other
+drop-tr	de:Freitag:noun	*	en	Sabbath
+drop-tr	de:Sonntag:noun	*	en	Sabbath
+drop-tr	de:übertreiben:verb	*	pt	demasiar
+drop-tr	de:drohen:verb	*	pt	chegar
+drop-tr	de:Schulter:noun	*	pt	acostamento
+drop-tr	de:gering:adjective	*	pt	formigueiro
+drop-tr	de:fröhlich:adjective	*	pt	folião
+drop-tr	de:Verräter:noun	*	pt	quisling
+drop-tr	de:Magie:noun	*	en	mojo
+drop-tr	de:bilden:verb	*	en	spell
+drop-tr	de:Rock:noun	*	pt	vestido
+drop-tr	de:golden:adjective	*	en	or
+drop-tr	de:kündigen:verb	*	pt	anular
+drop-tr	de:Lächeln:noun	*	pt	risada
+drop-tr	de:medizinisch:adjective	*	pt	medical
+drop-tr	de:Treppe:noun	*	pt	passadeira
+drop-tr	de:anständig:adjective	*	pt	puro
+drop-tr	de:Norden:noun	*	pt	aguião
+drop-tr	de:Jacke:noun	*	en	jerkin
+drop-tr	de:pfeifen:verb	*	en	flute
+drop-tr	de:heulen:verb	*	pt	vociferar
+drop-tr	de:wegnehmen:verb	*	pt	segurar
+drop-tr	de:Deckung:noun	*	pt	esconderijo
+drop-tr	de:wertvoll:adjective	*	pt	valorável
+drop-tr	de:explodieren:verb	*	pt	elevar-se às alturas
+sense-first	de:einfallen:verb	s3
+gloss	de:desto:conjunction	s1	the ("je mehr, desto besser": the more, the better)
+sense-first	de:Kreis:noun	s2
+sense-first	de:Ton:noun	s2
+sense-first	de:Aufnahme:noun	s4
+drop-tr	de:täglich:adjective	*	en	quotidian
+drop-tr	de:tauschen:verb	*	pt	negociar
+drop-tr	de:ehren:verb	*	pt	laurear
+drop-tr	de:Französisch:noun	*	en	blowjob
+drop-tr	de:Französisch:noun	*	pt	chupada
+drop-tr	de:Stärke:noun	*	en	forte
+drop-tr	de:Stärke:noun	*	pt	forte
+drop-tr	de:rauchen:verb	*	pt	fumegar
+drop-tr	de:bluten:verb	*	pt	deitar sangue
+drop-tr	de:dämlich:adjective	*	en	asinine
+drop-tr	de:dämlich:adjective	*	pt	asinino
+drop-tr	de:Kaiser:noun	*	pt	czar
+drop-tr	de:Süden:noun	*	pt	austro
+drop-tr	de:heutig:adjective	*	en	hodiernal
+drop-tr	de:abhalten:verb	*	en	abstain
+drop-tr	de:Inspektor:noun	*	pt	superintendente
+drop-tr	de:umziehen:verb	*	pt	remanejar
+drop-tr	de:decken:verb	*	en	tile
+drop-tr	de:decken:verb	*	pt	ladrilhar
+drop-tr	de:bedauern:verb	*	en	repent
+drop-tr	de:verhandeln:verb	*	en	treat
+drop-tr	de:Lippe:noun	*	en	labellum
+drop-tr	de:eilig:adjective	*	pt	instante
+drop-tr	de:Kommandant:noun	*	pt	comendador
+drop-tr	de:verlegen:verb	*	pt	remanejar
+drop-tr	de:hiermit:adverb	*	pt	assim
+drop-tr	de:füttern:verb	*	en	line
+drop-tr	de:füttern:verb	*	pt	raiar
+drop-tr	de:Dutzend:noun	*	pt	dezena
+drop-tr	de:überfallen:verb	*	pt	cornar
+drop-tr	de:verderben:verb	*	pt	inquinar
+drop-tr	de:Führer:noun	*	en	demagogue
+drop-tr	de:ärgern:verb	*	pt	azedar
+drop-tr	de:Scheidung:noun	*	en	severance
+drop-tr	de:trocken:adjective	*	en	sere
+drop-tr	de:backen:verb	*	pt	fazer
+drop-tr	de:bewachen:verb	*	en	sentinel
+drop-tr	de:Schnee:noun	*	en	white
+drop-tr	de:Schnee:noun	*	pt	chuvisco
+drop-tr	de:Tunnel:noun	*	en	nutmeg
+drop-tr	de:zurecht:adverb	*	en	honestly
+drop-tr	de:Krone:noun	*	pt	corola
+drop-tr	de:schleichen:verb	*	pt	tocaiar
+drop-tr	de:weiblich:adjective	*	pt	fêmeo
+drop-tr	de:hmm:interjection	*	en	d'oh
+drop-tr	de:langweilen:verb	*	pt	aborrir
+drop-tr	de:attraktiv:adjective	*	pt	vitaminado
+drop-tr	de:spannen:verb	*	en	cock
+drop-tr	de:Chip:noun	*	en	coin
+drop-tr	de:aussetzen:verb	*	pt	mostrar
+drop-tr	de:inner:adjective	*	pt	profundo
+drop-tr	de:fließen:verb	*	pt	defluir
+drop-tr	de:intelligent:adjective	*	pt	acordado
+drop-tr	de:vertragen:verb	*	pt	pairar
+drop-tr	de:Kreatur:noun	*	pt	criação
+drop-tr	de:enttäuschen:verb	*	en	mock
+drop-tr	de:Osten:noun	*	pt	lés
+drop-tr	de:russisch:adjective	*	en	Rusian
+drop-tr	de:Empfang:noun	*	pt	recibo
+drop-tr	de:diskutieren:verb	*	pt	tretar
+drop-tr	de:Suppe:noun	*	pt	brodo
+drop-tr	de:Ticket:noun	*	pt	autuação
+drop-tr	de:Spitze:noun	*	pt	cima
+sense-first	de:Krebs:noun	s2
+sense-first	de:Pech:noun	s2
+sense-first	de:ausdrücken:verb	s6
+first	de:Bürger:noun	*	en:citizen:noun
+sense-first	de:Ewigkeit:noun	s2
+drop-tr	de:Kreuz:noun	*	en	club
+drop-tr	de:Kreuz:noun	*	pt	paus
+drop-tr	de:beunruhigen:verb	*	pt	grilado
+drop-tr	de:beunruhigen:verb	*	pt	encafifado
+drop-tr	de:Manager:noun	*	pt	ecônomo
+drop-tr	de:vereinen:verb	*	en	joint
+drop-tr	de:Studio:noun	*	pt	quitinete
+drop-tr	de:Schaf:noun	*	pt	manada
+drop-tr	de:einsteigen:verb	*	pt	dar
+drop-tr	de:brillant:adjective	*	pt	claro
+drop-tr	de:Arbeiter:noun	*	en	labour
+drop-tr	de:irgend:adverb	*	pt	uns
+drop-tr	de:knallen:verb	*	en	fuck
+drop-tr	de:knallen:verb	*	pt	foder
+drop-tr	de:hinfahren:verb	*	en	experience
+drop-tr	de:hinfahren:verb	*	pt	falecer
+drop-tr	de:anklagen:verb	*	pt	objurgar
+drop-tr	de:Uni:noun	*	pt	vestibulando
+drop-tr	de:Universität:noun	*	pt	vestibulando
+drop-tr	de:Gebet:noun	*	en	boon
+drop-tr	de:gewaltig:adjective	*	pt	astronômico
+drop-tr	de:zweifeln:verb	*	en	stagger
+drop-tr	de:Hintergrund:noun	*	pt	experiência
+drop-tr	de:Spielzeug:noun	*	pt	bunhedo
+drop-tr	de:aufstellen:verb	*	pt	arrebitar
+drop-tr	de:Weihnachtsmann:noun	*	en	fathead
+drop-tr	de:Weihnachtsmann:noun	*	pt	caduco
+drop-tr	de:nutzlos:adjective	*	pt	pinoia
+drop-tr	de:Anzeichen:noun	*	pt	símbolo
+drop-tr	de:foltern:verb	*	pt	macerar
+drop-tr	de:Schicht:noun	*	pt	jazida
+drop-tr	de:Münze:noun	*	pt	cobre
+drop-tr	de:Notiz:noun	*	pt	rubrica
+drop-tr	de:Notiz:noun	*	pt	cédula
+drop-tr	de:spenden:verb	*	pt	esmolar
+drop-tr	de:Partei:noun	*	en	game
+drop-tr	de:Freak:noun	*	pt	geek
+drop-tr	de:Engländer:noun	*	pt	anglo
+drop-tr	de:Handschelle:noun	*	pt	grampo
+drop-tr	de:sehnen:verb	*	en	lust
+drop-tr	de:jahrelang:adjective	*	pt	perene
+drop-tr	de:Großer:noun	*	pt	amigo
+gloss	de:hinfahren:verb	s3	to drive there, to go there
+sense-first	de:hinfahren:verb	s3
+gloss	de:Weihnachtsmann:noun	s1	Santa Claus, Father Christmas
+sense-first	de:Weihnachtsmann:noun	s1
+sense-first	de:Stift:noun	s8
+sense-first	de:Abschluss:noun	s4
