@@ -89781,6 +89781,15 @@
     "lang": "cs",
     "target": "cs:podrobit:verb"
    }
+  },
+  {
+   "entry": "pt:teta:noun",
+   "issue": 9,
+   "date": "2026-11-14",
+   "note": "teta (teat, breast) is feminine: a teta",
+   "set": {
+    "noun.gender": "f"
+   }
   }
  ]
 }
