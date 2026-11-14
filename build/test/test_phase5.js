@@ -248,7 +248,7 @@ const results = []; const ok = (n, p, i) => results.push([n, !!p, i == null ? ''
   await page.click('#settings-toggle');
   ok('75 choose a voice per language', await ev(() => document.querySelectorAll('#settings [data-voice]').length === 4));
   await ev(() => { const s = document.querySelector('#s-voice-pt'); s.value = 'Test pt2'; s.dispatchEvent(new Event('change')); window.__spoken.length = 0; });
-  await tr('pt', 'casa'); await ev(() => document.querySelector('#cards .card[data-lang="pt"] .hwrow .say').click());
+  await tr('pt', 'casa'); await page.waitForTimeout(400); await ev(() => document.querySelector('#cards .card[data-lang="pt"] .hwrow .say').click()); await page.waitForTimeout(200);
   ok('75 chosen voice is used and remembered', (await ev(() => window.__spoken[0] && window.__spoken[0].voice)) === 'Test pt2' && (await ev(() => JSON.parse(localStorage.getItem('flt:settings4')).voice.pt)) === 'Test pt2');
   ok('76 voice status per language with how to add one', /voices on this device/.test(await ev(() => document.querySelector('#settings').innerText)));
   await page.click('#settings-toggle');

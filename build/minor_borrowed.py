@@ -27,6 +27,11 @@ def main():
             e['frequency_rank'] = None; e['level'] = None
             e['pos_order'] = max(50, (e.get('pos_order') or 0) + 50)
             st[L] += 1
+    # hand-checked list (build/claude/minor.tsv)
+    for line in open(os.path.join(ROOT, 'build', 'claude', 'minor.tsv'), encoding='utf-8'):
+        i = line.strip()
+        if not i or i.startswith('#') or i not in core: continue
+        e = core[i]; e['frequency_rank'] = None; e['level'] = None; e['pos_order'] = (e.get('pos_order') or 0) + (50 if (e.get('pos_order') or 0) < 50 else 0); st['listed'] += 1
     print('entries made minor (borrowed meanings only):', dict(st), sum(st.values()))
     wjson(path, core)
 

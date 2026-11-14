@@ -10,6 +10,7 @@ review.tsv (one change per line, tab-separated):
   drop-sense <entry id> <sense id>                                            remove a meaning
   first     <entry id>  <sense id or *>  <word id>                            put this translation first (add if missing)
   gloss     <entry id>  <sense id>  <English gloss>                           replace the English gloss of a meaning
+  sense-first <entry id> <sense id>                                           show this meaning first
 Run:  python3 -I build/review.py"""
 import sys, os, re, json, gzip, collections
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -121,6 +122,9 @@ def main():
             if op == 'drop-sense':
                 n = len(e['senses']); e['senses'] = [s for s in e['senses'] if s['id'] != f[2]] or e['senses']
                 st['senses dropped'] += n - len(e['senses'])
+            elif op == 'sense-first':
+                m = [x for x in e['senses'] if x['id'] == f[2]]
+                if m: e['senses'] = m + [x for x in e['senses'] if x['id'] != f[2]]; st['senses moved first'] += 1
             elif op == 'gloss':
                 for s in e['senses']:
                     if s['id'] == f[2]: s['gloss_en'] = f[3]; st['glosses'] += 1

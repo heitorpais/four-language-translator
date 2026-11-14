@@ -151,3 +151,27 @@ es	AR	take/catch	tomar	verb	+	coger
 es	MX	take/catch	coger	verb	-		
 es	AR	take/catch	coger	verb	-		
 es	AR	you	vos	pronoun	+	tú	
+# Swiss Standard German (Helvetismen), checked by Claude: the Swiss word goes first in Switzerland, where the other word is listed
+de	CH	ice cream	Glace	noun	+	Eis	
+de	CH	ticket	Billett	noun	+	Fahrkarte	
+de	CH	hairdresser/barber	Coiffeur	noun	+	Friseur	
+de	CH	platform	Perron	noun	+	Bahnsteig	
+de	CH	attic/loft	Estrich	noun	+	Dachboden	
+de	CH	caretaker/janitor/superintendent	Abwart	noun	+	Hausmeister	
+de	CH	postman/mailman/letter carrier/postwoman	Pöstler	noun	+	Briefträger	
+de	CH	dinner/supper	Nachtessen	noun	+	Abendessen	
+de	CH	conductor	Kondukteur	noun	+	Schaffner	
+de	CH	bell pepper/sweet pepper/pepper/capsicum	Peperoni	noun	+	Paprika	
+de	CH	lamb's lettuce/corn salad	Nüsslisalat	noun	+	Feldsalat	
+de	CH	croissant	Gipfeli	noun	+	Croissant	
+de	CH	sink/washbasin/basin/washbowl	Lavabo	noun	+	Waschbecken	
+de	CH	duvet/quilt/comforter/eiderdown	Duvet	noun	+	Bettdecke	
+de	CH	desk	Pult	noun	+	Schreibtisch	
+de	CH	slipper	Finken	noun	+	Hausschuh	
+de	CH	pocket money/allowance	Sackgeld	noun	+	Taschengeld	
+de	CH	ATM/cash machine/cashpoint/automated teller machine	Bancomat	noun	+	Geldautomat	
+de	CH	carrot	Rüebli	noun	+	Karotte	
+de	CH	scooter/kick scooter	Trottinett	noun	+	Roller	
+de	CH	envelope	Couvert	noun	+	Umschlag	
+de	CH	interruption	Unterbruch	noun	+	Unterbrechung	
+de	CH	move/relocate/move house	zügeln	verb	+	umziehen	

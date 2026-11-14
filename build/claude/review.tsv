@@ -16917,3 +16917,344 @@ drop-sense	it:produrre:verb	s6
 drop-sense	it:ritirare:verb	s7
 drop-sense	it:ritirare:verb	s8
 drop-sense	it:condizione:noun	s5
+# Checked by hand: German words ranked 1500-3000 (2026-11-14)
+drop-sense	de:prüfen:verb	s3
+drop-sense	de:festhalten:verb	s8
+drop-sense	de:heil:adjective	s2
+drop-sense	de:woran:adverb	s2
+drop-sense	de:Ergebnis:noun	s3
+drop-sense	de:woanders:adverb	s2
+drop-sense	de:Braut:noun	s3
+drop-sense	de:Motor:noun	s3
+drop-sense	de:Aufmerksamkeit:noun	s5
+drop-sense	de:Ratte:noun	s2
+drop-sense	de:aufbauen:verb	s7
+drop-sense	de:bewusst:adjective	s4
+drop-sense	de:deutlich:adjective	s3
+drop-sense	de:deutlich:adjective	s5
+drop-sense	de:verabschieden:verb	s6
+drop-sense	de:abnehmen:verb	s6
+drop-sense	de:Killer:noun	s2
+drop-sense	de:angenehm:adjective	s2
+drop-sense	de:angenehm:adjective	s3
+drop-sense	de:Größe:noun	s7
+drop-sense	de:aussuchen:verb	s2
+drop-sense	de:respektieren:verb	s2
+drop-sense	de:golden:adjective	s4
+drop-sense	de:betragen:verb	s3
+drop-sense	de:Decke:noun	s6
+drop-sense	de:ausgeben:verb	s8
+drop-sense	de:Bauch:noun	s8
+drop-sense	de:überraschen:verb	s2
+drop-sense	de:Presse:noun	s3
+drop-sense	de:Gift:noun	s2
+drop-sense	de:Gift:noun:3	s3
+drop-sense	de:eingehen:verb	s8
+drop-sense	de:beschissen:adjective	s3
+drop-sense	de:Schauspieler:noun	s3
+drop-sense	de:Schauspieler:noun	s4
+drop-sense	de:Spiegel:noun	s6
+drop-sense	de:Täter:noun	s2
+drop-sense	de:mitmachen:verb	s4
+drop-sense	de:Mitte:noun	s6
+drop-sense	de:Bedingung:noun	s5
+drop-sense	de:ehren:verb	s6
+drop-sense	de:ehren:verb	s7
+drop-sense	de:zustimmen:verb	s3
+drop-sense	de:Stoff:noun	s6
+drop-sense	de:bewundern:verb	s3
+drop-sense	de:streichen:verb	s7
+drop-sense	de:streichen:verb	s8
+drop-sense	de:hinterher:adverb	s6
+drop-sense	de:dahinter:adverb	s2
+drop-sense	de:abhalten:verb	s5
+drop-sense	de:Bereich:noun	s7
+drop-sense	de:bedienen:verb	s8
+drop-sense	de:Träne:noun	s2
+drop-sense	de:nachsehen:verb	s5
+drop-sense	de:erfreuen:verb	s4
+drop-sense	de:anschließen:verb	s7
+drop-sense	de:Abenteuer:noun	s4
+drop-sense	de:Reaktion:noun	s3
+drop-sense	de:Knopf:noun	s7
+drop-sense	de:zurecht:adverb	s1
+drop-sense	de:Heim:noun	s5
+drop-sense	de:Heim:noun	s7
+drop-sense	de:weiblich:adjective	s6
+drop-sense	de:hmm:interjection	s1
+drop-sense	de:beherrschen:verb	s7
+drop-sense	de:attraktiv:adjective	s4
+drop-sense	de:Indianer:noun	s2
+drop-sense	de:spannen:verb	s4
+drop-sense	de:spannen:verb	s5
+drop-sense	de:männlich:adjective	s6
+drop-sense	de:Schluck:noun	s5
+drop-sense	de:einigen:verb	s4
+drop-sense	de:stechen:verb	s5
+drop-sense	de:achten:verb	s5
+drop-sense	de:Keks:noun	s6
+drop-sense	de:Revier:noun	s5
+drop-sense	de:sinnlos:adjective	s2
+drop-sense	de:Ticket:noun	s3
+drop-sense	de:erweisen:verb	s4
+drop-sense	de:hundert:numeral	s4
+drop-sense	de:lenken:verb	s4
+drop-sense	de:wachen:verb	s4
+drop-sense	de:Viertel:noun	s3
+drop-sense	de:Viertel:noun	s5
+drop-sense	de:zurückziehen:verb	s5
+drop-sense	de:Heilige:noun	s3
+drop-sense	de:Vorfall:noun	s4
+drop-sense	de:Rand:noun	s7
+drop-sense	de:Stift:noun	s6
+drop-sense	de:Stift:noun	s7
+drop-sense	de:Stift:noun:2	s6
+drop-sense	de:Stift:noun:2	s7
+drop-sense	de:Stift:noun:2	s8
+drop-sense	de:taub:adjective	s5
+drop-sense	de:zweifeln:verb	s3
+drop-sense	de:umkehren:verb	s3
+drop-sense	de:Protokoll:noun	s6
+drop-sense	de:innen:adverb	s2
+drop-sense	de:innen:adverb	s3
+drop-sense	de:Flur:noun	s5
+drop-sense	de:Flur:noun:2	s4
+drop-sense	de:anrichten:verb	s3
+drop-sense	de:Phase:noun	s4
+drop-sense	de:wandern:verb	s6
+drop-sense	de:höchstens:adverb	s2
+drop-sense	de:zunächst:adverb	s3
+drop-sense	de:hilfreich:adjective	s2
+drop-sense	de:Liebhaber:noun	s6
+drop-sense	de:Liebhaber:noun	s7
+drop-sense	de:Kleinigkeit:noun	s2
+drop-sense	de:Schicht:noun	s6
+drop-sense	de:Zone:noun	s4
+drop-sense	de:abfahren:verb	s7
+drop-sense	de:Sprung:noun	s8
+drop-sense	de:Freak:noun	s2
+drop-sense	de:begeistern:verb	s4
+drop-sense	de:sicherstellen:verb	s3
+# Checked by hand: main meaning and first translations of the most common German words (2026-11-14)
+drop-tr	de:haben:verb	*	en	feel
+drop-tr	de:ja:interjection	*	pt	si
+drop-tr	de:nein:interjection	*	en	d'oh
+drop-tr	de:tun:verb	*	pt	botar
+drop-tr	de:auch:adverb	*	pt	outrossim
+drop-tr	de:schon:adverb	*	pt	de uma vez
+drop-tr	de:Mann:noun	*	pt	muamuna
+drop-tr	de:sehr:adverb	*	pt	assaz
+drop-tr	de:danke:interjection	*	pt	grácias
+drop-tr	de:brauchen:verb	*	pt	tomar
+drop-tr	de:klein:adjective	*	pt	formigueiro
+drop-tr	de:fahren:verb	*	pt	pegar
+drop-tr	de:töten:verb	*	pt	arrasar
+drop-tr	de:umbringen:verb	*	pt	arrasar
+drop-tr	de:Herr:noun	*	pt	lorde
+drop-tr	de:Name:noun	*	pt	adedonha
+drop-tr	de:lange:adverb	*	pt	demorar
+drop-tr	de:morgen:adverb	*	pt	crás
+drop-tr	de:Problem:noun	*	en	monkey wrench
+drop-tr	de:Ordnung:noun	*	pt	asseio
+drop-tr	de:tot:adjective	*	pt	exânime
+drop-tr	de:nah:adjective	*	pt	familiar
+drop-tr	de:heißen:verb	*	en	hight
+drop-tr	de:lieben:verb	*	en	fond
+drop-tr	de:gegen:preposition	*	pt	vérsus
+drop-tr	de:Bruder:noun	*	pt	frade
+drop-tr	de:nennen:verb	*	pt	escolher
+drop-tr	de:gern:adverb	*	pt	amplamente
+drop-tr	de:Sorge:noun	*	pt	mágoa
+drop-tr	de:wichtig:adjective	*	pt	maior
+drop-tr	de:Stadt:noun	*	pt	urbe
+drop-tr	de:Wort:noun	*	en	call
+drop-tr	de:Glück:noun	*	pt	júbilo
+drop-tr	de:Ende:noun	*	en	back
+drop-tr	de:Ende:noun	*	pt	cabo
+drop-tr	de:bedeuten:verb	*	en	spell
+drop-tr	de:darauf:adverb	*	pt	doravante
+drop-tr	de:Waffe:noun	*	pt	armadura
+drop-tr	de:Monat:noun	*	en	moon
+drop-tr	de:Herz:noun	*	pt	corações
+drop-tr	de:sprechen:verb	*	pt	bostejar
+drop-tr	de:nervös:adjective	*	pt	atacado
+drop-tr	de:vorstellen:verb	*	fr	entre
+first	de:gleich:adverb	s1	en:soon:adverb
+first	de:Mensch:noun	*	pt:pessoa:noun
+first	de:entschuldigen:verb	*	pt:desculpar:verb
+gloss	de:leid:adjective	s1	sorry ("es tut mir leid": I'm sorry); tired of ("etwas leid sein")
+first	de:leid:adjective	s1	en:sorry:adjective
+gloss	de:stimmen:verb	s3	to be right, to be true ("das stimmt": that's right)
+gloss	de:so:adverb	s1	so, like this, thus; then
+sense-first	de:toll:adjective	s3
+sense-first	de:weit:adjective	s2
+sense-first	de:Unterhaltung:noun	s4
+drop-tr	de:versprechen:verb	*	pt	alvotar
+drop-tr	de:gestern:adverb	*	pt	onte
+drop-tr	de:etwa:adverb	*	pt	quiçá
+drop-tr	de:niemals:adverb	*	pt	nunquinha
+drop-tr	de:Plan:noun	*	pt	carta geográfica
+drop-tr	de:einige:numeral	*	pt	muito
+drop-tr	de:Gesicht:noun	*	pt	fuça
+drop-tr	de:anfangen:verb	*	pt	estartar
+drop-tr	de:süß:adjective	*	en	dulcet
+drop-tr	de:Buch:noun	*	en	omasum
+drop-tr	de:Teil:noun	*	pt	feixe
+drop-tr	de:äh:interjection	*	en	a
+drop-tr	de:äh:interjection	*	pt	é
+drop-tr	de:geschehen:verb	*	pt	encontrar
+drop-tr	de:kaum:adverb	*	pt	apenas
+drop-tr	de:Telefon:noun	*	pt	teléfono
+drop-tr	de:hübsch:adjective	*	pt	vitaminado
+drop-tr	de:singen:verb	*	pt	desafinar
+drop-tr	de:Dame:noun	*	en	king
+drop-tr	de:Dollar:noun	*	pt	dola
+drop-tr	de:Doktor:noun	*	pt	doutorado
+drop-tr	de:Hölle:noun	*	pt	geena
+drop-tr	de:völlig:adverb	*	en	all
+drop-tr	de:Arm:noun	*	en	prong
+drop-tr	de:Party:noun	*	pt	arrasta-pé
+drop-tr	de:Kaffee:noun	*	en	joe
+drop-tr	de:bauen:verb	*	pt	alçar
+drop-tr	de:Scheiß:noun	*	pt	merda nenhuma
+drop-tr	de:erreichen:verb	*	en	arrive
+drop-tr	de:erreichen:verb	*	pt	atinar
+drop-tr	de:Körper:noun	*	en	person
+drop-tr	de:beruhigen:verb	*	pt	embalar
+drop-tr	de:irgendwo:adverb	*	pt	em todo lado
+drop-tr	de:weh:interjection	*	pt	heu
+drop-tr	de:weh:interjection	*	pt	guai
+drop-tr	de:Versuch:noun	*	pt	try
+drop-tr	de:zweite:adjective	*	en	sophomore
+drop-tr	de:zweite:adjective	*	pt	secundanista
+drop-tr	de:Anwalt:noun	*	pt	solicitador
+drop-tr	de:Mist:interjection	*	pt	caralho
+drop-tr	de:kalt:adjective	*	pt	álgido
+drop-tr	de:wovon:pronoun	*	pt	cujo
+drop-tr	de:beeilen:verb	*	en	vamoose
+drop-tr	de:Boss:noun	*	pt	guardião
+drop-tr	de:Gedanke:noun	*	en	think
+drop-tr	de:Handy:noun	*	pt	portátil
+drop-tr	de:reich:adjective	*	pt	recheado
+drop-tr	de:Arschloch:noun	*	pt	olho do cu
+drop-tr	de:beschützen:verb	*	pt	tutelar
+drop-tr	de:sichern:verb	*	en	belay
+drop-tr	de:stolz:adjective	*	pt	jactante
+drop-tr	de:traurig:adjective	*	pt	plangente
+drop-tr	de:Punkt:noun	*	pt	pingo
+drop-tr	de:wunderschön:adjective	*	pt	exuberante
+drop-tr	de:bestimmen:verb	*	pt	decretar
+drop-tr	de:Geschenk:noun	*	en	bounty
+drop-tr	de:überleben:verb	*	en	live
+drop-tr	de:fassen:verb	*	en	sic
+drop-tr	de:Meister:noun	*	pt	amo
+drop-tr	de:verfolgen:verb	*	en	course
+drop-tr	de:verfolgen:verb	*	pt	afugentar
+drop-tr	de:Rolle:noun	*	pt	roldana
+drop-tr	de:Fenster:noun	*	pt	fenestra
+drop-tr	de:Tasche:noun	*	en	cul-de-sac
+drop-tr	de:behandeln:verb	*	en	demean
+drop-tr	de:scheiße:adjective	*	en	BTEC
+drop-tr	de:Anruf:noun	*	en	bell
+drop-tr	de:Freundin:noun	*	pt	namorado
+first	de:ehrlich:adjective	*	en:honest:adjective
+gloss	de:ehrlich:adjective	s1	honest, sincere, frank
+first	de:verletzt:adjective	*	en:injured:adjective
+gloss	de:wovon:pronoun	s1	of what, from what, about what ("Wovon redest du?")
+sense-first	de:Karte:noun	s1
+sense-first	de:Platz:noun	s3
+sense-first	de:verbringen:verb	s8
+drop-sense	de:verbringen:verb	s1
+drop-sense	de:verbringen:verb	s3
+drop-sense	de:verbringen:verb	s4
+drop-sense	de:verbringen:verb	s5
+drop-sense	de:verbringen:verb	s6
+drop-tr	de:Polizist:noun	*	pt	meganha
+drop-tr	de:Bescheid:noun	*	en	know
+drop-tr	de:jagen:verb	*	pt	afugentar
+drop-tr	de:wetten:verb	*	pt	envidar
+drop-tr	de:dahin:adverb	*	pt	alá
+drop-tr	de:still:adjective	*	pt	tácito
+drop-tr	de:Liste:noun	*	pt	escalação
+drop-tr	de:Vorsicht:noun	*	en	policy
+drop-tr	de:schenken:verb	*	en	pay
+drop-tr	de:angreifen:verb	*	pt	cornar
+drop-tr	de:feuern:verb	*	en	can
+drop-tr	de:neben:preposition	*	pt	perante
+drop-tr	de:offensichtlich:adjective	*	pt	escancarado
+drop-tr	de:leise:adjective	*	pt	tácito
+drop-tr	de:Computer:noun	*	pt	calculador
+drop-tr	de:blau:adjective	*	en	livid
+drop-tr	de:nicken:verb	*	pt	fazer
+drop-tr	de:Gold:noun	*	en	or
+drop-tr	de:dick:adjective	*	en	gross
+drop-tr	de:klug:adjective	*	pt	acordado
+drop-tr	de:Schlaf:noun	*	pt	remela
+drop-tr	de:übrig:adjective	*	pt	resíduo
+drop-tr	de:geheim:adjective	*	en	underground
+drop-tr	de:geheim:adjective	*	pt	arcano
+drop-tr	de:überrascht:adjective	*	pt	apanhado
+drop-tr	de:dritte:adjective	*	pt	três
+drop-tr	de:indem:conjunction	*	pt	a
+drop-tr	de:Gesellschaft:noun	*	pt	agremiação
+drop-tr	de:Küche:noun	*	pt	quitinete
+drop-tr	de:Gegend:noun	*	en	ballpark
+drop-tr	de:verantwortlich:adjective	*	pt	atendível
+drop-tr	de:streiten:verb	*	pt	desavir
+drop-tr	de:schwanger:adjective	*	pt	pejado
+drop-tr	de:teuer:adjective	*	pt	trabalhoso
+drop-tr	de:Wunsch:noun	*	pt	requerimento
+drop-tr	de:Rose:noun	*	en	erysipelas
+drop-tr	de:Rose:noun	*	pt	erisipela
+drop-tr	de:laden:verb	*	en	boot
+drop-tr	de:laden:verb	*	pt	botinar
+drop-tr	de:rauskommen:verb	*	pt	deixar
+drop-tr	de:bestätigen:verb	*	pt	favorecer
+first	de:nahe:adjective	*	en:near:adjective
+gloss	de:leisten:verb	s1	to achieve, to perform; "sich etwas leisten": to afford something
+gloss	de:befinden:verb	s1	"sich befinden": to be (located), to find oneself
+gloss	de:worauf:adverb	s1	on what, for what ("Worauf wartest du?"); whereupon
+drop-tr	de:besprechen:verb	*	en	bespeak
+drop-tr	de:besprechen:verb	*	pt	tretar
+drop-tr	de:dienen:verb	*	en	page
+drop-tr	de:pro:preposition	*	pt	daqui a
+drop-tr	de:erschrecken:verb	*	pt	ameaçar
+drop-tr	de:Erfahrung:noun	*	en	science
+drop-tr	de:anbieten:verb	*	en	bequeath
+drop-tr	de:Bus:noun	*	pt	horário
+drop-tr	de:grün:adjective	*	en	vert
+drop-tr	de:waschen:verb	*	pt	branquear
+drop-tr	de:verbieten:verb	*	pt	impossibilitar
+drop-tr	de:schlau:adjective	*	pt	serelepe
+drop-tr	de:unterstützen:verb	*	pt	assistir
+drop-tr	de:Ehe:noun	*	pt	conúbio
+drop-tr	de:Scherz:noun	*	pt	brinca
+drop-tr	de:Hexe:noun	*	pt	estrige
+drop-tr	de:Restaurant:noun	*	pt	restaurador
+drop-tr	de:Großvater:noun	*	pt	nono
+drop-tr	de:schwimmen:verb	*	pt	adanar
+drop-tr	de:Brust:noun	*	pt	teta
+drop-tr	de:anhalten:verb	*	pt	encorajar
+drop-tr	de:Nachmittag:noun	*	en	arvo
+drop-tr	de:Urlaub:noun	*	pt	feriado
+drop-tr	de:Reihe:noun	*	pt	eito
+drop-tr	de:kompliziert:adjective	*	pt	cabuloso
+drop-tr	de:verteidigen:verb	*	pt	defensar
+drop-tr	de:Fräulein:noun	*	en	bachelorette
+drop-tr	de:sammeln:verb	*	pt	apanhar
+drop-tr	de:betrachten:verb	*	en	scope
+drop-tr	de:Dieb:noun	*	en	snitch
+drop-tr	de:Strand:noun	*	pt	fralda do mar
+drop-tr	de:stoßen:verb	*	pt	tchovar
+drop-tr	de:hässlich:adjective	*	pt	baranga
+drop-tr	de:Fliege:noun	*	pt	díptero
+drop-tr	de:mehrere:pronoun	*	pt	algum
+first	de:mehrere:pronoun	*	pt:vário:adjective
+gloss	de:Wiedersehen:noun	s1	seeing again, reunion; "auf Wiedersehen": goodbye
+gloss	de:zulassen:verb	s1	to allow, to permit, to let happen
+gloss	de:lauten:verb	s1	to be, to read, to go (of words: "Wie lautet die Antwort?")
+sense-first	de:anhalten:verb	s2
+sense-first	de:Vampir:noun	s3
+sense-first	de:Anzug:noun	s4
+sense-first	de:Star:noun	s4
+sense-first	de:Gang:noun	s4

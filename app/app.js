@@ -1491,7 +1491,7 @@ let pressTimer = 0, longPressed = false;
 $('#cards').addEventListener('pointerdown', ev => {          // hold the speaker: slow
   const s = ev.target.closest('.say[data-say]'); if (!s) return;
   longPressed = false; clearTimeout(pressTimer);
-  pressTimer = setTimeout(() => { longPressed = true; sayFrom(s, true); }, 500);
+  pressTimer = setTimeout(() => { longPressed = true; sayFrom(s, true); setTimeout(() => { longPressed = false; }, 1500); }, 500);     // the click that ends this press is ignored, not a later one
 });
 ['pointerup', 'pointerleave', 'pointercancel'].forEach(k => $('#cards').addEventListener(k, () => clearTimeout(pressTimer)));
 function sayFrom(s, slow) {
