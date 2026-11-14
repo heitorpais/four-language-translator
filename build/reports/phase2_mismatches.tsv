@@ -5,8 +5,6 @@ de:Aids:noun	acc.sg	Aids	(das) Aids	stored	ok
 de:Aids:noun	dat.sg	Aids	(dem) Aids	stored	ok
 de:Aids:noun	nom.sg	Aids	(das) Aids	stored	ok
 de:Alf:noun	dat.pl	?n	?	stored	ok
-de:Alte:noun	dat.sg	Alte	Alter / Alten / einer Alten	stored	ok
-de:Alte:noun	gen.pl	Alte	Alter / Alten / keiner Alten	stored	ok
 de:Alter:noun	acc.sg	Alter	Alten / einen Alten	stored	ok
 de:Alter:noun	dat.sg	Alter	Altem / Alten / einem Alten	stored	ok
 de:Alter:noun	gen.pl	Alte	Alter / Alten / keiner Alten	stored	ok
@@ -3657,7 +3655,6 @@ fr:envoyer:verb	subjimpf.2pl	envoyissiez	envoyassiez	derived from a stored form	
 fr:envoyer:verb	subjimpf.2sg	envoyisses	envoyasses	derived from a stored form	ok
 fr:envoyer:verb	subjimpf.3pl	envoyissent	envoyassent	derived from a stored form	ok
 fr:envoyer:verb	subjimpf.3sg	envoyît	envoyât	derived from a stored form	ok
-fr:espace-temps:noun	pl	espace-temps	espaces-temps	stored	ok
 fr:européen:adjective	f.pl	européenes	européennes	derived from a stored form	ok
 fr:européen:adjective	f.sg	européene	européenne	stored	ok
 fr:exprès:adjective	f.pl	exprèses	expresses	derived from a stored form	ok
@@ -3931,8 +3928,6 @@ fr:haïr:verb	subjimpf.3sg	haît	haït	derived from a stored form	ok
 fr:hibou:noun	pl	hibous	hiboux	stored	ok
 fr:homo:adjective	f.pl	homoes	homos	stored	ok
 fr:hot:adjective	f.pl	hotes	hots	stored	ok
-fr:imitateur:adjective	f.pl	imitateuses	imitatrices	derived from a stored form	ok
-fr:imitateur:adjective	f.sg	imitateuse	imitatrice	stored	ok
 fr:inclure:verb	ps.1pl	incluîmes	inclûmes	derived from a stored form	ok
 fr:inclure:verb	ps.1sg	incluis	inclus	stored	ok
 fr:inclure:verb	ps.2pl	incluîtes	inclûtes	derived from a stored form	ok
@@ -4704,8 +4699,6 @@ fr:ouïr:verb	subjimpf.2pl	ouissiez	ouïssiez	derived from a stored form	ok
 fr:ouïr:verb	subjimpf.2sg	ouisses	ouïsses	derived from a stored form	ok
 fr:ouïr:verb	subjimpf.3pl	ouissent	ouïssent	derived from a stored form	ok
 fr:ouïr:verb	subjimpf.3sg	ouît	ouït	derived from a stored form	ok
-fr:pacificateur:adjective	f.pl	pacificateuses	pacificatrices	derived from a stored form	ok
-fr:pacificateur:adjective	f.sg	pacificateuse	pacificatrice	stored	ok
 fr:paraitre:verb	imp.1pl	paraitons	paraissons	derived from a stored form	ok
 fr:paraitre:verb	imp.2pl	paraitez	paraissez	derived from a stored form	ok
 fr:paraitre:verb	impf.1pl	paraitions	paraissions	derived from a stored form	ok
@@ -6045,31 +6038,6 @@ fr:retenir:verb	subjimpf.2pl	retenussiez	retinssiez	derived from a stored form	o
 fr:retenir:verb	subjimpf.2sg	retenusses	retinsses	derived from a stored form	ok
 fr:retenir:verb	subjimpf.3pl	retenussent	retinssent	derived from a stored form	ok
 fr:retenir:verb	subjimpf.3sg	retenût	retînt	derived from a stored form	ok
-fr:retraire:verb	imp.1pl	retraions	retrayons	derived from a stored form	ok
-fr:retraire:verb	imp.2pl	retraiez	retrayez	derived from a stored form	ok
-fr:retraire:verb	impf.1pl	retraiions	retrayions	derived from a stored form	ok
-fr:retraire:verb	impf.1sg	retraiais	retrayais	derived from a stored form	ok
-fr:retraire:verb	impf.2pl	retraiiez	retrayiez	derived from a stored form	ok
-fr:retraire:verb	impf.2sg	retraiais	retrayais	derived from a stored form	ok
-fr:retraire:verb	impf.3pl	retraiaient	retrayaient	derived from a stored form	ok
-fr:retraire:verb	impf.3sg	retraiait	retrayait	derived from a stored form	ok
-fr:retraire:verb	ppres	retraiant	retrayant	derived from a stored form	ok
-fr:retraire:verb	pres.1pl	retraions	retrayons	stored	ok
-fr:retraire:verb	pres.2pl	retraiez	retrayez	derived from a stored form	ok
-fr:retraire:verb	ps.1pl	retraiîmes	retrayâmes	derived from a stored form	ok
-fr:retraire:verb	ps.1sg	retraiis	retrayai	stored	ok
-fr:retraire:verb	ps.2pl	retraiîtes	retrayâtes	derived from a stored form	ok
-fr:retraire:verb	ps.2sg	retraiis	retrayas	derived from a stored form	ok
-fr:retraire:verb	ps.3pl	retraiirent	retrayèrent	derived from a stored form	ok
-fr:retraire:verb	ps.3sg	retraiit	retraya	derived from a stored form	ok
-fr:retraire:verb	subj.1pl	retraiions	retrayions	derived from a stored form	ok
-fr:retraire:verb	subj.2pl	retraiiez	retrayiez	derived from a stored form	ok
-fr:retraire:verb	subjimpf.1pl	retraiissions	retrayassions	derived from a stored form	ok
-fr:retraire:verb	subjimpf.1sg	retraiisse	retrayasse	derived from a stored form	ok
-fr:retraire:verb	subjimpf.2pl	retraiissiez	retrayassiez	derived from a stored form	ok
-fr:retraire:verb	subjimpf.2sg	retraiisses	retrayasses	derived from a stored form	ok
-fr:retraire:verb	subjimpf.3pl	retraiissent	retrayassent	derived from a stored form	ok
-fr:retraire:verb	subjimpf.3sg	retraiît	retrayât	derived from a stored form	ok
 fr:revaloir:verb	cond.1pl	revaloirions	revaudrions	derived from a stored form	ok
 fr:revaloir:verb	cond.1sg	revaloirais	revaudrais	derived from a stored form	ok
 fr:revaloir:verb	cond.2pl	revaloiriez	revaudriez	derived from a stored form	ok
@@ -6243,8 +6211,6 @@ fr:résoudre:verb	subjimpf.2pl	résoudissiez	résolussiez / vous résolussiez	de
 fr:résoudre:verb	subjimpf.2sg	résoudisses	résolusses / te résolusses	derived from a stored form	ok
 fr:résoudre:verb	subjimpf.3pl	résoudissent	résolussent / se résolussent	derived from a stored form	ok
 fr:résoudre:verb	subjimpf.3sg	résoudît	résolût / se résolût	derived from a stored form	ok
-fr:révélateur:adjective	f.pl	révélateuses	révélatrices	derived from a stored form	ok
-fr:révélateur:adjective	f.sg	révélateuse	révélatrice	stored	ok
 fr:réécrire:verb	imp.1pl	réécrions	réécrivons	derived from a stored form	ok
 fr:réécrire:verb	imp.2pl	réécriez	réécrivez	derived from a stored form	ok
 fr:réécrire:verb	impf.1pl	réécriions	réécrivions	derived from a stored form	ok
@@ -8683,6 +8649,7 @@ pt:manter:verb	pres.3sg	mante	mantém	stored	ok
 pt:manter:verb	pret.3sg	mantive	manteve	stored	ok
 pt:mau:adjective	f.pl	maus	más	derived from a stored form	ok
 pt:mau:adjective	f.sg	mau	má	stored	ok
+pt:melhor:adjective	f.pl	melhoras	melhores	stored	ok
 pt:memorável:adjective	f.pl	memorávéis	memoráveis	stored	ok
 pt:memorável:adjective	m.pl	memorávéis	memoráveis	stored	ok
 pt:menor:adjective	f.pl	menoras	menores	stored	ok
@@ -9444,20 +9411,6 @@ pt:sênior:adjective	f.pl	sênioras	seniores	stored	ok
 pt:sênior:adjective	m.pl	sêniores	seniores	stored	ok
 pt:sênior:noun	pl	sêniores	seniores	stored	ok
 pt:sótão:noun	pl	sótões	sótãos	stored	ok
-pt:tar:verb	imp.1pl	temos	tejamos	stored	ok
-pt:tar:verb	imp.2sg	ta	tá	derived from a stored form	ok
-pt:tar:verb	imp.3pl	tem	tejam	stored	ok
-pt:tar:verb	imp.3sg	te	teja	stored	ok
-pt:tar:verb	pres.2sg	tas	tás	stored	ok
-pt:tar:verb	pres.3pl	tam	tão	stored	ok
-pt:tar:verb	pres.3sg	ta	tá	stored	ok
-pt:tar:verb	pret.3sg	tive	teve	stored	ok
-pt:tar:verb	subj.1pl	temos	tejamos	stored	ok
-pt:tar:verb	subj.1sg	te	teja	stored	ok
-pt:tar:verb	subj.2pl	teis	tejais	stored	ok
-pt:tar:verb	subj.2sg	tes	tejas	stored	ok
-pt:tar:verb	subj.3pl	tem	tejam	stored	ok
-pt:tar:verb	subj.3sg	te	teja	stored	ok
 pt:ter:verb	imp.2pl	tei	tende	stored	ok
 pt:ter:verb	imp.2sg	te	tem	derived from a stored form	ok
 pt:ter:verb	impf.1pl	tíamos	tínhamos	stored	ok

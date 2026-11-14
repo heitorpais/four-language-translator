@@ -47,11 +47,15 @@ def pt_european(text):
     return p > b
 
 
+def T_(v): return v.split('\x00', 1)[0]           # a stored sentence is "text" or "text\x00user" (less memory than a pair)
+def U_(v): return v.split('\x00', 1)[1] if '\x00' in v else None
+
+
 def pick(o, ids, text, sent_o):
     """the direct translation to show: Brazilian Portuguese first, then the length closest to the source sentence"""
     if o == 'pt':
-        return min(ids, key=lambda x: (pt_european(sent_o[x][0]), abs(len(sent_o[x][0]) - len(text)), x))
-    return min(ids, key=lambda x: (abs(len(sent_o[x][0]) - len(text)), x))
+        return min(ids, key=lambda x: (pt_european(T_(sent_o[x])), abs(len(T_(sent_o[x])) - len(text)), x))
+    return min(ids, key=lambda x: (abs(len(T_(sent_o[x])) - len(text)), x))
 
 
 def tsv(name):
@@ -60,7 +64,9 @@ def tsv(name):
             yield line.rstrip('\n').split('\t')
 
 
-def main():
+def prepare():
+    """first process: only the parts of the entries this step reads, written to a file, so that the process that holds
+    the Tatoeba sentences never has the full entries in memory"""
     core = rjson(os.path.join(WORK, 'core.json'))
     tables = {}
     for L in list(LANGS) + ['library']:
@@ -69,17 +75,32 @@ def main():
         for line in gzip.open(fn, 'rt', encoding='utf-8'):
             i, t = json.loads(line)
             if i in core: tables[i] = t
-    links = {l: collections.defaultdict(lambda: collections.defaultdict(list)) for l in L3.values()}
-    for a, b in PAIRS:
-        for p in tsv('%s-%s_links.tsv.bz2' % (a, b)):
-            x, y = int(p[0]), int(p[1])
-            links[a][x][b].append(y); links[b][y][a].append(x)
+    light = {i: {k: e.get(k) for k in ('lang', 'pos', 'lemma', 'frequency_rank', 'examples', 'governs', 'origin')} for i, e in core.items()}
+    wjson(os.path.join(WORK, 'examples_in.json'), {'core': light, 'tables': tables})
+
+
+def main():
+    d = rjson(os.path.join(WORK, 'examples_in.json')); core, tables = d['core'], d['tables']; del d
+    import gc
     sent = {}
     for l in L3.values():
         d = {}
         for p in tsv('%s_sentences_detailed.tsv.bz2' % l):
-            if len(p) >= 4: d[int(p[0])] = (p[2], None if p[3] == r'\N' else p[3])
+            if len(p) >= 4: d[int(p[0])] = p[2] if p[3] == r'\N' else p[2] + '\x00' + p[3]
         sent[l] = d
+    def usable(text):        # the sentences that can become examples (the same test as below)
+        if len(text) > 90 or len(text) < 8 or re.search(r'[\d"„“”»«:;()\[\]/]', text): return False
+        return 3 <= sum(1 for _ in TOK.finditer(text)) <= 13
+    ok = {l: {i for i, v in d.items() if usable(T_(v))} for l, d in sent.items()}
+    # sentence -> linked sentence ids of every language in one list (the language is found from the id), kept only for
+    # sentences that can become examples: a nested dict for every sentence does not fit in memory with ten languages
+    links = {l: collections.defaultdict(list) for l in L3.values()}
+    for a, b in PAIRS:
+        for p in tsv('%s-%s_links.tsv.bz2' % (a, b)):
+            x, y = int(p[0]), int(p[1])
+            if x in ok[a]: links[a][x].append(y)
+            if y in ok[b]: links[b][y].append(x)
+    del ok; gc.collect()
     print('sentences', {l: len(v) for l, v in sent.items()}, flush=True)
     stats = {}
     for L in LANGS:
@@ -109,13 +130,14 @@ def main():
                 else: lower[lkey(w)].add(i)
         cand = collections.defaultdict(list)
         own = sent[l3]
-        for sid, (text, user) in own.items():
+        for sid, v in own.items():
+            text, user = T_(v), U_(v)
             if len(text) > 90 or len(text) < 8 or re.search(r'[\d"„“”»«:;()\[\]/]', text): continue
             toks = [(m.group(), m.start(), m.end()) for m in TOK.finditer(text)]
             n = len(toks)
             if n < 3 or n > 13: continue
-            lk = links[l3].get(sid, {})
-            ntr = sum(1 for o in others if any(x in sent[L3[o]] for x in lk.get(L3[o], ())))
+            lk = links[l3].get(sid, ())
+            ntr = sum(1 for o in others if any(x in sent[L3[o]] for x in lk))
             # more translated languages, better (de/en/fr/pt matter most)
             base = (100 + 3 * (ntr - 3) if ntr >= 3 else {2: 40, 1: 10, 0: 0}[ntr]) - abs(n - 7) * 2 - (4 if not user else 0)
             lows = [t[0].lower() for t in toks]
@@ -139,20 +161,20 @@ def main():
             e = ents[i]; chosen = []; seen_forms = set(); starts = set()
             pool = sorted(cand[i], reverse=True)
             while pool and len(chosen) < PER_ENTRY:
-                best = max(pool, key=lambda c: c[0] - 12 * used[c[1]] - (8 if c[4] in seen_forms else 0) - (25 if ' '.join(own[c[1]][0].split()[:3]) in starts else 0))
+                best = max(pool, key=lambda c: c[0] - 12 * used[c[1]] - (8 if c[4] in seen_forms else 0) - (25 if ' '.join(T_(own[c[1]]).split()[:3]) in starts else 0))
                 pool.remove(best)
                 if any(best[1] == c[1] for c in chosen): continue
-                chosen.append(best); seen_forms.add(best[4]); used[best[1]] += 1; starts.add(' '.join(own[best[1]][0].split()[:3]))
+                chosen.append(best); seen_forms.add(best[4]); used[best[1]] += 1; starts.add(' '.join(T_(own[best[1]]).split()[:3]))
             e['examples'] = [x for x in e['examples'] if x['origin'] != 'tatoeba']
             for sc, sid, a, b, w in chosen:
-                text, user = own[sid]
+                text, user = T_(own[sid]), U_(own[sid])
                 tr, tid, credit, variant = {}, {}, {L: user}, {}
                 if L == 'pt' and pt_european(text): variant['pt'] = 'PT'
                 for o in others:
-                    ids = sorted(x for x in links[l3].get(sid, {}).get(L3[o], ()) if x in sent[L3[o]])
+                    ids = sorted(x for x in links[l3].get(sid, ()) if x in sent[L3[o]])
                     if ids:
                         best = pick(o, ids, text, sent[L3[o]])
-                        tr[o] = sent[L3[o]][best][0]; tid[o] = 't:%d' % best; credit[o] = sent[L3[o]][best][1]
+                        tr[o] = T_(sent[L3[o]][best]); tid[o] = 't:%d' % best; credit[o] = U_(sent[L3[o]][best])
                         if o == 'pt' and pt_european(tr[o]): variant['pt'] = 'PT'
                     else:
                         tr[o] = None
@@ -168,9 +190,24 @@ def main():
         stats[L] = {'core entries': len(ents), 'with examples': sum(1 for e in ents.values() if e['examples']),
                     'with 4': sum(1 for e in ents.values() if len(e['examples']) >= 4), 'examples': nex, 'with all three translations': full}
         print(L, stats[L], flush=True)
-    wjson(os.path.join(WORK, 'core.json'), core)
+    # the full entries are merged in a fresh process: this one keeps the memory of the sentences
+    wjson(os.path.join(WORK, 'examples_tmp.json'), core)
     wjson(os.path.join(REPORTS, 'tatoeba_stats.json'), stats, indent=1)
 
 
+def merge():
+    core = rjson(os.path.join(WORK, 'core.json')); light = rjson(os.path.join(WORK, 'examples_tmp.json'))
+    for i, e in light.items():
+        core[i]['examples'] = e['examples']; core[i]['governs'] = e['governs']; core[i]['origin'] = e['origin']
+    wjson(os.path.join(WORK, 'core.json'), core)
+    os.remove(os.path.join(WORK, 'examples_tmp.json')); os.remove(os.path.join(WORK, 'examples_in.json'))
+    print('merged', len(light))
+
+
 if __name__ == '__main__':
-    main()
+    me = [sys.executable, '-I', os.path.abspath(__file__)]
+    if sys.argv[1:] == ['--merge']: merge()
+    elif sys.argv[1:] == ['--run']:
+        main(); sys.stdout.flush(); os.execv(sys.executable, me + ['--merge'])
+    else:
+        prepare(); sys.stdout.flush(); os.execv(sys.executable, me + ['--run'])

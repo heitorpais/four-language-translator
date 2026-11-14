@@ -77,9 +77,12 @@ def classify(rec):
     if not ss: return 'skip'
     if all(s['form_of'] or s['alt_of'] for s in ss) or 'form-of' in rec['tags']: return 'form'
     main = [s for s in ss if not set(s['tags']) & MARGINAL]
-    if main and main[0]['form_of'] and all(' ' not in x for x in main[0]['form_of']): return 'form'   # "is": third-person singular of be
+    # "is": third-person singular of be.  But a form with meanings and a translation table of its own is also a word:
+    # "people" (plural of person; a nation), "glasses" (plural of glass; spectacles)
+    own = any(not s['form_of'] and not s['alt_of'] for s in main) and len({t[0] for t in rec['tr']}) >= 5
+    if main and main[0]['form_of'] and all(' ' not in x for x in main[0]['form_of']) and not own: return 'form'
     # a definition that only describes an inflected form; pronouns ("ich: 1. Person Singular") are words of their own
-    if main and pos in ('verb', 'noun', 'adj') and (FORM_GLOSS.search(main[0]['gloss'] or '') or FORM_GLOSS_DE.search(main[0]['gloss'] or '')): return 'formgloss'
+    if main and pos in ('verb', 'noun', 'adj') and not own and (FORM_GLOSS.search(main[0]['gloss'] or '') or FORM_GLOSS_DE.search(main[0]['gloss'] or '')): return 'formgloss'
     if all(BAD_SENSE & set(s['tags']) for s in ss): return 'bad'
     if all(ABBR_TAGS & set(s['tags']) for s in ss) or ABBR_TAGS & set(rec['tags']): return 'abbr'
     if rec.get('pos_title') and re.search(r'Abkürzung|Abréviation|Sigle|Abreviatura|Sigla|Vorname|Nachname|Toponym|Prénom|Nom de famille|Nome próprio|Antropônimo|Topônimo', rec['pos_title'] or ''): return 'name'
@@ -91,6 +94,13 @@ def main(lang):
     for l in open(os.path.join(ROOT, 'build', 'common_abbreviations.txt'), encoding='utf-8'):
         l = l.strip()
         if l and not l.startswith('#') and l.split('|')[0] == lang: abbr_ok.add(l.split('|', 1)[1])
+    # hand-checked (build/claude/own_words.tsv, "lang|word"): words counted for themselves although Wiktionary also calls
+    # them a form of another word ("its" of it, "interesting" of interest, "thanks" of thank)
+    own_words = set()
+    for l in open(os.path.join(ROOT, 'build', 'claude', 'own_words.tsv'), encoding='utf-8'):
+        l = l.strip()
+        if l and not l.startswith('#') and l.split('|')[0] == lang: own_words.add(l.split('|', 1)[1])
+    cand = []
     block = set()
     bl = os.path.join(ROOT, 'build', 'lemma_blocklist_%s.txt' % lang)
     if lang == 'de': bl = os.path.join(ROOT, 'build', 'lemma_blocklist.txt')
@@ -198,11 +208,14 @@ def main(lang):
             # a real word with its own everyday senses keeps the corpus word ("tu", "mais", "para");
             # otherwise the word it is a form of gets it ("is", "est", "habe")
             st = strong.get(v)
+            if v in own_words and v in lem:
+                groups['cap' if v[0].isupper() else 'low'].add(v); continue
             if v in lem and lem[v].get('main') and st:
                 # both readings exist ("é": letter name, or form of ser; "mais": but, or plural of mai).
                 # The form reading wins when the word it is a form of is itself common in the corpus.
                 r = max(freq_of.get(l.lower(), 0) for l in st) / max(freq_of.get(t, 1), 1)
                 share = min(1.0, r / 0.2)
+                if share >= 0.5 and lem[v].get('tr', 0) >= 3: cand.append((c * share, t, v, sorted(st)))
                 split.append((share, sorted(st), [v])); continue
             else:
                 tgt = {v} if (v in lem and lem[v].get('main')) else (st or ({v} if v in lem else set()))
@@ -245,6 +258,12 @@ def main(lang):
     ranked = sorted((w for w in single if weight.get(w, 0) > 0), key=lambda w: -weight[w])
     rank = {w: i for i, w in enumerate(ranked, 1)}
     core = set(ranked[:CORE_N])
+    # for the hand check: words with translations of their own whose corpus count went (mostly) to the word they are a form of
+    agg = collections.defaultdict(float)
+    for c, t, v, st in cand: agg[(v, ' '.join(st))] += c
+    with open(os.path.join(ROOT, 'build', 'logs', 'own_candidates_%s.txt' % lang), 'w', encoding='utf-8') as fo:
+        for (v, st), c in sorted(agg.items(), key=lambda x: -x[1])[:600]:
+            fo.write('%s|%s\t-> %s\t%.0f\trank now %s\n' % (lang, v, st, c, rank.get(v)))
     out = {}
     for w, v in lem.items():
         wt = weight.get(w, 0.0)

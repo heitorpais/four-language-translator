@@ -46,7 +46,8 @@ INV = {}
 def inv(lang):
     if lang not in INV:
         d = rjson(os.path.join(WORK, 'inv_%s.json' % lang))
-        INV[lang] = (d['lemmas'], d['forms'])
+        # only the fields read here: ten full inventories next to the core entries do not fit in memory
+        INV[lang] = ({w: {'pos': v['pos'], 'rank': v['rank'], 'tier': v.get('tier')} for w, v in d['lemmas'].items()}, d['forms']); del d
     return INV[lang]
 
 

@@ -1,58 +1,58 @@
 {
  "de": {
-  "core entries": 8696,
-  "with examples": 8517,
-  "with 4": 8110,
-  "examples": 33229,
-  "with all three translations": 21
+  "core entries": 8704,
+  "with examples": 8527,
+  "with 4": 8122,
+  "examples": 33275,
+  "with all three translations": 20
  },
  "en": {
-  "core entries": 14784,
-  "with examples": 14648,
-  "with 4": 14346,
-  "examples": 58009,
+  "core entries": 14798,
+  "with examples": 14663,
+  "with 4": 14369,
+  "examples": 58087,
   "with all three translations": 406
  },
  "fr": {
-  "core entries": 10110,
-  "with examples": 9776,
-  "with 4": 9298,
-  "examples": 38184,
+  "core entries": 10121,
+  "with examples": 9801,
+  "with 4": 9341,
+  "examples": 38311,
   "with all three translations": 12
  },
  "pt": {
   "core entries": 9838,
-  "with examples": 9517,
-  "with 4": 8513,
-  "examples": 36070,
+  "with examples": 9525,
+  "with 4": 8556,
+  "examples": 36171,
   "with all three translations": 8
  },
  "cs": {
-  "core entries": 8417,
-  "with examples": 7201,
-  "with 4": 5120,
-  "examples": 24363,
-  "with all three translations": 25
+  "core entries": 8428,
+  "with examples": 7221,
+  "with 4": 5155,
+  "examples": 24477,
+  "with all three translations": 26
  },
  "it": {
-  "core entries": 9724,
-  "with examples": 9529,
-  "with 4": 9029,
-  "examples": 37140,
+  "core entries": 9753,
+  "with examples": 9561,
+  "with 4": 9077,
+  "examples": 37300,
   "with all three translations": 9
  },
  "es": {
-  "core entries": 9894,
-  "with examples": 9747,
-  "with 4": 9030,
-  "examples": 37627,
+  "core entries": 9891,
+  "with examples": 9751,
+  "with 4": 9052,
+  "examples": 37674,
   "with all three translations": 20
  },
  "nl": {
-  "core entries": 9210,
-  "with examples": 8451,
-  "with 4": 6776,
-  "examples": 30366,
+  "core entries": 9207,
+  "with examples": 8435,
+  "with 4": 6742,
+  "examples": 30264,
   "with all three translations": 19
  },
  "sv": {
@@ -60,7 +60,7 @@
   "with examples": 6463,
   "with 4": 3800,
   "examples": 19794,
-  "with all three translations": 26
+  "with all three translations": 27
  },
  "la": {
   "core entries": 5548,

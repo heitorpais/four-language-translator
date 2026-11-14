@@ -19,7 +19,7 @@ def main():
         if not e: missing.append(i); continue
         g = groups[(e['lang'], e['lemma'])]
         ranks = [x['frequency_rank'] for x in g if x.get('frequency_rank')]
-        if e.get('frequency_rank') is None and ranks: e['frequency_rank'] = min(ranks)
+        if ranks: e['frequency_rank'] = min(ranks)        # the app opens the most frequent entry of a spelling first
         rest = sorted((x for x in g if x is not e), key=lambda x: x.get('pos_order') or 0)
         e['pos_order'] = 0
         for k, x in enumerate(rest):

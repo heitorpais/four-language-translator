@@ -42,11 +42,11 @@ def hl(text):
 def main():
     import build_entries as be
     entries = rjson(os.path.join(WORK, 'core.json'))
-    rest = {}                     # extended and long-tail ids, so a library word outside the core can be promoted
+    rest = set()                  # extended and long-tail ids, so a library word outside the core can be promoted
     for L in LANGS:
         for line in gzip.open(os.path.join(WORK, 'entries_%s.jsonl.gz' % L), 'rt', encoding='utf-8'):
             i = line[8:line.index('"', 8)]
-            rest[i] = True
+            rest.add(i)
     extra_tables = {}
     lib = rjson(os.path.join(ROOT, 'build', 'library', 'library.json'))
     conflicts = []; rule_diffs = []; created = []; claude_only = []; kept = collections.Counter()
