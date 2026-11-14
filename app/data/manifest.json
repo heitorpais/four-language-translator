@@ -27614,31 +27614,31 @@
   },
   {
    "file": "core-fr.json.gz",
-   "bytes": 8224185,
-   "stored_bytes": 849474,
-   "sha256": "7f3632abaf721fbb",
+   "bytes": 8211489,
+   "stored_bytes": 847316,
+   "sha256": "88a6b9b43c9b285e",
    "tier": "core",
    "lang": "fr",
    "entries": 10124
   },
   {
    "file": "details-fr.json.gz",
-   "bytes": 17063643,
-   "stored_bytes": 2725029,
-   "sha256": "7e34b91b2c883f5a",
+   "bytes": 17034235,
+   "stored_bytes": 2723048,
+   "sha256": "0584eb21980d0c04",
    "tier": "details",
    "lang": "fr",
    "entries": 10124
   },
   {
    "file": "links/fr-de.json.gz",
-   "bytes": 1297233,
-   "stored_bytes": 293941,
-   "sha256": "aa25ae1360757178",
+   "bytes": 1293122,
+   "stored_bytes": 293032,
+   "sha256": "c1c8af619d3f31db",
    "tier": "links",
    "lang": "fr",
    "to": "de",
-   "entries": 9196
+   "entries": 9195
   },
   {
    "file": "examples/fr-de.json.gz",
@@ -27652,9 +27652,9 @@
   },
   {
    "file": "links/fr-en.json.gz",
-   "bytes": 1177955,
-   "stored_bytes": 264659,
-   "sha256": "494a9d43466fa907",
+   "bytes": 1173799,
+   "stored_bytes": 263657,
+   "sha256": "4a304049e6e6a43c",
    "tier": "links",
    "lang": "fr",
    "to": "en",
@@ -27672,13 +27672,13 @@
   },
   {
    "file": "links/fr-pt.json.gz",
-   "bytes": 1009937,
-   "stored_bytes": 213060,
-   "sha256": "7060246907de6b24",
+   "bytes": 1006516,
+   "stored_bytes": 212318,
+   "sha256": "0863c7f0b299e655",
    "tier": "links",
    "lang": "fr",
    "to": "pt",
-   "entries": 8968
+   "entries": 8967
   },
   {
    "file": "examples/fr-pt.json.gz",
@@ -27692,13 +27692,13 @@
   },
   {
    "file": "links/fr-cs.json.gz",
-   "bytes": 913897,
-   "stored_bytes": 195222,
-   "sha256": "f8e29b044579125e",
+   "bytes": 910553,
+   "stored_bytes": 194473,
+   "sha256": "e965a67ed6633eaf",
    "tier": "links",
    "lang": "fr",
    "to": "cs",
-   "entries": 8568
+   "entries": 8566
   },
   {
    "file": "examples/fr-cs.json.gz",
@@ -27712,9 +27712,9 @@
   },
   {
    "file": "links/fr-it.json.gz",
-   "bytes": 1066605,
-   "stored_bytes": 222398,
-   "sha256": "4819c961230296e7",
+   "bytes": 1062516,
+   "stored_bytes": 221512,
+   "sha256": "c2e9905b4f4460ad",
    "tier": "links",
    "lang": "fr",
    "to": "it",
@@ -27732,13 +27732,13 @@
   },
   {
    "file": "links/fr-es.json.gz",
-   "bytes": 1154170,
-   "stored_bytes": 248360,
-   "sha256": "1445288eac3c6d36",
+   "bytes": 1149561,
+   "stored_bytes": 247329,
+   "sha256": "319dd87f5defe3c0",
    "tier": "links",
    "lang": "fr",
    "to": "es",
-   "entries": 9169
+   "entries": 9167
   },
   {
    "file": "examples/fr-es.json.gz",
@@ -27752,13 +27752,13 @@
   },
   {
    "file": "links/fr-nl.json.gz",
-   "bytes": 1048324,
-   "stored_bytes": 227271,
-   "sha256": "6728f7f1b61c4aac",
+   "bytes": 1044633,
+   "stored_bytes": 226414,
+   "sha256": "bc27742f7c0b3160",
    "tier": "links",
    "lang": "fr",
    "to": "nl",
-   "entries": 8881
+   "entries": 8878
   },
   {
    "file": "examples/fr-nl.json.gz",
@@ -27772,13 +27772,13 @@
   },
   {
    "file": "links/fr-sv.json.gz",
-   "bytes": 919118,
-   "stored_bytes": 197093,
-   "sha256": "faa4800e848ec6d2",
+   "bytes": 915662,
+   "stored_bytes": 196335,
+   "sha256": "3402bd909a0fc2e4",
    "tier": "links",
    "lang": "fr",
    "to": "sv",
-   "entries": 8338
+   "entries": 8336
   },
   {
    "file": "examples/fr-sv.json.gz",
@@ -27792,13 +27792,13 @@
   },
   {
    "file": "links/fr-la.json.gz",
-   "bytes": 643809,
-   "stored_bytes": 126870,
-   "sha256": "fa4b320fd0d37bb1",
+   "bytes": 641291,
+   "stored_bytes": 126371,
+   "sha256": "a2928771599f7cf8",
    "tier": "links",
    "lang": "fr",
    "to": "la",
-   "entries": 6498
+   "entries": 6487
   },
   {
    "file": "examples/fr-la.json.gz",
@@ -58777,31 +58777,31 @@
   },
   {
    "file": "core-es.json.gz",
-   "bytes": 7965011,
-   "stored_bytes": 845333,
-   "sha256": "e8b53618358b359e",
+   "bytes": 7950821,
+   "stored_bytes": 842857,
+   "sha256": "3d657d6f1898ffd1",
    "tier": "core",
    "lang": "es",
    "entries": 9891
   },
   {
    "file": "details-es.json.gz",
-   "bytes": 15942572,
-   "stored_bytes": 2633458,
-   "sha256": "d34ed5fd89c0e648",
+   "bytes": 15908342,
+   "stored_bytes": 2631219,
+   "sha256": "026c7a894998b14b",
    "tier": "details",
    "lang": "es",
    "entries": 9891
   },
   {
    "file": "links/es-de.json.gz",
-   "bytes": 1190033,
-   "stored_bytes": 272713,
-   "sha256": "93a7d228d80199b8",
+   "bytes": 1184629,
+   "stored_bytes": 271482,
+   "sha256": "3f95a9321126290b",
    "tier": "links",
    "lang": "es",
    "to": "de",
-   "entries": 9355
+   "entries": 9353
   },
   {
    "file": "examples/es-de.json.gz",
@@ -58815,13 +58815,13 @@
   },
   {
    "file": "links/es-en.json.gz",
-   "bytes": 1122077,
-   "stored_bytes": 252765,
-   "sha256": "badbda2d8556a93d",
+   "bytes": 1116573,
+   "stored_bytes": 251476,
+   "sha256": "da88ac8983ce7725",
    "tier": "links",
    "lang": "es",
    "to": "en",
-   "entries": 9680
+   "entries": 9679
   },
   {
    "file": "examples/es-en.json.gz",
@@ -58835,9 +58835,9 @@
   },
   {
    "file": "links/es-fr.json.gz",
-   "bytes": 1052193,
-   "stored_bytes": 230847,
-   "sha256": "442ba9289b038241",
+   "bytes": 1047535,
+   "stored_bytes": 229818,
+   "sha256": "a3cfd9b92e7805ec",
    "tier": "links",
    "lang": "es",
    "to": "fr",
@@ -58855,13 +58855,13 @@
   },
   {
    "file": "links/es-pt.json.gz",
-   "bytes": 955137,
-   "stored_bytes": 197201,
-   "sha256": "e0472072d211c523",
+   "bytes": 950650,
+   "stored_bytes": 196283,
+   "sha256": "71b0d7fbd8bf9345",
    "tier": "links",
    "lang": "es",
    "to": "pt",
-   "entries": 9286
+   "entries": 9285
   },
   {
    "file": "examples/es-pt.json.gz",
@@ -58875,13 +58875,13 @@
   },
   {
    "file": "links/es-cs.json.gz",
-   "bytes": 861835,
-   "stored_bytes": 186915,
-   "sha256": "bd3d219039a1bc37",
+   "bytes": 857719,
+   "stored_bytes": 186008,
+   "sha256": "dd4fd15a16ce2de3",
    "tier": "links",
    "lang": "es",
    "to": "cs",
-   "entries": 8660
+   "entries": 8654
   },
   {
    "file": "examples/es-cs.json.gz",
@@ -58895,13 +58895,13 @@
   },
   {
    "file": "links/es-it.json.gz",
-   "bytes": 1025658,
-   "stored_bytes": 216724,
-   "sha256": "c0bd040c03f627a8",
+   "bytes": 1020783,
+   "stored_bytes": 215742,
+   "sha256": "96ac862c9afc99c8",
    "tier": "links",
    "lang": "es",
    "to": "it",
-   "entries": 9239
+   "entries": 9237
   },
   {
    "file": "examples/es-it.json.gz",
@@ -58915,9 +58915,9 @@
   },
   {
    "file": "links/es-nl.json.gz",
-   "bytes": 1017966,
-   "stored_bytes": 223449,
-   "sha256": "7d6097b815de1c17",
+   "bytes": 1013150,
+   "stored_bytes": 222420,
+   "sha256": "45c28945871ed8af",
    "tier": "links",
    "lang": "es",
    "to": "nl",
@@ -58935,13 +58935,13 @@
   },
   {
    "file": "links/es-sv.json.gz",
-   "bytes": 891816,
-   "stored_bytes": 193932,
-   "sha256": "1d97db9afaba465a",
+   "bytes": 887400,
+   "stored_bytes": 193012,
+   "sha256": "a6f337c54ec95b7e",
    "tier": "links",
    "lang": "es",
    "to": "sv",
-   "entries": 8705
+   "entries": 8701
   },
   {
    "file": "examples/es-sv.json.gz",
@@ -58955,13 +58955,13 @@
   },
   {
    "file": "links/es-la.json.gz",
-   "bytes": 624918,
-   "stored_bytes": 126169,
-   "sha256": "c10835cea12f5b18",
+   "bytes": 621821,
+   "stored_bytes": 125520,
+   "sha256": "15aeb8c37a201659",
    "tier": "links",
    "lang": "es",
    "to": "la",
-   "entries": 6948
+   "entries": 6940
   },
   {
    "file": "examples/es-la.json.gz",
@@ -82053,9 +82053,9 @@
   },
   {
    "file": "links.json.gz",
-   "bytes": 33812088,
-   "stored_bytes": 8183204,
-   "sha256": "e2d2da6061d9e35a",
+   "bytes": 33738733,
+   "stored_bytes": 8165805,
+   "sha256": "3648fea361523638",
    "tier": "links"
   },
   {
