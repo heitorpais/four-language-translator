@@ -250,7 +250,9 @@ const results = []; const ok = (n, p, i) => results.push([n, !!p, i == null ? ''
   await ev(() => { const s = document.querySelector('#s-voice-pt'); s.value = 'Test pt2'; s.dispatchEvent(new Event('change')); window.__spoken.length = 0; });
   await tr('pt', 'casa'); await page.waitForTimeout(400); await ev(() => document.querySelector('#cards .card[data-lang="pt"] .hwrow .say').click());
   await page.waitForFunction(() => window.__spoken.length > 0, null, { timeout: 3000 }).catch(() => {});
-  ok('75 chosen voice is used and remembered', (await ev(() => window.__spoken[0] && window.__spoken[0].voice)) === 'Test pt2' && (await ev(() => JSON.parse(localStorage.getItem('flt:settings4')).voice.pt)) === 'Test pt2');
+  { const info = await ev(() => JSON.stringify({ spoken: window.__spoken.map(x => [x.text, x.voice, x.lang]), saved: JSON.parse(localStorage.getItem('flt:settings4')).voice, sel: (document.querySelector('#s-voice-pt') || {}).value }));
+    if (!/Test pt2/.test(info)) console.log('voice debug', info);
+    ok('75 chosen voice is used and remembered', (await ev(() => window.__spoken[0] && window.__spoken[0].voice)) === 'Test pt2' && (await ev(() => JSON.parse(localStorage.getItem('flt:settings4')).voice.pt)) === 'Test pt2', info); }
   ok('76 voice status per language with how to add one', /voices on this device/.test(await ev(() => document.querySelector('#settings').innerText)));
   await page.click('#settings-toggle');
   await tr('de', 'gehen'); await ev(() => { document.querySelector('#cards .card[data-lang="de"] [data-extra="forms"]').click(); window.__spoken.length = 0; });

@@ -1487,11 +1487,11 @@ $('#status').addEventListener('click', ev => {
   else if (b.dataset.sense) { state.sense = +b.dataset.sense; state.pick = {}; setRoute(state.entry, state.sense, true); render(); }
   else if (b.dataset.id) openId(b.dataset.id);
 });
-let pressTimer = 0, longPressed = false;
+let pressTimer = 0, longPressed = null;          // the speaker that was just held down: the click ending that press is ignored
 $('#cards').addEventListener('pointerdown', ev => {          // hold the speaker: slow
   const s = ev.target.closest('.say[data-say]'); if (!s) return;
-  longPressed = false; clearTimeout(pressTimer);
-  pressTimer = setTimeout(() => { longPressed = true; sayFrom(s, true); setTimeout(() => { longPressed = false; }, 1500); }, 500);     // the click that ends this press is ignored, not a later one
+  longPressed = null; clearTimeout(pressTimer);
+  pressTimer = setTimeout(() => { longPressed = s; sayFrom(s, true); setTimeout(() => { if (longPressed === s) longPressed = null; }, 1500); }, 500);     // the click that ends this press is ignored, not a later one
 });
 ['pointerup', 'pointerleave', 'pointercancel'].forEach(k => $('#cards').addEventListener(k, () => clearTimeout(pressTimer)));
 function sayFrom(s, slow) {
@@ -1501,7 +1501,7 @@ function sayFrom(s, slow) {
 $('#cards').addEventListener('contextmenu', ev => { if (ev.target.closest('.say')) ev.preventDefault(); });
 $('#cards').addEventListener('click', ev => {
   const cardEl = ev.target.closest('.card'), e = cardEl && D.byId.get(cardEl.dataset.id), lang = cardEl && cardEl.dataset.lang;
-  const s = ev.target.closest('[data-say]'); if (s) { if (longPressed) { longPressed = false; return; } sayFrom(s, false); return; }
+  const s = ev.target.closest('[data-say]'); if (s) { if (longPressed === s) { longPressed = null; return; } sayFrom(s, false); return; }
   const w = ev.target.closest('.ex .w'); if (w) { translate(lang, w.dataset.w); return; }        // tap a word of a sentence
   const p = ev.target.closest('[data-pick]'); if (p) { const [l, i] = p.dataset.pick.split(':'); state.pick[l] = +i; render(); return; }
   const g = ev.target.closest('[data-go]'); if (g) { const i = g.dataset.go.indexOf(':'); translate(g.dataset.go.slice(0, i), g.dataset.go.slice(i + 1)); return; }

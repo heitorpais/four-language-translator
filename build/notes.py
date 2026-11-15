@@ -25,6 +25,19 @@ def main():
                 e['more']['learner_mistake'] = mistake.strip(); e['origin']['more.learner_mistake'] = 'claude'; n[e['lang'] + ' mistake'] += 1
             if note.strip() and not e.get('usage_note'):
                 e['usage_note'] = note.strip(); e['origin']['usage_note'] = 'claude'; n[e['lang'] + ' note'] += 1
+    # more Zurich German forms (claude/gsw_more.tsv: lemma|form), only where an entry has none yet
+    by_lemma = collections.defaultdict(list)
+    for e in core.values():
+        if e['lang'] == 'de': by_lemma[e['lemma']].append(e)
+    for line in open(os.path.join(ROOT, 'build', 'claude', 'gsw_more.tsv'), encoding='utf-8'):
+        line = line.rstrip('\n')
+        if not line or line.startswith('#'): continue
+        lemma, form = line.split('|')[:2]
+        if lemma not in by_lemma: unknown.append('gsw ' + lemma); continue
+        for e in by_lemma[lemma]:
+            if form.strip() and not e.get('swiss_german'):
+                e['swiss_german'] = {'form': form.strip(), 'origin': 'claude', 'approximate': True}
+                e.setdefault('origin', {})['swiss_german'] = 'claude'; n['de swiss german'] += 1
     print('notes added', dict(n)); print('entries not found', unknown)
     wjson(path, core)
 
