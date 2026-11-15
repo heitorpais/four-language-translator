@@ -20083,3 +20083,88 @@ sense-first	fr:tenue:noun	s5
 drop-tr	fr:mystère:noun	*	pt	desfecho
 drop-tr	fr:soupe:noun	*	pt	brodo
 drop-tr	fr:déterminer:verb	*	de	antun
+drop-tr	fr:extraordinaire:adjective	*	pt	escalafobético
+drop-tr	fr:boule:noun	*	pt	torrão
+drop-tr	fr:patte:noun	*	pt	pouta
+drop-tr	fr:jus:noun	*	pt	látex
+drop-tr	fr:sacrifier:verb	*	de	schlachten
+sense-first	fr:région:noun	s2
+drop-tr	fr:bloc:noun	*	de	Blockade
+drop-tr	fr:bloc:noun	*	pt	peça
+sense-first	fr:gaffe:noun	s2
+drop-tr	fr:gaffe:noun	*	pt	capivarada
+drop-tr	fr:bêtise:noun	*	de	Koks
+drop-tr	fr:ouest:noun	*	de	Abend
+drop-tr	fr:positif:adjective	*	pt	real
+drop-tr	fr:nord:noun	*	pt	aguião
+drop-tr	fr:boisson:noun	*	pt	amavio
+drop-tr	fr:urgent:adjective	*	en	bad
+drop-tr	fr:urgent:adjective	*	pt	instante
+drop-tr	fr:procédure:noun	*	pt	sub-rotina
+drop-tr	fr:cuisiner:verb	*	de	backen
+drop-tr	fr:jouet:noun	*	pt	bunhedo
+drop-tr	fr:objectif:noun	*	de	objektiv
+first	fr:objectif:noun	*	de:Ziel:noun
+drop-tr	fr:enregistrement:noun	*	pt	descarga
+drop-tr	fr:emballer:verb	*	pt	fazer
+drop-tr	fr:verser:verb	*	de	einleiten
+sense-first	fr:casier:noun	s3
+drop-tr	fr:circonstance:noun	*	pt	vereda
+first	fr:sensible:adjective	*	de:empfindlich:adjective
+drop-tr	fr:sensible:adjective	*	de	brenzlig
+drop-tr	fr:gloire:noun	*	pt	celebridade
+drop-tr	fr:fiancer:verb	*	pt	prometer
+drop-tr	fr:candidat:noun	*	pt	requerente
+drop-tr	fr:souffrance:noun	*	de	Übel
+sense-first	fr:tension:noun	s2
+drop-tr	fr:tension:noun	*	de	Intension
+first	fr:exercice:noun	*	de:Übung:noun
+drop-tr	fr:transporter:verb	*	de	abfahren
+drop-tr	fr:royaume:noun	*	de	Kronland
+drop-tr	fr:maudit:adjective	*	pt	réprobo
+drop-tr	fr:humanité:noun	*	en	manhood
+drop-tr	fr:serviette:noun	*	de	Zwehle
+drop-tr	fr:serviette:noun	*	pt	rodilha
+drop-tr	fr:capacité:noun	*	pt	proficiência
+drop-tr	fr:intervenir:verb	*	de	verwenden
+drop-tr	fr:tireur:noun	*	de	Aussteller
+drop-tr	fr:repousser:verb	*	de	abblitzen
+drop-tr	fr:amant:noun	*	de	Buhle
+drop-tr	fr:allemand:adjective	*	de	teutsch
+drop-tr	fr:dragon:noun	*	en	worm
+drop-tr	fr:embarquer:verb	*	de	bunkern
+drop-tr	fr:épuiser:verb	*	de	ausreizen
+drop-tr	fr:ravir:verb	*	pt	atrair
+drop-tr	fr:milliard:noun	*	en	yard
+first	fr:fichier:noun	*	de:Datei:noun
+drop-tr	fr:haine:noun	*	de	Hetze
+drop-tr	fr:haine:noun	*	pt	desdém
+sense-first	fr:congé:noun	s4
+drop-tr	fr:foule:noun	*	pt	fula
+drop-tr	fr:fonction:noun	*	pt	lugar
+drop-tr	fr:bourrer:verb	*	de	einstecken
+drop-tr	fr:étendre:verb	*	en	anoint
+drop-tr	fr:étendre:verb	*	de	schmieren
+drop-tr	fr:incapable:adjective	*	de	fahruntauglich
+sense-first	fr:dénoncer:verb	s2
+drop-tr	fr:dénoncer:verb	*	de	absagen
+drop-tr	fr:dénoncer:verb	*	de	aufkündigen
+drop-tr	fr:tâche:noun	*	pt	carga
+first	fr:adopter:verb	*	pt:adotar:verb
+sense-first	fr:jugement:noun	s2
+drop-tr	fr:port:noun	*	pt	porte
+drop-tr	fr:exagérer:verb	*	de	plauschen
+drop-tr	fr:grimper:verb	*	pt	chegar
+sense-first	fr:masser:verb	s4
+drop-tr	fr:alerter:verb	*	pt	lembrar
+drop-tr	fr:renseignement:noun	*	de	Bekanntmachung
+drop-tr	fr:embaucher:verb	*	de	mieten
+drop-tr	fr:organisation:noun	*	de	Veranstaltung
+sense-first	fr:boss:noun	s2
+drop-tr	fr:rang:noun	*	pt	eito
+drop-tr	fr:raisonnable:adjective	*	pt	sábio
+sense-first	fr:relier:verb	s2
+drop-tr	fr:soif:noun	*	de	Hunger
+drop-tr	fr:soif:noun	*	en	hunger
+drop-tr	fr:assistant:noun	*	pt	ajudador
+drop-tr	fr:audience:noun	*	pt	ouvinte
