@@ -4,18 +4,18 @@
  "files": [
   {
    "file": "core-de.json.gz",
-   "bytes": 7581124,
-   "stored_bytes": 925663,
-   "sha256": "29874926e19fdf39",
+   "bytes": 7593479,
+   "stored_bytes": 927192,
+   "sha256": "3972f5f763bd2d0d",
    "tier": "core",
    "lang": "de",
    "entries": 8706
   },
   {
    "file": "details-de.json.gz",
-   "bytes": 16767638,
-   "stored_bytes": 3023172,
-   "sha256": "4a730dbf993ceac9",
+   "bytes": 16773374,
+   "stored_bytes": 3023410,
+   "sha256": "eb19cd21c4a399cc",
    "tier": "details",
    "lang": "de",
    "entries": 8706
