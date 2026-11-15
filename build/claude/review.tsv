@@ -18229,3 +18229,460 @@ sense-first	de:umstimmen:verb	s2
 sense-first	de:Auseinandersetzung:noun	s2
 sense-first	de:distanzieren:verb	s1
 gloss	de:distanzieren:verb	s1	(sich distanzieren) to distance oneself; to outdistance
+drop-tr	pt:não:adverb	*	de	icht
+drop-tr	pt:eu:pronoun	*	de	meine Wenigkeit
+drop-tr	pt:todo:adjective	*	de	ganzrandig
+drop-tr	pt:então:interjection	*	de	sondern
+drop-tr	pt:vir:verb	*	en	cum
+drop-tr	pt:algum:pronoun	*	de	etwelche
+drop-tr	pt:já:adverb	*	en	stat
+drop-tr	pt:nada:pronoun	*	de	bisschen
+drop-tr	pt:conseguir:verb	*	de	herstellen
+drop-tr	pt:gostar:verb	*	de	goutieren
+drop-tr	pt:mãe:noun	*	de	Muttertier
+drop-tr	pt:sempre:adverb	*	de	allemal
+drop-tr	pt:aí:interjection	*	de	sondern
+drop-tr	pt:acreditar:verb	*	de	akkreditieren
+drop-tr	pt:acreditar:verb	*	en	understand
+drop-tr	pt:morrer:verb	*	de	verhauchen
+drop-tr	pt:hoje:adverb	*	de	heuer
+drop-tr	pt:mundo:noun	*	en	Hello World
+drop-tr	pt:viver:verb	*	de	verweilen
+drop-tr	pt:dinheiro:noun	*	de	Para
+drop-tr	pt:nenhum:determiner	*	de	irgendein
+drop-tr	pt:procurar:verb	*	de	umtun
+drop-tr	pt:mão:noun	*	de	Blatt
+drop-tr	pt:tanto:adverb	*	de	hierzu
+drop-tr	pt:tanto:adverb	*	de	hiergegen
+drop-tr	pt:parte:noun	*	en	deal
+drop-tr	pt:minuto:noun	*	de	Minütchen
+drop-tr	pt:esquecer:verb	*	en	bury
+drop-tr	pt:esquecer:verb	*	de	verlernen
+drop-tr	pt:daqui:contraction	*	de	von hinnen
+drop-tr	pt:embora:conjunction	*	de	wenn
+drop-tr	pt:junto:adverb	*	en	all one word
+drop-tr	pt:merda:interjection	*	en	bastard
+drop-tr	pt:tarde:noun	*	en	arvo
+drop-tr	pt:dentro:adverb	*	de	ein
+drop-tr	pt:amanhã:noun	*	en	morrow
+drop-tr	pt:terminar:verb	*	de	landen
+drop-tr	pt:pessoal:adjective	*	de	personal
+drop-tr	pt:tocar:verb	*	de	fühlen
+drop-tr	pt:contra:preposition	*	de	mit
+drop-tr	pt:perto:adverb	*	de	ran
+drop-tr	pt:filha:noun	*	de	Sprössling
+drop-tr	pt:mês:noun	*	de	Monatsname
+drop-tr	pt:mês:noun	*	en	moon
+drop-tr	pt:correr:verb	*	en	course
+drop-tr	pt:ideia:noun	*	de	Bild
+drop-tr	pt:coração:noun	*	de	Courage
+drop-tr	pt:coração:noun	*	en	courage
+drop-tr	pt:bater:verb	*	de	stechen
+drop-tr	pt:imaginar:verb	*	en	feign
+drop-tr	pt:forma:noun	*	en	last
+drop-tr	pt:exatamente:adverb	*	en	even
+drop-tr	pt:longe:adverb	*	de	weither
+drop-tr	pt:longe:adverb	*	en	out
+drop-tr	pt:pois:conjunction	*	de	maßen
+drop-tr	pt:aceitar:verb	*	de	stattgeben
+drop-tr	pt:vender:verb	*	de	gehen
+drop-tr	pt:odiar:verb	*	en	die
+drop-tr	pt:final:adjective	*	en	net
+drop-tr	pt:ordem:noun	*	en	dictation
+drop-tr	pt:cantar:verb	*	de	krähen
+drop-tr	pt:pena:noun	*	en	time
+drop-tr	pt:jogar:verb	*	de	kokettieren
+drop-tr	pt:gosto:noun	*	de	Like
+drop-tr	pt:único:adjective	*	de	unikal
+drop-tr	pt:pé:noun	*	de	Versfuß
+drop-tr	pt:pé:noun	*	en	metrical foot
+drop-tr	pt:música:noun	*	de	Musiker
+drop-tr	pt:música:noun	*	en	musician
+drop-tr	pt:licença:noun	*	de	Freigang
+drop-tr	pt:perceber:verb	*	de	auffallen
+drop-tr	pt:ponto:noun	*	de	Dezimalpunkt
+sense-first	pt:antes:adverb	s1
+sense-first	pt:pedir:verb	s1
+gloss	pt:ligar:verb	s1	to call (on the phone); to turn on; to link
+drop-tr	pt:cá:adverb	*	de	rüber
+drop-tr	pt:notícia:noun	*	de	Hiobsbotschaft
+drop-tr	pt:agente:noun	*	en	constable
+drop-tr	pt:servir:verb	*	en	do
+drop-tr	pt:carta:noun	*	en	map
+drop-tr	pt:resto:noun	*	de	Resterampe
+drop-tr	pt:calar:verb	*	en	can
+drop-tr	pt:chorar:verb	*	de	tränen
+drop-tr	pt:formar:verb	*	de	zeichnen
+drop-tr	pt:linha:noun	*	en	file
+drop-tr	pt:destruir:verb	*	en	murder
+drop-tr	pt:voz:noun	*	de	Diathese
+drop-tr	pt:chave:noun	*	de	Hebel
+drop-tr	pt:cavalo:noun	*	en	heroin
+drop-tr	pt:avisar:verb	*	de	avisieren
+drop-tr	pt:doente:adjective	*	de	schlecht
+drop-tr	pt:fundo:noun	*	en	fund
+drop-tr	pt:segredo:noun	*	de	Sekret
+drop-tr	pt:namorado:noun	*	de	Freundin
+drop-tr	pt:namorado:noun	*	en	friend
+drop-tr	pt:serviço:noun	*	de	Kirche
+drop-tr	pt:serviço:noun	*	en	church service
+drop-tr	pt:doce:adjective	*	en	fresh
+drop-tr	pt:negro:adjective	*	de	negrid
+drop-tr	pt:negro:adjective	*	en	negro
+drop-tr	pt:surpresa:noun	*	en	upset
+drop-tr	pt:simples:adjective	*	en	silly
+drop-tr	pt:braço:noun	*	en	prong
+drop-tr	pt:povo:noun	*	de	Heerschar
+drop-tr	pt:área:noun	*	en	compass
+drop-tr	pt:vestido:noun	*	de	Rock
+drop-tr	pt:cão:noun	*	en	cock
+drop-tr	pt:desligar:verb	*	de	schalten
+drop-tr	pt:desligar:verb	*	en	off
+drop-tr	pt:fome:noun	*	de	Knast
+drop-tr	pt:completamente:adverb	*	en	even
+drop-tr	pt:estrela:noun	*	en	cartwheel
+drop-tr	pt:marcar:verb	*	de	zinken
+drop-tr	pt:ai:interjection	*	en	alack
+drop-tr	pt:notar:verb	*	en	tell
+drop-tr	pt:certamente:adverb	*	de	zwar
+drop-tr	pt:construir:verb	*	de	zusammengeben
+drop-tr	pt:construir:verb	*	en	rear
+drop-tr	pt:metade:noun	*	en	middle
+drop-tr	pt:metade:noun	*	de	bessere Hälfte
+drop-tr	pt:assinar:verb	*	en	ink
+drop-tr	pt:peça:noun	*	de	Offizier
+drop-tr	pt:peça:noun	*	en	draught
+drop-tr	pt:senhorita:noun	*	de	Fehlschuss
+drop-tr	pt:senhorita:noun	*	en	miss
+drop-tr	pt:faltar:verb	*	de	gebrechen
+drop-tr	pt:pedaço:noun	*	de	Fleck
+drop-tr	pt:transar:verb	*	de	lieben
+drop-tr	pt:árvore:noun	*	de	Welle
+drop-tr	pt:inteligente:adjective	*	de	patent
+drop-tr	pt:sol:noun	*	de	Sol
+drop-tr	pt:dedo:noun	*	de	Zehe
+drop-tr	pt:ouro:noun	*	de	Oder
+drop-tr	pt:ouro:noun	*	en	or
+drop-tr	pt:carne:noun	*	de	Rind
+drop-tr	pt:carne:noun	*	en	beef
+drop-tr	pt:época:noun	*	de	Römerzeit
+drop-tr	pt:vestir:verb	*	de	umgeben
+drop-tr	pt:perigo:noun	*	de	Fährlichkeit
+drop-tr	pt:bomba:noun	*	de	Paukenschlag
+drop-tr	pt:destino:noun	*	en	kismet
+drop-tr	pt:costas:noun	*	en	backstroke
+drop-tr	pt:peixe:noun	*	de	Backfisch
+drop-tr	pt:esperança:noun	*	de	Laubheuschrecke
+drop-tr	pt:sugerir:verb	*	de	bedeuten
+drop-tr	pt:chá:noun	*	de	Teepflanze
+drop-tr	pt:membro:noun	*	en	penis
+drop-tr	pt:maluco:adjective	*	de	toll
+drop-tr	pt:tia:noun	*	de	Base
+drop-tr	pt:vinho:noun	*	de	Tropfen
+drop-tr	pt:piada:noun	*	en	chirp
+sense-first	pt:gravar:verb	s5
+gloss	pt:gravar:verb	s5	to record (sound or video); to save (a file); to engrave
+sense-first	pt:piada:noun	s2
+sense-first	pt:nível:noun	s3
+gloss	pt:nível:noun	s3	level, rank
+gloss	pt:namorar:verb	s1	to date, to go out with (Brazil); to woo
+drop-tr	pt:cor:noun	*	de	Tinktur
+drop-tr	pt:cor:noun	*	en	tincture
+drop-tr	pt:cheiro:noun	*	de	Dunst
+drop-tr	pt:cheiro:noun	*	en	perfume
+drop-tr	pt:rainha:noun	*	en	princess
+drop-tr	pt:testemunha:noun	*	en	seer
+drop-tr	pt:arriscar:verb	*	de	hasardieren
+drop-tr	pt:depressa:adverb	*	de	bald
+drop-tr	pt:som:noun	*	en	voice
+drop-tr	pt:orgulhoso:adjective	*	de	prahlerisch
+drop-tr	pt:orgulhoso:adjective	*	en	boastful
+drop-tr	pt:buraco:noun	*	en	eye
+drop-tr	pt:esperto:adjective	*	en	fly
+drop-tr	pt:monstro:noun	*	de	Missgeburt
+drop-tr	pt:excelente:adjective	*	en	capital
+drop-tr	pt:mestre:noun	*	de	Magister
+drop-tr	pt:mestre:noun	*	en	magister
+drop-tr	pt:série:noun	*	en	train
+drop-tr	pt:mentira:noun	*	en	bullshit
+drop-tr	pt:secreto:adjective	*	en	underground
+drop-tr	pt:pressão:noun	*	en	heat
+drop-tr	pt:resultado:noun	*	en	hit
+drop-tr	pt:emergência:noun	*	en	emergence
+drop-tr	pt:devagar:adverb	*	de	gemach
+drop-tr	pt:montanha:noun	*	en	blizzard
+drop-tr	pt:registrar:verb	*	en	write
+drop-tr	pt:retirar:verb	*	de	abbringen
+drop-tr	pt:repetir:verb	*	en	reply
+drop-tr	pt:preocupado:adjective	*	de	gedankenverloren
+drop-tr	pt:mencionar:verb	*	en	cover
+drop-tr	pt:alimentar:verb	*	en	power
+drop-tr	pt:código:noun	*	en	cant
+drop-tr	pt:experimentar:verb	*	en	know
+drop-tr	pt:almoço:noun	*	en	dinner
+drop-tr	pt:curar:verb	*	de	genesen
+drop-tr	pt:demitir:verb	*	en	can
+drop-tr	pt:investigar:verb	*	de	erheben
+drop-tr	pt:abaixar:verb	*	en	abase
+drop-tr	pt:unidade:noun	*	de	Zusammengehörigkeit
+drop-tr	pt:praia:noun	*	en	sand
+drop-tr	pt:ovo:noun	*	de	Nuss
+drop-tr	pt:ovo:noun	*	en	nut
+drop-tr	pt:apagar:verb	*	en	blank
+drop-tr	pt:banda:noun	*	en	list
+drop-tr	pt:anel:noun	*	de	Bereich
+drop-tr	pt:anel:noun	*	en	annulus
+drop-tr	pt:piorar:verb	*	en	suffer
+drop-tr	pt:derrubar:verb	*	de	aufheben
+drop-tr	pt:nariz:noun	*	de	Bug
+drop-tr	pt:enterrar:verb	*	en	earth
+drop-tr	pt:parque:noun	*	de	Spielwiese
+drop-tr	pt:total:adjective	*	de	äußere
+drop-tr	pt:cheirar:verb	*	de	schmecken
+drop-tr	pt:política:noun	*	de	Politikerin
+drop-tr	pt:política:noun	*	en	politician
+drop-tr	pt:mínimo:noun	*	de	Tröpfchen
+drop-tr	pt:pensamento:noun	*	en	wonder
+drop-tr	pt:comandar:verb	*	de	diktieren
+drop-tr	pt:século:noun	*	de	Säkulum
+drop-tr	pt:avó:noun	*	de	Ahne
+drop-tr	pt:projeto:noun	*	de	Design
+drop-tr	pt:definitivamente:adverb	*	de	allemal
+drop-tr	pt:madame:noun	*	de	Fräulein
+drop-tr	pt:adulto:adjective	*	en	big
+drop-tr	pt:cozinhar:verb	*	de	backen
+drop-tr	pt:cozinhar:verb	*	en	fire
+drop-tr	pt:osso:noun	*	de	Os
+drop-tr	pt:cancelar:verb	*	de	brechen
+drop-tr	pt:ponte:noun	*	de	Bridge
+drop-tr	pt:truque:noun	*	en	bogie
+drop-tr	pt:vigiar:verb	*	en	sentinel
+drop-tr	pt:nacional:adjective	*	de	völkisch
+drop-tr	pt:sacar:verb	*	de	extrudieren
+drop-tr	pt:oferta:noun	*	de	Anerbieten
+drop-tr	pt:assistente:noun	*	en	wizard
+drop-tr	pt:princesa:noun	*	de	Fürstin
+drop-tr	pt:motorista:noun	*	de	Führer
+drop-tr	pt:eliminar:verb	*	de	aufräumen
+drop-tr	pt:eliminar:verb	*	en	cancel
+drop-tr	pt:crédito:noun	*	de	Haben
+drop-tr	pt:liberar:verb	*	en	loose
+drop-tr	pt:aguardar:verb	*	en	abide
+drop-tr	pt:social:noun	*	en	friend
+drop-tr	pt:dobrar:verb	*	de	raffen
+sense-first	pt:risco:noun	s3
+sense-first	pt:rádio:noun	s3
+sense-first	pt:liga:noun	s3
+sense-first	pt:condição:noun	s5
+gloss	pt:condição:noun	s2	premise, presupposition
+sense-first	pt:dobrar:verb	s5
+gloss	pt:dobrar:verb	s5	to fold; to double; to turn (a corner); to dub (a film)
+gloss	pt:sequer:adverb	s1	even (nem sequer: not even); at least
+sense-first	pt:chato:adjective	s2
+drop-tr	pt:bruxa:noun	*	en	cow
+drop-tr	pt:quadro:noun	*	de	Kader
+drop-tr	pt:domingo:noun	*	en	Sabbath
+drop-tr	pt:aluno:noun	*	de	Eleve
+drop-tr	pt:resgatar:verb	*	de	freikaufen
+drop-tr	pt:futebol:noun	*	de	Fuppes
+drop-tr	pt:profundo:adjective	*	en	fast
+drop-tr	pt:canto:noun	*	de	Schrei
+drop-tr	pt:canto:noun	*	en	call
+drop-tr	pt:piloto:noun	*	de	Pilotin
+drop-tr	pt:piloto:noun	*	en	flyer
+drop-tr	pt:arrancar:verb	*	en	boot
+drop-tr	pt:entrevista:noun	*	de	Verabredung
+drop-tr	pt:estudante:noun	*	en	schoolgirl
+drop-tr	pt:estudante:noun	*	de	Schülerin
+drop-tr	pt:cruzar:verb	*	de	übersetzen
+drop-tr	pt:expulsar:verb	*	en	abandon
+drop-tr	pt:doido:adjective	*	de	toll
+drop-tr	pt:gigante:adjective	*	de	lausig
+drop-tr	pt:rapidamente:adverb	*	de	flugs
+drop-tr	pt:competição:noun	*	de	Vergleich
+drop-tr	pt:imbecil:noun	*	de	Hammel
+drop-tr	pt:pesadelo:noun	*	de	Nachtmahr
+drop-tr	pt:pesadelo:noun	*	en	incubus
+drop-tr	pt:sombra:noun	*	de	Lidschatten
+drop-tr	pt:sombra:noun	*	en	ghost
+drop-tr	pt:encarar:verb	*	de	zurechtkommen
+drop-tr	pt:dama:noun	*	en	king
+drop-tr	pt:identidade:noun	*	de	Nämlichkeit
+drop-tr	pt:grana:noun	*	de	Koks
+drop-tr	pt:acostumar:verb	*	en	wont
+drop-tr	pt:possibilidade:noun	*	en	liability
+drop-tr	pt:possibilidade:noun	*	de	Durchführbarkeit
+drop-tr	pt:vantagem:noun	*	en	handicap
+drop-tr	pt:vantagem:noun	*	de	Annehmlichkeit
+drop-tr	pt:moço:noun	*	de	Herrchen
+drop-tr	pt:comunidade:noun	*	en	commonwealth
+drop-tr	pt:vagar:verb	*	de	vagieren
+drop-tr	pt:artigo:noun	*	de	Begleiter
+drop-tr	pt:prostituta:noun	*	de	Schlampe
+drop-tr	pt:sexto:adjective	*	de	sechstel
+drop-tr	pt:armadilha:noun	*	de	Haken
+drop-tr	pt:fronteira:noun	*	de	Scheide
+drop-tr	pt:teatro:noun	*	en	house
+drop-tr	pt:descrever:verb	*	de	zeichnen
+drop-tr	pt:britânico:adjective	*	de	großbritannisch
+drop-tr	pt:privado:adjective	*	de	eingeweiht
+drop-tr	pt:privado:adjective	*	en	privy
+drop-tr	pt:brinquedo:noun	*	de	Spielwerk
+drop-tr	pt:frango:noun	*	en	boy
+drop-tr	pt:pagamento:noun	*	en	solution
+drop-tr	pt:curtir:verb	*	de	graben
+drop-tr	pt:abençoar:verb	*	de	benedeien
+drop-tr	pt:positivo:adjective	*	de	unumstößlich
+drop-tr	pt:caçador:noun	*	en	hound
+drop-tr	pt:pânico:noun	*	de	Grauen
+drop-tr	pt:basicamente:adverb	*	de	basically
+drop-tr	pt:desperdiçar:verb	*	de	verbringen
+drop-tr	pt:enfiar:verb	*	de	passieren
+drop-tr	pt:enfiar:verb	*	de	durchkommen
+drop-tr	pt:transferir:verb	*	de	umladen
+drop-tr	pt:transferir:verb	*	de	umsteigen
+drop-tr	pt:chocar:verb	*	de	brüten
+sense-first	pt:piloto:noun	s2
+sense-first	pt:bordo:noun	s2
+gloss	pt:bordo:noun	s2	board (a bordo: on board); side of a ship; maple
+sense-first	pt:lobo:noun	s2
+sense-first	pt:amarrar:verb	s2
+sense-first	pt:chocar:verb	s5
+gloss	pt:curtir:verb	s1	to enjoy, to like (Brazil, informal); to tan (leather)
+drop-tr	pt:popular:adjective	*	en	vulgar
+drop-tr	pt:estrangeiro:adjective	*	en	outlandish
+drop-tr	pt:reserva:noun	*	de	Hinterhalt
+drop-tr	pt:arrastar:verb	*	de	verschieben
+drop-tr	pt:cobrar:verb	*	de	schnäbeln
+drop-tr	pt:comunicação:noun	*	en	intercourse
+drop-tr	pt:comunicação:noun	*	de	Verkehr
+drop-tr	pt:madeira:noun	*	de	Holzblasinstrument
+drop-tr	pt:madeira:noun	*	en	woodwind
+drop-tr	pt:comparar:verb	*	de	steigern
+drop-tr	pt:conter:verb	*	de	haben
+drop-tr	pt:ferida:noun	*	de	Schädigung
+drop-tr	pt:ferida:noun	*	de	Leberschädigung
+drop-tr	pt:ferida:noun	*	en	hurting
+drop-tr	pt:zona:noun	*	de	Kulturkreis
+drop-tr	pt:reação:noun	*	de	Reagenz
+drop-tr	pt:poupar:verb	*	en	husband
+drop-tr	pt:portar:verb	*	de	portieren
+drop-tr	pt:portar:verb	*	en	port
+drop-tr	pt:ponta:noun	*	de	Ecke
+drop-tr	pt:agradar:verb	*	en	fuss over
+drop-tr	pt:canal:noun	*	de	Gracht
+drop-tr	pt:lábio:noun	*	de	Lefze
+drop-tr	pt:lábio:noun	*	en	labia
+drop-tr	pt:assustado:adjective	*	de	schüchtern
+drop-tr	pt:assustado:adjective	*	de	scheu
+drop-tr	pt:assustado:adjective	*	en	shy
+drop-tr	pt:assustado:adjective	*	en	timid
+drop-tr	pt:consultar:verb	*	de	bemühen
+drop-tr	pt:gêmeo:noun	*	en	calf
+drop-tr	pt:dragão:noun	*	en	dragoon
+drop-tr	pt:cavar:verb	*	de	schliefen
+drop-tr	pt:aprovar:verb	*	de	stattgeben
+drop-tr	pt:quilômetro:noun	*	en	meter
+drop-tr	pt:conduzir:verb	*	en	wage
+drop-tr	pt:bilhão:noun	*	de	Billion
+drop-tr	pt:elevador:noun	*	en	scroll bar
+drop-tr	pt:expressar:verb	*	de	fassen
+drop-tr	pt:círculo:noun	*	de	Orbit
+drop-tr	pt:círculo:noun	*	en	ball
+drop-tr	pt:lágrima:noun	*	de	Zähre
+drop-tr	pt:operar:verb	*	en	man
+drop-tr	pt:alienígena:adjective	*	de	fremdländisch
+drop-tr	pt:diretamente:adverb	*	en	flat
+drop-tr	pt:atirador:noun	*	de	Gunman
+drop-tr	pt:recurso:noun	*	en	mean
+drop-tr	pt:engolir:verb	*	en	down
+drop-tr	pt:projetar:verb	*	de	designen
+drop-tr	pt:facilmente:adverb	*	de	gerne
+drop-tr	pt:costa:noun	*	de	Kante
+drop-tr	pt:compra:noun	*	en	market
+drop-tr	pt:obedecer:verb	*	de	hören
+drop-tr	pt:adiante:adverb	*	de	fürbass
+drop-tr	pt:central:noun	*	en	back
+drop-tr	pt:templo:noun	*	en	church
+drop-tr	pt:pousar:verb	*	en	pose
+drop-tr	pt:peso:noun	*	en	shot
+drop-tr	pt:superfície:noun	*	en	bed
+drop-tr	pt:álcool:noun	*	de	Drink
+drop-tr	pt:enrolar:verb	*	de	schlagen
+drop-tr	pt:atraente:adjective	*	en	buff
+drop-tr	pt:abusar:verb	*	de	auferlegen
+drop-tr	pt:manchar:verb	*	de	gesprenkelt
+drop-tr	pt:dedicar:verb	*	en	undertake
+drop-tr	pt:caber:verb	*	de	anliegen
+drop-tr	pt:caber:verb	*	en	traverse
+drop-tr	pt:recompensar:verb	*	de	vergolden
+drop-tr	pt:técnica:noun	*	de	Fertigungsverfahren
+drop-tr	pt:programar:verb	*	de	timen
+drop-tr	pt:perturbar:verb	*	de	aufstoßen
+drop-tr	pt:arrasar:verb	*	de	abrasieren
+drop-tr	pt:dispositivo:noun	*	de	Spruch
+drop-tr	pt:planta:noun	*	de	Stockwerk
+drop-tr	pt:sacrifício:noun	*	en	victim
+drop-tr	pt:multidão:noun	*	en	many
+drop-tr	pt:câmara:noun	*	de	Haus
+drop-tr	pt:curvar:verb	*	de	schweifen
+gloss	pt:ferida:noun	s1	wound, injury
+gloss	pt:assustado:adjective	s1	scared, frightened
+sense-first	pt:terno:noun	s2
+gloss	pt:terno:noun	s2	suit (clothing; Brazil)
+sense-first	pt:encerrar:verb	s2
+sense-first	pt:conduzir:verb	s2
+sense-first	pt:vela:noun	s4
+gloss	pt:vela:noun	s4	candle; sail; spark plug
+gloss	pt:dispositivo:noun	s1	device, appliance; (law) provision
+sense-first	pt:torcer:verb	s3
+gloss	pt:torcer:verb	s3	to root for, to cheer for (a team); to twist, to wring
+drop-tr	pt:capital:adjective	*	de	folgenschwer
+drop-tr	pt:capital:adjective	*	en	momentous
+drop-tr	pt:instinto:noun	*	de	Schau
+drop-tr	pt:anotar:verb	*	en	book
+drop-tr	pt:aplicar:verb	*	en	strive
+drop-tr	pt:dona:noun	*	en	sir
+drop-tr	pt:guiar:verb	*	en	hand
+drop-tr	pt:chupar:verb	*	en	fellate
+drop-tr	pt:possivelmente:adverb	*	de	unmöglich
+drop-tr	pt:barba:noun	*	en	barb
+drop-tr	pt:conferir:verb	*	de	verleihen
+drop-tr	pt:poço:noun	*	de	Born
+drop-tr	pt:poço:noun	*	en	groove
+drop-tr	pt:selar:verb	*	de	prägen
+drop-tr	pt:decepcionar:verb	*	en	mock
+drop-tr	pt:pênis:noun	*	de	Nudel
+drop-tr	pt:prata:noun	*	en	argent
+drop-tr	pt:comprometer:verb	*	de	festnageln
+drop-tr	pt:esquerdo:adjective	*	de	sinister
+drop-tr	pt:esquerdo:adjective	*	en	sinister
+drop-tr	pt:castigar:verb	*	de	büßen
+drop-tr	pt:castigar:verb	*	en	pain
+drop-tr	pt:túmulo:noun	*	de	Grube
+drop-tr	pt:pulmão:noun	*	de	Beuschel
+drop-tr	pt:rude:adjective	*	en	fresh
+drop-tr	pt:lealdade:noun	*	de	Fairness
+drop-tr	pt:seio:noun	*	de	Sinus
+drop-tr	pt:investir:verb	*	en	inaugurate
+drop-tr	pt:agitar:verb	*	de	schlingen
+drop-tr	pt:conclusão:noun	*	en	opinion
+drop-tr	pt:aborrecer:verb	*	de	hassen
+drop-tr	pt:aborrecer:verb	*	de	verabscheuen
+drop-tr	pt:falecer:verb	*	de	bleiben
+drop-tr	pt:macho:noun	*	de	Bulle
+drop-tr	pt:papo:noun	*	de	Kehlsack
+drop-tr	pt:distrair:verb	*	en	recreate
+drop-tr	pt:coroa:noun	*	en	crone
+sense-first	pt:papo:noun	s4
+gloss	pt:papo:noun	s4	chat, conversation (Brazil, informal); crop (of a bird)
+sense-first	pt:gata:noun	s2
+gloss	pt:gata:noun	s2	female cat; (Brazil, slang) attractive woman
+sense-first	pt:natal:adjective	s3
+gloss	pt:natal:adjective	s3	Christmas (Natal); native, natal
+sense-first	pt:besta:noun	s3
+sense-first	pt:toalha:noun	s2
+sense-first	pt:distrair:verb	s2
+gloss	pt:quilo:noun	s1	kilo, kilogram; (biology) chyle
+sense-first	pt:coroa:noun	s2
+sense-first	pt:oração:noun	s2
