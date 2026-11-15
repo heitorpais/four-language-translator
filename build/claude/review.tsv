@@ -18086,3 +18086,146 @@ sense-first	de:einführen:verb	s3
 sense-first	de:Pflaster:noun	s2
 gloss	de:zustehen:verb	s1	to be entitled to, to be due to (Das steht dir zu)
 gloss	de:staunen:verb	s1	to be amazed, to marvel
+drop-tr	de:Hebel:noun	*	en	pry
+drop-tr	de:Delphin:noun	*	en	butterfly stroke
+drop-tr	de:anspruchsvoll:adjective	*	en	entitled
+drop-tr	de:anspruchsvoll:adjective	*	pt	frescurento
+drop-tr	de:Verletzter:noun	*	pt	baixa
+drop-tr	de:Gattin:noun	*	pt	ncata
+drop-tr	de:Spot:noun	*	pt	espote
+drop-tr	de:weitaus:adverb	*	pt	disparar
+drop-tr	de:Rauschen:noun	*	pt	cantarolar
+drop-tr	de:Klischee:noun	*	en	shibboleth
+drop-tr	de:immun:adjective	*	pt	vacinado
+drop-tr	de:aufrufen:verb	*	pt	solicitar
+drop-tr	de:Fettsack:noun	*	pt	besugo
+drop-tr	de:bevorstehen:verb	*	en	threaten
+drop-tr	de:bevorstehen:verb	*	en	intimidate
+drop-tr	de:bevorstehen:verb	*	pt	ameaçar
+drop-tr	de:bevorstehen:verb	*	pt	intimidar
+drop-tr	de:demütig:adjective	*	pt	rasteiro
+drop-tr	de:hintereinander:adverb	*	pt	sucessoriamente
+drop-tr	de:Harmonie:noun	*	pt	acorde
+drop-tr	de:erliegen:verb	*	en	indulge
+drop-tr	de:erliegen:verb	*	pt	morrer
+drop-tr	de:Tick:noun	*	pt	nível
+drop-tr	de:Irrenhaus:noun	*	pt	cafarnaum
+drop-tr	de:angewiesen:adjective	*	pt	adstrito
+drop-tr	de:abstreiten:verb	*	pt	recusar
+drop-tr	de:demokratisch:adjective	*	pt	popular
+drop-tr	de:Faktor:noun	*	pt	submúltiplo
+drop-tr	de:durchqueren:verb	*	en	ford
+drop-tr	de:durchqueren:verb	*	pt	transir
+drop-tr	de:Poster:noun	*	pt	propaganda
+drop-tr	de:Engagement:noun	*	pt	militância
+drop-tr	de:Lappen:noun	*	pt	andrajo
+drop-tr	de:strahlend:adjective	*	en	radioactive
+drop-tr	de:Bündnis:noun	*	pt	tratado
+drop-tr	de:Whirlpool:noun	*	pt	turbilhão
+drop-tr	de:Whirlpool:noun	*	pt	redemoinho
+drop-tr	de:sprühen:verb	*	pt	chuvinhar
+drop-tr	de:Vorfahr:noun	*	en	elder
+drop-tr	de:unanständig:adjective	*	en	gross
+drop-tr	de:Auftraggeber:noun	*	pt	constituinte
+drop-tr	de:verkuppeln:verb	*	en	procure
+drop-tr	de:verkuppeln:verb	*	pt	conseguir
+drop-tr	de:verkuppeln:verb	*	pt	obter
+drop-tr	de:Scheitern:noun	*	en	demise
+drop-tr	de:schaukeln:verb	*	pt	abalar
+drop-tr	de:Krise:noun	*	pt	crise dramática
+drop-tr	de:Knoblauch:noun	*	pt	alheira
+drop-tr	de:Buße:noun	*	pt	firmeza
+drop-tr	de:Konzern:noun	*	pt	negócio
+drop-tr	de:Außenministerium:noun	*	en	ministry
+drop-tr	de:irritieren:verb	*	pt	azedar
+drop-tr	de:schniefen:verb	*	en	pity
+drop-tr	de:Aufwachen:noun	*	en	arousal
+drop-tr	de:Heu:noun	*	pt	relva
+drop-tr	de:Rausch:noun	*	pt	crápula
+drop-tr	de:Handvoll:noun	*	en	smattering
+drop-tr	de:Freilassung:noun	*	en	manumission
+drop-tr	de:Freilassung:noun	*	pt	alforria
+drop-tr	de:Freilassung:noun	*	pt	manumissão
+drop-tr	de:Pfeffer:noun	*	pt	pimenteiro
+drop-tr	de:stiften:verb	*	pt	esmolar
+drop-tr	de:Komma:noun	*	pt	coma
+drop-tr	de:einschränken:verb	*	en	cut
+drop-tr	de:einschränken:verb	*	pt	constranger
+drop-tr	de:Aufklärung:noun	*	en	solve
+drop-tr	de:Sichtkontakt:noun	*	en	intervisibility
+drop-tr	de:kitschig:adjective	*	pt	vistoso
+drop-tr	de:Pascal:noun	*	pt	pascoal
+drop-tr	de:Kulisse:noun	*	en	flat
+drop-tr	de:anbeten:verb	*	pt	favorecer
+drop-tr	de:einwickeln:verb	*	en	involve
+drop-tr	de:Empfänger:noun	*	pt	recipiente
+drop-tr	de:andernfalls:adverb	*	en	alternatively
+drop-tr	de:andernfalls:adverb	*	pt	alternativamente
+drop-tr	de:Periode:noun	*	en	tide
+drop-tr	de:Kessel:noun	*	pt	bule
+drop-tr	de:Neigung:noun	*	en	notion
+drop-tr	de:Skorpion:noun	*	pt	lacraia
+drop-tr	de:Prostitution:noun	*	pt	michê
+drop-tr	de:ablösen:verb	*	pt	sobrepor
+drop-tr	de:einchecken:verb	*	pt	aproar
+drop-tr	de:gescheit:adjective	*	pt	acordado
+drop-tr	de:Waschbär:noun	*	en	dumpster bandit
+drop-tr	de:übereinstimmen:verb	*	pt	cambar
+drop-tr	de:Skript:noun	*	pt	escrita
+drop-tr	de:Mittelalter:noun	*	en	middle age
+drop-tr	de:Mittelalter:noun	*	pt	meia-idade
+drop-tr	de:Neuling:noun	*	en	stranger
+drop-tr	de:überfällig:adjective	*	en	inopportune
+drop-tr	de:überfällig:adjective	*	pt	inoportuno
+drop-tr	de:Hebamme:noun	*	pt	curioso
+drop-tr	de:Acker:noun	*	pt	jeira
+drop-tr	de:Umfrage:noun	*	pt	quiz
+drop-tr	de:Öffnung:noun	*	en	break
+drop-tr	de:Fährte:noun	*	en	strain
+drop-tr	de:sprachlos:adjective	*	pt	abanazado
+drop-tr	de:herumfahren:verb	*	pt	caçar
+drop-tr	de:einsatzbereit:adjective	*	en	venturous
+drop-tr	de:verkörpern:verb	*	pt	imitar
+drop-tr	de:Sammler:noun	*	en	manifold
+drop-tr	de:Angsthase:noun	*	pt	cobard
+drop-tr	de:Eck:noun	*	en	quack
+drop-tr	de:Meerjungfrau:noun	*	pt	sirene
+drop-tr	de:Shorts:noun	*	pt	xortes
+drop-tr	de:Nerd:noun	*	pt	totó
+drop-tr	de:schrecken:verb	*	pt	ameaçar
+drop-tr	de:schrecken:verb	*	pt	intimidar
+drop-tr	de:Übergang:noun	*	en	segue
+drop-tr	de:Knecht:noun	*	pt	abegão
+drop-tr	de:Aufseher:noun	*	pt	abegão
+drop-tr	de:Foundation:noun	*	pt	base
+gloss	de:duften:verb	s1	to smell nice, to be fragrant
+gloss	de:Außenministerium:noun	s1	foreign ministry, ministry of foreign affairs
+gloss	de:Schusswunde:noun	s1	gunshot wound
+gloss	de:Samstagabend:noun	s1	Saturday evening
+gloss	de:Freitagabend:noun	s1	Friday evening
+gloss	de:mittendrin:adverb	s1	right in the middle (of it)
+gloss	de:Schneewittchen:noun	s1	Snow White
+gloss	de:Luzifer:noun	s1	Lucifer
+gloss	de:Heiligabend:noun	s1	Christmas Eve
+gloss	de:Geburtstagsgeschenk:noun	s1	birthday present
+gloss	de:Verteidigungsministerium:noun	s1	ministry of defence
+gloss	de:Justizministerium:noun	s1	ministry of justice
+gloss	de:losschicken:verb	s1	to send off
+gloss	de:rausfliegen:verb	s1	to be thrown out, to get kicked out
+gloss	de:ausgebucht:adjective	s1	fully booked
+gloss	de:Mittelalter:noun	s2	the Middle Ages
+gloss	de:einsatzbereit:adjective	s1	ready for use, ready for action, operational
+gloss	de:Eck:noun	s1	(southern German, Swiss, Austrian) corner
+gloss	de:schniefen:verb	s1	to sniffle
+sense-first	de:ablassen:verb	s2
+gloss	de:ablassen:verb	s2	to give up, to stop (von etwas ablassen); to let out, to drain
+sense-first	de:bevorstehen:verb	s3
+sense-first	de:Tick:noun	s5
+sense-first	de:abdrehen:verb	s2
+sense-first	de:Ansatz:noun	s3
+sense-first	de:verkuppeln:verb	s3
+sense-first	de:Genuss:noun	s2
+sense-first	de:umstimmen:verb	s2
+sense-first	de:Auseinandersetzung:noun	s2
+sense-first	de:distanzieren:verb	s1
+gloss	de:distanzieren:verb	s1	(sich distanzieren) to distance oneself; to outdistance
