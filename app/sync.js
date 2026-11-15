@@ -452,7 +452,7 @@ function paintRequests() {
 }
 async function loadPage() {
   if (comm.loading || comm.done) return;
-  comm.loading = true; paintComm();
+  comm.loading = true; comm.err = ''; paintComm();
   try {
     await load();
     const parts = [fb.collection(db, 'profiles'), fb.orderBy('memberNo'), fb.limit(60)];
@@ -504,7 +504,8 @@ function listHtml() {
   if (comm.q && comm.tab !== 'all') people = people.filter(p => p.username.includes(comm.q));
   const empty = comm.tab === 'friends' ? t('comm.nofriends', 'No friends yet. Find people under “Everyone” and add them.') : comm.tab === 'requests' ? t('comm.noreq', 'No friend requests.') : comm.q ? t('comm.nofound', 'Nobody found for “{q}”.', { q: comm.q }) : comm.loading ? t('prof.loading', 'Loading…') : t('comm.empty', 'No profiles yet.');
   const more = comm.tab === 'all' && !comm.q && !comm.done ? `<button class="btn sm" data-acct-x="more" ${comm.loading ? 'disabled' : ''}>${esc(t('comm.more', 'Show more'))}</button>` : '';
-  return (people.length ? `<ul class="people">${people.map(personRow).join('')}</ul>` : `<p class="hint">${esc(empty)}</p>`) + more;
+  if (!people.length && comm.err && comm.tab === 'all') return `<button class="btn sm" data-acct-x="more">${esc(t('comm.retry', 'Try again'))}</button>`;          // the error above already says what happened
+  return (people.length ? `<ul class="people">${people.map(personRow).join('')}</ul>` : `<p class="hint">${esc(empty)}</p>`) + (people.length ? more : '');
 }
 function paintList() { const el = $('#comm-list'); if (el) el.innerHTML = listHtml(); }
 function profileViewHtml() {
