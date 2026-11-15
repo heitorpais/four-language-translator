@@ -22603,3 +22603,145 @@ drop-tr	fr:journalisme:noun	*	de	Verdachtsberichterstattung
 drop-tr	fr:entuber:verb	*	de	besebeln
 drop-tr	fr:productif:adjective	*	pt	gerador
 sense-first	fr:rouer:verb	s4
+drop-tr	fr:marchander:verb	*	de	zocken
+drop-tr	fr:platine:noun	*	de	Steinschloss
+drop-tr	fr:héritière:noun	*	pt	herdeiro
+drop-tr	fr:marcel:noun	*	de	Singulett
+drop-tr	fr:engourdir:verb	*	pt	aliviar
+drop-tr	fr:dispenser:verb	*	de	sparen
+drop-tr	fr:intensifier:verb	*	en	enforce
+drop-tr	fr:missionnaire:noun	*	de	Missionarsstellung
+drop-tr	fr:mac:noun	*	pt	safado
+drop-tr	fr:attenter:verb	*	de	attentieren
+gloss	fr:cavaler:verb	s1	to run, to rush about; (colloquial) to annoy
+drop-tr	fr:distinction:noun	*	pt	destrinça
+drop-tr	fr:gratis:adjective	*	de	spesenfrei
+drop-tr	fr:apitoyer:verb	*	pt	amercear
+sense-first	fr:canular:noun	s2
+drop-tr	fr:carrosse:noun	*	pt	carroça
+sense-first	fr:cendrier:noun	s2
+drop-tr	fr:décaler:verb	*	pt	descalçar
+drop-tr	fr:gravir:verb	*	pt	descer
+drop-tr	fr:courser:verb	*	en	purchase
+drop-tr	fr:abbé:noun	*	de	Abate
+drop-tr	fr:ignorant:adjective	*	pt	idiota
+drop-tr	fr:perplexe:adjective	*	pt	indeciso
+gloss	fr:palmer:noun	s1	micrometer (caliper)
+gloss	fr:entêter:verb	s1	to persist stubbornly (s'entêter)
+drop-tr	fr:portugais:noun	*	de	Sprache
+drop-tr	fr:jument:noun	*	de	Mare
+drop-tr	fr:jument:noun	*	en	horse
+drop-tr	fr:jument:noun	*	pt	meio-sangue
+gloss	fr:décidément:adverb	s1	really, decidedly (often expressing exasperation)
+drop-tr	fr:décidément:adverb	*	en	firmly
+drop-tr	fr:assignation:noun	*	de	Einweisung
+drop-tr	fr:trimer:verb	*	de	wullacken
+drop-tr	fr:primordial:adjective	*	de	elementar
+drop-tr	fr:atténuer:verb	*	de	abbauen
+drop-tr	fr:inimaginable:adjective	*	de	auf keine Kuhhaut gehen
+drop-tr	fr:narcotique:noun	*	de	Haschisch
+drop-tr	fr:tic-tac:noun	*	pt	tique
+drop-tr	fr:supervision:noun	*	de	Obsorge
+drop-tr	fr:splendeur:noun	*	de	Wunder
+gloss	fr:camé:noun	s1	junkie, drug addict
+drop-tr	fr:brownie:noun	*	de	Heinzelmännchen
+drop-tr	fr:propulseur:noun	*	de	Speerschleuder
+drop-tr	fr:bienveillant:adjective	*	en	acquiescent
+drop-tr	fr:horde:noun	*	en	orda
+drop-tr	fr:terrasser:verb	*	de	befestigen
+gloss	fr:cartonner:verb	s1	to be a big hit; to slam, to criticize harshly
+drop-tr	fr:cartonner:verb	*	de	zensieren
+drop-tr	fr:cartonner:verb	*	de	kartonieren
+drop-tr	fr:insuffisance:noun	*	de	Fehler
+drop-tr	fr:ravin:noun	*	pt	tapiri
+drop-tr	fr:fossile:noun	*	en	dodo
+drop-tr	fr:fossile:noun	*	pt	lente
+drop-tr	fr:frauder:verb	*	de	Betrugsopfer
+sense-first	fr:oscar:noun	s4
+drop-tr	fr:oscar:noun	*	de	Dummy
+drop-tr	fr:oscar:noun	*	en	dummy
+drop-tr	fr:oscar:noun	*	pt	manequim
+drop-tr	fr:moineau:noun	*	pt	pássaro
+drop-tr	fr:baliverne:noun	*	de	Kleinigkeit
+drop-tr	fr:baliverne:noun	*	pt	bugiganga
+drop-tr	fr:gale:noun	*	de	Schorf
+drop-tr	fr:cerf-volant:noun	*	en	deltoid
+drop-tr	fr:cerf-volant:noun	*	de	Drachenviereck
+drop-tr	fr:agripper:verb	*	de	haschen
+drop-tr	fr:balançoire:noun	*	pt	gangorra
+drop-tr	fr:jongler:verb	*	de	denken
+drop-tr	fr:jongler:verb	*	pt	escamotear
+gloss	fr:crypter:verb	s1	to encrypt
+drop-tr	fr:crypter:verb	*	en	cryptate
+drop-tr	fr:induire:verb	*	pt	empuxar
+sense-first	fr:kiosque:noun	s3
+drop-tr	fr:résigner:verb	*	de	versöhnen
+gloss	fr:voyeur:noun	s1	voyeur, peeping Tom
+drop-tr	fr:voyeur:noun	*	en	lurker
+drop-tr	fr:brasser:verb	*	pt	infundir
+drop-tr	fr:terrasse:noun	*	en	compartment
+drop-tr	fr:terrasse:noun	*	pt	poio
+drop-tr	fr:comparable:adjective	*	en	gradable
+drop-tr	fr:tatie:noun	*	de	Base
+drop-tr	fr:parcelle:noun	*	de	Abteilung
+drop-tr	fr:clamer:verb	*	en	complain
+gloss	fr:scolarité:noun	s1	schooling, school attendance
+drop-tr	fr:communion:noun	*	pt	intercâmbio
+gloss	fr:briquer:verb	s1	to scrub, to polish (until it shines)
+drop-tr	fr:briquer:verb	*	en	brick
+drop-tr	fr:hic:noun	*	pt	aqui
+drop-tr	fr:éminent:adjective	*	en	passing
+drop-tr	fr:extrémiste:noun	*	pt	xiita
+drop-tr	fr:Romain:noun	*	de	Römerbrief
+drop-tr	fr:cocu:noun	*	de	Hirsch
+first	fr:concombre:noun	*	pt:pepino:noun
+drop-tr	fr:concombre:noun	*	pt	pepineiro
+drop-tr	fr:manifestant:noun	*	pt	protestante
+drop-tr	fr:faction:noun	*	de	Seite
+drop-tr	fr:dénigrer:verb	*	en	slur
+sense-first	fr:pv:noun	s4
+drop-tr	fr:Schtroumpf:noun	*	pt	estrumpfe
+drop-tr	fr:confrère:noun	*	de	Mitarbeiterin
+sense-first	fr:pendentif:noun	s2
+drop-tr	fr:panser:verb	*	pt	pensar
+drop-tr	fr:panser:verb	*	pt	raspar
+sense-first	fr:greffe:noun	s2
+gloss	fr:raton:noun	s1	young rat; (raton laveur) raccoon
+drop-tr	fr:raton:noun	*	de	Kaninchenjunges
+drop-tr	fr:raton:noun	*	en	kitten
+drop-tr	fr:raton:noun	*	pt	gatinho
+drop-tr	fr:racer:noun	*	pt	corrente
+drop-tr	fr:émaner:verb	*	de	entsprießen
+drop-tr	fr:luire:verb	*	de	brennen
+drop-tr	fr:luciole:noun	*	pt	luz-em-cu
+drop-tr	fr:aquatique:adjective	*	de	wässerig
+drop-tr	fr:salement:adverb	*	pt	badalhocamente
+drop-tr	fr:fiesta:noun	*	pt	forró
+drop-tr	fr:fiesta:noun	*	pt	arrasta-pé
+first	fr:fiesta:noun	*	pt:festa:noun
+gloss	fr:infime:adjective	s1	tiny, minute, negligible
+drop-tr	fr:réconciliation:noun	*	de	Abstimmung
+drop-tr	fr:réconciliation:noun	*	en	atonement
+drop-tr	fr:détériorer:verb	*	de	verletzen
+drop-tr	fr:amertume:noun	*	en	wormwood
+first	fr:compte-rendu:noun	*	de:Bericht:noun
+drop-tr	fr:compte-rendu:noun	*	de	Verfahren
+sense-first	fr:écouteur:noun	s2
+gloss	fr:resservir:verb	s1	to serve again, to give a second helping
+sense-first	fr:glacière:noun	s3
+drop-tr	fr:mensuel:adjective	*	en	menstrual
+drop-tr	fr:capricieux:adjective	*	pt	imprevisível
+drop-tr	fr:méprisable:adjective	*	pt	ruim
+drop-tr	fr:banquette:noun	*	en	stool
+sense-first	fr:tact:noun	s2
+sense-first	fr:pique-nique:noun	s2
+drop-tr	fr:incorrect:adjective	*	de	unrecht
+drop-tr	fr:anarchie:noun	*	pt	faroeste
+sense-first	fr:tondeuse:noun	s4
+drop-tr	fr:propice:adjective	*	de	gnädig
+drop-tr	fr:réprimer:verb	*	de	erpressen
+drop-tr	fr:démolition:noun	*	de	Verriss
+drop-tr	fr:palourde:noun	*	pt	lambreta
+sense-first	fr:flan:noun	s3
+sense-first	fr:lièvre:noun	s2
+drop-tr	fr:garnison:noun	*	pt	caserna
