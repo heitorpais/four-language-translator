@@ -19629,3 +19629,457 @@ drop-tr	en:jolly:adjective	*	pt	bonito
 drop-tr	en:craft:verb	*	de	handgemacht
 drop-tr	en:spite:verb	*	de	misshandeln
 drop-tr	en:specialist:adjective	*	de	erfahren
+drop-tr	en:ham:noun	*	de	Arschbacke
+drop-tr	fr:être:verb	*	en	have
+drop-tr	fr:avoir:verb	*	de	sein
+drop-tr	fr:ne:particle	*	de	icht
+drop-tr	pt:não:adverb	*	de	icht
+first	fr:vous:pronoun	*	de:Sie:pronoun
+drop-tr	fr:à:preposition	*	en	per
+drop-tr	fr:et:conjunction	*	pt	mais
+drop-tr	fr:aller:verb	*	en	do
+drop-tr	fr:aller:verb	*	pt	frequentar
+drop-tr	fr:vouloir:verb	*	de	bedürfen
+drop-tr	fr:me:pronoun	*	de	Mir
+drop-tr	fr:moi:pronoun	*	de	ick
+drop-tr	fr:voir:verb	*	en	think
+drop-tr	fr:voir:verb	*	pt	mirar
+first	fr:oui:adverb	*	en:yes:interjection
+drop-tr	fr:oui:adverb	*	pt	bem
+drop-tr	fr:ici:adverb	*	en	hither
+drop-tr	fr:où:adverb	*	de	woran
+drop-tr	fr:parler:verb	*	pt	bostejar
+drop-tr	fr:petit:adjective	*	pt	formigueiro
+first	fr:besoin:noun	*	de:Bedürfnis:noun
+sense-first	fr:désolé:adjective	s2
+drop-tr	fr:tuer:verb	*	pt	arrasar
+drop-tr	fr:mal:adverb	*	pt	ruimmente
+drop-tr	fr:ami:noun	*	de	Atze
+drop-tr	fr:ami:noun	*	pt	correligionário
+drop-tr	fr:frère:noun	*	de	Atze
+drop-tr	fr:mieux:adverb	*	de	mehr
+drop-tr	fr:mieux:adverb	*	en	more
+first	fr:mieux:adverb	*	de:besser:adverb
+drop-tr	fr:enfant:noun	*	pt	menina
+drop-tr	fr:heure:noun	*	de	Gehstunde
+drop-tr	fr:air:noun	*	pt	cara
+drop-tr	fr:gars:noun	*	de	Oukie
+drop-tr	fr:porte:noun	*	pt	colchete
+drop-tr	fr:part:noun	*	pt	feixe
+drop-tr	fr:contre:preposition	*	de	mit
+drop-tr	fr:contre:preposition	*	pt	vérsus
+drop-tr	fr:œil:noun	*	pt	ocelo
+drop-tr	fr:œil:noun	*	en	orb
+drop-tr	fr:cas:noun	*	de	Causa
+drop-tr	fr:police:noun	*	pt	carango
+sense-first	fr:point:noun	s4
+drop-tr	fr:mois:noun	*	en	moon
+drop-tr	fr:dormir:verb	*	de	knacken
+drop-tr	fr:dormir:verb	*	pt	ninar
+drop-tr	fr:longtemps:adverb	*	pt	demorar
+drop-tr	fr:servir:verb	*	pt	sacar
+drop-tr	fr:important:adjective	*	pt	graúdo
+drop-tr	fr:important:adjective	*	de	schwergewichtig
+first	fr:monter:verb	*	de:einsteigen:verb
+first	fr:monter:verb	*	en:climb:verb
+drop-tr	fr:battre:verb	*	de	ziehen
+drop-tr	fr:recevoir:verb	*	pt	haver
+drop-tr	fr:vendre:verb	*	de	verschleißen
+drop-tr	fr:vendre:verb	*	pt	falcoar
+drop-tr	fr:guerre:noun	*	de	Orlog
+drop-tr	fr:arme:noun	*	pt	seta
+drop-tr	fr:jeu:noun	*	de	Kit
+drop-tr	fr:ensemble:noun	*	de	Kit
+drop-tr	fr:emmener:verb	*	pt	reunir
+drop-tr	fr:mère:noun	*	de	Muttertier
+drop-tr	fr:film:noun	*	de	Bewegtbild
+sense-first	fr:nouvelle:noun	s2
+sense-first	fr:place:noun	s1
+drop-tr	fr:place:noun	*	de	Plaza
+drop-tr	fr:marche:noun	*	pt	marquesado
+drop-tr	fr:marche:noun	*	en	borderland
+drop-tr	fr:agent:noun	*	en	factor
+drop-tr	fr:garde:noun	*	de	Hut
+drop-tr	fr:derrière:noun	*	pt	garupa
+drop-tr	fr:service:noun	*	pt	emprego
+drop-tr	fr:supposer:verb	*	de	bedingen
+drop-tr	fr:livrer:verb	*	en	betray
+drop-tr	fr:amener:verb	*	pt	reunir
+drop-tr	fr:peine:noun	*	en	time
+drop-tr	fr:frapper:verb	*	de	ziehen
+drop-tr	fr:frapper:verb	*	pt	malhar
+drop-tr	fr:avancer:verb	*	en	come
+sense-first	fr:apporter:verb	s1
+sense-first	fr:pièce:noun	s2
+drop-tr	fr:pièce:noun	*	pt	auto
+drop-tr	fr:lit:noun	*	de	Heia
+drop-tr	fr:dollar:noun	*	pt	dola
+drop-tr	fr:promettre:verb	*	pt	alvotar
+drop-tr	fr:verre:noun	*	en	tipple
+drop-tr	fr:humain:noun	*	pt	bicho-homem
+drop-tr	fr:cause:noun	*	pt	coisa
+drop-tr	fr:bas:adjective	*	en	flat
+drop-tr	fr:clair:adjective	*	pt	escancarado
+drop-tr	fr:appel:noun	*	en	avocation
+drop-tr	fr:causer:verb	*	pt	zerar
+drop-tr	fr:sûrement:adverb	*	de	muhts
+drop-tr	fr:chemin:noun	*	pt	sendeiro
+drop-tr	fr:ben:interjection	*	de	sondern
+sense-first	fr:effet:noun	s2
+drop-tr	fr:assurer:verb	*	pt	prometer
+drop-tr	fr:intéresser:verb	*	de	sorgen
+drop-tr	fr:intéresser:verb	*	pt	desapegar
+drop-tr	fr:rue:noun	*	de	Strass
+drop-tr	fr:chanter:verb	*	de	schlagen
+drop-tr	fr:couper:verb	*	pt	dissolver
+drop-tr	fr:bras:noun	*	en	prong
+drop-tr	fr:reprendre:verb	*	pt	apreciar
+drop-tr	fr:clé:noun	*	pt	sacalão
+drop-tr	fr:attraper:verb	*	en	bag
+drop-tr	fr:récupérer:verb	*	de	auftanken
+drop-tr	fr:exister:verb	*	pt	ter
+drop-tr	fr:patron:noun	*	en	guv
+drop-tr	fr:scène:noun	*	de	Stage
+drop-tr	fr:ligne:noun	*	pt	ramo
+drop-tr	fr:tenter:verb	*	de	bestreben
+sense-first	fr:dossier:noun	s2
+drop-tr	fr:situation:noun	*	pt	copeira
+drop-tr	fr:voix:noun	*	de	Vox
+sense-first	fr:neuf:adjective	s2
+sense-first	fr:con:noun	s4
+drop-tr	fr:simplement:adverb	*	pt	simplistamente
+drop-tr	fr:sympa:adjective	*	en	good-looking
+drop-tr	fr:sympa:adjective	*	de	hübsch
+drop-tr	fr:fier:adjective	*	en	orgulous
+drop-tr	fr:fier:adjective	*	pt	orgulhante
+drop-tr	fr:dangereux:adjective	*	pt	dangeroso
+drop-tr	fr:complètement:adverb	*	en	even
+drop-tr	fr:paix:noun	*	de	Pax
+drop-tr	fr:attaquer:verb	*	de	ausfallen
+drop-tr	fr:dame:noun	*	en	king
+drop-tr	fr:faim:noun	*	de	Knast
+drop-tr	fr:surveiller:verb	*	de	herrschen
+drop-tr	fr:soin:noun	*	pt	intranquilidade
+drop-tr	fr:plusieurs:pronoun	*	pt	algum
+drop-tr	fr:âme:noun	*	en	web
+drop-tr	fr:vaisseau:noun	*	pt	ship
+drop-tr	fr:inviter:verb	*	de	verführen
+drop-tr	fr:chacun:pronoun	*	de	jedefrau
+drop-tr	fr:déjeuner:noun	*	pt	parva
+drop-tr	fr:souffrir:verb	*	de	annehmen
+drop-tr	fr:fumer:verb	*	de	blaken
+drop-tr	fr:allô:interjection	*	de	hoi
+drop-tr	fr:trou:noun	*	en	eye
+drop-tr	fr:trou:noun	*	pt	olho
+drop-tr	fr:répéter:verb	*	pt	recordar
+first	fr:offre:noun	*	de:Angebot:noun
+gloss	fr:engager:verb	s1	to hire, to take on; to pawn
+drop-tr	fr:appartenir:verb	*	pt	pertinir
+drop-tr	fr:ravi:adjective	*	pt	exuberante
+drop-tr	fr:forcer:verb	*	de	befördern
+drop-tr	fr:compagnie:noun	*	de	Rotte
+drop-tr	fr:blague:noun	*	de	Prahlerei
+drop-tr	fr:blague:noun	*	pt	pândego
+drop-tr	fr:blague:noun	*	en	porky
+drop-tr	fr:debout:adjective	*	de	um
+drop-tr	fr:debout:adjective	*	pt	acabado
+drop-tr	fr:riche:adjective	*	pt	recheado
+drop-tr	fr:pute:noun	*	en	bike
+drop-tr	fr:gérer:verb	*	de	schmeißen
+drop-tr	fr:excellent:adjective	*	pt	altamente
+drop-tr	fr:membre:noun	*	de	Genosse
+drop-tr	fr:membre:noun	*	pt	júnior
+drop-tr	fr:enfer:noun	*	pt	geena
+drop-tr	fr:fonctionner:verb	*	de	tun
+drop-tr	fr:vol:noun	*	en	bevy
+drop-tr	fr:remonter:verb	*	pt	esticar
+drop-tr	fr:remonter:verb	*	pt	retesar
+drop-tr	fr:supporter:verb	*	pt	pairar
+drop-tr	fr:fleur:noun	*	pt	xiluva
+drop-tr	fr:milieu:noun	*	en	dead
+drop-tr	fr:sourire:verb	*	pt	arreganhar
+drop-tr	fr:nettoyer:verb	*	en	scavenge
+drop-tr	fr:exemple:noun	*	pt	diva
+drop-tr	fr:gueule:noun	*	pt	abertura
+drop-tr	fr:poursuivre:verb	*	pt	tanger
+drop-tr	fr:radio:noun	*	pt	wireless
+sense-first	fr:rôle:noun	s3
+drop-tr	fr:rouler:verb	*	pt	rebolar
+sense-first	fr:départ:noun	s2
+drop-tr	fr:départ:noun	*	pt	vela
+drop-tr	fr:dent:noun	*	en	prong
+sense-first	fr:travers:noun	s2
+drop-tr	fr:diable:noun	*	de	Schaitan
+drop-tr	fr:diable:noun	*	pt	cão
+sense-first	fr:fiche:noun	s2
+first	fr:code:noun	*	de:Code:noun
+drop-tr	fr:innocent:adjective	*	en	fair
+sense-first	fr:défense:noun	s2
+drop-tr	fr:défense:noun	*	pt	para-lama
+drop-tr	fr:souci:noun	*	pt	prurido
+drop-tr	fr:politique:noun	*	de	Grüßaugust
+drop-tr	fr:représenter:verb	*	pt	brincar
+drop-tr	fr:reculer:verb	*	pt	abdicar
+drop-tr	fr:mensonge:noun	*	pt	cascata
+drop-tr	fr:trace:noun	*	de	Strichfarbe
+drop-tr	fr:pierre:noun	*	de	Klamotte
+drop-tr	fr:grand-mère:noun	*	pt	nona
+drop-tr	fr:village:noun	*	en	thorp
+drop-tr	fr:moquer:verb	*	en	sport
+drop-tr	fr:charge:noun	*	de	Sturmangriff
+drop-tr	fr:couple:noun	*	pt	par ordenado
+drop-tr	fr:couple:noun	*	en	brace
+drop-tr	fr:contrôler:verb	*	en	card
+drop-tr	fr:entraîner:verb	*	de	zusammenziehen
+drop-tr	fr:entraîner:verb	*	pt	educar
+drop-tr	fr:planter:verb	*	en	flake
+drop-tr	fr:poste:noun	*	pt	correia
+drop-tr	fr:lâche:adjective	*	pt	maricas
+drop-tr	fr:salaud:noun	*	pt	piolho
+drop-tr	fr:vent:noun	*	de	Darmwind
+sense-first	fr:dépendre:verb	s2
+drop-tr	fr:espace:noun	*	pt	trecho
+drop-tr	fr:vert:adjective	*	de	säuerlich
+drop-tr	fr:grand-père:noun	*	de	Ahn
+drop-tr	fr:voleur:noun	*	de	Banditin
+drop-tr	fr:université:noun	*	pt	vestibulando
+drop-tr	fr:exciter:verb	*	en	heat
+drop-tr	fr:serrer:verb	*	pt	engatilhar
+drop-tr	fr:attacher:verb	*	de	anbrennen
+drop-tr	fr:produit:noun	*	de	Sache
+drop-tr	fr:produit:noun	*	pt	coisa
+drop-tr	fr:produit:noun	*	pt	fazenda
+first	fr:produit:noun	*	pt:produto:noun
+drop-tr	fr:beauté:noun	*	en	belle
+drop-tr	fr:félicitations:interjection	*	pt	axé
+drop-tr	fr:salope:noun	*	de	Schickse
+drop-tr	fr:gay:noun	*	pt	viado
+drop-tr	fr:champ:noun	*	pt	agro
+drop-tr	fr:différence:noun	*	pt	destrinça
+drop-tr	fr:taxi:noun	*	de	Kraftdroschke
+drop-tr	fr:sexy:adjective	*	en	phat
+drop-tr	fr:tante:noun	*	de	Base
+drop-tr	fr:vacances:noun	*	pt	vacação
+drop-tr	fr:contraire:adjective	*	en	cross
+drop-tr	fr:oreille:noun	*	pt	asa
+drop-tr	fr:oreille:noun	*	en	lug
+drop-tr	fr:marrer:verb	*	pt	gracejar
+drop-tr	fr:programme:noun	*	en	application
+first	fr:identifier:verb	*	de:identifizieren:verb
+drop-tr	fr:identifier:verb	*	de	auszeichnen
+drop-tr	fr:adieu:interjection	*	pt	ambanine
+drop-tr	fr:adieu:interjection	*	de	addio
+drop-tr	fr:pont:noun	*	de	Bridge
+drop-tr	fr:pont:noun	*	en	pons
+drop-tr	fr:secours:noun	*	de	Retten
+drop-tr	fr:page:noun	*	en	pageboy
+sense-first	fr:terme:noun	s6
+drop-tr	fr:terme:noun	*	de	Herme
+drop-tr	fr:terme:noun	*	en	herm
+first	fr:identité:noun	*	de:Identität:noun
+drop-tr	fr:haïr:verb	*	de	haten
+drop-tr	fr:haïr:verb	*	en	die
+drop-tr	fr:prince:noun	*	de	Karnevalsprinz
+drop-tr	fr:couverture:noun	*	en	tegument
+drop-tr	fr:évidemment:adverb	*	pt	evidenciadamente
+drop-tr	fr:troisième:adjective	*	pt	três
+drop-tr	fr:livre:noun	*	de	Buach
+sense-first	fr:bouffer:verb	s2
+first	fr:étude:noun	*	de:Studie:noun
+sense-first	fr:procureur:noun	s2
+first	fr:connaissance:noun	*	de:Wissen:noun
+sense-first	fr:joueur:noun	s2
+drop-tr	fr:contenir:verb	*	de	haben
+drop-tr	fr:débrouiller:verb	*	de	aufräumen
+drop-tr	fr:responsabilité:noun	*	pt	acountabilidade
+drop-tr	fr:désirer:verb	*	en	pant
+drop-tr	fr:déclarer:verb	*	pt	depor
+drop-tr	fr:balancer:verb	*	en	rat
+drop-tr	fr:rapidement:adverb	*	pt	momentaneamente
+first	fr:condition:noun	*	de:Bedingung:noun
+drop-tr	fr:assassiner:verb	*	pt	arrasar
+drop-tr	fr:barrer:verb	*	de	abdämmen
+sense-first	fr:décevoir:verb	s2
+first	fr:accès:noun	*	de:Zugang:noun
+drop-tr	fr:accès:noun	*	en	hit
+drop-tr	fr:marque:noun	*	pt	marco
+drop-tr	fr:médical:adjective	*	pt	medical
+drop-tr	fr:chapeau:noun	*	pt	sombreiro
+sense-first	fr:échouer:verb	s2
+sense-first	fr:génie:noun	s4
+drop-tr	fr:observer:verb	*	pt	mirar
+first	fr:saisir:verb	*	pt:agarrar:verb
+drop-tr	fr:folie:noun	*	pt	folia
+drop-tr	fr:os:noun	*	en	os
+drop-tr	fr:suggérer:verb	*	pt	lembrar
+drop-tr	fr:louer:verb	*	pt	contratar
+drop-tr	fr:collègue:noun	*	de	Genosse
+drop-tr	fr:parfaitement:adverb	*	pt	perfeitissimamente
+drop-tr	fr:adresse:noun	*	pt	destino
+drop-tr	fr:vendredi:noun	*	en	Sabbath
+drop-tr	fr:dimanche:noun	*	en	Sabbath
+drop-tr	fr:éliminer:verb	*	pt	expungir
+first	fr:titre:noun	*	pt:título:noun
+drop-tr	fr:national:adjective	*	de	völkisch
+drop-tr	fr:succès:noun	*	de	Fang
+drop-tr	fr:mordre:verb	*	pt	rilhar
+drop-tr	fr:pourrir:verb	*	pt	gorar
+drop-tr	fr:péter:verb	*	en	poof
+drop-tr	fr:samedi:noun	*	de	Satertag
+drop-tr	fr:côte:noun	*	en	futtock
+drop-tr	fr:fac:noun	*	pt	vestibulando
+first	fr:fac:noun	*	pt:faculdade:noun
+drop-tr	fr:réunir:verb	*	pt	vaquejar
+drop-tr	fr:paquet:noun	*	pt	cacho
+drop-tr	fr:bataille:noun	*	pt	golpe
+drop-tr	fr:bataille:noun	*	de	Schlag
+sense-first	fr:perte:noun	s5
+drop-tr	fr:perte:noun	*	en	toll
+drop-tr	fr:sport:adjective	*	de	zufällig
+drop-tr	fr:sport:adjective	*	de	willkürlich
+sense-first	fr:naissance:noun	s2
+sense-first	fr:retraite:noun	s2
+drop-tr	fr:emploi:noun	*	pt	lugar
+drop-tr	fr:femelle:noun	*	de	Frauchen
+drop-tr	fr:femelle:noun	*	en	cow
+drop-tr	fr:cigarette:noun	*	pt	bagana
+drop-tr	fr:vampire:noun	*	en	oupire
+drop-tr	fr:torturer:verb	*	pt	macerar
+drop-tr	fr:conscience:noun	*	pt	senciência
+drop-tr	fr:critiquer:verb	*	de	aussetzen
+drop-tr	fr:critiquer:verb	*	en	blister
+drop-tr	fr:critiquer:verb	*	pt	apreciar
+drop-tr	fr:queue:noun	*	de	Fahne
+drop-tr	fr:former:verb	*	pt	colunar
+drop-tr	fr:bague:noun	*	de	Zahnspange
+drop-tr	fr:canon:noun	*	pt	ronda
+drop-tr	fr:guider:verb	*	de	treiben
+drop-tr	fr:style:noun	*	de	Stylus
+drop-tr	fr:central:adjective	*	pt	pivotal
+drop-tr	fr:prof:noun	*	pt	professo
+drop-tr	fr:étudiant:noun	*	de	Bocher
+first	fr:métier:noun	*	pt:profissão:noun
+drop-tr	fr:métier:noun	*	pt	indústria
+drop-tr	fr:rare:adjective	*	pt	precioso
+drop-tr	fr:corde:noun	*	pt	espia
+drop-tr	fr:affronter:verb	*	de	anpacken
+drop-tr	fr:adorable:adjective	*	de	anbetenswert
+drop-tr	fr:chèque:noun	*	pt	vale
+sense-first	fr:personnage:noun	s3
+sense-first	fr:couche:noun	s3
+sense-first	fr:mine:noun	s2
+drop-tr	fr:camarade:noun	*	de	Oukie
+drop-tr	fr:apparaître:verb	*	en	spawn
+sense-first	fr:véritable:adjective	s4
+drop-tr	fr:fournir:verb	*	pt	dar
+drop-tr	fr:sorcière:noun	*	de	Vettel
+drop-tr	fr:sorcière:noun	*	pt	estrige
+drop-tr	fr:bénir:verb	*	de	benedeien
+drop-tr	fr:sud:noun	*	pt	austro
+drop-tr	fr:chinois:noun	*	en	Greek
+drop-tr	fr:chinois:noun	*	de	böhmische Dörfer
+drop-tr	fr:curieux:adjective	*	pt	farejador
+drop-tr	fr:léger:adjective	*	de	klein
+sense-first	fr:rejeter:verb	s6
+drop-tr	fr:griller:verb	*	en	fry
+drop-tr	fr:nager:verb	*	de	herschwimmen
+drop-tr	fr:nager:verb	*	pt	adanar
+drop-tr	fr:obéir:verb	*	pt	observar
+drop-tr	fr:champion:noun	*	de	Kämpfer
+first	fr:champion:noun	*	pt:campeão:noun
+drop-tr	fr:souris:noun	*	de	Mouse
+sense-first	fr:tester:verb	s2
+drop-tr	fr:vomir:verb	*	pt	lançar
+drop-tr	fr:ralentir:verb	*	pt	temperar
+drop-tr	fr:puissance:noun	*	pt	país
+drop-tr	fr:puissance:noun	*	pt	estado
+first	fr:puissance:noun	*	pt:potência:noun
+drop-tr	fr:choc:noun	*	de	Anstoß
+drop-tr	fr:rumeur:noun	*	de	Ondit
+sense-first	fr:disque:noun	s3
+sense-first	fr:crédit:noun	s2
+sense-first	fr:rapprocher:verb	s2
+sense-first	fr:cabinet:noun	s3
+drop-tr	fr:uniforme:adjective	*	pt	quite
+drop-tr	fr:plonger:verb	*	pt	chuchar
+drop-tr	fr:aveugle:adjective	*	pt	lusco
+drop-tr	fr:réseau:noun	*	de	Garn
+drop-tr	fr:signaler:verb	*	pt	observar
+drop-tr	fr:égal:adjective	*	de	egal
+sense-first	fr:déconner:verb	s4
+sense-first	fr:sommeil:noun	s5
+drop-tr	fr:poupée:noun	*	de	Docke
+drop-tr	fr:poupée:noun	*	en	cookie
+drop-tr	fr:lac:noun	*	de	Meer
+sense-first	fr:soutien:noun	s4
+drop-tr	fr:soutien:noun	*	de	Hinterhalt
+sense-first	fr:débile:adjective	s2
+first	fr:fortune:noun	*	de:Vermögen:noun
+sense-first	fr:échec:noun	s2
+drop-tr	fr:rassembler:verb	*	de	mitnehmen
+drop-tr	fr:document:noun	*	de	Akt
+drop-tr	fr:document:noun	*	de	Aufzug
+first	fr:document:noun	*	de:Dokument:noun
+drop-tr	fr:document:noun	*	pt	instrumento
+drop-tr	fr:document:noun	*	pt	auto
+first	fr:document:noun	*	pt:documento:noun
+drop-tr	fr:nana:noun	*	pt	franga
+sense-first	fr:piger:verb	s6
+drop-tr	fr:horreur:noun	*	en	phi
+sense-first	fr:humeur:noun	s4
+drop-tr	fr:bouillir:verb	*	pt	bulir
+drop-tr	fr:auprès:adverb	*	de	daran
+drop-tr	fr:période:noun	*	pt	era
+drop-tr	fr:réaction:noun	*	de	Reagenz
+sense-first	fr:foncer:verb	s5
+drop-tr	fr:foncer:verb	*	de	graben
+drop-tr	fr:possibilité:noun	*	pt	apelão
+drop-tr	fr:possibilité:noun	*	de	Possibilität
+drop-tr	fr:compliqué:adjective	*	pt	cabuloso
+drop-tr	fr:géant:adjective	*	pt	massivo
+drop-tr	fr:bander:verb	*	pt	bandar
+drop-tr	fr:atterrir:verb	*	pt	abordar
+drop-tr	fr:parer:verb	*	pt	emoldurar
+drop-tr	fr:véhicule:noun	*	pt	carrocinha
+sense-first	fr:inspirer:verb	s3
+drop-tr	fr:inspirer:verb	*	de	holen
+drop-tr	fr:unir:verb	*	de	verschwistern
+first	fr:déclaration:noun	*	pt:declaração:noun
+drop-tr	fr:aile:noun	*	en	sail
+drop-tr	fr:rond:adjective	*	en	even
+drop-tr	fr:foyer:noun	*	pt	caldeira
+drop-tr	fr:neige:noun	*	de	Kokain
+drop-tr	fr:neige:noun	*	pt	chuvisco
+drop-tr	fr:modèle:noun	*	pt	diva
+drop-tr	fr:fromage:noun	*	de	Nillenkäse
+drop-tr	fr:admirer:verb	*	de	adorieren
+drop-tr	fr:piscine:noun	*	en	bathroom
+drop-tr	fr:piscine:noun	*	pt	banheiro
+drop-tr	fr:plainte:noun	*	de	Geseire
+drop-tr	fr:avertir:verb	*	pt	lembrar
+drop-tr	fr:virus:noun	*	pt	bichinho
+drop-tr	fr:défoncer:verb	*	de	einfahren
+sense-first	fr:cependant:adverb	s2
+drop-tr	fr:exprimer:verb	*	pt	espremer
+first	fr:exprimer:verb	*	pt:expressar:verb
+drop-tr	fr:option:noun	*	en	flag
+drop-tr	fr:option:noun	*	pt	flag
+sense-first	fr:roman:noun	s3
+drop-tr	fr:midi:noun	*	pt	austro
+drop-tr	fr:comparer:verb	*	de	steigern
+drop-tr	fr:étape:noun	*	pt	ronda
+drop-tr	fr:étape:noun	*	en	round
+drop-tr	fr:chair:noun	*	pt	bege
+drop-tr	fr:forcément:adverb	*	pt	forçadamente
+sense-first	fr:ascenseur:noun	s3
+drop-tr	fr:crème:noun	*	en	best
+sense-first	fr:opportunité:noun	s3
+sense-first	fr:prénom:noun	s2
+sense-first	fr:franc:adjective	s4
+drop-tr	fr:vélo:noun	*	pt	baique
+drop-tr	fr:balader:verb	*	de	an der Nase herumführen
+drop-tr	fr:balader:verb	*	en	trail
+sense-first	fr:tenue:noun	s5
+drop-tr	fr:mystère:noun	*	pt	desfecho
+drop-tr	fr:soupe:noun	*	pt	brodo
+drop-tr	fr:déterminer:verb	*	de	antun

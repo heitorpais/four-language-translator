@@ -99,3 +99,4 @@ sv	huvud-	adjective
 cs	titulky	noun
 sv	undertext	noun
 en	answer (the phone)	verb
+es	embarazada	adjective

@@ -12,5 +12,6 @@
  {"id": "en:December:noun", "ipa": "dɪˈsɛmbɚ", "level": "A1", "rank": 4700, "gloss_en": "the twelfth month of the year"},
  {"id": "sv:i:preposition", "ipa": "iː", "level": "A1", "rank": 12, "gloss_en": "in, inside"},
  {"id": "sv:juli:noun", "ipa": "ˈjʉːlɪ", "level": "A1", "rank": 3322, "gloss_en": "July", "gender": "c"},
- {"id": "de:Reis:noun", "ipa": "ʁaɪ̯s", "level": "A1", "rank": 5129, "gloss_en": "rice", "gender": "m", "plural": null}
+ {"id": "de:Reis:noun", "ipa": "ʁaɪ̯s", "level": "A1", "rank": 5129, "gloss_en": "rice", "gender": "m", "plural": null},
+ {"id": "fr:enceinte:adjective", "ipa": "ɑ̃.sɛ̃t", "level": "A2", "rank": 1563, "gloss_en": "pregnant"}
 ]
