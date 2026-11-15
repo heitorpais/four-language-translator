@@ -363,6 +363,7 @@ function paintAll() {
   const hc = $('#help-corner'); if (hc) hc.textContent = t('help.how', 'How to use Glossarium');
   document.querySelectorAll('[data-acct]').forEach(el => { el.innerHTML = boxHtml(); });
   paintPanel();
+  if (window.FLTNotify) FLTNotify.paint();
 }
 function openPanel() {
   ensureDom();
@@ -542,6 +543,7 @@ async function friendAct(k, uid) {
     if (!comm.relProfiles.has(uid)) { const p = comm.list.concat(comm.found || []).find(x => x.uid === uid) || (viewing && viewing.p && viewing.uid === uid ? Object.assign({ uid }, viewing.p) : null); if (p) comm.relProfiles.set(uid, p); }
   } catch (e) { toastMsg(t('comm.fail', 'That did not work. Try again.')); }
   paintRequests(); paintComm(); paintPanel();
+  if (window.FLTNotify) FLTNotify.refresh();
 }
 function toastMsg(m) { try { A().toast(m); } catch (e) {} }
 async function sendReport(uid, why) {
@@ -607,7 +609,9 @@ function route() { const m = /^#\/@([a-z0-9_.]{3,20})$/.exec(location.hash || ''
 window.addEventListener('hashchange', route);
 
 window.FLTSync = { paint: paintAll, changed, open: openPanel, paintCommunity: openCommunity,
-  api: { load, get fb() { return fb; }, get db() { return db; }, get user() { return user; }, get profile() { return profile; }, avatarImg, badgeHtml, specialHtml, openCreate() { mode = 'create'; msg = t('forum.need', 'Create an account to write in the Reading Room.'); openPanel(); }, onAuth: [] }, get signedIn() { return !!user; }, get profile() { return profile; } };
+  api: { load, get fb() { return fb; }, get db() { return db; }, get user() { return user; }, get profile() { return profile; }, avatarImg, badgeHtml, specialHtml, loadRels, rels: () => comm.rels, relProfile: uid => comm.relProfiles.get(uid),
+    showRequests() { comm.tab = 'requests'; viewing = null; if (window.FLTViews) FLTViews.togglePanel('community', true); const el = $('#community'); if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' }); },
+    openCreate() { mode = 'create'; msg = t('forum.need', 'Create an account to write in the Reading Room.'); openPanel(); }, onAuth: [] }, get signedIn() { return !!user; }, get profile() { return profile; } };
 function start() {
   ensureDom(); paintAll(); route();
   if (ls.get(FLAG) && /^https?:$/.test(location.protocol)) load().catch(() => {});      // has an account on this device: reconnect quietly

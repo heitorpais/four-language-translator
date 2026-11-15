@@ -264,10 +264,10 @@ const toast = m => { try { A().toast(m); } catch (e) {} };
 async function myFollows() {
   if (F.follows) return F.follows;
   const S = SY(); if (!S || !S.user) return {};
-  try { await S.load(); const d = await S.fb.getDoc(S.fb.doc(S.db, 'follows', S.user.uid)); F.follows = d.exists() ? (d.data().m || {}) : {}; } catch (e) { F.follows = {}; }
+  try { await S.load(); const d = await S.fb.getDoc(S.fb.doc(S.db, 'follows', S.user.uid)); F.follows = d.exists() ? (d.data().m || {}) : {}; F.fr = d.exists() ? (d.data().fr || 0) : 0; } catch (e) { F.follows = {}; }
   return F.follows;
 }
-async function saveFollows() { const S = SY(); try { await S.fb.setDoc(S.fb.doc(S.db, 'follows', S.user.uid), { m: F.follows }); } catch (e) {} }
+async function saveFollows() { const S = SY(); try { await S.fb.setDoc(S.fb.doc(S.db, 'follows', S.user.uid), { m: F.follows, fr: F.fr || 0 }); } catch (e) {} }
 async function follow(tid, on) {
   const S = SY(); if (!S || !S.user) return;
   const f = await myFollows();
@@ -277,15 +277,28 @@ async function follow(tid, on) {
 }
 async function seen(tid, at) { const S = SY(); if (!S || !S.user) return; const f = await myFollows(); if (f[tid] != null) { f[tid] = Math.max(f[tid], at || Date.now()) + 1; saveFollows(); bell(); } }
 let news = [];
-async function bell() {
+function bell() { if (window.FLTNotify) FLTNotify.refresh(); }
+// every reply I have not seen yet, in the conversations I follow (my own posts and the ones I replied to are followed by themselves)
+async function unread() {
   const S = SY(), u = S && S.user;
-  if (!u) { news = []; paintBell(); return; }
-  const f = await myFollows();
-  const ids = Object.keys(f).slice(0, 60);
-  const out = [];
-  await Promise.all(ids.map(async id => { try { const x = await getOne('threads/' + id); if (x && !x.hidden && x.lastAt > f[id] && x.lastBy !== u.uid) out.push(x); } catch (e) {} }));
-  news = out.sort((a, b) => b.lastAt - a.lastAt); paintBell();
+  if (!u) { news = []; paintBell(); return []; }
+  const f = await myFollows(), out = [], th = [];
+  await Promise.all(Object.keys(f).slice(0, 60).map(async id => {
+    try {
+      const x = await getOne('threads/' + id);
+      if (!x || x.hidden || !(x.lastAt > f[id])) return;
+      const rs = (await runQuery('threads/' + id, 'replies', [['hidden', 'EQUAL', false]], 500)).filter(r => r.t > f[id] && r.uid !== u.uid);
+      if (!rs.length) return;
+      th.push(x);
+      for (const r of rs) out.push({ k: x.uid === u.uid ? 'mine' : 'reply', tid: id, rid: r.id, uid: r.uid, name: r.username, title: x.title || x.word || '', snip: String(r.body || '').replace(/\s+/g, ' ').slice(0, 90), t: r.t });
+    } catch (e) {}
+  }));
+  news = th; paintBell();
+  return out.sort((a, b) => b.t - a.t).slice(0, 60);
 }
+async function seeAll() { const f = await myFollows(), now = Date.now(); for (const k of Object.keys(f)) f[k] = Math.max(f[k], now); F.fr = Math.max(F.fr || 0, now); await saveFollows(); }
+async function frSeen() { await myFollows(); return F.fr || 0; }
+async function setFrSeen(ts) { await myFollows(); if (ts > (F.fr || 0)) { F.fr = ts; await saveFollows(); } }
 function paintBell() {
   const b = $('#forum-toggle'); if (b) b.innerHTML = esc(t('nav.forum', 'Reading Room')) + (news.length ? ` <span class="req-dot" title="${esc(t('forum.new.tip', 'New replies'))}">${news.length}</span>` : '');
 }
@@ -391,7 +404,7 @@ function body() {
     const th = F.thread, u = me(), fol = F.follows && F.follows[th.id] != null;
     const reps = F.replies.slice().sort((a, b) => (a.id === th.best ? -1 : b.id === th.best ? 1 : 0) || (a.t - b.t));
     return `${err}${postHtml(th, 'thread')}
-      <div class="row thread-tools">${u ? `<button class="btn sm" data-fx="follow">${fol ? esc(t('forum.unfollow', '✓ Following')) : esc(t('forum.follow', '🔔 Follow'))}</button>` : ''}<span class="hint">${esc(t('forum.n.replies', '{n} replies', { n: F.replies.length }))}</span></div>
+      <div class="row thread-tools">${u ? `<button class="btn sm" data-fx="follow">${fol ? esc(t('forum.unfollow', '✓ Following')) : esc(t('forum.follow', '🔔 Follow'))}</button><span class="hint">${esc(fol ? t('forum.follow.on', 'You get a notification for every reply.') : t('forum.follow.off', 'Follow to get a notification for every reply.'))}</span>` : ''}<span class="hint">${esc(t('forum.n.replies', '{n} replies', { n: F.replies.length }))}</span></div>
       ${reps.map(r => postHtml(r, 'reply')).join('')}
       <form class="compose" id="f-reply"><textarea class="text" id="f-rbody" rows="3" maxlength="2000" placeholder="${esc(t('forum.reply.ph', 'Write a reply… Link words like [[Haus]].'))}"></textarea><div class="row"><button class="btn primary" type="submit">${esc(t('forum.reply', 'Reply'))}</button><span class="hint" id="f-rmsg" aria-live="polite"></span></div></form>`;
   }
@@ -488,7 +501,7 @@ async function goWord(word, lang) {
 
 function route() { const m = /^#\/r\/([A-Za-z0-9]+)(?:~([A-Za-z0-9]+))?$/.exec(location.hash || ''); if (!m) return; openThread(m[1]).then(() => { if (m[2]) { const el = document.querySelector(`[data-fx="share"][data-id="${m[2]}"]`); const post = el && el.closest('.post'); if (post) { post.classList.add('flash'); post.scrollIntoView({ behavior: 'smooth', block: 'center' }); } } }); }
 window.addEventListener('hashchange', route);
-window.FLTForum = { openWord, cards, paint, bell, openThread };
+window.FLTForum = { openWord, cards, paint, bell, openThread, unread, seeAll, frSeen, setFrSeen, avatar: uid => (profiles.get(uid) || {}).avatar || '', loadProfiles };
 function start() {
   const S = window.FLTSync && window.FLTSync.api;
   if (S) S.onAuth.push(() => { F.follows = null; bell(); paint(); });
