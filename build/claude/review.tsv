@@ -23685,3 +23685,704 @@ gloss	it:estremo:adjective	s1	extreme
 gloss	it:espressione:noun	s1	expression; phrase
 sense-first	it:cartella:noun	s3
 drop-tr	it:verme:noun	*	pt	worm
+drop-tr	es:acercamiento:noun	*	de	Aufzug
+drop-tr	es:terciopelo:noun	*	de	Bast
+drop-tr	es:seta:noun	*	pt	cugordo
+drop-tr	es:viga:noun	*	de	Bug
+drop-tr	es:rabiar:verb	*	pt	chispar
+gloss	es:flipar:verb	s1	to be amazed, to freak out; to love (something)
+drop-tr	es:flipar:verb	*	en	drugged
+gloss	es:revolcar:verb	s1	to knock down; (revolcarse) to roll around, to wallow
+drop-tr	es:revolcar:verb	*	de	revoltieren
+drop-tr	es:revolcar:verb	*	en	revolt
+drop-tr	es:revolcar:verb	*	pt	revoltar
+drop-tr	es:viable:adjective	*	de	wegsam
+drop-tr	es:sanguijuela:noun	*	de	Achterliek
+drop-tr	es:ficha:noun	*	de	Stecker
+gloss	es:destripar:verb	s1	to disembowel, to gut; (colloquial) to spoil (a story)
+drop-tr	es:destripar:verb	*	de	zermalmen
+drop-tr	es:destripar:verb	*	en	crush
+gloss	es:curado:adjective	s1	cured, healed; (food) cured; tanned
+drop-tr	es:influyente:adjective	*	de	zukunftsträchtig
+drop-tr	es:frecuentemente:adverb	*	de	gern
+gloss	es:pisado:adjective	s1	trodden on; (slang) henpecked
+drop-tr	es:pisado:adjective	*	pt	gado
+drop-tr	es:pisado:adjective	*	pt	escravoceta
+drop-tr	es:torrente:noun	*	de	Torrente
+drop-tr	es:boceto:noun	*	de	Abschattung
+drop-tr	es:boceto:noun	*	en	adumbration
+drop-tr	es:bache:noun	*	pt	caldeirão
+drop-tr	es:dotado:adjective	*	en	hung like a horse
+drop-tr	es:memorable:adjective	*	de	merkwürdig
+gloss	es:asignado:noun	s1	assigned, allotted; (history) assignat
+drop-tr	es:drenaje:noun	*	pt	manilha
+drop-tr	es:agrandar:verb	*	de	skalieren
+drop-tr	es:agrandar:verb	*	en	scale
+drop-tr	es:colorido:adjective	*	en	gay
+drop-tr	es:colorido:adjective	*	en	tinted
+drop-tr	es:excitación:noun	*	en	hullabaloo
+drop-tr	es:halagado:adjective	*	de	schmeicheln
+drop-tr	es:transcripción:noun	*	de	abschreiben
+drop-tr	es:resentido:adjective	*	pt	ressentir
+drop-tr	es:duración:noun	*	de	Mindesthaltbarkeit
+drop-tr	es:antojo:noun	*	en	freak
+gloss	es:sacudido:adjective	s1	shaken; determined
+drop-tr	es:foso:noun	*	de	Schanze
+drop-tr	es:soso:adjective	*	pt	choco
+drop-tr	es:fulano:noun	*	en	random
+drop-tr	es:sórdido:adjective	*	de	unflätig
+drop-tr	es:urgentemente:adverb	*	de	nötig
+gloss	es:derrotado:adjective	s1	defeated, beaten
+drop-tr	es:derrotado:adjective	*	en	ragged
+drop-tr	es:derrotado:adjective	*	pt	esfarrapado
+drop-tr	es:perdurar:verb	*	de	nachklingen
+drop-tr	es:inmovilizar:verb	*	de	festlegen
+drop-tr	es:herrero:noun	*	pt	Ferreira
+gloss	es:pícaro:adjective	s1	roguish, cheeky, mischievous
+drop-tr	es:sudadera:noun	*	pt	capuz
+drop-tr	es:fúnebre:adjective	*	de	Beisetzung
+drop-tr	es:errante:adjective	*	de	fehlleiten
+drop-tr	es:itinerario:noun	*	pt	linha
+drop-tr	es:alteza:noun	*	en	height
+drop-tr	es:mixto:noun	*	pt	mestiço
+drop-tr	es:magnitud:noun	*	en	absolute value
+gloss	es:susceptible:adjective	s1	susceptible; touchy; amenable
+drop-tr	es:lencería:noun	*	pt	calcinha
+drop-tr	es:succionar:verb	*	pt	puxar saco
+drop-tr	es:caricia:noun	*	de	Petting
+drop-tr	es:conjetura:noun	*	en	theorem
+drop-tr	es:desecho:noun	*	de	Abgängsel
+drop-tr	es:descontrolar:verb	*	de	abstürzen
+drop-tr	es:coágulo:noun	*	en	gore
+drop-tr	es:acobardar:verb	*	pt	desaconselhar
+drop-tr	es:murmullo:noun	*	pt	zumbido
+drop-tr	es:orador:noun	*	en	prayer
+drop-tr	es:dique:noun	*	de	Helling
+drop-tr	es:despertador:noun	*	pt	cantante
+gloss	es:profundizar:verb	s1	to deepen, to go deeper into
+first	it:origine:noun	*	pt:origem:noun
+first	it:origine:noun	*	en:origin:noun
+gloss	it:approfittare:verb	s1	to take advantage (of), to make the most (of)
+drop-tr	it:approfittare:verb	*	de	exploitieren
+drop-tr	it:friggere:verb	*	pt	ferver
+drop-tr	it:ammalare:verb	*	de	arbeiten
+drop-tr	it:argento:noun	*	pt	branco
+sense-first	it:romanzo:noun	s2
+first	it:romanzo:noun	*	de:Roman:noun
+first	it:romanzo:noun	*	en:novel:noun
+first	it:romanzo:noun	*	pt:romance:noun
+drop-tr	it:romanzo:noun	*	de	Romanisch
+drop-tr	it:romanzo:noun	*	en	Romance
+drop-tr	it:volontà:noun	*	de	Letzter Wille
+gloss	it:estero:noun	s1	foreign countries; abroad (all'estero)
+drop-tr	it:estero:noun	*	en	foreigner
+drop-tr	it:armato:adjective	*	pt	montado
+drop-tr	it:sposo:noun	*	de	Gemahlin
+sense-first	it:protocollo:noun	s2
+sense-first	it:temporale:noun	s3
+first	it:temporale:noun	*	en:storm:noun
+first	it:temporale:noun	*	de:Gewitter:noun
+first	it:temporale:noun	*	pt:tempestade:noun
+drop-tr	it:temporale:noun	*	en	temporal
+drop-tr	it:temporale:noun	*	pt	temporal
+sense-first	it:ballerino:noun	s3
+first	it:ballerino:noun	*	en:dancer:noun
+drop-tr	it:ballerino:noun	*	en	ballerino
+sense-first	it:consulente:noun	s2
+drop-tr	it:consulente:noun	*	en	consult
+first	it:consulente:noun	*	en:consultant:noun
+first	it:consulente:noun	*	de:Berater:noun
+first	it:consulente:noun	*	pt:consultor:noun
+sense-first	it:affetto:noun	s2
+gloss	it:affetto:noun	s2	affection, fondness
+drop-tr	it:affetto:noun	*	en	affected
+first	it:affetto:noun	*	en:affection:noun
+first	it:affetto:noun	*	de:Zuneigung:noun
+first	it:affetto:noun	*	pt:afeição:noun
+gloss	it:tardare:verb	s1	to be late, to delay
+drop-tr	it:tardare:verb	*	en	be
+first	it:tardare:verb	*	en:delay:verb
+first	it:tardare:verb	*	de:verzögern:verb
+first	it:tardare:verb	*	pt:atrasar:verb
+drop-tr	it:spina:noun	*	de	Thorn
+first	it:spina:noun	*	pt:espinho:noun
+sense-first	it:soffocare:verb	s2
+drop-tr	it:soffocare:verb	*	en	damp
+drop-tr	it:calore:noun	*	pt	cio
+sense-first	it:citare:verb	s2
+drop-tr	it:citare:verb	*	de	vozieren
+first	it:citare:verb	*	en:quote:verb
+first	it:citare:verb	*	de:zitieren:verb
+first	it:citare:verb	*	pt:citar:verb
+drop-tr	it:modulo:noun	*	en	absolute value
+drop-tr	it:tremendo:adjective	*	en	crappy
+drop-tr	it:branco:noun	*	de	Chor
+drop-tr	it:cravatta:noun	*	pt	empate
+first	it:cravatta:noun	*	pt:gravata:noun
+sense-first	it:missile:noun	s2
+drop-tr	it:missile:noun	*	en	throwing
+first	it:missile:noun	*	en:missile:noun
+first	it:missile:noun	*	de:Rakete:noun
+first	it:missile:noun	*	pt:míssil:noun
+sense-first	it:difficoltà:noun	s3
+drop-tr	it:difficoltà:noun	*	en	complexity
+first	it:difficoltà:noun	*	en:difficulty:noun
+first	it:difficoltà:noun	*	de:Schwierigkeit:noun
+first	it:difficoltà:noun	*	pt:dificuldade:noun
+drop-tr	it:pagamento:noun	*	en	solution
+drop-tr	it:pagamento:noun	*	de	Leistung
+sense-first	it:sinistro:noun	s5
+drop-tr	it:sinistro:noun	*	en	grim
+drop-tr	it:sinistro:noun	*	de	gruselig
+first	it:sinistro:noun	*	en:accident:noun
+first	it:sinistro:noun	*	de:Unfall:noun
+first	it:sinistro:noun	*	pt:acidente:noun
+sense-first	it:drago:noun	s2
+drop-tr	it:drago:noun	*	en	worm
+first	it:drago:noun	*	en:dragon:noun
+first	it:drago:noun	*	de:Drache:noun
+first	it:drago:noun	*	pt:dragão:noun
+sense-first	it:autore:noun	s2
+first	it:autore:noun	*	en:author:noun
+first	it:autore:noun	*	de:Autor:noun
+first	it:autore:noun	*	pt:autor:noun
+sense-first	it:istituto:noun	s2
+first	it:istituto:noun	*	en:institute:noun
+first	it:istituto:noun	*	de:Institut:noun
+first	it:istituto:noun	*	pt:instituto:noun
+sense-first	it:trasferimento:noun	s2
+drop-tr	it:trasferimento:noun	*	en	transference
+first	it:trasferimento:noun	*	en:transfer:noun
+first	it:trasferimento:noun	*	pt:transferência:noun
+sense-first	it:anticipo:noun	s3
+drop-tr	it:anticipo:noun	*	en	anticipation
+first	it:anticipo:noun	*	en:advance:noun
+first	it:anticipo:noun	*	de:Vorschuss:noun
+first	it:anticipo:noun	*	pt:adiantamento:noun
+gloss	it:posteriore:adjective	s1	back, rear; later, subsequent
+gloss	it:principio:noun	s1	beginning, start; principle
+drop-tr	it:principio:noun	*	en	prime
+drop-tr	it:principio:noun	*	de	Eintritt
+sense-first	it:atteggiamento:noun	s3
+first	it:atteggiamento:noun	*	en:attitude:noun
+first	it:atteggiamento:noun	*	de:Haltung:noun
+first	it:atteggiamento:noun	*	pt:atitude:noun
+drop-tr	it:medaglia:noun	*	de	Bembel
+drop-tr	it:stivale:noun	*	de	Boot
+drop-tr	it:qualità:noun	*	de	Wahl
+sense-first	it:attrezzatura:noun	s2
+first	it:attrezzatura:noun	*	en:equipment:noun
+first	it:attrezzatura:noun	*	de:Ausrüstung:noun
+first	it:attrezzatura:noun	*	pt:equipamento:noun
+drop-tr	it:informatore:noun	*	en	ear
+drop-tr	it:liscio:adjective	*	de	mild
+drop-tr	it:liscio:adjective	*	en	flush
+drop-tr	it:voglia:noun	*	pt	pedido
+drop-tr	it:consumare:verb	*	de	verarbeiten
+drop-tr	it:derubare:verb	*	de	fleddern
+first	it:derubare:verb	*	de:berauben:verb
+drop-tr	it:cassaforte:noun	*	pt	cacifo
+drop-tr	it:Santo:noun	*	pt	Santa
+sense-first	it:sostegno:noun	s1
+gloss	it:sostegno:noun	s1	support, backing; prop
+first	it:sostegno:noun	*	en:support:noun
+first	it:sostegno:noun	*	de:Unterstützung:noun
+drop-tr	it:sostegno:noun	*	de	Fürsprache
+sense-first	it:distintivo:noun	s2
+first	it:distintivo:noun	*	en:badge:noun
+first	it:distintivo:noun	*	de:Abzeichen:noun
+first	it:distintivo:noun	*	pt:distintivo:noun
+first	it:pilota:noun	*	de:Pilot:noun
+drop-tr	it:profondamente:adverb	*	en	fast
+drop-tr	it:impiccare:verb	*	en	neck
+drop-tr	it:addestrare:verb	*	de	bereiten
+drop-tr	it:anca:noun	*	de	Walm
+sense-first	it:umiliare:verb	s4
+first	it:umiliare:verb	*	en:humiliate:verb
+first	it:umiliare:verb	*	pt:humilhar:verb
+first	it:umiliare:verb	*	de:demütigen:verb
+sense-first	it:frigo:noun	s2
+drop-tr	it:frigo:noun	*	en	refrigerated
+first	it:frigo:noun	*	en:fridge:noun
+first	it:frigo:noun	*	de:Kühlschrank:noun
+first	it:frigo:noun	*	pt:geladeira:noun
+gloss	it:acido:adjective	s1	sour, acidic, tart
+sense-first	it:capitale:noun	s2
+drop-tr	it:capitale:noun	*	de	grundlegend
+drop-tr	it:capitale:noun	*	en	paramount
+first	it:capitale:noun	*	en:capital:noun
+first	it:capitale:noun	*	de:Hauptstadt:noun
+first	it:capitale:noun	*	pt:capital:noun
+drop-tr	it:sordo:adjective	*	de	zischend
+sense-first	it:meccanico:noun	s3
+drop-tr	it:meccanico:noun	*	en	mechanical
+first	it:meccanico:noun	*	en:mechanic:noun
+first	it:meccanico:noun	*	de:Mechaniker:noun
+gloss	it:investimento:noun	s1	investment; (road) collision, running over
+first	it:investimento:noun	*	en:investment:noun
+first	it:investimento:noun	*	de:Investition:noun
+first	it:investimento:noun	*	pt:investimento:noun
+drop-tr	it:digitale:noun	*	de	Finger
+drop-tr	it:svanire:verb	*	de	weggehen
+drop-tr	it:promuovere:verb	*	de	abstützen
+drop-tr	it:greco:noun	*	pt	vasconço
+drop-tr	it:eccetto:preposition	*	de	bis
+drop-tr	it:debolezza:noun	*	pt	furo
+drop-tr	it:ammiraglio:noun	*	de	Eisvogel
+first	it:cacca:noun	*	en:poo:noun
+sense-first	it:storico:adjective	s2
+first	it:storico:adjective	*	en:historical:adjective
+first	it:storico:adjective	*	de:historisch:adjective
+first	it:storico:adjective	*	pt:histórico:adjective
+drop-tr	it:trafficare:verb	*	en	shill
+gloss	it:economia:noun	s1	economy; economics; thrift
+first	it:economia:noun	*	en:economy:noun
+first	it:economia:noun	*	pt:economia:noun
+drop-tr	it:lettura:noun	*	en	cicero
+sense-first	it:asilo:noun	s3
+first	it:asilo:noun	*	en:kindergarten:noun
+first	it:asilo:noun	*	de:Kindergarten:noun
+first	it:asilo:noun	*	pt:creche:noun
+sense-first	it:portale:noun	s2
+first	it:portale:noun	*	en:portal:noun
+first	it:portale:noun	*	de:Portal:noun
+drop-tr	it:pasta:noun	*	de	Seele
+sense-first	it:sede:noun	s4
+gloss	it:sede:noun	s4	headquarters, seat, head office
+drop-tr	it:sede:noun	*	en	time
+first	it:sede:noun	*	en:headquarters:noun
+first	it:sede:noun	*	de:Sitz:noun
+first	it:sede:noun	*	pt:sede:noun
+drop-tr	it:gallo:noun	*	pt	cantante
+drop-tr	it:pecora:noun	*	de	Ramme
+drop-tr	it:consentire:verb	*	de	konsentieren
+drop-tr	it:bus:noun	*	pt	barramento
+gloss	it:delinquere:verb	s1	to commit crimes, to offend
+drop-tr	it:delinquere:verb	*	de	sündigen
+drop-tr	it:delinquere:verb	*	en	sin
+drop-tr	it:delinquere:verb	*	pt	pecar
+first	it:delinquere:verb	*	en:commit:verb
+first	it:delinquere:verb	*	de:begehen:verb
+sense-first	it:schizzare:verb	s2
+gloss	it:schizzare:verb	s2	to squirt, to splash, to spurt; to sketch
+first	it:schizzare:verb	*	en:splash:verb
+first	it:schizzare:verb	*	de:spritzen:verb
+drop-tr	it:ciclo:noun	*	de	Fahrrad
+drop-tr	it:infastidire:verb	*	de	stalken
+sense-first	it:zampa:noun	s3
+first	it:zampa:noun	*	en:paw:noun
+first	it:zampa:noun	*	de:Pfote:noun
+first	it:zampa:noun	*	pt:pata:noun
+drop-tr	it:zampa:noun	*	pt	pouta
+gloss	it:accostare:verb	s1	to bring near, to approach; to pull over; to compare
+gloss	it:decollare:verb	s1	to take off (aircraft); to behead
+first	it:decollare:verb	*	de:abheben:verb
+first	it:decollare:verb	*	pt:decolar:verb
+drop-tr	it:boss:noun	*	de	Endgegner
+gloss	it:mandato:noun	s1	mandate, warrant, order
+drop-tr	it:distinguere:verb	*	de	trennen
+drop-tr	it:adottare:verb	*	de	wählen
+gloss	it:imporre:verb	s1	to impose, to enforce
+drop-tr	it:imporre:verb	*	en	bid
+drop-tr	it:imporre:verb	*	de	besteuern
+drop-tr	it:ulteriore:adjective	*	de	sonstig
+gloss	it:schiantare:verb	s1	to crash; to break, to burst
+gloss	it:accedere:verb	s1	to access, to enter; to log in
+drop-tr	it:osservazione:noun	*	pt	registro
+drop-tr	it:solare:adjective	*	pt	solarengo
+sense-first	it:pollice:noun	s2
+first	it:pollice:noun	*	en:thumb:noun
+first	it:pollice:noun	*	de:Daumen:noun
+first	it:pollice:noun	*	pt:polegar:noun
+drop-tr	es:dolorido:adjective	*	de	schlimm
+gloss	es:intimar:verb	s1	to become close (with someone); to order, to call on
+gloss	es:escalada:noun	s1	climbing; escalation, rise
+drop-tr	es:picadura:noun	*	en	insect
+drop-tr	es:moldear:verb	*	de	streichen
+drop-tr	es:moldear:verb	*	de	zeichnen
+drop-tr	es:escapado:noun	*	pt	desgarrado
+drop-tr	es:compás:noun	*	pt	bússola
+drop-tr	es:resguardar:verb	*	de	gaumen
+drop-tr	es:resguardar:verb	*	de	wahrnehmen
+gloss	es:conteo:noun	s1	count, counting
+drop-tr	es:conteo:noun	*	en	bill
+gloss	es:reconocido:adjective	s1	recognized, acknowledged; grateful
+drop-tr	es:codiciar:verb	*	en	lust
+drop-tr	es:aviador:noun	*	de	Kapitän
+drop-tr	es:deslumbrante:adjective	*	de	weißglühend
+drop-tr	es:deslumbrante:adjective	*	en	incandescent
+gloss	es:dentadura:noun	s1	set of teeth; dentures
+drop-tr	es:polilla:noun	*	de	Holzwurm
+drop-tr	es:polilla:noun	*	en	woodworm
+drop-tr	es:polilla:noun	*	pt	bicho-carpinteiro
+drop-tr	es:cebra:noun	*	de	Zebrastreifen
+drop-tr	es:cebra:noun	*	en	zebra crossing
+drop-tr	es:cebra:noun	*	pt	passadeira
+drop-tr	es:nudillo:noun	*	de	Haxe
+drop-tr	es:túnica:noun	*	de	Abendkleid
+gloss	es:fabricación:noun	s1	manufacture, production
+drop-tr	es:fabricación:noun	*	pt	marca
+gloss	es:encargarse:verb	s1	to take charge (of), to take care (of)
+drop-tr	es:encargarse:verb	*	en	see
+drop-tr	es:jalea:noun	*	de	Marmelade
+gloss	es:amiga:noun	s1	(female) friend; girlfriend
+drop-tr	es:amiga:noun	*	de	Freund
+gloss	es:alegato:noun	s1	plea, argument; allegation
+drop-tr	es:estallido:noun	*	en	spallation
+drop-tr	es:estallido:noun	*	pt	craque
+gloss	es:paterno:adjective	s1	paternal, fatherly
+drop-tr	es:paterno:adjective	*	de	elterlich
+drop-tr	es:paterno:adjective	*	en	parental
+drop-tr	es:paterno:adjective	*	pt	parental
+drop-tr	es:arrollar:verb	*	pt	passar a ferro
+gloss	es:cristianismo:noun	s1	Christianity
+drop-tr	es:cristianismo:noun	*	de	Taufe
+drop-tr	es:cristianismo:noun	*	en	baptism
+drop-tr	es:cristianismo:noun	*	pt	batismo
+drop-tr	es:cristianismo:noun	*	pt	baptismo
+gloss	es:descalificar:verb	s1	to disqualify; to discredit
+drop-tr	es:descalificar:verb	*	de	aussteuern
+gloss	es:madrugar:verb	s1	to get up early
+gloss	es:arrastrado:adjective	s1	dragged; wretched
+drop-tr	es:arrastrado:adjective	*	en	drag
+gloss	es:pajarito:noun	s1	little bird, birdie
+drop-tr	es:pajarito:noun	*	en	penis
+drop-tr	es:rareza:noun	*	en	kink
+drop-tr	es:cascabel:noun	*	de	Bembel
+drop-tr	es:reclamación:noun	*	de	Querele
+gloss	es:chivar:verb	s1	to annoy; (chivarse) to tell on, to snitch
+drop-tr	es:asegurarse:verb	*	de	besorgen
+gloss	es:furgón:noun	s1	van, wagon; luggage van
+drop-tr	es:furgón:noun	*	en	equipage
+drop-tr	es:estancado:adjective	*	de	abstehen
+gloss	es:registrador:noun	s1	registrar, recorder
+drop-tr	es:registrador:noun	*	en	king
+drop-tr	es:registrador:noun	*	en	document
+drop-tr	es:casting:noun	*	pt	fundição
+gloss	es:configurar:verb	s1	to configure, to set up; to shape
+drop-tr	es:gorrión:noun	*	pt	pássaro
+drop-tr	es:humillado:adjective	*	de	schmachbeladen
+gloss	es:corregido:adjective	s1	corrected
+drop-tr	es:corregido:adjective	*	en	correct
+gloss	es:leñador:noun	s1	woodcutter, lumberjack
+gloss	es:cumplimiento:noun	s1	fulfilment, compliance
+drop-tr	es:cumplimiento:noun	*	de	Einwilligung
+drop-tr	es:cumplimiento:noun	*	en	compliment
+drop-tr	es:mecer:verb	*	en	cuddle
+drop-tr	es:torbellino:noun	*	de	Hose
+gloss	es:calculador:noun	s1	calculating, scheming (person)
+drop-tr	es:escolta:noun	*	de	Trabant
+drop-tr	es:castigo:noun	*	de	Hausarrest
+drop-tr	es:argentino:adjective	*	de	silberfarbig
+gloss	es:bucle:noun	s1	curl, ringlet; loop
+drop-tr	es:inseguridad:noun	*	de	Unzuverlässigkeit
+drop-tr	es:inseguridad:noun	*	en	unreliability
+drop-tr	es:atragantar:verb	*	de	schlucken
+drop-tr	es:atragantar:verb	*	pt	esganar
+drop-tr	es:mordedura:noun	*	de	Stich
+drop-tr	es:oleada:noun	*	pt	enxame
+gloss	es:pancho:adjective	s1	calm, unperturbed
+drop-tr	es:pancho:adjective	*	de	Bierbauch
+drop-tr	es:pancho:adjective	*	en	beer belly
+drop-tr	es:pancho:adjective	*	en	beer gut
+drop-tr	es:secuaz:noun	*	pt	favorito
+drop-tr	es:vigor:noun	*	en	effect
+drop-tr	es:cafetera:noun	*	de	Kiste
+gloss	es:licenciar:verb	s1	to license; to discharge, to dismiss; (licenciarse) to graduate
+drop-tr	es:esculpir:verb	*	en	grave
+drop-tr	es:perrera:noun	*	de	Tierschutzbund
+gloss	es:compuerta:noun	s1	floodgate, sluice gate; hatch
+drop-tr	es:apalear:verb	*	de	worfeln
+gloss	it:ciambella:noun	s1	ring-shaped cake, doughnut
+drop-tr	it:ciambella:noun	*	de	Pfannkuchen
+drop-tr	it:fischiare:verb	*	de	sausen
+sense-first	it:drogato:noun	s2
+drop-tr	it:drogato:noun	*	en	spiced
+drop-tr	it:drogato:noun	*	en	laced
+first	it:drogato:noun	*	en:addict:noun
+first	it:drogato:noun	*	pt:drogado:noun
+sense-first	it:difetto:noun	s2
+first	it:difetto:noun	*	en:defect:noun
+first	it:difetto:noun	*	de:Fehler:noun
+first	it:difetto:noun	*	pt:defeito:noun
+drop-tr	it:difetto:noun	*	pt	prejuízo
+drop-tr	it:fatica:noun	*	de	Ausübung
+sense-first	it:giuramento:noun	s3
+gloss	it:giuramento:noun	s3	oath, vow
+drop-tr	it:giuramento:noun	*	en	oat
+drop-tr	it:giuramento:noun	*	de	Hafer
+drop-tr	it:giuramento:noun	*	pt	aveia
+first	it:giuramento:noun	*	en:oath:noun
+first	it:giuramento:noun	*	de:Eid:noun
+first	it:giuramento:noun	*	pt:juramento:noun
+drop-tr	it:lucidare:verb	*	en	trace
+gloss	it:insinuare:verb	s1	to insinuate; to slip in, to insert
+drop-tr	it:abitante:noun	*	de	Braunlager
+drop-tr	it:abitante:noun	*	pt	vimaranense
+sense-first	it:abitante:noun	s2
+first	it:abitante:noun	*	en:inhabitant:noun
+first	it:abitante:noun	*	de:Einwohner:noun
+first	it:abitante:noun	*	pt:habitante:noun
+gloss	it:solido:adjective	s1	solid, firm, sturdy
+first	it:solido:adjective	*	en:solid:adjective
+drop-tr	it:pelo:noun	*	de	Haaresbreite
+drop-tr	it:multa:noun	*	de	Mult
+drop-tr	it:multa:noun	*	pt	firmeza
+gloss	it:passera:noun	s1	(hen) sparrow
+first	it:passera:noun	*	en:sparrow:noun
+first	it:passera:noun	*	de:Spatz:noun
+drop-tr	it:passera:noun	*	en	female
+sense-first	it:venditore:noun	s2
+drop-tr	it:venditore:noun	*	en	selling
+first	it:venditore:noun	*	en:seller:noun
+first	it:venditore:noun	*	de:Verkäufer:noun
+first	it:venditore:noun	*	pt:vendedor:noun
+drop-tr	it:irritare:verb	*	de	grimmen
+sense-first	it:titolo:noun	s3
+gloss	it:titolo:noun	s3	title; heading; (finance) share, security
+first	it:titolo:noun	*	en:title:noun
+first	it:titolo:noun	*	de:Titel:noun
+first	it:titolo:noun	*	pt:título:noun
+drop-tr	it:titolo:noun	*	pt	manchete
+sense-first	it:deposito:noun	s2
+gloss	it:deposito:noun	s2	warehouse, storage, depot; deposit
+first	it:deposito:noun	*	en:warehouse:noun
+first	it:deposito:noun	*	de:Lager:noun
+first	it:deposito:noun	*	pt:depósito:noun
+drop-tr	it:deposito:noun	*	en	safekeeping
+gloss	it:patente:noun	s1	driving licence; licence, permit
+first	it:patente:noun	*	en:license:noun
+first	it:patente:noun	*	de:Führerschein:noun
+first	it:patente:noun	*	pt:carteira:noun
+drop-tr	it:esclusivo:adjective	*	de	alleinig
+drop-tr	it:partorire:verb	*	de	lammen
+drop-tr	it:restringere:verb	*	de	eindicken
+drop-tr	it:hall:noun	*	de	Gang
+drop-tr	it:prepararsi:verb	*	de	einstellen
+gloss	it:occorrere:verb	s1	to be needed, to be necessary
+drop-tr	it:occorrere:verb	*	de	widerfahren
+drop-tr	it:occorrere:verb	*	de	vorgehen
+gloss	it:supremo:adjective	s1	supreme, highest
+first	it:supremo:adjective	*	en:supreme:adjective
+first	it:supremo:adjective	*	pt:supremo:adjective
+gloss	it:sentito:adjective	s1	heartfelt, sincere; heard
+first	it:sentito:adjective	*	de:aufrichtig:adjective
+first	it:sentito:adjective	*	pt:sincero:adjective
+drop-tr	it:noleggiare:verb	*	de	heuern
+gloss	it:preservativo:noun	s1	condom; preservative
+drop-tr	it:talpa:noun	*	de	Taupe
+drop-tr	it:talpa:noun	*	pt	vazador
+drop-tr	it:inferiore:adjective	*	en	mean
+drop-tr	it:fastidioso:adjective	*	de	verwirrend
+drop-tr	it:fastidioso:adjective	*	pt	osso
+drop-tr	it:perla:noun	*	en	brilliant
+drop-tr	it:dieta:noun	*	de	Tag
+gloss	it:nano:noun	s1	dwarf
+first	it:nano:noun	*	en:dwarf:noun
+first	it:nano:noun	*	de:Zwerg:noun
+first	it:nano:noun	*	pt:anão:noun
+drop-tr	it:nano:noun	*	en	pygmy
+drop-tr	it:arco:noun	*	de	Bogendachakzent
+drop-tr	it:arco:noun	*	en	directed edge
+drop-tr	it:arco:noun	*	pt	aresta orientada
+gloss	it:arco:noun	s1	arc; bow; arch
+sense-first	it:riferimento:noun	s2
+first	it:riferimento:noun	*	en:reference:noun
+first	it:riferimento:noun	*	pt:referência:noun
+drop-tr	it:riferimento:noun	*	en	landmark
+drop-tr	it:sottovalutare:verb	*	de	abschmieren
+drop-tr	it:sottile:adjective	*	de	hehr
+drop-tr	it:pozzo:noun	*	en	groove
+drop-tr	it:bagagliaio:noun	*	de	Gepäckwagen
+drop-tr	it:compensare:verb	*	en	cancel
+drop-tr	it:convocare:verb	*	de	bescheiden
+drop-tr	it:convocare:verb	*	pt	intimar
+drop-tr	it:incapace:noun	*	de	Pflaume
+drop-tr	it:accordare:verb	*	en	resolve
+gloss	it:disciplinare:verb	s1	to discipline; (adjective) disciplinary
+drop-tr	it:donatore:noun	*	de	Beitragszahler
+drop-tr	it:confidare:verb	*	de	überlassen
+sense-first	it:nido:noun	s2
+first	it:nido:noun	*	en:nest:noun
+first	it:nido:noun	*	de:Nest:noun
+first	it:nido:noun	*	pt:ninho:noun
+drop-tr	it:nido:noun	*	en	refuge
+drop-tr	it:nido:noun	*	de	Unterschlupf
+gloss	it:alcool:noun	s1	alcohol
+first	it:alcool:noun	*	en:alcohol:noun
+first	it:alcool:noun	*	de:Alkohol:noun
+first	it:alcool:noun	*	pt:álcool:noun
+gloss	it:formazione:noun	s1	training, education; formation; (sports) line-up
+first	it:formazione:noun	*	de:Ausbildung:noun
+first	it:formazione:noun	*	pt:formação:noun
+gloss	it:associare:verb	s1	to associate; to take into partnership
+drop-tr	it:associare:verb	*	de	bringen
+drop-tr	it:associare:verb	*	de	holen
+drop-tr	it:associare:verb	*	en	bring
+first	it:associare:verb	*	en:associate:verb
+first	it:associare:verb	*	de:verbinden:verb
+first	it:associare:verb	*	pt:associar:verb
+gloss	it:prelevare:verb	s1	to withdraw (money); to collect, to take
+drop-tr	it:prelevare:verb	*	en	get
+first	it:prelevare:verb	*	en:withdraw:verb
+first	it:prelevare:verb	*	de:abheben:verb
+first	it:prelevare:verb	*	pt:sacar:verb
+gloss	it:stellare:verb	s1	(adjective) stellar, star
+drop-tr	it:stellare:verb	*	en	star
+sense-first	it:maglia:noun	s5
+gloss	it:maglia:noun	s5	sweater, jumper; shirt; stitch
+first	it:maglia:noun	*	en:sweater:noun
+first	it:maglia:noun	*	de:Pullover:noun
+sense-first	it:amante:noun	s3
+first	it:amante:noun	*	en:lover:noun
+first	it:amante:noun	*	de:Liebhaber:noun
+first	it:amante:noun	*	pt:amante:noun
+drop-tr	it:amante:noun	*	en	fond
+drop-tr	it:amante:noun	*	en	loving
+sense-first	it:informatico:noun	s2
+gloss	it:informatico:noun	s2	computer scientist, IT specialist
+drop-tr	it:informatico:noun	*	de	Computer
+drop-tr	it:informatico:noun	*	de	Rechner
+drop-tr	it:informatico:noun	*	en	computer
+gloss	it:sanitario:noun	s1	health worker; (plural) bathroom fittings
+drop-tr	it:sanitario:noun	*	en	sanitary
+gloss	it:concorrere:verb	s1	to compete (for); to contribute (to); to converge
+drop-tr	it:deposizione:noun	*	de	Abscheidung
+gloss	it:profumare:verb	s1	to perfume, to scent; to smell nice
+drop-tr	it:profumare:verb	*	en	put
+drop-tr	it:vigliacco:noun	*	en	poltroon
+gloss	it:esausto:adjective	s1	exhausted, worn out
+sense-first	it:suicidare:verb	s2
+drop-tr	it:suicidare:verb	*	en	murder
+drop-tr	it:gustare:verb	*	pt	gostar
+drop-tr	it:rapidamente:adverb	*	de	dalli
+drop-tr	it:ciccione:noun	*	pt	besugo
+sense-first	it:misura:noun	s2
+gloss	it:misura:noun	s2	measure, measurement; size
+first	it:misura:noun	*	en:measure:noun
+first	it:misura:noun	*	de:Maß:noun
+first	it:misura:noun	*	pt:medida:noun
+drop-tr	it:misura:noun	*	de	Maßgabe
+drop-tr	it:misura:noun	*	pt	compasso
+drop-tr	it:misura:noun	*	pt	grau
+drop-tr	it:presso:preposition	*	de	gegen
+drop-tr	it:presso:preposition	*	en	toward
+drop-tr	it:regione:noun	*	en	belt
+drop-tr	it:regione:noun	*	pt	cinturão
+drop-tr	it:audizione:noun	*	pt	teste
+gloss	it:ricoverare:verb	s1	to admit to hospital, to hospitalize; to shelter
+drop-tr	it:ricoverare:verb	*	en	shelter
+drop-tr	it:scheda:noun	*	de	Reiter
+drop-tr	it:scheda:noun	*	en	tab
+drop-tr	it:frocio:noun	*	pt	feixe
+drop-tr	it:invidiare:verb	*	pt	geleiar
+sense-first	it:riattaccare:verb	s3
+gloss	it:riattaccare:verb	s3	to hang up (the phone); to reattach; to resume
+drop-tr	it:riattaccare:verb	*	en	reattack
+drop-tr	it:pallone:noun	*	de	Pille
+drop-tr	it:elaborare:verb	*	en	knit
+drop-tr	it:riscontro:noun	*	de	Prüfung
+gloss	it:riscontro:noun	s1	feedback, confirmation; comparison
+drop-tr	it:terrestre:adjective	*	de	weltlich
+drop-tr	it:routine:noun	*	en	groove
+gloss	it:installare:verb	s1	to install, to set up
+drop-tr	it:installare:verb	*	de	einspielen
+drop-tr	it:efficace:adjective	*	en	powerful
+drop-tr	it:marcire:verb	*	en	bad
+drop-tr	it:marcire:verb	*	de	morschen
+sense-first	it:editore:noun	s2
+gloss	it:editore:noun	s2	publisher
+first	it:editore:noun	*	en:publisher:noun
+first	it:editore:noun	*	de:Verleger:noun
+first	it:editore:noun	*	pt:editor:noun
+drop-tr	it:editore:noun	*	de	Verlagswesen
+drop-tr	it:editore:noun	*	en	publishing
+gloss	it:moro:noun	s1	dark-haired person, brunet(te); Moor
+drop-tr	it:moro:noun	*	de	Neger
+drop-tr	it:moro:noun	*	en	negro
+drop-tr	it:moro:noun	*	pt	negro
+drop-tr	it:moro:noun	*	pt	negra
+drop-tr	it:opposto:noun	*	de	Widerspiel
+drop-tr	it:nausea:noun	*	pt	desgosto
+drop-tr	it:graffiare:verb	*	en	scrabble
+drop-tr	it:barriera:noun	*	de	Wand
+sense-first	it:proibire:verb	s2
+first	it:proibire:verb	*	en:prohibit:verb
+first	it:proibire:verb	*	de:verbieten:verb
+first	it:proibire:verb	*	pt:proibir:verb
+drop-tr	it:proibire:verb	*	en	interdict
+drop-tr	it:proibire:verb	*	pt	impossibilitar
+drop-tr	it:nuovamente:adverb	*	de	aus
+drop-tr	it:nuovamente:adverb	*	en	over
+drop-tr	it:mischiare:verb	*	de	melieren
+drop-tr	it:farfalla:noun	*	en	butterfly stroke
+sense-first	it:salvezza:noun	s2
+gloss	it:salvezza:noun	s2	salvation, rescue; safety
+first	it:salvezza:noun	*	en:salvation:noun
+first	it:salvezza:noun	*	pt:salvação:noun
+drop-tr	it:stradale:noun	*	de	Straße
+gloss	it:stradale:noun	s1	road (adjective); traffic police (la Stradale)
+sense-first	it:generatore:noun	s2
+gloss	it:generatore:noun	s2	generator; power supply
+first	it:generatore:noun	*	en:generator:noun
+first	it:generatore:noun	*	pt:gerador:noun
+drop-tr	it:dipendenza:noun	*	de	Nebengebäude
+drop-tr	it:strangolare:verb	*	en	neck
+drop-tr	it:collaterale:noun	*	de	Seitenschiff
+gloss	it:collaterale:noun	s1	collateral, side (effect)
+drop-tr	it:nodo:noun	*	en	road
+drop-tr	it:riva:noun	*	de	Anfurt
+drop-tr	it:coltivare:verb	*	pt	alimentar
+gloss	it:gabinetto:noun	s1	toilet; (government) cabinet; study, office
+first	it:gabinetto:noun	*	en:toilet:noun
+first	it:gabinetto:noun	*	de:Toilette:noun
+first	it:gabinetto:noun	*	pt:banheiro:noun
+gloss	it:alare:noun	s1	andiron, firedog; (adjective) wing
+drop-tr	it:alare:noun	*	en	wing
+drop-tr	it:sedurre:verb	*	pt	agrar
+drop-tr	it:curva:noun	*	en	circle
+drop-tr	it:curva:noun	*	pt	círculo
+gloss	it:innervosire:verb	s1	to make nervous, to annoy
+drop-tr	it:innervosire:verb	*	en	annoyed
+gloss	it:bandire:verb	s1	to ban, to banish; to announce (a competition)
+drop-tr	it:bandire:verb	*	en	abandon
+drop-tr	it:commerciare:verb	*	pt	trabalhar
+drop-tr	it:esaurire:verb	*	de	zehren
+sense-first	it:scalare:verb	s3
+first	it:scalare:verb	*	en:climb:verb
+first	it:scalare:verb	*	de:klettern:verb
+first	it:scalare:verb	*	pt:escalar:verb
+drop-tr	it:scalare:verb	*	en	graduated
+drop-tr	it:scalare:verb	*	en	stepped
+drop-tr	it:vantare:verb	*	de	beanspruchen
+drop-tr	it:sigaro:noun	*	de	Schnuller
+sense-first	it:addetto:noun	s2
+gloss	it:addetto:noun	s2	employee, person in charge, attendant; attaché
+drop-tr	it:addetto:noun	*	en	intended
+sense-first	it:sfilare:verb	s5
+gloss	it:sfilare:verb	s5	to parade, to march past; to slip off, to pull out
+drop-tr	it:sfilare:verb	*	en	unstring
+drop-tr	it:sire:noun	*	en	king
+drop-tr	it:sire:noun	*	en	monarch
+gloss	it:sire:noun	s1	sire (form of address to a king)
+drop-tr	it:umile:adjective	*	de	humil
+drop-tr	it:approvazione:noun	*	en	go
+drop-tr	it:turco:noun	*	de	Türkin
+drop-tr	it:percorrere:verb	*	de	durchreisen
+gloss	it:percorrere:verb	s1	to travel (along), to cover (a distance), to go through
+drop-tr	it:sanguigno:noun	*	de	sanguinisch
+gloss	it:sanguigno:noun	s1	blood (adjective), blood-related
+drop-tr	it:secchio:noun	*	pt	concho
+drop-tr	it:noce:noun	*	pt	nogueira
+first	es:moldear:verb	*	de:formen:verb
+first	es:resguardar:verb	*	de:schützen:verb
+first	es:conteo:noun	*	en:count:noun
+first	es:conteo:noun	*	pt:contagem:noun
+first	es:fabricación:noun	*	en:manufacture:noun
+first	es:fabricación:noun	*	pt:fabricação:noun
+first	es:paterno:adjective	*	pt:paterno:adjective
+first	es:cristianismo:noun	*	pt:cristianismo:noun
+first	es:descalificar:verb	*	en:disqualify:verb
+first	es:escalada:noun	*	pt:escalada:noun
+first	es:furgón:noun	*	en:van:noun
+first	es:vigor:noun	*	de:Kraft:noun
