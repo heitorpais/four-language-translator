@@ -51527,3 +51527,1205 @@ drop-tr	cs:políbit:verb	*	de	bützen
 drop-tr	cs:políbit:verb	*	fr	biser
 gloss	cs:představovat:verb	s1	to represent (darstellen; représenter; representar); to introduce (vorstellen; présenter; apresentar); představovat si, to imagine (sich vorstellen; imaginer; imaginar)
 drop-tr	cs:sladký:adjective	*	fr	doux
+gloss	cs:smát:verb	s1	smát se, to laugh (lachen; rire; rir): smát se někomu, to laugh at someone (jemanden auslachen)
+drop-tr	cs:nos:noun	*	de	Spürnase
+drop-tr	cs:nos:noun	*	fr	blase
+drop-tr	cs:nos:noun	*	pt	nareba
+drop-tr	cs:bránit:verb	*	pt	anteparar
+gloss	cs:bránit:verb	s1	to defend (verteidigen; défendre; defender); bránit v, to prevent, to hinder (hindern; empêcher; impedir)
+drop-tr	cs:dokonalý:adjective	*	en	shipshape
+drop-tr	cs:učitel:noun	*	pt	formador
+gloss	cs:dna:noun	s1	gout (Gicht; goutte; gota); also genitive of dno: bottom (des Bodens; du fond; do fundo)
+drop-tr	cs:navždy:adverb	*	pt	em definitivo
+drop-tr	cs:vzhled:noun	*	fr	mine
+drop-tr	cs:půjčit:verb	*	fr	emprunter
+gloss	cs:půjčit:verb	s1	to lend (leihen, ausleihen; prêter; emprestar); půjčit si, to borrow (sich ausleihen; emprunter; pegar emprestado)
+drop-tr	cs:nebe:noun	*	de	Firmament
+drop-tr	cs:nebe:noun	*	pt	firmamento
+gloss	cs:nebe:noun	s1	sky (Himmel; ciel; céu); heaven (Himmel; paradis, ciel; céu)
+drop-tr	cs:oddělení:noun	*	en	sequestration
+drop-tr	cs:oddělení:noun	*	de	Verstrickung
+drop-tr	cs:oddělení:noun	*	pt	sequestramento
+gloss	cs:oddělení:noun	s1	department (Abteilung; service; departamento); hospital ward (Station; service; ala); separation (Trennung; séparation; separação)
+drop-tr	cs:okolo:preposition	*	de	um
+gloss	cs:okolo:preposition	s1	around (um ... herum; autour de; em volta de); about, approximately (ungefähr, etwa; environ; cerca de)
+drop-tr	cs:gratulovat:verb	*	fr	congratuler
+drop-tr	cs:gratulovat:verb	*	pt	congratular
+gloss	cs:stávat:verb	s1	stávat se, to happen (geschehen, passieren; arriver; acontecer); to become (werden; devenir; tornar-se)
+drop-tr	cs:večírek:noun	*	en	bash
+drop-tr	cs:manželství:noun	*	pt	matrimónio
+drop-tr	cs:koule:noun	*	fr	orbe
+drop-tr	cs:koule:noun	*	en	orb
+gloss	cs:koule:noun	s1	ball, sphere (Kugel; boule, sphère; bola, esfera); koule, (vulgar) balls (Eier; couilles)
+drop-tr	cs:důstojník:noun	*	fr	officière
+drop-tr	cs:prázdný:adjective	*	fr	en l'air
+drop-tr	cs:prázdný:adjective	*	en	void
+gloss	cs:dopadnout:verb	s1	to turn out (ausgehen; finir, se passer; terminar): jak to dopadlo? (wie ist es ausgegangen?); to fall, to land (fallen, landen; tomber; cair)
+drop-tr	cs:zima:noun	*	fr	froidure
+gloss	cs:zima:noun	s1	winter (Winter; hiver; inverno); cold (Kälte; froid; frio): je mi zima (mir ist kalt; j'ai froid)
+drop-tr	cs:varovat:verb	*	de	wahrschauen
+gloss	cs:jakýkoliv:determiner	s1	any, any kind of (irgendein, jeder beliebige; n'importe quel; qualquer)
+drop-tr	cs:opakovat:verb	*	pt	amiudar
+drop-tr	cs:opakovat:verb	*	fr	refaire
+drop-tr	cs:nebezpečí:noun	*	fr	hasard
+gloss	cs:užívat:verb	s1	to use (verwenden; utiliser; usar); to take medicine (einnehmen; prendre; tomar); užívat si, to enjoy (geniessen; profiter de; aproveitar)
+drop-tr	cs:užívat:verb	*	en	employ
+gloss	cs:samotný:adjective	s1	alone, by itself (allein; seul; sozinho); itself, very: samotný král (der König selbst; le roi lui-même)
+drop-tr	cs:bohatý:adjective	*	fr	ample
+drop-tr	cs:bohatý:adjective	*	pt	gobelino
+gloss	cs:bezpečnostní:adjective	s1	security, safety (Sicherheits-; de sécurité; de segurança): bezpečnostní pás (Sicherheitsgurt; ceinture de sécurité)
+drop-tr	cs:bezpečnostní:adjective	*	fr	sécuritaire
+drop-tr	cs:blbý:adjective	*	fr	idiot
+drop-tr	cs:blbý:adjective	*	fr	abruti
+first	cs:blbý:adjective	*	fr:bête:adjective
+gloss	cs:blbý:adjective	s1	(informal) dumb, stupid (doof, blöd; bête, con; burro, idiota)
+drop-tr	cs:slib:noun	*	en	word
+drop-tr	cs:slib:noun	*	fr	serment
+drop-tr	cs:slib:noun	*	pt	promissão
+drop-tr	cs:zajistit:verb	*	fr	procurer
+drop-tr	cs:téměř:adverb	*	fr	quasi
+drop-tr	cs:riskovat:verb	*	en	imperil
+drop-tr	cs:riskovat:verb	*	de	hasardieren
+drop-tr	cs:riskovat:verb	*	fr	gambler
+gloss	cs:riskovat:verb	s1	to risk (riskieren; risquer; arriscar)
+drop-tr	cs:zkouška:noun	*	en	check
+gloss	cs:zkouška:noun	s1	exam (Prüfung; examen; exame); test, trial (Probe, Test; essai; teste); rehearsal (Probe; répétition; ensaio)
+drop-tr	cs:vzpomínka:noun	*	de	Reminiszenz
+gloss	cs:zasraný:adjective	s1	(vulgar) fucking, damn (verdammt, beschissen; putain de; maldito, de merda)
+gloss	cs:procházet:verb	s1	to pass through, to go through (durchgehen; traverser; passar por); procházet se, to take a walk (spazieren gehen; se promener; passear)
+drop-tr	cs:procházet:verb	*	fr	marcher
+drop-tr	cs:teta:noun	*	en	paternal aunt
+drop-tr	cs:teta:noun	*	de	Muhme
+drop-tr	cs:teta:noun	*	fr	tata
+drop-tr	cs:uzavřít:verb	*	de	einschließen
+drop-tr	cs:uzavřít:verb	*	fr	enclore
+gloss	cs:uzavřít:verb	s1	to close, to shut (schliessen; fermer; fechar); to conclude a deal (abschliessen; conclure; fechar)
+gloss	cs:ovšem:conjunction	s1	however, but (jedoch, allerdings; cependant; porém); of course (natürlich; bien sûr; claro)
+drop-tr	cs:soutěž:noun	*	de	Sportwettkampf
+drop-tr	cs:park:noun	*	fr	cepar
+drop-tr	cs:mysl:noun	*	fr	pensée
+drop-tr	cs:obraz:noun	*	en	image
+gloss	cs:obraz:noun	s1	painting, picture (Bild, Gemälde; tableau; quadro); image (Bild; image; imagem)
+drop-tr	cs:prostor:noun	*	de	Spielraum
+drop-tr	cs:prohrát:verb	*	de	verspielen
+drop-tr	cs:zrušit:verb	*	en	quash
+drop-tr	cs:vstoupit:verb	*	fr	rentrer
+gloss	cs:zabrat:verb	s1	to take up, to occupy (in Anspruch nehmen, besetzen; occuper; ocupar); to work: zabralo to (es hat gewirkt)
+drop-tr	cs:legrace:noun	*	en	jest
+drop-tr	cs:legrace:noun	*	de	Gaudi
+drop-tr	cs:legrace:noun	*	fr	blague
+drop-tr	cs:pole:noun	*	de	Körper
+drop-tr	cs:pole:noun	*	fr	rubrique
+gloss	cs:pole:noun	s1	field (Feld; champ; campo)
+drop-tr	cs:záchod:noun	*	en	flush toilet
+drop-tr	cs:záchod:noun	*	fr	cabinet
+drop-tr	cs:záchod:noun	*	pt	retrete
+gloss	cs:otisk:noun	s1	print, imprint (Abdruck; empreinte; impressão): otisky prstů (Fingerabdrücke; empreintes digitales; impressões digitais)
+gloss	cs:blížit:verb	s1	blížit se, to approach, to draw near (sich nähern; s'approcher; aproximar-se)
+drop-tr	cs:blížit:verb	*	en	near
+gloss	cs:nerad:adjective	s1	unwillingly, reluctantly (ungern; à contrecœur; de má vontade): nerad čtu (ich lese nicht gern)
+gloss	cs:považovat:verb	s1	považovat za, to consider, to regard as (halten für; considérer comme; considerar)
+drop-tr	cs:student:noun	*	en	alumnus
+drop-tr	cs:student:noun	*	de	Hörer
+gloss	cs:zbývat:verb	s1	to remain, to be left (übrig bleiben; rester; restar)
+drop-tr	cs:zbývat:verb	*	de	verbleiben
+drop-tr	cs:poslechnout:verb	*	en	listen
+drop-tr	cs:poslechnout:verb	*	de	hören
+drop-tr	cs:poslechnout:verb	*	fr	écouter
+drop-tr	cs:poslechnout:verb	*	pt	escutar
+first	cs:poslechnout:verb	*	pt:obedecer:verb
+gloss	cs:poslechnout:verb	s1	to obey (gehorchen; obéir; obedecer); to listen to (anhören; écouter; ouvir)
+drop-tr	cs:vteřina:noun	*	en	jiffy
+drop-tr	cs:vteřina:noun	*	fr	seconde d'angle
+drop-tr	cs:nést:verb	*	en	tote
+drop-tr	cs:nést:verb	*	de	hucken
+drop-tr	cs:nést:verb	*	fr	endosser
+drop-tr	cs:kulka:noun	*	pt	projéctil
+drop-tr	cs:ostrov:noun	*	fr	ile
+gloss	cs:hezky:adverb	s1	nicely, beautifully (schön; joliment; bem, lindamente)
+gloss	cs:dotknout:verb	s1	dotknout se, to touch (berühren; toucher; tocar); to hurt someone's feelings (kränken)
+drop-tr	cs:chuť:noun	*	de	Geschmackssinn
+gloss	cs:chuť:noun	s1	taste (Geschmack; goût; gosto); appetite, desire (Appetit, Lust; appétit, envie; vontade): mám chuť na kafe (ich habe Lust auf einen Kaffee)
+drop-tr	cs:mýlit:verb	*	en	mislead
+gloss	cs:mýlit:verb	s1	mýlit se, to be wrong, to be mistaken (sich irren; se tromper; enganar-se)
+drop-tr	cs:přejít:verb	*	en	traverse
+drop-tr	cs:přejít:verb	*	pt	transir
+drop-tr	cs:přejít:verb	*	de	durchqueren
+gloss	cs:celkem:adverb	s1	in total (insgesamt; au total; no total); quite, fairly (ziemlich, ganz; assez; bastante): celkem dobrý (ganz gut)
+drop-tr	cs:celkem:adverb	*	en	total
+gloss	cs:doopravdy:adverb	s1	really, for real (wirklich, im Ernst; vraiment; de verdade)
+drop-tr	cs:autobus:noun	*	en	autobus
+drop-tr	cs:autobus:noun	*	pt	autobus
+drop-tr	cs:dosáhnout:verb	*	pt	atinar
+drop-tr	cs:dosáhnout:verb	*	de	heranreichen
+drop-tr	cs:dosáhnout:verb	*	fr	toucher
+first	cs:dosáhnout:verb	*	pt:alcançar:verb
+gloss	cs:dosáhnout:verb	s1	to reach, to achieve (erreichen; atteindre; alcançar, atingir)
+drop-tr	cs:směšný:adjective	*	en	droll
+drop-tr	cs:směšný:adjective	*	de	unmöglich
+gloss	cs:týkat:verb	s1	týkat se, to concern, to relate to (betreffen; concerner; dizer respeito a): to se tě netýká (das geht dich nichts an)
+drop-tr	cs:týkat:verb	*	en	pertain
+drop-tr	cs:lehký:adjective	*	en	lite
+drop-tr	cs:lehký:adjective	*	de	simpel
+drop-tr	cs:lehký:adjective	*	fr	fastoche
+gloss	cs:lehký:adjective	s1	light (leicht; léger; leve); easy (leicht, einfach; facile; fácil)
+drop-tr	cs:sračka:noun	*	de	Scheiß
+drop-tr	cs:obava:noun	*	en	qualm
+drop-tr	cs:vážit:verb	*	de	wägen
+gloss	cs:vážit:verb	s1	to weigh (wiegen; peser; pesar); vážit si, to respect, to value (schätzen; estimer; valorizar)
+drop-tr	cs:potvrdit:verb	*	en	vouch
+drop-tr	cs:potvrdit:verb	*	de	beglaubigen
+drop-tr	cs:potvrdit:verb	*	fr	certifier
+drop-tr	cs:potvrdit:verb	*	pt	assegurar
+gloss	cs:těžko:adverb	s1	hardly, with difficulty (schwer, kaum; difficilement; dificilmente): těžko říct (schwer zu sagen)
+gloss	cs:očividně:adverb	s1	evidently, obviously (offensichtlich; manifestement; obviamente)
+drop-tr	cs:očividně:adverb	*	en	patently
+drop-tr	cs:zadržet:verb	*	de	vorenthalten
+drop-tr	cs:setkání:noun	*	en	brush
+drop-tr	cs:kód:noun	*	de	Kode
+gloss	cs:onen:pronoun	s1	(formal) that (jener; ce ... -là; aquele)
+drop-tr	cs:onen:pronoun	*	en	yon
+drop-tr	cs:říci:verb	*	de	stecken
+drop-tr	cs:říci:verb	*	fr	signifier
+gloss	cs:pokaždé:adverb	s1	every time (jedes Mal; chaque fois; toda vez)
+drop-tr	cs:pokaždé:adverb	*	de	allemal
+drop-tr	cs:pokaždé:adverb	*	fr	toujours
+drop-tr	cs:plánovat:verb	*	de	bezwecken
+drop-tr	cs:plánovat:verb	*	pt	pretender
+gloss	cs:city:noun	s1	feelings, emotions (plural of cit: Gefühle; sentiments; sentimentos): ranit něčí city (jemandes Gefühle verletzen)
+gloss	cs:lístek:noun	s1	ticket (Billett, Fahrkarte; billet; bilhete); small card, note (Zettel; fiche; bilhete); leaf (Blättchen)
+drop-tr	cs:lístek:noun	*	en	card
+drop-tr	cs:nazdar:interjection	*	fr	bonjour
+gloss	cs:nazdar:interjection	s1	(informal) hi!, hello!; bye! (hallo!, hoi!, tschüss!; salut !; oi!, tchau!)
+drop-tr	cs:zavraždit:verb	*	de	liquidieren
+drop-tr	cs:připomínat:verb	*	de	geraten
+gloss	cs:připomínat:verb	s1	to remind (erinnern; rappeler; lembrar); to resemble (erinnern an, ähneln; rappeler; lembrar)
+drop-tr	cs:omluva:noun	*	de	Ausflucht
+drop-tr	cs:omluva:noun	*	pt	apologia
+drop-tr	cs:událost:noun	*	fr	évènement
+drop-tr	cs:role:noun	*	pt	adidância
+gloss	cs:podařit:verb	s1	podařit se, to succeed, to manage (gelingen; réussir; conseguir): podařilo se mi to (es ist mir gelungen)
+drop-tr	cs:blbec:noun	*	pt	débil
+drop-tr	cs:blbec:noun	*	fr	abruti
+gloss	cs:narazit:verb	s1	to bump into, to hit (stossen, prallen; heurter; bater); narazit na, to come across (stossen auf; tomber sur; dar com)
+gloss	cs:aniž:conjunction	s1	without (+ verb) (ohne dass, ohne zu; sans que, sans; sem que): odešel, aniž by něco řekl (er ging, ohne etwas zu sagen)
+drop-tr	cs:najmout:verb	*	de	heuern
+drop-tr	cs:najmout:verb	*	pt	alugar
+gloss	cs:najmout:verb	s1	to hire (anstellen, einstellen; embaucher; contratar); najmout si, to rent (mieten; louer; alugar)
+drop-tr	cs:snídaně:noun	*	pt	pequeno-almoço
+drop-tr	cs:domácí:adjective	*	de	heimisch
+gloss	cs:domácí:adjective	s1	home, homemade (Haus-, hausgemacht; fait maison; caseiro): domácí úkol (Hausaufgabe); domestic (häuslich; domestique; doméstico)
+drop-tr	cs:vydělat:verb	*	de	gewinnen
+drop-tr	cs:lež:noun	*	de	Flunkerei
+drop-tr	cs:lež:noun	*	fr	bobard
+drop-tr	cs:lež:noun	*	pt	cascata
+drop-tr	cs:hora:noun	*	en	peak
+gloss	cs:kéž:particle	s1	if only, I wish (wenn doch nur, hoffentlich; pourvu que, si seulement; tomara que): kéž by pršelo (wenn es doch nur regnen würde)
+drop-tr	cs:kéž:particle	*	en	wish
+drop-tr	cs:polovina:noun	*	en	moiety
+drop-tr	cs:polovina:noun	*	fr	demi
+drop-tr	cs:dospělý:noun	*	fr	grand
+drop-tr	cs:vyměnit:verb	*	pt	negociar
+drop-tr	cs:vyměnit:verb	*	fr	permuter
+drop-tr	cs:pokoušet:verb	*	de	probieren
+gloss	cs:pokoušet:verb	s1	to tempt (verführen, in Versuchung führen; tenter; tentar); pokoušet se, to try (versuchen; essayer; tentar)
+drop-tr	cs:podmínka:noun	*	pt	termo
+drop-tr	cs:podmínka:noun	*	de	Kondition
+drop-tr	cs:kalhoty:noun	*	fr	culotte
+drop-tr	cs:paluba:noun	*	de	Bord
+gloss	cs:paluba:noun	s1	deck (Deck; pont; convés); na palubě, on board (an Bord; à bord; a bordo)
+gloss	cs:ozvat:verb	s1	ozvat se, to get in touch, to get back to someone (sich melden; donner des nouvelles; dar notícias): ozvi se! (melde dich!)
+drop-tr	cs:ubohý:adjective	*	pt	maldito
+gloss	cs:ubohý:adjective	s1	poor, wretched, pitiful (arm, erbärmlich; pauvre, misérable; pobre, miserável)
+drop-tr	cs:policista:noun	*	fr	lardu
+gloss	cs:zamilovat:verb	s1	zamilovat se, to fall in love (sich verlieben; tomber amoureux; apaixonar-se)
+drop-tr	cs:vhodný:adjective	*	de	billig
+drop-tr	cs:vhodný:adjective	*	de	gemäß
+drop-tr	cs:vhodný:adjective	*	fr	décent
+drop-tr	cs:vhodný:adjective	*	pt	decente
+gloss	cs:vhodný:adjective	s1	suitable, appropriate (geeignet, passend; approprié, adéquat; adequado, apropriado)
+drop-tr	cs:zelený:adjective	*	de	grünschnäblig
+drop-tr	cs:zelený:adjective	*	pt	gázeo
+drop-tr	cs:dílo:noun	*	de	Schrift
+drop-tr	cs:vůz:noun	*	fr	char
+drop-tr	cs:David:noun	*	fr	david
+drop-tr	cs:rychlost:noun	*	pt	rapidez
+drop-tr	cs:donutit:verb	*	de	dringen
+drop-tr	cs:písnička:noun	*	fr	chansonnette
+drop-tr	cs:píseň:noun	*	en	birdsong
+drop-tr	cs:píseň:noun	*	fr	cantique
+gloss	cs:rodinný:adjective	s1	family (Familien-; familial, de famille; familiar): rodinný dům (Einfamilienhaus)
+drop-tr	cs:rodinný:adjective	*	de	familiär
+drop-tr	cs:uvolnit:verb	*	fr	débander
+drop-tr	cs:uvolnit:verb	*	pt	lassar
+gloss	cs:uvolnit:verb	s1	to loosen, to release (lockern, lösen; desserrer, libérer; afrouxar, soltar); uvolnit se, to relax (sich entspannen; se détendre; relaxar)
+drop-tr	cs:volba:noun	*	fr	élection
+gloss	cs:volba:noun	s1	choice, option (Wahl, Auswahl; choix; escolha); volby, elections (Wahlen; élections; eleições)
+drop-tr	cs:ukončit:verb	*	pt	descontinuar
+drop-tr	cs:dnešek:noun	*	de	Heute
+drop-tr	cs:meč:noun	*	fr	glaive
+drop-tr	cs:jenže:conjunction	*	en	only
+gloss	cs:akorát:adverb	s1	(informal) just right (genau richtig; pile; na medida); only, just (nur, bloss; juste; só): akorát jsem přišel (ich bin gerade gekommen)
+drop-tr	cs:akorát:adverb	*	fr	pile-poil
+drop-tr	cs:úřad:noun	*	pt	birô
+drop-tr	cs:úřad:noun	*	en	bureau
+gloss	cs:rozejít:verb	s1	rozejít se, to break up, to split up (sich trennen; rompre, se séparer; terminar, separar-se); to part (auseinandergehen)
+drop-tr	cs:rozdělit:verb	*	en	sunder
+drop-tr	cs:rozdělit:verb	*	de	entzweien
+drop-tr	cs:stáhnout:verb	*	pt	sacar
+gloss	cs:stáhnout:verb	s1	to download (herunterladen; télécharger; baixar); to pull down, to withdraw (herunterziehen, zurückziehen; retirer; retirar)
+drop-tr	cs:nastoupit:verb	*	de	auskommen
+drop-tr	cs:nastoupit:verb	*	pt	dar
+gloss	cs:nastoupit:verb	s1	to get on, to board (einsteigen; monter; embarcar); to start a job (antreten; prendre son poste; começar)
+drop-tr	cs:zábavný:adjective	*	fr	marrant
+drop-tr	cs:skrývat:verb	*	pt	encobertar
+drop-tr	cs:skrývat:verb	*	en	disguise
+gloss	cs:blbost:noun	s1	(informal) nonsense, stupid thing (Blödsinn, Quatsch; bêtise, connerie; besteira, bobagem)
+drop-tr	cs:vyprávět:verb	*	de	nachzählen
+gloss	cs:vejít:verb	s1	to enter, to go in (hineingehen, eintreten; entrer; entrar); vejít se, to fit in (hineinpassen; tenir, rentrer; caber)
+drop-tr	cs:vejít:verb	*	fr	rentrer
+drop-tr	cs:menší:adjective	*	de	gering
+drop-tr	cs:menší:adjective	*	fr	moindre
+gloss	cs:menší:adjective	s1	smaller (kleiner; plus petit; menor); minor (kleiner, gering; moindre; menor)
+gloss	cs:bezva:adjective	s1	(informal) cool, great (super, cool; génial, super; legal, ótimo)
+drop-tr	cs:gay:noun	*	pt	bicha
+drop-tr	cs:gay:noun	*	fr	homo
+drop-tr	cs:vzadu:adverb	*	pt	para trás
+drop-tr	cs:vzadu:adverb	*	de	dahinter
+gloss	cs:vzadu:adverb	s1	at the back, behind (hinten; derrière, au fond; atrás)
+drop-tr	cs:představa:noun	*	en	apprehension
+drop-tr	cs:představa:noun	*	pt	imaginação
+gloss	cs:představa:noun	s1	idea, notion (Vorstellung, Idee; idée; ideia); imagination (Vorstellung, Fantasie; imagination; imaginação)
+gloss	cs:spustit:verb	s1	to start, to launch, to turn on (starten, einschalten; lancer, démarrer; iniciar, ligar); to lower (herunterlassen; abaisser; baixar)
+drop-tr	cs:spustit:verb	*	de	absenken
+drop-tr	cs:démon:noun	*	en	fiend
+drop-tr	cs:démon:noun	*	pt	diabo
+gloss	cs:svobodný:adjective	s1	free (frei; libre; livre); single, unmarried (ledig; célibataire; solteiro)
+drop-tr	cs:ztrácet:verb	*	fr	égarer
+drop-tr	cs:roh:noun	*	fr	angle
+gloss	cs:roh:noun	s1	corner (Ecke; coin; canto, esquina); horn (Horn; corne; chifre)
+gloss	cs:pořádný:adjective	s1	proper, decent (richtig, ordentlich; vrai, correct; decente): pořádné jídlo (ein richtiges Essen)
+drop-tr	cs:pořádný:adjective	*	pt	completo
+drop-tr	cs:kariéra:noun	*	fr	parcours
+drop-tr	cs:roztomilý:adjective	*	fr	cute
+gloss	cs:totiž:adverb	s1	because, you see (nämlich; en fait, c'est que; é que): nepřišel, byl totiž nemocný (er kam nicht, er war nämlich krank); namely (nämlich; à savoir; isto é)
+drop-tr	cs:totiž:adverb	*	de	zwar
+drop-tr	cs:totiž:adverb	*	fr	nommément
+drop-tr	cs:základ:noun	*	de	Fundament
+drop-tr	cs:základ:noun	*	fr	fondation
+gloss	cs:parchant:noun	s1	(vulgar) bastard (Bastard, Mistkerl; salaud, bâtard; bastardo, desgraçado)
+drop-tr	cs:potěšení:noun	*	pt	deleite
+gloss	cs:cestou:adverb	s1	on the way (unterwegs; en chemin; no caminho)
+drop-tr	cs:cestou:adverb	*	fr	en cours de route
+drop-tr	cs:ochrana:noun	*	de	Sicherung
+drop-tr	cs:ochrana:noun	*	pt	protecção
+drop-tr	cs:zloděj:noun	*	de	Räuberin
+drop-tr	cs:zloděj:noun	*	fr	filou
+drop-tr	cs:zloděj:noun	*	en	robber
+drop-tr	cs:objednat:verb	*	de	ordern
+drop-tr	cs:zástupce:noun	*	en	agent
+drop-tr	cs:zástupce:noun	*	fr	mandataire
+gloss	cs:zástupce:noun	s1	deputy, representative (Stellvertreter, Vertreter; adjoint, représentant; representante)
+drop-tr	cs:volit:verb	*	de	stimmen
+drop-tr	cs:schovávat:verb	*	pt	omitir
+gloss	cs:nechávat:verb	s1	to let, to leave (lassen; laisser; deixar)
+drop-tr	cs:střelit:verb	*	de	erschießen
+gloss	cs:dohodnout:verb	s1	dohodnout se, to agree, to come to an agreement (sich einigen, vereinbaren; se mettre d'accord; combinar)
+drop-tr	cs:dohodnout:verb	*	fr	arranger
+drop-tr	cs:styl:noun	*	en	way
+drop-tr	cs:styl:noun	*	de	Weise
+drop-tr	cs:styl:noun	*	pt	etiqueta
+drop-tr	cs:styl:noun	*	fr	façon
+drop-tr	cs:víra:noun	*	pt	religião
+drop-tr	cs:strýc:noun	*	en	paternal uncle
+drop-tr	cs:strýc:noun	*	pt	tio paterno
+drop-tr	cs:strýc:noun	*	fr	tonton
+gloss	cs:sice:conjunction	s1	sice ... ale, admittedly ... but (zwar ... aber; certes ... mais; embora ... mas)
+drop-tr	cs:sice:conjunction	*	fr	bien que
+drop-tr	cs:sice:conjunction	*	fr	même si
+drop-tr	cs:výlet:noun	*	de	Anreise
+drop-tr	cs:výlet:noun	*	fr	voyage
+gloss	cs:výlet:noun	s1	trip, excursion (Ausflug; excursion, sortie; passeio, excursão)
+drop-tr	cs:bezpečnost:noun	*	en	safeness
+drop-tr	cs:bezpečnost:noun	*	de	Geborgenheit
+gloss	cs:seznámit:verb	s1	to introduce (bekannt machen, vorstellen; présenter; apresentar); seznámit se, to get to know, to meet (sich kennenlernen; faire la connaissance; conhecer-se)
+drop-tr	cs:seznámit:verb	*	de	bekannt geben
+drop-tr	cs:Frank:noun	*	de	Franc
+drop-tr	cs:Frank:noun	*	fr	Franc
+drop-tr	cs:Frank:noun	*	pt	franco
+drop-tr	cs:sotva:adverb	*	de	schwerlich
+gloss	cs:státní:adjective	s1	state, national (Staats-, staatlich; d'État, public; estatal): státní svátek (Feiertag)
+drop-tr	cs:státní:adjective	*	de	landeseigen
+drop-tr	cs:vesnice:noun	*	fr	localité
+drop-tr	cs:dar:noun	*	pt	talento
+drop-tr	cs:složka:noun	*	fr	administré
+gloss	cs:složka:noun	s1	component (Bestandteil; composant; componente); folder (Ordner, Mappe; dossier; pasta)
+gloss	cs:vůdce:noun	s1	leader (Anführer, Führer; chef, leader; líder)
+drop-tr	cs:určitý:adjective	*	de	definit
+gloss	cs:věnovat:verb	s1	to give, to dedicate (schenken, widmen; offrir, consacrer; dar, dedicar); věnovat se, to devote oneself to (sich widmen; se consacrer à; dedicar-se a)
+drop-tr	cs:věnovat:verb	*	en	donate
+drop-tr	cs:věnovat:verb	*	pt	esmolar
+drop-tr	cs:Max:noun	*	fr	max
+gloss	cs:stovka:noun	s1	a hundred (Hunderter; centaine; centena); a hundred-crown note (Hunderternote; billet de cent; nota de cem)
+gloss	cs:viď:interjection	s1	right?, isn't it? (nicht wahr?, oder?, gell?; hein ?, n'est-ce pas ?; né?, não é?)
+drop-tr	cs:ustoupit:verb	*	en	recede
+drop-tr	cs:ustoupit:verb	*	de	schwinden
+gloss	cs:ustoupit:verb	s1	to step back, to retreat (zurücktreten, zurückweichen; reculer; recuar); to give way (nachgeben; céder; ceder)
+drop-tr	cs:kufr:noun	*	de	Schrankkoffer
+gloss	cs:kufr:noun	s1	suitcase (Koffer; valise; mala); car boot, trunk (Kofferraum; coffre; porta-malas)
+drop-tr	cs:závod:noun	*	en	factory
+drop-tr	cs:závod:noun	*	fr	usine
+drop-tr	cs:závod:noun	*	fr	fabrique
+drop-tr	cs:závod:noun	*	pt	fábrica
+drop-tr	cs:závod:noun	*	pt	manufatura
+drop-tr	cs:závod:noun	*	de	Werk
+drop-tr	cs:závod:noun	*	de	Betrieb
+gloss	cs:závod:noun	s1	race (Rennen, Wettkampf; course; corrida); plant, factory (Werk, Betrieb; usine; fábrica)
+drop-tr	cs:úroveň:noun	*	en	echelon
+drop-tr	cs:úroveň:noun	*	fr	échelon
+drop-tr	cs:úroveň:noun	*	pt	fase
+drop-tr	cs:článek:noun	*	de	Paragraf
+drop-tr	cs:článek:noun	*	en	paper
+drop-tr	cs:nesmysl:noun	*	en	baloney
+drop-tr	cs:oblek:noun	*	en	costume
+drop-tr	cs:oblek:noun	*	de	Kostüm
+drop-tr	cs:oblek:noun	*	pt	fato
+gloss	cs:napravit:verb	s1	to put right, to correct, to make up for (wiedergutmachen, berichtigen; réparer, corriger; corrigir, reparar)
+drop-tr	cs:sexuální:adjective	*	pt	sexuado
+drop-tr	cs:zdravý:adjective	*	en	right
+drop-tr	cs:zdravý:adjective	*	de	heil
+drop-tr	cs:taška:noun	*	en	tote
+drop-tr	cs:taška:noun	*	fr	tote bag
+drop-tr	cs:zranění:noun	*	en	lesion
+drop-tr	cs:zranění:noun	*	fr	plaie
+drop-tr	cs:zranění:noun	*	de	Verwundung
+gloss	cs:dařit:verb	s1	dařit se, to be doing (well), to go well (gehen, gelingen; aller bien, réussir; ir bem): jak se ti daří? (wie geht es dir?)
+gloss	cs:modlit:verb	s1	modlit se, to pray (beten; prier; rezar)
+drop-tr	cs:chování:noun	*	de	Betragen
+drop-tr	cs:obyčejný:adjective	*	de	üblich
+drop-tr	cs:nálada:noun	*	en	humour
+drop-tr	cs:krýt:verb	*	pt	esconder
+gloss	cs:teprve:adverb	s1	only, not until (erst; seulement, ne ... que; só, apenas): teprve včera (erst gestern)
+drop-tr	cs:studovat:verb	*	en	learn
+drop-tr	cs:studovat:verb	*	pt	aprender
+drop-tr	cs:spravedlnost:noun	*	de	Billigkeit
+drop-tr	cs:spravedlnost:noun	*	pt	imparcialidade
+drop-tr	cs:paráda:noun	*	en	parade
+drop-tr	cs:paráda:noun	*	de	Parade
+drop-tr	cs:paráda:noun	*	fr	parade
+drop-tr	cs:paráda:noun	*	pt	desfile
+drop-tr	cs:paráda:noun	*	pt	parada
+gloss	cs:paráda:noun	s1	(informal) great!, splendid (super!, toll!; génial !; que legal!); finery, show (Pracht, Staat; parure; enfeite)
+drop-tr	cs:srát:verb	*	fr	caguer
+drop-tr	cs:hlupák:noun	*	de	Pinsel
+drop-tr	cs:hlupák:noun	*	fr	dinde
+gloss	cs:životní:adjective	s1	life, of life (Lebens-; de vie; de vida): životní prostředí, the environment (Umwelt; environnement; meio ambiente)
+drop-tr	cs:životní:adjective	*	en	vital
+drop-tr	cs:životní:adjective	*	fr	vital
+drop-tr	cs:životní:adjective	*	pt	vital
+gloss	cs:ponětí:noun	s1	idea, clue (Ahnung; idée; ideia): nemám ponětí (ich habe keine Ahnung)
+gloss	cs:veškerý:pronoun	s1	all, entire (sämtlich, gesamt; tout; todo)
+drop-tr	cs:překvapit:verb	*	de	überrumpeln
+drop-tr	cs:trávit:verb	*	en	digest
+drop-tr	cs:trávit:verb	*	de	verdauen
+drop-tr	cs:trávit:verb	*	fr	digérer
+drop-tr	cs:trávit:verb	*	pt	digerir
+first	cs:trávit:verb	*	en:spend:verb
+first	cs:trávit:verb	*	de:verbringen:verb
+gloss	cs:trávit:verb	s1	to spend time (verbringen; passer; passar): trávit víkend doma (das Wochenende zu Hause verbringen); to digest (verdauen; digérer; digerir)
+gloss	cs:zlatý:noun	s1	(historical) guilder, florin (Gulden; florin; florim); also adjective zlatý: golden (golden; doré; dourado); zlatíčko, darling (Schatz)
+gloss	cs:korekce:noun	s1	correction, adjustment (Korrektur; correction; correção)
+drop-tr	cs:scéna:noun	*	de	Bildfläche
+drop-tr	cs:scéna:noun	*	fr	théâtre
+gloss	cs:domluvit:verb	s1	to finish speaking (ausreden; finir de parler; terminar de falar); domluvit se, to agree, to arrange (sich absprechen, abmachen; se mettre d'accord; combinar)
+drop-tr	cs:příjemný:adjective	*	pt	doce
+drop-tr	cs:příjemný:adjective	*	fr	délicieux
+drop-tr	cs:příjemný:adjective	*	de	gefällig
+drop-tr	cs:podpora:noun	*	de	Stütze
+gloss	cs:převzít:verb	s1	to take over (übernehmen; reprendre, prendre en charge; assumir); to receive, to accept (entgegennehmen; recevoir; receber)
+drop-tr	cs:převzít:verb	*	fr	prendre
+gloss	cs:odjíždět:verb	s1	to leave, to depart (by vehicle) (abfahren, wegfahren; partir; partir)
+drop-tr	cs:odjíždět:verb	*	en	ride
+drop-tr	cs:opilý:adjective	*	en	drunken
+drop-tr	cs:opilý:adjective	*	fr	soul
+drop-tr	cs:opilý:adjective	*	pt	bêbedo
+drop-tr	cs:krása:noun	*	en	beautifulness
+drop-tr	cs:krása:noun	*	de	Anmut
+drop-tr	cs:kmen:noun	*	en	shaft
+drop-tr	cs:kmen:noun	*	fr	phylum
+drop-tr	cs:kmen:noun	*	pt	estirpe
+gloss	cs:kmen:noun	s1	trunk (Stamm; tronc; tronco); tribe (Stamm; tribu; tribo); word stem (Stamm; radical; radical)
+drop-tr	cs:levý:adjective	*	de	linkisch
+gloss	cs:propustit:verb	s1	to release, to set free (freilassen; libérer; libertar); to dismiss, to fire (entlassen; licencier; demitir); to let through (durchlassen)
+drop-tr	cs:trest:noun	*	de	Haft
+drop-tr	cs:Američan:noun	*	fr	kainri
+drop-tr	cs:partner:noun	*	de	Verabredung
+drop-tr	cs:pyšný:adjective	*	en	cavalier
+drop-tr	cs:pyšný:adjective	*	fr	cavalier
+gloss	cs:pyšný:adjective	s1	proud (stolz; fier; orgulhoso); haughty (hochmütig; orgueilleux, hautain; altivo)
+drop-tr	cs:vítr:noun	*	fr	pet
+drop-tr	cs:vysvětlovat:verb	*	pt	explicitar
+drop-tr	cs:řešit:verb	*	fr	chercher
+gloss	cs:známka:noun	s1	mark, grade (Note; note; nota); stamp (Briefmarke; timbre; selo); sign (Zeichen; signe; sinal)
+drop-tr	cs:návrh:noun	*	fr	projet
+drop-tr	cs:motor:noun	*	de	Triebwerk
+drop-tr	cs:motor:noun	*	pt	engine
+gloss	cs:dále:adverb	s1	further, on (weiter; plus loin, ensuite; mais adiante); dále! come in! (herein!; entrez !; entre!)
+drop-tr	cs:přivézt:verb	*	de	herholen
+gloss	cs:přivézt:verb	s1	to bring (by vehicle) (bringen, mitbringen; amener, apporter; trazer)
+drop-tr	cs:plést:verb	*	en	braid
+drop-tr	cs:plést:verb	*	fr	natter
+drop-tr	cs:plést:verb	*	pt	agaloar
+gloss	cs:plést:verb	s1	to knit (stricken; tricoter; tricotar); to mix up, to confuse (verwechseln; confondre; confundir); plést se, to be wrong (sich irren)
+drop-tr	cs:vůle:noun	*	de	Letzter Wille
+drop-tr	cs:vůle:noun	*	fr	vouloir
+drop-tr	cs:vůle:noun	*	pt	grado
+gloss	cs:výborný:adjective	s1	excellent (ausgezeichnet, hervorragend; excellent; excelente)
+drop-tr	cs:opravit:verb	*	fr	arrêter
+drop-tr	cs:opravit:verb	*	pt	arrumar
+drop-tr	cs:opravit:verb	*	en	cobble
+gloss	cs:opravit:verb	s1	to repair, to fix (reparieren, flicken; réparer; consertar); to correct (korrigieren; corriger; corrigir)
+drop-tr	cs:přání:noun	*	de	Traum
+drop-tr	cs:přání:noun	*	pt	pedido
+gloss	cs:rovnou:adverb	s1	straight, directly (direkt, gleich; directement; diretamente): rovnou domů (direkt nach Hause)
+drop-tr	cs:rovnou:adverb	*	en	squarely
+drop-tr	cs:rovnou:adverb	*	fr	carrément
+gloss	cs:hnout:verb	s1	to move, to budge (bewegen, rühren; bouger; mexer): nehni se! (rühr dich nicht!)
+drop-tr	cs:hnout:verb	*	fr	mouvoir
+drop-tr	cs:odměna:noun	*	de	Preis
+drop-tr	cs:odměna:noun	*	en	bounty
+gloss	cs:polda:noun	s1	(informal) cop (Bulle, Polizist; flic; tira)
+drop-tr	cs:polda:noun	*	de	Cop
+drop-tr	cs:polda:noun	*	fr	police
+drop-tr	cs:století:noun	*	de	Zenturie
+drop-tr	cs:století:noun	*	pt	centúria
+drop-tr	cs:půlka:noun	*	en	moiety
+drop-tr	cs:půlka:noun	*	fr	demi
+drop-tr	cs:brečet:verb	*	pt	lacrimejar
+drop-tr	cs:obvinit:verb	*	fr	dénoncer
+drop-tr	cs:obvinit:verb	*	pt	indiciar
+drop-tr	cs:rušit:verb	*	en	lift
+gloss	cs:rušit:verb	s1	to disturb (stören; déranger; incomodar); to cancel (absagen, aufheben; annuler; cancelar)
+drop-tr	cs:hráč:noun	*	fr	joueuse
+drop-tr	cs:hráč:noun	*	pt	tocador
+drop-tr	cs:čerstvý:adjective	*	en	nippy
+drop-tr	cs:prášek:noun	*	de	Mehl
+drop-tr	cs:prášek:noun	*	fr	poussière
+gloss	cs:prášek:noun	s1	powder (Pulver; poudre; pó); pill, tablet (Tablette; cachet; comprimido)
+gloss	cs:zasáhnout:verb	s1	to hit (treffen; toucher, atteindre; atingir); to intervene (eingreifen; intervenir; intervir)
+drop-tr	cs:zasáhnout:verb	*	en	smite
+drop-tr	cs:špinavý:adjective	*	en	sordid
+drop-tr	cs:špinavý:adjective	*	pt	esquálido
+drop-tr	cs:vlastnit:verb	*	de	ownen
+drop-tr	cs:vlastnit:verb	*	fr	avoir
+drop-tr	cs:vlastnit:verb	*	pt	ter
+drop-tr	cs:krátký:adjective	*	fr	bref
+drop-tr	cs:obrátit:verb	*	fr	bêcheveter
+drop-tr	cs:obrátit:verb	*	de	umstülpen
+drop-tr	cs:obrátit:verb	*	en	upend
+gloss	cs:obrátit:verb	s1	to turn over, to turn round (umdrehen, wenden; retourner; virar); obrátit se na, to turn to someone (sich wenden an; s'adresser à; recorrer a)
+drop-tr	cs:tlačit:verb	*	pt	contrair
+drop-tr	cs:kapsa:noun	*	de	Kippe
+drop-tr	cs:kapsa:noun	*	fr	pochette
+drop-tr	cs:kapsa:noun	*	pt	algibeira
+drop-tr	cs:bitva:noun	*	en	fight
+drop-tr	cs:bitva:noun	*	pt	luta
+drop-tr	cs:obrázek:noun	*	fr	dessin
+gloss	cs:obrázek:noun	s1	picture, small picture (Bild, Bildchen; image; imagem); drawing (Zeichnung; dessin; desenho)
+drop-tr	cs:řidič:noun	*	en	chauffeur
+drop-tr	cs:řidič:noun	*	de	Führer
+drop-tr	cs:řidič:noun	*	pt	piloto
+drop-tr	cs:rozbít:verb	*	pt	partir
+drop-tr	cs:rozbít:verb	*	en	snap
+gloss	cs:drink:noun	s1	drink, cocktail (Drink; verre, cocktail; drinque)
+drop-tr	cs:drink:noun	*	de	Getränk
+drop-tr	cs:drink:noun	*	fr	boisson
+drop-tr	cs:zranit:verb	*	de	verwunden
+drop-tr	cs:stupeň:noun	*	en	stair
+drop-tr	cs:stupeň:noun	*	de	Tritt
+drop-tr	cs:stupeň:noun	*	fr	marche
+drop-tr	cs:stupeň:noun	*	pt	escalão
+gloss	cs:stupeň:noun	s1	degree (Grad; degré; grau); level, stage (Stufe; niveau; nível): stupeň Celsia (Grad Celsius)
+drop-tr	cs:pohřeb:noun	*	de	Beisetzung
+gloss	cs:pocházet:verb	s1	to come from, to originate (stammen, herkommen; venir de, provenir; vir de, originar-se): odkud pocházíš? (woher kommst du?)
+drop-tr	cs:pocházet:verb	*	en	stem
+drop-tr	cs:kdykoliv:conjunction	*	de	sooft
+gloss	cs:kdykoliv:conjunction	s1	whenever, any time (jederzeit, wann immer; n'importe quand; quando quiser)
+gloss	cs:odpočinout:verb	s1	odpočinout si, to rest, to have a rest (sich ausruhen; se reposer; descansar)
+drop-tr	cs:odpočinout:verb	*	de	ruhen
+drop-tr	cs:kolega:noun	*	de	Arbeitskollege
+drop-tr	cs:kolega:noun	*	fr	confrère
+drop-tr	cs:kolega:noun	*	pt	camarada
+drop-tr	cs:kolega:noun	*	en	fellow
+drop-tr	cs:růst:noun	*	pt	acréscimo
+gloss	cs:růst:noun	s1	growth (Wachstum; croissance; crescimento); also verb růst: to grow (wachsen; grandir, pousser; crescer)
+drop-tr	cs:mrtvola:noun	*	fr	charogne
+drop-tr	cs:mrtvola:noun	*	pt	corpo
+drop-tr	cs:děda:noun	*	de	Ahn
+drop-tr	cs:děda:noun	*	pt	velho
+gloss	cs:děda:noun	s1	grandfather, grandpa (Grossvater, Opa, Swiss Grosspapi; grand-père, papi; avô, vovô); (informal) old man (Alter)
+gloss	cs:volno:noun	s1	time off, day off (frei, Freizeit; congé, temps libre; folga): mám volno (ich habe frei)
+drop-tr	cs:volno:noun	*	en	leave
+drop-tr	cs:volno:noun	*	de	Muße
+drop-tr	cs:volno:noun	*	pt	ócio
+drop-tr	cs:slabý:adjective	*	fr	affaibli
+drop-tr	cs:slabý:adjective	*	pt	frouxo
+drop-tr	cs:slabý:adjective	*	de	matt
+gloss	cs:tvrdě:adverb	s1	hard (hart; dur, durement; duro): tvrdě pracovat (hart arbeiten); fast asleep: tvrdě spát (tief schlafen)
+drop-tr	cs:tvrdě:adverb	*	en	hardly
+drop-tr	cs:kapela:noun	*	de	Band
+drop-tr	cs:kapela:noun	*	en	orchestra
+drop-tr	cs:kapela:noun	*	fr	orchestre
+first	cs:kapela:noun	*	de:Band:noun
+gloss	cs:kapela:noun	s1	band, music group (Band; groupe; banda)
+drop-tr	cs:pomocí:preposition	*	en	by dint of
+drop-tr	cs:pomocí:preposition	*	pt	graças a
+drop-tr	cs:těhotná:noun	*	fr	enceint
+gloss	cs:těhotná:noun	s1	pregnant (schwanger; enceinte; grávida); a pregnant woman (Schwangere; femme enceinte; gestante)
+drop-tr	cs:čelit:verb	*	en	brave
+drop-tr	cs:zlo:noun	*	de	Böse
+drop-tr	cs:nabízet:verb	*	en	tout
+first	cs:nabízet:verb	*	en:offer:verb
+drop-tr	cs:zadní:adjective	*	de	rückseitig
+drop-tr	cs:zadní:adjective	*	fr	postérieur
+drop-tr	cs:Paul:noun	*	en	paul
+drop-tr	cs:Paul:noun	*	fr	paul
+drop-tr	cs:prase:noun	*	pt	suíno
+drop-tr	cs:informovat:verb	*	fr	rappeler
+drop-tr	cs:hovor:noun	*	de	Debatte
+gloss	cs:hovor:noun	s1	conversation, talk (Gespräch; conversation; conversa); phone call (Anruf; appel; ligação)
+drop-tr	cs:padnout:verb	*	de	niederschlagen
+drop-tr	cs:padnout:verb	*	pt	malhar
+gloss	cs:padnout:verb	s1	to fall (fallen; tomber; cair); to fit, to suit (passen; aller bien; servir)
+drop-tr	cs:vedoucí:noun	*	de	Häuptling
+drop-tr	cs:vedoucí:noun	*	en	headman
+gloss	cs:děsivý:adjective	s1	horrifying, terrifying, scary (schrecklich, furchterregend; effrayant; assustador)
+drop-tr	cs:mapa:noun	*	pt	carta geográfica
+drop-tr	cs:mapa:noun	*	de	Plan
+drop-tr	cs:silnice:noun	*	fr	trimard
+drop-tr	cs:nedávno:adverb	*	pt	ultimamente
+drop-tr	cs:rakovina:noun	*	de	Krebserkrankung
+drop-tr	cs:rakovina:noun	*	pt	cancro
+drop-tr	cs:chudák:noun	*	en	pauper
+drop-tr	cs:chudák:noun	*	fr	indigent
+drop-tr	cs:chudák:noun	*	pt	indigente
+gloss	cs:chudák:noun	s1	poor thing, poor soul (Armer, armer Kerl; pauvre; coitado): ty chudáku! (du Armer!)
+drop-tr	cs:trapný:adjective	*	fr	dossier
+drop-tr	cs:ďábel:noun	*	de	Gottseibeiuns
+drop-tr	cs:ďábel:noun	*	fr	malin
+drop-tr	cs:most:noun	*	en	pons
+drop-tr	cs:zaútočit:verb	*	en	beset
+drop-tr	cs:poblíž:preposition	*	en	toward
+drop-tr	cs:zabránit:verb	*	pt	excluir
+drop-tr	cs:zabránit:verb	*	de	vorbeugen
+gloss	cs:normálně:adverb	s1	normally, usually (normalerweise; normalement; normalmente); (informal) simply, just (einfach; carrément)
+drop-tr	cs:proces:noun	*	de	Gerichtsprozess
+drop-tr	cs:proces:noun	*	fr	tâche
+drop-tr	cs:proces:noun	*	pt	pleito
+gloss	cs:proces:noun	s1	process (Prozess, Vorgang; processus; processo); trial (Prozess; procès; processo)
+drop-tr	cs:zákazník:noun	*	fr	acheteuse
+gloss	cs:pracovní:adjective	s1	work, working (Arbeits-; de travail; de trabalho): pracovní doba (Arbeitszeit)
+drop-tr	cs:pracovní:adjective	*	de	Arbeit
+drop-tr	cs:pracovní:adjective	*	pt	funcional
+gloss	cs:napít:verb	s1	napít se, to have a drink (etwas trinken; boire un coup; beber algo)
+drop-tr	cs:tanec:noun	*	de	Tanzveranstaltung
+drop-tr	cs:tanec:noun	*	fr	dance
+drop-tr	cs:tanec:noun	*	pt	bailarico
+drop-tr	cs:porušit:verb	*	en	damage
+drop-tr	cs:porušit:verb	*	de	beschädigen
+drop-tr	cs:porušit:verb	*	fr	endommager
+drop-tr	cs:porušit:verb	*	pt	estragar
+drop-tr	cs:porušit:verb	*	pt	danar
+gloss	cs:porušit:verb	s1	to break, to violate a rule or law (brechen, verletzen; enfreindre, violer; violar): porušit slib (ein Versprechen brechen)
+drop-tr	cs:trik:noun	*	fr	finasserie
+drop-tr	cs:trik:noun	*	pt	treta
+drop-tr	cs:cestovat:verb	*	de	wandern
+drop-tr	cs:náhoda:noun	*	fr	happenstance
+drop-tr	cs:odvaha:noun	*	de	Mumm
+drop-tr	cs:odvaha:noun	*	pt	coração
+gloss	cs:nejen:adverb	s1	nejen ... ale i, not only ... but also (nicht nur ... sondern auch; non seulement ... mais aussi; não só ... mas também)
+drop-tr	cs:tatínek:noun	*	fr	reup
+drop-tr	cs:tatínek:noun	*	pt	velho
+drop-tr	cs:obchodní:adjective	*	de	professionell
+drop-tr	cs:obchodní:adjective	*	fr	mercantile
+gloss	cs:obchodní:adjective	s1	commercial, business (Geschäfts-, geschäftlich; commercial; comercial): obchodní centrum (Einkaufszentrum)
+gloss	cs:řekněme:verb	s1	let's say (sagen wir; disons; digamos)
+drop-tr	cs:národní:adjective	*	de	völkisch
+gloss	cs:fér:adjective	s1	(informal) fair (fair; juste; justo)
+drop-tr	cs:slepý:adjective	*	pt	lusco
+drop-tr	cs:příkaz:noun	*	en	injunction
+drop-tr	cs:příkaz:noun	*	fr	ordonnance
+drop-tr	cs:stráž:noun	*	fr	factionnaire
+gloss	cs:stráž:noun	s1	guard, watch (Wache; garde; guarda): stát na stráži (Wache stehen)
+drop-tr	cs:dovést:verb	*	en	can
+gloss	cs:dovést:verb	s1	to lead, to take somewhere (hinführen, bringen; conduire, emmener; levar); to be able to (können; savoir; saber)
+drop-tr	cs:tlustý:adjective	*	de	korpulent
+gloss	cs:tlustý:adjective	s1	fat (dick; gros; gordo); thick (dick; épais; grosso)
+drop-tr	cs:splnit:verb	*	de	nachkommen
+drop-tr	cs:trenér:noun	*	fr	entraineur
+drop-tr	cs:zamilovaný:adjective	*	de	amourös
+drop-tr	cs:zamilovaný:adjective	*	en	enamored
+gloss	cs:zamilovaný:adjective	s1	in love (verliebt; amoureux; apaixonado)
+drop-tr	cs:přesunout:verb	*	en	shunt
+drop-tr	cs:přesunout:verb	*	fr	pousser
+gloss	cs:přesunout:verb	s1	to move, to shift (verschieben, verlegen; déplacer, décaler; mover, transferir)
+drop-tr	cs:složitý:adjective	*	de	verschlungen
+drop-tr	cs:složitý:adjective	*	pt	labiríntico
+drop-tr	cs:míč:noun	*	en	football
+drop-tr	cs:míč:noun	*	pt	esférico
+drop-tr	cs:brána:noun	*	de	Pforte
+gloss	cs:brána:noun	s1	gate (Tor; portail, porte; portão); goal (Tor; but; gol)
+drop-tr	cs:znamení:noun	*	de	Omen
+drop-tr	cs:znamení:noun	*	fr	indication
+drop-tr	cs:znamení:noun	*	pt	presságio
+drop-tr	cs:běh:noun	*	fr	run
+drop-tr	cs:běh:noun	*	pt	tiragem
+drop-tr	cs:forma:noun	*	pt	estado
+gloss	cs:forma:noun	s1	form, shape (Form; forme; forma); fitness, form (Form; forme; forma): být ve formě (in Form sein); baking tin (Backform; moule)
+drop-tr	cs:včetně:adverb	*	de	darunter
+drop-tr	cs:včetně:adverb	*	fr	dont
+drop-tr	cs:včetně:adverb	*	pt	incluir
+gloss	cs:včetně:adverb	s1	including (einschliesslich, inklusive; y compris; incluindo)
+drop-tr	cs:přísaha:noun	*	pt	promessa
+drop-tr	cs:smrdět:verb	*	de	müffeln
+drop-tr	cs:smrdět:verb	*	fr	poquer
+drop-tr	cs:smrdět:verb	*	pt	cheirar
+drop-tr	cs:posádka:noun	*	pt	pessoal
+drop-tr	cs:posádka:noun	*	fr	équipe
+drop-tr	cs:posádka:noun	*	de	Mannschaft
+drop-tr	cs:verze:noun	*	pt	variante
+drop-tr	cs:tma:noun	*	en	murk
+drop-tr	cs:zapnout:verb	*	de	anlassen
+drop-tr	cs:zapnout:verb	*	de	andrehen
+drop-tr	cs:zapnout:verb	*	fr	ouvrir
+drop-tr	cs:zapnout:verb	*	en	enable
+first	cs:zapnout:verb	*	de:einschalten:verb
+gloss	cs:zapnout:verb	s1	to switch on, to turn on (einschalten, anmachen; allumer; ligar); to button up, to fasten (zuknöpfen; boutonner; abotoar)
+drop-tr	cs:praštit:verb	*	de	treffen
+gloss	cs:praštit:verb	s1	(informal) to hit, to bang (schlagen, hauen; frapper, cogner; bater); praštit s něčím, to quit something (hinschmeissen)
+drop-tr	cs:odstranit:verb	*	fr	vider
+drop-tr	cs:zpomalit:verb	*	de	ausbremsen
+drop-tr	cs:zpomalit:verb	*	en	decelerate
+drop-tr	cs:zpomalit:verb	*	fr	décélérer
+gloss	cs:Paříž:noun	s1	Paris (Paris; Paris; Paris)
+gloss	cs:hlásit:verb	s1	to report, to announce (melden; annoncer, signaler; anunciar); hlásit se, to sign up; to raise one's hand (sich melden; s'inscrire; inscrever-se)
+drop-tr	cs:úplný:adjective	*	pt	integral
+drop-tr	cs:příšerný:adjective	*	de	unheimlich
+drop-tr	cs:vzorek:noun	*	fr	sample
+drop-tr	cs:vzorek:noun	*	de	Stichprobe
+gloss	cs:vzorek:noun	s1	sample (Probe, Muster; échantillon; amostra); pattern (Muster; motif; padrão)
+drop-tr	cs:dětský:adjective	*	en	childish
+drop-tr	cs:dětský:adjective	*	de	kindlich
+drop-tr	cs:dětský:adjective	*	fr	enfantin
+gloss	cs:dětský:adjective	s1	children's, child's (Kinder-; pour enfants, d'enfant; infantil): dětský pokoj (Kinderzimmer); childish (kindisch; enfantin; infantil)
+gloss	cs:déle:adverb	s1	longer (länger; plus longtemps; mais tempo)
+drop-tr	cs:točit:verb	*	en	whirl
+drop-tr	cs:točit:verb	*	de	herumwirbeln
+gloss	cs:točit:verb	s1	to turn, to spin (drehen; tourner; girar); to film (drehen, filmen; tourner; filmar); to draw beer (zapfen)
+drop-tr	cs:kretén:noun	*	fr	pignouf
+drop-tr	cs:zodpovědný:adjective	*	en	liable
+gloss	cs:zodpovědný:adjective	s1	responsible (verantwortlich, verantwortungsvoll; responsable; responsável)
+drop-tr	cs:kouřit:verb	*	en	fume
+drop-tr	cs:kouřit:verb	*	pt	fumegar
+gloss	cs:vedení:noun	s1	management, leadership (Leitung, Führung; direction; direção, gestão); lead (Führung; tête; liderança): line, cable (Leitung; ligne; linha)
+drop-tr	cs:upír:noun	*	en	vampire bat
+drop-tr	cs:upír:noun	*	de	Blutsauger
+drop-tr	cs:upír:noun	*	fr	chauve-souris vampire
+drop-tr	cs:upír:noun	*	pt	morcego-vampiro
+drop-tr	cs:úmysl:noun	*	de	Intention
+drop-tr	cs:ničit:verb	*	en	mar
+drop-tr	cs:ničit:verb	*	de	plattmachen
+drop-tr	cs:květina:noun	*	de	Blümchen
+drop-tr	cs:kuře:noun	*	en	chick
+drop-tr	cs:kuře:noun	*	de	Küken
+drop-tr	cs:kuře:noun	*	pt	pinto
+gloss	cs:kuře:noun	s1	chicken (Huhn, Swiss Poulet; poulet; frango); chick (Küken; poussin; pintinho)
+gloss	cs:učinit:verb	s1	(formal) to do, to make (machen, tun; faire; fazer): učinit rozhodnutí (eine Entscheidung treffen)
+gloss	cs:odnést:verb	s1	to take away, to carry away (wegtragen, mitnehmen; emporter; levar)
+drop-tr	cs:bod:noun	*	en	item
+drop-tr	cs:bod:noun	*	pt	item
+gloss	cs:světový:adjective	s1	world (Welt-; mondial; mundial): světová válka (Weltkrieg); world-class (Welt-)
+drop-tr	cs:pronásledovat:verb	*	de	stalken
+drop-tr	cs:pronásledovat:verb	*	pt	caçar
+gloss	cs:kruci:interjection	s1	(mild) damn!, darn! (Mist!, verflixt!; zut !, mince !; droga!)
+drop-tr	cs:kruci:interjection	*	fr	merde
+drop-tr	cs:kruci:interjection	*	fr	putain
+first	cs:kruci:interjection	*	en:damn:interjection
+drop-tr	cs:prohledat:verb	*	de	absuchen
+drop-tr	cs:prohledat:verb	*	en	rummage
+drop-tr	cs:lékařský:adjective	*	pt	medical
+drop-tr	cs:poradit:verb	*	en	counsel
+gloss	cs:poradit:verb	s1	to advise (raten, beraten; conseiller; aconselhar); poradit si, to cope (zurechtkommen; se débrouiller; dar conta)
+drop-tr	cs:založit:verb	*	de	aufbauen
+gloss	cs:založit:verb	s1	to found, to establish (gründen; fonder; fundar); to file (ablegen; classer; arquivar)
+drop-tr	cs:velikost:noun	*	pt	número
+gloss	cs:velikost:noun	s1	size (Grösse; taille; tamanho); clothing size (Grösse; taille, pointure; tamanho)
+gloss	cs:ušetřit:verb	s1	to save (sparen; économiser; poupar); to spare (verschonen; épargner; poupar)
+gloss	cs:vycházet:verb	s1	to go out, to come out (hinausgehen; sortir; sair); vycházet s někým, to get on with someone (auskommen mit; s'entendre avec; dar-se bem)
+drop-tr	cs:vyslechnout:verb	*	de	vernehmen
+drop-tr	cs:vyslechnout:verb	*	fr	entendre
+gloss	cs:vyslechnout:verb	s1	to hear out, to listen to (anhören; écouter; ouvir); to question, to interrogate (vernehmen, verhören; interroger; interrogar)
+drop-tr	cs:ošklivý:adjective	*	pt	baranga
+drop-tr	cs:ošklivý:adjective	*	de	ekelhaft
+drop-tr	cs:koláč:noun	*	pt	regueifa
+gloss	cs:koláč:noun	s1	cake, tart, pie (Kuchen, Wähe; tarte, gâteau; torta); Czech kolache (Kolatsche)
+gloss	cs:nazývat:verb	s1	to call, to name (nennen, bezeichnen; appeler; chamar)
+drop-tr	cs:nazývat:verb	*	de	heißen
+drop-tr	cs:plakat:verb	*	pt	carpir
+drop-tr	cs:Richard:noun	*	fr	richard
+drop-tr	cs:dokument:noun	*	fr	papier
+drop-tr	cs:dokument:noun	*	de	Schreiben
+gloss	cs:vystoupit:verb	s1	to get off (aussteigen; descendre; descer); to perform, to appear (auftreten; se produire; apresentar-se)
+drop-tr	cs:vystoupit:verb	*	en	appear
+drop-tr	cs:spojení:noun	*	de	Vereinigung
+drop-tr	cs:univerzita:noun	*	fr	univ
+drop-tr	cs:univerzita:noun	*	pt	vestibulando
+drop-tr	cs:důvěra:noun	*	de	Mut
+drop-tr	cs:důvěra:noun	*	pt	confidência
+drop-tr	cs:plavat:verb	*	de	herschwimmen
+drop-tr	cs:plavat:verb	*	pt	adanar
+drop-tr	cs:děsit:verb	*	en	appall
+drop-tr	cs:děsit:verb	*	pt	consternar
+gloss	cs:děsit:verb	s1	to frighten, to scare (erschrecken, Angst machen; effrayer; assustar)
+drop-tr	cs:síť:noun	*	de	Schwimmhaut
+drop-tr	cs:síť:noun	*	fr	maillage
+drop-tr	cs:síť:noun	*	pt	reticulado
+gloss	cs:síť:noun	s1	net (Netz; filet; rede); network (Netz, Netzwerk; réseau; rede)
+drop-tr	cs:trápit:verb	*	en	pang
+drop-tr	cs:trápit:verb	*	en	afflict
+drop-tr	cs:trápit:verb	*	de	kränkeln
+drop-tr	cs:trápit:verb	*	fr	harasser
+drop-tr	cs:trápit:verb	*	pt	agonizar
+gloss	cs:trápit:verb	s1	to torment, to trouble (quälen, plagen; tourmenter, tracasser; atormentar); trápit se, to worry (sich Sorgen machen; se tracasser; preocupar-se)
+drop-tr	cs:spokojený:adjective	*	pt	saciado
+gloss	cs:projet:verb	s1	to drive through, to go through (durchfahren; traverser; passar por); projet se, to go for a ride (eine Spritztour machen; faire un tour; dar uma volta)
+drop-tr	cs:projet:verb	*	en	tour
+drop-tr	cs:projet:verb	*	fr	tourner
+drop-tr	cs:past:noun	*	fr	embuche
+drop-tr	cs:past:noun	*	pt	arapuca
+drop-tr	cs:koleno:noun	*	pt	rodilha
+drop-tr	cs:jinde:adverb	*	pt	algures
+drop-tr	cs:jinde:adverb	*	pt	alhures
+gloss	cs:jinde:adverb	s1	elsewhere, somewhere else (anderswo, woanders; ailleurs; em outro lugar)
+gloss	cs:strčit:verb	s1	to push, to shove (stossen, schubsen; pousser; empurrar); to put, to stick (stecken; fourrer; enfiar)
+drop-tr	cs:strčit:verb	*	de	stupsen
+drop-tr	cs:zbožňovat:verb	*	en	dote
+drop-tr	cs:zbožňovat:verb	*	fr	raffoler
+drop-tr	cs:zbožňovat:verb	*	pt	endeusar
+drop-tr	cs:tráva:noun	*	en	weed
+drop-tr	cs:mlčet:verb	*	pt	amochar
+drop-tr	cs:trh:noun	*	fr	bazar
+drop-tr	cs:naštvat:verb	*	de	erbittern
+drop-tr	cs:naštvat:verb	*	fr	courroucer
+gloss	cs:naštvat:verb	s1	to annoy, to make angry (ärgern, verärgern; énerver; irritar); naštvat se, to get angry (sich ärgern; se fâcher; zangar-se)
+drop-tr	cs:vlna:noun	*	en	fleece
+drop-tr	cs:vlna:noun	*	pt	tosão
+gloss	cs:vlna:noun	s1	wave (Welle; vague; onda); wool (Wolle; laine; lã)
+drop-tr	cs:ztracený:adjective	*	pt	desviado
+drop-tr	cs:dojem:noun	*	de	Anschein
+drop-tr	cs:Michaela:noun	*	fr	michelle
+drop-tr	cs:zločinec:noun	*	fr	félon
+drop-tr	cs:zločinec:noun	*	pt	transgressor
+gloss	cs:stavit:verb	s1	stavit se, to stop by, to drop in (vorbeikommen, vorbeischauen; passer; dar uma passada)
+drop-tr	cs:veselý:adjective	*	pt	folião
+drop-tr	cs:veselý:adjective	*	pt	letífico
+drop-tr	cs:veselý:adjective	*	de	freudig
+gloss	cs:veselý:adjective	s1	cheerful, merry (fröhlich, lustig; joyeux, gai; alegre)
+gloss	cs:navzájem:adverb	s1	each other, mutually (gegenseitig, einander; mutuellement; um ao outro); navzájem! you too!, same to you! (gleichfalls!; pareillement !; igualmente!)
+drop-tr	cs:zbýt:verb	*	de	verbleiben
+gloss	cs:fuk:adverb	s1	(informal) to je mi fuk, I don't care (das ist mir egal, das ist mir wurst; je m'en fiche; tanto faz)
+drop-tr	cs:fuk:adverb	*	en	unimportance
+drop-tr	cs:značka:noun	*	de	Zeichen
+drop-tr	cs:značka:noun	*	pt	nome comercial
+gloss	cs:značka:noun	s1	brand (Marke; marque; marca); sign, road sign (Zeichen, Verkehrszeichen; panneau; placa)
+drop-tr	cs:lehnout:verb	*	de	liegen
+gloss	cs:lehnout:verb	s1	lehnout si, to lie down (sich hinlegen; s'allonger; deitar-se)
+drop-tr	cs:půda:noun	*	en	loam
+drop-tr	cs:půda:noun	*	fr	terreau
+gloss	cs:půda:noun	s1	soil, ground (Boden, Erde; sol, terre; solo, terra); attic (Dachboden, Estrich; grenier; sótão)
+gloss	cs:nazvat:verb	s1	to call, to name (nennen; appeler, nommer; chamar)
+drop-tr	cs:nazvat:verb	*	de	heißen
+drop-tr	cs:divoký:adjective	*	de	unbändig
+drop-tr	cs:divoký:adjective	*	fr	marron
+drop-tr	cs:divoký:adjective	*	pt	silvestre
+drop-tr	cs:neustále:adverb	*	de	immerdar
+gloss	cs:neustále:adverb	s1	constantly, all the time (ständig, dauernd; constamment, sans cesse; constantemente)
+drop-tr	cs:pytel:noun	*	fr	plumard
+drop-tr	cs:zámek:noun	*	en	castle
+gloss	cs:zámek:noun	s1	lock (Schloss; serrure; fechadura); castle, chateau (Schloss; château; castelo)
+gloss	cs:pomyslet:verb	s1	to think (of) (denken an; penser à; pensar em)
+drop-tr	cs:pomyslet:verb	*	fr	songer
+drop-tr	cs:pomyslet:verb	*	fr	se souvenir
+drop-tr	cs:severní:adjective	*	en	northernmost
+drop-tr	cs:severní:adjective	*	fr	boréal
+drop-tr	cs:severní:adjective	*	pt	boreal
+drop-tr	cs:vyděsit:verb	*	de	derkemmen
+drop-tr	cs:vyděsit:verb	*	pt	assombrar
+drop-tr	cs:dobro:noun	*	pt	vantagem
+drop-tr	cs:dobro:noun	*	de	Gute
+drop-tr	cs:vyloučit:verb	*	fr	excepter
+drop-tr	cs:vyloučit:verb	*	pt	excetuar
+gloss	cs:vyloučit:verb	s1	to exclude, to rule out (ausschliessen; exclure; excluir); to expel (ausschliessen, verweisen; expulser; expulsar)
+drop-tr	cs:hlášení:noun	*	fr	annoncement
+drop-tr	cs:slušný:adjective	*	de	sittsam
+drop-tr	cs:slušný:adjective	*	en	correct
+gloss	cs:slušný:adjective	s1	polite, decent (anständig, höflich; poli, correct; educado, decente)
+drop-tr	cs:násilí:noun	*	de	Gewalttätigkeit
+gloss	cs:zaměřit:verb	s1	to aim, to focus (richten; viser, cibler; mirar); to locate (orten; localiser; localizar); zaměřit se na, to focus on (sich konzentrieren auf)
+drop-tr	cs:spálit:verb	*	fr	bruler
+drop-tr	cs:spálit:verb	*	pt	atear
+gloss	cs:přestěhovat:verb	s1	přestěhovat se, to move house (umziehen, zügeln; déménager; mudar-se)
+drop-tr	cs:útěk:noun	*	en	lam
+drop-tr	cs:útěk:noun	*	pt	escapatória
+drop-tr	cs:veřejný:adjective	*	en	open
+drop-tr	cs:ihned:adverb	*	en	outright
+drop-tr	cs:nicméně:conjunction	*	de	aber
+drop-tr	cs:nicméně:conjunction	*	fr	mais
+gloss	cs:nicméně:conjunction	s1	however, nevertheless (dennoch, trotzdem; cependant, néanmoins; no entanto)
+drop-tr	cs:hořet:verb	*	en	flame
+drop-tr	cs:hořet:verb	*	de	verbrennen
+drop-tr	cs:hořet:verb	*	fr	bruler
+drop-tr	cs:hořet:verb	*	pt	pirar
+drop-tr	cs:odpovídat:verb	*	fr	adapter
+gloss	cs:odpovídat:verb	s1	to answer, to reply (antworten; répondre; responder); to correspond, to match (entsprechen; correspondre; corresponder)
+drop-tr	cs:sázka:noun	*	pt	bet
+drop-tr	cs:sázka:noun	*	de	Wetteinsatz
+drop-tr	cs:majitel:noun	*	fr	possesseur
+drop-tr	cs:strážník:noun	*	fr	gardien
+drop-tr	cs:mocný:adjective	*	de	kraftvoll
+drop-tr	cs:jižní:adjective	*	de	südländisch
+drop-tr	cs:jižní:adjective	*	fr	austral
+drop-tr	cs:jižní:adjective	*	pt	sulista
+drop-tr	cs:krysa:noun	*	de	Ratze
+drop-tr	cs:krysa:noun	*	fr	gaspard
+drop-tr	cs:krysa:noun	*	pt	arganaça
+drop-tr	cs:hrob:noun	*	de	Grube
+drop-tr	cs:hrob:noun	*	fr	sépulcre
+drop-tr	cs:postava:noun	*	fr	forme
+gloss	cs:postava:noun	s1	figure (Figur, Gestalt; silhouette, figure; figura); character in a story (Figur; personnage; personagem)
+drop-tr	cs:usnout:verb	*	fr	dormir debout
+drop-tr	cs:usnout:verb	*	de	entschlafen
+gloss	cs:usnout:verb	s1	to fall asleep (einschlafen; s'endormir; adormecer)
+gloss	cs:předvést:verb	s1	to show, to demonstrate (vorführen, zeigen; présenter, montrer; demonstrar)
+drop-tr	cs:rádio:noun	*	de	Rundfunk
+drop-tr	cs:rádio:noun	*	pt	telefonia
+gloss	cs:rozloučit:verb	s1	rozloučit se, to say goodbye (sich verabschieden; dire au revoir; despedir-se)
+drop-tr	cs:vděčný:adjective	*	fr	grat
+drop-tr	cs:pohřbít:verb	*	en	inter
+drop-tr	de:melken:verb	*	pt	mungir
+drop-tr	de:schamlos:adjective	*	cs	hubatý
+drop-tr	de:Festival:noun	*	fr	mouclade
+drop-tr	de:freisprechen:verb	*	en	absolve
+drop-tr	de:freisprechen:verb	*	fr	absoudre
+gloss	de:Mittelalter:noun	s1	the Middle Ages (Middle Ages; Moyen Âge; Idade Média; středověk)
+drop-tr	de:Neuling:noun	*	cs	bažant
+drop-tr	de:Neuling:noun	*	cs	noob
+drop-tr	de:Neuling:noun	*	en	rookie
+first	de:Neuling:noun	*	cs:nováček:noun
+gloss	de:Nachschub:noun	s1	supply, fresh supplies (supply; ravitaillement; abastecimento; zásoby)
+drop-tr	de:bemitleiden:verb	*	pt	amercear
+drop-tr	de:bemitleiden:verb	*	cs	být líto
+drop-tr	de:quetschen:verb	*	en	squish
+drop-tr	de:Kick:noun	*	pt	coice
+gloss	de:Kick:noun	s1	(informal) thrill, kick (kick, thrill; frisson; adrenalina; vzrušení): einen Kick geben; (football) kick (Schuss)
+drop-tr	de:Untertan:noun	*	en	underling
+drop-tr	de:Untertan:noun	*	pt	súbdito
+drop-tr	de:Lot:noun	*	en	lead
+gloss	de:Lot:noun	s1	plumb line (plumb line; fil à plomb; prumo; olovnice); im Lot, in order (in Ordnung)
+drop-tr	de:Taufe:noun	*	pt	baptismo
+drop-tr	de:basta:interjection	*	pt	ponto final
+drop-tr	de:basta:interjection	*	en	basta
+drop-tr	de:vorzüglich:adjective	*	cs	úžasný
+gloss	de:hochnehmen:verb	s1	(informal) to tease, to have someone on (tease; taquiner, faire marcher; zoar; dobírat si); to lift up (aufheben; soulever); to raid, to bust (bust; arrêter)
+drop-tr	de:spiegeln:verb	*	en	reflect
+first	de:spiegeln:verb	*	en:mirror:verb
+gloss	de:spiegeln:verb	s1	to mirror, to reflect (mirror, reflect; refléter; refletir; zrcadlit)
+drop-tr	de:Titan:noun	*	en	titanium
+drop-tr	de:Titan:noun	*	fr	titane
+drop-tr	de:Titan:noun	*	pt	titânio
+drop-tr	de:Titan:noun	*	cs	titan
+gloss	de:Titan:noun	s1	das Titan: titanium (titanium; titane; titânio; titan); der Titan: titan, giant (titan; titan; titã)
+drop-tr	de:kahl:adjective	*	fr	glabre
+drop-tr	de:kahl:adjective	*	cs	holý
+gloss	de:auslegen:verb	s1	to interpret (interpret; interpréter; interpretar; vykládat); to lay out, to display (display; étaler; expor); to cover (cover; couvrir; cobrir)
+drop-tr	de:Port:noun	*	fr	havre
+drop-tr	de:Port:noun	*	pt	passagem
+gloss	de:Port:noun	s1	(computing) port (port; port; porta; port); (literary) haven (Hafen; havre; porto)
+gloss	de:Chicken:noun	s1	(informal) chicken nuggets, fried chicken (chicken; poulet; frango; kuře): Chicken Nuggets
+drop-tr	de:anweisen:verb	*	en	usher
+gloss	de:anweisen:verb	s1	to instruct, to direct (instruct; donner l'ordre; instruir; nařídit); to transfer money (überweisen; virer; transferir)
+drop-tr	de:flattern:verb	*	en	wave
+drop-tr	de:Aufräumen:noun	*	en	cleanup
+gloss	de:Aufräumen:noun	s1	tidying up, cleanup (tidying up; rangement; arrumação; úklid)
+drop-tr	de:Aufräumen:noun	*	fr	nettoyage
+drop-tr	de:Terrorismus:noun	*	cs	terorizmus
+gloss	de:Herzchen:noun	s1	little heart (little heart; petit cœur; coraçãozinho; srdíčko); (term of endearment) sweetheart, darling (Schatz; mon cœur; querida)
+drop-tr	de:artig:adjective	*	en	attentive
+drop-tr	de:artig:adjective	*	fr	courtois
+drop-tr	de:artig:adjective	*	pt	regrado
+drop-tr	de:artig:adjective	*	cs	milý
+gloss	de:artig:adjective	s1	well-behaved, good (good, well-behaved; sage; bem-comportado; hodný)
+drop-tr	de:klinisch:adjective	*	en	aseptic
+drop-tr	de:unbezahlbar:adjective	*	pt	impagável
+drop-tr	de:Masche:noun	*	en	hole
+drop-tr	de:Masche:noun	*	fr	maillage
+gloss	de:Masche:noun	s1	stitch, mesh (stitch; maille; ponto; očko); (informal) trick, ploy (trick; combine; truque; trik)
+gloss	de:eineinhalb:numeral	s1	one and a half (one and a half; un et demi; um e meio; jeden a půl)
+drop-tr	de:umkippen:verb	*	fr	effondrer
+drop-tr	de:umkippen:verb	*	fr	écrouler
+drop-tr	de:umkippen:verb	*	cs	svrhnout
+gloss	de:umkippen:verb	s1	to tip over, to knock over (tip over; renverser; derrubar); to keel over, to faint (keel over; tomber dans les pommes; desmaiar)
+drop-tr	de:unterhaltsam:adjective	*	pt	aprazível
+first	de:unterhaltsam:adjective	*	pt:divertido:adjective
+drop-tr	de:unterhaltsam:adjective	*	fr	distractif
+gloss	de:Sequenz:noun	s1	sequence (sequence; séquence; sequência; sekvence)
+gloss	de:saubermachen:verb	s1	to clean, to clean up (clean; nettoyer; limpar; uklidit)
+drop-tr	de:Horst:noun	*	cs	hrásť
+drop-tr	de:Migräne:noun	*	pt	hemicrania
+drop-tr	de:Brautjungfer:noun	*	pt	dama de honor
+drop-tr	de:Murmel:noun	*	pt	gude
+drop-tr	de:Joghurt:noun	*	fr	yogourt
+drop-tr	de:Joghurt:noun	*	en	yoghourt
+gloss	de:Joghurt:noun	s1	yoghurt (yoghurt; yaourt; iogurte; jogurt); Swiss: das or der Joghurt, also Jogurt
+drop-tr	de:Lagerraum:noun	*	fr	dépôt
+gloss	de:Rover:noun	s1	rover (planetary vehicle) (rover; rover; jipe; vozítko)
+drop-tr	de:Portier:noun	*	en	receptionist
+drop-tr	de:Portier:noun	*	cs	portýr
+gloss	de:Abendbrot:noun	s1	(northern German) supper, evening meal (supper; dîner; jantar; večeře); in Switzerland: Znacht, Nachtessen
+drop-tr	de:Abendbrot:noun	*	fr	souper
+drop-tr	de:Abendbrot:noun	*	pt	ceia
+drop-tr	de:babysitten:verb	*	pt	pajear
+gloss	de:babysitten:verb	s1	to babysit (babysit; faire du baby-sitting; cuidar de crianças; hlídat děti)
+drop-tr	de:Protein:noun	*	fr	protide
+drop-tr	de:geizig:adjective	*	en	cheap
+drop-tr	de:Hebamme:noun	*	en	accoucheuse
+drop-tr	de:Hebamme:noun	*	fr	sage-homme
+drop-tr	de:Hebamme:noun	*	pt	comadre
+gloss	de:dermaßen:adverb	s1	so, to such a degree (so; tellement; tão; tak): dermaßen müde, dass (so müde, dass)
+drop-tr	de:dermaßen:adverb	*	en	that
+gloss	de:Irrsinn:noun	s1	madness, insanity (madness; folie; loucura; šílenství)
+gloss	de:anprobieren:verb	s1	to try on (try on; essayer; provar; zkusit si)
+drop-tr	de:Rouge:noun	*	en	rouge
+drop-tr	de:Rouge:noun	*	fr	rouge
+gloss	de:rausfliegen:verb	s1	(informal) to be thrown out, to get kicked out (get kicked out; se faire virer; ser expulso; vyletět)
+drop-tr	de:Flöte:noun	*	en	whistle
+drop-tr	de:Falte:noun	*	fr	sillon
+drop-tr	de:Acker:noun	*	en	acre
+drop-tr	de:Acker:noun	*	cs	akr
+gloss	de:nachfragen:verb	s1	to ask, to enquire (ask, inquire; se renseigner, demander; perguntar; zeptat se)
+drop-tr	de:nachfragen:verb	*	en	request
+drop-tr	de:Handbuch:noun	*	pt	apostila
+gloss	de:Halleluja:noun	s1	hallelujah (hallelujah; alléluia; aleluia; aleluja)
+drop-tr	de:brauchbar:adjective	*	fr	valable
+drop-tr	de:Schlinge:noun	*	fr	écharpe
+drop-tr	de:Schlinge:noun	*	pt	forca
+drop-tr	de:Umfrage:noun	*	fr	enquête
+drop-tr	de:Umfrage:noun	*	pt	questionário
+drop-tr	de:aussterben:verb	*	fr	disparaître
+drop-tr	de:aussterben:verb	*	fr	éteindre
+gloss	de:aussterben:verb	s1	to die out, to become extinct (die out; s'éteindre, disparaître; extinguir-se; vymřít)
+drop-tr	de:gläubig:adjective	*	fr	confiant
+drop-tr	de:gläubig:adjective	*	cs	důvěřivý
+gloss	de:gläubig:adjective	s1	religious, believing (religious; croyant; crente; věřící)
+drop-tr	de:Öffnung:noun	*	en	mouth
+drop-tr	de:Öffnung:noun	*	cs	díra
+drop-tr	de:Behinderung:noun	*	pt	impedimento
+gloss	de:Behinderung:noun	s1	disability (disability; handicap; deficiência; postižení); obstruction (obstruction; gêne; obstrução)
+drop-tr	de:Anhaltspunkt:noun	*	cs	klíč
+drop-tr	de:Weite:noun	*	en	extension
+drop-tr	de:Weite:noun	*	fr	extension
+drop-tr	de:Weite:noun	*	cs	dálka
+gloss	de:Weite:noun	s1	expanse, vastness (expanse; étendue; vastidão; rozlehlost); width (Breite; largeur; largura)
+drop-tr	de:intellektuell:adjective	*	en	cerebral
+drop-tr	de:erstarren:verb	*	en	congeal
+drop-tr	de:erstarren:verb	*	cs	trnout
+drop-tr	de:erstarren:verb	*	cs	zdřevěnět
+gloss	de:erstarren:verb	s1	to freeze, to stiffen (freeze; se figer; congelar; ztuhnout): vor Angst erstarren (vor Schreck erstarren)
+drop-tr	de:Kamm:noun	*	en	crest
+gloss	de:verwehren:verb	s1	to refuse, to deny (deny; refuser; negar; odepřít): jemandem den Zutritt verwehren
+drop-tr	de:Fährte:noun	*	en	scent
+drop-tr	de:Fährte:noun	*	fr	empreinte
+gloss	de:abschicken:verb	s1	to send off, to post (send; envoyer; enviar; odeslat)
+drop-tr	de:durchtrennen:verb	*	cs	roztrhnout
+drop-tr	de:Klappern:noun	*	cs	klopot
+drop-tr	de:sprachlos:adjective	*	cs	opařený
+gloss	de:sprachlos:adjective	s1	speechless (speechless; sans voix; sem palavras; oněmělý)
+drop-tr	de:Stalker:noun	*	cs	stopař
+drop-tr	de:Stalker:noun	*	cs	stopařka
+drop-tr	de:Omelett:noun	*	cs	amoleta
+drop-tr	de:aufrechterhalten:verb	*	fr	sauvegarder
+drop-tr	de:Krähe:noun	*	en	rook
+drop-tr	de:Bürde:noun	*	fr	faix
+drop-tr	de:Bürde:noun	*	cs	náklad
+drop-tr	de:Schaff:noun	*	en	cabinet
+gloss	de:Schaff:noun	s1	(Swiss, southern German) cupboard (Schrank; armoire; armário; skříň); tub (tub; cuvier; tina)
+drop-tr	de:divers:adjective	*	en	manifold
+gloss	de:divers:adjective	s1	various, several (various; divers; diversos; různý)
+drop-tr	de:Hexerei:noun	*	en	magic
+drop-tr	de:Hexerei:noun	*	fr	magie
+drop-tr	de:PC:noun	*	cs	pécéčko
+drop-tr	de:PC:noun	*	cs	písíčko
+drop-tr	de:Ständer:noun	*	en	kickstand
+gloss	de:anheben:verb	s1	to lift, to raise (lift; soulever; levantar; zvednout); to increase (raise; augmenter; aumentar; zvýšit)
+drop-tr	de:Begrüßung:noun	*	cs	pozdravit
+drop-tr	de:Berühmtheit:noun	*	en	stardom
+drop-tr	de:Berühmtheit:noun	*	pt	colunável
+drop-tr	de:Luzifer:noun	*	cs	jitřenka
+gloss	de:Luzifer:noun	s1	Lucifer (Lucifer; Lucifer; Lúcifer; Lucifer)
+gloss	de:Empire:noun	s1	Empire style (Empire style; style Empire; estilo império; empír); (informal) empire (Imperium)
+drop-tr	de:Takt:noun	*	fr	cadence
+gloss	de:Takt:noun	s1	bar, measure, beat (bar, beat; mesure; compasso; takt); tact (tact; tact; tato; takt)
+gloss	de:herumfahren:verb	s1	to drive around (drive around; se balader en voiture; dar voltas; jezdit kolem)
+drop-tr	de:Appartement:noun	*	pt	apê
+drop-tr	de:Blackout:noun	*	cs	okno
+drop-tr	de:Vorgeschichte:noun	*	fr	Préhistoire
+gloss	de:Vorgeschichte:noun	s1	background, history (background; antécédents; histórico; předchozí události); prehistory (prehistory; préhistoire; pré-história)
+gloss	de:allerletzte:adjective	s1	the very last (very last; tout dernier; último de todos; úplně poslední)
+drop-tr	de:auffüllen:verb	*	en	top off
+drop-tr	de:Fülle:noun	*	cs	dávka
+drop-tr	de:Einfahrt:noun	*	en	inlet
+drop-tr	de:mager:adjective	*	cs	ubohý
+gloss	de:miterleben:verb	s1	to witness, to experience (witness; vivre, être témoin de; presenciar; zažít)
+gloss	de:Justizministerium:noun	s1	ministry of justice (ministry of justice; ministère de la Justice; Ministério da Justiça; ministerstvo spravedlnosti); Swiss: Justizdepartement
+gloss	de:Demo:noun	s1	(informal) demonstration, protest (demo; manif; manifestação; demonstrace); demo version (Demo)
+drop-tr	de:Demo:noun	*	en	demo
+gloss	de:bereinigen:verb	s1	to settle, to clear up (settle; régler; resolver; vyřešit)
+drop-tr	de:angepisst:adjective	*	fr	vénère
+drop-tr	de:ledig:adjective	*	en	sole
+gloss	de:vermöbeln:verb	s1	(informal) to beat up (beat up; tabasser; dar uma surra; zmlátit)
+drop-tr	de:vermöbeln:verb	*	en	lambaste
+gloss	de:kollabieren:verb	s1	to collapse (collapse; s'effondrer; colapsar; zkolabovat)
+drop-tr	de:Menü:noun	*	pt	cardápio
+gloss	de:Menü:noun	s1	set menu, set meal (set meal; menu; prato do dia; menu); computer menu (menu; menu; menu)
+gloss	de:herankommen:verb	s1	to come closer, to approach (approach; s'approcher; aproximar-se; přiblížit se); herankommen an, to get at (rankommen)
+gloss	de:einsatzbereit:adjective	s1	ready for use, ready for action (ready for action; opérationnel; pronto; připravený k použití)
+drop-tr	de:einsatzbereit:adjective	*	fr	sur la brèche
+gloss	de:spekulieren:verb	s1	to speculate (speculate; spéculer; especular; spekulovat)
+gloss	de:distanzieren:verb	s1	sich distanzieren, to distance oneself (distance oneself; se distancier; distanciar-se; distancovat se)
+drop-tr	de:distanzieren:verb	*	en	beat
+drop-tr	de:distanzieren:verb	*	en	outdistance
+drop-tr	de:distanzieren:verb	*	fr	distancer
+drop-tr	de:absprechen:verb	*	cs	připravit
+drop-tr	de:absprechen:verb	*	cs	brát
+gloss	de:absprechen:verb	s1	to agree on, to arrange (arrange; convenir de; combinar; domluvit); jemandem etwas absprechen, to deny someone something (deprive; contester; negar; upřít)
+drop-tr	de:verkörpern:verb	*	en	impersonate
+drop-tr	de:verkörpern:verb	*	cs	zahrnout
+gloss	de:verkörpern:verb	s1	to embody, to play (a role) (embody, play; incarner; encarnar; ztělesnit)
+drop-tr	de:Alltag:noun	*	en	routine
+drop-tr	de:Alltag:noun	*	cs	všední den
+gloss	de:Alltag:noun	s1	everyday life (everyday life; quotidien; dia a dia; všední život)
+drop-tr	de:Coup:noun	*	en	coup d'état
+gloss	de:Coup:noun	s1	coup, masterstroke (coup; coup; golpe; tah)
+drop-tr	de:Braun:noun	*	cs	hněď
+gloss	de:Braun:noun	s1	brown, the colour (brown; brun, marron; marrom; hnědá)
+drop-tr	de:verschleiern:verb	*	cs	halit
+gloss	de:verschleiern:verb	s1	to veil (veil; voiler; velar); to cover up, to disguise (cover up; dissimuler; encobrir; zakrýt)
+drop-tr	de:Äußeres:noun	*	en	exterior
+drop-tr	de:Äußeres:noun	*	pt	exterior
+drop-tr	de:Äußeres:noun	*	pt	externo
+gloss	de:Äußeres:noun	s1	appearance, looks (appearance; apparence; aparência; vzhled)
+drop-tr	de:Darstellung:noun	*	pt	apresentação
+drop-tr	de:makellos:adjective	*	fr	soigné
+drop-tr	de:makellos:adjective	*	cs	čistý
+drop-tr	de:makellos:adjective	*	cs	nedotčený
+gloss	de:makellos:adjective	s1	flawless, spotless, immaculate (flawless; impeccable; impecável; bezvadný)
+gloss	de:viermal:adverb	s1	four times (four times; quatre fois; quatro vezes; čtyřikrát)
+drop-tr	de:verschlimmern:verb	*	fr	gâter
+drop-tr	de:verschlimmern:verb	*	cs	kazit
+drop-tr	de:Soda:noun	*	en	natron
+gloss	de:Soda:noun	s1	soda water (soda water; eau gazeuse; água com gás; sodovka); sodium carbonate (soda; soude; soda)
+gloss	de:herrichten:verb	s1	to prepare, to get ready (prepare; préparer; preparar; připravit); to fix up (renovate; remettre en état)
+gloss	de:Auserwählter:noun	s1	chosen one (chosen one; élu; escolhido; vyvolený)
+drop-tr	de:Kameramann:noun	*	pt	câmera
+drop-tr	de:Muss:noun	*	cs	mošt
+drop-tr	de:Muss:noun	*	fr	must
+gloss	de:Muss:noun	s1	a must (must; must, impératif; obrigação; nutnost): ein Muss
+gloss	de:Grüner:noun	s1	a member of the Green Party (Green; Vert; Verde; zelený); die Grünen, the Greens
+drop-tr	de:Mülleimer:noun	*	fr	voirie
+drop-tr	de:Mülleimer:noun	*	en	trash
+gloss	de:Mülleimer:noun	s1	rubbish bin (bin, trash can; poubelle; lixeira; koš); Swiss: Abfalleimer, Kübel, Ghüderkübel
+drop-tr	de:Gruft:noun	*	en	tomb
+drop-tr	de:Gruft:noun	*	fr	tombe
+drop-tr	de:Lebensstil:noun	*	en	living
+drop-tr	de:Sammler:noun	*	en	gatherer
+drop-tr	de:Sammler:noun	*	fr	rassembleur
+drop-tr	de:Sammler:noun	*	cs	sběrač
+gloss	de:Part:noun	s1	part, role (part; rôle; papel; part): seinen Part spielen
+drop-tr	de:Nachlass:noun	*	cs	majetek
+gloss	de:Nachlass:noun	s1	estate, inheritance (estate; succession; herança; pozůstalost); discount (discount; remise; desconto)
+drop-tr	de:Speicher:noun	*	en	store
+drop-tr	de:Speicher:noun	*	en	warehouse
+drop-tr	de:Speicher:noun	*	fr	entrepôt
+first	de:Speicher:noun	*	en:memory:noun
+gloss	de:Speicher:noun	s1	memory, storage (computer) (memory; mémoire; memória; paměť); attic (attic; grenier; sótão; půda); storehouse (Lager; entrepôt)
+drop-tr	de:obdachlos:adjective	*	cs	bezdomovec
+drop-tr	de:obdachlos:adjective	*	pt	desalojado
+drop-tr	de:Akku:noun	*	en	accumulator
+drop-tr	de:Akku:noun	*	pt	acumulador
+gloss	de:Akku:noun	s1	rechargeable battery (battery; batterie; bateria; baterie): der Akku ist leer
+drop-tr	de:Beweismittel:noun	*	fr	argument
+gloss	de:belehren:verb	s1	to teach, to lecture someone (lecture; faire la leçon; dar lições; poučovat); to inform of one's rights (inform; informer)
+gloss	de:ausgebucht:adjective	s1	fully booked (fully booked; complet; lotado; plně obsazený)
+gloss	de:mithören:verb	s1	to listen in, to overhear (overhear; écouter; ouvir; poslouchat)
+gloss	de:anlassen:verb	s1	to start (an engine) (start; démarrer; ligar; nastartovat); to leave on (lights, clothes) (leave on; laisser allumé; deixar ligado)
+drop-tr	de:anlassen:verb	*	fr	commencer
+gloss	de:hip:adjective	s1	(informal) hip, trendy (hip; branché; descolado; moderní)
+drop-tr	de:Wendung:noun	*	en	expression
+gloss	de:Wendung:noun	s1	turn, twist (turn; tournure, tournant; reviravolta; obrat); expression, phrase (phrase; tournure; expressão)
+drop-tr	de:aua:interjection	*	cs	auvajs
+first	de:aua:interjection	*	cs:au:interjection
+drop-tr	de:Krönung:noun	*	en	capstone
+drop-tr	de:Krönung:noun	*	fr	sacre
+gloss	de:verkabeln:verb	s1	to wire, to connect with cables (wire; câbler; cabear; zapojit)
+drop-tr	de:Angsthase:noun	*	en	coward
+drop-tr	de:Angsthase:noun	*	fr	lâche
+drop-tr	de:Angsthase:noun	*	cs	srab
+gloss	de:Pfennig:noun	s1	pfennig, hundredth of the old German mark (pfennig; pfennig; pfennig; fenik); keinen Pfennig, not a penny (keinen Rappen)
+drop-tr	de:wählerisch:adjective	*	cs	malicherný
+drop-tr	de:wählerisch:adjective	*	pt	fresco
+gloss	de:gefühlvoll:adjective	s1	sensitive, full of feeling (soulful; sensible; sensível; citlivý)
+gloss	de:Foundation:noun	s1	foundation, make-up (foundation; fond de teint; base; make-up)
+drop-tr	de:Foundation:noun	*	en	foundation
+drop-tr	de:anbauen:verb	*	pt	plantar
+gloss	de:anbauen:verb	s1	to grow, to cultivate (grow; cultiver; cultivar; pěstovat); to build on, to extend (build an extension; agrandir; ampliar)
+gloss	de:Meerjungfrau:noun	s1	mermaid (mermaid; sirène; sereia; mořská panna)
+gloss	de:Weihnachtsgeschenk:noun	s1	Christmas present (Christmas present; cadeau de Noël; presente de Natal; vánoční dárek)
+drop-tr	de:Weihnachtsgeschenk:noun	*	fr	étrennes
+drop-tr	de:Weihnachtsgeschenk:noun	*	fr	étrenne
+drop-tr	de:unfreundlich:adjective	*	en	churlish
+drop-tr	de:unfreundlich:adjective	*	fr	grognon
+drop-tr	de:unfreundlich:adjective	*	fr	bougon
+drop-tr	de:unfreundlich:adjective	*	pt	hostil
+gloss	de:unfreundlich:adjective	s1	unfriendly, unkind (unfriendly; peu aimable; antipático; nepřátelský)
+gloss	de:begründen:verb	s1	to justify, to give reasons for (justify; justifier; justificar; zdůvodnit); to found (found; fonder; fundar)
+drop-tr	de:begründen:verb	*	fr	prouver
+drop-tr	de:Ungar:noun	*	fr	Hongrois
+drop-tr	de:Nerd:noun	*	pt	CDF
+drop-tr	de:Heimweh:noun	*	fr	nostalgie
+gloss	de:Heimweh:noun	s1	homesickness (homesickness; mal du pays; saudade de casa; stesk po domově): Heimweh haben
+drop-tr	de:Strohhalm:noun	*	fr	fétu
+drop-tr	de:hü:interjection	*	fr	haïe
+drop-tr	de:hü:interjection	*	pt	upa
+gloss	de:entsprechend:preposition	s1	according to (according to; conformément à; de acordo com; podle); also adjective: corresponding, appropriate (appropriate; correspondant; correspondente)
+gloss	de:unterhalb:preposition	s1	below, beneath (below; au-dessous de; abaixo de; pod)
+gloss	de:Jungfer:noun	s1	(old-fashioned) maiden, spinster (maiden; jeune fille; donzela; panna): alte Jungfer
+drop-tr	de:Jungfer:noun	*	en	damsel
+drop-tr	de:Jungfer:noun	*	fr	damoiselle
+gloss	de:Ostküste:noun	s1	east coast (east coast; côte est; costa leste; východní pobřeží)
+gloss	de:losziehen:verb	s1	(informal) to set off, to head out (set off; partir; sair; vyrazit)
+drop-tr	de:losziehen:verb	*	fr	foutre le camp
+drop-tr	de:Weiße:noun	*	cs	běloška
+gloss	de:Weiße:noun	s1	white person (white person; Blanc, Blanche; branco; běloch); whiteness (Weisse); Berliner Weisse, wheat beer
+drop-tr	de:schrecken:verb	*	en	faze
+drop-tr	de:schrecken:verb	*	pt	acovardar
+gloss	de:Energiequelle:noun	s1	energy source (energy source; source d'énergie; fonte de energia; zdroj energie)
+drop-tr	de:Eiscreme:noun	*	pt	gelado
+gloss	de:Eiscreme:noun	s1	ice cream (ice cream; glace; sorvete; zmrzlina); Swiss: Glace
+drop-tr	de:authentisch:adjective	*	en	bona fide
+gloss	de:Roller:noun	s1	scooter (scooter; scooter, trottinette; patinete, scooter; koloběžka, skútr); Swiss: Trottinett (kick scooter)
+drop-tr	de:Gehirnwäsche:noun	*	en	brainwash
+drop-tr	de:Gehirnwäsche:noun	*	fr	bourrage de crâne
+drop-tr	de:Notar:noun	*	pt	tabelião
+drop-tr	de:Knecht:noun	*	en	knave
+gloss	de:Knecht:noun	s1	farmhand (farmhand; valet de ferme; peão; čeledín); servant (servant; serviteur; servo; sluha)
+gloss	de:neunzig:numeral	s1	ninety (ninety; quatre-vingt-dix, Swiss nonante; noventa; devadesát)

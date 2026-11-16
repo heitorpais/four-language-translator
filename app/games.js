@@ -17,7 +17,7 @@ const t = (k, en, v) => A.t(k, en, v), esc = s => A.esc(s);
 const KEY = 'flt:games';
 const LV = { A1: 1, A2: 2, B1: 3, B2: 4, C1: 5, C2: 6 };
 const GAMES = ['quinque', 'hang', 'ana', 'pairs', 'search', 'hive', 'grid', 'babel'];
-const ICON = { quinque: '🟩', hang: '🪢', ana: '🔀', pairs: '🃏', search: '🔎', hive: '🐝', grid: '🔠', babel: '🗼' };
+const icon = (n, c) => window.FLTGame.icon(n, c);
 const POS_OK = new Set(['noun', 'verb', 'adjective', 'adverb']);
 const H = { game: 'quinque', lang: null, lang2: null, langs: null, level: 'A2', players: [], cur: 0, scores: [], st: null, busy: false, msg: '' };
 const load = (k, d) => { try { const v = JSON.parse(localStorage.getItem(k)); return v == null ? d : v; } catch (e) { return d; } };
@@ -71,7 +71,7 @@ function scoreHtml(note) {
 function winnerHtml() {
   if (!many()) return '';
   const best = Math.max(...H.scores), w = H.players.map((p, i) => i).filter(i => H.scores[i] === best);
-  return `<p class="gh-win">🏆 ${esc(w.length > 1 ? t('gh.draw', 'A draw: {p}.', { p: w.map(pname).join(', ') }) : t('gh.wins', '{p} wins!', { p: pname(w[0]) }))}</p>`;
+  return `<p class="gh-win">${icon('trophy')} ${esc(w.length > 1 ? t('gh.draw', 'A draw: {p}.', { p: w.map(pname).join(', ') }) : t('gh.wins', '{p} wins!', { p: pname(w[0]) }))}</p>`;
 }
 
 /* ---------- words ---------- */
@@ -168,7 +168,7 @@ G.hang = {
   html(s) {
     const cells = this.chars(s).map(c => !c.f ? `<span class="gh-sp">${esc(c.ch)}</span>` : `<span class="gh-l">${s.done || Array.from(c.f).every(x => s.guessed[x]) ? esc(c.ch.toUpperCase()) : '&nbsp;'}</span>`).join('');
     const end = s.done ? `<p class="gh-res">${esc(s.won ? t('gh.won', 'Well done!') : t('gh.lost', 'The word was:'))} <button class="chip" data-open="${esc(s.id)}">${esc(s.word)}</button></p>${s.def ? `<p class="hint">${esc(s.def)}</p>` : ''}<button class="btn primary" data-hx="again">${esc(t('gh.again', 'Next word'))}</button>` : '';
-    const hint = !s.done ? (s.hint ? `<p class="hint">💡 ${esc(s.def || t('game.nodef', 'No explanation in this language for this word yet.'))}</p>` : `<button class="chip" data-hx="hint">💡 ${esc(t('game.hint', 'Show what it means'))}</button>`) : '';
+    const hint = !s.done ? (s.hint ? `<p class="hint">${icon('hint')} ${esc(s.def || t('game.nodef', 'No explanation in this language for this word yet.'))}</p>` : `<button class="chip" data-hx="hint">${icon('hint')} ${esc(t('game.hint', 'Show what it means'))}</button>`) : '';
     return `${scoreHtml(s.done ? '' : null)}<div class="gh-hangwrap">${this.draw(s.wrong)}<p class="hint">${esc(t('gh.left', '{n} wrong guesses left', { n: this.MAX - s.wrong }))}</p></div>
       <div class="gh-word" lang="${H.lang}">${cells}</div>${hint}${end}${s.done ? '' : kbHtml(H.lang, s.guessed, letters(s.word, H.lang))}`;
   }
@@ -196,8 +196,8 @@ G.ana = {
     const end = s.done ? `<p class="gh-res">${esc(s.won ? t('gh.won', 'Well done!') : t('gh.lost', 'The word was:'))} <button class="chip" data-open="${esc(s.id)}">${esc(s.word)}</button></p>${s.won && s.found !== s.ans.join('') ? `<p class="hint">${esc(t('gh.ana.other', 'Your word is right too.'))}</p>` : ''}${s.def ? `<p class="hint">${esc(s.def)}</p>` : ''}<button class="btn primary" data-hx="again">${esc(t('gh.again', 'Next word'))}</button>` : '';
     return `${scoreHtml()}<div class="gh-built" lang="${H.lang}">${built}</div><p class="gm-msg">${s.wrong ? esc(t('gh.ana.no', 'Not this one. Tap a letter to take it back.')) : ''}</p>
       ${s.done ? end : `<div class="gh-pool">${pool}</div>
-      ${s.hint ? `<p class="hint">💡 ${esc(s.def || t('game.nodef', 'No explanation in this language for this word yet.'))}</p>` : ''}
-      <div class="gh-row"><button class="btn sm" data-hx="mix">${esc(t('gh.mix', 'Mix'))}</button><button class="btn sm" data-hx="clear">${esc(t('gh.clear', 'Clear'))}</button>${s.hint ? '' : `<button class="btn sm" data-hx="hint">💡 ${esc(t('game.hint', 'Show what it means'))}</button>`}<button class="btn sm" data-hx="give">${esc(t('gh.give', 'Show the word'))}</button></div>`}`;
+      ${s.hint ? `<p class="hint">${icon('hint')} ${esc(s.def || t('game.nodef', 'No explanation in this language for this word yet.'))}</p>` : ''}
+      <div class="gh-row"><button class="btn sm" data-hx="mix">${esc(t('gh.mix', 'Mix'))}</button><button class="btn sm" data-hx="clear">${esc(t('gh.clear', 'Clear'))}</button>${s.hint ? '' : `<button class="btn sm" data-hx="hint">${icon('hint')} ${esc(t('game.hint', 'Show what it means'))}</button>`}<button class="btn sm" data-hx="give">${esc(t('gh.give', 'Show the word'))}</button></div>`}`;
   }
 };
 
@@ -301,7 +301,7 @@ G.hive = {
     else if (!w.includes(s.mid)) s.msg = t('gh.hive.mid', 'Every word must use the middle letter.');
     else if (s.found.includes(w)) s.msg = t('gh.hive.again', 'You already found that one.');
     else if (!s.words.has(w)) { s.msg = t('gh.hive.no', '“{w}” is not in the word list.', { w: w.toUpperCase() }); nextTurn(); }
-    else { const p = this.pts(w, s.set); s.found.push(w); score(p); s.msg = (s.set.every(c => w.includes(c)) ? '🐝 ' + t('gh.hive.pan', 'All seven letters!') + ' ' : '') + '+' + p; nextTurn(); }
+    else { const p = this.pts(w, s.set); s.found.push(w); score(p); s.msg = (s.set.every(c => w.includes(c)) ? t('gh.hive.pan', 'All seven letters!') + ' ' : '') + '+' + p; nextTurn(); }
   },
   html(s) {
     const got = s.found.reduce((m, w) => m + this.pts(w, s.set), 0), pct = Math.round(100 * got / s.total);
@@ -402,11 +402,26 @@ G.babel = {
   html(s) {
     const rows = s.rows.map(r => { const o = s.done || this.open(s, r); return `<div class="gh-brow${o ? ' open' : ''}"><span class="gh-bl">${fl(r.lang)}</span><span class="gh-word" lang="${r.lang}">${this.chars(r).map(c => !c.f ? `<span class="gh-sp">${esc(c.ch)}</span>` : `<span class="gh-l">${s.done || Array.from(c.f).every(x => s.guessed[x]) ? esc(c.ch.toUpperCase()) : '&nbsp;'}</span>`).join('')}</span>${s.done ? `<button class="chip" data-open="${esc(r.e.id)}">↗</button>` : ''}</div>`; }).join('');
     const extra = [...new Set(s.rows.flatMap(r => letters(r.e.lemma, r.lang) || []))];
-    const hearts = '❤️'.repeat(this.MAX - s.wrong) + '🤍'.repeat(s.wrong);
+    const hearts = icon('heart', 'hrt').repeat(this.MAX - s.wrong) + icon('heart0', 'hrt').repeat(s.wrong);
     const end = s.done ? `<p class="gh-res">${esc(s.won ? t('gh.babel.won', 'You opened the word in every language!') : t('gh.babel.lost', 'Out of guesses. Here it is in every language.'))}</p>${winnerHtml()}<button class="btn primary" data-hx="again">${esc(t('gh.again', 'Next word'))}</button>` : '';
     return `${scoreHtml(s.done ? ' ' : null)}<p class="gh-hearts" aria-label="${esc(t('gh.left', '{n} wrong guesses left', { n: this.MAX - s.wrong }))}">${hearts}</p><div class="gh-babel">${rows}</div>${end}${s.done ? '' : kbHtml(s.rows[0].lang, s.guessed, extra)}`;
   }
 };
+
+
+/* the rules of every game (Quinque shows its own in game.js) */
+function rulesHtml(g) {
+  const R = {
+    hang: [t('gh.hang.r1', 'A word is hidden; each line stands for one letter.'), t('gh.hang.r2', 'Tap a letter. If it is in the word, it appears in every place where it occurs; if not, a piece is added to the drawing.'), t('gh.hang.r3', 'After eight wrong letters the drawing is finished and the round is lost.'), t('gh.r.acc', 'Accents are ignored: E also opens É and È.'), t('gh.hang.r5', 'With several players: a right letter earns a point for every place where it appears and you go on; a wrong letter passes the turn; finishing the word earns 3 more points.')],
+    ana: [t('gh.ana.r1', 'The letters of one word are mixed up. Tap them in the right order.'), t('gh.ana.r2', 'Any other real word made of exactly these letters counts too.'), t('gh.ana.r3', 'A word found without the explanation is worth 2 points, with it 1 point.'), t('gh.ana.r4', 'With several players, everyone gets their own word in turn.')],
+    pairs: [t('gh.pairs.r1', '16 cards lie face down: 8 words and their 8 translations.'), t('gh.pairs.r2', 'Turn over two cards. If they belong together they stay open; if not, they turn back.'), t('gh.pairs.r3', 'The game ends when all pairs are open. The fewer moves, the better.'), t('gh.pairs.r4', 'With several players: a pair earns a point and you go again; a miss passes the turn.')],
+    search: [t('gh.search.r1', 'The words are hidden across, down or diagonally; from level B2 also backwards.'), t('gh.search.r2', 'The list shows the translation of each word and its number of letters.'), t('gh.search.r3', 'Tap the first letter of a word, then the last.'), t('gh.search.r4', 'With several players: each word found earns a point; after a miss the turn passes.')],
+    hive: [t('gh.hive.r1', 'Make words from the seven letters. A letter may be used more than once.'), t('gh.hive.r2', 'Every word has at least 4 letters and contains the middle letter.'), t('gh.hive.r3', 'Only dictionary forms count: no plurals, no conjugated verbs, no names.'), t('gh.hive.r4', 'Points: a 4-letter word is worth 1, a longer word 1 point per letter. A word with all seven letters earns 7 more.'), t('gh.hive.r5', 'With several players, the turn passes after every word.')],
+    grid: [t('gh.grid.r1', 'Join letters that touch, across, down or diagonally, to make words of 3 letters or more.'), t('gh.grid.r2', 'Each letter of the grid can be used only once in a word. Only dictionary forms count.'), t('gh.grid.r3', 'You have three minutes. Points: 3 or 4 letters 1, 5 letters 2, 6 letters 3, 7 letters 5, 8 or more 11.'), t('gh.grid.r4', 'With several players, each player gets three minutes on the same grid, then the scores are compared.')],
+    babel: [t('gh.babel.r1', 'One meaning is hidden in two to four languages at once, one row per language.'), t('gh.babel.r2', 'Every letter you guess opens in all the rows where it occurs.'), t('gh.babel.r3', 'A letter that is in none of the words costs a heart. When all six hearts are gone, the round is lost.'), t('gh.r.acc', 'Accents are ignored: E also opens É and È.'), t('gh.babel.r5', 'Related languages help each other: a letter you are sure of in one word often fits the others too.'), t('gh.babel.r6', 'With several players: a point for every letter that opens, and a wrong letter passes the turn.')]
+  }[g];
+  return R ? `<details class="gm-rules"><summary>${esc(t('game.rules', 'Rules'))}</summary><ul>${R.map(r => `<li>${esc(r)}</li>`).join('')}</ul></details>` : '';
+}
 
 /* =================== the tab =================== */
 async function newRound() {
@@ -436,8 +451,8 @@ function paintStage() {
 function paint() {
   const el = $('#game'); if (!el || el.hidden || !A) return;
   if (!H.langs) restore();
-  const tabs = `<div class="gh-games" role="tablist">${GAMES.map(g => `<button class="gh-g${g === H.game ? ' on' : ''}" role="tab" aria-selected="${g === H.game}" data-hg2="${g}"><span class="gh-ic">${ICON[g]}</span><span>${esc(name(g))}</span>${g === 'babel' ? `<small class="beta-tag">${esc(t('gh.newtag', 'new'))}</small>` : ''}</button>`).join('')}</div>`;
-  el.innerHTML = `<h2>${esc(t('nav.game', 'Games'))}</h2>${tabs}<h3 class="gh-title">${ICON[H.game]} ${esc(name(H.game))}</h3><p class="hint">${esc(about(H.game))}</p>${optsHtml()}<div id="${H.game === 'quinque' ? 'gm-quinque' : 'gh-stage'}"></div>`;
+  const tabs = `<div class="gh-games" role="tablist">${GAMES.map(g => `<button class="gh-g${g === H.game ? ' on' : ''}" role="tab" aria-selected="${g === H.game}" data-hg2="${g}"><span class="gh-ic">${icon(g)}</span><span>${esc(name(g))}</span>${g === 'babel' ? `<small class="beta-tag">${esc(t('gh.newtag', 'new'))}</small>` : ''}</button>`).join('')}</div>`;
+  el.innerHTML = `<h2>${esc(t('nav.game', 'Games'))}</h2>${tabs}<h3 class="gh-title">${icon(H.game)} ${esc(name(H.game))}</h3><p class="hint">${esc(about(H.game))}</p>${rulesHtml(H.game)}${optsHtml()}<div id="${H.game === 'quinque' ? 'gm-quinque' : 'gh-stage'}"></div>`;
   if (H.game === 'quinque') window.FLTGame.paint();
   else if (!H.st && !H.busy) { resetScores(); newRound(); }
   else paintStage();

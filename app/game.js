@@ -14,6 +14,24 @@ const KEEP = { sv: 'åäö' };                         // letters that are lette
 const ROWS = { de: ['qwertzuiop', 'asdfghjkl', 'yxcvbnm'], sv: ['qwertyuiopå', 'asdfghjklöä', 'zxcvbnm'], fr: ['azertyuiop', 'qsdfghjklm', 'wxcvbn'], default: ['qwertyuiop', 'asdfghjkl', 'zxcvbnm'] };
 const KEY_S = 'flt:game', KEY_STATS = 'flt:game-stats';
 const G = { langs: null, level: 'B1', len: 5, cb: false, view: 'all', boards: {}, active: null, msg: '', busy: false };
+/* small line drawings used instead of emojis (shared with games.js) */
+const SVG = {
+  quinque: '<rect x="2" y="9" width="4" height="6"/><rect x="7" y="9" width="4" height="6" class="f"/><rect x="12" y="9" width="4" height="6"/><rect x="17" y="9" width="4" height="6" class="f"/>',
+  hang: '<path d="M4 21h9M7 21V3h9v3"/><circle cx="16" cy="8.5" r="2.5"/><path d="M16 11v5m-3-3 3-1 3 1m-3 4-2 3m2-3 2 3"/>',
+  ana: '<path d="M3 7h4l10 10h4M3 17h4l3-3m4-4 3-3h4m-3-3 3 3-3 3m0 4 3 3-3 3"/>',
+  pairs: '<rect x="3" y="5" width="10" height="14" rx="1.5" transform="rotate(-8 8 12)"/><rect x="11" y="5" width="10" height="14" rx="1.5" transform="rotate(8 16 12)"/>',
+  search: '<path d="M3 3h10v10H3zM3 8h10M8 3v10"/><circle cx="15" cy="15" r="4"/><path d="m18 18 3.5 3.5"/>',
+  hive: '<path d="M8 3.5 11 5v3.5L8 10 5 8.5V5zM16 3.5 19 5v3.5L16 10l-3-1.5V5zM12 10.5l3 1.5v3.5L12 17l-3-1.5V12z" /><path d="M8 17.5l3 1.5v3"/>',
+  grid: '<rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1" class="f"/><path d="M5.5 9 7 5l1.5 4M6 7.7h2"/>',
+  babel: '<path d="M4 21h16M6 21v-4h12v4M8 17v-4h8v4M9.5 13V9h5v4M11 9V5h2v4M12 5V2.5"/>',
+  hint: '<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/>',
+  trophy: '<path d="M8 4h8v5a4 4 0 0 1-8 0zM8 6H4.5a3 3 0 0 0 3.5 4M16 6h3.5a3 3 0 0 1-3.5 4M12 13v4m-4 4h8m-6-4h4v4"/>',
+  heart: '<path class="f" d="M12 20s-7-4.4-8.6-8.6C2.2 8 4.4 5 7.5 5c2 0 3.5 1.2 4.5 2.7C13 6.2 14.5 5 16.5 5c3.1 0 5.3 3 4.1 6.4C19 15.6 12 20 12 20z"/>',
+  heart0: '<path d="M12 20s-7-4.4-8.6-8.6C2.2 8 4.4 5 7.5 5c2 0 3.5 1.2 4.5 2.7C13 6.2 14.5 5 16.5 5c3.1 0 5.3 3 4.1 6.4C19 15.6 12 20 12 20z"/>',
+  speaker: '<path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11"/>',
+  star: '<path class="f" d="m12 3 2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/>'
+};
+const icon = (n, cls) => `<svg class="ic${cls ? ' ' + cls : ''}" viewBox="0 0 24 24" aria-hidden="true">${SVG[n] || ''}</svg>`;
 const pools = {};
 const fl = l => A.flag((A.S.main && A.S.main[l]) || (A.BASE && A.BASE[l]) || l, true);                                  // lang -> { answers: [entry], valid: Set(letter strings) }
 
@@ -193,7 +211,7 @@ function resultHtml(b, lang) {
   return `<div class="gm-result">
     <p>${b.won ? esc(t('game.got', 'You found it in {n} of 6.', { n: b.rows.length })) : esc(t('game.lost', 'The word was:'))}
       <button class="chip" data-open="${esc(e.id)}" lang="${lang}">${e.pos === 'noun' && e.noun && e.noun.gender ? A.artHtml(A.article(lang, e, e.lemma), e.noun.gender) + ' ' : ''}${esc(word)}${e.senses.length ? A.lvlBadge(e, true) : ''}</button>
-      <button class="chip" data-gx="say" aria-label="${esc(t('game.say', 'Listen'))}">🔊</button></p>
+      <button class="chip" data-gx="say" aria-label="${esc(t('game.say', 'Listen'))}">${icon('speaker')}</button></p>
     <p class="hint">${esc(meaning(b, lang))}</p>
     <p class="hint">${esc(t('game.stats', '{lang}: {p} played · {w} % won · streak {s} (best {b})', { lang: A.LNAME[lang], p: s.played, w: pct, s: s.streak, b: s.best }))}</p>
     <button class="btn primary" data-gx="next">${esc(t('game.next', 'Next word'))}</button>
@@ -222,7 +240,7 @@ function paint(reveal) {
     if (!b && all) body = tabs;
     else if (!b) body = tabs + `<p class="hint">${esc(t('game.nowords2', 'No words of this length for this language.'))}</p>`;
     else {
-      const hint = !b.done ? (b.hint ? `<p class="hint gm-hint">💡 ${esc(meaning(b, G.active))}</p>` : `<button class="chip" data-gx="hint">💡 ${esc(t('game.hint', 'Show what it means'))}</button>`) : '';
+      const hint = !b.done ? (b.hint ? `<p class="hint gm-hint">${icon('hint')} ${esc(meaning(b, G.active))}</p>` : `<button class="chip" data-gx="hint">${icon('hint')} ${esc(t('game.hint', 'Show what it means'))}</button>`) : '';
       const now = all ? `<p class="gm-now">${esc(t('game.now', 'Now playing: {lang}', { lang: A.LNAME[G.active] }))}</p>` : '';
       body = tabs + `<div class="gm-play">${all ? now : boardHtml(b, G.active, reveal)}<p class="gm-msg" aria-live="polite">${esc(G.msg)}</p>${b.done ? resultHtml(b, G.active) : hint + keyboardHtml(b, G.active)}</div>`;
     }
@@ -275,6 +293,6 @@ window.FLTGame = {
   init(api) { A = api; },
   paint() { if (!A) return; if (!G.langs) restore(); paint(); refresh(); },
   get state() { return G; },
-  _letters: letters, _score: score, _pool: pool, _loadPool: loadPool
+  _letters: letters, _score: score, _pool: pool, _loadPool: loadPool, icon
 };
 })();
