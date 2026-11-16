@@ -27901,3 +27901,337 @@ first	pt:poça:noun	*	en:puddle:noun
 first	pt:poça:noun	*	es:charco:noun
 drop-tr	pt:ilimitado:adjective	*	de	frei
 gloss	pt:favorecer:verb	s1	to favour; to benefit, to help
+drop-tr	pt:extração:noun	*	de	Ziehen
+gloss	pt:aspirar:verb	s1	to vacuum; to inhale; to aspire (to)
+gloss	pt:remarcar:verb	s1	to reschedule; to mark again
+gloss	pt:rodeio:noun	s1	rodeo; detour, roundabout way (sem rodeios = bluntly)
+gloss	pt:caçula:noun	s1	youngest child (of a family)
+gloss	pt:canhoto:noun	s1	left-handed person; counterfoil, stub
+drop-tr	pt:aquecido:adjective	*	de	hitzig
+drop-tr	pt:égua:noun	*	es	jaca
+drop-tr	pt:égua:noun	*	en	horse
+gloss	pt:arrepiar:verb	s1	to give goosebumps, to make one's hair stand on end
+gloss	pt:purê:noun	s1	purée, mashed potatoes
+drop-tr	pt:purê:noun	*	en	pudding
+drop-tr	pt:cimento:noun	*	en	cementum
+drop-tr	pt:cimento:noun	*	de	Wurzelzement
+drop-tr	pt:bilhar:noun	*	es	taco
+drop-tr	pt:ópio:noun	*	es	anfión
+drop-tr	pt:absolver:verb	*	de	absolvieren
+gloss	pt:magoado:adjective	s1	hurt (emotionally), upset
+gloss	pt:abafar:verb	s1	to muffle, to stifle; to hush up; to smother
+drop-tr	pt:clipe:noun	*	de	Ausschnitt
+gloss	pt:clipe:noun	s1	paper clip; (music) video
+gloss	pt:poxa:interjection	s1	(Brazil) gee!, wow!, damn
+drop-tr	pt:arco:noun	*	de	Bogendachakzent
+drop-tr	pt:arco:noun	*	en	directed edge
+gloss	pt:arco:noun	s1	arc; bow; arch
+gloss	pt:cantada:noun	s1	pick-up line, come-on
+gloss	pt:localizado:adjective	s1	located, situated
+drop-tr	pt:localizado:adjective	*	en	locate
+drop-tr	pt:perfuração:noun	*	de	Ohrloch
+drop-tr	pt:sardinha:noun	*	es	chanquete
+drop-tr	pt:detrás:adverb	*	de	hinterher
+drop-tr	pt:fungo:noun	*	es	yuyo
+gloss	pt:prometido:noun	s1	promised; (noun) fiancé
+drop-tr	pt:camisinha:noun	*	en	glove
+gloss	pt:registar:verb	s1	(Portugal) to register, to record
+gloss	pt:escroto:adjective	s1	(Brazil, vulgar) despicable, scumbag; scrotum
+gloss	pt:ousado:adjective	s1	daring, bold; cheeky
+drop-tr	pt:tranquilidade:noun	*	en	rest
+gloss	pt:zerar:verb	s1	to reset, to zero; to finish completely (a game)
+gloss	pt:flagrar:verb	s1	to catch (in the act)
+gloss	pt:entendido:adjective	s1	understood; (noun) expert, connoisseur
+drop-tr	pt:mágoa:noun	*	de	Sorge
+gloss	pt:xarope:adjective	s1	(noun) syrup, cough syrup; (Brazil, slang) boring
+drop-tr	pt:ofício:noun	*	de	Amt
+gloss	pt:ofício:noun	s1	trade, craft; official letter
+gloss	pt:combinado:adjective	s1	combined; agreed (combinado! = deal!)
+drop-tr	pt:tom:noun	*	de	Tonus
+gloss	pt:roto:adjective	s1	torn, ragged
+gloss	pt:destroços:noun	s1	wreckage, debris
+drop-tr	pt:tópico:noun	*	en	thread
+gloss	pt:sortear:verb	s1	to draw (lots), to raffle
+gloss	pt:picape:noun	s1	pickup truck
+gloss	pt:lascar:verb	s1	to chip, to splinter
+drop-tr	pt:apreensão:noun	*	de	Festnahme
+gloss	pt:apreensão:noun	s1	apprehension, worry; seizure (of goods)
+drop-tr	pt:honorário:adjective	*	de	Gebühr
+drop-tr	pt:clamar:verb	*	de	reklamieren
+gloss	pt:manha:noun	s1	tantrum, whining (fazer manha); trick, knack
+drop-tr	pt:violeta:noun	*	de	Altgeige
+drop-tr	pt:réplica:noun	*	de	Nachbeben
+drop-tr	pt:réplica:noun	*	de	Retorte
+gloss	pt:réplica:noun	s1	replica, copy; reply; aftershock
+drop-tr	pt:beneficente:noun	*	de	Wohltätigkeit
+gloss	pt:beneficente:noun	s1	charitable, charity (adjective)
+drop-tr	pt:impulsionar:verb	*	de	drücken
+drop-tr	pt:impulsionar:verb	*	de	schieben
+drop-tr	pt:impulsionar:verb	*	es	aup
+drop-tr	pt:condução:noun	*	de	Leitung
+drop-tr	pt:condução:noun	*	de	Führung
+gloss	pt:condução:noun	s1	driving; transport; conduction
+drop-tr	pt:pregador:noun	*	de	Stift
+drop-tr	pt:pregador:noun	*	de	Haken
+gloss	pt:pregador:noun	s1	preacher; clothes peg
+drop-tr	pt:alfaiate:noun	*	de	Wasserläufer
+drop-tr	pt:alfaiate:noun	*	en	water strider
+gloss	pt:microondas:noun	s1	microwave (oven)
+drop-tr	pt:microondas:noun	*	en	necklace
+first	pt:microondas:noun	*	en:microwave:noun
+first	pt:microondas:noun	*	de:Mikrowelle:noun
+first	pt:microondas:noun	*	es:microondas:noun
+gloss	pt:senhorio:noun	s1	landlord; lordship
+drop-tr	pt:sucção:noun	*	de	Sog
+drop-tr	pt:lona:noun	*	de	C
+drop-tr	pt:pipa:noun	*	es	volador
+gloss	pt:pipa:noun	s1	(Brazil) kite; barrel, cask
+drop-tr	pt:pinto:noun	*	de	Hinkel
+gloss	pt:pinto:noun	s1	chick; (Brazil, vulgar) dick
+gloss	pt:intimar:verb	s1	to summon, to subpoena; to order
+gloss	pt:achado:noun	s1	find, discovery; (adjective) found
+gloss	pt:airar:verb	s1	(archaic) to anger
+drop-tr	pt:auxílio:noun	*	de	Beistand
+gloss	pt:concedido:adjective	s1	granted
+gloss	pt:sacada:noun	s1	(Brazil) balcony; (colloquial) insight, clever idea
+drop-tr	pt:sacada:noun	*	en	pull
+drop-tr	pt:sacada:noun	*	es	tirón
+drop-tr	pt:cinturão:noun	*	de	Zone
+gloss	pt:gamar:verb	s1	(Brazil, slang) to fall for, to have a crush on; (Portugal) to pinch, to steal
+drop-tr	pt:óbito:noun	*	de	Abschied
+drop-tr	pt:fender:verb	*	de	klieben
+drop-tr	pt:estreito:noun	*	de	Straße
+drop-tr	pt:nobreza:noun	*	de	Vornehmheit
+gloss	pt:best:noun	s1	(slang) bestie, best friend
+drop-tr	pt:seguradora:noun	*	de	Versicherin
+gloss	pt:bagulho:noun	s1	(Brazil, slang) thing, stuff; junk
+drop-tr	pt:palestrar:verb	*	de	lesen
+drop-tr	pt:palestrar:verb	*	es	dict
+drop-tr	pt:climático:adjective	*	en	climactic
+drop-tr	pt:terráqueo:noun	*	es	t
+drop-tr	pt:homicida:noun	*	en	homicider
+gloss	pt:destinar:verb	s1	to allot, to set aside (for); to destine
+gloss	pt:decidido:adjective	s1	determined, resolute; decided
+first	pt:decidido:adjective	*	de:entschlossen:adjective
+first	pt:decidido:adjective	*	es:decidido:adjective
+drop-tr	pt:decidido:adjective	*	de	mutig
+drop-tr	pt:decidido:adjective	*	de	tapfer
+drop-tr	pt:decidido:adjective	*	es	bravo
+drop-tr	pt:desafiador:adjective	*	de	frech
+drop-tr	pt:desafiador:adjective	*	de	keck
+gloss	pt:desafiador:adjective	s1	challenging; defiant
+drop-tr	pt:duração:noun	*	de	Mindesthaltbarkeit
+gloss	pt:pretendente:noun	s1	suitor; candidate, applicant; claimant
+drop-tr	pt:pretendente:noun	*	es	actor
+gloss	pt:trouxa:noun	s1	(colloquial) sucker, fool; bundle (of clothes)
+drop-tr	pt:meteorito:noun	*	de	Impakt
+drop-tr	pt:constranger:verb	*	de	demütigen
+drop-tr	pt:constranger:verb	*	de	kränken
+gloss	pt:constranger:verb	s1	to embarrass; to constrain
+drop-tr	pt:velhice:noun	*	en	age
+gloss	pt:cronograma:noun	s1	schedule, timetable
+drop-tr	pt:cronograma:noun	*	en	chronogram
+drop-tr	pt:ecstasy:noun	*	de	Teil
+drop-tr	pt:ecstasy:noun	*	de	Pille
+drop-tr	pt:zebra:noun	*	de	Zebrastreifen
+drop-tr	pt:zebra:noun	*	en	zebra crossing
+gloss	pt:perpétua:noun	s1	(prisão perpétua) life imprisonment
+drop-tr	pt:retroceder:verb	*	de	regredieren
+gloss	pt:convosco:pronoun	s1	with you (plural)
+drop-tr	pt:convosco:pronoun	*	es	convusco
+drop-tr	pt:convosco:pronoun	*	es	vusco
+gloss	pt:amasso:noun	s1	(Brazil, colloquial) making out; crushing
+drop-tr	pt:cume:noun	*	de	Zinne
+drop-tr	pt:avanço:noun	*	de	Durchbruch
+gloss	pt:atado:adjective	s1	tied (up); (colloquial) clumsy
+drop-tr	pt:decepcionante:adjective	*	de	betrügerisch
+drop-tr	pt:decepcionante:adjective	*	de	trügerisch
+gloss	pt:decepcionante:adjective	s1	disappointing
+drop-tr	pt:bacia:noun	*	es	pila
+drop-tr	pt:podar:verb	*	es	afeitar
+drop-tr	pt:vislumbrar:verb	*	de	erkennen
+gloss	pt:produzido:adjective	s1	produced; (colloquial) dressed up
+drop-tr	pt:produzido:adjective	*	en	produce
+drop-tr	pt:furo:noun	*	es	fal
+drop-tr	pt:cláusula:noun	*	en	whereas
+first	pt:cronograma:noun	*	en:schedule:noun
+first	pt:cronograma:noun	*	de:Zeitplan:noun
+first	pt:decepcionante:adjective	*	es:decepcionante:adjective
+first	pt:sacada:noun	*	en:balcony:noun
+first	pt:sacada:noun	*	de:Balkon:noun
+first	pt:sacada:noun	*	es:balcón:noun
+gloss	pt:sinalizar:verb	s1	to signal, to flag; to signpost
+gloss	pt:guinchar:verb	s1	to squeal, to screech; to tow
+gloss	pt:pen:noun	s1	(Portugal) USB stick, flash drive
+gloss	pt:intoxicação:noun	s1	poisoning, intoxication (e.g. food poisoning)
+gloss	pt:centrar:verb	s1	to centre, to focus
+gloss	pt:carente:adjective	s1	needy; lacking (in); (colloquial) needy for affection
+gloss	pt:acção:noun	s1	(Portugal, old spelling) action
+drop-tr	pt:acção:noun	*	de	Einfluss
+drop-tr	pt:acção:noun	*	de	Einwirkung
+drop-tr	pt:acção:noun	*	en	influence
+first	pt:acção:noun	*	en:action:noun
+first	pt:acção:noun	*	de:Aktion:noun
+first	pt:acção:noun	*	es:acción:noun
+drop-tr	pt:orador:noun	*	en	prayer
+drop-tr	pt:camareiro:noun	*	de	Kammerherr
+gloss	pt:camareiro:noun	s1	(hotel) room attendant; chamberlain
+gloss	pt:chatice:noun	s1	nuisance, bore, drag
+drop-tr	pt:comprimir:verb	*	de	zippen
+drop-tr	pt:apostador:noun	*	de	Spielerin
+drop-tr	pt:ridicularizar:verb	*	de	blamieren
+drop-tr	pt:murmurar:verb	*	de	rauschen
+gloss	pt:equivocar:verb	s1	(equivocar-se) to be mistaken; to confuse
+drop-tr	pt:indiciar:verb	*	de	beschuldigen
+drop-tr	pt:pairar:verb	*	de	stillstehen
+gloss	pt:marginal:noun	s1	criminal, outlaw; (adjective) marginal; (Brazil) riverside road
+gloss	pt:penitenciário:noun	s1	penitentiary, prison (adjective)
+gloss	pt:catar:verb	s1	to pick (up), to gather; to search for (lice)
+gloss	pt:penal:noun	s1	(adjective) penal, criminal; (Portugal) pencil case
+drop-tr	pt:giz:noun	*	es	gis
+drop-tr	pt:duto:noun	*	es	tube
+gloss	pt:redondeza:noun	s1	roundness; (redondezas) surroundings, vicinity
+gloss	pt:entranhar:verb	s1	to penetrate deeply, to seep in, to become ingrained
+drop-tr	pt:veludo:noun	*	de	Bast
+gloss	pt:montão:noun	s1	heap, pile (um montão de = loads of)
+drop-tr	pt:extenso:adjective	*	en	le
+drop-tr	pt:norueguês:adjective	*	de	Norweger
+gloss	pt:hater:noun	s1	(slang) hater
+gloss	pt:antecedência:noun	s1	(com antecedência) in advance
+drop-tr	pt:mingau:noun	*	es	puches
+gloss	pt:apanhado:noun	s1	summary, overview; (adjective) caught
+gloss	pt:teclar:verb	s1	to type; to chat online
+drop-tr	pt:teclar:verb	*	en	keyboard
+drop-tr	pt:abajur:noun	*	de	Lampe
+gloss	pt:expediente:adjective	s1	(noun) working hours, office hours; resourcefulness
+gloss	pt:atear:verb	s1	(atear fogo) to set fire to
+drop-tr	pt:aterrar:verb	*	es	alunizar
+drop-tr	pt:geleira:noun	*	de	Eisberg
+drop-tr	pt:geleira:noun	*	en	iceberg
+drop-tr	pt:geleira:noun	*	es	iceberg
+drop-tr	pt:geleira:noun	*	es	témpano
+gloss	pt:geleira:noun	s1	glacier
+first	pt:geleira:noun	*	en:glacier:noun
+first	pt:geleira:noun	*	es:glaciar:noun
+drop-tr	pt:sandália:noun	*	es	chala
+gloss	pt:liso:adjective	s1	smooth, straight (hair); plain; (Brazil, colloquial) broke
+drop-tr	pt:diesel:noun	*	en	fuel
+gloss	pt:textura:noun	s1	texture
+drop-tr	pt:textura:noun	*	en	act
+first	pt:textura:noun	*	en:texture:noun
+first	pt:textura:noun	*	es:textura:noun
+gloss	pt:figurino:noun	s1	costume (design); model, pattern
+gloss	pt:crazy:adjective	s1	(slang) crazy
+gloss	pt:coach:noun	s1	coach (life coach, business coach)
+gloss	pt:notebook:noun	s1	laptop, notebook computer
+drop-tr	pt:fumante:noun	*	de	Schmöker
+drop-tr	pt:brevemente:adverb	*	de	bald
+gloss	pt:brevemente:adverb	s1	briefly
+drop-tr	pt:uivar:verb	*	en	roar
+drop-tr	pt:uivar:verb	*	es	gritar
+drop-tr	pt:uivar:verb	*	de	brüllen
+gloss	pt:quadrilha:noun	s1	gang (of criminals); square dance (festa junina)
+drop-tr	pt:posterior:adjective	*	de	nachmalig
+gloss	pt:sulista:adjective	s1	southern; (noun) southerner
+gloss	pt:freqüentemente:adverb	s1	frequently, often
+drop-tr	pt:lacuna:noun	*	en	blank
+gloss	pt:lacuna:noun	s1	gap, blank; lacuna
+drop-tr	pt:zarpar:verb	*	de	abfahren
+drop-tr	pt:gengibre:noun	*	es	kion
+drop-tr	pt:emissão:noun	*	de	Sendung
+drop-tr	pt:sanidade:noun	*	de	Zurechnungsfähigkeit
+gloss	pt:torcida:noun	s1	(Brazil) fans, supporters (of a team); twist
+drop-tr	pt:torcida:noun	*	en	t
+drop-tr	pt:rolo:noun	*	de	Schriftrolle
+drop-tr	pt:rolo:noun	*	de	Volute
+gloss	pt:rolo:noun	s1	roll; (Brazil, colloquial) fling, affair; mess
+drop-tr	pt:sultão:noun	*	es	soldán
+gloss	pt:passivo:noun	s1	liabilities; (adjective) passive
+gloss	pt:serra:noun	s1	saw; mountain range
+gloss	pt:direcção:noun	s1	(Portugal, old spelling) direction; management
+drop-tr	pt:liquidação:noun	*	en	settlement
+gloss	pt:liquidação:noun	s1	(clearance) sale; liquidation, settlement
+first	pt:liquidação:noun	*	en:sale:noun
+gloss	pt:ferroviário:noun	s1	railway worker; (adjective) railway
+drop-tr	pt:rochoso:adjective	*	es	p
+gloss	pt:visar:verb	s1	to aim at, to target; to stamp (a visa)
+gloss	pt:dote:noun	s1	dowry; gift, talent
+first	pt:dote:noun	*	en:dowry:noun
+first	pt:dote:noun	*	es:dote:noun
+gloss	pt:atro:adjective	s1	(literary) jet-black, dark
+drop-tr	pt:planar:verb	*	de	segeln
+drop-tr	pt:manta:noun	*	es	co
+drop-tr	pt:sarjeta:noun	*	de	Abfluss
+drop-tr	pt:presentear:verb	*	de	zeigen
+gloss	pt:presentear:verb	s1	to give (as a present)
+drop-tr	pt:curandeiro:noun	*	en	quack
+drop-tr	pt:figurão:noun	*	de	Größe
+drop-tr	pt:figurão:noun	*	es	alto cargo
+drop-tr	pt:navegador:noun	*	de	Webbrowser
+gloss	pt:navegador:noun	s1	navigator; (web) browser
+drop-tr	pt:robusto:adjective	*	de	zäh
+gloss	pt:regar:verb	s1	to water (plants)
+drop-tr	pt:ultrajante:adjective	*	de	hanebüchen
+gloss	pt:homenagear:verb	s1	to honour, to pay tribute to
+drop-tr	pt:planear:verb	*	en	program
+gloss	pt:roedor:adjective	s1	rodent; gnawing
+drop-tr	pt:carcaça:noun	*	es	fiambre
+drop-tr	pt:infestar:verb	*	de	verwanzen
+gloss	pt:troço:noun	s1	(Brazil, colloquial) thing, stuff; piece
+drop-tr	pt:devastado:adjective	*	de	gebrochen
+drop-tr	pt:sorridente:adjective	*	de	lächeln
+drop-tr	pt:aflito:adjective	*	de	leiden
+gloss	pt:aflito:adjective	s1	distressed, anxious, troubled
+drop-tr	pt:acompanhado:adjective	*	de	vergesellschaftet
+gloss	pt:demo:noun	s1	(archaic) devil; demo (demonstration)
+drop-tr	pt:sintonizar:verb	*	de	einschalten
+drop-tr	pt:inclinação:noun	*	de	Zuneigung
+drop-tr	pt:lisa:noun	*	de	Pleitegeier
+gloss	pt:lisa:noun	s1	(feminine of liso) smooth; (Brazil, colloquial) broke
+drop-tr	pt:lisa:noun	*	en	brokie
+drop-tr	pt:melancia:noun	*	es	sa
+drop-tr	pt:propulsor:noun	*	de	Schraube
+gloss	pt:espectáculo:noun	s1	(Portugal) show, spectacle
+drop-tr	pt:canino:noun	*	en	cuspid
+drop-tr	pt:misto:noun	*	de	D
+gloss	pt:misto:noun	s1	(Brazil) ham and cheese sandwich; (adjective) mixed
+gloss	pt:flexão:noun	s1	push-up; bending; (grammar) inflection
+drop-tr	pt:acorrentar:verb	*	de	verketten
+gloss	pt:desenrolar:verb	s1	to unroll; (desenrolar-se) to unfold, to develop
+drop-tr	pt:desenrolar:verb	*	de	abdocken
+drop-tr	pt:avatar:noun	*	es	símbolo
+drop-tr	pt:avatar:noun	*	es	emblema
+drop-tr	pt:punheta:noun	*	de	Selbstbefriedigung
+gloss	pt:destroçar:verb	s1	to wreck, to destroy, to shatter
+drop-tr	pt:arrumado:adjective	*	de	nett
+gloss	pt:rodado:adjective	s1	(vehicle) driven, mileage; (person) experienced
+drop-tr	pt:rodado:adjective	*	en	wheelset
+drop-tr	pt:zé:noun	*	de	Kaffee
+gloss	pt:zé:noun	s1	(colloquial) Joe, any guy (zé-ninguém = nobody)
+drop-tr	pt:espantalho:noun	*	de	Mummelputz
+gloss	pt:dispensado:adjective	s1	dismissed, let go; exempt
+gloss	pt:alar:verb	s1	to haul; to give wings to
+drop-tr	pt:trilhão:noun	*	en	billion
+gloss	pt:diversos:noun	s1	several, various
+drop-tr	pt:banido:adjective	*	es	vedado
+drop-tr	pt:mola:noun	*	es	re
+gloss	pt:estrago:noun	s1	damage, destruction; (fazer estrago) to wreak havoc
+gloss	pt:pô:interjection	s1	(Brazil) man!, come on!, damn
+drop-tr	pt:desleixado:adjective	*	de	schäbig
+gloss	pt:desleixado:adjective	s1	sloppy, careless, slovenly
+gloss	pt:embaraçar:verb	s1	to tangle; to embarrass
+gloss	pt:seta:noun	s1	arrow; (car) indicator
+drop-tr	pt:seta:noun	*	en	weapon
+drop-tr	pt:seta:noun	*	de	Waffe
+first	pt:seta:noun	*	en:arrow:noun
+first	pt:seta:noun	*	de:Pfeil:noun
+first	pt:seta:noun	*	es:flecha:noun
+gloss	pt:doutorado:noun	s1	doctorate, PhD; (adjective) holding a doctorate
+drop-tr	pt:doutorado:noun	*	en	doctor
+gloss	pt:tostão:noun	s1	(sem um tostão) penny, cent; old coin
+first	pt:tostão:noun	*	en:penny:noun
+gloss	pt:sinalizador:noun	s1	flare; signal, indicator
+first	pt:sinalizador:noun	*	en:flare:noun
+gloss	pt:nascença:noun	s1	birth (de nascença = from birth)
+gloss	pt:largada:noun	s1	start (of a race)
+drop-tr	pt:largada:noun	*	de	Abfahrt
