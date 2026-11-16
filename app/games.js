@@ -456,13 +456,17 @@ async function sendRep() {
   const langs = H.game === 'babel' ? H.langs.join('+') : H.game === 'pairs' || H.game === 'search' ? H.lang + '+' + H.lang2 : H.game === 'quinque' ? (window.FLTGame.state.langs || []).join('+') : H.lang;
   const why = `[${H.game} ${langs}] ${r.why} | ${r.note ? r.note + ' | ' : ''}${wtxt}`.slice(0, 300);
   const S = window.FLTSync && window.FLTSync.api, u = S && S.user;
-  if (u && S.fb && S.db) {
-    try { await S.fb.addDoc(S.fb.collection(S.db, 'reports'), { about: 'game:' + (pick[0] ? pick[0].id || pick[0].lemma : H.game), by: u.uid, why, t: Date.now(), kind: 'game', thread: '', reply: '' }); r.sent = true; }
-    catch (e) { r.err = t('gh.rep.fail', 'The report could not be sent. Please try again.'); }
-  } else {
-    const url = 'https://github.com/heitorpais/four-language-translator/issues/new?title=' + encodeURIComponent('Game report: ' + H.game) + '&body=' + encodeURIComponent(why + '\n\nAddress: ' + location.href);
-    window.open(url, '_blank', 'noopener'); r.sent = true;
-  }
+  const doc = { kind: 'game', why, t: Date.now(), about: String(pick[0] ? pick[0].id || pick[0].lemma : H.game).slice(0, 120), by: '' };
+  try {
+    if (u && S.fb && S.db) await S.fb.addDoc(S.fb.collection(S.db, 'feedback'), Object.assign(doc, { by: u.uid }));
+    else {
+      /* no account: write straight to the database's web address; the rules accept this one kind of document from anyone */
+      const f = {}; for (const [k, v] of Object.entries(doc)) f[k] = typeof v === 'number' ? { integerValue: String(v) } : { stringValue: v };
+      const res = await fetch('https://firestore.googleapis.com/v1/projects/glossarium-25071/databases/(default)/documents/feedback?key=AIzaSyBvq97UZM9NJotUsusdBGbmuovTjBAlwFI', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ fields: f }) });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+    }
+    r.sent = true; r.err = '';
+  } catch (e) { r.err = t('gh.rep.fail', 'The report could not be sent. Please try again.'); }
   paintRep();
 }
 

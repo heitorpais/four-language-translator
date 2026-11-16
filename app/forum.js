@@ -310,7 +310,8 @@ async function openAdmin() {
     const S = SY(); await S.load();
     const snap = await S.fb.getDocs(S.fb.query(S.fb.collection(S.db, 'reports'), S.fb.limit(100)));
     const reps = []; snap.forEach(d => reps.push(Object.assign({ id: d.id }, d.data())));
-    reps.sort((a, b) => b.t - a.t); await loadProfiles(reps.map(r => r.about));
+    try { const fs = await S.fb.getDocs(S.fb.query(S.fb.collection(S.db, 'feedback'), S.fb.limit(200))); fs.forEach(d => reps.push(Object.assign({ id: d.id, col: 'feedback' }, d.data()))); } catch (e) {}
+    reps.sort((a, b) => b.t - a.t); await loadProfiles(reps.filter(r => r.kind !== 'game').map(r => r.about));
     F.admin = { reports: reps };
   } catch (e) { F.admin = { err: String(e.code || e) }; }
   paint();
@@ -318,7 +319,7 @@ async function openAdmin() {
 async function adminDo(k, b) {
   const S = SY(), fb = S.fb;
   try {
-    if (k === 'rep-done') { await fb.deleteDoc(fb.doc(S.db, 'reports', b.dataset.id)); F.admin.reports = F.admin.reports.filter(r => r.id !== b.dataset.id); }
+    if (k === 'rep-done') { await fb.deleteDoc(fb.doc(S.db, b.dataset.col || 'reports', b.dataset.id)); F.admin.reports = F.admin.reports.filter(r => r.id !== b.dataset.id); }
     else if (k === 'block') { await fb.setDoc(fb.doc(S.db, 'blocked', b.dataset.uid), { t: Date.now() }); toast(t('forum.blocked', 'This account can no longer post.')); }
     else if (k === 'unblock') { await fb.deleteDoc(fb.doc(S.db, 'blocked', b.dataset.uid)); toast(t('forum.unblocked', 'This account can post again.')); }
   } catch (e) { toast(friendly(e)); }
@@ -412,7 +413,7 @@ function body() {
     const a = F.admin || {};
     if (a.loading) return `<p class="hint">${esc(t('prof.loading', 'Loading…'))}</p>`;
     if (a.err) return `<p class="hint err">${esc(a.err)}</p>`;
-    return `<h3>${esc(t('forum.reports', 'Reports'))} (${a.reports.length})</h3>${a.reports.length ? `<ul class="threads">${a.reports.map(r => { if (r.kind === 'game') return `<li class="th"><div class="th-b"><span class="th-t"><b>${esc(t('forum.gamerep', 'Game'))}</b> · ${esc(r.why)} · ${esc(ago(r.t))}</span><span class="th-m"><button class="lnk small" data-fx="rep-done" data-id="${esc(r.id)}">${esc(t('forum.done', 'Done, remove report'))}</button></span></div></li>`; const p = profiles.get(r.about) || {}; return `<li class="th"><div class="th-b"><span class="th-t"><b>${esc(r.why)}</b> · @${esc(p.username || r.about)} · ${esc(r.kind || 'profile')} · ${esc(ago(r.t))}</span><span class="th-m">${r.thread ? `<button class="lnk small" data-fx="thread" data-id="${esc(r.thread)}">${esc(t('forum.open', 'Open'))}</button> · ` : p.username ? `<button class="lnk small" data-fx="profile" data-name="${esc(p.username)}">${esc(t('forum.open', 'Open'))}</button> · ` : ''}<button class="lnk small" data-fx="block" data-uid="${esc(r.about)}">${esc(t('forum.block', 'Block (admin)'))}</button> · <button class="lnk small" data-fx="unblock" data-uid="${esc(r.about)}">${esc(t('forum.unblock', 'Unblock'))}</button> · <button class="lnk small" data-fx="rep-done" data-id="${esc(r.id)}">${esc(t('forum.done', 'Done, remove report'))}</button></span></div></li>`; }).join('')}</ul>` : `<p class="hint">${esc(t('forum.noreports', 'No reports.'))}</p>`}`;
+    return `<h3>${esc(t('forum.reports', 'Reports'))} (${a.reports.length})</h3>${a.reports.length ? `<ul class="threads">${a.reports.map(r => { if (r.kind === 'game') return `<li class="th"><div class="th-b"><span class="th-t"><b>${esc(t('forum.gamerep', 'Game'))}</b> · ${esc(r.why)} · ${esc(ago(r.t))}</span><span class="th-m"><button class="lnk small" data-fx="rep-done" data-col="${esc(r.col || 'reports')}" data-id="${esc(r.id)}">${esc(t('forum.done', 'Done, remove report'))}</button></span></div></li>`; const p = profiles.get(r.about) || {}; return `<li class="th"><div class="th-b"><span class="th-t"><b>${esc(r.why)}</b> · @${esc(p.username || r.about)} · ${esc(r.kind || 'profile')} · ${esc(ago(r.t))}</span><span class="th-m">${r.thread ? `<button class="lnk small" data-fx="thread" data-id="${esc(r.thread)}">${esc(t('forum.open', 'Open'))}</button> · ` : p.username ? `<button class="lnk small" data-fx="profile" data-name="${esc(p.username)}">${esc(t('forum.open', 'Open'))}</button> · ` : ''}<button class="lnk small" data-fx="block" data-uid="${esc(r.about)}">${esc(t('forum.block', 'Block (admin)'))}</button> · <button class="lnk small" data-fx="unblock" data-uid="${esc(r.about)}">${esc(t('forum.unblock', 'Unblock'))}</button> · <button class="lnk small" data-fx="rep-done" data-id="${esc(r.id)}">${esc(t('forum.done', 'Done, remove report'))}</button></span></div></li>`; }).join('')}</ul>` : `<p class="hint">${esc(t('forum.noreports', 'No reports.'))}</p>`}`;
   }
   return err;
 }
