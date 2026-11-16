@@ -163,7 +163,7 @@ G.hang = {
   draw(w) {
     const parts = ['<line x1="10" y1="115" x2="90" y2="115"/>', '<line x1="30" y1="115" x2="30" y2="10"/>', '<line x1="30" y1="10" x2="75" y2="10"/>', '<line x1="75" y1="10" x2="75" y2="25"/>',
       '<circle cx="75" cy="35" r="10"/>', '<line x1="75" y1="45" x2="75" y2="75"/>', '<line x1="75" y1="52" x2="62" y2="65"/><line x1="75" y1="52" x2="88" y2="65"/>', '<line x1="75" y1="75" x2="64" y2="95"/><line x1="75" y1="75" x2="86" y2="95"/>'];
-    return `<svg class="gh-hang" viewBox="0 0 100 120" aria-hidden="true">${parts.slice(0, w).join('')}</svg>`;
+    return `<svg class="gh-gallows" viewBox="0 0 100 120" aria-hidden="true">${parts.slice(0, w).join('')}</svg>`;
   },
   html(s) {
     const cells = this.chars(s).map(c => !c.f ? `<span class="gh-sp">${esc(c.ch)}</span>` : `<span class="gh-l">${s.done || Array.from(c.f).every(x => s.guessed[x]) ? esc(c.ch.toUpperCase()) : '&nbsp;'}</span>`).join('');
@@ -446,7 +446,7 @@ function optsHtml() {
 function paintStage() {
   const el = $('#gh-stage'); if (!el || H.game === 'quinque') return;
   const s = H.st;
-  el.innerHTML = H.busy || (!s && !H.msg) ? `<p class="hint">${esc(H.msg || t('gh.loading', 'Getting the words ready…'))}</p>` : !s ? `<p class="hint">${esc(H.msg)}</p>` : `<div class="gh-play gh-${H.game}">${G[H.game].html(s)}</div>`;
+  el.innerHTML = H.busy || (!s && !H.msg) ? `<p class="hint">${esc(H.msg || t('gh.loading', 'Getting the words ready…'))}</p>` : !s ? `<p class="hint">${esc(H.msg)}</p>` : `<div class="gh-play ghp-${H.game}">${G[H.game].html(s)}</div>`;
 }
 function paint() {
   const el = $('#game'); if (!el || el.hidden || !A) return;
