@@ -695,6 +695,32 @@ body.ob-open{overflow:hidden}
 .obstep{text-align:center;color:var(--muted);font-variant:small-caps;letter-spacing:.08em;margin:0}
 .obslide{text-align:center;min-height:190px}
 .obicon{font-size:44px;line-height:1;margin:14px 0 4px}
+
+/* Quinque, the word game (game.js) */
+.gm-langs{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.gm-opts{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:6px 0 10px;color:var(--muted)}
+.gm-play{display:flex;flex-direction:column;align-items:center;gap:8px}
+.gm-board{display:grid;gap:6px;margin:6px auto;width:min(100%,330px)}
+.gm-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.gm-cell{width:100%;aspect-ratio:1;min-width:0;display:flex;align-items:center;justify-content:center;border:2px solid var(--rule);background:var(--surface);color:var(--ink);font:600 clamp(20px,6vw,30px) var(--body);text-transform:uppercase;border-radius:4px;box-sizing:border-box}
+.gm-cell.typed{border-color:var(--muted)}
+.gm-cell.g{background:#3a8f5c;border-color:#3a8f5c;color:#fff}
+.gm-cell.y{background:#c9a227;border-color:#c9a227;color:#1b1b1b}
+.gm-cell.x{background:#787c86;border-color:#787c86;color:#fff}
+.gm-cbc .gm-cell.g,.gm-cbc .gm-key.g{background:#e8772e;border-color:#e8772e;color:#fff}
+.gm-cbc .gm-cell.y,.gm-cbc .gm-key.y{background:#4a9fe0;border-color:#4a9fe0;color:#fff}
+.gm-cell.flip{animation:gmflip .5s ease both}
+@keyframes gmflip{0%{transform:rotateX(0)}50%{transform:rotateX(90deg)}100%{transform:rotateX(0)}}
+.gm-row.shake{animation:gmshake .4s}
+@keyframes gmshake{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+.gm-msg{min-height:1.4em;margin:0;font-weight:600;text-align:center}
+.gm-keys{display:flex;flex-direction:column;gap:6px;width:100%;max-width:520px;user-select:none}
+.gm-krow{display:flex;gap:4px;justify-content:center}
+.gm-key{flex:1 1 0;min-width:0;max-width:44px;height:52px;border:0;border-radius:5px;background:var(--rule);color:var(--ink);font:600 16px var(--body);cursor:pointer;padding:0;touch-action:manipulation}
+.gm-key.wide{flex:1.6 1 0;max-width:72px;font-size:13px}
+.gm-key.g{background:#3a8f5c;color:#fff}.gm-key.y{background:#c9a227;color:#1b1b1b}.gm-key.x{background:#787c86;color:#fff;opacity:.85}
+.gm-result{text-align:center}
+.gm-hint{text-align:center}
 </style>
 </head>
 <body>
@@ -705,6 +731,7 @@ body.ob-open{overflow:hidden}
     <nav class="top" aria-label="Views">
       <button class="btn navb" id="explore-toggle" aria-expanded="false" aria-controls="explore" data-t="nav.explore">Explore</button>
       <button class="btn navb" id="practice-toggle" aria-expanded="false" aria-controls="practice" data-t="nav.practice">Practice</button>
+      <button class="btn navb" id="game-toggle" aria-expanded="false" aria-controls="game" data-t="nav.game">Quinque</button>
       <button class="btn navb sm-nav" id="progress-toggle" aria-expanded="false" aria-controls="progress" data-t="nav.progress">Progress</button>
       <button class="btn navb" id="forum-toggle" aria-expanded="false" aria-controls="forum" data-t="nav.forum">Reading Room</button>
       <button class="btn navb" id="community-toggle" aria-expanded="false" aria-controls="community" data-t="nav.community">Community</button>
@@ -729,6 +756,7 @@ body.ob-open{overflow:hidden}
 
   <section id="explore" class="panel" hidden aria-label="Explore"></section>
   <section id="practice" class="panel" hidden aria-label="Practice"></section>
+  <section id="game" class="panel" hidden aria-label="Quinque"></section>
   <section id="progress" class="panel" hidden aria-label="Progress"></section>
   <section id="share-box" class="panel" hidden aria-label="Share"></section>
   <section id="forum" class="panel" hidden aria-label="Reading Room"></section>
@@ -768,6 +796,7 @@ body.ob-open{overflow:hidden}
 <script src="forms.js"></script>
 <script src="progress.js"></script>
 <script src="views.js"></script>
+<script src="game.js"></script>
 <script src="app.js"></script>
 <script src="avatars.js"></script>
 <script src="sync.js"></script>

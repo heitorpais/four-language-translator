@@ -17,6 +17,8 @@ const addDays = (s, n) => { const d = parseDay(s); d.setDate(d.getDate() + n); r
 const monday = s => { const d = parseDay(s); const w = (d.getDay() + 6) % 7; d.setDate(d.getDate() - w); return day(d); };
 let TEST = /progress-test/.test(location.search + location.hash);
 
+/* ask the browser to keep this site's data (otherwise some browsers, Safari above all, may clear it after a while) */
+function keepStorage() { try { if (navigator.storage && navigator.storage.persist) navigator.storage.persisted().then(p => p || navigator.storage.persist()).catch(() => {}); } catch (e) {} }
 function prog() {
   const P = A.P;
   if (!P.prog || P.prog.v !== 1) P.prog = { v: 1, words: {}, days: {}, runs: {}, best: {}, aux: {}, opened: {}, quizzes: 0 };
@@ -407,7 +409,7 @@ document.addEventListener('click', async ev => {
 
 window.FLTProgress = {
   syncLangs(o) { ALL.length = 0; ALL.push(...o); },
-  init(api) { A = api; prog(); },
+  init(api) { A = api; prog(); keepStorage(); },
   dataReady() { setTimeout(() => check(true), 6000); }, // after the first-visit downloads, so the badge check never slows them
   record, quizDone, opened, saved, paint, check, evaluate, BADGES, yearData,
   levelCount(e) {          // for the "I know this" message: how far this word's level bar is now

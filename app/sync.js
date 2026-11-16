@@ -103,13 +103,41 @@ function merge(P, d) {           // the same rules as "Load from a file": nothin
   const seen = new Set(P.history.map(h => h.id)); P.history = P.history.concat((d.history || []).filter(h => !seen.has(h.id))).sort((a, b) => b.t - a.t).slice(0, 300);
   P.mistakes = (P.mistakes || []).concat(d.mistakes || []).slice(-200);
   for (const [k, n] of Object.entries(d.looks || {})) P.looks[k] = Math.max(P.looks[k] || 0, n);
-  const words = p => p && p.words ? Object.keys(p.words).length : 0;
-  if (d.prog && words(d.prog) > words(P.prog)) P.prog = d.prog;
-  P.badges = Object.assign({}, d.badges || {}, P.badges || {}); P.srs = Object.assign({}, d.srs || {}, P.srs || {});
+  keepProgress(P, d);
   if (!P.last && d.last) P.last = d.last;
 }
+/* Progress only ever grows: practice days, words answered, learned words, runs and badges from both copies are joined,
+   so no device and no sign-in can take progress away. */
+function mergeProg(a, b) {
+  if (!a || a.v !== 1) return b && b.v === 1 ? JSON.parse(JSON.stringify(b)) : a;
+  if (!b || b.v !== 1) return a;
+  const o = JSON.parse(JSON.stringify(a));
+  for (const [id, w] of Object.entries(b.words || {})) {
+    const x = o.words[id];
+    if (!x) { o.words[id] = JSON.parse(JSON.stringify(w)); continue; }
+    x.d = [...new Set([...(x.d || []), ...(w.d || [])])].sort().slice(-3);
+    x.n = Math.max(x.n || 0, w.n || 0);
+    const l = [x.l, w.l].filter(Boolean).sort()[0]; if (l) x.l = l; else if (x.d.length >= 3) x.l = x.d[2];
+  }
+  for (const [d, n] of Object.entries(b.days || {})) o.days[d] = Math.max(o.days[d] || 0, n);
+  for (const k of ['runs', 'best']) { o[k] = o[k] || {}; for (const [r, n] of Object.entries(b[k] || {})) o[k][r] = Math.max(o[k][r] || 0, n); }
+  o.aux = Object.assign({}, b.aux || {}, o.aux || {});
+  o.opened = o.opened || {}; for (const [l, d] of Object.entries(b.opened || {})) if (!o.opened[l] || d < o.opened[l]) o.opened[l] = d;
+  o.quizzes = Math.max(o.quizzes || 0, b.quizzes || 0);
+  for (const k of Object.keys(b)) if (!(k in o)) o[k] = b[k];
+  return o;
+}
+function keepProgress(P, d) {
+  P.prog = mergeProg(P.prog, d.prog);
+  const bd = Object.assign({}, d.badges || {});
+  for (const [k, v] of Object.entries(P.badges || {})) { const o = bd[k]; bd[k] = o && o.date && v && v.date && o.date < v.date ? o : (v || o); }
+  P.badges = bd;
+  const srs = Object.assign({}, d.srs || {});
+  for (const [id, c] of Object.entries(P.srs || {})) { const o = srs[id]; srs[id] = !o || (c && (c.due || 0) >= (o.due || 0)) ? c : o; }
+  P.srs = srs;
+}
 function replace(P, d) { for (const k of Object.keys(P)) delete P[k]; Object.assign(P, { favs: {}, known: {}, notes: {}, lists: [], history: [], mistakes: [], looks: {}, offered: {}, last: null, srs: {} }, d); }
-const hasData = P => Object.keys(P.favs).length || P.lists.length || Object.keys(P.notes).length || Object.keys(P.known).length || P.history.length;
+const hasData = P => (P.prog && Object.keys(P.prog.words || {}).length) || Object.keys(P.badges || {}).length || Object.keys(P.favs).length || P.lists.length || Object.keys(P.notes).length || Object.keys(P.known).length || P.history.length;
 async function pull() {
   if (!user) return;
   try {
@@ -117,7 +145,7 @@ async function pull() {
     if (snap.exists()) {
       const d = JSON.parse(snap.data().me || '{}');
       if (ls.get(DIRTY) === '1' || (!ls.get('flt:acct-seen') && hasData(P))) merge(P, d);      // changes made here since the last sync: join them
-      else replace(P, d);                                                                          // nothing new here: the saved copy is the newest
+      else { const mine = { prog: P.prog, badges: P.badges, srs: P.srs }; replace(P, d); keepProgress(P, mine); }   // the saved copy is the newest, but progress is never lost
       silent = true; A().saveP(); silent = false;
       refreshViews();
     }
@@ -135,12 +163,13 @@ async function push() {
   } catch (e) { state = 'error'; paintAll(); }
 }
 function changed() {          // the app calls this after every change to "My words"
-  if (silent || !ls.get(FLAG)) return;
-  ls.set(DIRTY, '1');
+  if (silent) return;
+  ls.set(DIRTY, '1');                  // also when signed out: changes made then are joined, not replaced, at the next sign-in
   if (!user) return;
   clearTimeout(pushTimer); pushTimer = setTimeout(push, 3000);
 }
-function refreshViews() { try { const V = window.FLTViews; if (V) { V.counter(); if (!$('#me').hidden) V.paint('me'); } A().render(false); } catch (e) {} }
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden' && user && ls.get(DIRTY) === '1') push(); });   // leaving the app: save now, not in 3 seconds
+function refreshViews() { try { const V = window.FLTViews; if (V) { V.counter(); if (!$('#me').hidden) V.paint('me'); if (!$('#progress').hidden && window.FLTProgress) FLTProgress.paint(); } A().render(false); } catch (e) {} }
 
 /* ---------- profile ---------- */
 async function loadProfile() {
