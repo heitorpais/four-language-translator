@@ -200,8 +200,9 @@ function resultHtml(b, lang) {
   </div>`;
 }
 
+const root = () => { const p = $('#game'); return p && !p.hidden ? $('#gm-quinque') : null; };   // the Games tab (games.js) gives Quinque its place
 function paint(reveal) {
-  const el = $('#game'); if (!el || el.hidden || !A) return;
+  const el = root(); if (!el || !A) return;
   if (!G.langs) restore();
   const avail = A.dataLangs();
   const chooser = `<div class="gm-langs">${avail.map(l => { const on = G.langs.includes(l); return `<button class="chip${on ? ' sel' : ''}" data-gl="${l}" aria-pressed="${on}"${!on && G.langs.length >= MAX_LANGS ? ' disabled' : ''}>${fl(l)}${esc(A.LNAME[l])}${A.betaTag(l)}</button>`; }).join('')}</div>`;
@@ -226,7 +227,7 @@ function paint(reveal) {
       body = tabs + `<div class="gm-play">${all ? now : boardHtml(b, G.active, reveal)}<p class="gm-msg" aria-live="polite">${esc(G.msg)}</p>${b.done ? resultHtml(b, G.active) : hint + keyboardHtml(b, G.active)}</div>`;
     }
   }
-  el.innerHTML = `<h2>Quinque</h2><p class="hint">${esc(t('game.intro2', 'Guess the word in six tries. Green: right letter, right place. Gold: the letter is in the word, somewhere else. Grey: not in the word. Play as often as you like.'))}</p>
+  el.innerHTML = `<p class="hint">${esc(t('game.intro2', 'Guess the word in six tries. Green: right letter, right place. Gold: the letter is in the word, somewhere else. Grey: not in the word. Play as often as you like.'))}</p>
     <details class="gm-rules"><summary>${esc(t('game.rules', 'Rules'))}</summary><ul>
       <li>${esc(t('game.r1', 'Only dictionary forms count: nouns in the singular, verbs in the infinitive, adjectives in their basic form.'))}</li>
       <li>${esc(t('game.r2', 'No conjugated verbs, no plurals, no names, no abbreviations.'))}</li>
@@ -240,7 +241,7 @@ async function refresh() { if (G.busy) return; G.busy = true; try { await ensure
 
 /* ---------- events ---------- */
 document.addEventListener('click', ev => {
-  const el = $('#game'); if (!el || el.hidden || !el.contains(ev.target)) return;
+  const el = root(); if (!el || !el.contains(ev.target)) return;
   const k = ev.target.closest('[data-gk]'); if (k) { type(k.dataset.gk); return; }
   const tb = ev.target.closest('[data-gt]'); if (tb) { G.active = tb.dataset.gt; G.msg = ''; persist(); paint(); return; }
   const gl = ev.target.closest('[data-gl]');
@@ -263,7 +264,7 @@ document.addEventListener('change', ev => {
   else if (ev.target.id === 'gm-cb') { G.cb = ev.target.checked; persist(); paint(); }
 });
 document.addEventListener('keydown', ev => {
-  const el = $('#game'); if (!el || el.hidden || ev.ctrlKey || ev.metaKey || ev.altKey) return;
+  const el = root(); if (!el || ev.ctrlKey || ev.metaKey || ev.altKey) return;
   const tg = ev.target; if (tg && (tg.tagName === 'INPUT' || tg.tagName === 'SELECT' || tg.tagName === 'TEXTAREA' || tg.isContentEditable)) return;
   if (ev.key === 'Enter') { if (tg && tg.closest && tg.closest('button') && !tg.closest('[data-gk]')) return; ev.preventDefault(); type('enter'); }
   else if (ev.key === 'Backspace') { ev.preventDefault(); type('back'); }
@@ -274,6 +275,6 @@ window.FLTGame = {
   init(api) { A = api; },
   paint() { if (!A) return; if (!G.langs) restore(); paint(); refresh(); },
   get state() { return G; },
-  _letters: letters, _score: score, _pool: pool
+  _letters: letters, _score: score, _pool: pool, _loadPool: loadPool
 };
 })();

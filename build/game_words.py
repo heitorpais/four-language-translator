@@ -1,10 +1,10 @@
 """Word lists for Quinque, the five-letter word game (app/game.js).
 
 For each language writes app/data/game/game-<lang>.json.gz:
-  answers: {"5": [[id, lemma, frequency_rank, level, meaning], ...], "6": [...]}  everyday words that can be the hidden word
+  answers: {"4" ... "8": [[id, lemma, frequency_rank, level, meaning], ...]}  everyday words that can be the hidden word
            meaning: a short definition in the word's own language (from that language's Wiktionary edition; English
            for English), with the word itself blanked out, so the hint never gives the answer away
-  valid:   {"5": ["casas"...], "6": [...]}                             every base form the player may type
+  valid:   {"3" ... "9": ["casas"...]}                             every base form the player may type
 
 Rules (shown in the game): only dictionary base forms count. Nouns in the singular, verbs in the infinitive (the
 dictionary form), adjectives in the base form. No conjugated verbs, no plurals, no names, no abbreviations.
@@ -17,7 +17,8 @@ import glob, gzip, hashlib, json, os, re, sqlite3, unicodedata, zlib
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'app', 'data')
 LANGS = ['en', 'de', 'fr', 'pt', 'cs', 'it', 'es', 'nl', 'sv', 'la']
-LENS = (5, 6)
+LENS = tuple(range(3, 10))          # every length the games use: Quinque 5 and 6, the other games 3 to 9
+ANSWER_LENS = tuple(range(4, 9))   # hidden words: 4 to 8 letters
 POS_ANSWER = {'noun', 'verb', 'adjective', 'adverb', 'numeral'}
 POS_SKIP = {'name', 'proper noun', 'abbreviation', 'symbol', 'letter', 'prefix', 'suffix', 'affix', 'character', 'phrase', 'contraction', 'particle'}
 BAD = ('vulgar', 'offensive', 'derogatory')
@@ -116,7 +117,7 @@ def build(lang):
             continue
         key = ''.join(x)
         valid[n].add(key)
-        if pos not in POS_ANSWER:
+        if pos not in POS_ANSWER or n not in ANSWER_LENS:
             continue
         senses = e.get('senses') or []
         if any(any(b in (s.get('register') or '') for b in BAD) for s in senses):
@@ -131,7 +132,7 @@ def build(lang):
         if old is None or r < old[2]:              # one answer per spelling: the most frequent entry
             cand[n][key] = [e['id'], lem, r, e.get('level'), None, pos]
     answers = {}
-    for n in LENS:
+    for n in ANSWER_LENS:
         a = sorted(cand[n].values(), key=lambda v: v[2])
         for v in a:
             if v[2] >= 10 ** 7:

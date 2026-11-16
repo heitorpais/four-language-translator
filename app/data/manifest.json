@@ -82074,103 +82074,103 @@
   },
   {
    "file": "game/game-en.json.gz",
-   "bytes": 1356692,
-   "stored_bytes": 489082,
-   "sha256": "767f79d494989e2b",
+   "bytes": 4678807,
+   "stored_bytes": 1616704,
+   "sha256": "7807dacf5ed182da",
    "tier": "game",
    "lang": "en",
-   "entries": 9683,
-   "forms": 35661
+   "entries": 25622,
+   "forms": 179786
   },
   {
    "file": "game/game-de.json.gz",
-   "bytes": 775504,
-   "stored_bytes": 288998,
-   "sha256": "7f877578f564dd3e",
+   "bytes": 2531649,
+   "stored_bytes": 915403,
+   "sha256": "fe9d3a1b7c3dacea",
    "tier": "game",
    "lang": "de",
-   "entries": 6562,
-   "forms": 10691
+   "entries": 18836,
+   "forms": 52836
   },
   {
    "file": "game/game-fr.json.gz",
-   "bytes": 956835,
-   "stored_bytes": 342465,
-   "sha256": "ebb85fbfc25108d4",
+   "bytes": 3210382,
+   "stored_bytes": 1097172,
+   "sha256": "9b19d1eae4799bef",
    "tier": "game",
    "lang": "fr",
-   "entries": 6573,
-   "forms": 22649
+   "entries": 18313,
+   "forms": 108053
   },
   {
    "file": "game/game-pt.json.gz",
-   "bytes": 612965,
-   "stored_bytes": 216093,
-   "sha256": "6893a2d791de43d7",
+   "bytes": 1885822,
+   "stored_bytes": 644279,
+   "sha256": "3f5e8cb74561c760",
    "tier": "game",
    "lang": "pt",
-   "entries": 6019,
-   "forms": 12249
+   "entries": 16310,
+   "forms": 48587
   },
   {
    "file": "game/game-cs.json.gz",
-   "bytes": 716158,
-   "stored_bytes": 250549,
-   "sha256": "e608a41f7e002ead",
+   "bytes": 1914158,
+   "stored_bytes": 654491,
+   "sha256": "7d29d95127e90c22",
    "tier": "game",
    "lang": "cs",
-   "entries": 7745,
-   "forms": 10791
+   "entries": 19330,
+   "forms": 35612
   },
   {
    "file": "game/game-it.json.gz",
-   "bytes": 502061,
-   "stored_bytes": 173470,
-   "sha256": "841baa45460386cf",
+   "bytes": 1936672,
+   "stored_bytes": 630896,
+   "sha256": "4e7fb9a90bb1f73b",
    "tier": "game",
    "lang": "it",
-   "entries": 4271,
-   "forms": 7988
+   "entries": 14202,
+   "forms": 50858
   },
   {
    "file": "game/game-es.json.gz",
-   "bytes": 916239,
-   "stored_bytes": 324350,
-   "sha256": "f1062b033a1ff807",
+   "bytes": 2815755,
+   "stored_bytes": 965281,
+   "sha256": "3645ddc3eb75eed5",
    "tier": "game",
    "lang": "es",
-   "entries": 7339,
-   "forms": 15247
+   "entries": 20734,
+   "forms": 63844
   },
   {
    "file": "game/game-nl.json.gz",
-   "bytes": 626133,
-   "stored_bytes": 226301,
-   "sha256": "0ef170b78398a994",
+   "bytes": 2372075,
+   "stored_bytes": 832655,
+   "sha256": "8dcf90f3e3793d03",
    "tier": "game",
    "lang": "nl",
-   "entries": 5496,
-   "forms": 11577
+   "entries": 17222,
+   "forms": 64160
   },
   {
    "file": "game/game-sv.json.gz",
-   "bytes": 341641,
-   "stored_bytes": 92115,
-   "sha256": "4293339f3c532219",
+   "bytes": 1026298,
+   "stored_bytes": 283589,
+   "sha256": "85b4b4379da8a57b",
    "tier": "game",
    "lang": "sv",
-   "entries": 6407,
-   "forms": 8180
+   "entries": 16384,
+   "forms": 29778
   },
   {
    "file": "game/game-la.json.gz",
-   "bytes": 111902,
-   "stored_bytes": 32810,
-   "sha256": "2bd4b3a04db6109a",
+   "bytes": 364859,
+   "stored_bytes": 107277,
+   "sha256": "15b1640e70fe11a6",
    "tier": "game",
    "lang": "la",
-   "entries": 1585,
-   "forms": 5502
+   "entries": 3355,
+   "forms": 21721
   }
  ],
  "buckets": {
