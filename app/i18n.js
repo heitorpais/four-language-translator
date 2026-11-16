@@ -2,6 +2,14 @@
    itself; a key missing here shows the English text. Written by Claude (Anthropic). */
 window.FLTI18N = {
 de: {
+"game.len": "Buchstaben",
+"game.nowords2": "Für diese Sprache gibt es keine Wörter dieser Länge.",
+"game.intro2": "Errate das Wort in sechs Versuchen. Grün: richtiger Buchstabe an der richtigen Stelle. Gold: Der Buchstabe kommt im Wort vor, aber an einer anderen Stelle. Grau: nicht im Wort. Spiel so oft du willst.",
+"game.rules": "Regeln",
+"game.r1": "Nur Wörterbuchformen zählen: Nomen in der Einzahl, Verben in der Grundform (Infinitiv), Adjektive in der Grundform.",
+"game.r2": "Keine konjugierten Verben, keine Mehrzahl, keine Namen, keine Abkürzungen.",
+"game.r3": "Akzente zählen nicht (é = e, ç = c). Im Schwedischen sind å, ä und ö eigene Buchstaben. Im Deutschen wird ß als ss geschrieben.",
+"game.r4": "Jeder Versuch muss ein Wort aus der Wortliste sein. Das gesuchte Wort ist ein Alltagswort bis zum gewählten Niveau.",
 "game.loading": "{lang} wird geladen…",
 "game.short": "Zu wenige Buchstaben.",
 "game.unknown": "«{w}» steht nicht in der Wortliste.",
@@ -1211,6 +1219,14 @@ fr: {
 "x.irr.la.3": "supin / participe"
 },
 pt: {
+"game.len": "Letras",
+"game.nowords2": "Não há palavras deste tamanho neste idioma.",
+"game.intro2": "Adivinhe a palavra em seis tentativas. Verde: letra certa no lugar certo. Dourado: a letra está na palavra, em outro lugar. Cinza: não está na palavra. Jogue quantas vezes quiser.",
+"game.rules": "Regras",
+"game.r1": "Só valem formas de dicionário: substantivos no singular, verbos no infinitivo, adjetivos na forma básica.",
+"game.r2": "Nada de verbos conjugados, plurais, nomes próprios ou abreviações.",
+"game.r3": "Acentos não contam (é = e, ç = c). Em sueco, å, ä e ö são letras próprias. Em alemão, ß se escreve ss.",
+"game.r4": "Cada tentativa precisa ser uma palavra da lista. A palavra secreta é uma palavra do dia a dia até o nível escolhido.",
 "game.loading": "Carregando {lang}…",
 "game.short": "Faltam letras.",
 "game.unknown": "“{w}” não está na lista de palavras.",

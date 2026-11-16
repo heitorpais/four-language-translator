@@ -82071,6 +82071,106 @@
    "stored_bytes": 90094,
    "sha256": "69bdce0c71963ad8",
    "tier": "build-info"
+  },
+  {
+   "file": "game/game-en.json.gz",
+   "bytes": 684952,
+   "stored_bytes": 202107,
+   "sha256": "d3a812cdaf4d6899",
+   "tier": "game",
+   "lang": "en",
+   "entries": 9683,
+   "forms": 35661
+  },
+  {
+   "file": "game/game-de.json.gz",
+   "bytes": 345644,
+   "stored_bytes": 102795,
+   "sha256": "4a79e15a559b005c",
+   "tier": "game",
+   "lang": "de",
+   "entries": 6562,
+   "forms": 10691
+  },
+  {
+   "file": "game/game-fr.json.gz",
+   "bytes": 452572,
+   "stored_bytes": 134257,
+   "sha256": "8b8d0ab6303ea639",
+   "tier": "game",
+   "lang": "fr",
+   "entries": 6573,
+   "forms": 22649
+  },
+  {
+   "file": "game/game-pt.json.gz",
+   "bytes": 341215,
+   "stored_bytes": 97380,
+   "sha256": "edecf19fb2df1814",
+   "tier": "game",
+   "lang": "pt",
+   "entries": 6019,
+   "forms": 12249
+  },
+  {
+   "file": "game/game-cs.json.gz",
+   "bytes": 403257,
+   "stored_bytes": 112462,
+   "sha256": "ad9b48b9205cf490",
+   "tier": "game",
+   "lang": "cs",
+   "entries": 7745,
+   "forms": 10791
+  },
+  {
+   "file": "game/game-it.json.gz",
+   "bytes": 235667,
+   "stored_bytes": 67798,
+   "sha256": "cca5c7d98fb4e5c7",
+   "tier": "game",
+   "lang": "it",
+   "entries": 4271,
+   "forms": 7988
+  },
+  {
+   "file": "game/game-es.json.gz",
+   "bytes": 420473,
+   "stored_bytes": 119278,
+   "sha256": "5b85dab49883152a",
+   "tier": "game",
+   "lang": "es",
+   "entries": 7339,
+   "forms": 15247
+  },
+  {
+   "file": "game/game-nl.json.gz",
+   "bytes": 311982,
+   "stored_bytes": 91667,
+   "sha256": "d316ac9514371787",
+   "tier": "game",
+   "lang": "nl",
+   "entries": 5496,
+   "forms": 11577
+  },
+  {
+   "file": "game/game-sv.json.gz",
+   "bytes": 322420,
+   "stored_bytes": 91591,
+   "sha256": "cb0cd59b80252444",
+   "tier": "game",
+   "lang": "sv",
+   "entries": 6407,
+   "forms": 8180
+  },
+  {
+   "file": "game/game-la.json.gz",
+   "bytes": 107147,
+   "stored_bytes": 32689,
+   "sha256": "e9d299ed87d4ead1",
+   "tier": "game",
+   "lang": "la",
+   "entries": 1585,
+   "forms": 5502
   }
  ],
  "buckets": {

@@ -22,6 +22,7 @@ rebuilt by the scripts). The download list is in `build/SOURCES.txt`.
 | 9d | `review.py`, `minor_borrowed.py`, `pos_first.py`, `notes.py` | Hand-checked corrections (`build/claude/review.tsv`: wrong translations and meanings that only came in through other languages' links), entries made only of such borrowed meanings become minor (no rank or level), the hand-checked order of parts of speech (`build/claude/pos_first.tsv`), learner notes for all languages (`build/claude/notes_<lang>.tsv`, German in `notes_de_more.tsv`) and more Zurich German forms for entries without one (`build/claude/gsw_more.tsv`). |
 | 10 | `build_tiers.py` | Writes `app/data`: core card files, core details files, letter files of the other tiers, manifest. |
 | 11 | `validate.py` | Checks `app/data`; exit status 1 on failure. |
+| 12 | `game_words.py` | Word lists of the Quinque word game (5 and 6 letters, base forms only): `app/data/game/game-<lang>.json.gz`, added to the manifest. |
 
 `sh build/run_phase4.sh` runs steps 3 to 11.
 

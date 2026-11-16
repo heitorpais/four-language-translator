@@ -22,3 +22,4 @@ python3 -I build/pos_first.py
 python3 -I build/notes.py
 python3 -I build/build_tiers.py
 python3 -I build/validate.py
+python3 -I build/game_words.py
