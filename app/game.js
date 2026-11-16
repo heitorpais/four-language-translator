@@ -16,6 +16,7 @@ const KEY_S = 'flt:game', KEY_STATS = 'flt:game-stats';
 const G = { langs: null, level: 'B1', len: 5, cb: false, view: 'all', boards: {}, active: null, msg: '', busy: false };
 /* small line drawings used instead of emojis (shared with games.js) */
 const SVG = {
+  flag: '<path d="M5 21V4m0 0h11l-2 4 2 4H5"/>',
   quinque: '<rect x="2" y="9" width="4" height="6"/><rect x="7" y="9" width="4" height="6" class="f"/><rect x="12" y="9" width="4" height="6"/><rect x="17" y="9" width="4" height="6" class="f"/>',
   hang: '<path d="M4 21h9M7 21V3h9v3"/><circle cx="16" cy="8.5" r="2.5"/><path d="M16 11v5m-3-3 3-1 3 1m-3 4-2 3m2-3 2 3"/>',
   ana: '<path d="M3 7h4l10 10h4M3 17h4l3-3m4-4 3-3h4m-3-3 3 3-3 3m0 4 3 3-3 3"/>',

@@ -423,10 +423,53 @@ function rulesHtml(g) {
   return R ? `<details class="gm-rules"><summary>${esc(t('game.rules', 'Rules'))}</summary><ul>${R.map(r => `<li>${esc(r)}</li>`).join('')}</ul></details>` : '';
 }
 
+
+/* =================== report a mistake (every game) =================== */
+const REASONS = [['tr', 'gh.rep.tr', 'Wrong translation'], ['word', 'gh.rep.word', 'Wrong word or spelling'], ['def', 'gh.rep.def', 'Wrong explanation or hint'], ['bug', 'gh.rep.bug', 'Something does not work'], ['other', 'comm.r.other', 'Something else']];
+/* the words the player sees right now: [{ lang, lemma, id, to }] */
+function shown() {
+  const s = H.st, out = [];
+  if (H.game === 'quinque') { const q = window.FLTGame.state; for (const l of q.langs || []) { const b = q.boards[l]; if (b && b.lemma) out.push({ lang: l, lemma: b.lemma, id: b.id }); } return out; }
+  if (!s) return out;
+  if (H.game === 'babel') { const r0 = s.rows[0]; s.rows.forEach((r, i) => out.push({ lang: r.lang, lemma: r.e.lemma, id: r.e.id, to: i ? r0.e.lemma : '' })); }
+  else if (H.game === 'pairs') { const by = {}; s.cards.forEach(c => { (by[c.k] = by[c.k] || []).push(c); }); Object.values(by).forEach(([a, b]) => { if (a && b) { const [x, y] = a.lang === H.lang ? [a, b] : [b, a]; out.push({ lang: x.lang, lemma: x.text, id: x.id, to: y.text, tl: y.lang }); } }); }
+  else if (H.game === 'search') s.words.forEach(p => out.push({ lang: H.lang, lemma: p.w.e.lemma, id: p.w.e.id, to: p.w.ts[0].lemma, tl: H.lang2 }));
+  else if (s.word) out.push({ lang: H.lang, lemma: s.word, id: s.id });
+  return out;
+}
+function repHtml() {
+  const r = H.rep;
+  if (!r) return `<button class="lnk small gh-repbtn" data-hr="open">${icon('flag')} ${esc(t('gh.rep', 'Report a mistake in this game'))}</button>`;
+  if (r.sent) return `<p class="hint">${icon('flag')} ${esc(t('comm.reported', 'Thank you. The report was sent.'))} <button class="lnk small" data-hr="x">${esc(t('btn.ok', 'OK'))}</button></p>`;
+  const ws = shown();
+  const q = window.FLTGame.state, over = H.game === 'quinque' ? Object.values(q.boards || {}).every(b => b.done) : !!(H.st && H.st.done);
+  const words = over && ws.length > 1 ? `<p>${esc(t('gh.rep.which', 'Which word? (optional)'))}</p><div class="row">${ws.map((w, i) => `<button class="chip${r.w === i ? ' on' : ''}" data-hr="w" data-i="${i}">${fl(w.lang)} ${esc(w.lemma)}${w.to ? ` · ${esc(w.to)}` : ''}</button>`).join('')}</div>` : '';
+  return `<div class="report gh-rep"><p><b>${esc(t('gh.rep.why', 'What is wrong?'))}</b></p><div class="row">${REASONS.map(([k, key, en]) => `<button class="chip${r.why === k ? ' on' : ''}" data-hr="why" data-k="${k}">${esc(t(key, en))}</button>`).join('')}</div>${words}
+    <textarea id="ghrep-note" rows="2" maxlength="160" placeholder="${esc(t('gh.rep.note', 'What should it be? (optional)'))}">${esc(r.note || '')}</textarea>
+    ${r.err ? `<p class="hint">${esc(r.err)}</p>` : ''}<div class="row"><button class="btn sm primary" data-hr="send"${r.why ? '' : ' disabled'}>${esc(t('gh.rep.send', 'Send report'))}</button><button class="lnk small" data-hr="x">${esc(t('btn.cancel', 'Cancel'))}</button></div></div>`;
+}
+function paintRep() { const el = $('#gh-rep'); if (el) el.innerHTML = repHtml(); }
+async function sendRep() {
+  const r = H.rep, n = $('#ghrep-note'); r.note = n ? n.value.trim().slice(0, 160) : '';
+  const ws = shown(), pick = r.w != null && ws[r.w] ? [ws[r.w]] : ws;
+  const wtxt = pick.filter(Boolean).map(w => `${w.lang}:${w.lemma}${w.to ? '=' + w.to : ''}`).join(', ');
+  const langs = H.game === 'babel' ? H.langs.join('+') : H.game === 'pairs' || H.game === 'search' ? H.lang + '+' + H.lang2 : H.game === 'quinque' ? (window.FLTGame.state.langs || []).join('+') : H.lang;
+  const why = `[${H.game} ${langs}] ${r.why} | ${r.note ? r.note + ' | ' : ''}${wtxt}`.slice(0, 300);
+  const S = window.FLTSync && window.FLTSync.api, u = S && S.user;
+  if (u && S.fb && S.db) {
+    try { await S.fb.addDoc(S.fb.collection(S.db, 'reports'), { about: 'game:' + (pick[0] ? pick[0].id || pick[0].lemma : H.game), by: u.uid, why, t: Date.now(), kind: 'game', thread: '', reply: '' }); r.sent = true; }
+    catch (e) { r.err = t('gh.rep.fail', 'The report could not be sent. Please try again.'); }
+  } else {
+    const url = 'https://github.com/heitorpais/four-language-translator/issues/new?title=' + encodeURIComponent('Game report: ' + H.game) + '&body=' + encodeURIComponent(why + '\n\nAddress: ' + location.href);
+    window.open(url, '_blank', 'noopener'); r.sent = true;
+  }
+  paintRep();
+}
+
 /* =================== the tab =================== */
 async function newRound() {
   if (H.busy) return;
-  H.busy = true; H.st = null; H.msg = ''; paintStage();
+  H.busy = true; H.st = null; H.msg = ''; if (H.rep && H.rep.sent) { H.rep = null; paintRep(); } paintStage();
   try { H.st = await G[H.game].start(); if (!H.st) H.msg = t('gh.nowords', 'Not enough words for this game in this language and level. Try another language or a higher level.'); }
   catch (e) { H.msg = t('gh.err', 'The game could not start: {e}', { e: e.message }); }
   finally { H.busy = false; }
@@ -452,14 +495,14 @@ function paint() {
   const el = $('#game'); if (!el || el.hidden || !A) return;
   if (!H.langs) restore();
   const tabs = `<div class="gh-games" role="tablist">${GAMES.map(g => `<button class="gh-g${g === H.game ? ' on' : ''}" role="tab" aria-selected="${g === H.game}" data-hg2="${g}"><span class="gh-ic">${icon(g)}</span><span>${esc(name(g))}</span>${g === 'babel' ? `<small class="beta-tag">${esc(t('gh.newtag', 'new'))}</small>` : ''}</button>`).join('')}</div>`;
-  el.innerHTML = `<h2>${esc(t('nav.game', 'Games'))}</h2>${tabs}<h3 class="gh-title">${icon(H.game)} ${esc(name(H.game))}</h3><p class="hint">${esc(about(H.game))}</p>${rulesHtml(H.game)}${optsHtml()}<div id="${H.game === 'quinque' ? 'gm-quinque' : 'gh-stage'}"></div>`;
+  el.innerHTML = `<h2>${esc(t('nav.game', 'Games'))}</h2>${tabs}<h3 class="gh-title">${icon(H.game)} ${esc(name(H.game))}</h3><p class="hint">${esc(about(H.game))}</p>${rulesHtml(H.game)}${optsHtml()}<div id="${H.game === 'quinque' ? 'gm-quinque' : 'gh-stage'}"></div><div id="gh-rep">${repHtml()}</div>`;
   if (H.game === 'quinque') window.FLTGame.paint();
   else if (!H.st && !H.busy) { resetScores(); newRound(); }
   else paintStage();
 }
 function pick(g) {
   if (H.st && H.st.timer) clearInterval(H.st.timer);
-  H.game = g; H.st = null; H.msg = ''; resetScores(); persist(); paint();
+  H.game = g; H.st = null; H.msg = ''; H.rep = null; resetScores(); persist(); paint();
 }
 
 /* ---------- events ---------- */
@@ -468,6 +511,16 @@ document.addEventListener('click', ev => {
   const g2 = ev.target.closest('[data-hg2]'); if (g2) { pick(g2.dataset.hg2); return; }
   const hl = ev.target.closest('[data-hl]');
   if (hl) { const l = hl.dataset.hl, i = H.langs.indexOf(l); if (i >= 0) { if (H.langs.length > 2) H.langs.splice(i, 1); } else if (H.langs.length < 4) H.langs.push(l); persist(); H.st = null; paint(); return; }
+  const hr = ev.target.closest('[data-hr]');
+  if (hr) {
+    const k = hr.dataset.hr, n = $('#ghrep-note'); if (H.rep && n) H.rep.note = n.value;
+    if (k === 'open') H.rep = { why: '', w: null, note: '' };
+    else if (k === 'x') H.rep = null;
+    else if (k === 'why') H.rep.why = hr.dataset.k;
+    else if (k === 'w') H.rep.w = H.rep.w === +hr.dataset.i ? null : +hr.dataset.i;
+    else if (k === 'send') { sendRep(); return; }
+    paintRep(); return;
+  }
   if (H.game === 'quinque') return;
   const s = H.st, game = G[H.game];
   const x = ev.target.closest('[data-hx]');
