@@ -455,18 +455,8 @@ async function sendRep() {
   const wtxt = pick.filter(Boolean).map(w => `${w.lang}:${w.lemma}${w.to ? '=' + w.to : ''}`).join(', ');
   const langs = H.game === 'babel' ? H.langs.join('+') : H.game === 'pairs' || H.game === 'search' ? H.lang + '+' + H.lang2 : H.game === 'quinque' ? (window.FLTGame.state.langs || []).join('+') : H.lang;
   const why = `[${H.game} ${langs}] ${r.why} | ${r.note ? r.note + ' | ' : ''}${wtxt}`.slice(0, 300);
-  const S = window.FLTSync && window.FLTSync.api, u = S && S.user;
-  const doc = { kind: 'game', why, t: Date.now(), about: String(pick[0] ? pick[0].id || pick[0].lemma : H.game).slice(0, 120), by: '' };
-  try {
-    if (u && S.fb && S.db) await S.fb.addDoc(S.fb.collection(S.db, 'feedback'), Object.assign(doc, { by: u.uid }));
-    else {
-      /* no account: write straight to the database's web address; the rules accept this one kind of document from anyone */
-      const f = {}; for (const [k, v] of Object.entries(doc)) f[k] = typeof v === 'number' ? { integerValue: String(v) } : { stringValue: v };
-      const res = await fetch('https://firestore.googleapis.com/v1/projects/glossarium-25071/databases/(default)/documents/feedback?key=AIzaSyBvq97UZM9NJotUsusdBGbmuovTjBAlwFI', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ fields: f }) });
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-    }
-    r.sent = true; r.err = '';
-  } catch (e) { r.err = t('gh.rep.fail', 'The report could not be sent. Please try again.'); }
+  const ok = await window.FLTReport.send({ kind: 'game', why, about: pick[0] ? pick[0].id || pick[0].lemma : H.game, where: H.game });
+  if (ok) { r.sent = true; r.err = ''; } else r.err = t('gh.rep.fail', 'The report could not be sent. Please try again.');
   paintRep();
 }
 

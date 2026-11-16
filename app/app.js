@@ -1033,8 +1033,7 @@ function moreBlock(e, ex) {
     ${list('more.coll', 'Common combinations', d.collocations)}${list('more.idioms', 'Idioms', d.idioms)}
     ${d.etymology ? `<div><h3>${esc(t('more.origin', 'Origin'))}</h3><p>${esc(d.etymology)}</p></div>` : ''}
     ${d.learner_mistake ? `<div><h3>${esc(t('more.mistake', 'Common mistake'))}</h3><p>${esc(d.learner_mistake)}</p></div>` : ''}`;
-  const issue = 'https://github.com/heitorpais/four-language-translator/issues/new?title=' + encodeURIComponent('Mistake in ' + e.id) + '&body=' + encodeURIComponent('Entry: ' + e.id + '\nAddress: ' + location.href.split('#')[0] + routeOf(e, null) + '\n\nWhat is wrong:\n\nWhat it should be:\n');
-  return `<div class="extra" lang="en">${body.trim() ? body : `<p>${esc(t('more.none', 'No background is stored for this word yet.'))}</p>`}${sourcesLine(e, ex, lang)}<p><a href="${esc(issue)}" target="_blank" rel="noopener">⚑ ${esc(t('report', 'Report a mistake in this entry'))}</a> <span class="hint">${esc(t('report.h', '(opens GitHub; a free account is needed)'))}</span></p></div>`;
+  return `<div class="extra" lang="en">${body.trim() ? body : `<p>${esc(t('more.none', 'No background is stored for this word yet.'))}</p>`}${sourcesLine(e, ex, lang)}<p>${window.FLTReport ? window.FLTReport.entryButton(e.id) : ''}</p></div>`;
 }
 /* the short grammar line under the headword: "der Tisch · die Tische", "geht · ging · ist gegangen" */
 const csGender = n => ({ m: n.animate === true ? 'masculine animate' : n.animate === false ? 'masculine inanimate' : 'masculine', f: 'feminine', n: 'neuter' }[n.gender] || '');

@@ -577,13 +577,12 @@ async function friendAct(k, uid) {
 }
 function toastMsg(m) { try { A().toast(m); } catch (e) {} }
 async function sendReport(uid, why) {
-  if (!user) { mode = 'create'; openPanel(); return; }
-  try { await fb.addDoc(fb.collection(db, 'reports'), { about: uid, by: user.uid, why: String(why).slice(0, 300), t: Date.now() }); toastMsg(t('comm.reported', 'Thank you. The report was sent.')); }
-  catch (e) { toastMsg(t('comm.fail', 'That did not work. Try again.')); }
+  const ok = await window.FLTReport.send({ kind: 'profile', about: uid, why });
+  toastMsg(ok ? t('comm.reported', 'Thank you. The report was sent.') : t('comm.fail', 'That did not work. Try again.'));
   comm.report = null; paintPanel(); paintComm();
 }
 function reportHtml(uid) {
-  if (!user || uid === user.uid) return '';
+  if (user && uid === user.uid) return '';
   if (comm.report !== uid) return `<button class="lnk small" data-acct-x="rep" data-uid="${uid}">${esc(t('comm.report', 'Report this profile'))}</button>`;
   const reasons = [['name', t('comm.r.name', 'Offensive username')], ['pic', t('comm.r.pic', 'Offensive picture')], ['text', t('comm.r.text', 'Offensive text')], ['spam', t('comm.r.spam', 'Spam or fake')], ['other', t('comm.r.other', 'Something else')]];
   return `<div class="report"><p>${esc(t('comm.r.why', 'What is wrong with this profile?'))}</p><div class="row">${reasons.map(([k, l]) => `<button class="chip" data-acct-x="rep-send" data-uid="${uid}" data-why="${k}">${esc(l)}</button>`).join('')}<button class="lnk small" data-acct-x="rep-x">${esc(t('btn.cancel', 'Cancel'))}</button></div></div>`;

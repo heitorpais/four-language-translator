@@ -162,13 +162,14 @@ service cloud.firestore {
       }
     }
 
-    // reports about game words: anyone may send one, even without an account; only the owner reads and deletes them
+    // reports about game words, dictionary entries, posts and profiles: anyone may send one, even without an account; only the owner reads and deletes them
     match /feedback/{id} {
       allow read, delete: if isAdmin();
-      allow create: if request.resource.data.keys().hasOnly(['kind', 'why', 't', 'about', 'by'])
-        && request.resource.data.kind == 'game'
+      allow create: if request.resource.data.keys().hasOnly(['kind', 'why', 't', 'about', 'where', 'by'])
+        && request.resource.data.kind in ['game', 'entry', 'post', 'reply', 'profile']
         && request.resource.data.why is string && request.resource.data.why.size() > 0 && request.resource.data.why.size() <= 300
         && request.resource.data.about is string && request.resource.data.about.size() <= 120
+        && (!('where' in request.resource.data) || (request.resource.data.where is string && request.resource.data.where.size() <= 200))
         && request.resource.data.t is int
         && (request.resource.data.by == '' || (signedIn() && request.resource.data.by == request.auth.uid));
     }
