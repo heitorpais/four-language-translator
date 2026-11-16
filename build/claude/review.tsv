@@ -28432,3 +28432,1774 @@ gloss	pt:travesti:noun	s1	travesti (Latin American transgender woman); cross-dre
 drop-tr	pt:fulano:noun	*	de	Rand
 drop-tr	pt:amo:noun	*	de	Meister
 gloss	pt:amo:noun	s1	master, owner; (verb form) I love
+gloss	nl:dat:pronoun	s1	that, which, who
+gloss	nl:je:pronoun	s1	you (unstressed); one (generic); your
+drop-tr	nl:ze:pronoun	*	pt	lhes
+gloss	nl:ze:pronoun	s1	she; they, them
+gloss	nl:jullie:pronoun	s1	you (plural), you all
+drop-tr	nl:te:adverb	*	de	zu
+gloss	nl:te:adverb	s1	too (excessively); to (before an infinitive)
+drop-tr	nl:gaan:verb	*	de	türmen
+drop-tr	nl:gaan:verb	*	en	do
+gloss	nl:kunnen:verb	s1	can, to be able to
+gloss	nl:er:adverb	s1	there; (unstressed) of it, of them
+drop-tr	nl:willen:verb	*	de	bedürfen
+gloss	nl:zullen:verb	s1	shall, will (future auxiliary)
+drop-tr	nl:komen:verb	*	en	cum
+drop-tr	nl:komen:verb	*	pt	ejacular
+gloss	nl:naar:preposition	s1	to, towards; after; according to
+drop-tr	nl:zien:verb	*	en	think
+gloss	nl:wel:adverb	s1	well; indeed, certainly (emphatic); probably
+drop-tr	nl:wel:adverb	*	en	too
+drop-tr	nl:laten:verb	*	pt	ir
+drop-tr	nl:worden:verb	*	de	entstehen
+drop-tr	nl:ook:adverb	*	de	immerhin
+drop-tr	nl:maken:verb	*	en	get
+drop-tr	nl:leven:noun	*	en	health
+gloss	nl:mens:noun	s1	human being, person
+drop-tr	nl:mens:noun	*	de	Leute
+drop-tr	nl:mens:noun	*	en	people
+drop-tr	nl:mens:noun	*	pt	gente
+drop-tr	nl:tijd:noun	*	de	Tempus
+gloss	nl:even:adverb	s1	for a moment, briefly; just
+gloss	nl:gewoon:adverb	s1	just, simply
+drop-tr	nl:ander:adjective	*	de	anderweit
+drop-tr	nl:vragen:verb	*	de	stellen
+gloss	nl:uw:determiner	s1	your (formal)
+drop-tr	nl:uw:determiner	*	de	euer
+drop-tr	nl:vrouw:noun	*	de	Frauchen
+gloss	nl:vrouw:noun	s1	woman; wife
+drop-tr	nl:groot:adjective	*	de	mordsmäßig
+gloss	nl:erg:adverb	s1	very; badly
+drop-tr	nl:erg:adverb	*	de	wahrlich
+drop-tr	nl:kennen:verb	*	de	erleben
+drop-tr	nl:kennen:verb	*	pt	experimentar
+gloss	nl:allemaal:pronoun	s1	all, everyone, all of it
+drop-tr	nl:allemaal:pronoun	*	de	jedefrau
+drop-tr	nl:allemaal:pronoun	*	de	männiglich
+drop-tr	nl:ding:noun	*	en	hickey
+drop-tr	nl:oud:adjective	*	de	schal
+drop-tr	nl:oud:adjective	*	en	back
+drop-tr	nl:oud:adjective	*	pt	estagnado
+drop-tr	nl:brengen:verb	*	en	show
+drop-tr	nl:af:adverb	*	pt	desligado
+gloss	nl:af:adverb	s1	off; down; away
+gloss	nl:man:noun	s1	man; husband
+drop-tr	nl:zoeken:verb	*	de	umtun
+drop-tr	nl:halen:verb	*	de	erwischen
+drop-tr	nl:voelen:verb	*	pt	tocar
+gloss	nl:anders:adverb	s1	differently; otherwise, else
+drop-tr	nl:werk:noun	*	en	rank
+gloss	nl:leuk:adjective	s1	nice, fun, enjoyable
+drop-tr	nl:spijt:noun	*	en	rue
+drop-tr	nl:luisteren:verb	*	en	list
+drop-tr	nl:eten:verb	*	de	einverleiben
+drop-tr	nl:probleem:noun	*	de	Malheur
+drop-tr	nl:probleem:noun	*	en	mishap
+gloss	nl:vast:adverb	s1	firmly; surely, probably; already (in the meantime)
+drop-tr	nl:volgen:verb	*	de	pflegen
+drop-tr	nl:snel:adjective	*	de	kurzfristig
+gloss	nl:snel:adjective	s1	fast, quick
+drop-tr	nl:zetten:verb	*	de	tun
+drop-tr	nl:onder:adverb	*	pt	abaixo
+gloss	nl:onder:adverb	s1	below, underneath; down
+gloss	nl:zaak:noun	s1	matter, affair; business, shop; (legal) case
+drop-tr	nl:zaak:noun	*	pt	companhia
+drop-tr	nl:naam:noun	*	de	Reputation
+drop-tr	nl:meisje:noun	*	en	girlfriend
+drop-tr	nl:vallen:verb	*	de	streichen
+drop-tr	nl:vallen:verb	*	pt	ficar
+drop-tr	nl:gebruiken:verb	*	en	harness
+drop-tr	nl:missen:verb	*	pt	carecer
+gloss	nl:missen:verb	s1	to miss (a person, a train); to lack
+drop-tr	nl:meneer:noun	*	de	Baas
+drop-tr	nl:bedankt:interjection	*	pt	grácias
+drop-tr	nl:stoppen:verb	*	en	arrest
+drop-tr	nl:stoppen:verb	*	de	aufhalten
+drop-tr	nl:want:conjunction	*	de	nachdem
+drop-tr	nl:gek:adjective	*	de	skurril
+drop-tr	nl:spelen:verb	*	en	act
+gloss	nl:enige:pronoun	s1	some; (de enige) the only one
+drop-tr	nl:enige:pronoun	*	en	some
+drop-tr	nl:stellen:verb	*	de	vermeinen
+gloss	nl:zelf:noun	s1	self; (pronoun) myself, yourself, himself... (ik zelf = I myself)
+drop-tr	nl:vergeten:verb	*	de	verlernen
+gloss	nl:hoop:noun	s1	hope; heap, pile
+drop-tr	nl:vandaag:adverb	*	de	heutzutage
+drop-tr	nl:week:noun	*	de	Kalenderwoche
+gloss	nl:heen:adverb	s1	away, there (waar ga je heen? = where are you going?)
+drop-tr	nl:leren:verb	*	en	study
+gloss	nl:leren:verb	s1	to learn; to teach
+drop-tr	nl:familie:noun	*	de	Family
+drop-tr	nl:familie:noun	*	en	people
+gloss	nl:hen:pronoun	s1	them
+drop-tr	nl:hen:pronoun	*	pt	lhes
+gloss	nl:eerst:adverb	s1	first, at first
+drop-tr	nl:eerst:adverb	*	de	Erster
+drop-tr	nl:eerst:adverb	*	de	erste
+gloss	nl:morgen:noun	s1	morning; (adverb) tomorrow
+drop-tr	nl:beetje:noun	*	en	spot
+gloss	nl:juist:adverb	s1	just, exactly; correctly; precisely
+drop-tr	nl:juist:adverb	*	pt	por pouco
+drop-tr	nl:betalen:verb	*	en	foot
+gloss	nl:gelijk:adverb	s1	immediately; at the same time; equally
+gloss	nl:hoeven:verb	s1	to need to, to have to (usually negative: je hoeft niet = you don't have to)
+drop-tr	nl:politie:noun	*	pt	alibã
+drop-tr	nl:politie:noun	*	de	Kieberei
+drop-tr	nl:bijna:adverb	*	pt	meio
+drop-tr	nl:plan:noun	*	pt	carta geográfica
+drop-tr	nl:rustig:adjective	*	en	cool
+drop-tr	nl:oog:noun	*	de	Nadelöhr
+drop-tr	nl:verliezen:verb	*	en	forfeit
+drop-tr	nl:hoofd:noun	*	en	caption
+drop-tr	nl:minuut:noun	*	de	Minütchen
+drop-tr	nl:orde:noun	*	de	Orden
+drop-tr	nl:orde:noun	*	pt	encomenda
+drop-tr	nl:belangrijk:adjective	*	pt	sério
+drop-tr	nl:slaan:verb	*	en	best
+drop-tr	nl:drinken:verb	*	en	down
+drop-tr	nl:open:adjective	*	de	auf
+drop-tr	nl:wonen:verb	*	de	verweilen
+drop-tr	nl:wonen:verb	*	en	haunt
+drop-tr	nl:moeilijk:adjective	*	pt	oneroso
+drop-tr	nl:schat:noun	*	en	dote
+gloss	nl:schat:noun	s1	treasure; darling, sweetheart
+drop-tr	nl:kamer:noun	*	pt	lugar
+drop-tr	nl:trekken:verb	*	de	zurren
+gloss	nl:snappen:verb	s1	to get, to understand (informal)
+drop-tr	nl:snappen:verb	*	en	grasp
+drop-tr	nl:snappen:verb	*	en	fathom
+drop-tr	nl:schrijven:verb	*	pt	gravar
+gloss	nl:prima:adjective	s1	fine, great, excellent
+drop-tr	nl:prima:adjective	*	en	prime
+drop-tr	nl:maand:noun	*	de	Monatsname
+drop-tr	nl:maand:noun	*	en	moon
+drop-tr	nl:nacht:noun	*	de	Abend
+drop-tr	nl:wapen:noun	*	de	Staatswappen
+drop-tr	nl:pijn:noun	*	pt	dodói
+drop-tr	nl:dochter:noun	*	de	Tontscha
+drop-tr	nl:lijden:verb	*	en	anguish
+drop-tr	nl:winnen:verb	*	de	obsiegen
+gloss	nl:vanavond:adverb	s1	this evening, tonight
+drop-tr	nl:redden:verb	*	pt	recuperar
+drop-tr	nl:zich:pronoun	*	en	himself
+gloss	nl:zich:pronoun	s1	oneself, himself, herself, themselves (reflexive)
+gloss	nl:graag:adverb	s1	gladly, with pleasure (ik zwem graag = I like swimming)
+drop-tr	nl:graag:adverb	*	pt	voluntariamente
+drop-tr	nl:jezelf:pronoun	*	de	sich
+drop-tr	nl:herinneren:verb	*	de	grüßen
+drop-tr	nl:telefoon:noun	*	pt	teléfono
+drop-tr	nl:ergens:adverb	*	pt	em todo lado
+gloss	nl:ergens:adverb	s1	somewhere; (ergens over) about something
+drop-tr	nl:leggen:verb	*	de	tun
+drop-tr	nl:stuk:noun	*	en	cut
+gloss	nl:stuk:noun	s1	piece; (adj.) broken
+drop-tr	nl:voordat:conjunction	*	de	ehvor
+gloss	nl:fijn:adjective	s1	fine; nice, pleasant
+gloss	nl:eerder:adverb	s1	earlier, sooner; rather
+drop-tr	nl:mogelijk:adverb	*	de	unmöglich
+drop-tr	nl:beloven:verb	*	pt	alvotar
+drop-tr	nl:vol:adjective	*	de	satt
+gloss	nl:stop:noun	s1	stop, halt; plug; fuse
+gloss	nl:vriendin:noun	s1	girlfriend; (female) friend
+gloss	nl:mevrouw:noun	s1	Mrs, madam; lady
+drop-tr	nl:mevrouw:noun	*	en	mistress
+drop-tr	nl:heer:noun	*	de	Herrchen
+drop-tr	nl:verkopen:verb	*	de	versteigern
+drop-tr	nl:rond:adjective	*	en	even
+drop-tr	nl:lichaam:noun	*	en	division ring
+drop-tr	nl:dollar:noun	*	pt	dola
+drop-tr	nl:hart:noun	*	en	breast
+drop-tr	nl:school:noun	*	en	school of thought
+gloss	nl:hoi:interjection	s1	hi, hello
+drop-tr	nl:geheim:adjective	*	de	still
+drop-tr	nl:waarheid:noun	*	en	sooth
+drop-tr	nl:nummer:noun	*	de	Heft
+gloss	nl:nummer:noun	s1	number; (music) track, song
+drop-tr	nl:arm:noun	*	en	prong
+gloss	nl:rust:noun	s1	rest, calm, peace
+drop-tr	nl:breken:verb	*	de	etwas rückgängig machen
+drop-tr	nl:breken:verb	*	pt	cancelar
+drop-tr	nl:kiezen:verb	*	en	name
+gloss	nl:heet:adjective	s1	hot; (verb form of heten) is called
+drop-tr	nl:heet:adjective	*	de	erregt
+drop-tr	nl:heet:adjective	*	en	aroused
+drop-tr	nl:heet:adjective	*	pt	excitado
+gloss	nl:dicht:adjective	s1	closed, shut; dense, thick
+drop-tr	nl:begin:noun	*	de	Aufnahme
+drop-tr	nl:verwachten:verb	*	de	harren
+drop-tr	nl:haten:verb	*	en	spite
+drop-tr	nl:dame:noun	*	en	dowager
+drop-tr	nl:dame:noun	*	de	Herrin
+drop-tr	nl:stelen:verb	*	en	lift
+drop-tr	nl:verdwijnen:verb	*	en	go
+drop-tr	nl:zeer:adverb	*	de	höchlich
+drop-tr	nl:hond:noun	*	de	Bracke
+gloss	nl:alstublieft:adverb	s1	please (formal); here you are
+drop-tr	nl:verlaten:verb	*	de	davonmachen
+gloss	nl:licht:adjective	s1	light (not heavy; bright); slightly
+gloss	nl:stom:adjective	s1	stupid, dumb; mute
+drop-tr	nl:prachtig:adjective	*	de	trefflich
+drop-tr	nl:oorlog:noun	*	de	Orlog
+drop-tr	nl:gooien:verb	*	de	lancieren
+drop-tr	nl:ruiken:verb	*	de	stinken
+gloss	nl:meid:noun	s1	girl; maid
+drop-tr	nl:bestaan:verb	*	en	there be
+drop-tr	nl:bestaan:verb	*	pt	ter
+drop-tr	nl:spul:noun	*	pt	elemento
+drop-tr	nl:mond:noun	*	de	Gosche
+drop-tr	nl:beide:determiner	*	en	either
+drop-tr	nl:beide:determiner	*	pt	qualquer um
+gloss	nl:druk:adjective	s1	busy; (noun) pressure
+drop-tr	nl:punt:noun	*	pt	ápice
+drop-tr	nl:geluk:noun	*	de	Glückssache
+drop-tr	nl:slim:adjective	*	pt	certeiro
+gloss	nl:kloppen:verb	s1	to knock; to be right (dat klopt = that's right)
+gloss	nl:lossen:verb	s1	to unload; to fire (a shot); to loosen
+drop-tr	nl:grap:noun	*	en	funny
+gloss	nl:stappen:verb	s1	to step; to go out (for drinks)
+drop-tr	nl:tweede:adjective	*	en	sophomore
+drop-tr	nl:tweede:adjective	*	pt	secundanista
+drop-tr	nl:schip:noun	*	de	Hauptschiff
+drop-tr	nl:persoon:noun	*	en	people
+drop-tr	nl:degene:pronoun	*	de	ein
+drop-tr	nl:degene:pronoun	*	de	man
+gloss	nl:degene:pronoun	s1	the one (who), whoever
+drop-tr	nl:vent:noun	*	pt	varão
+drop-tr	nl:zwart:adjective	*	en	sable
+drop-tr	nl:lieverd:noun	*	pt	cretcheu
+drop-tr	nl:kracht:noun	*	pt	validade
+gloss	nl:straks:adverb	s1	later, in a moment; just now
+gloss	nl:kaart:noun	s1	map; card; ticket
+gloss	nl:kop:noun	s1	head; cup, mug; headline
+drop-tr	nl:rest:noun	*	de	Fetzen
+gloss	nl:meenemen:verb	s1	to take along, to bring
+drop-tr	nl:contact:noun	*	en	exposure
+drop-tr	nl:voorzichtig:adjective	*	en	shy
+gloss	nl:voorstellen:verb	s1	to introduce; to propose; (zich) to imagine
+drop-tr	nl:kwijt:adjective	*	pt	desviado
+drop-tr	nl:jong:adjective	*	en	small
+drop-tr	nl:steken:verb	*	de	stacheln
+drop-tr	nl:steken:verb	*	en	shiv
+drop-tr	nl:serieus:adjective	*	en	heavy
+drop-tr	nl:ontdekken:verb	*	pt	farejar
+gloss	nl:pap:noun	s1	porridge; (informal) dad
+gloss	nl:ten:contraction	s1	to the, at the (ten slotte = finally)
+drop-tr	nl:ten:contraction	*	en	the
+drop-tr	nl:heten:verb	*	en	hight
+gloss	nl:gang:noun	s1	corridor, hallway; course (of a meal); pace
+drop-tr	nl:president:noun	*	pt	bastonário
+drop-tr	nl:nogal:adverb	*	en	right
+drop-tr	nl:einde:noun	*	en	date
+drop-tr	nl:bereiken:verb	*	de	eintreffen
+drop-tr	nl:bereiken:verb	*	en	arrive
+drop-tr	nl:bereiken:verb	*	pt	atinar
+drop-tr	nl:naartoe:adverb	*	de	gegen
+drop-tr	nl:geest:noun	*	pt	assombração
+gloss	nl:geest:noun	s1	mind; spirit; ghost
+drop-tr	nl:sleutel:noun	*	de	Notenschlüssel
+drop-tr	nl:sleutel:noun	*	en	clef
+drop-tr	nl:sleutel:noun	*	pt	clave
+gloss	nl:pardon:noun	s1	pardon; (interjection) sorry, excuse me
+gloss	nl:letten:verb	s1	to pay attention (to), to mind (op)
+gloss	nl:klopt:interjection	s1	that's right, correct
+drop-tr	nl:rood:adjective	*	en	sanguine
+drop-tr	nl:rood:adjective	*	pt	sanguíneo
+gloss	nl:gebruik:noun	s1	use; custom, habit
+drop-tr	nl:duren:verb	*	en	dure
+gloss	nl:arm:noun	s1	arm
+gloss	nl:keren:verb	s1	to turn
+drop-tr	nl:trots:adjective	*	pt	orgulhante
+drop-tr	nl:fantastisch:adjective	*	de	phantasiereich
+drop-tr	nl:aarde:noun	*	de	Erdatmosphäre
+drop-tr	nl:straat:noun	*	de	Gerade
+drop-tr	nl:straat:noun	*	en	straight
+gloss	nl:bedenken:verb	s1	to think of, to come up with; to consider
+drop-tr	nl:vrijen:verb	*	pt	furunfar
+drop-tr	nl:vrijen:verb	*	de	lieben
+drop-tr	nl:vrijen:verb	*	en	love
+drop-tr	nl:vlucht:noun	*	en	fly
+gloss	nl:vlucht:noun	s1	flight (air travel); flight, escape
+gloss	nl:schelen:verb	s1	to matter (het kan me niet schelen = I don't care); to differ
+drop-tr	nl:schelen:verb	*	en	ail
+gloss	nl:raad:noun	s1	advice; council
+drop-tr	nl:aanval:noun	*	pt	carga
+drop-tr	nl:behalve:preposition	*	pt	fora
+drop-tr	nl:leger:noun	*	pt	hoste
+drop-tr	nl:bal:noun	*	en	nut
+drop-tr	nl:bal:noun	*	pt	colhão
+drop-tr	nl:voet:noun	*	en	term
+drop-tr	nl:rijk:adjective	*	en	flush
+drop-tr	nl:hierheen:adverb	*	de	her
+gloss	nl:kosten:noun	s1	costs, expenses; (verb) to cost
+drop-tr	nl:enorm:adjective	*	de	weit
+drop-tr	nl:enorm:adjective	*	pt	tamanho
+drop-tr	nl:oom:noun	*	en	maternal uncle
+drop-tr	nl:oom:noun	*	pt	tio materno
+gloss	nl:lucht:noun	s1	air; sky
+drop-tr	nl:tenminste:adverb	*	en	anyway
+drop-tr	nl:bieden:verb	*	en	tender
+drop-tr	nl:grond:noun	*	en	reason
+drop-tr	nl:grond:noun	*	pt	razão
+gloss	nl:grond:noun	s1	ground, soil, land
+gloss	nl:nietwaar:interjection	s1	isn't it?, right? (tag question)
+drop-tr	nl:god:noun	*	de	Himmelvater
+drop-tr	nl:absoluut:adjective	*	en	implicit
+gloss	nl:ter:contraction	s1	for the, at the (ter plaatse = on the spot)
+drop-tr	nl:zingen:verb	*	de	schlagen
+drop-tr	nl:zingen:verb	*	pt	desafinar
+drop-tr	nl:koud:adjective	*	en	algid
+drop-tr	nl:koud:adjective	*	pt	álgido
+drop-tr	nl:seks:noun	*	pt	coito
+drop-tr	nl:onderzoeken:verb	*	de	erheben
+drop-tr	nl:schuldig:adjective	*	de	fehlbar
+drop-tr	nl:schuldig:adjective	*	en	reprehensible
+gloss	nl:schuldig:adjective	s1	guilty; owing (iemand iets schuldig zijn = to owe someone something)
+drop-tr	nl:drukken:verb	*	pt	clicar
+drop-tr	nl:val:noun	*	pt	rede
+gloss	nl:val:noun	s1	trap; fall
+drop-tr	nl:bidden:verb	*	en	beseech
+drop-tr	nl:bidden:verb	*	de	erflehen
+drop-tr	nl:bezoek:noun	*	en	call
+drop-tr	nl:succes:noun	*	de	Fang
+gloss	nl:succes:noun	s1	success; (interjection) good luck!
+drop-tr	nl:ruimte:noun	*	de	Wartehalle
+drop-tr	nl:ruimte:noun	*	en	concourse
+gloss	nl:ruimte:noun	s1	space, room; (outer) space
+gloss	nl:acht:noun	s1	attention, heed (in acht nemen = to take into account)
+drop-tr	nl:acht:noun	*	en	eight
+drop-tr	nl:acht:noun	*	pt	oito
+drop-tr	nl:nadenken:verb	*	en	muse
+drop-tr	nl:onzin:noun	*	en	bull
+drop-tr	nl:groep:noun	*	de	Riege
+drop-tr	nl:groep:noun	*	en	band
+drop-tr	nl:groep:noun	*	pt	banda
+drop-tr	nl:men:pronoun	*	de	mensch
+drop-tr	nl:partner:noun	*	de	Geschäftspartner
+drop-tr	nl:vuur:noun	*	de	Beschuss
+drop-tr	nl:vuur:noun	*	pt	labareda
+drop-tr	nl:doel:noun	*	en	cause
+drop-tr	nl:slaap:noun	*	de	Augenbutter
+drop-tr	nl:slaap:noun	*	pt	remela
+gloss	nl:slaap:noun	s1	sleep; temple (side of the head)
+drop-tr	nl:huilen:verb	*	pt	vociferar
+gloss	nl:jawel:adverb	s1	yes (indeed), oh yes (contradicting a negative)
+drop-tr	nl:dansen:verb	*	en	jive
+drop-tr	nl:drank:noun	*	de	Fusel
+gloss	nl:drank:noun	s1	drink; (alcoholic) drinks, liquor
+drop-tr	nl:prijs:noun	*	de	Gage
+gloss	nl:prijs:noun	s1	price; prize, award
+drop-tr	nl:moe:adjective	*	pt	esfalfado
+drop-tr	nl:volledig:adjective	*	de	total
+drop-tr	nl:paard:noun	*	de	Zosse
+drop-tr	nl:behandelen:verb	*	de	abdecken
+drop-tr	nl:behandelen:verb	*	en	cover
+gloss	nl:behandelen:verb	s1	to treat; to handle, to deal with
+drop-tr	nl:vanwege:preposition	*	en	by
+drop-tr	nl:trouwens:adverb	*	de	im Fall
+drop-tr	nl:rug:noun	*	de	Buchrücken
+drop-tr	nl:rug:noun	*	en	spine
+drop-tr	nl:rug:noun	*	pt	lombo
+drop-tr	nl:blijkbaar:adverb	*	pt	claramente
+drop-tr	nl:direct:adverb	*	de	augenblicklich
+gloss	nl:direct:adverb	s1	directly; immediately
+drop-tr	nl:camera:noun	*	pt	câmara fotográfica
+drop-tr	nl:gezin:noun	*	de	Family
+gloss	nl:gezin:noun	s1	family (household: parents and children)
+drop-tr	nl:zolang:conjunction	*	de	Hauptsache
+gloss	nl:zolang:conjunction	s1	as long as, while
+drop-tr	nl:wet:noun	*	en	act
+drop-tr	nl:wet:noun	*	pt	direito
+gloss	nl:meeste:numeral	s1	most (de meeste mensen = most people)
+drop-tr	nl:bloeden:verb	*	pt	deitar sangue
+drop-tr	nl:droom:noun	*	en	figment
+drop-tr	nl:vertaling:noun	*	en	construe
+drop-tr	nl:uitleggen:verb	*	en	construe
+drop-tr	nl:situatie:noun	*	de	Position
+drop-tr	nl:donker:adjective	*	pt	mortiço
+gloss	nl:opnemen:verb	s1	to pick up (the phone); to record; to take up, to include
+gloss	nl:aandoen:verb	s1	to turn on; to put on (clothes); to do to (someone)
+gloss	nl:pas:noun	s1	step, pace; pass (card); mountain pass; (adverb) only just, not until
+drop-tr	nl:generaal:noun	*	de	Großwetterlage
+gloss	nl:zover:adverb	s1	so far, that far (het is zover = the time has come)
+drop-tr	nl:overlijden:verb	*	de	einschlafen
+drop-tr	nl:tv:noun	*	de	Glotze
+gloss	nl:tv:noun	s1	TV, television
+drop-tr	nl:lastig:adjective	*	pt	oneroso
+drop-tr	nl:beet:noun	*	pt	mordedura
+drop-tr	nl:overtuigen:verb	*	de	bereden
+drop-tr	nl:slag:noun	*	pt	golpe
+gloss	nl:slag:noun	s1	battle; blow, stroke; (sport) stroke
+drop-tr	nl:jammer:interjection	*	en	tough
+drop-tr	nl:daarvoor:adverb	*	de	sonach
+drop-tr	nl:daarvoor:adverb	*	en	therefore
+drop-tr	nl:daarvoor:adverb	*	pt	logo
+drop-tr	nl:daarvoor:adverb	*	pt	portanto
+gloss	nl:daarvoor:adverb	s1	for that; before that
+drop-tr	nl:lijn:noun	*	en	file
+drop-tr	nl:lijn:noun	*	pt	reta
+drop-tr	nl:kogel:noun	*	en	ball
+drop-tr	nl:zuster:noun	*	pt	monja
+gloss	nl:zuster:noun	s1	sister; nurse; (religious) sister
+gloss	nl:blijken:verb	s1	to turn out, to prove (to be)
+drop-tr	nl:blijken:verb	*	de	zeigen
+drop-tr	nl:operatie:noun	*	de	Verknüpfung
+drop-tr	nl:gebied:noun	*	de	Raum
+drop-tr	nl:macht:noun	*	de	Befähigung
+drop-tr	nl:macht:noun	*	pt	potestade
+drop-tr	nl:dik:adjective	*	en	deep
+gloss	nl:dik:adjective	s1	thick; fat
+drop-tr	nl:ster:noun	*	en	luminary
+drop-tr	nl:verstoppen:verb	*	de	verheimlichen
+drop-tr	nl:verklaren:verb	*	pt	desenrolar
+drop-tr	nl:verklaren:verb	*	en	clear
+gloss	nl:verklaren:verb	s1	to explain; to declare
+drop-tr	nl:ziel:noun	*	de	Stimmstock
+drop-tr	nl:ziel:noun	*	en	sound post
+drop-tr	nl:waarschuwen:verb	*	de	verständigen
+drop-tr	nl:raam:noun	*	pt	fenestra
+drop-tr	nl:computer:noun	*	pt	calculador
+drop-tr	nl:honger:noun	*	de	Knast
+drop-tr	nl:honger:noun	*	pt	agastúria
+drop-tr	nl:bureau:noun	*	pt	birô
+gloss	nl:bureau:noun	s1	desk; office, agency; police station
+drop-tr	nl:monster:noun	*	en	fiend
+gloss	nl:monster:noun	s1	monster; sample
+drop-tr	nl:derde:adjective	*	pt	três
+drop-tr	nl:kolonel:noun	*	en	military rank
+drop-tr	nl:onschuldig:adjective	*	en	righteous
+drop-tr	nl:onschuldig:adjective	*	pt	inócuo
+gloss	nl:heerlijk:adjective	s1	delicious; lovely, wonderful
+drop-tr	nl:dronken:adjective	*	de	breit
+drop-tr	nl:weinig:noun	*	en	modicum
+gloss	nl:wonden:verb	s1	to wound
+drop-tr	nl:delen:verb	*	de	dividieren
+gloss	nl:delen:verb	s1	to share; to divide
+drop-tr	nl:papier:noun	*	en	rock paper scissors
+drop-tr	nl:zwanger:adjective	*	de	trächtig
+drop-tr	nl:zwanger:adjective	*	pt	prenhe
+gloss	nl:moeite:noun	s1	effort, trouble (moeite doen = to make an effort)
+drop-tr	nl:moeite:noun	*	pt	problema
+drop-tr	nl:moeite:noun	*	pt	encrenca
+first	nl:moeite:noun	*	pt:esforço:noun
+drop-tr	nl:extra:adjective	*	en	copacetic
+drop-tr	nl:missie:noun	*	de	Militäreinsatz
+gloss	nl:verpesten:verb	s1	to ruin, to spoil
+drop-tr	nl:hel:noun	*	en	perdition
+drop-tr	nl:hel:noun	*	pt	geena
+drop-tr	nl:groeien:verb	*	pt	subir
+gloss	nl:regelen:verb	s1	to arrange, to sort out; to regulate
+drop-tr	nl:starten:verb	*	de	einweihen
+drop-tr	nl:starten:verb	*	en	initiate
+drop-tr	nl:starten:verb	*	pt	abrir
+drop-tr	nl:show:noun	*	en	ostentation
+drop-tr	nl:scheiden:verb	*	en	cut
+gloss	nl:scheiden:verb	s1	to separate; to divorce
+drop-tr	nl:ophouden:verb	*	de	abstehen
+gloss	nl:twijfelen:verb	s1	to doubt; to hesitate
+drop-tr	nl:vormen:verb	*	en	make
+drop-tr	nl:vormen:verb	*	pt	fazer
+drop-tr	nl:kat:noun	*	en	felid
+drop-tr	nl:verslaan:verb	*	en	best
+drop-tr	nl:verslaan:verb	*	pt	arrombar
+drop-tr	nl:waarderen:verb	*	en	appraise
+gloss	nl:boodschap:noun	s1	message; errand; (boodschappen) groceries, shopping
+gloss	nl:bos:noun	s1	forest, wood; bunch (of flowers, keys)
+drop-tr	nl:kont:noun	*	de	Steiß
+gloss	nl:min:noun	s1	wet nurse (rare); (common) minus, less
+drop-tr	nl:bewaren:verb	*	de	gaumen
+gloss	nl:kwalijk:adjective	s1	bad, wrong (iemand iets kwalijk nemen = to hold something against someone)
+drop-tr	nl:risico:noun	*	en	adventure
+drop-tr	nl:meestal:adverb	*	de	sonst
+drop-tr	nl:ontvangen:verb	*	en	read
+gloss	nl:enig:determiner	s1	some, any; only (het enige = the only thing)
+drop-tr	nl:verschrikkelijk:adverb	*	en	damn
+drop-tr	nl:mes:noun	*	en	shiv
+drop-tr	nl:Duits:adjective	*	de	teutsch
+drop-tr	nl:Duits:adjective	*	en	Deutsch
+drop-tr	nl:bus:noun	*	pt	barramento
+drop-tr	nl:gevecht:noun	*	de	Struggle
+drop-tr	nl:bezitten:verb	*	de	ownen
+gloss	nl:knap:adjective	s1	clever; good-looking, handsome
+gloss	nl:komaan:interjection	s1	come on! (Belgian Dutch)
+drop-tr	nl:jagen:verb	*	de	treideln
+drop-tr	nl:jagen:verb	*	en	dog
+gloss	nl:betrekken:verb	s1	to involve; to move into (a house)
+gloss	nl:schuilen:verb	s1	to shelter, to take cover; to lurk, to hide
+drop-tr	nl:interesseren:verb	*	pt	desapegar
+drop-tr	nl:vervelen:verb	*	de	verstimmen
+gloss	nl:vervelen:verb	s1	to bore; (zich vervelen) to be bored
+drop-tr	nl:weigeren:verb	*	pt	esnobar
+gloss	nl:bevestigen:verb	s1	to confirm; to attach, to fasten
+drop-tr	nl:begraven:verb	*	en	earth
+drop-tr	nl:zwak:adjective	*	de	leise
+drop-tr	nl:tante:noun	*	de	Base
+drop-tr	nl:tante:noun	*	en	maternal aunt
+gloss	nl:deal:noun	s1	deal
+drop-tr	nl:helft:noun	*	de	Spielhälfte
+drop-tr	nl:misdaad:noun	*	de	Unwesen
+gloss	nl:vanmorgen:adverb	s1	this morning
+gloss	nl:hoogte:noun	s1	height; altitude (op de hoogte = informed, up to date)
+drop-tr	nl:leugen:noun	*	en	mendacity
+gloss	nl:eikel:noun	s1	acorn; (slang) jerk, prick
+gloss	nl:la:noun	s1	drawer; la (musical note)
+drop-tr	nl:geweer:noun	*	de	Knifte
+drop-tr	nl:inspecteur:noun	*	pt	vedor
+drop-tr	nl:geschiedenis:noun	*	de	Story
+drop-tr	nl:verwijderen:verb	*	en	distance
+drop-tr	nl:vrede:noun	*	en	peace treaty
+drop-tr	nl:trappen:verb	*	de	auftreten
+drop-tr	nl:trappen:verb	*	pt	carimbar
+gloss	nl:gemeen:adjective	s1	mean, nasty; common, shared
+gloss	nl:voorkomen:verb	s1	to occur, to happen; (voorkómen) to prevent
+drop-tr	nl:dienen:verb	*	en	page
+drop-tr	nl:eiland:noun	*	en	islet
+drop-tr	nl:eiland:noun	*	pt	ilhéu
+drop-tr	nl:vogel:noun	*	de	Birdie
+drop-tr	nl:vogel:noun	*	en	birdie
+drop-tr	nl:los:adjective	*	pt	livre
+gloss	nl:verhuizen:verb	s1	to move (house)
+drop-tr	nl:verhuizen:verb	*	en	move
+gloss	nl:pad:noun	s1	path; toad
+gloss	nl:troep:noun	s1	mess; troop, band
+drop-tr	nl:steunen:verb	*	pt	financiar
+drop-tr	nl:ruzie:noun	*	de	Spektakel
+drop-tr	nl:dorp:noun	*	en	thorp
+drop-tr	nl:koningin:noun	*	en	princess
+drop-tr	nl:professor:noun	*	pt	professo
+drop-tr	nl:ervaring:noun	*	en	science
+drop-tr	nl:mobiel:noun	*	pt	portátil
+gloss	nl:mobiel:noun	s1	mobile phone, cell phone; (adj.) mobile
+drop-tr	nl:groen:adjective	*	en	vert
+drop-tr	nl:verrassen:verb	*	en	gobsmack
+drop-tr	nl:collega:noun	*	pt	confrade
+drop-tr	nl:onthouden:verb	*	en	carry
+gloss	nl:onthouden:verb	s1	to remember; (zich onthouden) to abstain; to withhold
+drop-tr	nl:verlies:noun	*	pt	perdição
+drop-tr	nl:kennis:noun	*	en	science
+gloss	nl:kennis:noun	s1	knowledge; acquaintance
+gloss	nl:werkelijk:adjective	s1	real, actual; (adverb) really
+gloss	nl:bevallen:verb	s1	to please (hoe bevalt het? = how do you like it?); to give birth
+drop-tr	nl:negeren:verb	*	pt	desconhecer
+drop-tr	nl:ochtend:noun	*	en	morrow
+drop-tr	nl:restaurant:noun	*	pt	tasca
+drop-tr	nl:keuken:noun	*	pt	quitinete
+gloss	nl:keuken:noun	s1	kitchen; cuisine
+gloss	nl:vannacht:adverb	s1	tonight; last night
+drop-tr	nl:verzinnen:verb	*	pt	cunhar
+drop-tr	nl:regering:noun	*	en	reign
+drop-tr	nl:regering:noun	*	pt	reinado
+drop-tr	nl:vasthouden:verb	*	en	adhere
+drop-tr	nl:vasthouden:verb	*	pt	deter
+drop-tr	nl:aanvallen:verb	*	en	invade
+drop-tr	nl:aanvallen:verb	*	pt	invadir
+drop-tr	nl:detail:noun	*	en	touch
+drop-tr	nl:adem:noun	*	en	inspiration
+drop-tr	nl:adem:noun	*	pt	inspiração
+drop-tr	nl:goud:noun	*	de	Oder
+drop-tr	nl:goud:noun	*	en	or
+drop-tr	nl:goud:noun	*	pt	oiro
+drop-tr	nl:uitnodigen:verb	*	de	laden
+drop-tr	nl:uitnodigen:verb	*	en	bid
+drop-tr	nl:directeur:noun	*	de	Regisseur
+gloss	nl:leiding:noun	s1	management, leadership; pipe, line
+drop-tr	nl:mogelijkheid:noun	*	de	Zufall
+drop-tr	nl:beurt:noun	*	de	an der Reihe sein
+gloss	nl:boord:noun	s1	board (aan boord = on board); collar
+gloss	nl:drugs:noun	s1	drugs
+gloss	nl:kloten:verb	s1	to mess around; (noun) balls (vulgar)
+drop-tr	nl:gratis:adjective	*	en	gratuitous
+drop-tr	nl:vullen:verb	*	de	plombieren
+drop-tr	nl:vullen:verb	*	en	cloy
+drop-tr	nl:vullen:verb	*	pt	estofar
+drop-tr	nl:toevallig:adjective	*	de	random
+drop-tr	nl:toevallig:adjective	*	en	random
+gloss	nl:toevallig:adjective	s1	coincidental, accidental; (adverb) by chance
+gloss	nl:rapport:noun	s1	report; school report
+drop-tr	nl:eeuwig:adjective	*	de	permanent
+drop-tr	nl:eeuwig:adjective	*	en	permanent
+drop-tr	nl:vakantie:noun	*	pt	hiato
+drop-tr	nl:opsluiten:verb	*	en	immure
+drop-tr	nl:opsluiten:verb	*	pt	emparedar
+drop-tr	nl:verdedigen:verb	*	pt	defensar
+gloss	nl:dringen:verb	s1	to push, to crowd; to penetrate
+drop-tr	nl:schatten:verb	*	en	price
+gloss	nl:schatten:verb	s1	to estimate; to value, to appraise
+drop-tr	nl:manen:verb	*	de	verweisen
+drop-tr	nl:homo:noun	*	de	Gay
+drop-tr	nl:bron:noun	*	de	Einsatzmittel
+gloss	nl:bron:noun	s1	source; spring, well
+gloss	nl:flink:adjective	s1	considerable, substantial; sturdy; brave
+drop-tr	nl:burger:noun	*	en	burgess
+gloss	nl:burger:noun	s1	citizen; civilian
+drop-tr	nl:eigenaar:noun	*	en	tenant
+drop-tr	nl:mening:noun	*	de	Denken
+drop-tr	nl:jaloers:adjective	*	de	abgünstig
+drop-tr	nl:duivel:noun	*	de	Schaitan
+drop-tr	nl:vissen:verb	*	pt	catar
+drop-tr	nl:grijpen:verb	*	pt	aproveitar
+gloss	nl:eenheid:noun	s1	unity; unit
+drop-tr	nl:volwassen:adjective	*	en	big
+drop-tr	nl:regenen:verb	*	de	schiffen
+drop-tr	nl:zwemmen:verb	*	pt	adanar
+drop-tr	nl:signaal:noun	*	pt	rede
+drop-tr	nl:eeuw:noun	*	de	Säkulum
+gloss	nl:realiseren:verb	s1	to realize, to achieve; (zich realiseren) to realize (understand)
+drop-tr	nl:realiseren:verb	*	pt	produzir
+first	nl:realiseren:verb	*	pt:realizar:verb
+drop-tr	nl:herinnering:noun	*	de	Rückbesinnung
+drop-tr	nl:kalm:adjective	*	de	cool
+drop-tr	nl:bergen:verb	*	de	gaumen
+gloss	nl:bergen:verb	s1	to store, to stow; to salvage, to recover
+gloss	nl:gedragen:verb	s1	(zich gedragen) to behave
+gloss	nl:vlak:adverb	s1	just, right (vlak bij = right next to)
+gloss	nl:lot:noun	s1	fate, destiny; lottery ticket
+gloss	nl:steel:noun	s1	stem, stalk; handle
+drop-tr	nl:veroordelen:verb	*	pt	amaldiçoar
+drop-tr	nl:bloem:noun	*	pt	xiluva
+drop-tr	nl:zegenen:verb	*	de	benedeien
+drop-tr	nl:opstaan:verb	*	de	lüften
+gloss	nl:terecht:adjective	s1	justified, rightful; (adverb) rightly; (terechtkomen) to end up
+gloss	nl:akkoord:noun	s1	agreement, deal; (music) chord; (interjection) agreed!
+gloss	nl:flessen:verb	s1	to con, to swindle; (plural) bottles
+drop-tr	nl:saai:adjective	*	de	mühsam
+drop-tr	nl:saai:adjective	*	en	fade
+drop-tr	nl:gefeliciteerd:interjection	*	pt	axé
+drop-tr	nl:verband:noun	*	en	sling
+gloss	nl:verband:noun	s1	connection, relation; bandage
+drop-tr	nl:locatie:noun	*	en	situation
+gloss	nl:zulk:pronoun	s1	such
+gloss	nl:paren:verb	s1	to mate, to pair; (plural) pairs
+drop-tr	nl:resultaat:noun	*	en	product
+drop-tr	nl:resultaat:noun	*	pt	produto
+gloss	nl:uitmaken:verb	s1	to matter (het maakt niet uit = it doesn't matter); to break up (het uitmaken)
+drop-tr	nl:huid:noun	*	de	Verdunklung
+drop-tr	nl:kleuren:verb	*	en	dye
+drop-tr	nl:kleuren:verb	*	pt	tingir
+drop-tr	nl:verspreiden:verb	*	en	sprawl
+drop-tr	nl:verspreiden:verb	*	pt	estender
+drop-tr	nl:universiteit:noun	*	pt	vestibulando
+drop-tr	nl:doelwit:noun	*	en	quarry
+gloss	nl:dumpen:verb	s1	to dump (also a partner)
+gloss	nl:opzetten:verb	s1	to set up; to put on; to swell
+drop-tr	nl:code:noun	*	pt	codificação
+drop-tr	nl:lul:noun	*	pt	membro
+gloss	nl:lul:noun	s1	dick, prick (vulgar); (slang) jerk
+drop-tr	nl:afdeling:noun	*	de	Institut
+gloss	nl:schamen:verb	s1	(zich schamen) to be ashamed
+drop-tr	nl:sexy:adjective	*	en	lush
+drop-tr	nl:tand:noun	*	de	Zacke
+drop-tr	nl:tand:noun	*	en	cog
+drop-tr	nl:knie:noun	*	pt	rodilha
+gloss	nl:aanzien:noun	s1	esteem, prestige; appearance; (verb) to look at
+gloss	nl:omgaan:verb	s1	to deal with, to handle (omgaan met); to associate with
+drop-tr	nl:veld:noun	*	en	square
+drop-tr	nl:veld:noun	*	de	Spielraum
+drop-tr	nl:veld:noun	*	pt	jazida
+drop-tr	nl:weglopen:verb	*	en	elope
+drop-tr	nl:weglopen:verb	*	pt	pinicar
+drop-tr	nl:wijten:verb	*	de	verdenken
+drop-tr	nl:wijten:verb	*	pt	censurar
+gloss	nl:gegeven:noun	s1	fact, given; (gegevens) data
+gloss	nl:mijnen:verb	s1	to mine; (plural) mines
+drop-tr	nl:stromen:verb	*	pt	afluir
+gloss	nl:blank:adjective	s1	white (skin colour); blank
+gloss	nl:boel:noun	s1	lot, bunch (een boel = a lot); mess
+gloss	nl:prettig:adjective	s1	pleasant, nice, enjoyable
+drop-tr	nl:uiten:verb	*	de	hervorbringen
+drop-tr	nl:uiten:verb	*	en	profer
+gloss	nl:ruimen:verb	s1	to clear, to tidy up
+drop-tr	nl:lid:noun	*	en	penis
+gloss	nl:lid:noun	s1	member; lid (eyelid); limb
+drop-tr	nl:bedriegen:verb	*	pt	roubar
+drop-tr	nl:herhalen:verb	*	de	hallen
+drop-tr	nl:herhalen:verb	*	en	echo
+drop-tr	nl:herhalen:verb	*	pt	ecoar
+drop-tr	nl:doorzoeken:verb	*	en	sweep
+drop-tr	nl:binden:verb	*	de	tüdeln
+drop-tr	nl:binden:verb	*	pt	juntar
+gloss	nl:verkeren:verb	s1	to be (in a state), to find oneself (in gevaar verkeren = to be in danger)
+drop-tr	nl:nauwelijks:adverb	*	pt	apenas
+gloss	nl:grenzen:verb	s1	to border (on); (plural) borders
+drop-tr	nl:kalmeren:verb	*	pt	embalar
+drop-tr	nl:assistent:noun	*	en	aid
+drop-tr	nl:kluis:noun	*	pt	cacifo
+gloss	nl:slagen:verb	s1	to succeed; to pass (an exam)
+drop-tr	nl:gevolg:noun	*	en	corollary
+drop-tr	nl:kwetsen:verb	*	de	schaden
+drop-tr	nl:verslag:noun	*	de	Narrativ
+drop-tr	nl:bevrijden:verb	*	de	freisetzen
+gloss	nl:truck:noun	s1	truck, lorry
+gloss	nl:verzekeren:verb	s1	to assure; to insure
+drop-tr	nl:uitkomen:verb	*	pt	deixar
+gloss	nl:uitkomen:verb	s1	to come out; to turn out; to suit (dat komt goed uit = that suits me)
+gloss	nl:verzetten:verb	s1	(zich verzetten) to resist; to move, to shift
+drop-tr	nl:verschijnen:verb	*	en	report
+drop-tr	nl:prins:noun	*	de	Karnevalsprinz
+drop-tr	nl:duwen:verb	*	en	urge
+gloss	nl:frank:noun	s1	franc (Zwitserse frank = Swiss franc)
+drop-tr	nl:beledigen:verb	*	de	pöbeln
+drop-tr	nl:verandering:noun	*	en	variation
+drop-tr	nl:verspillen:verb	*	en	trifle
+gloss	nl:bevinden:verb	s1	(zich bevinden) to be located, to find oneself
+gloss	nl:kilo:noun	s1	kilo, kilogram
+gloss	nl:leen:noun	s1	fief; (te leen) on loan
+gloss	nl:lokaal:noun	s1	room, classroom; (adj.) local
+gloss	nl:vergissen:verb	s1	(zich vergissen) to be mistaken
+gloss	nl:dol:adjective	s1	mad, crazy; (dol op) crazy about, fond of
+drop-tr	nl:hoeden:verb	*	de	gaumen
+gloss	nl:hoeden:verb	s1	to guard, to tend; (plural) hats
+gloss	nl:heus:adjective	s1	real, genuine; (adverb) really
+gloss	nl:verdieping:noun	s1	floor, storey; deepening
+gloss	nl:vandoor:adverb	s1	off, away (er vandoor gaan = to run off)
+drop-tr	nl:vandoor:adverb	*	de	weit
+gloss	nl:opruimen:verb	s1	to tidy up, to clean up
+gloss	nl:optreden:noun	s1	performance; (verb) to perform, to act
+drop-tr	nl:aanwijzing:noun	*	de	Benennung
+drop-tr	nl:aanwijzing:noun	*	pt	símbolo
+drop-tr	nl:vrolijk:adjective	*	en	gay
+drop-tr	nl:vrolijk:adjective	*	pt	folião
+drop-tr	nl:tent:noun	*	de	Gezelt
+drop-tr	nl:wolf:noun	*	de	Papagallo
+drop-tr	nl:wolf:noun	*	en	grey wolf
+drop-tr	nl:wolf:noun	*	pt	lobo cinzento
+drop-tr	nl:reactie:noun	*	de	Reagenz
+drop-tr	nl:tevreden:adjective	*	de	aufgeräumt
+gloss	nl:spannen:verb	s1	to stretch, to tighten; to be tense
+drop-tr	nl:optie:noun	*	en	flag
+drop-tr	nl:optie:noun	*	pt	flag
+drop-tr	nl:checken:verb	*	en	vet
+drop-tr	nl:belofte:noun	*	pt	promissão
+drop-tr	nl:ontwikkelen:verb	*	en	expand
+drop-tr	nl:ontwikkelen:verb	*	pt	fazer
+drop-tr	nl:vergissing:noun	*	de	Malheur
+drop-tr	nl:nachtmerrie:noun	*	pt	onirodinia
+drop-tr	nl:samenwerken:verb	*	de	mitspielen
+drop-tr	nl:elf:noun	*	pt	onze
+drop-tr	nl:voeden:verb	*	en	power
+drop-tr	nl:voeden:verb	*	pt	mirrar
+drop-tr	nl:sigaret:noun	*	pt	bagana
+drop-tr	nl:vampier:noun	*	pt	chupista
+gloss	nl:inzetten:verb	s1	to use, to deploy; to bet, to stake; to start (singing)
+drop-tr	nl:inzetten:verb	*	pt	enxertar
+drop-tr	nl:poging:noun	*	pt	try
+drop-tr	nl:gezelschap:noun	*	pt	agremiação
+drop-tr	nl:slaapkamer:noun	*	en	chamber
+gloss	nl:plaat:noun	s1	plate, sheet; record (vinyl); picture
+gloss	nl:meedoen:verb	s1	to take part, to join in
+drop-tr	nl:drogen:verb	*	en	desiccate
+drop-tr	nl:puur:adjective	*	pt	arrumado
+drop-tr	nl:schouder:noun	*	pt	acostamento
+drop-tr	nl:opgroeien:verb	*	en	upgrow
+drop-tr	nl:pauze:noun	*	pt	break
+drop-tr	nl:diner:noun	*	pt	banquete
+drop-tr	nl:diner:noun	*	pt	prândio
+first	nl:diner:noun	*	pt:jantar:noun
+drop-tr	nl:truc:noun	*	de	Stich
+drop-tr	nl:verzoeken:verb	*	de	aufrufen
+drop-tr	nl:vanochtend:adverb	*	pt	cedo
+gloss	nl:vanochtend:adverb	s1	this morning
+gloss	nl:artikel:noun	s1	article; item
+gloss	nl:uitvoeren:verb	s1	to carry out, to perform; to export
+drop-tr	nl:order:noun	*	de	Edikt
+drop-tr	nl:order:noun	*	en	injunction
+drop-tr	nl:verkrachten:verb	*	en	abuse
+drop-tr	nl:invloed:noun	*	en	leverage
+drop-tr	nl:touw:noun	*	de	Ende
+drop-tr	nl:dekken:verb	*	de	besteigen
+drop-tr	nl:dekken:verb	*	en	defray
+drop-tr	nl:dekken:verb	*	pt	custear
+drop-tr	nl:niveau:noun	*	pt	fase
+gloss	nl:naaien:verb	s1	to sew; (vulgar) to screw
+drop-tr	nl:naaien:verb	*	en	needle
+drop-tr	nl:natuur:noun	*	en	wildlife
+drop-tr	nl:roep:noun	*	en	name
+drop-tr	nl:roep:noun	*	pt	canto
+drop-tr	nl:geheugen:noun	*	en	mind
+drop-tr	nl:noorden:noun	*	pt	setentrião
+drop-tr	nl:verwarren:verb	*	de	verprellen
+drop-tr	nl:verwarren:verb	*	pt	misturar
+drop-tr	nl:juffrouw:noun	*	de	Maid
+drop-tr	nl:voorlopig:adjective	*	en	makeshift
+drop-tr	nl:voorlopig:adjective	*	pt	improvisado
+drop-tr	nl:branden:verb	*	en	nettle
+drop-tr	nl:verstand:noun	*	pt	significado
+drop-tr	nl:vorm:noun	*	pt	estado
+drop-tr	nl:vaarwel:noun	*	en	departure
+drop-tr	nl:priester:noun	*	de	Hirtin
+drop-tr	nl:maan:noun	*	de	Erdtrabant
+drop-tr	nl:stijgen:verb	*	pt	montar
+gloss	nl:cijfer:noun	s1	figure, digit; mark, grade
+drop-tr	nl:blind:adjective	*	pt	lusco
+drop-tr	nl:uniform:noun	*	en	habit
+gloss	nl:ondanks:conjunction	s1	despite, in spite of
+drop-tr	nl:opblazen:verb	*	en	bloat
+gloss	nl:opblazen:verb	s1	to blow up; to inflate
+drop-tr	nl:snelheid:noun	*	de	Velozität
+drop-tr	nl:overdrijven:verb	*	pt	agigantar
+drop-tr	nl:uitstekend:adjective	*	pt	altamente
+drop-tr	nl:uitstekend:adjective	*	en	capital
+drop-tr	nl:gevoelig:adjective	*	pt	terno
+gloss	nl:gevoelig:adjective	s1	sensitive; delicate
+first	nl:gevoelig:adjective	*	en:sensitive:adjective
+drop-tr	nl:beschouwen:verb	*	pt	ter
+drop-tr	nl:verdediging:noun	*	de	Verteidigungsrede
+drop-tr	nl:verdediging:noun	*	pt	escudo
+drop-tr	nl:briljant:adjective	*	en	stellar
+drop-tr	nl:buigen:verb	*	pt	virar
+drop-tr	nl:falen:verb	*	de	kaputtgehen
+drop-tr	nl:falen:verb	*	en	fall by the wayside
+drop-tr	nl:steen:noun	*	pt	pedregulho
+gloss	nl:wateren:verb	s1	to urinate (formal)
+drop-tr	nl:wateren:verb	*	pt	mijar
+drop-tr	nl:sociaal:adjective	*	de	gesellig
+drop-tr	nl:sociaal:adjective	*	en	gregarious
+drop-tr	nl:sociaal:adjective	*	pt	gregário
+drop-tr	nl:wauw:interjection	*	pt	barbaridade
+drop-tr	nl:job:noun	*	de	Position
+drop-tr	nl:voorbeeld:noun	*	pt	diva
+drop-tr	nl:riskeren:verb	*	en	adventure
+drop-tr	nl:riskeren:verb	*	pt	aventurar
+drop-tr	nl:schilderen:verb	*	de	zeichnen
+drop-tr	nl:schoppen:noun	*	de	Laub
+gloss	nl:schoppen:noun	s1	(cards) spades; (verb) to kick
+drop-tr	nl:personeel:noun	*	de	Lehrkörper
+drop-tr	nl:personeel:noun	*	pt	estafe
+drop-tr	nl:nationaal:adjective	*	de	völkisch
+drop-tr	nl:meerdere:determiner	*	pt	muito
+drop-tr	nl:reet:noun	*	pt	olho do cu
+gloss	nl:wild:noun	s1	game (animals); (adj.) wild
+gloss	nl:koek:noun	s1	biscuit, cookie; (gingerbread) cake
+drop-tr	nl:graven:verb	*	en	drill
+gloss	nl:graven:verb	s1	to dig; (plural) graves; counts (nobility)
+drop-tr	nl:zuiden:noun	*	pt	austro
+drop-tr	nl:long:noun	*	de	Beuschel
+drop-tr	nl:plicht:noun	*	pt	obrigatoriedade
+drop-tr	nl:diamant:noun	*	en	brilliant
+drop-tr	nl:beschrijven:verb	*	en	define
+drop-tr	nl:beschrijven:verb	*	pt	retratar
+drop-tr	nl:emotioneel:adjective	*	pt	comovente
+drop-tr	nl:markt:noun	*	en	square
+drop-tr	nl:vrijwillig:adjective	*	de	ehrenamtlich
+drop-tr	nl:blazen:verb	*	en	wind
+gloss	nl:blikken:verb	s1	to look, to glance; (adj.) tin, made of tin
+gloss	nl:plus:noun	s1	plus; plus sign; advantage
+drop-tr	nl:zijde:noun	*	de	Kante
+gloss	nl:zijde:noun	s1	side; silk
+drop-tr	nl:achtervolgen:verb	*	en	course
+drop-tr	nl:achtervolgen:verb	*	pt	afugentar
+drop-tr	nl:berg:noun	*	en	heap
+drop-tr	nl:privé:adjective	*	en	privy
+drop-tr	nl:blad:noun	*	de	Klinge
+drop-tr	nl:blad:noun	*	en	blade
+drop-tr	nl:blad:noun	*	pt	lâmina
+gloss	nl:blad:noun	s1	leaf; sheet (of paper); magazine; tray
+gloss	nl:neen:interjection	s1	no (Belgian Dutch, emphatic)
+drop-tr	nl:bewaken:verb	*	en	ward
+gloss	nl:medium:noun	s1	medium; (psychic) medium
+drop-tr	nl:pesten:verb	*	pt	oprimir
+gloss	nl:ervandoor:adverb	s1	off, away (ervandoor gaan = to run off)
+drop-tr	nl:ervandoor:adverb	*	de	davonmachen
+drop-tr	nl:ervandoor:adverb	*	pt	desligado
+gloss	nl:strijken:verb	s1	to iron; to stroke; to lower (a flag)
+drop-tr	nl:strijken:verb	*	en	bow
+drop-tr	nl:strijken:verb	*	pt	acariciar
+drop-tr	nl:scherp:adjective	*	en	live
+drop-tr	nl:beschadigen:verb	*	de	anhaben
+drop-tr	nl:wanhopig:adjective	*	de	desperat
+drop-tr	nl:wanhopig:adjective	*	en	sore
+drop-tr	nl:wanhopig:adjective	*	pt	resignado
+gloss	nl:vanmiddag:adverb	s1	this afternoon
+drop-tr	nl:posten:verb	*	de	schicken
+drop-tr	nl:terrein:noun	*	en	plot
+drop-tr	nl:terrein:noun	*	pt	domínio
+drop-tr	nl:afnemen:verb	*	pt	declinar
+gloss	nl:afnemen:verb	s1	to decrease; to take off, to take away; to wipe
+drop-tr	nl:centrum:noun	*	de	City
+drop-tr	nl:centrum:noun	*	en	middle
+drop-tr	nl:centrum:noun	*	pt	meio
+drop-tr	nl:dreigen:verb	*	de	auftürmen
+drop-tr	nl:dreigen:verb	*	pt	chegar
+drop-tr	nl:verrader:noun	*	de	Landesverräter
+drop-tr	nl:indrukwekkend:adjective	*	en	forcible
+drop-tr	nl:meebrengen:verb	*	en	take away
+drop-tr	nl:meebrengen:verb	*	de	wegbringen
+drop-tr	nl:meebrengen:verb	*	pt	reunir
+gloss	nl:meebrengen:verb	s1	to bring along; to entail, to involve
+drop-tr	nl:genade:noun	*	de	Gunst
+drop-tr	nl:genade:noun	*	en	charity
+drop-tr	nl:wens:noun	*	de	Begehren
+drop-tr	nl:schaden:verb	*	en	scathe
+drop-tr	nl:schaden:verb	*	de	anhaben
+drop-tr	nl:schaden:verb	*	pt	machucar
+drop-tr	nl:godverdomme:interjection	*	pt	godeme
+gloss	nl:vatten:verb	s1	to grasp, to understand; to catch (a cold); to arrest
+drop-tr	nl:speler:noun	*	de	Schauspieler
+drop-tr	nl:speler:noun	*	pt	ator
+drop-tr	nl:bewust:adjective	*	en	sentient
+drop-tr	nl:opwinden:verb	*	pt	pregar uma peça
+gloss	nl:opwinden:verb	s1	to wind (up); (zich opwinden) to get worked up; to excite
+drop-tr	nl:kopie:noun	*	en	ditto
+drop-tr	nl:verwoesten:verb	*	en	waste
+drop-tr	nl:beheersen:verb	*	de	regeln
+gloss	nl:beheersen:verb	s1	to control, to master (a language, a skill)
+drop-tr	nl:haast:noun	*	en	expedience
+gloss	nl:haast:noun	s1	hurry, haste; (adverb) almost
+drop-tr	nl:lijf:noun	*	de	Rumpf
+drop-tr	nl:lijf:noun	*	en	torso
+drop-tr	nl:lijf:noun	*	pt	substância
+drop-tr	nl:lijf:noun	*	pt	sustância
+first	nl:lijf:noun	*	pt:corpo:noun
+drop-tr	nl:bevatten:verb	*	de	erfassen
+gloss	nl:bevatten:verb	s1	to contain; to comprehend
+drop-tr	nl:onderwerpen:verb	*	pt	render
+gloss	nl:onderwerpen:verb	s1	to subject, to subjugate; (plural) subjects, topics
+gloss	nl:aangeven:verb	s1	to hand, to pass; to indicate; to report (to the police)
+gloss	nl:lullen:verb	s1	to talk rubbish, to babble
+drop-tr	nl:lenen:verb	*	en	spot
+gloss	nl:lenen:verb	s1	to borrow; to lend
+drop-tr	nl:jongeman:noun	*	pt	boy
+gloss	nl:omstandigheden:noun	s1	circumstances
+drop-tr	nl:komst:noun	*	de	Einreise
+drop-tr	nl:komst:noun	*	en	approach
+gloss	nl:innemen:verb	s1	to take (medicine); to capture, to occupy
+drop-tr	nl:rit:noun	*	de	Fahrgeschäft
+drop-tr	nl:trut:noun	*	pt	puta
+drop-tr	nl:Brits:adjective	*	de	großbritannisch
+drop-tr	nl:explosie:noun	*	de	Eruption
+drop-tr	nl:explosie:noun	*	en	bang
+gloss	nl:gezellig:adjective	s1	cosy, convivial, pleasant (company, atmosphere)
+drop-tr	nl:gezellig:adjective	*	en	gregarious
+drop-tr	nl:gezellig:adjective	*	pt	gregário
+drop-tr	nl:minstens:adverb	*	pt	sequer
+gloss	nl:whisky:noun	s1	whisky
+drop-tr	nl:verbieden:verb	*	pt	impossibilitar
+gloss	nl:schikken:verb	s1	to suit; to arrange; (zich schikken) to resign oneself
+drop-tr	nl:achten:verb	*	de	hochschätzen
+drop-tr	nl:boeien:verb	*	de	berücken
+gloss	nl:boeien:verb	s1	to fascinate, to captivate; to shackle
+gloss	nl:klop:noun	s1	knock, blow (klop krijgen = to get a beating)
+gloss	nl:fris:noun	s1	soft drink; (adj.) fresh, cool
+gloss	nl:thuiskomen:verb	s1	to come home
+drop-tr	nl:wezen:noun	*	pt	ser
+gloss	nl:wezen:noun	s1	being, creature; essence; (plural) orphans
+drop-tr	nl:tijdelijk:adjective	*	en	temporal
+drop-tr	nl:tijdelijk:adjective	*	pt	temporal
+gloss	nl:klaren:verb	s1	to clear (customs); to manage, to accomplish
+gloss	nl:ontzettend:adverb	s1	terribly, awfully; tremendously
+drop-tr	nl:geschenk:noun	*	en	boon
+drop-tr	nl:super:adverb	*	pt	súper
+gloss	nl:overeenkomst:noun	s1	agreement; similarity
+drop-tr	nl:weghalen:verb	*	de	abbringen
+drop-tr	nl:expert:noun	*	pt	experto
+drop-tr	nl:verzorgen:verb	*	en	cultivate
+drop-tr	nl:verzorgen:verb	*	pt	cultivar
+gloss	nl:stand:noun	s1	position, state; score; stand, booth
+drop-tr	nl:stand:noun	*	de	Kiosk
+drop-tr	nl:gouverneur:noun	*	de	Steuermann
+drop-tr	nl:vrouwelijk:adjective	*	pt	fêmeo
+gloss	nl:middelbaar:adjective	s1	middle; secondary (middelbare school = secondary school)
+drop-tr	nl:constant:adjective	*	en	level
+drop-tr	nl:constant:adjective	*	de	laufend
+drop-tr	nl:identiteit:noun	*	de	Nämlichkeit
+drop-tr	nl:journalist:noun	*	pt	periodista
+drop-tr	nl:strand:noun	*	de	Strähne
+drop-tr	nl:strand:noun	*	pt	cordel
+drop-tr	nl:bovendien:adverb	*	de	überhaupt
+gloss	nl:dwars:adverb	s1	across, crosswise; (adj.) contrary, awkward
+drop-tr	nl:dwars:adverb	*	de	zwerch
+drop-tr	nl:steun:noun	*	de	Krücke
+drop-tr	nl:steun:noun	*	en	strut
+drop-tr	nl:steun:noun	*	pt	encosto
+drop-tr	nl:schrijver:noun	*	pt	escriba
+gloss	nl:klokken:verb	s1	to clock, to time
+drop-tr	nl:klokken:verb	*	de	glucken
+drop-tr	nl:klokken:verb	*	de	blubbern
+drop-tr	nl:vrijlaten:verb	*	de	freisetzen
+drop-tr	nl:afschuwelijk:adjective	*	de	verheerend
+drop-tr	nl:afschuwelijk:adjective	*	pt	desprezível
+gloss	nl:afschuwelijk:adjective	s1	horrible, dreadful, heinous
+drop-tr	nl:verblijven:verb	*	en	haunt
+drop-tr	nl:knop:noun	*	pt	manopla
+gloss	nl:knop:noun	s1	button, knob, switch; bud
+drop-tr	nl:verstandig:adjective	*	pt	entergo
+gloss	nl:uitgeven:verb	s1	to spend; to publish
+drop-tr	nl:uitgeven:verb	*	en	dispense
+drop-tr	nl:training:noun	*	de	Abrichtung
+drop-tr	nl:terugtrekken:verb	*	en	abstract
+drop-tr	nl:keel:noun	*	en	gules
+drop-tr	nl:keel:noun	*	pt	goles
+drop-tr	nl:aanpassen:verb	*	en	appropriate
+gloss	nl:aanpassen:verb	s1	to adapt, to adjust; to try on (clothes)
+drop-tr	nl:vergelijken:verb	*	en	confront
+gloss	nl:ontbreken:noun	s1	absence, lack; (verb) to be missing, to be lacking
+drop-tr	nl:patroon:noun	*	de	Meister
+drop-tr	nl:patroon:noun	*	en	protector
+gloss	nl:patroon:noun	s1	pattern; cartridge; patron (saint)
+drop-tr	nl:loslaten:verb	*	de	weglassen
+drop-tr	nl:opvoeden:verb	*	de	aufbringen
+drop-tr	nl:wennen:verb	*	en	wont
+gloss	nl:overgeven:verb	s1	to vomit; to hand over; (zich overgeven) to surrender
+drop-tr	nl:overgeven:verb	*	pt	bofar
+drop-tr	nl:konijn:noun	*	de	Hase
+drop-tr	nl:uniek:adjective	*	en	privy
+drop-tr	nl:geduld:noun	*	en	nerve
+drop-tr	nl:was:noun	*	en	dope
+gloss	nl:was:noun	s1	wax; laundry, washing; (verb) was (from zijn)
+gloss	nl:duister:noun	s1	darkness; (adj.) dark, obscure
+drop-tr	nl:woestijn:noun	*	de	Sandmeer
+drop-tr	nl:emotie:noun	*	de	Bewegung
+drop-tr	nl:beschikbaar:adjective	*	en	up
+drop-tr	nl:beschikbaar:adjective	*	pt	obtenível
+drop-tr	nl:lunch:noun	*	en	dinner
+drop-tr	nl:mislukken:verb	*	en	miscarry
+drop-tr	nl:kaas:noun	*	pt	polenguinho
+drop-tr	nl:koppelen:verb	*	de	aufsatteln
+drop-tr	nl:verbinding:noun	*	de	Nexus
+drop-tr	nl:verbinding:noun	*	en	join
+drop-tr	nl:middel:noun	*	en	mean
+gloss	nl:middel:noun	s1	means, remedy; waist
+drop-tr	nl:slet:noun	*	de	Schlampensau
+drop-tr	nl:slet:noun	*	pt	messalina
+drop-tr	nl:alcohol:noun	*	de	Weingeist
+drop-tr	nl:hek:noun	*	de	Hag
+drop-tr	nl:robot:noun	*	de	Roboterin
+gloss	nl:bestuderen:verb	s1	to study, to examine
+drop-tr	nl:centraal:adjective	*	en	center
+drop-tr	nl:centraal:adjective	*	de	mittig
+drop-tr	nl:gedachte:noun	*	de	Ahnung
+drop-tr	nl:blokkeren:verb	*	de	abschneiden
+drop-tr	nl:blokkeren:verb	*	en	lock
+gloss	nl:doodschieten:verb	s1	to shoot dead
+drop-tr	nl:tekst:noun	*	en	Columbian
+drop-tr	nl:dollen:verb	*	pt	retouçar
+gloss	nl:dollen:verb	s1	to fool around, to joke
+drop-tr	nl:studie:noun	*	de	Kursus
+gloss	nl:studie:noun	s1	study; studies (at university)
+gloss	nl:besturen:verb	s1	to steer, to drive; to govern, to manage
+gloss	nl:scheiding:noun	s1	separation; divorce
+gloss	nl:stikken:verb	s1	to suffocate, to choke; to stitch
+gloss	nl:jacht:noun	s1	hunt; yacht
+drop-tr	nl:letterlijk:adverb	*	pt	verbatim
+drop-tr	nl:strak:adjective	*	de	verkrampft
+gloss	nl:zowel:conjunction	s1	both (zowel ... als = both ... and), as well as
+drop-tr	nl:som:noun	*	pt	adição
+drop-tr	nl:bedekken:verb	*	en	line
+drop-tr	nl:bedekken:verb	*	de	belegen
+drop-tr	nl:generatie:noun	*	en	age
+gloss	nl:apart:adjective	s1	separate; special, unusual
+drop-tr	nl:apart:adjective	*	en	aloof
+drop-tr	nl:apart:adjective	*	pt	a distância
+drop-tr	nl:aantrekkelijk:adjective	*	pt	apelador
+drop-tr	nl:handtekening:noun	*	de	Pfote
+drop-tr	nl:onlangs:adverb	*	en	just
+drop-tr	nl:modern:adjective	*	de	zeitgerecht
+drop-tr	nl:spiegel:noun	*	pt	mirror
+drop-tr	nl:heuvel:noun	*	en	down
+drop-tr	nl:heuvel:noun	*	de	Hügelchen
+gloss	nl:pak:noun	s1	pack, package; suit (clothing); carton
+drop-tr	nl:pak:noun	*	pt	packet
+drop-tr	nl:duw:noun	*	pt	alavancagem
+drop-tr	nl:mensheid:noun	*	de	Menschlichkeit
+drop-tr	nl:vernederen:verb	*	pt	arrombar
+drop-tr	nl:volwassene:noun	*	de	Großer
+drop-tr	nl:gewicht:noun	*	en	import
+drop-tr	nl:gewicht:noun	*	de	Last
+gloss	nl:stoer:adjective	s1	tough, cool
+gloss	nl:have:noun	s1	property, possessions (have en goed = all one's belongings)
+drop-tr	nl:gozer:noun	*	pt	varão
+drop-tr	nl:wreed:adjective	*	de	herb
+drop-tr	nl:wreed:adjective	*	pt	cruento
+drop-tr	nl:organisatie:noun	*	de	Veranstaltung
+gloss	nl:hekel:noun	s1	dislike (een hekel hebben aan = to dislike, to hate); hackle
+gloss	nl:jarig:adjective	s1	having one's birthday (ik ben jarig = it's my birthday)
+gloss	nl:aanslag:noun	s1	attack (terrorist); keystroke; deposit, scale
+gloss	nl:blik:noun	s1	look, glance; tin, can; sheet metal
+drop-tr	nl:blik:noun	*	pt	tabla
+drop-tr	nl:lef:noun	*	de	Schwabenstreich
+gloss	nl:gedag:noun	s1	(gedag zeggen) to say hello, to say goodbye
+gloss	nl:opkomen:verb	s1	to come up, to rise; (opkomen voor) to stand up for
+gloss	nl:afleiden:verb	s1	to distract; to deduce, to derive
+drop-tr	nl:afleiden:verb	*	en	skew
+drop-tr	nl:ondertussen:adverb	*	pt	simultaneamente
+drop-tr	nl:uitdaging:noun	*	de	Mutprobe
+drop-tr	nl:uitdaging:noun	*	pt	incentivo
+drop-tr	nl:gerechtigheid:noun	*	de	Gleichheit
+drop-tr	nl:vermijden:verb	*	pt	poupar
+drop-tr	nl:werknemer:noun	*	en	hire
+drop-tr	nl:verloofd:adjective	*	de	verloben
+drop-tr	nl:zeldzaam:adjective	*	en	funny
+drop-tr	nl:welnee:interjection	*	pt	nem
+drop-tr	nl:moedig:adjective	*	de	brav
+gloss	nl:mankeren:verb	s1	to be wrong with (wat mankeert je? = what's wrong with you?); to lack
+drop-tr	nl:mankeren:verb	*	de	plagen
+gloss	nl:merk:noun	s1	brand, make; mark
+drop-tr	nl:merk:noun	*	pt	marca de nome
+first	nl:merk:noun	*	pt:marca:noun
+drop-tr	nl:lading:noun	*	de	Nutzlast
+drop-tr	nl:beëindigen:verb	*	de	vollstrecken
+drop-tr	nl:vrachtwagen:noun	*	pt	borla
+gloss	nl:voorzien:verb	s1	to provide (with); to foresee
+drop-tr	nl:voorzien:verb	*	en	slate
+drop-tr	nl:ring:noun	*	de	Bereich
+drop-tr	nl:actief:adjective	*	de	aktivisch
+drop-tr	nl:ongerust:adjective	*	pt	grilado
+drop-tr	nl:draad:noun	*	pt	filo
+first	nl:draad:noun	*	pt:fio:noun
+drop-tr	nl:doorgeven:verb	*	en	ship
+drop-tr	nl:overheen:preposition	*	pt	perpendicularmente
+drop-tr	nl:opletten:verb	*	pt	fazer caso
+gloss	nl:afzetten:verb	s1	to drop off; to turn off; to depose; to amputate
+drop-tr	nl:vervolgens:adverb	*	de	nachträglich
+drop-tr	nl:stranden:verb	*	pt	abicar
+drop-tr	nl:handschoen:noun	*	de	Fingerhandschuh
+drop-tr	nl:hal:noun	*	en	corridor
+gloss	nl:flauw:adjective	s1	bland; lame, silly (joke); faint
+drop-tr	nl:flauw:adjective	*	de	leise
+drop-tr	nl:plant:noun	*	de	Pflanzenschutz
+drop-tr	nl:plant:noun	*	en	vegetable
+drop-tr	nl:zweten:verb	*	en	stew
+gloss	nl:sporten:verb	s1	to do sports, to exercise
+drop-tr	nl:gsm:noun	*	de	Ackerschnacker
+gloss	nl:overweg:adverb	s1	(overweg kunnen met) to get along with; (noun) level crossing
+drop-tr	nl:huidig:adjective	*	de	jeweilig
+drop-tr	nl:gewelddadig:adjective	*	en	impetuous
+drop-tr	nl:extreem:adverb	*	en	passing
+gloss	nl:hechten:verb	s1	to attach; to suture; (hechten aan) to value
+drop-tr	nl:martelen:verb	*	pt	macerar
+drop-tr	nl:werpen:verb	*	en	project
+drop-tr	nl:klassiek:adjective	*	en	vintage
+drop-tr	nl:namelijk:adverb	*	de	zwar
+drop-tr	nl:bruid:noun	*	de	Brautschau
+drop-tr	nl:kwart:noun	*	de	Quarte
+gloss	nl:stemming:noun	s1	mood; vote, voting
+drop-tr	nl:scène:noun	*	de	Bildfläche
+gloss	nl:dagen:verb	s1	to dawn; (plural) days
+gloss	nl:verloven:verb	s1	(zich verloven) to get engaged
+drop-tr	nl:gewapend:adjective	*	pt	montado
+drop-tr	nl:marinier:noun	*	en	marine corps
+drop-tr	nl:marinier:noun	*	pt	marinha
+drop-tr	nl:therapie:noun	*	de	Therapeutikum
+drop-tr	nl:suiker:noun	*	pt	canjica
+drop-tr	nl:succesvol:adjective	*	en	lucky
+drop-tr	nl:succesvol:adjective	*	de	blühend
+gloss	nl:kampen:verb	s1	to struggle (kampen met = to struggle with); (plural) camps
+drop-tr	nl:nul:noun	*	pt	ninguém
+gloss	nl:uitsteken:verb	s1	to stick out, to hold out; to gouge out
+drop-tr	nl:explosief:noun	*	de	Verschlusslaut
+drop-tr	nl:uitvinden:verb	*	pt	farejar
+gloss	nl:uitvinden:verb	s1	to invent; to find out
+gloss	nl:houten:adjective	s1	wooden, made of wood
+drop-tr	nl:houten:adjective	*	pt	lenhoso
+gloss	nl:storten:verb	s1	to pour, to dump; to deposit (money); to crash
+gloss	nl:wijken:verb	s1	to give way, to yield; to disappear
+gloss	nl:logeren:verb	s1	to stay (as a guest), to stay overnight
+drop-tr	nl:buitenlands:adjective	*	en	strange
+drop-tr	nl:buitenlands:adjective	*	pt	alienígena
+drop-tr	nl:buitenlands:adjective	*	de	fremd
+gloss	nl:doctor:noun	s1	doctor (PhD); (Belgian Dutch) physician
+drop-tr	nl:doctor:noun	*	de	Medikus
+drop-tr	nl:boete:noun	*	pt	firmeza
+gloss	nl:voeren:verb	s1	to feed; to conduct, to carry on (a conversation); to line (clothing)
+drop-tr	nl:voeren:verb	*	en	ride
+drop-tr	nl:stralen:verb	*	en	luster
+drop-tr	nl:stabiel:adjective	*	pt	estabelecido
+drop-tr	nl:intrekken:verb	*	pt	devolver
+gloss	nl:aanpakken:verb	s1	to tackle, to deal with; to grab
+drop-tr	nl:lip:noun	*	de	Lefze
+drop-tr	nl:lip:noun	*	en	labellum
+drop-tr	nl:teen:noun	*	en	digit
+gloss	nl:wijf:noun	s1	(vulgar) woman, bitch
+gloss	nl:vlakbij:adverb	s1	nearby, close by
+gloss	nl:overeen:adverb	s1	in agreement (overeenkomen = to agree; to correspond)
+drop-tr	nl:snoep:noun	*	pt	confeitaria
+drop-tr	nl:snoep:noun	*	pt	pastelaria
+first	nl:snoep:noun	*	pt:doce:noun
+gloss	nl:snoep:noun	s1	sweets, candy
+drop-tr	nl:verkiezing:noun	*	de	Papstwahl
+drop-tr	nl:gebrek:noun	*	de	Macke
+drop-tr	nl:doorlopen:verb	*	pt	encruzar
+gloss	nl:doorlopen:verb	s1	to keep walking, to walk on; to go through
+drop-tr	nl:behouden:verb	*	de	gaumen
+drop-tr	nl:behouden:verb	*	pt	permanecer
+gloss	nl:behouden:verb	s1	to keep, to retain, to preserve
+drop-tr	nl:oefening:noun	*	pt	manobra
+drop-tr	nl:oefening:noun	*	de	Manöver
+gloss	nl:beroep:noun	s1	profession, occupation; appeal (legal)
+drop-tr	nl:woning:noun	*	en	apartment
+drop-tr	nl:toren:noun	*	pt	Casa de Deus
+drop-tr	nl:aankunnen:verb	*	de	dingfest
+gloss	nl:aankunnen:verb	s1	to be able to handle, to cope with
+drop-tr	nl:onderbreken:verb	*	en	escape
+drop-tr	nl:inclusief:adjective	*	de	vollständig
+drop-tr	nl:inclusief:adjective	*	de	allumfassend
+gloss	nl:inclusief:adjective	s1	including, inclusive
+gloss	nl:afgaan:verb	s1	to go off (alarm); to go down; to make a fool of oneself
+gloss	nl:vermogen:noun	s1	fortune, wealth; ability, capacity; power
+drop-tr	nl:opleiding:noun	*	pt	tirocínio
+drop-tr	nl:opleiding:noun	*	de	Abrichtung
+gloss	nl:opleiding:noun	s1	education, training, course of study
+gloss	nl:as:noun	s1	ash; axle, axis
+gloss	nl:uitslag:noun	s1	result; rash (on the skin)
+gloss	nl:bekken:noun	s1	basin; pelvis; cymbal
+drop-tr	nl:gif:noun	*	de	Geifer
+drop-tr	nl:studio:noun	*	en	bachelor
+gloss	nl:vak:noun	s1	subject (at school); trade, profession; compartment, box
+drop-tr	nl:hartslag:noun	*	en	heartthrob
+drop-tr	nl:hartslag:noun	*	pt	galã
+drop-tr	nl:wreken:verb	*	pt	revidar
+drop-tr	nl:kreng:noun	*	pt	corpo
+gloss	nl:kreng:noun	s1	carrion; (insult) nasty person, bitch
+drop-tr	nl:troosten:verb	*	de	zusprechen
+drop-tr	nl:troosten:verb	*	pt	aliviar
+drop-tr	nl:ingang:noun	*	de	Eintrag
+drop-tr	nl:ingang:noun	*	de	Stichwort
+first	nl:ingang:noun	*	de:Eingang:noun
+drop-tr	nl:ingang:noun	*	en	mouth
+gloss	nl:ingang:noun	s1	entrance, entry
+drop-tr	nl:periode:noun	*	en	era
+drop-tr	nl:periode:noun	*	pt	era
+drop-tr	nl:plas:noun	*	de	Pfuhl
+gloss	nl:plas:noun	s1	puddle; pond, lake; (informal) pee
+drop-tr	nl:bevelen:verb	*	de	verhängen
+drop-tr	nl:mysterie:noun	*	de	Mystery
+drop-tr	nl:rotzak:noun	*	pt	viado
+drop-tr	nl:onthullen:verb	*	pt	deparar
+drop-tr	nl:verstoren:verb	*	pt	desaguisar
+drop-tr	nl:verstoren:verb	*	de	umwerfen
+drop-tr	nl:instructie:noun	*	de	Unterricht
+drop-tr	nl:mannelijk:adjective	*	pt	homem
+drop-tr	nl:compliment:noun	*	pt	cumprimento
+drop-tr	nl:volhouden:verb	*	en	last
+drop-tr	nl:volhouden:verb	*	de	dringen
+gloss	nl:volhouden:verb	s1	to persevere, to keep up; to maintain (an opinion)
+drop-tr	nl:zone:noun	*	de	Kulturkreis
+drop-tr	nl:goedkeuren:verb	*	pt	provar
+gloss	nl:tong:noun	s1	tongue; sole (fish)
+drop-tr	nl:rol:noun	*	en	bolt
+drop-tr	nl:teef:noun	*	pt	cachorro
+gloss	nl:aangaan:verb	s1	to concern (dat gaat jou niet aan = that's none of your business); to enter into
+drop-tr	nl:bril:noun	*	de	Klobrille
+gloss	nl:handig:adjective	s1	handy, convenient; skilful
+drop-tr	nl:oppikken:verb	*	de	lesen
+drop-tr	nl:pech:noun	*	pt	cábula
+drop-tr	nl:mammie:noun	*	en	grandma
+gloss	nl:spanning:noun	s1	tension, stress; suspense; voltage
+drop-tr	nl:diefstal:noun	*	en	steal
+gloss	nl:schoft:noun	s1	scoundrel, bastard; withers (of a horse)
+gloss	nl:promotie:noun	s1	promotion; doctorate (PhD graduation)
+gloss	nl:ofwel:conjunction	s1	or, in other words (ofwel ... ofwel = either ... or)
+gloss	nl:rommelen:verb	s1	to rummage; to rumble
+drop-tr	nl:rommelen:verb	*	pt	toar
+gloss	nl:recept:noun	s1	recipe; prescription
+drop-tr	nl:recept:noun	*	en	receipt
+drop-tr	nl:kennelijk:adverb	*	pt	supostamente
+drop-tr	nl:kennelijk:adverb	*	en	patently
+gloss	nl:klink:noun	s1	door handle, latch
+drop-tr	nl:uitzicht:noun	*	pt	mirante
+drop-tr	nl:begeleiden:verb	*	de	komplimentieren
+drop-tr	nl:intern:adjective	*	en	internecine
+drop-tr	nl:opschrijven:verb	*	en	mark
+gloss	nl:deken:noun	s1	blanket; dean
+drop-tr	nl:insect:noun	*	de	Wanze
+drop-tr	nl:vijfde:adjective	*	de	fünftel
+gloss	nl:gronden:verb	s1	to ground, to base; (plural) grounds
+drop-tr	nl:zenuwachtig:adjective	*	pt	petulante
+first	nl:zenuwachtig:adjective	*	pt:nervoso:adjective
+drop-tr	nl:achtergrond:noun	*	en	ground
+drop-tr	nl:achtergrond:noun	*	pt	experiência
+drop-tr	nl:klasse:noun	*	pt	predicamento
+gloss	nl:klasse:noun	s1	class (category, quality); (interjection) great!
+gloss	nl:afleggen:verb	s1	to make (a statement), to take (an exam, an oath); to cover (a distance)
+gloss	nl:scheppen:verb	s1	to create; to scoop, to shovel
+gloss	nl:morgenavond:adverb	s1	tomorrow evening
+gloss	nl:heleboel:numeral	s1	a whole lot (een heleboel = a lot of)
+gloss	nl:bek:noun	s1	beak, bill; (informal) mouth, trap (hou je bek = shut up)
+gloss	nl:nakijken:verb	s1	to check; to correct (homework); to look after (someone leaving)
+drop-tr	nl:zakelijk:adjective	*	pt	sucinto
+drop-tr	nl:zakelijk:adjective	*	en	succinct
+gloss	nl:zakelijk:adjective	s1	business-like; business (zakelijk gesprek = business talk); matter-of-fact
+gloss	nl:aanhouden:verb	s1	to stop, to arrest; to keep on; to persist
+drop-tr	nl:gigantisch:adjective	*	de	lausig
+drop-tr	nl:beveiligen:verb	*	en	assure
+drop-tr	nl:beveiligen:verb	*	pt	assegurar
+drop-tr	nl:clown:noun	*	de	Pappnase
+drop-tr	nl:uitgang:noun	*	de	Terminierung
+drop-tr	nl:uitgang:noun	*	en	desinence
+drop-tr	nl:uitgang:noun	*	pt	terminação
+drop-tr	nl:opgewonden:adjective	*	en	horny
+drop-tr	nl:opgewonden:adjective	*	de	erregt
+drop-tr	nl:passeren:verb	*	pt	preterir
+gloss	nl:wee:noun	s1	contraction, labour pain; woe; (adj.) sickly, cloying
+drop-tr	nl:zombie:noun	*	en	living dead
+drop-tr	nl:inhouden:verb	*	de	mitschwingen
+gloss	nl:inhouden:verb	s1	to contain, to involve; to hold back, to restrain
+drop-tr	nl:hufter:noun	*	de	Wichser
+drop-tr	nl:hufter:noun	*	pt	pentelho
+drop-tr	nl:koorts:noun	*	de	Fieberanfall
+drop-tr	nl:koorts:noun	*	pt	maleita
+drop-tr	nl:ouderwets:adjective	*	en	stale
+drop-tr	nl:versturen:verb	*	en	remit
+drop-tr	nl:versturen:verb	*	pt	remeter
+drop-tr	nl:communicatie:noun	*	en	intercourse
+drop-tr	nl:communicatie:noun	*	de	Verkehr
+drop-tr	nl:humor:noun	*	en	bodily fluid
+gloss	nl:hakken:noun	s1	heels; (verb) to chop, to hack
+drop-tr	nl:wurgen:verb	*	en	neck
+drop-tr	nl:wurgen:verb	*	pt	sufocar
+drop-tr	nl:beslag:noun	*	pt	polme
+gloss	nl:beslag:noun	s1	batter, dough; fittings; seizure (in beslag nemen = to seize, to take up)
+drop-tr	nl:medewerker:noun	*	de	Personal
+gloss	nl:tip:noun	s1	tip (hint, gratuity); tip, point
+drop-tr	nl:inlichten:verb	*	en	clue
+drop-tr	nl:kleur:noun	*	de	Haarfarbe
+drop-tr	nl:kleur:noun	*	pt	tintura
+drop-tr	nl:registreren:verb	*	pt	assentar
+drop-tr	nl:concert:noun	*	de	Gig
+drop-tr	nl:concert:noun	*	en	gig
+gloss	nl:ingaan:verb	s1	to go into, to enter; to take effect, to begin; (ingaan op) to respond to
+drop-tr	nl:schaap:noun	*	de	Schafherde
+drop-tr	nl:schaap:noun	*	en	mutton
+drop-tr	nl:schaap:noun	*	pt	canhona
+drop-tr	nl:rechtstreeks:adverb	*	en	live
+drop-tr	nl:rechtstreeks:adverb	*	pt	ao vivo
+drop-tr	nl:Engels:adjective	*	pt	anglo
+gloss	nl:uitweg:noun	s1	way out, escape
+drop-tr	nl:tegenstander:noun	*	en	enemy
+drop-tr	nl:tegenstander:noun	*	en	opposite
+first	nl:tegenstander:noun	*	en:opponent:noun
+drop-tr	nl:handdoek:noun	*	de	Zwehle
+drop-tr	nl:beoordelen:verb	*	pt	ter
+drop-tr	nl:beoordelen:verb	*	en	criticize
+drop-tr	nl:smeren:verb	*	pt	passar
+drop-tr	nl:manipuleren:verb	*	pt	manusear
+drop-tr	nl:hebbes:interjection	*	de	erwischen
+drop-tr	nl:hebbes:interjection	*	pt	perceber
+drop-tr	nl:hebbes:interjection	*	pt	ter de
+gloss	nl:hebbes:interjection	s1	gotcha! got it!
+gloss	nl:neuzen:verb	s1	to browse, to nose around
+drop-tr	nl:gillen:verb	*	de	quietschen
+drop-tr	nl:strafblad:noun	*	pt	antecedente
+drop-tr	nl:omdraaien:verb	*	en	invert
+drop-tr	nl:omdraaien:verb	*	pt	rodar
+drop-tr	nl:uitspreken:verb	*	de	verkünden
+drop-tr	nl:uitspreken:verb	*	de	bekanntgeben
+drop-tr	nl:uitspreken:verb	*	en	announce
+gloss	nl:uitspreken:verb	s1	to pronounce; to express; to finish speaking
+drop-tr	nl:speelgoed:noun	*	de	Spielwerk
+drop-tr	nl:speelgoed:noun	*	pt	bunhedo
+drop-tr	nl:jatten:verb	*	en	boost
+gloss	nl:watje:noun	s1	wimp, softie; cotton ball
+drop-tr	nl:watje:noun	*	de	Wattebausch
+drop-tr	nl:ministerie:noun	*	de	Staatsanwaltschaft
+drop-tr	nl:ministerie:noun	*	en	department
+drop-tr	nl:plaatsvinden:verb	*	pt	haver
+drop-tr	nl:belasting:noun	*	pt	taxa
+gloss	nl:belasting:noun	s1	tax; load, strain
+drop-tr	nl:crisis:noun	*	de	Wirtschaftskrise
+gloss	nl:natrekken:verb	s1	to check, to trace, to verify
+drop-tr	nl:passagier:noun	*	de	Insasse
+drop-tr	nl:sok:noun	*	de	Strumpf
+gloss	nl:lusten:verb	s1	to like (food) (ik lust geen spruitjes = I don't like sprouts)
+drop-tr	nl:naald:noun	*	en	stylus
+drop-tr	nl:verboden:adjective	*	de	unstatthaft
+gloss	nl:tja:interjection	s1	well..., hmm (expressing hesitation)
+drop-tr	nl:verdrag:noun	*	en	compact
+drop-tr	nl:informant:noun	*	en	nark
+drop-tr	nl:informant:noun	*	en	finger
+first	nl:informant:noun	*	en:informant:noun
+drop-tr	nl:grof:adjective	*	en	fresh
+gloss	nl:bezwaren:verb	s1	to burden; (plural) objections
+drop-tr	nl:college:noun	*	pt	conferência
+gloss	nl:college:noun	s1	lecture (at university); board (college van B&W)
+drop-tr	nl:auditie:noun	*	pt	ensaio
+drop-tr	nl:verhogen:verb	*	en	up
+drop-tr	nl:verhogen:verb	*	pt	subir
+drop-tr	nl:pijpen:verb	*	de	absaugen
+gloss	nl:pijpen:verb	s1	(vulgar) to give a blow job; (plural) pipes
+drop-tr	nl:enthousiast:adjective	*	en	perky
+drop-tr	nl:zoektocht:noun	*	pt	quest
+drop-tr	nl:figuur:noun	*	en	curve
+drop-tr	nl:profiel:noun	*	de	Benutzerprofil
+drop-tr	nl:stiekem:adverb	*	de	stiekum
+drop-tr	nl:kwaliteit:noun	*	pt	atributo
+drop-tr	nl:poes:noun	*	de	Muschi
+drop-tr	nl:poes:noun	*	en	pussy
+gloss	nl:poes:noun	s1	(female) cat, pussycat
+drop-tr	nl:proost:interjection	*	en	God bless you
+drop-tr	nl:proost:interjection	*	pt	santinho
+drop-tr	nl:tenslotte:adverb	*	de	endlich
+gloss	nl:tenslotte:adverb	s1	after all; finally
+drop-tr	nl:vandaar:adverb	*	de	dorther
+gloss	nl:vandaar:adverb	s1	hence, that's why; from there
+drop-tr	nl:fort:noun	*	de	Schloss
+drop-tr	nl:fort:noun	*	en	castle
+drop-tr	nl:fort:noun	*	pt	castelo
+drop-tr	nl:goedmaken:verb	*	pt	remunerar
+gloss	nl:puinhoop:noun	s1	mess, shambles; pile of rubble
+drop-tr	nl:bezoeker:noun	*	en	visiting team
+drop-tr	nl:betrouwbaar:adjective	*	en	responsible
+drop-tr	nl:betrouwbaar:adjective	*	pt	responsável
+drop-tr	nl:tijdstip:noun	*	en	date
+drop-tr	nl:weduwe:noun	*	de	Hurenkind
+drop-tr	nl:cultuur:noun	*	pt	cultivo
+drop-tr	nl:rat:noun	*	de	Ratze
+drop-tr	nl:penis:noun	*	de	Schwengel
+gloss	nl:overkant:noun	s1	the other side, the opposite side (aan de overkant = across the street)
+gloss	nl:overste:noun	s1	superior; (military) lieutenant colonel
+drop-tr	nl:overste:noun	*	pt	sênior
+drop-tr	nl:overste:noun	*	pt	sénior
+drop-tr	nl:overste:noun	*	en	senior
+drop-tr	nl:overhalen:verb	*	pt	aliciar
+drop-tr	nl:informeren:verb	*	en	clue
+drop-tr	nl:knallen:verb	*	de	hacken
+drop-tr	nl:misleiden:verb	*	de	äffen
+drop-tr	nl:traag:adjective	*	en	sullen
+drop-tr	nl:fortuin:noun	*	de	Heidengeld
+drop-tr	nl:fortuin:noun	*	en	happiness
+drop-tr	nl:fortuin:noun	*	en	mint
+gloss	nl:fortuin:noun	s1	fortune (wealth); luck
+first	nl:fortuin:noun	*	en:fortune:noun
+gloss	nl:tevoorschijn:adverb	s1	out, into view (tevoorschijn komen = to appear)
+drop-tr	nl:staf:noun	*	pt	bastão
+gloss	nl:staf:noun	s1	staff (personnel); staff, rod
+drop-tr	nl:gemak:noun	*	de	Tröstung
+gloss	nl:gemak:noun	s1	ease, convenience, comfort (op je gemak = at ease)
+gloss	nl:kerstman:noun	s1	Santa Claus, Father Christmas
+gloss	nl:kerstfeest:noun	s1	Christmas
+gloss	nl:afdruk:noun	s1	print, imprint; copy
+gloss	nl:info:noun	s1	info
+drop-tr	nl:slikken:verb	*	de	abnehmen
+drop-tr	nl:slikken:verb	*	en	buy
+drop-tr	nl:rand:noun	*	de	Krempe
+drop-tr	nl:rand:noun	*	pt	aba
+drop-tr	nl:streng:adjective	*	de	windelweich
+drop-tr	nl:instorten:verb	*	en	flop
+drop-tr	nl:egoïstisch:adjective	*	de	selbstisch
+drop-tr	nl:kruisen:verb	*	pt	caçar
+gloss	nl:kruisen:verb	s1	to cross; to cruise
+drop-tr	nl:ontwijken:verb	*	en	miss
+gloss	nl:vloeren:verb	s1	to floor, to knock down
+gloss	nl:contant:adjective	s1	cash (contant betalen = to pay cash)
+drop-tr	nl:verleiden:verb	*	pt	enganar
+drop-tr	nl:paleis:noun	*	en	court
+drop-tr	nl:paleis:noun	*	pt	corte
+drop-tr	nl:heengaan:verb	*	de	verbleichen
+gloss	nl:heengaan:verb	s1	to go away, to leave; to pass away
+drop-tr	nl:vastzitten:verb	*	en	catch
+drop-tr	nl:vastzitten:verb	*	pt	prender
+gloss	nl:vastzitten:verb	s1	to be stuck; to be in prison
+gloss	nl:achterhalen:verb	s1	to find out, to trace
+drop-tr	nl:plastic:adjective	*	de	Plastik
+drop-tr	nl:plastic:adjective	*	de	Kunststoff
+gloss	nl:plastic:adjective	s1	plastic
+drop-tr	nl:aflevering:noun	*	de	Heft
+drop-tr	nl:aflevering:noun	*	en	issue
+gloss	nl:zakken:verb	s1	to sink, to drop; to fail (an exam); (plural) bags, pockets
+gloss	nl:anderhalf:numeral	s1	one and a half
+drop-tr	nl:grijs:adjective	*	en	hoary
+drop-tr	nl:aanzetten:verb	*	de	drängen
+drop-tr	nl:aanzetten:verb	*	en	urge
+drop-tr	nl:aanzetten:verb	*	en	incite
+drop-tr	nl:aanzetten:verb	*	pt	provocar
+gloss	nl:aanzetten:verb	s1	to switch on, to start; to incite
+drop-tr	nl:nutteloos:adjective	*	en	idle
+drop-tr	nl:nutteloos:adjective	*	de	müßig
+drop-tr	nl:wetenschappelijk:adjective	*	de	szientifisch
+drop-tr	nl:presenteren:verb	*	de	empfehlen
+drop-tr	nl:presenteren:verb	*	de	anbieten
+drop-tr	nl:presenteren:verb	*	en	offer
+drop-tr	nl:presenteren:verb	*	pt	oferecer
+drop-tr	nl:dealer:noun	*	de	Händler
+drop-tr	nl:dealer:noun	*	en	dealership
+drop-tr	nl:dealer:noun	*	pt	negociante
+drop-tr	nl:fatsoenlijk:adjective	*	pt	puro
+gloss	nl:straf:adjective	s1	strong, heavy, hefty (Flemish: impressive); (noun) punishment
+gloss	nl:reclame:noun	s1	advertisement, advertising; (rare) complaint
+drop-tr	nl:reclame:noun	*	de	Reklamation
+drop-tr	nl:reclame:noun	*	en	complaint
+drop-tr	nl:geniaal:adjective	*	de	ingeniös
+drop-tr	nl:belazeren:verb	*	de	düpieren
+drop-tr	nl:belazeren:verb	*	de	nasführen
+gloss	nl:belazeren:verb	s1	to cheat, to con, to fool
+drop-tr	nl:knippen:verb	*	de	klappen
+drop-tr	nl:knippen:verb	*	en	scissor
+gloss	nl:vervolgen:verb	s1	to continue; to prosecute; to persecute
+drop-tr	nl:rapporteren:verb	*	en	narrate
+gloss	nl:aansluiten:verb	s1	to connect; (zich aansluiten bij) to join
+drop-tr	nl:uitsluiten:verb	*	pt	rejeitar
+drop-tr	nl:noteren:verb	*	en	book
+gloss	nl:eerwaarde:noun	s1	Reverend (title)
+drop-tr	nl:schermen:verb	*	pt	esgrima
+gloss	nl:schermen:verb	s1	to fence (sport); to shield; (plural) screens
+drop-tr	nl:batterij:noun	*	en	cell
+drop-tr	nl:batterij:noun	*	pt	pilha
+drop-tr	nl:rebel:noun	*	en	renegade
+drop-tr	nl:rebel:noun	*	pt	renegado
+drop-tr	nl:gereedschap:noun	*	pt	utensílio
+gloss	nl:pet:adjective	s1	(informal) bad, lousy; (noun) cap
+drop-tr	nl:agenda:noun	*	de	Notizbuch
+drop-tr	nl:agenda:noun	*	pt	diário
+gloss	nl:agenda:noun	s1	diary, planner; agenda
+drop-tr	nl:pakket:noun	*	pt	packet
+first	nl:pakket:noun	*	pt:pacote:noun
+drop-tr	nl:moeilijkheid:noun	*	pt	barulho
+drop-tr	nl:moeilijkheid:noun	*	de	Ärger
+gloss	nl:verrekken:verb	s1	to strain (a muscle); (vulgar) to die (verrek! = damn!)
+gloss	nl:uiterlijk:adverb	s1	at the latest; (noun) appearance, looks
+gloss	nl:meesten:numeral	s1	most (people) (de meesten = most of them)
+drop-tr	nl:agressief:adjective	*	en	contentious
+drop-tr	nl:waanzin:noun	*	pt	vesânia
+drop-tr	nl:zinloos:adjective	*	pt	inane
+drop-tr	nl:dalen:verb	*	en	subside
+drop-tr	nl:gehoorzamen:verb	*	de	hören
+drop-tr	nl:gehoorzamen:verb	*	en	listen
+drop-tr	nl:gehoorzamen:verb	*	pt	aguardar
+drop-tr	nl:katholiek:noun	*	de	Kathole
+drop-tr	nl:schietpartij:noun	*	en	mass shooting
+drop-tr	nl:ondergaan:verb	*	pt	vivenciar
+drop-tr	nl:ondergaan:verb	*	pt	experienciar
+gloss	nl:ondergaan:verb	s1	to undergo; (ónder-gaan) to go down, to set (sun)
+drop-tr	nl:werkelijkheid:noun	*	en	truth
+drop-tr	nl:werkelijkheid:noun	*	pt	facto
+gloss	nl:jack:noun	s1	jacket
+drop-tr	nl:worstelen:verb	*	de	sträuben
+drop-tr	nl:worstelen:verb	*	pt	debater
+drop-tr	nl:ruïneren:verb	*	pt	demolir
+drop-tr	nl:bon:noun	*	de	Bürge
+gloss	nl:bon:noun	s1	voucher, coupon; receipt; ticket (fine)
+gloss	nl:inzien:verb	s1	to realize, to see; to look into
+drop-tr	nl:ongemakkelijk:adjective	*	de	peinlich
+drop-tr	nl:wissen:verb	*	en	destroy
+drop-tr	nl:wissen:verb	*	en	strike
+first	nl:wissen:verb	*	en:erase:verb
+first	nl:wissen:verb	*	de:löschen:verb
+drop-tr	nl:alternatief:adjective	*	de	wechselständig
+drop-tr	nl:alternatief:adjective	*	en	alternate
+drop-tr	nl:praktijk:noun	*	pt	costume
+drop-tr	nl:praktijk:noun	*	pt	praxe
+gloss	nl:praktijk:noun	s1	practice; (medical) practice
+drop-tr	nl:strategie:noun	*	en	ploy
+drop-tr	nl:vreemdeling:noun	*	en	alien
+drop-tr	nl:pastoor:noun	*	en	vicar
+drop-tr	nl:slechterik:noun	*	pt	salafrário
+drop-tr	nl:slechterik:noun	*	de	Übeltäterin
+drop-tr	nl:uitkiezen:verb	*	de	lesen
+gloss	nl:miss:noun	s1	Miss (beauty queen)
+drop-tr	nl:taak:noun	*	pt	dever
+drop-tr	nl:prooi:noun	*	en	kill
+drop-tr	nl:prooi:noun	*	pt	predação
+gloss	nl:das:noun	s1	tie, scarf; badger
+drop-tr	nl:familielid:noun	*	pt	afim
+drop-tr	nl:praktisch:adverb	*	pt	virtualmente
+drop-tr	nl:praktisch:adverb	*	en	virtually
+gloss	nl:praktisch:adverb	s1	practically; (adj.) practical
+drop-tr	nl:standaard:adjective	*	de	üblich
+drop-tr	nl:vloot:noun	*	de	Fuhrpark
+drop-tr	nl:vloot:noun	*	en	navy
+drop-tr	nl:vloot:noun	*	pt	marinha
+gloss	nl:bak:noun	s1	container, bin, tray; (informal) cup of coffee
+gloss	nl:verkleden:verb	s1	to dress up; to change (clothes)
+drop-tr	nl:verkleden:verb	*	de	maskieren
+drop-tr	nl:conclusie:noun	*	en	opinion
+drop-tr	nl:conclusie:noun	*	pt	dedução
+drop-tr	nl:raden:verb	*	pt	deduzir
+drop-tr	nl:massa:noun	*	en	mob
+drop-tr	nl:massa:noun	*	pt	enxame
+drop-tr	nl:ruim:adjective	*	en	loose
+drop-tr	nl:ruim:adjective	*	pt	frouxo
+gloss	nl:ruim:adjective	s1	spacious, roomy; ample; (adverb) more than, well over
+gloss	nl:munten:verb	s1	to mint, to coin; (plural) coins
+drop-tr	nl:neerleggen:verb	*	pt	deitar
+gloss	nl:neerleggen:verb	s1	to put down, to lay down; (zich neerleggen bij) to accept
+drop-tr	nl:piraat:noun	*	de	Korsar
+drop-tr	nl:piraat:noun	*	en	buccaneer
+drop-tr	nl:piraat:noun	*	pt	corsário
+gloss	nl:praat:noun	s1	talk, chat
+gloss	nl:tippen:verb	s1	to tip (give a gratuity; give a hint); to touch lightly
+gloss	nl:boeren:verb	s1	to burp; to farm; (plural) farmers
+drop-tr	nl:lawaai:noun	*	de	Theater
+drop-tr	nl:duik:noun	*	de	Tauchen
+drop-tr	nl:uzelf:pronoun	*	de	sich
+drop-tr	nl:slachten:verb	*	pt	matar
+drop-tr	nl:slachten:verb	*	pt	cortar
+first	nl:slachten:verb	*	pt:abater:verb
+drop-tr	nl:verlof:noun	*	de	Erlaubnis
+drop-tr	nl:ontwikkeling:noun	*	de	Ausgestaltung
+drop-tr	nl:ontwikkeling:noun	*	pt	formação
+drop-tr	nl:overwinnen:verb	*	de	bodigen
+drop-tr	nl:overwinnen:verb	*	en	best
+gloss	nl:overwinnen:verb	s1	to overcome; to defeat
+drop-tr	nl:huur:noun	*	de	Mietzins
+gloss	nl:benieuwd:adjective	s1	curious (ik ben benieuwd = I wonder, I'm curious)
+drop-tr	nl:verdoven:verb	*	de	lindern
+drop-tr	nl:object:noun	*	pt	objetivo
+drop-tr	nl:communiceren:verb	*	de	weitergeben
+drop-tr	nl:communiceren:verb	*	en	impart
+drop-tr	nl:sectie:noun	*	de	Bereich
+gloss	nl:sectie:noun	s1	section; autopsy
+drop-tr	nl:afhankelijk:adjective	*	de	hörig
+drop-tr	nl:afhankelijk:adjective	*	pt	adstrito
+drop-tr	nl:afhankelijk:adjective	*	en	according
+drop-tr	nl:rechtvaardigen:verb	*	en	vindicate
+drop-tr	nl:lanceren:verb	*	pt	jogar
+gloss	nl:jongedame:noun	s1	young lady
+drop-tr	nl:lening:noun	*	de	Lehen
+drop-tr	nl:lening:noun	*	en	mortgage
+drop-tr	nl:korporaal:noun	*	de	Gefreiter
+drop-tr	nl:kanon:noun	*	en	gun
+drop-tr	nl:opduiken:verb	*	pt	pipocar
+drop-tr	nl:vervloeken:verb	*	en	jinx
+drop-tr	nl:omkeren:verb	*	de	umstülpen
+drop-tr	nl:omkeren:verb	*	en	upend
+drop-tr	nl:nier:noun	*	pt	ril
+drop-tr	nl:worst:noun	*	de	Wurstbrötchen
+drop-tr	nl:worst:noun	*	en	banger
+drop-tr	nl:begrip:noun	*	de	Erfassung
+gloss	nl:begrip:noun	s1	understanding; concept, notion
+gloss	nl:gans:adjective	s1	(Flemish) entire, whole; (noun) goose
+drop-tr	nl:afleiding:noun	*	de	Ablenkungsmanöver
+drop-tr	nl:doorstaan:verb	*	en	weather
+gloss	nl:luchten:verb	s1	to air, to ventilate
+drop-tr	nl:levenslang:adjective	*	pt	vitalício
+gloss	nl:levenslang:adjective	s1	lifelong; (noun) life sentence
+gloss	nl:commando:noun	s1	command; commando (soldier)
+drop-tr	nl:koppig:adjective	*	de	stur
+gloss	nl:laken:noun	s1	sheet (bed sheet); cloth; (verb) to censure
+drop-tr	nl:sneeuw:noun	*	pt	chuvisco
+gloss	nl:trekker:noun	s1	trigger; tractor; hiker, backpacker
+drop-tr	nl:noodzakelijk:adjective	*	de	not
+drop-tr	nl:Japans:adjective	*	pt	japão
+drop-tr	nl:vermaken:verb	*	pt	recrear
+drop-tr	nl:hoofdkwartier:noun	*	en	base
+drop-tr	nl:hoofdkwartier:noun	*	pt	matriz
+drop-tr	nl:verbazingwekkend:adjective	*	de	atemberaubend
+drop-tr	nl:verbazingwekkend:adjective	*	en	jaw-dropping
+gloss	nl:star:adjective	s1	stiff, rigid; fixed (gaze)
+gloss	nl:noot:noun	s1	nut; note (music; footnote)
+drop-tr	nl:beurs:noun	*	de	Brieftasche
+gloss	nl:beurs:noun	s1	stock exchange; trade fair; scholarship, grant; purse
+gloss	nl:omheen:preposition	s1	around (er omheen = around it)
+gloss	nl:plezieren:verb	s1	to please
+drop-tr	nl:plezieren:verb	*	pt	prazer
+drop-tr	nl:maagd:noun	*	de	Maid
+drop-tr	nl:hap:noun	*	de	Imbiss
+drop-tr	nl:hap:noun	*	pt	gota
+drop-tr	nl:rotzooi:noun	*	de	Ramsch
+gloss	nl:rotzooi:noun	s1	mess; junk, rubbish
+drop-tr	nl:kou:noun	*	de	Dalles
+gloss	nl:kou:noun	s1	cold (weather); cold (illness)
+drop-tr	nl:riskant:adjective	*	en	dicey
+drop-tr	nl:verwachting:noun	*	pt	expectação
+gloss	nl:stokken:verb	s1	to falter, to halt (de adem stokte = the breath caught); (plural) sticks
+drop-tr	nl:stokken:verb	*	pt	estagnar
+drop-tr	nl:front:noun	*	de	Frontlinie
+drop-tr	nl:front:noun	*	pt	fachada
+drop-tr	nl:schop:noun	*	pt	facholo
+gloss	nl:schop:noun	s1	shovel, spade; kick
+gloss	nl:script:noun	s1	script
+drop-tr	nl:kanaal:noun	*	de	Meeresstraße
+gloss	nl:kanaal:noun	s1	canal; channel
+gloss	nl:gij:pronoun	s1	you (archaic / Flemish)
+drop-tr	nl:actrice:noun	*	en	actor
+drop-tr	nl:actrice:noun	*	pt	ator
+drop-tr	nl:politicus:noun	*	de	Grüßaugust
+drop-tr	nl:politicus:noun	*	pt	política
+drop-tr	nl:wegen:verb	*	pt	equacionar
+drop-tr	nl:wegen:verb	*	en	weight
+gloss	nl:wegen:verb	s1	to weigh; (plural) roads, ways
+drop-tr	nl:opmerken:verb	*	pt	ver
+drop-tr	nl:opmerken:verb	*	pt	olhar
+first	nl:opmerken:verb	*	pt:notar:verb
+drop-tr	nl:analyseren:verb	*	de	zerlegen
+drop-tr	nl:analyseren:verb	*	pt	decompor
+drop-tr	nl:rondhangen:verb	*	pt	sair
+drop-tr	nl:uitzondering:noun	*	en	caveat
+drop-tr	nl:vrijgezel:noun	*	pt	solteirão
+gloss	nl:maling:noun	s1	grinding (maling hebben aan = not to care about; iemand in de maling nemen = to pull someone's leg)
+drop-tr	nl:maling:noun	*	pt	afã
+gloss	nl:spannend:adjective	s1	exciting, thrilling, tense
+gloss	nl:voetballen:verb	s1	to play football (soccer)
+drop-tr	nl:slepen:verb	*	de	bekommen
+drop-tr	nl:slepen:verb	*	pt	arrojar
+drop-tr	nl:breuk:noun	*	de	Eingeweidebruch
+gloss	nl:breuk:noun	s1	fraction; break, fracture; breach
+drop-tr	nl:kostbaar:adjective	*	pt	rico
+gloss	nl:mamma:noun	s1	mamma, breast; (informal) mum
+drop-tr	nl:pappa:noun	*	de	Pa
+gloss	nl:knoeien:verb	s1	to mess up, to botch; to spill; to cheat, to tamper
+gloss	nl:vers:adjective	s1	fresh; recent
+drop-tr	nl:gisterenavond:adverb	*	de	heute Nacht
+drop-tr	nl:pik:noun	*	pt	pica
+drop-tr	nl:bekeren:verb	*	de	verwandeln
+drop-tr	nl:buurman:noun	*	de	Anrainer
+gloss	nl:halt:noun	s1	halt, stop (halt houden = to stop)
+drop-tr	nl:opmerking:noun	*	en	note
+drop-tr	nl:jungle:noun	*	pt	floresta
+drop-tr	nl:microfoon:noun	*	de	Sprechmuschel
+drop-tr	nl:microfoon:noun	*	en	mouthpiece
+drop-tr	nl:confronteren:verb	*	en	encounter
+drop-tr	nl:grootmoeder:noun	*	pt	nona
+drop-tr	nl:vee:noun	*	pt	ralé
+drop-tr	nl:hof:noun	*	de	Zwinger
+gloss	nl:hof:noun	s1	court (royal; of justice); courtyard
+drop-tr	nl:rukken:verb	*	de	reißen
+gloss	nl:rukken:verb	s1	to jerk, to yank, to tug
+drop-tr	nl:flikker:noun	*	en	fix
+drop-tr	nl:flikker:noun	*	en	fixer
+gloss	nl:flikker:noun	s1	(offensive slur) gay man; (niets) flikker = nothing at all
+drop-tr	nl:slaaf:noun	*	en	thrall
+drop-tr	nl:heftig:adjective	*	pt	veemente
+gloss	nl:heftig:adjective	s1	violent, fierce, intense
+drop-tr	nl:plassen:verb	*	de	puschen
+gloss	nl:obsederen:verb	s1	to obsess
+drop-tr	nl:non:noun	*	en	sister
+drop-tr	nl:non:noun	*	de	Ordensschwester
+gloss	nl:voordeur:noun	s1	front door
+drop-tr	nl:rechtszaal:noun	*	pt	corte
+drop-tr	nl:vreugde:noun	*	de	Lust
+drop-tr	nl:vreugde:noun	*	pt	delícia
+drop-tr	nl:schorsen:verb	*	en	prorogue
+gloss	nl:schorsen:verb	s1	to suspend; to adjourn
+gloss	nl:boef:noun	s1	crook, rascal, villain
+drop-tr	nl:tekort:noun	*	de	Armut
+gloss	nl:uithalen:verb	s1	to take out; to lash out; to play (a trick)
+drop-tr	nl:aankleden:verb	*	de	dekorieren
+drop-tr	nl:aankleden:verb	*	de	verzieren
+drop-tr	nl:aankleden:verb	*	en	decorate
+gloss	nl:aankleden:verb	s1	to dress (someone); (zich aankleden) to get dressed
+drop-tr	nl:versterken:verb	*	en	enforce
+drop-tr	nl:vermelden:verb	*	en	name
+drop-tr	nl:breed:adjective	*	pt	rodado
+drop-tr	nl:voornaam:adjective	*	de	hervorragend
+gloss	nl:voornaam:adjective	s1	distinguished, important; (noun) first name
+gloss	nl:treden:verb	s1	to step, to tread (in werking treden = to come into effect)
+drop-tr	nl:ondersteunen:verb	*	en	second
+drop-tr	nl:ondersteunen:verb	*	pt	financiar
+gloss	nl:crashen:verb	s1	to crash
+gloss	nl:beu:adjective	s1	fed up, sick and tired (ik ben het beu = I'm fed up with it)
+drop-tr	nl:verwennen:verb	*	de	verziehen
+drop-tr	nl:ongeval:noun	*	pt	sinistro
+gloss	nl:doormaken:verb	s1	to go through, to experience
+drop-tr	nl:doormaken:verb	*	en	survive
+drop-tr	nl:schuilplaats:noun	*	pt	asilo
+drop-tr	nl:bezwaar:noun	*	de	Einsprache
+drop-tr	nl:condoom:noun	*	en	rubber
+drop-tr	nl:juridisch:adjective	*	en	juridical
+drop-tr	nl:bukken:verb	*	de	überbeugen
+drop-tr	nl:link:noun	*	pt	enlace
+drop-tr	nl:inwoner:noun	*	de	Insasse
+drop-tr	nl:inwoner:noun	*	en	citizen
+drop-tr	nl:oproep:noun	*	pt	telefonema
+drop-tr	nl:oproep:noun	*	de	Anruf
+gloss	nl:oproep:noun	s1	call, appeal; (military) call-up
+drop-tr	nl:ezel:noun	*	de	Eselchen
+drop-tr	nl:onbeleefd:adjective	*	en	fresh
+drop-tr	nl:onbeleefd:adjective	*	en	surly
+first	nl:onbeleefd:adjective	*	en:rude:adjective
+gloss	nl:stammen:verb	s1	to stem from, to descend from (stammen uit); (plural) tribes, trunks
+drop-tr	nl:koelen:verb	*	de	erkalten
+drop-tr	nl:onderzoeker:noun	*	de	Ermittler
+drop-tr	nl:verlenen:verb	*	en	yield
+gloss	nl:lonen:verb	s1	to be worth it (het loont de moeite = it's worth the trouble)
+gloss	nl:klim:noun	s1	climb
