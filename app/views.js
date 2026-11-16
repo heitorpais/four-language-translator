@@ -572,7 +572,7 @@ function obDefaults() {
 }
 function obChips(kind) {
   const o = V.ob, mine = o[kind], other = kind === 'speaks' ? o.learns : o.speaks, has = l => mine.some(x => x.l === l);
-  return `<div class="obgrid">${A.dataLangs().filter(l => !other.some(x => x.l === l)).map(l => `<button class="chip${has(l) ? ' sel' : ''}" data-ob="${kind}" data-l="${l}" aria-pressed="${has(l)}">${A.flag(BASEF(l), true)}${esc(UI_NAMES[l])}${A.betaTag(l)}</button>`).join('')}</div>`;
+  return `<div class="obgrid">${A.dataLangs().map(l => `<button class="chip${has(l) ? ' sel' : ''}" data-ob="${kind}" data-l="${l}" aria-pressed="${has(l)}">${A.flag(BASEF(l), true)}${esc(UI_NAMES[l])}${A.betaTag(l)}</button>`).join('')}</div>`;
 }
 function obLevels(kind) {
   const o = V.ob, list = o[kind], levels = kind === 'speaks' ? SPEAK_LV : LEVELS;
@@ -671,7 +671,7 @@ document.addEventListener('click', async ev => {
   if (ob) {
     const k = ob.dataset.ob, l = ob.dataset.l, o = V.ob; o.err = ''; o.dirty = true;
     if (k === 'ui') { o.ui = l; A.S.ui = l; A.applyTexts(); }
-    else { if (k === 'speaks') o.spTouched = true; const list = o[k], i = list.findIndex(x => x.l === l); if (i >= 0) list.splice(i, 1); else list.push({ l, lv: k === 'speaks' && !list.length ? 'native' : '' }); }
+    else { if (k === 'speaks') o.spTouched = true; const list = o[k], i = list.findIndex(x => x.l === l), oth = k === 'speaks' ? o.learns : o.speaks, j = oth.findIndex(x => x.l === l); if (i < 0 && j >= 0) oth.splice(j, 1); if (i >= 0) list.splice(i, 1); else list.push({ l, lv: k === 'speaks' && !list.length ? 'native' : '' }); }
     onboard(); return;
   }
   const fg = ev.target.closest('[data-fc]'); if (fg && V.fc) { const id = V.fc.ids[V.fc.i]; A.P.srs[id] = sm2(A.P.srs[id], +fg.dataset.fc); A.saveP(); if (window.FLTProgress) { FLTProgress.record(id, +fg.dataset.fc >= 3, 'cards'); if (V.fc.i + 1 >= V.fc.ids.length && +fg.dataset.fc >= 3) FLTProgress.quizDone(); } if (+fg.dataset.fc < 3) V.fc.ids.push(id); V.fc.i++; V.fc.done++; V.fc.flipped = false; paintPractice(); return; }

@@ -1,7 +1,9 @@
 """Word lists for Quinque, the five-letter word game (app/game.js).
 
 For each language writes app/data/game/game-<lang>.json.gz:
-  answers: {"5": [[id, lemma, frequency_rank, level], ...], "6": [...]}  everyday words that can be the hidden word
+  answers: {"5": [[id, lemma, frequency_rank, level, meaning], ...], "6": [...]}  everyday words that can be the hidden word
+           meaning: a short definition in the word's own language (from that language's Wiktionary edition; English
+           for English), with the word itself blanked out, so the hint never gives the answer away
   valid:   {"5": ["casas"...], "6": [...]}                             every base form the player may type
 
 Rules (shown in the game): only dictionary base forms count. Nouns in the singular, verbs in the infinitive (the
@@ -11,7 +13,7 @@ alphabet are left out.
 Answers come from the core and extended tiers, by frequency; vulgar, offensive and derogatory words are never answers.
 The files are added to data/manifest.json (tier "game"). Run after build_tiers.py.
 """
-import glob, gzip, hashlib, json, os, unicodedata
+import glob, gzip, hashlib, json, os, re, sqlite3, unicodedata, zlib
 
 ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'app', 'data')
 LANGS = ['en', 'de', 'fr', 'pt', 'cs', 'it', 'es', 'nl', 'sv', 'la']
@@ -36,6 +38,55 @@ def letters(word, lang):
         if len(b) != 1 or not ('a' <= b <= 'z'):
             return None
         out.append(b)
+    return out
+
+
+DB_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'raw', 'db')
+EDITION = {'en': 'enw-en', 'de': 'ed-de', 'fr': 'ed-fr', 'pt': 'ed-pt', 'es': 'ed-es', 'it': 'ed-it', 'cs': 'ed-cs', 'nl': 'ed-nl'}
+POS_DB = {'noun': {'noun'}, 'verb': {'verb'}, 'adjective': {'adj', 'adjective'}, 'adverb': {'adv', 'adverb'}, 'numeral': {'num', 'numeral'}}
+SKIP_TAGS = {'obsolete', 'archaic', 'dated', 'rare', 'veraltet', 'veraltend', 'selten', 'vulgar', 'derogatory', 'offensive'}
+_DB = {}
+
+
+def plain(t):
+    return ''.join(c for c in unicodedata.normalize('NFD', t.lower()) if not unicodedata.combining(c))
+
+
+def native_meaning(lang, lemma, pos):
+    """the first everyday definition of the word in its own language, with the word blanked out"""
+    src = EDITION.get(lang)
+    if not src or not os.path.exists(os.path.join(DB_DIR, src + '.sqlite')):
+        return ''
+    if src not in _DB:
+        _DB[src] = sqlite3.connect(os.path.join(DB_DIR, src + '.sqlite'))
+    best = None
+    for (data,) in _DB[src].execute('select data from entry where lang=? and word=?', (lang, lemma)):
+        try:
+            d = json.loads(zlib.decompress(data))
+        except Exception:
+            d = json.loads(data)
+        if d.get('pos') not in POS_DB.get(pos, {pos}):
+            continue
+        for s in d.get('senses') or []:
+            g = (s.get('gloss') or '').strip()
+            if not g or s.get('form_of') or s.get('alt_of') or len(g) < 4:
+                continue
+            if SKIP_TAGS & {t.lower() for t in s.get('tags') or []}:
+                if best is None: best = g
+                continue
+            best = g
+            break
+        else:
+            continue
+        break
+    if not best:
+        return ''
+    stem = plain(lemma)[:max(4, len(lemma) - 2)]
+    words = re.findall(r'\w+|\W+', best)
+    out = ''.join('…' if re.match(r'\w', w) and plain(w).startswith(stem) else w for w in words)
+    out = re.sub(r'\s+', ' ', out).strip()
+    if len(out) > 180:
+        out = out[:177].rsplit(' ', 1)[0] + ' …'
     return out
 
 
@@ -78,13 +129,15 @@ def build(lang):
         r = rank or 10 ** 7
         old = cand[n].get(key)
         if old is None or r < old[2]:              # one answer per spelling: the most frequent entry
-            cand[n][key] = [e['id'], lem, r, e.get('level')]
+            cand[n][key] = [e['id'], lem, r, e.get('level'), None, pos]
     answers = {}
     for n in LENS:
         a = sorted(cand[n].values(), key=lambda v: v[2])
         for v in a:
             if v[2] >= 10 ** 7:
                 v[2] = None
+            v[4] = native_meaning(lang, v[1], v[5])
+            del v[5]
         answers[str(n)] = a
     return {'lang': lang, 'answers': answers, 'valid': {str(n): sorted(valid[n]) for n in LENS}}
 
@@ -105,7 +158,7 @@ def main():
         files.append({'file': name, 'bytes': len(raw), 'stored_bytes': os.path.getsize(os.path.join(ROOT, name)),
                       'sha256': hashlib.sha256(raw).hexdigest()[:16], 'tier': 'game', 'lang': lang,
                       'entries': sum(len(v) for v in d['answers'].values()), 'forms': sum(len(v) for v in d['valid'].values())})
-        print(lang, {n: (len(d['answers'][n]), len(d['valid'][n])) for n in d['answers']})
+        print(lang, {n: (len(d['answers'][n]), len(d['valid'][n]), sum(1 for v in d['answers'][n] if v[4])) for n in d['answers']})
     man['files'] = files
     with open(mpath, 'w', encoding='utf-8') as f:
         json.dump(man, f, ensure_ascii=False, indent=1)

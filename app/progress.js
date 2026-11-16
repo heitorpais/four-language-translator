@@ -227,11 +227,11 @@ function langsHtml() {
   const g = prog(), lv = coreLevels();
   return `<div class="pg-langs">${ALL.map(l => {
     const n = learnedIds().filter(id => id.startsWith(l + ':')).length;
-    const m = Object.keys(g.words).filter(id => id.startsWith(l + ':') && !isLearned(id) && g.words[id].d.length).length;   // right on 1 or 2 days so far
-    const bars = LEVELS.filter(x => lv[l][x].size).map(x => { const ids = lv[l][x]; let k = 0, h = 0; for (const id of ids) { const w = g.words[id]; if (isLearned(id)) k++; else if (w && w.d.length) h++; }
-      const p = 100 * k / ids.size, q = 100 * h / ids.size, vis = v => v > 0 ? Math.max(v, 1.5) : 0;
-      return `<div class="pg-bar"><span class="lvl sm ${x}">${x}</span><div class="pg-track" role="progressbar" aria-valuenow="${k}" aria-valuemax="${ids.size}" aria-label="${x}"><div style="width:${vis(p)}%"></div><div class="half" style="width:${vis(q)}%"></div></div><span class="pg-num">${A.num(k)} / ${A.num(ids.size)}${h ? `<small title="${esc(t('pg.half.tip', 'Answered right on 1 or 2 days so far'))}"> +${A.num(h)}</small>` : ''}</span></div>`; }).join('');
-    return `<div class="pg-lang"><div class="pg-lang-h">${A.flag(A.S.main[l])}<b>${esc(A.LNAME[l])}</b><span>${esc((n === 1 ? t('pg.learned1', '1 word learned') : t('pg.learned', '{n} words learned', { n: A.num(n) })))}${m ? `<br><i>${esc(t('pg.half', '{n} on the way', { n: A.num(m) }))}</i>` : ''}</span></div>${bars}</div>`;
+    const bars = LEVELS.filter(x => lv[l][x].size).map(x => { const ids = lv[l][x]; let k = 0, f = 0;
+      for (const id of ids) { const w = g.words[id]; if (isLearned(id)) { k++; f += 1; } else if (w && w.d.length) f += Math.min(w.d.length, 2) / 3; }   // each right day moves the bar a third of a word
+      const p = 100 * f / ids.size, vis = v => v > 0 ? Math.max(v, 1.5) : 0;
+      return `<div class="pg-bar"><span class="lvl sm ${x}">${x}</span><div class="pg-track" role="progressbar" aria-valuenow="${Math.round(p)}" aria-valuemax="100" aria-label="${x}"><div style="width:${vis(p)}%"></div></div><span class="pg-num">${A.num(k)} / ${A.num(ids.size)}</span></div>`; }).join('');
+    return `<div class="pg-lang"><div class="pg-lang-h">${A.flag(A.S.main[l])}<b>${esc(A.LNAME[l])}</b><span>${esc((n === 1 ? t('pg.learned1', '1 word learned') : t('pg.learned', '{n} words learned', { n: A.num(n) })))}</span></div>${bars}</div>`;
   }).join('')}</div>`;
 }
 function badgeTile(b, st) {
@@ -272,7 +272,7 @@ async function paint() {
   const showYear = now.getMonth() === 0 || TEST;
   const nEarned = Object.keys(A.P.badges).length;
   el.innerHTML = `<h2>${esc(t('nav.progress', 'Progress'))}</h2>
-    <p class="hint">${esc(t('pg.intro2', 'A word counts as learned when you mark it “I know this” or answer it right in practice on 3 different days; the light part of each bar shows words on the way (right on 1 or 2 days so far).'))}</p>
+    <p class="hint">${esc(t('pg.intro3', 'A word counts as learned when you mark it “I know this” or answer it right in practice on 3 different days. The bars grow with every right answer: each day you get a word right fills a third of it.'))}</p>
     ${TEST ? testHtml() : ''}
     ${showYear ? yearHtml(now.getMonth() === 0 && !TEST ? now.getFullYear() - 1 : (TEST ? now.getFullYear() : now.getFullYear() - 1)) : ''}
     <h3 class="grp">${esc(t('pg.words', 'Words learned'))}</h3>${langsHtml()}

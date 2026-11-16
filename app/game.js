@@ -13,7 +13,7 @@ const LV = { A1: 1, A2: 2, B1: 3, B2: 4, C1: 5, C2: 6 };
 const KEEP = { sv: 'åäö' };                         // letters that are letters of their own, not accented forms
 const ROWS = { de: ['qwertzuiop', 'asdfghjkl', 'yxcvbnm'], sv: ['qwertyuiopå', 'asdfghjklöä', 'zxcvbnm'], fr: ['azertyuiop', 'qsdfghjklm', 'wxcvbn'], default: ['qwertyuiop', 'asdfghjkl', 'zxcvbnm'] };
 const KEY_S = 'flt:game', KEY_STATS = 'flt:game-stats';
-const G = { langs: null, level: 'B1', len: 5, cb: false, boards: {}, active: null, msg: '', busy: false };
+const G = { langs: null, level: 'B1', len: 5, cb: false, view: 'all', boards: {}, active: null, msg: '', busy: false };
 const pools = {};
 const fl = l => A.flag((A.S.main && A.S.main[l]) || (A.BASE && A.BASE[l]) || l, true);                                  // lang -> { answers: [entry], valid: Set(letter strings) }
 
@@ -60,7 +60,7 @@ function newBoard(lang) {
   const o = G.boards[lang], a = pickWord(lang, G.len, o && o.id);
   if (!a) return null;
   if (A.ensureIds && !A.D.byId.has(a[0])) A.ensureIds([a[0]]).then(() => paint()).catch(() => {});   // the full entry, for the meaning and the card
-  return { id: a[0], lemma: a[1], len: G.len, ans: letters(a[1], lang), rows: [], cur: [], done: false, won: false, hint: false };
+  return { id: a[0], lemma: a[1], def: a[4] || '', len: G.len, ans: letters(a[1], lang), rows: [], cur: [], done: false, won: false, hint: false };
 }
 
 /* green / gold / grey for one guess, counting repeated letters correctly */
@@ -74,7 +74,7 @@ function score(guess, ans) {
 function persist() {
   const b = {};
   for (const [l, x] of Object.entries(G.boards)) if (x) b[l] = { id: x.id, lemma: x.lemma, len: x.len, rows: x.rows, done: x.done, won: x.won, hint: x.hint };
-  save(KEY_S, { langs: G.langs, level: G.level, len: G.len, cb: G.cb, active: G.active, boards: b });
+  save(KEY_S, { langs: G.langs, level: G.level, len: G.len, cb: G.cb, view: G.view, active: G.active, boards: b });
 }
 
 function restore() {
@@ -82,7 +82,7 @@ function restore() {
   const avail = A.dataLangs();
   G.langs = (s.langs || []).filter(l => avail.includes(l)).slice(0, MAX_LANGS);
   if (!G.langs.length) G.langs = [A.S.learning || A.S.order[1] || 'de'].filter(l => avail.includes(l));
-  G.level = s.level || A.S.myLevel || 'B1'; G.cb = !!s.cb; G.len = s.len === 6 ? 6 : 5;
+  G.level = s.level || A.S.myLevel || 'B1'; G.cb = !!s.cb; G.view = s.view === 'one' ? 'one' : 'all'; G.len = s.len === 6 ? 6 : 5;
   G.saved = s.boards || {}; G.active = s.active;
 }
 
@@ -114,12 +114,16 @@ function record(lang, won, tries) {
   all[lang] = s; save(KEY_STATS, all);
 }
 
-/* what the hidden word means, in the language the player speaks (or English) */
-function meaning(e) {
-  const to = [A.S.speak, 'en', ...A.S.order].find(l => l && l !== e.lang && A.D.loaded.has(l));
-  const s = (e.senses || [])[0]; if (!s) return '';
-  if (to) { const ids = A.trIds(s, to).slice(0, 3); if (ids.length) return ids.map(id => A.D.byId.get(id).lemma).join(', '); }
-  return s.gloss_en || '';
+/* what the hidden word means, explained in the language being played (never the word itself, never a translation).
+   The definitions come with the word list (build/game_words.py); the word is already blanked out there. */
+function defOf(lang, id) {
+  const p = pools[lang]; if (!p) return '';
+  for (const list of Object.values(p.answers || {})) { const a = list.find(x => x[0] === id); if (a) return a[4] || ''; }
+  return '';
+}
+function meaning(b, lang) {
+  if (b.def == null) b.def = defOf(lang, b.id);
+  return b.def || t('game.nodef', 'No explanation in this language for this word yet.');
 }
 
 /* ---------- typing ---------- */
@@ -149,7 +153,7 @@ function submit(b) {
   persist(); paint(true);
 }
 
-function shake() { const r = $('#gm-board .gm-row.cur'); if (r && A.animOn()) { r.classList.remove('shake'); void r.offsetWidth; r.classList.add('shake'); } }
+function shake() { const r = $('#gm-board .gm-row.cur') || $('.gm-mini.on .gm-row.cur'); if (r && A.animOn()) { r.classList.remove('shake'); void r.offsetWidth; r.classList.add('shake'); } }
 
 /* ---------- drawing ---------- */
 function keyColours(b) {
@@ -158,7 +162,7 @@ function keyColours(b) {
   return k;
 }
 
-function boardHtml(b, lang, reveal) {
+function boardHtml(b, lang, reveal, mini) {
   const rows = [];
   for (let i = 0; i < TRIES; i++) {
     const g = b.rows[i], cur = !b.done && i === b.rows.length, sc = g ? score(g, b.ans) : null;
@@ -172,7 +176,7 @@ function boardHtml(b, lang, reveal) {
     const label = sc ? sc.map((r, j) => g[j].toUpperCase() + ' ' + (r === 'g' ? t('game.a.g', 'right') : r === 'y' ? t('game.a.y', 'elsewhere') : t('game.a.x', 'not in the word'))).join(', ') : '';
     rows.push(`<div class="gm-row${cur ? ' cur' : ''}"${label ? ` aria-label="${esc(label)}"` : ''}>${cells.join('')}</div>`);
   }
-  return `<div class="gm-board" id="gm-board" lang="${lang}" style="--n:${b.ans.length}">${rows.join('')}</div>`;
+  return `<div class="gm-board"${mini ? '' : ' id="gm-board"'} lang="${lang}" style="--n:${b.ans.length}">${rows.join('')}</div>`;
 }
 
 function keyboardHtml(b, lang) {
@@ -190,7 +194,7 @@ function resultHtml(b, lang) {
     <p>${b.won ? esc(t('game.got', 'You found it in {n} of 6.', { n: b.rows.length })) : esc(t('game.lost', 'The word was:'))}
       <button class="chip" data-open="${esc(e.id)}" lang="${lang}">${e.pos === 'noun' && e.noun && e.noun.gender ? A.artHtml(A.article(lang, e, e.lemma), e.noun.gender) + ' ' : ''}${esc(word)}${e.senses.length ? A.lvlBadge(e, true) : ''}</button>
       <button class="chip" data-gx="say" aria-label="${esc(t('game.say', 'Listen'))}">🔊</button></p>
-    <p class="hint">${esc(meaning(e))}</p>
+    <p class="hint">${esc(meaning(b, lang))}</p>
     <p class="hint">${esc(t('game.stats', '{lang}: {p} played · {w} % won · streak {s} (best {b})', { lang: A.LNAME[lang], p: s.played, w: pct, s: s.streak, b: s.best }))}</p>
     <button class="btn primary" data-gx="next">${esc(t('game.next', 'Next word'))}</button>
   </div>`;
@@ -203,18 +207,23 @@ function paint(reveal) {
   const chooser = `<div class="gm-langs">${avail.map(l => { const on = G.langs.includes(l); return `<button class="chip${on ? ' sel' : ''}" data-gl="${l}" aria-pressed="${on}"${!on && G.langs.length >= MAX_LANGS ? ' disabled' : ''}>${fl(l)}${esc(A.LNAME[l])}${A.betaTag(l)}</button>`; }).join('')}</div>`;
   const opts = `<div class="gm-opts"><label>${esc(t('game.len', 'Letters'))} <select id="gm-len">${[5, 6].map(n => `<option value="${n}"${n === G.len ? ' selected' : ''}>${n}</option>`).join('')}</select></label><label>${esc(t('game.level', 'Words up to'))} <select id="gm-level">${['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].map(l => `<option${l === G.level ? ' selected' : ''}>${l}</option>`).join('')}</select></label>
     <label><input type="checkbox" id="gm-cb"${G.cb ? ' checked' : ''}> ${esc(t('game.cb', 'Colour-blind colours'))}</label>
+    ${G.langs && G.langs.length > 1 ? `<label>${esc(t('game.view', 'Show'))} <select id="gm-view"><option value="all"${G.view === 'all' ? ' selected' : ''}>${esc(t('game.view.all', 'All boards together'))}</option><option value="one"${G.view === 'one' ? ' selected' : ''}>${esc(t('game.view.one', 'One board at a time'))}</option></select></label>` : ''}
     <button class="btn sm" data-gx="new">${esc(t('game.new', 'New words'))}</button></div>`;
   let body = '';
   if (G.msg && !G.boards[G.active]) body = `<p class="hint">${esc(G.msg)}</p>`;
   else if (!G.langs.length) body = `<p class="hint">${esc(t('game.pick', 'Choose one to four languages.'))}</p>`;
   else {
     const b = G.boards[G.active];
-    const tabs = G.langs.length > 1 ? `<div class="tabs gm-tabs" role="tablist">${G.langs.map(l => { const x = G.boards[l]; const mark = x && x.done ? (x.won ? ' ✓' : ' ✗') : x && x.rows.length ? ` ${x.rows.length}/6` : ''; return `<button class="tabb${l === G.active ? ' on' : ''}" role="tab" aria-selected="${l === G.active}" data-gt="${l}">${fl(l)}${esc(A.LNAME[l])}${mark}</button>`; }).join('')}</div>` : '';
-    if (!b) body = tabs + `<p class="hint">${esc(t('game.nowords2', 'No words of this length for this language.'))}</p>`;
+    const status = x => x && x.done ? (x.won ? ' ✓' : ' ✗') : x && x.rows.length ? ` ${x.rows.length}/6` : '';
+    const all = G.langs.length > 1 && G.view === 'all';
+    const grid = all ? `<div class="gm-grid">${G.langs.map(l => { const x = G.boards[l]; return `<button class="gm-mini${l === G.active ? ' on' : ''}${x && x.done ? ' done' : ''}" data-gt="${l}" aria-pressed="${l === G.active}"><span class="gm-mini-t">${fl(l)}${esc(A.LNAME[l])}${status(x)}</span>${x ? boardHtml(x, l, reveal && l === G.active, true) : `<span class="hint">${esc(t('game.nowords2', 'No words of this length for this language.'))}</span>`}</button>`; }).join('')}</div>` : '';
+    const tabs = all ? grid : G.langs.length > 1 ? `<div class="tabs gm-tabs" role="tablist">${G.langs.map(l => { const x = G.boards[l]; const mark = status(x); return `<button class="tabb${l === G.active ? ' on' : ''}" role="tab" aria-selected="${l === G.active}" data-gt="${l}">${fl(l)}${esc(A.LNAME[l])}${mark}</button>`; }).join('')}</div>` : '';
+    if (!b && all) body = tabs;
+    else if (!b) body = tabs + `<p class="hint">${esc(t('game.nowords2', 'No words of this length for this language.'))}</p>`;
     else {
-      const e = A.D.byId.get(b.id);
-      const hint = !b.done ? (b.hint && e ? `<p class="hint gm-hint">💡 ${esc(meaning(e))}</p>` : `<button class="chip" data-gx="hint">💡 ${esc(t('game.hint', 'Show what it means'))}</button>`) : '';
-      body = tabs + `<div class="gm-play">${boardHtml(b, G.active, reveal)}<p class="gm-msg" aria-live="polite">${esc(G.msg)}</p>${b.done ? resultHtml(b, G.active) : hint + keyboardHtml(b, G.active)}</div>`;
+      const hint = !b.done ? (b.hint ? `<p class="hint gm-hint">💡 ${esc(meaning(b, G.active))}</p>` : `<button class="chip" data-gx="hint">💡 ${esc(t('game.hint', 'Show what it means'))}</button>`) : '';
+      const now = all ? `<p class="gm-now">${esc(t('game.now', 'Now playing: {lang}', { lang: A.LNAME[G.active] }))}</p>` : '';
+      body = tabs + `<div class="gm-play">${all ? now : boardHtml(b, G.active, reveal)}<p class="gm-msg" aria-live="polite">${esc(G.msg)}</p>${b.done ? resultHtml(b, G.active) : hint + keyboardHtml(b, G.active)}</div>`;
     }
   }
   el.innerHTML = `<h2>Quinque</h2><p class="hint">${esc(t('game.intro2', 'Guess the word in six tries. Green: right letter, right place. Gold: the letter is in the word, somewhere else. Grey: not in the word. Play as often as you like.'))}</p>
@@ -250,6 +259,7 @@ document.addEventListener('click', ev => {
 document.addEventListener('change', ev => {
   if (ev.target.id === 'gm-level') { G.level = ev.target.value; persist(); }
   else if (ev.target.id === 'gm-len') { G.len = +ev.target.value; G.boards = {}; G.msg = ''; persist(); refresh(); }
+  else if (ev.target.id === 'gm-view') { G.view = ev.target.value === 'one' ? 'one' : 'all'; persist(); paint(); }
   else if (ev.target.id === 'gm-cb') { G.cb = ev.target.checked; persist(); paint(); }
 });
 document.addEventListener('keydown', ev => {
