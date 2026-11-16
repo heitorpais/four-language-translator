@@ -13,9 +13,9 @@
   },
   {
    "file": "details-de.json.gz",
-   "bytes": 16771220,
-   "stored_bytes": 3023442,
-   "sha256": "d39dfe8a0efcd06c",
+   "bytes": 16771216,
+   "stored_bytes": 3023447,
+   "sha256": "fa7e2e9e361e1737",
    "tier": "details",
    "lang": "de",
    "entries": 8706
@@ -24,7 +24,7 @@
    "file": "links/de-en.json.gz",
    "bytes": 1075873,
    "stored_bytes": 249609,
-   "sha256": "9fb9398e27d3e5b8",
+   "sha256": "921daefc5e5cdcfe",
    "tier": "links",
    "lang": "de",
    "to": "en",
@@ -47753,9 +47753,9 @@
   },
   {
    "file": "details-cs.json.gz",
-   "bytes": 10739575,
-   "stored_bytes": 1677396,
-   "sha256": "0e56d1ac70ac526a",
+   "bytes": 10739571,
+   "stored_bytes": 1677399,
+   "sha256": "33466384805d9f4c",
    "tier": "details",
    "lang": "cs",
    "entries": 8428
