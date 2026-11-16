@@ -2,6 +2,8 @@
    itself; a key missing here shows the English text. Written by Claude (Anthropic). */
 window.FLTI18N = {
 de: {
+"lang.beta": "Beta",
+"lang.beta.tip": "Weniger von Hand geprüft als Englisch, Deutsch, Französisch, Portugiesisch und Spanisch. Fehler sind wahrscheinlicher.",
 "game.len": "Buchstaben",
 "game.nowords2": "Für diese Sprache gibt es keine Wörter dieser Länge.",
 "game.intro2": "Errate das Wort in sechs Versuchen. Grün: richtiger Buchstabe an der richtigen Stelle. Gold: Der Buchstabe kommt im Wort vor, aber an einer anderen Stelle. Grau: nicht im Wort. Spiel so oft du willst.",
@@ -1219,6 +1221,8 @@ fr: {
 "x.irr.la.3": "supin / participe"
 },
 pt: {
+"lang.beta": "beta",
+"lang.beta.tip": "Menos revisado à mão que inglês, alemão, francês, português e espanhol. Erros são mais prováveis.",
 "game.len": "Letras",
 "game.nowords2": "Não há palavras deste tamanho neste idioma.",
 "game.intro2": "Adivinhe a palavra em seis tentativas. Verde: letra certa no lugar certo. Dourado: a letra está na palavra, em outro lugar. Cinza: não está na palavra. Jogue quantas vezes quiser.",

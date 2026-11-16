@@ -200,7 +200,7 @@ function paint(reveal) {
   const el = $('#game'); if (!el || el.hidden || !A) return;
   if (!G.langs) restore();
   const avail = A.dataLangs();
-  const chooser = `<div class="gm-langs">${avail.map(l => { const on = G.langs.includes(l); return `<button class="chip${on ? ' sel' : ''}" data-gl="${l}" aria-pressed="${on}"${!on && G.langs.length >= MAX_LANGS ? ' disabled' : ''}>${fl(l)}${esc(A.LNAME[l])}</button>`; }).join('')}</div>`;
+  const chooser = `<div class="gm-langs">${avail.map(l => { const on = G.langs.includes(l); return `<button class="chip${on ? ' sel' : ''}" data-gl="${l}" aria-pressed="${on}"${!on && G.langs.length >= MAX_LANGS ? ' disabled' : ''}>${fl(l)}${esc(A.LNAME[l])}${A.betaTag(l)}</button>`; }).join('')}</div>`;
   const opts = `<div class="gm-opts"><label>${esc(t('game.len', 'Letters'))} <select id="gm-len">${[5, 6].map(n => `<option value="${n}"${n === G.len ? ' selected' : ''}>${n}</option>`).join('')}</select></label><label>${esc(t('game.level', 'Words up to'))} <select id="gm-level">${['A1', 'A2', 'B1', 'B2', 'C1', 'C2'].map(l => `<option${l === G.level ? ' selected' : ''}>${l}</option>`).join('')}</select></label>
     <label><input type="checkbox" id="gm-cb"${G.cb ? ' checked' : ''}> ${esc(t('game.cb', 'Colour-blind colours'))}</label>
     <button class="btn sm" data-gx="new">${esc(t('game.new', 'New words'))}</button></div>`;

@@ -74,6 +74,10 @@ const MIN_SLOTS = 2, MAX_SLOTS = 4;
 const UI_LANGS = ['en', 'de', 'fr', 'pt', 'cs', 'it', 'es', 'nl', 'sv', 'la'];
 const LNAME_EN = { en: 'English', de: 'German', fr: 'French', pt: 'Portuguese', cs: 'Czech', it: 'Italian', es: 'Spanish', nl: 'Dutch', sv: 'Swedish', la: 'Latin' };
 const LNAME = new Proxy(LNAME_EN, { get: (o, k) => typeof k === 'string' && o[k] ? t('lang.' + k, o[k]) : o[k] });
+/* languages whose data has been checked by hand less: shown with a "beta" label where a language is chosen */
+const BETA = new Set(['cs', 'it', 'nl', 'sv', 'la']);
+const betaName = l => BETA.has(l) ? LNAME[l] + ' (' + t('lang.beta', 'beta') + ')' : LNAME[l];
+const betaTag = l => BETA.has(l) ? ` <span class="beta-tag" title="${esc(t('lang.beta.tip', 'Less checked by hand than English, German, French, Portuguese and Spanish. Mistakes are more likely.'))}">${esc(t('lang.beta', 'beta'))}</span>` : '';
 const CEFR = { A1: 'basic', A2: 'elementary', B1: 'intermediate', B2: 'upper intermediate', C1: 'advanced', C2: 'academic' };
 const TRY = ['Haus', 'gehen', 'gut', 'Zeit', 'helfen', 'schön', 'anfangen', 'Kind'];
 
@@ -1331,7 +1335,7 @@ function buildSlots() {
   const order = S.order.map(id => LANGS.find(l => l.id === id));
   $('#slots').innerHTML = order.map((l, k) => `
    <div class="slot" data-lang="${l.id}" style="--i:${k}">
-     <div class="slot-head"><span id="flag-${l.id}" class="fl">${flag(S.main[l.id])}</span><select class="lang-pick" id="lp-${l.id}" aria-label="${esc(t('slot.lang', 'Language of this box'))}">${dataLangs().map(x => `<option value="${x}"${x === l.id ? ' selected' : ''}>${esc(LNAME[x])}</option>`).join('')}</select><kbd class="key" title="${esc(t('kb.slot', 'Press {n} to jump here', { n: k + 1 }))}">${k + 1}</kbd>
+     <div class="slot-head"><span id="flag-${l.id}" class="fl">${flag(S.main[l.id])}</span><select class="lang-pick" id="lp-${l.id}" aria-label="${esc(t('slot.lang', 'Language of this box'))}">${dataLangs().map(x => `<option value="${x}"${x === l.id ? ' selected' : ''}>${esc(betaName(x))}</option>`).join('')}</select><kbd class="key" title="${esc(t('kb.slot', 'Press {n} to jump here', { n: k + 1 }))}">${k + 1}</kbd>
        <select id="var-${l.id}" aria-label="${esc(t('slot.variant', 'Main variant of {lang}', { lang: LNAME[l.id] }))}">${REG[l.id].map(r => `<option value="${r}"${r === S.main[l.id] ? ' selected' : ''}>${esc(RNAME[r])}</option>`).join('')}</select>
      </div>
      <form class="field" autocomplete="off">
@@ -1599,7 +1603,7 @@ async function start() {
       .catch(() => offlineNote(t('foot.nooffline', 'Offline use is not available in this browser.')));
   } else offlineNote(t('foot.needweb', 'Offline use needs the app to be opened from its web address.'));
 }
-const API = { regularForm, setLanguages, dataLangs, cleanOrder, MIN_SLOTS, MAX_SLOTS, UI_LANGS,  D, S, P, DEFAULTS, t, esc, num, flag, fold, LNAME, RNAME, REG, BASE, LOCALE, LANGS, CEFR, LVORD, levelOf, lvlBadge, article, artHtml, gclass, gname, withArt, regionView,
+const API = { BETA, betaName, betaTag, regularForm, setLanguages, dataLangs, cleanOrder, MIN_SLOTS, MAX_SLOTS, UI_LANGS,  D, S, P, DEFAULTS, t, esc, num, flag, fold, LNAME, RNAME, REG, BASE, LOCALE, LANGS, CEFR, LVORD, levelOf, lvlBadge, article, artHtml, gclass, gname, withArt, regionView,
   getFile, loadLang, cleanGloss, find, findLoaded, translate, openEntry, openId, ensureIds, ensureWord, speak, speakAll, withTo, voicesFor, voiceFor, get voices() { return voices; }, saveP, saveSettings, loadSettings, toast, render, applyDisplay, applyTexts,
   buildSlots, paintRecent, paintWotd, tables, canForms, routeOf, firstTr: null, trIds, toggleFav, diffMark, animOn, quad, visibleSenses, idParts, sentenceHtml, regionScore, get state() { return state; } };
 window.FLT = Object.assign(API, { ready: null });

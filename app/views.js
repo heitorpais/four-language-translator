@@ -546,11 +546,11 @@ function paintSettings() {
 /* Settings › My languages: one row per box (language, move up, remove) and "Add a language" */
 function langEditor() {
   const o = A.S.order, av = A.dataLangs(), free = av.filter(l => !o.includes(l));
-  const opt = (sel, k) => av.map(l => `<option value="${l}"${l === sel ? ' selected' : ''}>${esc(A.LNAME[l])}</option>`).join('');
+  const opt = (sel, k) => av.map(l => `<option value="${l}"${l === sel ? ' selected' : ''}>${esc(A.betaName(l))}</option>`).join('');
   return `<ol class="langed">${o.map((l, k) => `<li><span class="fl">${A.flag(A.S.main[l], true)}</span><select data-lslot="${k}" aria-label="${esc(t('set.langs.box', 'Box {n}', { n: k + 1 }))}">${opt(l, k)}</select>
     <button class="btn sm" data-x="lang-up" data-k="${k}"${k ? '' : ' disabled'} aria-label="${esc(t('set.langs.up', 'Move up'))}" title="${esc(t('set.langs.up', 'Move up'))}">↑</button>
     <button class="btn sm" data-x="lang-rm" data-k="${k}"${o.length > A.MIN_SLOTS ? '' : ' disabled'} aria-label="${esc(t('set.langs.rm', 'Remove this box'))}" title="${esc(t('set.langs.rm', 'Remove this box'))}">✕</button></li>`).join('')}</ol>
-    ${o.length < A.MAX_SLOTS && free.length ? `<div class="row"><select id="lang-add">${free.map(l => `<option value="${l}">${esc(A.LNAME[l])}</option>`).join('')}</select><button class="btn sm" data-x="lang-add">${esc(t('set.langs.add', '+ Add a language'))}</button></div>` : ''}`;
+    ${o.length < A.MAX_SLOTS && free.length ? `<div class="row"><select id="lang-add">${free.map(l => `<option value="${l}">${esc(A.betaName(l))}</option>`).join('')}</select><button class="btn sm" data-x="lang-add">${esc(t('set.langs.add', '+ Add a language'))}</button></div>` : ''}`;
 }
 async function changeLangs(o) { await A.setLanguages(o); paintSettings(); }
 document.addEventListener('change', ev => { const x = ev.target.closest && ev.target.closest('[data-oblv]'); if (!x || !V.ob) return; V.ob[x.dataset.oblv][+x.dataset.i].lv = x.value; V.ob.dirty = true; x.classList.toggle('missing', !x.value); });
@@ -572,7 +572,7 @@ function obDefaults() {
 }
 function obChips(kind) {
   const o = V.ob, mine = o[kind], other = kind === 'speaks' ? o.learns : o.speaks, has = l => mine.some(x => x.l === l);
-  return `<div class="obgrid">${A.dataLangs().filter(l => !other.some(x => x.l === l)).map(l => `<button class="chip${has(l) ? ' sel' : ''}" data-ob="${kind}" data-l="${l}" aria-pressed="${has(l)}">${A.flag(BASEF(l), true)}${esc(UI_NAMES[l])}</button>`).join('')}</div>`;
+  return `<div class="obgrid">${A.dataLangs().filter(l => !other.some(x => x.l === l)).map(l => `<button class="chip${has(l) ? ' sel' : ''}" data-ob="${kind}" data-l="${l}" aria-pressed="${has(l)}">${A.flag(BASEF(l), true)}${esc(UI_NAMES[l])}${A.betaTag(l)}</button>`).join('')}</div>`;
 }
 function obLevels(kind) {
   const o = V.ob, list = o[kind], levels = kind === 'speaks' ? SPEAK_LV : LEVELS;
