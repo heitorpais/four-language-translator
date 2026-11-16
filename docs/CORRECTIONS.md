@@ -1,7 +1,10 @@
 # Corrections of reported mistakes
 
-People report mistakes with "Report a mistake in this entry" (under "More about this word"). Each report is a GitHub
-issue in this repository. A scheduled task checks them every morning and fixes the clear ones by adding
+People report mistakes in the app, without GitHub and without an account: "Report a mistake in this entry" (under
+"More about this word") and the report button under every game. The reports are stored in the database (collection
+`feedback`); every night the workflow `.github/workflows/reports.yml` turns them into GitHub issues in this repository
+(label `from-app`; titles "Mistake in <entry id>" or "Game report: <entry id>"). A scheduled task checks them every
+morning and fixes the clear ones by adding
 **corrections** to `app/data/manifest.json`, in the list `"corrections"`. The app applies them to an entry as soon as
 the entry is loaded, also offline (the manifest is saved on the device). A rebuild of the data (`build/build_tiers.py`)
 keeps the list.

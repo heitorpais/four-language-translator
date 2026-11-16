@@ -1,0 +1,28 @@
+# Every night: the mistakes people report in the app (dictionary entries and games, no account needed) are taken from
+# the database and turned into GitHub issues, where the morning task "Fix reported translator mistakes" fixes them.
+# Reports about posts and profiles stay in the database (the owner sees them in the admin view of the Reading Room).
+# Needs the repository secret FIREBASE_SERVICE_ACCOUNT (the key file from Firebase > Project settings > Service accounts).
+name: Import reports from the app
+on:
+  schedule:
+    - cron: '7 2 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+concurrency:
+  group: reports
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install --no-save firebase-admin@12
+      - run: node .github/scripts/import-reports.mjs
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
