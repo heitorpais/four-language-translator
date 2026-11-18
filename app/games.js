@@ -446,7 +446,7 @@ function repHtml() {
   const words = over && ws.length > 1 ? `<p>${esc(t('gh.rep.which', 'Which word? (optional)'))}</p><div class="row">${ws.map((w, i) => `<button class="chip${r.w === i ? ' on' : ''}" data-hr="w" data-i="${i}">${fl(w.lang)} ${esc(w.lemma)}${w.to ? ` · ${esc(w.to)}` : ''}</button>`).join('')}</div>` : '';
   return `<div class="report gh-rep"><p><b>${esc(t('gh.rep.why', 'What is wrong?'))}</b></p><div class="row">${REASONS.map(([k, key, en]) => `<button class="chip${r.why === k ? ' on' : ''}" data-hr="why" data-k="${k}">${esc(t(key, en))}</button>`).join('')}</div>${words}
     <textarea id="ghrep-note" rows="2" maxlength="160" placeholder="${esc(t('gh.rep.note', 'What should it be? (optional)'))}">${esc(r.note || '')}</textarea>
-    ${r.err ? `<p class="hint">${esc(r.err)}</p>` : ''}<div class="row"><button class="btn sm primary" data-hr="send"${r.why ? '' : ' disabled'}>${esc(t('gh.rep.send', 'Send report'))}</button><button class="lnk small" data-hr="x">${esc(t('btn.cancel', 'Cancel'))}</button></div></div>`;
+    ${r.err ? `<p class="hint">${esc(r.err)}</p>` : ''}<div class="row"><button class="btn sm primary" data-hr="send">${esc(t('gh.rep.send', 'Send report'))}</button><button class="lnk small" data-hr="x">${esc(t('btn.cancel', 'Cancel'))}</button></div></div>`;
 }
 function paintRep() { const el = $('#gh-rep'); if (el) el.innerHTML = repHtml(); }
 async function sendRep() {
@@ -454,7 +454,7 @@ async function sendRep() {
   const ws = shown(), pick = r.w != null && ws[r.w] ? [ws[r.w]] : ws;
   const wtxt = pick.filter(Boolean).map(w => `${w.lang}:${w.lemma}${w.to ? '=' + w.to : ''}`).join(', ');
   const langs = H.game === 'babel' ? H.langs.join('+') : H.game === 'pairs' || H.game === 'search' ? H.lang + '+' + H.lang2 : H.game === 'quinque' ? (window.FLTGame.state.langs || []).join('+') : H.lang;
-  const why = `[${H.game} ${langs}] ${r.why} | ${r.note ? r.note + ' | ' : ''}${wtxt}`.slice(0, 300);
+  const why = `[${H.game} ${langs}] ${r.why || 'other'} | ${r.note ? r.note + ' | ' : ''}${wtxt}`.slice(0, 300);
   const ok = await window.FLTReport.send({ kind: 'game', why, about: pick[0] ? pick[0].id || pick[0].lemma : H.game, where: H.game });
   if (ok) { r.sent = true; r.err = ''; } else r.err = t('gh.rep.fail', 'The report could not be sent. Please try again.');
   paintRep();
