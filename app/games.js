@@ -102,6 +102,8 @@ function validSet(lang) {
   return { has: w => !!(p[w.length] && p[w.length].has(w)), lists: p };
 }
 /* the first translation of an entry into another language, as a word */
+/* how a word is shown on a card or as a clue: English verbs with "to" (to help, not help) */
+function shown1(e) { return A.withTo ? A.withTo(e.id, e.lemma) : e.lemma; }
 function tr(e, to) {
   let any = null;
   for (const s of e.senses || []) {
@@ -208,7 +210,7 @@ G.pairs = {
     await ready([H.lang, H.lang2]);
     const ws = coreWords(H.lang, this.N, [H.lang2], 12); if (ws.length < 4) return null;
     const cards = [];
-    ws.forEach((w, k) => { cards.push({ k, lang: H.lang, text: w.e.lemma, id: w.e.id }); cards.push({ k, lang: H.lang2, text: w.ts[0].lemma, id: w.ts[0].id }); });
+    ws.forEach((w, k) => { cards.push({ k, lang: H.lang, text: shown1(w.e), id: w.e.id }); cards.push({ k, lang: H.lang2, text: shown1(w.ts[0]), id: w.ts[0].id }); });
     return { cards: shuffle(cards), open: [], won: new Set(), moves: 0, lock: false, done: false };
   },
   tap(s, i) {
@@ -272,7 +274,7 @@ G.search = {
   html(s) {
     const found = new Map(); s.words.forEach((w, k) => { if (w.found >= 0) w.cells.forEach(c => found.set(c, k % 6)); });
     const grid = s.grid.map((ch, i) => `<button class="gh-sc${found.has(i) ? ' f f' + found.get(i) : ''}${s.sel === i ? ' sel' : ''}" data-hs="${i}">${esc(ch.toUpperCase())}</button>`).join('');
-    const clues = s.words.map((w, k) => `<li class="${w.found >= 0 ? 'f f' + (k % 6) : ''}">${w.found >= 0 ? `<button class="chip" data-open="${esc(w.w.e.id)}" lang="${H.lang}">${esc(w.w.e.lemma)}</button> = ` : ''}${fl(H.lang2)}${esc(w.w.ts[0].lemma)}${w.found >= 0 ? '' : ` <small>(${letters(w.w.e.lemma, H.lang).length})</small>`}</li>`).join('');
+    const clues = s.words.map((w, k) => `<li class="${w.found >= 0 ? 'f f' + (k % 6) : ''}">${w.found >= 0 ? `<button class="chip" data-open="${esc(w.w.e.id)}" lang="${H.lang}">${esc(w.w.e.lemma)}</button> = ` : ''}${fl(H.lang2)}${esc(shown1(w.w.ts[0]))}${w.found >= 0 ? '' : ` <small>(${letters(w.w.e.lemma, H.lang).length})</small>`}</li>`).join('');
     const msg = s.sel != null ? t('gh.search.end', 'Now tap the last letter of the word.') : s.miss ? t('gh.search.miss', 'No word there. Tap the first letter, then the last.') : t('gh.search.how', 'Tap the first letter of a word, then the last.');
     return `${scoreHtml(s.done ? ' ' : null)}<p class="hint">${esc(t('gh.search.find', 'Find these words in {lang}:', { lang: A.LNAME[H.lang] }))}</p><ul class="gh-clues">${clues}</ul>
       <div class="gh-sgrid" style="--n:${s.N}" lang="${H.lang}">${grid}</div><p class="gm-msg">${esc(s.done ? t('gh.search.done', 'You found them all!') : msg)}</p>${s.done ? winnerHtml() + `<button class="btn primary" data-hx="again">${esc(t('gh.again2', 'Play again'))}</button>` : ''}`;
@@ -565,6 +567,21 @@ document.addEventListener('keydown', ev => {
     else if (ev.key === 'Backspace') { ev.preventDefault(); s.cur.pop(); }
     else if (k && (s.outer.includes(k) || k === s.mid)) { ev.preventDefault(); s.cur.push(k); s.msg = ''; }
     else return;
+    paintStage();
+  } else if (H.game === 'grid') {
+    /* keyboard: type letters along a path of neighbouring cells, Enter checks, Backspace removes, Escape clears */
+    if (s.done || !s.timer) return;
+    if (ev.key === 'Enter') { ev.preventDefault(); game.enter(s); }
+    else if (ev.key === 'Backspace') { ev.preventDefault(); s.path.pop(); }
+    else if (ev.key === 'Escape') { ev.preventDefault(); s.path = []; }
+    else if (k) {
+      const last = s.path[s.path.length - 1];
+      let i = -1;
+      for (let j = 0; j < 16; j++) if (s.cells[j] === k && !s.path.includes(j) && (last == null || game.near(last, j))) { i = j; break; }
+      if (i < 0) for (let j = 0; j < 16; j++) if (s.cells[j] === k) { i = j; s.path = []; break; }
+      if (i < 0) return;
+      ev.preventDefault(); s.path.push(i);
+    } else return;
     paintStage();
   } else if (H.game === 'ana' && k && !s.done) {
     const i = s.tiles.findIndex((x, j) => x.c === k && !s.picked.includes(j)); if (i >= 0) { ev.preventDefault(); game.tap(s, i); paintStage(); }

@@ -67,6 +67,8 @@ function pickWord(lang, len, avoid) {
   const p = pool(lang, len), max = LV[G.level] || 6;
   let list = p.answers.filter(a => { const v = A.levelOf({ level: a[3], frequency_rank: a[2] }); return v ? LV[v.l] <= max : max >= 5; });
   if (list.length < 40) list = p.answers;
+  const withDef = list.filter(a => a[4]);           // only words that have an explanation in this language, when there are enough
+  if (withDef.length >= 40) list = withDef;
   const rk = KEY_S + ':recent:' + lang + len, recent = new Set(load(rk, []));
   const fresh = list.filter(a => !recent.has(a[0]) && a[0] !== avoid);
   const from = fresh.length ? fresh : list;
@@ -183,11 +185,14 @@ function keyColours(b) {
 
 function boardHtml(b, lang, reveal, mini) {
   const rows = [];
+  /* green cells show the real letter with its accent (ě, ç, ã …); the game itself compares plain letters */
+  const real = Array.from(String(b.lemma || '').toLowerCase()), same = real.length === b.ans.length;
   for (let i = 0; i < TRIES; i++) {
     const g = b.rows[i], cur = !b.done && i === b.rows.length, sc = g ? score(g, b.ans) : null;
     const cells = [];
     for (let j = 0; j < b.ans.length; j++) {
-      const ch = g ? g[j] : cur ? (b.cur[j] || '') : '';
+      let ch = g ? g[j] : cur ? (b.cur[j] || '') : '';
+      if (sc && sc[j] === 'g' && same) ch = real[j];
       const cls = sc ? ' ' + sc[j] : ch ? ' typed' : '';
       const anim = sc && reveal && i === b.rows.length - 1 && A.animOn() ? ` style="animation-delay:${j * 0.12}s"` : '';
       cells.push(`<span class="gm-cell${cls}${anim ? ' flip' : ''}"${anim}>${esc(ch.toUpperCase())}</span>`);

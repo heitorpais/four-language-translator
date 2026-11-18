@@ -243,10 +243,11 @@ function paintPractice() {
     <div class="set"><label for="pr-mode">${esc(t('pr.what', 'Exercise'))}</label><select id="pr-mode">${MODES.map(m => `<option value="${m[0]}"${m[0] === c.mode ? ' selected' : ''}>${esc(modeName(m))}</option>`).join('')}</select><div class="hint">${esc(t('pr.hint.' + c.mode, modeHint(c.mode)))}</div></div>
     ${c.mode === 'match' || c.mode === 'review' || c.mode === 'cards' ? '' : `<div class="set"><label for="pr-lang">${esc(t('pr.lang', 'Language'))}</label><select id="pr-lang">${langs.map(l => `<option value="${l}"${l === c.lang ? ' selected' : ''}>${esc(A.LNAME[l])}</option>`).join('')}</select></div>`}
     ${c.mode === 'translate' ? `<div class="set"><label for="pr-to">${esc(t('pr.to', 'Answer in'))}</label>${langSelect('pr-to', c.to, [['any', t('pr.any', 'Any language (mixed)')]])}</div>` : ''}
-    ${c.mode === 'review' || c.mode === 'cards' ? '' : `<div class="set"><label for="pr-level">${esc(t('pr.level', 'Level'))}</label><select id="pr-level">${[['mine', t('pr.level.mine', 'My level and below ({l})', { l: A.S.myLevel })], ['all', t('pr.level.all', 'All levels')], ...LEVELS.map(l => [l, l + ' · ' + t('cefr.' + l, A.CEFR[l])])].map(([v, n]) => `<option value="${v}"${v === c.level ? ' selected' : ''}>${esc(n)}</option>`).join('')}</select></div>
-    <div class="set"><label for="pr-src">${esc(t('pr.src', 'Words'))}</label><select id="pr-src"><option value="all"${c.source === 'all' ? ' selected' : ''}>${esc(t('pr.src.all', 'All common words'))}</option><option value="saved"${c.source === 'saved' ? ' selected' : ''}>${esc(t('pr.src.saved', 'Only my saved words'))}</option><option value="reg:de:CH"${c.source === 'reg:de:CH' ? ' selected' : ''}>${esc(t('pr.src.ch', 'Swiss words (Helvetisms)'))}</option><option value="reg:pt:BRPT"${c.source === 'reg:pt:BRPT' ? ' selected' : ''}>${esc(t('pr.src.brpt', 'Brazil vs. Portugal'))}</option>${A.P.lists.map((L, k) => `<option value="list:${k}"${c.source === 'list:' + k ? ' selected' : ''}>${esc(t('pr.src.list', 'List: {l}', { l: L.name }))}</option>`).join('')}</select></div>`}
+    ${c.mode === 'review' || c.mode === 'cards' ? '' : `<div class="set"><label for="pr-level">${esc(t('pr.level', 'Level'))}</label><select id="pr-level">${[['mine', t('pr.level.mine', 'My level and below ({l})', { l: A.S.myLevel })], ['all', t('pr.level.all', 'All levels')], ...LEVELS.map(l => [l, l + ' · ' + t('cefr.' + l, A.CEFR[l])])].map(([v, n]) => `<option value="${v}"${v === c.level ? ' selected' : ''}>${esc(n)}</option>`).join('')}</select></div>`}
+    ${c.mode === 'review' ? '' : `<div class="set"><label for="pr-src">${esc(t('pr.src', 'Words'))}</label><select id="pr-src"><option value="all"${c.source === 'all' ? ' selected' : ''}>${esc(c.mode === 'cards' ? t('fc.src.all', 'All my words (saved and lists)') : t('pr.src.all', 'All common words'))}</option><option value="saved"${c.source === 'saved' ? ' selected' : ''}>${esc(t('pr.src.saved', 'Only my saved words'))}</option><option value="reg:de:CH"${c.source === 'reg:de:CH' ? ' selected' : ''}>${esc(t('pr.src.ch', 'Swiss words (Helvetisms)'))}</option><option value="reg:pt:BRPT"${c.source === 'reg:pt:BRPT' ? ' selected' : ''}>${esc(t('pr.src.brpt', 'Brazil vs. Portugal'))}</option>${A.P.lists.map((L, k) => `<option value="list:${k}"${c.source === 'list:' + k ? ' selected' : ''}>${esc(t('pr.src.list', 'List: {l}', { l: L.name }))}</option>`).join('')}</select></div>`}
   </div>
-  <div class="row">${c.mode === 'cards' ? `<button class="btn primary" data-x="fc-start">${esc(t('fc.start', 'Start: {n} cards due', { n: dueIds().length }))}</button><span class="hint">${esc(t('fc.deck', '{n} words in your flashcards (saved words and lists)', { n: deckIds().length }))}</span>` : `<button class="btn primary" data-x="pr-start">${esc(t('pr.start', 'Start: 10 questions'))}</button><span class="hint">${esc(t('pr.mistakes', '{n} mistakes saved for review', { n: (A.P.mistakes || []).length }))}</span>`}</div>
+  <div class="row">${c.mode === 'cards' ? `<button class="btn primary" data-x="fc-start">${esc(t('fc.start', 'Start: {n} cards due', { n: dueIds().length }))}</button><span class="hint">${esc(t('fc.deck2', 'Choose a set under “Words”. Your lists are your own sets.'))}</span></div>
+  <div class="row fc-new"><input class="text" id="fc-newset" placeholder="${esc(t('fc.newset.ph', 'New set, e.g. Kitchen, Work, Travel…'))}"><button class="btn sm" data-x="fc-newset">${esc(t('fc.newset', 'Create set'))}</button><span class="hint">${esc(t('fc.newset.h', 'Then add words with “＋ List” on any word card.'))}</span>` : `<button class="btn primary" data-x="pr-start">${esc(t('pr.start', 'Start: 10 questions'))}</button><span class="hint">${esc(t('pr.mistakes', '{n} mistakes saved for review', { n: (A.P.mistakes || []).length }))}</span>`}</div>
   <p class="hint" id="pr-msg" aria-live="polite"></p>`;
 }
 function modeHint(m) {
@@ -385,10 +386,20 @@ function sm2(c, q) {          // q: 1 again, 3 hard, 4 good, 5 easy
   c.last = Date.now(); return c;
 }
 const ivText = c => c.iv ? t('fc.days', '{n} d', { n: c.iv }) : t('fc.min', '10 min');
+/* the words of the chosen set: saved words, one of the user's lists, or a regional set; null = all the user's words */
+async function setIds(c) {
+  if (!c || !c.source || c.source === 'all') return null;
+  if (c.source === 'saved') return Object.keys(A.P.favs);
+  if (c.source.startsWith('list:')) { const L = A.P.lists[+c.source.slice(5)]; return L ? L.ids.slice() : []; }
+  if (c.source.startsWith('reg:')) { const es = await pool(Object.assign({}, c, { level: 'all' }), c.source.split(':')[1]).catch(() => []); return es.map(e => e.id); }
+  return null;
+}
 async function startCards() {
-  const ids = dueIds().slice(0, 20);
+  const set = await setIds(V.pc), now = Date.now();
+  const ids = (set ? set.filter(id => { const x = A.P.srs[id]; return !x || x.due <= now; }) : dueIds()).slice(0, 20);
   const msg = $('#pr-msg');
-  if (!ids.length) { if (msg) msg.textContent = deckIds().length ? t('fc.none', 'No cards are due. Come back later!') : t('fc.empty', 'Save words with ☆ or put them in a list first; they become your flashcards.'); return; }
+  if (!ids.length && set && !set.length) { if (msg) msg.textContent = t('fc.setempty', 'This set has no words yet. Add words with “＋ List” on any word card.'); return; }
+  if (!ids.length) { if (msg) msg.textContent = (set ? set.length : deckIds().length) ? t('fc.none', 'No cards are due. Come back later!') : t('fc.empty', 'Save words with ☆ or put them in a list first; they become your flashcards.'); return; }
   await A.ensureIds(ids);
   V.fc = { ids: ids.filter(id => A.D.byId.has(id)), i: 0, flipped: false, done: 0 };
   paintPractice();
@@ -426,7 +437,7 @@ function questionHtml() {
   if (q.choices) ans = `<div class="choices">${q.choices.map(ch => { let cls = ''; if (pr.state) { if (ch === q.answer) cls = ' ok'; else if (ch === pr.picked) cls = ' bad'; } return `<button class="choice${cls}" data-ch="${esc(ch)}"${pr.state ? ' disabled' : ''} lang="${q.lang}">${q.mode === 'gender' && A.ART_G ? '' : ''}${esc(q.names ? q.names[ch] : ch)}</button>`; }).join('')}</div>`;
   else ans = `<form id="pr-form" class="prform" autocomplete="off"><input class="text big" id="pr-in" lang="${q.lang}" autocapitalize="off" spellcheck="false" placeholder="${esc(q.two ? t('pr.ph.two', 'ging, gegangen') : t('pr.ph', 'Type the answer'))}"${pr.state ? ' disabled' : ''} value="${esc(pr.typed || '')}"><button class="btn primary"${pr.state ? ' disabled' : ''}>${esc(t('pr.check', 'Check'))}</button></form>`;
   let fb = '';
-  if (pr.state === 'right') fb = `<p class="fb ok">✓ ${esc(t('pr.right', 'Right!'))} ${q.show && A.fold(q.show) !== A.fold(pr.typed || '') ? esc(q.show) : ''}</p>`;
+  if (pr.state === 'right') fb = `<p class="fb ok">✓ ${esc(t('pr.right', 'Right!'))} ${q.show && A.fold(q.show) !== A.fold(pr.typed || '') ? esc(q.show) : ''}</p>${q.e ? miniCard(q.e) : ''}`;
   if (pr.state === 'wrong') fb = `<p class="fb bad">✗ ${esc(t('pr.wrong', 'Not quite. The answer is'))} <b lang="${q.lang}">${esc(q.show || (q.names ? q.names[q.answer] : q.answer))}</b>.</p>${miniCard(q.e)}`;
   if (pr.state) fb += `<button class="btn primary" data-x="pr-next" id="pr-next">${esc(pr.i + 1 >= n ? t('pr.finish', 'See the result') : t('pr.next', 'Next'))}</button>`;
   return head + `<div class="q ${pr.state === 'wrong' ? 'shake' : pr.state === 'right' ? 'tick' : ''}">${q.prompt}</div>${ans}<div id="pr-fb" aria-live="polite">${fb}</div>${prReport(q)}`;
@@ -448,7 +459,14 @@ function miniCard(e) {
   const rv = A.regionView(e), art = e.pos === 'noun' ? A.article(e.lang, e, rv.word) : '';
   const s = e.senses.find(x => ALL.some(l => l !== e.lang && A.trIds(x, l).length));
   const tr = s ? ALL.filter(l => l !== e.lang).map(l => { const id = A.trIds(s, l)[0], x = id && A.D.byId.get(id); return x ? `<span class="nowrap">${A.flag(A.S.main[l], true)}<span lang="${l}">${esc(A.withTo(x.id, x.lemma))}</span></span>` : ''; }).join(' &nbsp;') : '';
-  return `<div class="minicard"><div><b class="hw sm" lang="${e.lang}">${art ? A.artHtml(art, e.noun && e.noun.gender) + ' ' : ''}${esc(rv.word)}</b> ${rv.ipa ? `<span class="ipa">/${esc(rv.ipa)}/</span>` : ''} <span class="pos">${esc(t('pos.' + e.pos, e.pos))}</span> ${A.lvlBadge(e, true)}</div>${rv.plural ? `<div class="hint">${esc(t('pr.mini.pl', 'plural'))}: ${esc(rv.plural)}</div>` : ''}${e.verb && e.verb.principal_parts ? `<div class="hint">${esc(e.verb.principal_parts.filter(Boolean).join(' · '))}${rv.aux ? ' · + ' + esc(rv.aux) : ''}</div>` : ''}<div>${tr}</div><button class="btn sm" data-open="${esc(e.id)}" data-x="pr-card">${esc(t('pr.card', 'Open the full card'))}</button></div>`;
+  return `<div class="minicard"><div><b class="hw sm" lang="${e.lang}">${art ? A.artHtml(art, e.noun && e.noun.gender) + ' ' : ''}${esc(rv.word)}</b> ${rv.ipa ? `<span class="ipa">/${esc(rv.ipa)}/</span>` : ''} <span class="pos">${esc(t('pos.' + e.pos, e.pos))}</span> ${A.lvlBadge(e, true)}</div>${rv.plural ? `<div class="hint">${esc(t('pr.mini.pl', 'plural'))}: ${esc(rv.plural)}</div>` : ''}${e.verb && e.verb.principal_parts ? `<div class="hint">${esc(e.verb.principal_parts.filter(Boolean).join(' · '))}${rv.aux ? ' · + ' + esc(rv.aux) : ''}</div>` : ''}${meaningLine(e, s)}<div>${tr}</div><div class="row"><button class="btn sm" data-x="pr-save" data-id="${esc(e.id)}">${A.P.favs[e.id] ? '★ ' + esc(t('pr.saved1', 'Saved')) : '☆ ' + esc(t('pr.save', 'Save this word'))}</button><button class="btn sm" data-open="${esc(e.id)}" data-x="pr-card">${esc(t('pr.card', 'Open the full card'))}</button></div></div>`;
+}
+/* the meaning of the word (its first meanings), so a lucky guess still teaches something */
+function meaningLine(e, s0) {
+  const ss = (e.senses || []).filter(x => x.gloss || x.gloss_en);
+  const pick = [s0, ...ss].filter(Boolean).filter((x, i, a) => a.indexOf(x) === i && (x.gloss || x.gloss_en)).slice(0, 2);
+  if (!pick.length) return '';
+  return `<div class="pr-mean"><span class="hint">${esc(t('pr.meaning', 'Meaning'))}:</span> ${pick.map(x => esc(A.cleanGloss ? A.cleanGloss(x.gloss || x.gloss_en) : (x.gloss || x.gloss_en))).join('; ')}</div>`;
 }
 function resultHtml() {
   const pr = V.pr, n = pr.total || pr.qs.length;
@@ -711,11 +729,18 @@ document.addEventListener('click', async ev => {
   else if (k === 'pr-saved' || k === 'pr-list') { V.pc = Object.assign(V.pc || practiceDefaults(), { source: k === 'pr-saved' ? 'saved' : 'list:' + x.dataset.k, mode: 'translate', level: 'all' }); V.pr = null; togglePanel('practice', true); }
   else if (k === 'pr-start') { readPracticeForm(); startPractice(); }
   else if (k === 'fc-start') { readPracticeForm(); startCards(); }
+  else if (k === 'fc-newset') {
+    const inp = $('#fc-newset'), name = inp ? inp.value.trim() : ''; if (!name) { if (inp) inp.focus(); return; }
+    let i = P.lists.findIndex(L => L.name === name); if (i < 0) { P.lists.push({ name, ids: [], w: {} }); i = P.lists.length - 1; A.saveP(); }
+    readPracticeForm(); V.pc.source = 'list:' + i; paintPractice();
+    A.toast && A.toast(t('fc.newset.ok', 'Set “{n}” created. Add words with “＋ List” on any word card.', { n: name }));
+  }
   else if (k === 'fc-flip') { V.fc.flipped = true; paintPractice(); }
   else if (k === 'fc-say') { const e = A.D.byId.get(V.fc.ids[V.fc.i]); if (e) { const rv = A.regionView(e); A.speak(A.withArt(e.pos === 'noun' ? A.article(e.lang, e, rv.word) : '', rv.word), e.lang); } }
   else if (k === 'fc-stop') { V.fc = null; paintPractice(); }
   else if (k === 'pr-stop') { V.pr = null; paintPractice(); }
   else if (k === 'pr-next') nextQ();
+  else if (k === 'pr-save') { const e = A.D.byId.get(x.dataset.id); if (e) { A.toggleFav(e); A.toast && A.toast(A.P.favs[e.id] ? t('pr.saved.t', 'Saved to your words.') : t('pr.unsaved.t', 'Removed from your words.')); paintPractice(); } }
   else if (k === 'pr-say') { const q = V.pr && V.pr.q; if (q) A.speak(q.say, q.sayLang); }
   else if (k === 'pr-card') { /* data-open handles the card */ }
   else if (k === 'voice-test') { const l = x.dataset.l; A.speak({ en: 'Hello, this is my voice.', de: 'Hallo, das ist meine Stimme.', fr: 'Bonjour, voici ma voix.', pt: 'Olá, esta é a minha voz.' }[l], l); }

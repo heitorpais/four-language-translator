@@ -57987,3 +57987,5 @@ gloss	cs:tiskový:adjective	s1	press, print (Presse-, Druck-; de presse; de impr
 drop-tr	cs:tiskový:adjective	*	en	press
 drop-tr	cs:pálka:noun	*	fr	matraque
 first	de:leicht:adjective	*	en:slight:adjective
+sense-first	de:geil:adjective	s2
+first	de:geil:adjective	s2	en:cool:adjective

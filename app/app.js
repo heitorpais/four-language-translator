@@ -436,7 +436,9 @@ async function find(lang, word) {
   const cand = new Map();
   const put = (e, ex, isForm) => {
     const nTr = e.senses.reduce((a, s) => a + Object.values(s.translations).reduce((b, l) => b + l.length, 0), 0);
-    const key = [ex, TIER[e.tier] || 0, isForm, e.frequency_rank || 1e9, e.pos_order || 0, -(e.pos_share == null ? 0.5 : e.pos_share), -nTr, POSR[e.pos] == null ? 9 : POSR[e.pos]];     // pos_order: which of several entries with one spelling opens first (build/pos_share.py)
+    // a word class with translations into the user's other languages comes before one without (ripe: the adjective, not the rare verb)
+    const noTr = e.senses.some(s => S.order.some(l => l !== e.lang && (s.translations[l] || []).length)) ? 0 : 1;
+    const key = [ex, TIER[e.tier] || 0, isForm, noTr, e.frequency_rank || 1e9, e.pos_order || 0, -(e.pos_share == null ? 0.5 : e.pos_share), -nTr, POSR[e.pos] == null ? 9 : POSR[e.pos]];     // pos_order: which of several entries with one spelling opens first (build/pos_share.py)
     const old = cand.get(e.id);
     if (!old || cmpKey(key, old.key) < 0) cand.set(e.id, { e, key, isForm });
   };
