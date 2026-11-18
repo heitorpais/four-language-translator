@@ -76,9 +76,9 @@ const UI_LANGS = ['en', 'de', 'fr', 'pt', 'cs', 'it', 'es', 'nl', 'sv', 'la'];
 const LNAME_EN = { en: 'English', de: 'German', fr: 'French', pt: 'Portuguese', cs: 'Czech', it: 'Italian', es: 'Spanish', nl: 'Dutch', sv: 'Swedish', la: 'Latin' };
 const LNAME = new Proxy(LNAME_EN, { get: (o, k) => typeof k === 'string' && o[k] ? t('lang.' + k, o[k]) : o[k] });
 /* languages whose data has been checked by hand less: shown with a "beta" label where a language is chosen */
-const BETA = new Set(['cs', 'it', 'nl', 'sv', 'la']);
+const BETA = new Set(['it', 'nl', 'sv', 'la']);          // Czech left beta on 18 Nov 2026
 const betaName = l => BETA.has(l) ? LNAME[l] + ' (' + t('lang.beta', 'beta') + ')' : LNAME[l];
-const betaTag = l => BETA.has(l) ? ` <span class="beta-tag" title="${esc(t('lang.beta.tip', 'Less checked by hand than English, German, French, Portuguese and Spanish. Mistakes are more likely.'))}">${esc(t('lang.beta', 'beta'))}</span>` : '';
+const betaTag = l => BETA.has(l) ? ` <span class="beta-tag" title="${esc(t('lang.beta.tip', 'Less checked by hand than English, German, French, Portuguese, Spanish and Czech. Mistakes are more likely.'))}">${esc(t('lang.beta', 'beta'))}</span>` : '';
 const CEFR = { A1: 'basic', A2: 'elementary', B1: 'intermediate', B2: 'upper intermediate', C1: 'advanced', C2: 'academic' };
 const TRY = ['Haus', 'gehen', 'gut', 'Zeit', 'helfen', 'schön', 'anfangen', 'Kind'];
 

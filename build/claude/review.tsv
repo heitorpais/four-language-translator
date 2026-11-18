@@ -57989,3 +57989,632 @@ drop-tr	cs:pálka:noun	*	fr	matraque
 first	de:leicht:adjective	*	en:slight:adjective
 sense-first	de:geil:adjective	s2
 first	de:geil:adjective	s2	en:cool:adjective
+drop-tr	en:have:verb	*	cs	nemít
+drop-tr	en:over:preposition	*	cs	ku
+drop-tr	en:need:verb	*	cs	předpokládat
+drop-tr	en:work:verb	*	cs	obrábět
+first	en:by:preposition	*	cs:u:preposition
+first	en:keep:verb	*	cs:držet:verb
+first	en:point:noun	*	cs:bod:noun
+first	en:pick:verb	*	cs:vybrat:verb
+first	en:set:verb	*	cs:nastavit:verb
+first	en:guess:verb	*	cs:hádat:verb
+drop-tr	en:woman:noun	*	cs	Brňačka
+drop-tr	en:money:noun	*	cs	prašule
+drop-tr	en:kid:noun	*	cs	svišť
+drop-tr	en:word:noun	*	cs	maďarismus
+drop-tr	en:sister:noun	*	cs	sourozenkyně
+drop-tr	en:end:noun	*	cs	šlus
+drop-tr	en:shit:noun	*	cs	sranec
+drop-tr	en:death:noun	*	cs	smrtka
+drop-tr	en:married:adjective	*	cs	oddaný
+drop-tr	en:later:adverb	*	cs	pozdější
+drop-tr	en:blood:noun	*	cs	červená
+drop-tr	en:act:verb	*	cs	počít si
+drop-tr	en:scared:adjective	*	cs	podělaný
+drop-tr	en:white:adjective	*	cs	bělásčí
+drop-tr	en:ship:noun	*	cs	šíf
+drop-tr	en:coffee:noun	*	cs	brynda
+drop-tr	en:share:verb	*	cs	podělkovat
+drop-tr	en:leg:noun	*	cs	rameno
+first	en:record:noun	*	cs:záznam:noun
+drop-tr	en:worse:adverb	*	cs	horší
+first	en:bar:noun	*	cs:bar:noun
+first	en:agent:noun	*	cs:agent:noun
+drop-tr	en:service:noun	*	cs	podání
+drop-tr	en:short:adjective	*	cs	rychlý
+drop-tr	en:mention:verb	*	cs	vzpomínat
+first	en:grab:verb	*	cs:chytit:verb
+drop-tr	en:gold:noun	*	cs	zlatá
+first	en:charge:verb	*	cs:nabít:verb
+drop-tr	en:continue:verb	*	cs	zůstat
+drop-tr	en:paper:noun	*	cs	kornout
+drop-tr	en:waste:verb	*	cs	zničit
+drop-tr	en:witness:verb	*	cs	vypovídat
+drop-tr	en:witness:verb	*	cs	vypovědět
+drop-tr	en:third:noun	*	cs	třetí osoba
+drop-tr	en:finger:noun	*	cs	fakáč
+drop-tr	en:suck:verb	*	cs	srát
+drop-tr	en:asshole:noun	*	cs	chuj
+drop-tr	en:awesome:adjective	*	cs	úděsný
+drop-tr	en:nose:noun	*	cs	raťafák
+drop-tr	en:faith:noun	*	cs	Věra
+drop-tr	en:bottom:adjective	*	cs	dnový
+drop-tr	en:code:noun	*	cs	kod
+drop-tr	en:pressure:noun	*	cs	nápor
+drop-tr	en:post:noun	*	cs	sloup
+drop-tr	en:coach:noun	*	cs	kočár
+drop-tr	en:involve:verb	*	cs	znamenat
+drop-tr	en:hunt:verb	*	cs	hledat
+drop-tr	en:hungry:adjective	*	cs	lačnící
+drop-tr	en:pack:verb	*	cs	pakovat
+drop-tr	en:computer:noun	*	cs	computer
+drop-tr	en:planet:noun	*	cs	oběžnice
+drop-tr	en:yell:verb	*	cs	vřeštět
+drop-tr	en:exist:verb	*	cs	být
+drop-tr	en:plenty:noun	*	cs	dávka
+drop-tr	en:chicken:noun	*	cs	kuřecí
+drop-tr	en:mate:noun	*	cs	kámoš
+first	en:mate:noun	*	cs:kamarád:noun
+first	en:pressure:noun	*	cs:tlak:noun
+first	en:hunt:verb	*	cs:lovit:verb
+first	en:coach:noun	*	cs:trenér:noun
+first	en:post:noun	*	cs:příspěvek:noun
+first	en:plenty:noun	*	cs:spousta:noun
+first	en:involve:verb	*	cs:zahrnovat:verb
+drop-tr	en:rob:verb	*	cs	obrat
+drop-tr	en:thief:noun	*	cs	poberta
+drop-tr	en:commander:noun	*	cs	komtur
+drop-tr	en:base:noun	*	cs	zásada
+drop-tr	en:base:noun	*	cs	meta
+first	en:base:noun	*	cs:základna:noun
+drop-tr	en:distance:noun	*	cs	nadhled
+drop-tr	en:pool:noun	*	cs	tratoliště
+drop-tr	en:pool:noun	*	cs	tůň
+first	en:pool:noun	*	cs:bazén:noun
+drop-tr	en:aware:adjective	*	cs	ostražitý
+drop-tr	en:aware:adjective	*	cs	bdělý
+drop-tr	en:borrow:verb	*	cs	udělit
+drop-tr	en:spell:verb	*	cs	začarovat
+drop-tr	en:staff:noun	*	cs	hůl
+drop-tr	en:staff:noun	*	cs	berla
+first	en:staff:noun	*	cs:personál:noun
+drop-tr	en:medicine:noun	*	cs	droga
+drop-tr	en:nick:verb	*	cs	zabásnout
+drop-tr	en:shoulder:noun	*	cs	plec
+first	en:shoulder:noun	*	cs:rameno:noun
+drop-tr	en:liar:noun	*	cs	ležka
+drop-tr	en:supply:noun	*	cs	nabídka
+drop-tr	en:avoid:verb	*	cs	obejít
+drop-tr	en:tip:noun	*	cs	špička
+drop-tr	en:tip:noun	*	cs	hrot
+first	en:tip:noun	*	cs:tip:noun
+drop-tr	en:sheriff:noun	*	cs	hejtman
+drop-tr	en:switch:verb	*	cs	vyměnit
+drop-tr	en:brilliant:adjective	*	cs	zářivý
+first	en:brilliant:adjective	*	cs:skvělý:adjective
+drop-tr	en:universe:noun	*	cs	kosmos
+first	en:universe:noun	*	cs:vesmír:noun
+drop-tr	en:text:verb	*	cs	esemeskovat
+drop-tr	en:sweetie:noun	*	cs	drahý
+drop-tr	en:stranger:noun	*	cs	cizí
+drop-tr	en:rip:verb	*	cs	drát
+drop-tr	en:flat:adjective	*	cs	matný
+drop-tr	en:natural:adjective	*	cs	živelní
+drop-tr	en:site:noun	*	cs	stránka
+first	en:site:noun	*	cs:místo:noun
+drop-tr	en:struggle:verb	*	cs	usilovat
+first	en:struggle:verb	*	cs:bojovat:verb
+drop-tr	de:haben:verb	*	cs	nemít
+drop-tr	de:Mann:noun	*	cs	choť
+drop-tr	de:Jahr:noun	*	cs	léto
+drop-tr	de:Leute:noun	*	cs	člověk
+drop-tr	de:treffen:verb	*	cs	praštit
+drop-tr	de:zeigen:verb	*	cs	vzdát
+drop-tr	de:fertig:adjective	*	cs	množinový
+drop-tr	de:stimmen:verb	*	cs	štymovat
+drop-tr	de:kurz:adjective	*	cs	rychlý
+drop-tr	de:Spaß:noun	*	cs	hlína
+first	de:Spaß:noun	*	cs:zábava:noun
+drop-tr	de:Freundin:noun	*	cs	milovnice
+drop-tr	de:wünschen:verb	*	cs	snít
+drop-tr	de:Sohn:noun	*	cs	Syn
+drop-tr	de:paar:adjective	*	cs	párový
+drop-tr	de:Herz:noun	*	cs	kuráž
+drop-tr	de:natürlich:adjective	*	cs	přírodní
+first	de:natürlich:adverb	*	cs:samozřejmě:adverb
+drop-tr	de:sollen:verb	*	cs	mít
+drop-tr	de:Kopf:noun	*	cs	záhlaví
+drop-tr	de:Art:noun	*	cs	sorta
+first	de:sterben:verb	*	cs:umřít:verb
+drop-tr	de:gewinnen:verb	*	cs	vydělat
+drop-tr	de:hassen:verb	*	cs	hnusit si
+drop-tr	de:Ahnung:noun	*	cs	nápad
+drop-tr	de:Ort:noun	*	cs	obec
+first	de:bitte:adverb	*	cs:prosím:interjection
+drop-tr	de:drauf:adverb	*	cs	sjetý
+drop-tr	de:zerstören:verb	*	cs	pohřbít
+drop-tr	de:Idiot:noun	*	cs	trapák
+drop-tr	de:Haar:noun	*	cs	vous
+drop-tr	de:schwarz:adjective	*	cs	černošský
+drop-tr	de:weiß:adjective	*	cs	bělošský
+drop-tr	de:Arschloch:noun	*	cs	chuj
+drop-tr	de:General:noun	*	cs	genoš
+drop-tr	de:schnappen:verb	*	cs	zapadnout
+drop-tr	de:komisch:adjective	*	cs	komický
+first	de:komisch:adjective	*	cs:divný:adjective
+drop-tr	de:cool:adjective	*	cs	senza
+first	de:cool:adjective	*	cs:super:adjective
+drop-tr	de:plötzlich:adjective	*	cs	bryskní
+drop-tr	de:Ruf:noun	*	cs	povolání
+drop-tr	de:Andere:noun	*	cs	druhý
+drop-tr	de:Gutes:noun	*	cs	dobrý
+drop-tr	de:Eltern:noun	*	cs	rodič
+drop-tr	de:Klappe:noun	*	cs	chlopeň
+drop-tr	de:Klappe:noun	*	cs	klopa
+drop-tr	de:einladen:verb	*	cs	zvávat
+drop-tr	de:Wissen:noun	*	cs	vědomí
+drop-tr	de:solange:adverb	*	cs	mezitím
+drop-tr	de:herkommen:verb	*	cs	pocházet
+drop-tr	de:verheiratet:adjective	*	cs	oddaný
+drop-tr	de:Nähe:noun	*	cs	sousednost
+drop-tr	de:bellen:verb	*	cs	lát
+drop-tr	de:Finger:noun	*	cs	fakáč
+drop-tr	de:Büro:noun	*	cs	studovna
+drop-tr	de:vorstellen:verb	*	cs	pomyslet
+drop-tr	de:Menge:noun	*	cs	hodně
+drop-tr	de:Sex:noun	*	cs	soulož
+drop-tr	de:Sekunde:noun	*	cs	chvilka
+drop-tr	de:drehen:verb	*	cs	filmovat
+drop-tr	de:erwischen:verb	*	cs	stihnout
+first	de:erwischen:verb	*	cs:chytit:verb
+drop-tr	de:rüber:adverb	*	cs	tady
+drop-tr	de:wofür:adverb	*	cs	pročež
+drop-tr	de:erwähnen:verb	*	cs	vzpomínat
+drop-tr	de:feuern:verb	*	cs	vyrazit
+drop-tr	de:feuern:verb	*	cs	topit
+drop-tr	de:Bulle:noun	*	cs	bula
+drop-tr	de:gewiss:adverb	*	cs	jistý
+drop-tr	de:nervös:adjective	*	cs	čivový
+drop-tr	de:Lee:noun	*	cs	závětří
+drop-tr	de:Untertitel:noun	*	cs	podtitul
+drop-tr	de:erscheinen:verb	*	cs	udělat se
+drop-tr	de:Weihnachten:noun	*	cs	Boží hod vánoční
+drop-tr	de:Katze:noun	*	cs	šelma kočkovitá
+drop-tr	de:links:adverb	*	cs	levice
+drop-tr	de:scharf:adjective	*	cs	jemný
+drop-tr	de:fällen:verb	*	cs	porazit
+drop-tr	de:Meter:noun	*	cs	měřidlo
+drop-tr	de:Küche:noun	*	cs	kuchařství
+drop-tr	de:aufnehmen:verb	*	cs	vyzvednout
+drop-tr	de:aufnehmen:verb	*	cs	vstřebat
+drop-tr	de:beibringen:verb	*	cs	poskytnout
+drop-tr	de:Gold:noun	*	cs	zlatá
+drop-tr	de:Vergangenheit:noun	*	cs	préteritum
+drop-tr	de:Computer:noun	*	cs	computer
+drop-tr	de:führen:verb	*	cs	vézt
+drop-tr	de:greifen:verb	*	cs	sepnout
+drop-tr	de:Lauf:noun	*	cs	hlaveň
+drop-tr	de:überlassen:verb	*	cs	postoupit
+drop-tr	de:Königin:noun	*	cs	dáma
+drop-tr	de:Schlag:noun	*	cs	trefa
+drop-tr	pt:ter:verb	*	cs	je
+drop-tr	pt:há:noun	*	cs	před
+drop-tr	pt:ano:noun	*	cs	léto
+drop-tr	pt:melhor:adjective	*	cs	nejlepší
+first	pt:melhor:adjective	*	cs:lepší:adjective
+drop-tr	pt:mãe:noun	*	cs	máti
+drop-tr	pt:verdade:noun	*	cs	věrnost
+drop-tr	pt:claro:adverb	*	cs	arci
+drop-tr	pt:pequeno:adjective	*	cs	mladý
+drop-tr	pt:atrás:adverb	*	cs	před
+drop-tr	pt:frente:noun	*	cs	fronta
+drop-tr	pt:legal:adjective	*	cs	milý
+first	pt:legal:adjective	*	cs:skvělý:adjective
+drop-tr	pt:coração:noun	*	cs	jádřinec
+drop-tr	pt:corpo:noun	*	cs	mrtvý
+drop-tr	pt:existir:verb	*	cs	je
+drop-tr	pt:porra:noun	*	cs	sperma
+drop-tr	pt:porra:noun	*	cs	mrdka
+drop-tr	pt:pena:noun	*	cs	smutek
+drop-tr	pt:pena:noun	*	cs	rozsudek
+drop-tr	pt:formar:verb	*	cs	tvářet
+drop-tr	pt:filmar:verb	*	cs	zfilmovat
+drop-tr	pt:família:noun	*	cs	čeleď
+drop-tr	pt:único:adjective	*	cs	jedinečný
+drop-tr	pt:único:adjective	*	cs	unikátní
+first	pt:único:adjective	*	cs:jediný:adjective
+drop-tr	pt:primeiro:noun	*	cs	první
+drop-tr	pt:prender:verb	*	cs	strčit
+drop-tr	pt:jogo:noun	*	cs	dávka
+drop-tr	pt:ponto:noun	*	cs	zrnko
+drop-tr	pt:matar:verb	*	cs	porazit
+drop-tr	pt:tirar:verb	*	cs	vyndat
+drop-tr	pt:tomar:verb	*	cs	vyndat
+drop-tr	pt:pagar:verb	*	cs	zatáhnout
+drop-tr	pt:ordem:noun	*	cs	stav
+drop-tr	pt:bastante:adjective	*	cs	úplně
+drop-tr	pt:tocar:verb	*	cs	cítit
+drop-tr	pt:trabalhar:verb	*	cs	opracovat
+drop-tr	pt:ligar:verb	*	cs	odkazovat
+drop-tr	pt:branco:adjective	*	cs	bělošský
+drop-tr	pt:bem:adverb	*	cs	docela
+drop-tr	pt:alô:noun	*	cs	čus
+drop-tr	pt:chave:noun	*	cs	složená závorka
+drop-tr	pt:cavalo:noun	*	cs	jezdec
+drop-tr	pt:fundo:noun	*	cs	fond
+drop-tr	pt:assassino:noun	*	cs	atentátník
+drop-tr	pt:assassino:noun	*	cs	atentátnice
+first	pt:assassino:noun	*	cs:vrah:noun
+drop-tr	pt:namorado:noun	*	cs	holka
+drop-tr	pt:serviço:noun	*	cs	bohoslužba
+drop-tr	pt:negro:adjective	*	cs	černošský
+drop-tr	pt:decisão:noun	*	cs	skóre
+drop-tr	pt:dado:noun	*	cs	kostka
+drop-tr	pt:show:noun	*	cs	podívaná
+drop-tr	pt:cão:noun	*	cs	kohoutek
+drop-tr	pt:erro:noun	*	cs	bota
+drop-tr	pt:árvore:noun	*	cs	hřídel
+drop-tr	pt:piada:noun	*	cs	šašek
+drop-tr	pt:inglês:noun	*	cs	Anglán
+drop-tr	pt:nível:noun	*	cs	pořadí
+first	pt:nível:noun	*	cs:úroveň:noun
+drop-tr	pt:chá:noun	*	cs	čajovník
+drop-tr	pt:membro:noun	*	cs	končetina
+drop-tr	pt:general:noun	*	cs	genoš
+drop-tr	pt:bala:noun	*	cs	odrážka
+drop-tr	pt:memória:noun	*	cs	memoár
+drop-tr	pt:aproveitar:verb	*	cs	těšit se
+drop-tr	pt:costas:noun	*	cs	znak
+drop-tr	pt:dedo:noun	*	cs	fakáč
+drop-tr	pt:carne:noun	*	cs	dužnina
+drop-tr	pt:esquerda:noun	*	cs	levice
+drop-tr	pt:aula:noun	*	cs	třída
+first	pt:aula:noun	*	cs:hodina:noun
+drop-tr	pt:linha:noun	*	cs	fronta
+drop-tr	pt:futuro:noun	*	cs	budoucí čas
+drop-tr	pt:modo:noun	*	cs	slovesný způsob
+drop-tr	pt:conselho:noun	*	cs	koncil
+drop-tr	pt:armar:verb	*	cs	zbrojit
+drop-tr	pt:pedra:noun	*	cs	šutr
+drop-tr	pt:monte:noun	*	cs	hodně
+drop-tr	pt:monte:noun	*	cs	balík
+drop-tr	pt:destino:noun	*	cs	destinace
+first	pt:destino:noun	*	cs:osud:noun
+drop-tr	pt:abandonar:verb	*	cs	vystoupit
+drop-tr	pt:assinar:verb	*	cs	podpisovat
+drop-tr	pt:lançar:verb	*	cs	mrsknout
+drop-tr	pt:orgulhoso:adjective	*	cs	slavný
+drop-tr	pt:alemão:adjective	*	cs	germánský
+drop-tr	pt:centro:noun	*	cs	město
+drop-tr	pt:pressão:noun	*	cs	pohrůžka
+drop-tr	pt:preto:adjective	*	cs	černošský
+drop-tr	pt:rádio:noun	*	cs	rozhlas
+first	pt:rádio:noun	*	cs:rádio:noun
+drop-tr	pt:dente:noun	*	cs	špička
+drop-tr	pt:metro:noun	*	cs	podzemní dráha
+drop-tr	pt:liga:noun	*	cs	třída
+drop-tr	pt:lamento:noun	*	cs	žalozpěv
+drop-tr	pt:valor:noun	*	cs	jas
+drop-tr	pt:juro:noun	*	cs	úrok
+drop-tr	pt:ovo:noun	*	cs	koule
+drop-tr	pt:quebrado:adjective	*	cs	švorc
+drop-tr	pt:incluir:verb	*	cs	zapustit
+drop-tr	pt:seguido:adverb	*	cs	namnoze
+drop-tr	pt:anel:noun	*	cs	okruh
+drop-tr	pt:empurrar:verb	*	cs	prdnout
+drop-tr	pt:mínimo:noun	*	cs	špetka
+drop-tr	pt:avó:noun	*	cs	prarodič
+drop-tr	pt:grávida:noun	*	cs	těhule
+drop-tr	pt:velocidade:noun	*	cs	soukolí
+drop-tr	pt:cozinhar:verb	*	cs	vypálit
+drop-tr	pt:propriedade:noun	*	cs	vlastnost
+first	pt:propriedade:noun	*	cs:majetek:noun
+drop-tr	pt:material:noun	*	cs	snímek
+drop-tr	pt:lar:noun	*	cs	ohniště
+drop-tr	pt:política:noun	*	cs	politik
+drop-tr	pt:fraco:adjective	*	cs	drobný
+drop-tr	pt:pássaro:noun	*	cs	pěvec
+drop-tr	pt:cadeira:noun	*	cs	lenoška
+drop-tr	fr:être:verb	*	cs	vyskytovat se
+drop-tr	fr:pas:adverb	*	cs	nikoliv
+drop-tr	fr:pas:adverb	*	cs	nikoli
+drop-tr	fr:au:noun	*	cs	k
+drop-tr	fr:homme:noun	*	cs	lidská bytost
+drop-tr	fr:femme:noun	*	cs	choť
+drop-tr	fr:père:noun	*	cs	ot
+drop-tr	fr:gens:noun	*	cs	člověk
+drop-tr	fr:voilà:verb	*	cs	tohle
+drop-tr	fr:revoir:verb	*	cs	revidovat
+drop-tr	fr:jouer:verb	*	cs	bavit
+drop-tr	fr:travailler:verb	*	cs	hmoždit
+drop-tr	fr:changer:verb	*	cs	přeřadit
+drop-tr	fr:fils:noun	*	cs	Syn
+drop-tr	fr:cœur:noun	*	cs	herc
+drop-tr	fr:foutre:verb	*	cs	jebat
+drop-tr	fr:Mme:noun	*	cs	pí
+drop-tr	fr:place:noun	*	cs	pozice
+first	fr:place:noun	*	cs:místo:noun
+drop-tr	fr:battre:verb	*	cs	řezat
+drop-tr	fr:monter:verb	*	cs	jezdit
+drop-tr	fr:vendre:verb	*	cs	vést
+drop-tr	fr:agir:verb	*	cs	postupovat
+drop-tr	fr:marche:noun	*	cs	marka
+drop-tr	fr:marche:noun	*	cs	marš
+first	fr:marche:noun	*	cs:chůze:noun
+drop-tr	fr:agent:noun	*	cs	činitel
+first	fr:agent:noun	*	cs:agent:noun
+drop-tr	fr:garde:noun	*	cs	střeh
+drop-tr	fr:garde:noun	*	cs	gardista
+first	fr:garde:noun	*	cs:stráž:noun
+drop-tr	fr:terminer:verb	*	cs	rozvázat
+drop-tr	fr:peine:noun	*	cs	bol
+drop-tr	fr:abord:noun	*	cs	přístup
+drop-tr	fr:abord:noun	*	cs	příchod
+drop-tr	fr:pièce:noun	*	cs	pokoj
+first	fr:pièce:noun	*	cs:místnost:noun
+drop-tr	fr:autant:adverb	*	cs	rovněž
+drop-tr	fr:retour:noun	*	cs	zpětná vazba
+drop-tr	fr:supposer:verb	*	cs	vycházet
+drop-tr	fr:marcher:verb	*	cs	stoupat
+drop-tr	fr:coucher:verb	*	cs	ulehnout
+first	fr:coucher:verb	*	cs:spát:verb
+drop-tr	fr:pire:adverb	*	cs	horší
+drop-tr	fr:corps:noun	*	cs	sbor
+drop-tr	fr:garder:verb	*	cs	zachovávat
+first	fr:garder:verb	*	cs:nechat:verb
+drop-tr	fr:savoir:verb	*	cs	dovést
+drop-tr	fr:mieux:adverb	*	cs	víc
+drop-tr	fr:mieux:adverb	*	cs	více
+drop-tr	fr:moins:adverb	*	cs	málo
+drop-tr	fr:avoir:verb	*	cs	vlastnit
+drop-tr	fr:boulot:noun	*	cs	džob
+first	fr:boulot:noun	*	cs:práce:noun
+drop-tr	fr:première:noun	*	cs	debut
+drop-tr	fr:tour:noun	*	cs	věž
+drop-tr	fr:remettre:verb	*	cs	vyčkat
+drop-tr	fr:remettre:verb	*	cs	vyčkávat
+drop-tr	fr:pauvre:adjective	*	cs	chudí
+drop-tr	fr:réfléchir:verb	*	cs	zrcadlit
+drop-tr	fr:causer:verb	*	cs	vést
+drop-tr	fr:salle:noun	*	cs	sál
+first	fr:salle:noun	*	cs:místnost:noun
+drop-tr	fr:blanc:adjective	*	cs	bělošský
+drop-tr	fr:cool:adjective	*	cs	senza
+drop-tr	fr:général:noun	*	cs	genoš
+drop-tr	fr:gamin:noun	*	cs	svišť
+drop-tr	fr:lever:verb	*	cs	růst
+drop-tr	fr:bois:noun	*	cs	háj
+drop-tr	fr:patron:noun	*	cs	šablona
+drop-tr	fr:cheveu:noun	*	cs	ochlupení
+drop-tr	fr:situation:noun	*	cs	lokace
+drop-tr	fr:oncle:noun	*	cs	ujec
+drop-tr	fr:arrière:noun	*	cs	záď
+drop-tr	fr:arrière:noun	*	cs	bek
+drop-tr	fr:filer:verb	*	cs	příst
+drop-tr	fr:filer:verb	*	cs	navléknout
+drop-tr	fr:vaisseau:noun	*	cs	céva
+drop-tr	fr:vaisseau:noun	*	cs	šíf
+first	fr:vaisseau:noun	*	cs:loď:noun
+drop-tr	fr:gosse:noun	*	cs	kůzle
+first	fr:gosse:noun	*	cs:dítě:noun
+drop-tr	fr:rater:verb	*	cs	střílet
+first	fr:rater:verb	*	cs:minout:verb
+drop-tr	fr:atteindre:verb	*	cs	zasáhnout
+first	fr:atteindre:verb	*	cs:dosáhnout:verb
+drop-tr	fr:droite:noun	*	cs	pravačka
+drop-tr	fr:don:noun	*	cs	cit
+drop-tr	fr:gérer:verb	*	cs	spravuj
+drop-tr	fr:court:adjective	*	cs	rychlý
+drop-tr	fr:directeur:noun	*	cs	rejža
+drop-tr	fr:engager:verb	*	cs	zastavit
+drop-tr	fr:enquête:noun	*	cs	anketa
+drop-tr	fr:répéter:verb	*	cs	zkoušet
+drop-tr	fr:image:noun	*	cs	ilustrace
+drop-tr	fr:officier:noun	*	cs	úředník
+drop-tr	fr:remonter:verb	*	cs	stoupat
+drop-tr	fr:remonter:verb	*	cs	natáhnout
+drop-tr	fr:dossier:noun	*	cs	fascikl
+drop-tr	fr:élever:verb	*	cs	vyzvednout
+drop-tr	fr:pousser:verb	*	cs	šoupnout
+drop-tr	fr:retirer:verb	*	cs	vybrat
+drop-tr	fr:chanter:verb	*	cs	skandovat
+drop-tr	fr:debout:adjective	*	cs	vzhůru
+first	fr:debout:adjective	*	cs:stojící:adjective
+drop-tr	fr:lâcher:verb	*	cs	navalit
+drop-tr	fr:reposer:verb	*	cs	odkládat
+first	fr:reposer:verb	*	cs:odpočívat:verb
+drop-tr	fr:tort:noun	*	cs	příkoří
+drop-tr	fr:militaire:noun	*	cs	vojenský
+drop-tr	fr:exploser:verb	*	cs	vyletět nahoru
+drop-tr	fr:connard:noun	*	cs	kráva
+drop-tr	fr:ordinateur:noun	*	cs	computer
+drop-tr	fr:sexe:noun	*	cs	přirození
+drop-tr	fr:code:noun	*	cs	zákoník
+drop-tr	fr:code:noun	*	cs	kodex
+first	fr:code:noun	*	cs:kód:noun
+drop-tr	fr:taper:verb	*	cs	psát
+drop-tr	fr:politique:noun	*	cs	politikář
+drop-tr	fr:tas:noun	*	cs	hafo
+drop-tr	fr:chier:verb	*	cs	dělat
+drop-tr	fr:couple:noun	*	cs	uspořádaná dvojice
+drop-tr	fr:violer:verb	*	cs	porušit
+drop-tr	fr:éteindre:verb	*	cs	hasit
+first	fr:éteindre:verb	*	cs:vypnout:verb
+drop-tr	fr:sou:noun	*	cs	babka
+drop-tr	fr:poste:noun	*	cs	pošta
+drop-tr	fr:salaud:noun	*	cs	kripl
+drop-tr	fr:joindre:verb	*	cs	přepnout
+drop-tr	fr:renvoyer:verb	*	cs	zvrátit
+drop-tr	fr:gay:noun	*	cs	hošan
+drop-tr	fr:allumer:verb	*	cs	sepnout
+drop-tr	fr:allumer:verb	*	cs	vznítit
+first	fr:allumer:verb	*	cs:zapnout:verb
+drop-tr	fr:ennuyer:verb	*	cs	vytáčet
+drop-tr	fr:voleur:noun	*	cs	poberta
+drop-tr	fr:note:noun	*	cs	nota
+drop-tr	fr:goût:noun	*	cs	lajkování
+drop-tr	fr:malin:adjective	*	cs	maligní
+drop-tr	fr:permis:noun	*	cs	dovolený
+drop-tr	fr:permis:noun	*	cs	povolený
+first	fr:permis:noun	*	cs:povolení:noun
+drop-tr	fr:nu:noun	*	cs	akt
+drop-tr	fr:poster:verb	*	cs	mejlovat
+drop-tr	fr:priver:verb	*	cs	připravit
+drop-tr	fr:terme:noun	*	cs	sčítanec
+drop-tr	fr:démon:noun	*	cs	zloduch
+drop-tr	fr:superbe:adjective	*	cs	hrdý
+drop-tr	fr:frais:adjective	*	cs	chladný
+first	fr:frais:adjective	*	cs:čerstvý:adjective
+drop-tr	fr:attacher:verb	*	cs	přiložit
+drop-tr	fr:fiche:noun	*	cs	karta
+drop-tr	fr:produit:noun	*	cs	věc
+drop-tr	cs:brzdit:verb	*	fr	contingenter
+drop-tr	cs:dřevěný:adjective	*	en	ligneous
+drop-tr	cs:dřevěný:adjective	*	fr	boisé
+drop-tr	cs:dřevěný:adjective	*	pt	lenhoso
+gloss	cs:dřevěný:adjective	s1	wooden (hölzern, aus Holz; en bois; de madeira)
+drop-tr	cs:předložit:verb	*	en	proffer
+drop-tr	cs:předložit:verb	*	en	adduce
+drop-tr	cs:předložit:verb	*	fr	proposer
+drop-tr	cs:předložit:verb	*	pt	aduzir
+gloss	cs:předložit:verb	s1	to present, to submit (vorlegen; présenter, soumettre; apresentar)
+drop-tr	cs:délka:noun	*	en	longitude
+drop-tr	cs:délka:noun	*	de	Längengrad
+drop-tr	cs:délka:noun	*	pt	longitude
+drop-tr	cs:délka:noun	*	fr	long
+drop-tr	cs:bohyně:noun	*	pt	deia
+drop-tr	cs:železo:noun	*	de	Bügeln
+drop-tr	cs:železo:noun	*	pt	ferro de engomar
+drop-tr	cs:soustava:noun	*	de	Verszählung
+drop-tr	cs:lhářka:noun	*	fr	mythowoman
+drop-tr	cs:lhářka:noun	*	pt	batateiro
+drop-tr	cs:lhářka:noun	*	pt	aldrabão
+drop-tr	cs:lhářka:noun	*	de	Lügenbold
+gloss	cs:lhářka:noun	s1	(female) liar (Lügnerin; menteuse; mentirosa)
+drop-tr	cs:zabezpečit:verb	*	de	leisten
+gloss	cs:zabezpečit:verb	s1	to secure, to ensure (sichern, sicherstellen; sécuriser, assurer; garantir)
+drop-tr	cs:křesťan:noun	*	fr	Chrétien
+drop-tr	cs:uvězněný:adjective	*	en	imprison
+gloss	cs:uvězněný:adjective	s1	imprisoned (eingesperrt, inhaftiert; emprisonné; preso)
+drop-tr	cs:vyrobený:adjective	*	fr	fabriquer
+gloss	cs:vyrobený:adjective	s1	made, manufactured (hergestellt; fabriqué; fabricado)
+drop-tr	cs:servírka:noun	*	en	waiter
+drop-tr	cs:servírka:noun	*	fr	loufiat
+drop-tr	cs:zvažovat:verb	*	de	ratschlagen
+drop-tr	cs:zvažovat:verb	*	fr	gamberger
+drop-tr	cs:pomocník:noun	*	en	help
+drop-tr	cs:laciný:adjective	*	de	wohlfeil
+drop-tr	cs:násilník:noun	*	pt	jagunço
+drop-tr	cs:řez:noun	*	de	Teil
+drop-tr	cs:řez:noun	*	de	Stück
+drop-tr	cs:řez:noun	*	pt	seção
+drop-tr	cs:řez:noun	*	pt	secção
+drop-tr	cs:limonáda:noun	*	pt	soda limonada
+drop-tr	cs:pláč:noun	*	pt	pregão
+drop-tr	cs:trhlina:noun	*	pt	rompimento
+drop-tr	cs:dlaň:noun	*	fr	empaumure
+drop-tr	cs:hostina:noun	*	pt	conviva
+drop-tr	cs:Brit:noun	*	en	British
+drop-tr	cs:Brit:noun	*	de	Britannier
+drop-tr	cs:padouch:noun	*	fr	salopard
+drop-tr	cs:prodejce:noun	*	de	Lieferantin
+drop-tr	cs:poslíček:noun	*	de	Botschafter
+drop-tr	cs:kříž:noun	*	en	club
+drop-tr	cs:kupec:noun	*	fr	marchande
+drop-tr	cs:náznak:noun	*	pt	quê
+drop-tr	cs:náznak:noun	*	de	Anstrich
+drop-tr	cs:ujmout:verb	*	en	cast off
+drop-tr	cs:ujmout:verb	*	pt	eliminar
+drop-tr	cs:ujmout:verb	*	pt	descartar
+gloss	cs:ujmout:verb	s1	ujmout se, to take charge of, to take on (sich annehmen, übernehmen; prendre en charge; assumir)
+drop-tr	cs:prezentace:noun	*	de	Geleit
+gloss	cs:Indie:noun	s1	India (Indien; Inde; Índia)
+drop-tr	cs:Indie:noun	*	fr	inde
+gloss	cs:borec:noun	s1	(informal) great guy, champ (toller Typ, Held; champion, as; craque, fera)
+drop-tr	cs:borec:noun	*	en	athlete
+drop-tr	cs:borec:noun	*	en	sportsman
+gloss	cs:pohov:noun	s1	at ease, rest (military) (rührt euch; repos; descansar)
+gloss	cs:bouchnout:verb	s1	to bang, to explode (knallen, explodieren; exploser; explodir); to slam (zuschlagen)
+gloss	cs:nandat:verb	s1	(informal) to put on, to dish up (drauftun, auftragen; mettre, servir; colocar)
+drop-tr	cs:nandat:verb	*	en	heap
+drop-tr	cs:pohon:noun	*	de	Traktion
+drop-tr	cs:pohon:noun	*	fr	traction
+drop-tr	cs:miska:noun	*	fr	plat
+drop-tr	cs:miska:noun	*	fr	assiette
+drop-tr	cs:miska:noun	*	pt	prato
+drop-tr	cs:miska:noun	*	pt	louça
+drop-tr	cs:miska:noun	*	en	dish
+gloss	cs:miska:noun	s1	bowl, dish (Schüssel, Schale; bol; tigela)
+drop-tr	cs:uzel:noun	*	de	Nodus
+drop-tr	cs:uzel:noun	*	fr	nodosité
+drop-tr	cs:uzel:noun	*	pt	nódulo
+gloss	cs:Vietnam:noun	s1	Vietnam (Vietnam; Viêt Nam; Vietnã)
+drop-tr	cs:flaška:noun	*	de	Bouteille
+drop-tr	cs:flaška:noun	*	pt	botelha
+drop-tr	cs:trať:noun	*	fr	trajet
+gloss	cs:trať:noun	s1	track, railway line, route (Strecke; ligne, parcours; linha, pista)
+drop-tr	cs:shromáždění:noun	*	de	Volksauflauf
+drop-tr	cs:nůžky:noun	*	de	Tapezierschere
+drop-tr	cs:nůžky:noun	*	fr	pierre-feuille-ciseaux
+drop-tr	cs:nůžky:noun	*	en	shear
+drop-tr	cs:pochopení:noun	*	de	Erfassung
+first	cs:pochopení:noun	*	de:Verständnis:noun
+drop-tr	cs:přispět:verb	*	en	redound
+drop-tr	cs:přispět:verb	*	pt	redundar
+drop-tr	cs:přispět:verb	*	de	mitspielen
+drop-tr	cs:oholit:verb	*	pt	raspar
+drop-tr	cs:sblížit:verb	*	en	converge
+drop-tr	cs:sblížit:verb	*	de	zusammenlaufen
+drop-tr	cs:sblížit:verb	*	de	konvergieren
+drop-tr	cs:sblížit:verb	*	fr	converger
+drop-tr	cs:sblížit:verb	*	pt	convergir
+gloss	cs:sblížit:verb	s1	sblížit se, to get closer, to become close (sich näherkommen; se rapprocher; aproximar-se)
+drop-tr	cs:získání:noun	*	en	obtain
+drop-tr	cs:šéfkuchař:noun	*	pt	cuca
+drop-tr	cs:důstojnost:noun	*	pt	colégio
+drop-tr	cs:artefakt:noun	*	en	ghost
+drop-tr	cs:oplatit:verb	*	fr	réciproquer
+gloss	cs:oplatit:verb	s1	to pay back, to return (a favour) (vergelten, sich revanchieren; rendre la pareille; retribuir)
+drop-tr	cs:čelist:noun	*	fr	bajoue
+drop-tr	cs:čelist:noun	*	en	jowl
+drop-tr	cs:bezvýznamný:adjective	*	fr	inutile
+drop-tr	cs:písmo:noun	*	de	Taufbecken
+drop-tr	cs:desátník:noun	*	de	Korporale
+drop-tr	cs:desátník:noun	*	fr	corporal
+drop-tr	cs:jejda:interjection	*	fr	houp
+drop-tr	cs:skoncovat:verb	*	en	commit suicide
+drop-tr	cs:skoncovat:verb	*	pt	suicidar
+gloss	cs:skoncovat:verb	s1	skoncovat s, to put an end to, to quit (Schluss machen mit; en finir avec; acabar com)
+drop-tr	cs:veterán:noun	*	fr	briscard
+drop-tr	cs:rybí:adjective	*	en	piscine
+drop-tr	cs:rybí:adjective	*	fr	poissonnesque
+gloss	cs:rybí:adjective	s1	fish (Fisch-; de poisson; de peixe): rybí polévka (Fischsuppe)
+drop-tr	cs:pobočka:noun	*	pt	departamento
+drop-tr	cs:pobočka:noun	*	pt	divisão
+first	cs:pobočka:noun	*	pt:filial:noun
+drop-tr	cs:leden:noun	*	de	Hartung
+drop-tr	cs:sklon:noun	*	fr	prédilection
+drop-tr	cs:sklon:noun	*	pt	tangente
+drop-tr	cs:oranžový:adjective	*	fr	d’orangé
+drop-tr	cs:tlusťoch:noun	*	pt	besugo
+drop-tr	cs:svázaný:adjective	*	de	verknüpft
+drop-tr	cs:předělat:verb	*	de	wiederholen
+drop-tr	cs:oddělat:verb	*	en	fix
+drop-tr	cs:oddělat:verb	*	fr	estourbir
+drop-tr	cs:pořadí:noun	*	en	rank
+drop-tr	cs:hlídač:noun	*	pt	guardião
+drop-tr	cs:ego:noun	*	fr	moi
+drop-tr	cs:zesnulý:noun	*	en	decedent
+drop-tr	cs:svazek:noun	*	en	shock
+drop-tr	cs:hladovět:verb	*	pt	esfomear
+drop-tr	cs:plácat:verb	*	en	slap
+gloss	cs:plácat:verb	s1	to slap, to pat (klatschen, klapsen; tapoter; dar tapas); plácat nesmysly, to talk nonsense
+gloss	cs:magor:noun	s1	(informal) nutter, crazy person (Spinner, Irrer; cinglé, taré; maluco, doido)
+gloss	cs:průser:noun	s1	(vulgar) mess, big trouble (Scheissschlamassel; merde; merda, enrascada)
+gloss	cs:napojit:verb	s1	to connect (anschliessen, verbinden; connecter, brancher; conectar)
+gloss	cs:potápět:verb	s1	to sink (versenken; couler; afundar); potápět se, to dive (tauchen; plonger; mergulhar)
+gloss	cs:převléknout:verb	s1	převléknout se, to change (clothes) (sich umziehen; se changer; trocar de roupa)
+gloss	cs:ošetřit:verb	s1	to treat (a wound or patient) (behandeln, verarzten; soigner; tratar)
+gloss	cs:týkající:adjective	s1	týkající se, concerning, regarding (betreffend; concernant; referente a)
+gloss	cs:stíhat:verb	s1	to pursue, to chase (verfolgen; poursuivre; perseguir); to prosecute (strafrechtlich verfolgen)
