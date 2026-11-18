@@ -266,8 +266,10 @@ async function signOutNow() {
 /* ---------- drawing ---------- */
 /* special marks given by hand to particular accounts (by account id, so they stay when the username changes) */
 const CROWN = '<svg viewBox="0 0 24 18" width="1.15em" height="0.86em" aria-hidden="true" style="vertical-align:-1px"><path d="M2 15h20l-1-11-5.2 5L12 1 8.2 9 3 4z" fill="#c9a227" stroke="#7a5a10" stroke-width="1.1" stroke-linejoin="round"/><circle cx="12" cy="1.6" r="1.4" fill="#c9a227" stroke="#7a5a10" stroke-width=".8"/><circle cx="3" cy="4" r="1.2" fill="#c9a227" stroke="#7a5a10" stroke-width=".8"/><circle cx="21" cy="4" r="1.2" fill="#c9a227" stroke="#7a5a10" stroke-width=".8"/><rect x="2" y="15" width="20" height="2.4" rx=".6" fill="#b08a1e" stroke="#7a5a10" stroke-width=".8"/></svg>';
-const SPECIAL = { ZmwIr89qhOaY2vBQQdYzoR1McQJ3: { mark: CROWN, title: 'Queen' } };          // @hanicka
-const specialHtml = uid => { const x = uid && SPECIAL[uid]; return x ? `<span class="special" title="${esc(x.title)}" aria-label="${esc(x.title)}">${x.mark}</span>` : ''; };
+/* hammer and wrench: developer and helper of Glossarium */
+const TOOLS = '<svg viewBox="0 0 24 24" width="1.1em" height="1.1em" aria-hidden="true" style="vertical-align:-3px"><path d="M5 19L15.2 8.8" stroke="#3d4a5c" stroke-width="4.2" stroke-linecap="round"/><path d="M5 19L15.2 8.8" stroke="#9fb0c4" stroke-width="2.6" stroke-linecap="round"/><circle cx="17.3" cy="6.7" r="3.4" fill="none" stroke="#3d4a5c" stroke-width="3.6" stroke-dasharray="15.5 5.9" transform="rotate(-80 17.3 6.7)"/><circle cx="17.3" cy="6.7" r="3.4" fill="none" stroke="#9fb0c4" stroke-width="2.2" stroke-dasharray="15.5 5.9" transform="rotate(-80 17.3 6.7)"/><path d="M19.5 19.5L8.5 8.5" stroke="#5a3210" stroke-width="3.6" stroke-linecap="round"/><path d="M19.5 19.5L8.5 8.5" stroke="#c07a35" stroke-width="2.2" stroke-linecap="round"/><path d="M8.77 2.41L11.59 5.23L5.23 11.59L2.41 8.77Z" fill="#c9a227" stroke="#5a3210" stroke-width="1.2" stroke-linejoin="round"/></svg>';
+const SPECIAL = { ZmwIr89qhOaY2vBQQdYzoR1McQJ3: [{ mark: CROWN, title: 'Queen' }, { mark: TOOLS, title: 'Developer and helper of Glossarium' }] };          // @hanicka
+const specialHtml = uid => { const xs = (uid && SPECIAL[uid]) || []; return xs.map(x => `<span class="special" title="${esc(t('prof.sp.' + x.title, x.title))}" aria-label="${esc(t('prof.sp.' + x.title, x.title))}">${x.mark}</span>`).join(''); };
 const founder = p => p && p.memberNo && p.memberNo <= FOUNDERS;
 function badgeHtml(p, big) {
   if (!founder(p)) return '';
