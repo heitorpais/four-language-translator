@@ -31,7 +31,8 @@ async function send(d) {
 /* ---------- the form for a dictionary entry ---------- */
 const REASONS = [['tr', 'rep.e.tr', 'Wrong or missing translation'], ['sp', 'rep.e.sp', 'Wrong spelling or form'], ['def', 'rep.e.def', 'Wrong explanation or example'], ['other', 'comm.r.other', 'Something else']];
 const flag = '<svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="width:15px;height:15px;vertical-align:-2px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M5 21V4m0 0h11l-2 4 2 4H5"/></svg>';
-function entryButton(id) { return `<span class="rep-entry" data-rep-id="${esc(id)}"><button class="lnk small" data-rep="open">${flag} ${esc(t('report', 'Report a mistake in this entry'))}</button></span>`; }
+/* ctx: optional text about where the word was shown (a practice question), sent along with the report */
+function entryButton(id, ctx) { return `<span class="rep-entry" data-rep-id="${esc(id)}"${ctx ? ` data-rep-ctx="${esc(String(ctx).slice(0, 160))}"` : ''}><button class="lnk small" data-rep="open">${flag} ${esc(t('report', 'Report a mistake in this entry'))}</button></span>`; }
 function formHtml(why) {
   return `<div class="report"><p><b>${esc(t('gh.rep.why', 'What is wrong?'))}</b></p><div class="row">${REASONS.map(([k, key, en]) => `<button class="chip${why === k ? ' on' : ''}" data-rep="why" data-k="${k}">${esc(t(key, en))}</button>`).join('')}</div>
     <textarea class="rep-note" rows="2" maxlength="200" placeholder="${esc(t('gh.rep.note', 'What should it be? (optional)'))}"></textarea>
@@ -43,11 +44,11 @@ document.addEventListener('click', async ev => {
   ev.preventDefault();
   const k = b.dataset.rep, id = box.dataset.repId, note = box.querySelector('.rep-note'), keep = note ? note.value : '';
   if (k === 'open') { box.dataset.why = ''; box.innerHTML = formHtml(''); }
-  else if (k === 'x') box.outerHTML = entryButton(id);
+  else if (k === 'x') box.outerHTML = entryButton(id, box.dataset.repCtx);
   else if (k === 'why') { box.dataset.why = b.dataset.k; box.innerHTML = formHtml(b.dataset.k); box.querySelector('.rep-note').value = keep; }
   else if (k === 'send') {
     b.disabled = true;
-    const ok = await send({ kind: 'entry', about: id, why: `${box.dataset.why || 'other'}${keep.trim() ? ' | ' + keep.trim() : ''}`, where: location.href.slice(0, 200) });
+    const ok = await send({ kind: 'entry', about: id, why: `${box.dataset.repCtx ? '[' + box.dataset.repCtx + '] ' : ''}${box.dataset.why || 'other'}${keep.trim() ? ' | ' + keep.trim() : ''}`, where: location.href.slice(0, 200) });
     if (ok) box.innerHTML = `<span class="hint">${flag} ${esc(t('comm.reported', 'Thank you. The report was sent.'))}</span>`;
     else { b.disabled = false; toast(t('gh.rep.fail', 'The report could not be sent. Please try again.')); }
   }

@@ -402,7 +402,7 @@ function cardsHtml() {
   if (!fc.flipped) return head + front + `<button class="btn primary" data-x="fc-flip" id="fc-flip">${esc(t('fc.show', 'Show the answer'))}</button>`;
   const c = A.P.srs[id];
   const grades = [[1, t('fc.again', 'Again')], [3, t('fc.hard', 'Hard')], [4, t('fc.good', 'Good')], [5, t('fc.easy', 'Easy')]];
-  return head + front + miniCard(e).replace(/<button class="btn sm" data-open[^]*?<\/button>/, '') + `<div class="choices grades">${grades.map(([q, n]) => `<button class="choice g${q}" data-fc="${q}">${esc(n)}<small>${esc(ivText(sm2(c, q)))}</small></button>`).join('')}</div>`;
+  return head + front + miniCard(e).replace(/<button class="btn sm" data-open[^]*?<\/button>/, '') + `<div class="choices grades">${grades.map(([q, n]) => `<button class="choice g${q}" data-fc="${q}">${esc(n)}<small>${esc(ivText(sm2(c, q)))}</small></button>`).join('')}</div>` + (window.FLTReport ? `<div class="pr-rep">${FLTReport.entryButton(id, 'flashcard')}</div>` : '');
 }
 function nextDue() { const ds = deckIds().map(id => (A.P.srs[id] || {}).due).filter(Boolean); if (!ds.length) return '—'; return new Date(Math.min(...ds)).toLocaleString(A.S.ui, { dateStyle: 'medium', timeStyle: 'short' }); }
 
@@ -429,7 +429,20 @@ function questionHtml() {
   if (pr.state === 'right') fb = `<p class="fb ok">✓ ${esc(t('pr.right', 'Right!'))} ${q.show && A.fold(q.show) !== A.fold(pr.typed || '') ? esc(q.show) : ''}</p>`;
   if (pr.state === 'wrong') fb = `<p class="fb bad">✗ ${esc(t('pr.wrong', 'Not quite. The answer is'))} <b lang="${q.lang}">${esc(q.show || (q.names ? q.names[q.answer] : q.answer))}</b>.</p>${miniCard(q.e)}`;
   if (pr.state) fb += `<button class="btn primary" data-x="pr-next" id="pr-next">${esc(pr.i + 1 >= n ? t('pr.finish', 'See the result') : t('pr.next', 'Next'))}</button>`;
-  return head + `<div class="q ${pr.state === 'wrong' ? 'shake' : pr.state === 'right' ? 'tick' : ''}">${q.prompt}</div>${ans}<div id="pr-fb" aria-live="polite">${fb}</div>`;
+  return head + `<div class="q ${pr.state === 'wrong' ? 'shake' : pr.state === 'right' ? 'tick' : ''}">${q.prompt}</div>${ans}<div id="pr-fb" aria-live="polite">${fb}</div>${prReport(q)}`;
+}
+/* "Report a mistake" under every practice question: the report names the entry and what the question showed */
+function plain(h) { const d = document.createElement('div'); d.innerHTML = String(h || '').replace(/</g, ' <'); return d.textContent.replace(/\s+/g, ' ').trim(); }
+function prReport(q) {
+  if (!window.FLTReport) return '';
+  if (q.mode === 'match') {
+    const rows = q.rows.map(r => ALL.map(l => r[l] ? r[l].lemma : '').join('/')).join('; ');
+    const e0 = q.rows[0] && ALL.map(l => q.rows[0][l]).find(Boolean);
+    return e0 ? `<div class="pr-rep">${FLTReport.entryButton(e0.id, 'practice match: ' + rows)}</div>` : '';
+  }
+  if (!q.e) return '';
+  const ans = q.show || (q.names ? q.names[q.answer] : q.answer) || '';
+  return `<div class="pr-rep">${FLTReport.entryButton(q.e.id, `practice ${q.mode || ''}: ${plain(q.prompt)} = ${ans}`)}</div>`;
 }
 function miniCard(e) {
   const rv = A.regionView(e), art = e.pos === 'noun' ? A.article(e.lang, e, rv.word) : '';
