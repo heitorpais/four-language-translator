@@ -47744,31 +47744,31 @@
   },
   {
    "file": "core-cs.json.gz",
-   "bytes": 8040129,
-   "stored_bytes": 1054975,
-   "sha256": "708d832d6282844e",
+   "bytes": 8040834,
+   "stored_bytes": 1055646,
+   "sha256": "edb6ad39b7c68ab4",
    "tier": "core",
    "lang": "cs",
    "entries": 8428
   },
   {
    "file": "details-cs.json.gz",
-   "bytes": 10738423,
-   "stored_bytes": 1677141,
-   "sha256": "faca26eb838d76d9",
+   "bytes": 10738174,
+   "stored_bytes": 1677105,
+   "sha256": "00761a1295652c5b",
    "tier": "details",
    "lang": "cs",
    "entries": 8428
   },
   {
    "file": "links/cs-de.json.gz",
-   "bytes": 820308,
-   "stored_bytes": 188851,
-   "sha256": "7690a8c74cb795a8",
+   "bytes": 819911,
+   "stored_bytes": 188753,
+   "sha256": "fa5d2ac1657a47e2",
    "tier": "links",
    "lang": "cs",
    "to": "de",
-   "entries": 7479
+   "entries": 7477
   },
   {
    "file": "examples/cs-de.json.gz",
@@ -47782,9 +47782,9 @@
   },
   {
    "file": "links/cs-en.json.gz",
-   "bytes": 783597,
-   "stored_bytes": 179328,
-   "sha256": "7750256585e03c67",
+   "bytes": 783309,
+   "stored_bytes": 179278,
+   "sha256": "f7782767469d65b7",
    "tier": "links",
    "lang": "cs",
    "to": "en",
@@ -47802,13 +47802,13 @@
   },
   {
    "file": "links/cs-fr.json.gz",
-   "bytes": 744159,
-   "stored_bytes": 167817,
-   "sha256": "00778dfc683f69c3",
+   "bytes": 743659,
+   "stored_bytes": 167677,
+   "sha256": "eb2935441c3b96cc",
    "tier": "links",
    "lang": "cs",
    "to": "fr",
-   "entries": 7515
+   "entries": 7513
   },
   {
    "file": "examples/cs-fr.json.gz",
@@ -47822,9 +47822,9 @@
   },
   {
    "file": "links/cs-pt.json.gz",
-   "bytes": 666279,
-   "stored_bytes": 145673,
-   "sha256": "df7d06141a390198",
+   "bytes": 665833,
+   "stored_bytes": 145549,
+   "sha256": "3ad128bc9df8cfea",
    "tier": "links",
    "lang": "cs",
    "to": "pt",
@@ -47842,9 +47842,9 @@
   },
   {
    "file": "links/cs-it.json.gz",
-   "bytes": 744725,
-   "stored_bytes": 162379,
-   "sha256": "01bd4dd92b44ff6d",
+   "bytes": 744706,
+   "stored_bytes": 162375,
+   "sha256": "f3962a959c9ff6b2",
    "tier": "links",
    "lang": "cs",
    "to": "it",
@@ -47862,9 +47862,9 @@
   },
   {
    "file": "links/cs-es.json.gz",
-   "bytes": 798345,
-   "stored_bytes": 178438,
-   "sha256": "34bdcce044573305",
+   "bytes": 798327,
+   "stored_bytes": 178435,
+   "sha256": "1e4e4e0746893988",
    "tier": "links",
    "lang": "cs",
    "to": "es",
@@ -47882,9 +47882,9 @@
   },
   {
    "file": "links/cs-nl.json.gz",
-   "bytes": 716487,
-   "stored_bytes": 157050,
-   "sha256": "44a391a354cfb578",
+   "bytes": 716468,
+   "stored_bytes": 157045,
+   "sha256": "23502cd03a4868f9",
    "tier": "links",
    "lang": "cs",
    "to": "nl",
@@ -47902,9 +47902,9 @@
   },
   {
    "file": "links/cs-sv.json.gz",
-   "bytes": 655799,
-   "stored_bytes": 143348,
-   "sha256": "7ab8a47142326bf1",
+   "bytes": 655764,
+   "stored_bytes": 143340,
+   "sha256": "31ba4213ce2604c9",
    "tier": "links",
    "lang": "cs",
    "to": "sv",
@@ -82053,9 +82053,9 @@
   },
   {
    "file": "links.json.gz",
-   "bytes": 33641834,
-   "stored_bytes": 8142030,
-   "sha256": "0294e59aa181e270",
+   "bytes": 33641766,
+   "stored_bytes": 8142010,
+   "sha256": "33c9982fdc55ad1d",
    "tier": "links"
   },
   {
@@ -82114,12 +82114,12 @@
   },
   {
    "file": "game/game-cs.json.gz",
-   "bytes": 1914982,
-   "stored_bytes": 654704,
-   "sha256": "4b35994a4cad066f",
+   "bytes": 1915297,
+   "stored_bytes": 654803,
+   "sha256": "badd54c0382f5f89",
    "tier": "game",
    "lang": "cs",
-   "entries": 19342,
+   "entries": 19346,
    "forms": 35612
   },
   {
