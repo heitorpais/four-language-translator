@@ -58618,3 +58618,178 @@ gloss	cs:převléknout:verb	s1	převléknout se, to change (clothes) (sich umzie
 gloss	cs:ošetřit:verb	s1	to treat (a wound or patient) (behandeln, verarzten; soigner; tratar)
 gloss	cs:týkající:adjective	s1	týkající se, concerning, regarding (betreffend; concernant; referente a)
 gloss	cs:stíhat:verb	s1	to pursue, to chase (verfolgen; poursuivre; perseguir); to prosecute (strafrechtlich verfolgen)
+drop-tr	cs:bradavka:noun	*	en	tit
+drop-tr	cs:bradavka:noun	*	pt	teta
+drop-tr	cs:údaje:noun	*	de	Informationseinheit
+drop-tr	cs:prkno:noun	*	fr	gainage
+drop-tr	cs:vítězit:verb	*	en	defeat
+drop-tr	cs:vítězit:verb	*	de	niederringen
+drop-tr	cs:vítězit:verb	*	fr	défaire
+drop-tr	cs:tupý:adjective	*	fr	doux
+drop-tr	cs:zahnat:verb	*	en	satisfy
+drop-tr	cs:zahnat:verb	*	en	quench
+drop-tr	cs:zahnat:verb	*	fr	étancher
+gloss	cs:zahnat:verb	s1	to chase away, to drive off (vertreiben, verjagen; chasser; afugentar); zahnat žízeň, to quench thirst (Durst stillen)
+drop-tr	cs:udělit:verb	*	en	borrow
+gloss	cs:udělit:verb	s1	to grant, to award, to give (erteilen, verleihen; accorder, décerner; conceder, conferir)
+drop-tr	cs:ženich:noun	*	pt	cavalariço
+drop-tr	cs:ženich:noun	*	pt	estribeiro
+first	cs:ženich:noun	*	pt:noivo:noun
+drop-tr	cs:Pan:noun	*	en	pan
+drop-tr	cs:Pan:noun	*	fr	pan
+drop-tr	cs:cihla:noun	*	en	bullion
+drop-tr	cs:cihla:noun	*	fr	lingot
+drop-tr	cs:pohltit:verb	*	de	zerstören
+drop-tr	cs:pohltit:verb	*	de	vernichten
+drop-tr	cs:sourozenec:noun	*	fr	germain
+drop-tr	cs:sourozenec:noun	*	fr	adelphe
+drop-tr	cs:sourozenec:noun	*	de	Geschwisterkind
+drop-tr	cs:seno:noun	*	fr	paille
+drop-tr	cs:seno:noun	*	pt	relva
+drop-tr	cs:evropský:adjective	*	de	europäid
+drop-tr	cs:slanina:noun	*	pt	couro
+drop-tr	cs:facka:noun	*	de	Fotze
+drop-tr	cs:homosexuál:noun	*	pt	bicha
+drop-tr	cs:hot:interjection	*	en	gee
+drop-tr	cs:hot:interjection	*	fr	hue
+drop-tr	cs:hot:interjection	*	pt	ena
+drop-tr	cs:hot:interjection	*	pt	xi
+gloss	cs:hot:interjection	s1	(informal) quick!, hurry up! (schnell!, hopp!; vite!; rápido!)
+drop-tr	cs:desátý:adjective	*	de	zehntel
+drop-tr	cs:desátý:adjective	*	fr	Xe
+drop-tr	cs:sperma:noun	*	fr	foutre
+drop-tr	cs:sperma:noun	*	pt	porra
+drop-tr	cs:bledý:adjective	*	fr	cendreux
+drop-tr	cs:bledý:adjective	*	pt	claro
+drop-tr	cs:zápach:noun	*	fr	parfum
+drop-tr	cs:pařit:verb	*	en	steam
+drop-tr	cs:pařit:verb	*	en	scald
+gloss	cs:pařit:verb	s1	(informal) to party, to rave (feiern, abfeiern; faire la fête; curtir); to play games a lot (zocken); to steam (dämpfen)
+drop-tr	cs:cedule:noun	*	fr	signe
+first	cs:cedule:noun	*	fr:panneau:noun
+drop-tr	cs:zuřit:verb	*	pt	ferver
+drop-tr	cs:Marie:noun	*	de	Mare
+gloss	cs:Marie:noun	s1	Mary, Marie (given name) (Maria, Marie; Marie; Maria)
+drop-tr	cs:Dana:noun	*	en	dana
+gloss	cs:Dana:noun	s1	Dana (given name)
+drop-tr	cs:balón:noun	*	pt	bexiga
+drop-tr	cs:vrtat:verb	*	de	schleifen
+drop-tr	cs:vrtat:verb	*	pt	cavar
+drop-tr	cs:jarní:adjective	*	fr	vernal
+drop-tr	cs:jarní:adjective	*	pt	vernal
+drop-tr	cs:jarní:adjective	*	en	vernal
+drop-tr	cs:komplic:noun	*	fr	compère
+drop-tr	cs:originál:noun	*	de	Unikum
+drop-tr	cs:vedený:adjective	*	en	conduct
+gloss	cs:vedený:adjective	s1	led, run, conducted (geführt; mené, dirigé; conduzido)
+drop-tr	cs:klasika:noun	*	de	Klassik
+gloss	cs:klasika:noun	s1	a classic (Klassiker; classique; clássico)
+drop-tr	cs:chudinka:noun	*	de	Heimatloser
+drop-tr	cs:chudinka:noun	*	fr	minus
+drop-tr	cs:chudinka:noun	*	en	waif
+drop-tr	cs:chudinka:noun	*	en	wretch
+gloss	cs:chudinka:noun	s1	poor thing (armes Ding; pauvre petit(e); coitadinho)
+drop-tr	cs:paruka:noun	*	pt	picumã
+drop-tr	cs:paruka:noun	*	de	Zweitfrisur
+drop-tr	cs:nájemný:adjective	*	en	rentable
+gloss	cs:nájemný:adjective	s1	rental, hired (Miet-; de location; de aluguel): nájemný vrah (Auftragsmörder)
+drop-tr	cs:zápase:noun	*	en	vocative
+drop-tr	cs:zápase:noun	*	fr	apostrophe
+gloss	cs:zápase:noun	s1	form of zápas, match, fight (Spiel, Kampf; match; jogo)
+drop-tr	cs:rajče:noun	*	fr	tomatier
+drop-tr	cs:rajče:noun	*	pt	tomateiro
+drop-tr	cs:doupě:noun	*	de	Spelunke
+gloss	cs:motat:verb	s1	to wind, to reel (wickeln; enrouler; enrolar); motat se, to stagger, to hang around (taumeln, herumhängen)
+gloss	cs:prásknout:verb	s1	to slam, to bang (zuschlagen, knallen; claquer; bater); (informal) to snitch on (verpetzen; balancer)
+gloss	cs:podílet:verb	s1	podílet se na, to take part in (sich beteiligen an; participer à; participar de)
+drop-tr	cs:štětka:noun	*	fr	blaireau
+gloss	cs:štětka:noun	s1	brush (Bürste, Pinsel; brosse; escova); (vulgar) slut (Schlampe)
+drop-tr	cs:ostatky:noun	*	de	Leichnam
+drop-tr	cs:šlapka:noun	*	en	pedal
+drop-tr	cs:šlapka:noun	*	de	Pedal
+drop-tr	cs:šlapka:noun	*	fr	pédale
+drop-tr	cs:šlapka:noun	*	pt	pedal
+gloss	cs:šlapka:noun	s1	(vulgar) streetwalker, hooker (Strichmädchen, Nutte; tapineuse, pute; prostituta); pedal (Pedal)
+drop-tr	cs:štěnice:noun	*	pt	chisme
+drop-tr	cs:pojišťovna:noun	*	fr	assicuration
+drop-tr	cs:smažený:adjective	*	fr	pané
+drop-tr	cs:záblesk:noun	*	fr	miroitement
+drop-tr	cs:Angličan:noun	*	en	English
+drop-tr	cs:Angličan:noun	*	fr	gros-texte
+drop-tr	cs:Angličan:noun	*	pt	anglo
+drop-tr	cs:neslušný:adjective	*	de	nieder
+drop-tr	cs:chůze:noun	*	pt	percurso
+drop-tr	cs:aukce:noun	*	fr	encan
+drop-tr	cs:aukce:noun	*	pt	hasta
+drop-tr	cs:obklopit:verb	*	de	umfangen
+drop-tr	cs:semeno:noun	*	en	sperm
+drop-tr	cs:semeno:noun	*	pt	esperma
+drop-tr	cs:kostra:noun	*	pt	vigamento
+drop-tr	cs:pokročilý:adjective	*	pt	provecto
+drop-tr	cs:pokročilý:adjective	*	de	vorgeschoben
+drop-tr	cs:úzkost:noun	*	pt	garrote
+drop-tr	cs:okres:noun	*	en	county
+drop-tr	cs:okres:noun	*	fr	comté
+drop-tr	cs:okres:noun	*	pt	comarca
+drop-tr	cs:vrata:noun	*	fr	cochère
+drop-tr	cs:umístěný:adjective	*	en	locate
+gloss	cs:umístěný:adjective	s1	located, placed (befindlich, platziert; situé, placé; localizado)
+drop-tr	cs:celkový:adjective	*	en	global
+drop-tr	cs:tyčinka:noun	*	pt	stique
+gloss	cs:tyčinka:noun	s1	bar, stick (Riegel, Stäbchen; barre, bâtonnet; barra): čokoládová tyčinka (Schokoriegel)
+drop-tr	cs:spodek:noun	*	pt	arrombado
+drop-tr	cs:topit:verb	*	fr	tiser
+drop-tr	cs:topit:verb	*	de	feuern
+gloss	cs:topit:verb	s1	to heat (heizen; chauffer; aquecer); topit se, to drown (ertrinken; se noyer; afogar-se)
+drop-tr	cs:pohroma:noun	*	fr	bérézina
+drop-tr	cs:lesbička:noun	*	pt	tríbade
+drop-tr	cs:lesbička:noun	*	de	Homosexuelle
+drop-tr	cs:lesbička:noun	*	fr	goudou
+gloss	cs:lub:noun	s1	mít něco za lubem, to be up to something (etwas im Schilde führen; mijoter quelque chose)
+drop-tr	cs:lub:noun	*	fr	éclisse
+drop-tr	cs:marihuana:noun	*	pt	bagulho
+drop-tr	cs:marihuana:noun	*	fr	marie-jeanne
+gloss	cs:únikový:adjective	s1	escape, emergency (Flucht-, Not-; de secours, d'évasion; de fuga): únikový východ (Notausgang)
+gloss	cs:okresní:adjective	s1	district (Bezirks-; de district; distrital): okresní soud (Bezirksgericht)
+drop-tr	cs:březen:noun	*	de	Lenzing
+drop-tr	cs:žvýkačka:noun	*	pt	gama
+drop-tr	cs:dozor:noun	*	en	minder
+drop-tr	cs:dozor:noun	*	de	Obsorge
+drop-tr	cs:zamluvit:verb	*	pt	fichar
+drop-tr	cs:odskočit:verb	*	de	platzen
+gloss	cs:odskočit:verb	s1	to bounce off (abprallen; rebondir; ricochetear); to pop out, to nip out (kurz weggehen; s'absenter un instant; dar uma saída)
+drop-tr	cs:umožňovat:verb	*	en	abet
+drop-tr	cs:umožňovat:verb	*	pt	ajudar
+drop-tr	cs:umožňovat:verb	*	pt	assistir
+first	cs:umožňovat:verb	*	pt:permitir:verb
+drop-tr	cs:žalobce:noun	*	pt	querelante
+drop-tr	cs:zneužít:verb	*	en	pervert
+drop-tr	cs:zneužít:verb	*	de	exploitieren
+drop-tr	cs:zneužít:verb	*	fr	mésuser
+gloss	cs:zneužít:verb	s1	to abuse, to misuse (missbrauchen; abuser de; abusar de)
+drop-tr	cs:software:noun	*	fr	soft
+drop-tr	cs:prezidentka:noun	*	pt	bastonário
+first	cs:prezidentka:noun	*	pt:presidente:noun
+drop-tr	cs:cyklus:noun	*	pt	laço
+drop-tr	cs:kukuřice:noun	*	pt	abati
+drop-tr	cs:kukuřice:noun	*	en	zea
+drop-tr	cs:orel:noun	*	fr	eagle
+drop-tr	cs:ordinace:noun	*	de	Verordnung
+drop-tr	cs:ordinace:noun	*	fr	consultation
+drop-tr	cs:ordinace:noun	*	en	consultation
+gloss	cs:ordinace:noun	s1	doctor's office, surgery (Arztpraxis, Sprechzimmer; cabinet médical; consultório)
+gloss	cs:zblízka:adverb	s1	from close up (aus der Nähe; de près; de perto)
+drop-tr	cs:bankéř:noun	*	de	Makler
+drop-tr	cs:klika:noun	*	fr	clanche
+gloss	cs:klika:noun	s1	door handle (Türklinke, Falle; poignée; maçaneta); (informal) luck (Glück, Schwein): mít kliku (Glück haben)
+drop-tr	cs:dodávat:verb	*	en	add
+drop-tr	cs:dodávat:verb	*	de	hinzufügen
+drop-tr	cs:dodávat:verb	*	fr	ajouter
+gloss	cs:dodávat:verb	s1	to supply, to deliver (liefern; livrer, fournir; fornecer); dodávat odvahu, to give courage (Mut machen)
+drop-tr	cs:doutník:noun	*	de	Schnuller
+drop-tr	cs:doutník:noun	*	fr	chiroute
+drop-tr	cs:doutník:noun	*	en	cheroot
+gloss	cs:naplno:adverb	s1	fully, at full blast (voll, auf vollen Touren; pleinement, à fond; a toda)
+gloss	cs:chlupatý:noun	s1	(slang) cop (Bulle; flic; tira); chlupatý also means hairy (behaart)
+drop-tr	cs:chlupatý:noun	*	fr	police
+drop-tr	cs:chlupatý:noun	*	pt	polícia
