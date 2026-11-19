@@ -863,28 +863,49 @@ try {
 } catch (e) {}
 const vlang = v => String(v.lang || '').toLowerCase().replace('_', '-');
 function voicesFor(lang) { return voices.filter(v => vlang(v).slice(0, 2) === lang); }
-function voiceFor(lang) {
-  const loc = LOCALE[lang][S.main[lang]].toLowerCase();
-  if (S.voice[lang]) { const v = voices.find(x => x.name === S.voice[lang]); if (v) return v; }
-  return voices.find(v => vlang(v) === loc) || voices.find(v => vlang(v).slice(0, 2) === loc.slice(0, 2));
+function voiceFor(lang) { return voiceList(lang)[0]; }
+/* every voice that could read this language, best first: the one chosen in Settings, the one that worked last time,
+   the exact regional voice (de-CH), voices on the device (they work offline), then any other voice of the language */
+const goodVoice = {};
+function voiceList(lang) {
+  const loc = LOCALE[lang][S.main[lang]].toLowerCase(), all = voicesFor(lang), out = [];
+  const add = v => { if (v && !out.includes(v)) out.push(v); };
+  if (S.voice[lang]) add(voices.find(x => x.name === S.voice[lang]));
+  if (goodVoice[lang]) add(voices.find(x => x.name === goodVoice[lang]));
+  all.filter(v => vlang(v) === loc && v.localService !== false).forEach(add);
+  all.filter(v => vlang(v) === loc).forEach(add);
+  all.filter(v => v.localService !== false && v.default).forEach(add);
+  all.filter(v => v.localService !== false).forEach(add);
+  all.forEach(add);
+  return out;
 }
 let speaking = null, loop = null;
-/* o: slow, btn (gets sound waves), onboundary, onend */
+/* o: slow, btn (gets sound waves), onboundary, onend.
+   If a voice fails (some voices are listed but do not work, or need the internet), the next voice of the language is tried. */
 function speak(text, lang, o) {
   o = o || {};
   text = String(text || '').replace(/\s*\(.*?\)/g, '').trim(); if (!text) return false;
   try {
     if (!('speechSynthesis' in window)) throw 0;
-    const v = voiceFor(lang);
-    if (!v && voices.length) { toast(t('audio.novoice', 'No {lang} voice is installed on this device. Settings › Audio shows how to add one.', { lang: LNAME[lang] })); return false; }
+    const list = voiceList(lang);
+    if (!list.length && voices.length) { toast(t('audio.novoice', 'No {lang} voice is installed on this device. Settings › Audio shows how to add one.', { lang: LNAME[lang] })); return false; }
     if (!o.queue) { speechSynthesis.cancel(); stopWaves(); }
-    const u = new SpeechSynthesisUtterance(text);
-    if (v) { u.voice = v; u.lang = v.lang; } else u.lang = LOCALE[lang][S.main[lang]];
-    u.rate = (o.slow || S.slow) ? 0.6 : 0.95;
-    if (o.onboundary) u.onboundary = o.onboundary;
-    u.onstart = () => { if (o.btn) { o.btn.classList.add('speaking'); speaking = o.btn; } };
-    u.onend = u.onerror = () => { if (o.btn) o.btn.classList.remove('speaking'); if (o.onend) o.onend(); };
-    speechSynthesis.speak(u);
+    const attempt = i => {
+      const v = list[i], u = new SpeechSynthesisUtterance(text);
+      if (v) { u.voice = v; u.lang = v.lang; } else u.lang = LOCALE[lang][S.main[lang]];
+      u.rate = (o.slow || S.slow) ? 0.6 : 0.95;
+      if (o.onboundary) u.onboundary = o.onboundary;
+      let started = false, done = false;
+      const next = () => { if (done) return; done = true; clearTimeout(watch); if (i + 1 < list.length) { try { speechSynthesis.cancel(); } catch (e) {} attempt(i + 1); } else finish(); };
+      const finish = () => { if (o.btn) o.btn.classList.remove('speaking'); if (o.onend) o.onend(); };
+      u.onstart = () => { started = true; clearTimeout(watch); if (v) goodVoice[lang] = v.name; if (o.btn) { o.btn.classList.add('speaking'); speaking = o.btn; } };
+      u.onend = () => { if (done) return; done = true; clearTimeout(watch); if (!started && i + 1 < list.length) { done = false; next(); return; } finish(); };
+      u.onerror = ev => { const er = ev && ev.error; if (er === 'interrupted' || er === 'canceled') { done = true; clearTimeout(watch); finish(); return; } next(); };
+      /* a voice that never starts (nothing happens) counts as failed after a while; queued items may wait longer */
+      const watch = setTimeout(() => { if (!started && !speechSynthesis.speaking) next(); }, o.queue ? 4000 : 2500);
+      speechSynthesis.speak(u);
+    };
+    attempt(0);
     return true;
   } catch (e) { toast(t('audio.none', 'This browser cannot read text aloud.')); return false; }
 }
@@ -1524,7 +1545,7 @@ $('#cards').addEventListener('click', ev => {
   else if (act === 'note' || act === 'list') { state.panel[lang] = state.panel[lang] === act ? null : act; render(false); const f = $(act === 'note' ? '#note-' + lang : '#newlist-' + lang); if (f && act === 'note') f.focus(); }
   else if (act === 'note-save') { const v = $('#note-' + lang).value.trim(); if (v) P.notes[e.id] = v; else delete P.notes[e.id]; saveP(); state.panel[lang] = null; render(false); }
   else if (act === 'note-del') { delete P.notes[e.id]; saveP(); state.panel[lang] = null; render(false); }
-  else if (act === 'list-new') { const inp = $('#newlist-' + lang), name = inp.value.trim(); if (!name) return; let L = P.lists.find(x => x.name === name); if (!L) P.lists.push(L = { name, ids: [], w: {} }); if (!L.ids.includes(e.id)) { L.ids.push(e.id); L.w = L.w || {}; L.w[e.id] = e.lemma; } saveP(); render(false); toast(t('list.added', 'Added to “{l}”.', { l: name })); }
+  else if (act === 'list-new') { const inp = a.parentNode.querySelector('input') || $('#newlist-' + lang), name = inp.value.trim(); if (!name) return; let L = P.lists.find(x => x.name === name); if (!L) P.lists.push(L = { name, ids: [], w: {} }); if (!L.ids.includes(e.id)) { L.ids.push(e.id); L.w = L.w || {}; L.w[e.id] = e.lemma; } saveP(); render(false); toast(t('list.added', 'Added to “{l}”.', { l: name })); }
   else if (act === 'link') { const url = location.href.split('#')[0] + routeOf(e, null); try { navigator.clipboard.writeText(url).then(() => toast(t('link.copied', 'Link copied: {u}', { u: url })), () => toast(url)); } catch (err) { toast(url); } }
   else if (act === 'loop') toggleLoop(lang);
   else if (act === 'record') { const rv = regionView(e); recordCompare(withArt(e.pos === 'noun' ? (rv.article || article(lang, e, rv.word)) : '', rv.word), lang, a); }
@@ -1539,6 +1560,13 @@ $('#cards').addEventListener('change', ev => {
   const cardEl = a.closest('.card'), e = D.byId.get(cardEl.dataset.id), L = P.lists[+a.dataset.k]; if (!e || !L) return;
   if (a.checked) { if (!L.ids.includes(e.id)) L.ids.push(e.id); L.w = L.w || {}; L.w[e.id] = e.lemma; } else L.ids = L.ids.filter(x => x !== e.id);
   saveP();
+  const n = a.parentNode.querySelector('small'); if (n) n.textContent = L.ids.length;
+  toast(a.checked ? t('list.added', 'Added to “{l}”.', { l: L.name }) : t('list.removed', 'Removed from “{l}”.', { l: L.name }));
+});
+/* Enter in "New list…" creates the list, like the Add button */
+$('#cards').addEventListener('keydown', ev => {
+  if (ev.key !== 'Enter' || !ev.target.id || !ev.target.id.startsWith('newlist-')) return;
+  ev.preventDefault(); const b = ev.target.parentNode.querySelector('[data-act="list-new"]'); if (b) b.click();
 });
 /* keyboard: / any-language box, 1-4 the slots, Esc leaves a box, ? the list of keys */
 document.addEventListener('keydown', ev => {
