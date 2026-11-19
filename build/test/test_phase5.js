@@ -331,7 +331,7 @@ const results = []; const ok = (n, p, i) => results.push([n, !!p, i == null ? ''
   await page.keyboard.press('Escape');
   ok('spec 13 record yourself and compare (button)', await ev(() => !!document.querySelector('#cards [data-act="record"]')));
   await ev(() => document.querySelector('#cards .card[data-lang="de"] [data-extra="more"]').click());
-  ok('spec 15 report a mistake', await ev(() => /github\.com\/heitorpais\/four-language-translator\/issues\/new/.test(document.querySelector('#cards .card[data-lang="de"] .extra').innerHTML)));
+  ok('spec 15 report a mistake', await ev(() => !!document.querySelector('#cards .card[data-lang="de"] .rep-entry [data-rep="open"]')));
   await page.click('#me-toggle'); await page.click('[data-tab="me:file"]');
   const [csv] = await Promise.all([page.waitForEvent('download'), page.click('[data-x="export-csv"]')]);
   const csvText = fs.readFileSync(await csv.path(), 'utf8');

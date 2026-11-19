@@ -120,6 +120,8 @@ def build(lang):
         if pos not in POS_ANSWER or n not in ANSWER_LENS:
             continue
         senses = e.get('senses') or []
+        if any((s.get('gloss_en') or '').startswith(('the country ', 'the continent ')) for s in senses):
+            continue                               # country and continent names: fine as guesses, never the hidden word
         if any(any(b in (s.get('register') or '') for b in BAD) for s in senses):
             continue
         if not any(s.get('gloss_en') or any(v for v in (s.get('translations') or {}).values()) for s in senses):

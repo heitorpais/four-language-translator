@@ -1021,3 +1021,196 @@ noun	crash	Unfall	accident	acidente	nehoda	incidente	choque	botsing	krock	-
 verb	commit	begehen	commettre	cometer	spáchat	commettere	cometer	plegen	begå	committo
 noun	fan	Fan	fan	fã	fanoušek	tifoso	fan	fan	fan	-
 adjective	pregnant	schwanger	enceinte	grávida	těhotná	incinta	embarazada	zwanger	gravid	gravida
+# Countries and continents (proper names the word lists leave out)
+noun	Afghanistan	Afghanistan	Afghanistan	Afeganistão	Afghánistán	Afghanistan	Afganistán	Afghanistan	Afghanistan	Afgania
+noun	Albania	Albanien	Albanie	Albânia	Albánie	Albania	Albania	Albanië	Albanien	Albania
+noun	Algeria	Algerien	Algérie	Argélia	Alžírsko	Algeria	Argelia	Algerije	Algeriet	Algerium
+noun	Andorra	Andorra	Andorre	Andorra	Andorra	Andorra	Andorra	Andorra	Andorra	Andorra
+noun	Angola	Angola	Angola	Angola	Angola	Angola	Angola	Angola	Angola	Angolia
+noun	Argentina	Argentinien	Argentine	Argentina	Argentina	Argentina	Argentina	Argentinië	Argentina	Argentina
+noun	Armenia	Armenien	Arménie	Armênia	Arménie	Armenia	Armenia	Armenië	Armenien	Armenia
+noun	Australia	Australien	Australie	Austrália	Austrálie	Australia	Australia	Australië	Australien	Australia
+noun	Austria	Österreich	Autriche	Áustria	Rakousko	Austria	Austria	Oostenrijk	Österrike	Austria
+noun	Azerbaijan	Aserbaidschan	Azerbaïdjan	Azerbaijão	Ázerbájdžán	Azerbaigian	Azerbaiyán	Azerbeidzjan	Azerbajdzjan	-
+noun	Bahamas	Bahamas	Bahamas	Bahamas	Bahamy	Bahamas	Bahamas	Bahama's	Bahamas	-
+noun	Bahrain	Bahrain	Bahreïn	Bahrein	Bahrajn	Bahrein	Baréin	Bahrein	Bahrain	-
+noun	Bangladesh	Bangladesch	Bangladesh	Bangladesh	Bangladéš	Bangladesh	Bangladés	Bangladesh	Bangladesh	-
+noun	Belarus	Belarus	Biélorussie	Bielorrússia	Bělorusko	Bielorussia	Bielorrusia	Wit-Rusland	Belarus	Russia Alba
+noun	Belgium	Belgien	Belgique	Bélgica	Belgie	Belgio	Bélgica	België	Belgien	Belgica
+noun	Bolivia	Bolivien	Bolivie	Bolívia	Bolívie	Bolivia	Bolivia	Bolivia	Bolivia	Bolivia
+noun	Bosnia and Herzegovina	Bosnien und Herzegowina	Bosnie-Herzégovine	Bósnia e Herzegovina	Bosna a Hercegovina	Bosnia ed Erzegovina	Bosnia y Herzegovina	Bosnië en Herzegovina	Bosnien och Hercegovina	-
+noun	Brazil	Brasilien	Brésil	Brasil	Brazílie	Brasile	Brasil	Brazilië	Brasilien	Brasilia
+noun	Bulgaria	Bulgarien	Bulgarie	Bulgária	Bulharsko	Bulgaria	Bulgaria	Bulgarije	Bulgarien	Bulgaria
+noun	Cambodia	Kambodscha	Cambodge	Camboja	Kambodža	Cambogia	Camboya	Cambodja	Kambodja	-
+noun	Cameroon	Kamerun	Cameroun	Camarões	Kamerun	Camerun	Camerún	Kameroen	Kamerun	-
+noun	Canada	Kanada	Canada	Canadá	Kanada	Canada	Canadá	Canada	Kanada	Canada
+noun	Chile	Chile	Chili	Chile	Chile	Cile	Chile	Chili	Chile	Chilia
+noun	China	China	Chine	China	Čína	Cina	China	China	Kina	Sina
+noun	Colombia	Kolumbien	Colombie	Colômbia	Kolumbie	Colombia	Colombia	Colombia	Colombia	Columbia
+noun	Costa Rica	Costa Rica	Costa Rica	Costa Rica	Kostarika	Costa Rica	Costa Rica	Costa Rica	Costa Rica	-
+noun	Croatia	Kroatien	Croatie	Croácia	Chorvatsko	Croazia	Croacia	Kroatië	Kroatien	Croatia
+noun	Cuba	Kuba	Cuba	Cuba	Kuba	Cuba	Cuba	Cuba	Kuba	Cuba
+noun	Cyprus	Zypern	Chypre	Chipre	Kypr	Cipro	Chipre	Cyprus	Cypern	Cyprus
+noun	Czechia	Tschechien	Tchéquie	Tchéquia	Česko	Cechia	Chequia	Tsjechië	Tjeckien	Bohemia
+noun	Denmark	Dänemark	Danemark	Dinamarca	Dánsko	Danimarca	Dinamarca	Denemarken	Danmark	Dania
+noun	Dominican Republic	Dominikanische Republik	République dominicaine	República Dominicana	Dominikánská republika	Repubblica Dominicana	República Dominicana	Dominicaanse Republiek	Dominikanska republiken	-
+noun	Ecuador	Ecuador	Équateur	Equador	Ekvádor	Ecuador	Ecuador	Ecuador	Ecuador	Aequatoria
+noun	Egypt	Ägypten	Égypte	Egito	Egypt	Egitto	Egipto	Egypte	Egypten	Aegyptus
+noun	El Salvador	El Salvador	Salvador	El Salvador	Salvador	El Salvador	El Salvador	El Salvador	El Salvador	-
+noun	England	England	Angleterre	Inglaterra	Anglie	Inghilterra	Inglaterra	Engeland	England	Anglia
+noun	Estonia	Estland	Estonie	Estônia	Estonsko	Estonia	Estonia	Estland	Estland	Estonia
+noun	Ethiopia	Äthiopien	Éthiopie	Etiópia	Etiopie	Etiopia	Etiopía	Ethiopië	Etiopien	Aethiopia
+noun	Finland	Finnland	Finlande	Finlândia	Finsko	Finlandia	Finlandia	Finland	Finland	Finnia
+noun	France	Frankreich	France	França	Francie	Francia	Francia	Frankrijk	Frankrike	Francia
+noun	Georgia	Georgien	Géorgie	Geórgia	Gruzie	Georgia	Georgia	Georgië	Georgien	Georgia
+noun	Germany	Deutschland	Allemagne	Alemanha	Německo	Germania	Alemania	Duitsland	Tyskland	Germania
+noun	Ghana	Ghana	Ghana	Gana	Ghana	Ghana	Ghana	Ghana	Ghana	-
+noun	Greece	Griechenland	Grèce	Grécia	Řecko	Grecia	Grecia	Griekenland	Grekland	Graecia
+noun	Guatemala	Guatemala	Guatemala	Guatemala	Guatemala	Guatemala	Guatemala	Guatemala	Guatemala	-
+noun	Haiti	Haiti	Haïti	Haiti	Haiti	Haiti	Haití	Haïti	Haiti	-
+noun	Honduras	Honduras	Honduras	Honduras	Honduras	Honduras	Honduras	Honduras	Honduras	-
+noun	Hungary	Ungarn	Hongrie	Hungria	Maďarsko	Ungheria	Hungría	Hongarije	Ungern	Hungaria
+noun	Iceland	Island	Islande	Islândia	Island	Islanda	Islandia	IJsland	Island	Islandia
+noun	India	Indien	Inde	Índia	Indie	India	India	India	Indien	India
+noun	Indonesia	Indonesien	Indonésie	Indonésia	Indonésie	Indonesia	Indonesia	Indonesië	Indonesien	Indonesia
+noun	Iran	Iran	Iran	Irã	Írán	Iran	Irán	Iran	Iran	Irania
+noun	Iraq	Irak	Irak	Iraque	Irák	Iraq	Irak	Irak	Irak	Iraquia
+noun	Ireland	Irland	Irlande	Irlanda	Irsko	Irlanda	Irlanda	Ierland	Irland	Hibernia
+noun	Israel	Israel	Israël	Israel	Izrael	Israele	Israel	Israël	Israel	Israel
+noun	Italy	Italien	Italie	Itália	Itálie	Italia	Italia	Italië	Italien	Italia
+noun	Jamaica	Jamaika	Jamaïque	Jamaica	Jamajka	Giamaica	Jamaica	Jamaica	Jamaica	Iamaica
+noun	Japan	Japan	Japon	Japão	Japonsko	Giappone	Japón	Japan	Japan	Iaponia
+noun	Jordan	Jordanien	Jordanie	Jordânia	Jordánsko	Giordania	Jordania	Jordanië	Jordanien	Iordania
+noun	Kazakhstan	Kasachstan	Kazakhstan	Cazaquistão	Kazachstán	Kazakistan	Kazajistán	Kazachstan	Kazakstan	-
+noun	Kenya	Kenia	Kenya	Quênia	Keňa	Kenya	Kenia	Kenia	Kenya	Kenia
+noun	Kosovo	Kosovo	Kosovo	Kosovo	Kosovo	Kosovo	Kosovo	Kosovo	Kosovo	Kosovia
+noun	Kuwait	Kuwait	Koweït	Kuwait	Kuvajt	Kuwait	Kuwait	Koeweit	Kuwait	-
+noun	Latvia	Lettland	Lettonie	Letônia	Lotyšsko	Lettonia	Letonia	Letland	Lettland	Lettonia
+noun	Lebanon	Libanon	Liban	Líbano	Libanon	Libano	Líbano	Libanon	Libanon	Libanus
+noun	Libya	Libyen	Libye	Líbia	Libye	Libia	Libia	Libië	Libyen	Libya
+noun	Liechtenstein	Liechtenstein	Liechtenstein	Liechtenstein	Lichtenštejnsko	Liechtenstein	Liechtenstein	Liechtenstein	Liechtenstein	Lichtenstenum
+noun	Lithuania	Litauen	Lituanie	Lituânia	Litva	Lituania	Lituania	Litouwen	Litauen	Lituania
+noun	Luxembourg	Luxemburg	Luxembourg	Luxemburgo	Lucembursko	Lussemburgo	Luxemburgo	Luxemburg	Luxemburg	Luxemburgum
+noun	Madagascar	Madagaskar	Madagascar	Madagascar	Madagaskar	Madagascar	Madagascar	Madagaskar	Madagaskar	Madagascaria
+noun	Malaysia	Malaysia	Malaisie	Malásia	Malajsie	Malesia	Malasia	Maleisië	Malaysia	Malaesia
+noun	Malta	Malta	Malte	Malta	Malta	Malta	Malta	Malta	Malta	Melita
+noun	Mexico	Mexiko	Mexique	México	Mexiko	Messico	México	Mexico	Mexiko	Mexicum
+noun	Moldova	Moldau	Moldavie	Moldávia	Moldavsko	Moldavia	Moldavia	Moldavië	Moldavien	Moldavia
+noun	Monaco	Monaco	Monaco	Mônaco	Monako	Monaco	Mónaco	Monaco	Monaco	Monoecus
+noun	Mongolia	Mongolei	Mongolie	Mongólia	Mongolsko	Mongolia	Mongolia	Mongolië	Mongoliet	Mongolia
+noun	Montenegro	Montenegro	Monténégro	Montenegro	Černá Hora	Montenegro	Montenegro	Montenegro	Montenegro	Mons Niger
+noun	Morocco	Marokko	Maroc	Marrocos	Maroko	Marocco	Marruecos	Marokko	Marocko	Marocum
+noun	Mozambique	Mosambik	Mozambique	Moçambique	Mosambik	Mozambico	Mozambique	Mozambique	Moçambique	Mozambicum
+noun	Nepal	Nepal	Népal	Nepal	Nepál	Nepal	Nepal	Nepal	Nepal	Nepalia
+noun	Netherlands	Niederlande	Pays-Bas	Holanda	Nizozemsko	Paesi Bassi	Países Bajos	Nederland	Nederländerna	Batavia
+noun	New Zealand	Neuseeland	Nouvelle-Zélande	Nova Zelândia	Nový Zéland	Nuova Zelanda	Nueva Zelanda	Nieuw-Zeeland	Nya Zeeland	Nova Zelandia
+noun	Nicaragua	Nicaragua	Nicaragua	Nicarágua	Nikaragua	Nicaragua	Nicaragua	Nicaragua	Nicaragua	-
+noun	Nigeria	Nigeria	Nigeria	Nigéria	Nigérie	Nigeria	Nigeria	Nigeria	Nigeria	Nigeria
+noun	North Korea	Nordkorea	Corée du Nord	Coreia do Norte	Severní Korea	Corea del Nord	Corea del Norte	Noord-Korea	Nordkorea	Corea Septentrionalis
+noun	North Macedonia	Nordmazedonien	Macédoine du Nord	Macedônia do Norte	Severní Makedonie	Macedonia del Nord	Macedonia del Norte	Noord-Macedonië	Nordmakedonien	Macedonia Septentrionalis
+noun	Norway	Norwegen	Norvège	Noruega	Norsko	Norvegia	Noruega	Noorwegen	Norge	Norvegia
+noun	Pakistan	Pakistan	Pakistan	Paquistão	Pákistán	Pakistan	Pakistán	Pakistan	Pakistan	Pakistania
+noun	Palestine	Palästina	Palestine	Palestina	Palestina	Palestina	Palestina	Palestina	Palestina	Palaestina
+noun	Panama	Panama	Panama	Panamá	Panama	Panama	Panamá	Panama	Panama	-
+noun	Paraguay	Paraguay	Paraguay	Paraguai	Paraguay	Paraguay	Paraguay	Paraguay	Paraguay	-
+noun	Peru	Peru	Pérou	Peru	Peru	Perù	Perú	Peru	Peru	Peruvia
+noun	Philippines	Philippinen	Philippines	Filipinas	Filipíny	Filippine	Filipinas	Filipijnen	Filippinerna	Philippinae
+noun	Poland	Polen	Pologne	Polônia	Polsko	Polonia	Polonia	Polen	Polen	Polonia
+noun	Portugal	Portugal	Portugal	Portugal	Portugalsko	Portogallo	Portugal	Portugal	Portugal	Lusitania
+noun	Qatar	Katar	Qatar	Catar	Katar	Qatar	Catar	Qatar	Qatar	-
+noun	Romania	Rumänien	Roumanie	Romênia	Rumunsko	Romania	Rumanía	Roemenië	Rumänien	Romania
+noun	Russia	Russland	Russie	Rússia	Rusko	Russia	Rusia	Rusland	Ryssland	Russia
+noun	Saudi Arabia	Saudi-Arabien	Arabie saoudite	Arábia Saudita	Saúdská Arábie	Arabia Saudita	Arabia Saudita	Saoedi-Arabië	Saudiarabien	-
+noun	Scotland	Schottland	Écosse	Escócia	Skotsko	Scozia	Escocia	Schotland	Skottland	Scotia
+noun	Senegal	Senegal	Sénégal	Senegal	Senegal	Senegal	Senegal	Senegal	Senegal	-
+noun	Serbia	Serbien	Serbie	Sérvia	Srbsko	Serbia	Serbia	Servië	Serbien	Serbia
+noun	Singapore	Singapur	Singapour	Singapura	Singapur	Singapore	Singapur	Singapore	Singapore	-
+noun	Slovakia	Slowakei	Slovaquie	Eslováquia	Slovensko	Slovacchia	Eslovaquia	Slowakije	Slovakien	Slovacia
+noun	Slovenia	Slowenien	Slovénie	Eslovênia	Slovinsko	Slovenia	Eslovenia	Slovenië	Slovenien	Slovenia
+noun	Somalia	Somalia	Somalie	Somália	Somálsko	Somalia	Somalia	Somalië	Somalia	-
+noun	South Africa	Südafrika	Afrique du Sud	África do Sul	Jižní Afrika	Sudafrica	Sudáfrica	Zuid-Afrika	Sydafrika	Africa Australis
+noun	South Korea	Südkorea	Corée du Sud	Coreia do Sul	Jižní Korea	Corea del Sud	Corea del Sur	Zuid-Korea	Sydkorea	Corea Meridionalis
+noun	Spain	Spanien	Espagne	Espanha	Španělsko	Spagna	España	Spanje	Spanien	Hispania
+noun	Sri Lanka	Sri Lanka	Sri Lanka	Sri Lanka	Srí Lanka	Sri Lanka	Sri Lanka	Sri Lanka	Sri Lanka	Taprobane
+noun	Sudan	Sudan	Soudan	Sudão	Súdán	Sudan	Sudán	Soedan	Sudan	-
+noun	Sweden	Schweden	Suède	Suécia	Švédsko	Svezia	Suecia	Zweden	Sverige	Suecia
+noun	Switzerland	Schweiz	Suisse	Suíça	Švýcarsko	Svizzera	Suiza	Zwitserland	Schweiz	Helvetia
+noun	Syria	Syrien	Syrie	Síria	Sýrie	Siria	Siria	Syrië	Syrien	Syria
+noun	Taiwan	Taiwan	Taïwan	Taiwan	Tchaj-wan	Taiwan	Taiwán	Taiwan	Taiwan	Formosa
+noun	Tanzania	Tansania	Tanzanie	Tanzânia	Tanzanie	Tanzania	Tanzania	Tanzania	Tanzania	Tanzania
+noun	Thailand	Thailand	Thaïlande	Tailândia	Thajsko	Thailandia	Tailandia	Thailand	Thailand	Thailandia
+noun	Tunisia	Tunesien	Tunisie	Tunísia	Tunisko	Tunisia	Túnez	Tunesië	Tunisien	Tunesia
+noun	Turkey	Türkei	Turquie	Turquia	Turecko	Turchia	Turquía	Turkije	Turkiet	Turcia
+noun	Uganda	Uganda	Ouganda	Uganda	Uganda	Uganda	Uganda	Oeganda	Uganda	-
+noun	Ukraine	Ukraine	Ukraine	Ucrânia	Ukrajina	Ucraina	Ucrania	Oekraïne	Ukraina	Ucraina
+noun	United Arab Emirates	Vereinigte Arabische Emirate	Émirats arabes unis	Emirados Árabes Unidos	Spojené arabské emiráty	Emirati Arabi Uniti	Emiratos Árabes Unidos	Verenigde Arabische Emiraten	Förenade Arabemiraten	-
+noun	United Kingdom	Vereinigtes Königreich	Royaume-Uni	Reino Unido	Spojené království	Regno Unito	Reino Unido	Verenigd Koninkrijk	Storbritannien	Regnum Unitum
+noun	United States	Vereinigte Staaten	États-Unis	Estados Unidos	Spojené státy	Stati Uniti	Estados Unidos	Verenigde Staten	USA	Civitates Foederatae
+noun	Uruguay	Uruguay	Uruguay	Uruguai	Uruguay	Uruguay	Uruguay	Uruguay	Uruguay	-
+noun	Uzbekistan	Usbekistan	Ouzbékistan	Uzbequistão	Uzbekistán	Uzbekistan	Uzbekistán	Oezbekistan	Uzbekistan	-
+noun	Vatican City	Vatikanstadt	Vatican	Vaticano	Vatikán	Città del Vaticano	Ciudad del Vaticano	Vaticaanstad	Vatikanstaten	Civitas Vaticana
+noun	Venezuela	Venezuela	Venezuela	Venezuela	Venezuela	Venezuela	Venezuela	Venezuela	Venezuela	Venetiola
+noun	Vietnam	Vietnam	Viêt Nam	Vietnã	Vietnam	Vietnam	Vietnam	Vietnam	Vietnam	-
+noun	Wales	Wales	pays de Galles	País de Gales	Wales	Galles	Gales	Wales	Wales	Cambria
+noun	Yemen	Jemen	Yémen	Iêmen	Jemen	Yemen	Yemen	Jemen	Jemen	-
+noun	Zimbabwe	Simbabwe	Zimbabwe	Zimbábue	Zimbabwe	Zimbabwe	Zimbabue	Zimbabwe	Zimbabwe	-
+noun	Cape Verde	Kap Verde	Cap-Vert	Cabo Verde	Kapverdy	Capo Verde	Cabo Verde	Kaapverdië	Kap Verde	-
+noun	Mali	Mali	Mali	Mali	Mali	Mali	Malí	Mali	Mali	-
+noun	Ivory Coast	Elfenbeinküste	Côte d'Ivoire	Costa do Marfim	Pobřeží slonoviny	Costa d'Avorio	Costa de Marfil	Ivoorkust	Elfenbenskusten	-
+noun	Congo	Kongo	Congo	Congo	Kongo	Congo	Congo	Congo	Kongo	-
+noun	Rwanda	Ruanda	Rwanda	Ruanda	Rwanda	Ruanda	Ruanda	Rwanda	Rwanda	-
+noun	Zambia	Sambia	Zambie	Zâmbia	Zambie	Zambia	Zambia	Zambia	Zambia	-
+noun	Namibia	Namibia	Namibie	Namíbia	Namibie	Namibia	Namibia	Namibië	Namibia	-
+noun	Botswana	Botswana	Botswana	Botsuana	Botswana	Botswana	Botsuana	Botswana	Botswana	-
+noun	Sierra Leone	Sierra Leone	Sierra Leone	Serra Leoa	Sierra Leone	Sierra Leone	Sierra Leona	Sierra Leone	Sierra Leone	-
+noun	Liberia	Liberia	Liberia	Libéria	Libérie	Liberia	Liberia	Liberia	Liberia	-
+noun	Eritrea	Eritrea	Érythrée	Eritreia	Eritrea	Eritrea	Eritrea	Eritrea	Eritrea	-
+noun	Djibouti	Dschibuti	Djibouti	Djibuti	Džibutsko	Gibuti	Yibuti	Djibouti	Djibouti	-
+noun	Oman	Oman	Oman	Omã	Omán	Oman	Omán	Oman	Oman	-
+noun	Kyrgyzstan	Kirgisistan	Kirghizistan	Quirguistão	Kyrgyzstán	Kirghizistan	Kirguistán	Kirgizië	Kirgizistan	-
+noun	Tajikistan	Tadschikistan	Tadjikistan	Tadjiquistão	Tádžikistán	Tagikistan	Tayikistán	Tadzjikistan	Tadzjikistan	-
+noun	Turkmenistan	Turkmenistan	Turkménistan	Turcomenistão	Turkmenistán	Turkmenistan	Turkmenistán	Turkmenistan	Turkmenistan	-
+noun	Laos	Laos	Laos	Laos	Laos	Laos	Laos	Laos	Laos	-
+noun	Myanmar	Myanmar	Birmanie	Mianmar	Myanmar	Birmania	Birmania	Myanmar	Myanmar	Birmania
+noun	Bhutan	Bhutan	Bhoutan	Butão	Bhútán	Bhutan	Bután	Bhutan	Bhutan	-
+noun	Maldives	Malediven	Maldives	Maldivas	Maledivy	Maldive	Maldivas	Maldiven	Maldiverna	-
+noun	Fiji	Fidschi	Fidji	Fiji	Fidži	Figi	Fiyi	Fiji	Fiji	-
+noun	Papua New Guinea	Papua-Neuguinea	Papouasie-Nouvelle-Guinée	Papua-Nova Guiné	Papua-Nová Guinea	Papua Nuova Guinea	Papúa Nueva Guinea	Papoea-Nieuw-Guinea	Papua Nya Guinea	-
+noun	Brunei	Brunei	Brunei	Brunei	Brunej	Brunei	Brunéi	Brunei	Brunei	-
+noun	East Timor	Osttimor	Timor oriental	Timor-Leste	Východní Timor	Timor Est	Timor Oriental	Oost-Timor	Östtimor	-
+noun	Guinea	Guinea	Guinée	Guiné	Guinea	Guinea	Guinea	Guinee	Guinea	-
+noun	Guinea-Bissau	Guinea-Bissau	Guinée-Bissau	Guiné-Bissau	Guinea-Bissau	Guinea-Bissau	Guinea-Bisáu	Guinee-Bissau	Guinea-Bissau	-
+noun	Burkina Faso	Burkina Faso	Burkina Faso	Burkina Faso	Burkina Faso	Burkina Faso	Burkina Faso	Burkina Faso	Burkina Faso	-
+noun	Niger	Niger	Niger	Níger	Niger	Niger	Níger	Niger	Niger	-
+noun	Chad	Tschad	Tchad	Chade	Čad	Ciad	Chad	Tsjaad	Tchad	-
+noun	Benin	Benin	Bénin	Benin	Benin	Benin	Benín	Benin	Benin	-
+noun	Togo	Togo	Togo	Togo	Togo	Togo	Togo	Togo	Togo	-
+noun	Gabon	Gabun	Gabon	Gabão	Gabon	Gabon	Gabón	Gabon	Gabon	-
+noun	Mauritania	Mauretanien	Mauritanie	Mauritânia	Mauritánie	Mauritania	Mauritania	Mauritanië	Mauretanien	Mauretania
+noun	Malawi	Malawi	Malawi	Malawi	Malawi	Malawi	Malaui	Malawi	Malawi	-
+noun	Mauritius	Mauritius	Maurice	Maurício	Mauricius	Mauritius	Mauricio	Mauritius	Mauritius	-
+noun	Belize	Belize	Belize	Belize	Belize	Belize	Belice	Belize	Belize	-
+noun	Trinidad and Tobago	Trinidad und Tobago	Trinité-et-Tobago	Trinidad e Tobago	Trinidad a Tobago	Trinidad e Tobago	Trinidad y Tobago	Trinidad en Tobago	Trinidad och Tobago	-
+noun	Barbados	Barbados	Barbade	Barbados	Barbados	Barbados	Barbados	Barbados	Barbados	-
+noun	Suriname	Suriname	Suriname	Suriname	Surinam	Suriname	Surinam	Suriname	Surinam	-
+noun	Guyana	Guyana	Guyana	Guiana	Guyana	Guyana	Guyana	Guyana	Guyana	-
+noun	San Marino	San Marino	Saint-Marin	San Marino	San Marino	San Marino	San Marino	San Marino	San Marino	Sanctus Marinus
+noun	Equatorial Guinea	Äquatorialguinea	Guinée équatoriale	Guiné Equatorial	Rovníková Guinea	Guinea Equatoriale	Guinea Ecuatorial	Equatoriaal-Guinea	Ekvatorialguinea	-
+noun	Burundi	Burundi	Burundi	Burundi	Burundi	Burundi	Burundi	Burundi	Burundi	-
+noun	South Sudan	Südsudan	Soudan du Sud	Sudão do Sul	Jižní Súdán	Sudan del Sud	Sudán del Sur	Zuid-Soedan	Sydsudan	-
+noun	Central African Republic	Zentralafrikanische Republik	République centrafricaine	República Centro-Africana	Středoafrická republika	Repubblica Centrafricana	República Centroafricana	Centraal-Afrikaanse Republiek	Centralafrikanska republiken	-
+noun	Lesotho	Lesotho	Lesotho	Lesoto	Lesotho	Lesotho	Lesoto	Lesotho	Lesotho	-
+noun	Eswatini	Eswatini	Eswatini	Essuatíni	Eswatini	Eswatini	Esuatini	Eswatini	Eswatini	-
+noun	Gambia	Gambia	Gambie	Gâmbia	Gambie	Gambia	Gambia	Gambia	Gambia	-
+noun	Comoros	Komoren	Comores	Comores	Komory	Comore	Comoras	Comoren	Komorerna	-
+noun	Seychelles	Seychellen	Seychelles	Seicheles	Seychely	Seychelles	Seychelles	Seychellen	Seychellerna	-
+noun	Samoa	Samoa	Samoa	Samoa	Samoa	Samoa	Samoa	Samoa	Samoa	-
+noun	Tonga	Tonga	Tonga	Tonga	Tonga	Tonga	Tonga	Tonga	Tonga	-
+noun	Europe	Europa	Europe	Europa	Evropa	Europa	Europa	Europa	Europa	Europa
+noun	Africa	Afrika	Afrique	África	Afrika	Africa	África	Afrika	Afrika	Africa
+noun	Asia	Asien	Asie	Ásia	Asie	Asia	Asia	Azië	Asien	Asia
+noun	America	Amerika	Amérique	América	Amerika	America	América	Amerika	Amerika	America
+noun	North America	Nordamerika	Amérique du Nord	América do Norte	Severní Amerika	America del Nord	América del Norte	Noord-Amerika	Nordamerika	America Septentrionalis
+noun	South America	Südamerika	Amérique du Sud	América do Sul	Jižní Amerika	America del Sud	América del Sur	Zuid-Amerika	Sydamerika	America Meridionalis
+noun	Antarctica	Antarktis	Antarctique	Antártida	Antarktida	Antartide	Antártida	Antarctica	Antarktis	Antarctica
+noun	Oceania	Ozeanien	Océanie	Oceania	Oceánie	Oceania	Oceanía	Oceanië	Oceanien	Oceania
