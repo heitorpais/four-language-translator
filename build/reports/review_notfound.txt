@@ -100,3 +100,9 @@ cs	titulky	noun
 sv	undertext	noun
 en	answer (the phone)	verb
 es	embarazada	adjective
+pt	queimador	noun
+de	Medien	noun
+fr	médias	noun
+pt	custos	noun
+fr	bijoux	noun
+pt	joias	noun

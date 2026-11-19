@@ -63900,3 +63900,5 @@ drop-tr	pt:pró:noun	*	cs	pro
 drop-tr	pt:incapacitar:verb	*	cs	vypnout
 drop-tr	pt:incapacitar:verb	*	cs	deaktivov
 gloss	fr:Suisse:noun	s1	Switzerland; also a Swiss person
+drop-tr	de:Zeh:noun	*	cs	palec
+first	de:Zeh:noun	*	cs:prst:noun

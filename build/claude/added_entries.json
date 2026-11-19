@@ -11140,5 +11140,331 @@
   "level": "A2",
   "rank": 3000,
   "gloss_en": "the continent Oceania"
+ },
+ {
+  "id": "cs:aréna:noun",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "arena",
+  "gender": "f"
+ },
+ {
+  "id": "cs:brož:noun",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "brooch",
+  "gender": "f"
+ },
+ {
+  "id": "cs:dobytí:noun",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "conquest",
+  "gender": "n"
+ },
+ {
+  "id": "cs:idol:noun",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "idol",
+  "gender": "m"
+ },
+ {
+  "id": "cs:mučení:noun",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "torture",
+  "gender": "n"
+ },
+ {
+  "id": "cs:média:noun",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "the media",
+  "gender": "n"
+ },
+ {
+  "id": "cs:objasnění:noun",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "clarification",
+  "gender": "n"
+ },
+ {
+  "id": "cs:oběšení:noun",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "hanging (execution)",
+  "gender": "n"
+ },
+ {
+  "id": "cs:odhodlání:noun",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "determination",
+  "gender": "n"
+ },
+ {
+  "id": "cs:otřes:noun",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "shock, jolt",
+  "gender": "m"
+ },
+ {
+  "id": "cs:plýtvání:noun",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "waste, wasting",
+  "gender": "n"
+ },
+ {
+  "id": "cs:podmíněné propuštění:noun",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "parole",
+  "gender": "n"
+ },
+ {
+  "id": "cs:pokušení:noun",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "temptation",
+  "gender": "n"
+ },
+ {
+  "id": "cs:porušení:noun",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "violation, breach",
+  "gender": "n"
+ },
+ {
+  "id": "cs:povzbuzení:noun",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "encouragement",
+  "gender": "n"
+ },
+ {
+  "id": "cs:povýšení:noun",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "promotion (at work)",
+  "gender": "n"
+ },
+ {
+  "id": "cs:pronásledování:noun",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "pursuit, persecution",
+  "gender": "n"
+ },
+ {
+  "id": "cs:předvolání:noun",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "summons, subpoena",
+  "gender": "n"
+ },
+ {
+  "id": "cs:předání:noun",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "handover",
+  "gender": "n"
+ },
+ {
+  "id": "cs:přežití:noun",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "survival",
+  "gender": "n"
+ },
+ {
+  "id": "cs:renovace:noun",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "renovation",
+  "gender": "f"
+ },
+ {
+  "id": "cs:rozptýlení:noun",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "distraction",
+  "gender": "n"
+ },
+ {
+  "id": "cs:slyšení:noun",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "hearing (in court)",
+  "gender": "n"
+ },
+ {
+  "id": "cs:stálost:noun",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "constancy",
+  "gender": "f"
+ },
+ {
+  "id": "cs:uznání:noun",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "recognition, acknowledgement",
+  "gender": "n"
+ },
+ {
+  "id": "cs:vykoupení:noun",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "redemption",
+  "gender": "n"
+ },
+ {
+  "id": "cs:zmizení:noun",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "disappearance",
+  "gender": "n"
+ },
+ {
+  "id": "cs:znečištění:noun",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "pollution",
+  "gender": "n"
+ },
+ {
+  "id": "cs:ztroskotání:noun",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "shipwreck; failure",
+  "gender": "n"
+ },
+ {
+  "id": "cs:zásobování:noun",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "supply, provisioning",
+  "gender": "n"
+ },
+ {
+  "id": "cs:šperky:noun",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "jewellery",
+  "gender": "m"
+ },
+ {
+  "id": "cs:šéfová:noun",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "boss (woman)",
+  "gender": "f"
+ },
+ {
+  "id": "cs:kartáčovat:verb",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "to brush"
+ },
+ {
+  "id": "cs:konzultovat:verb",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "to consult"
+ },
+ {
+  "id": "cs:nastěhovat se:verb",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "to move in"
+ },
+ {
+  "id": "cs:odcestovat:verb",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "to go away (on a trip)"
+ },
+ {
+  "id": "cs:opálit se:verb",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "to get a tan"
+ },
+ {
+  "id": "cs:ozbrojit:verb",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "to arm"
+ },
+ {
+  "id": "cs:posilovat:verb",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "to strengthen; to work out"
+ },
+ {
+  "id": "cs:pozastavit:verb",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "to suspend"
+ },
+ {
+  "id": "cs:předcházet:verb",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "to precede"
+ },
+ {
+  "id": "cs:připít si:verb",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "to drink a toast"
+ },
+ {
+  "id": "cs:spoutat:verb",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "to shackle, to tie up"
+ },
+ {
+  "id": "cs:vibrovat:verb",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "to vibrate"
+ },
+ {
+  "id": "cs:vyspat se:verb",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "to get a good sleep"
+ },
+ {
+  "id": "cs:vznášet se:verb",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "to hover, to float"
+ },
+ {
+  "id": "cs:zahojit se:verb",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "to heal (of a wound)"
+ },
+ {
+  "id": "cs:zřítit se:verb",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "to crash, to collapse"
+ },
+ {
+  "id": "cs:kýčovitý:adjective",
+  "level": "B1",
+  "rank": 7900,
+  "gloss_en": "kitschy"
  }
 ]
