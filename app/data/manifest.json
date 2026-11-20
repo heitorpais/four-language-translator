@@ -89890,6 +89890,41 @@
    "set": {
     "noun.gender": "f"
    }
+  },
+  {
+   "entry": "en:transcend:verb",
+   "issue": 21,
+   "date": "2026-11-20",
+   "note": "Czech for 'to transcend (pass beyond limits)' is přesáhnout",
+   "sense": 0,
+   "add_translation": {
+    "lang": "cs",
+    "target": "cs:přesáhnout:verb"
+   }
+  },
+  {
+   "entry": "pt:transcender:verb",
+   "issue": 21,
+   "date": "2026-11-20",
+   "note": "Czech for transcender is přesáhnout (překonat = to overcome)",
+   "sense": 0,
+   "add_translation": {
+    "lang": "cs",
+    "target": "cs:přesáhnout:verb"
+   }
+  },
+  {
+   "entry": "fr:échecs:noun",
+   "issue": 22,
+   "date": "2026-11-20",
+   "note": "échecs (chess) had no pronunciation or meaning",
+   "set": {
+    "ipa": {
+     "default": "e.ʃɛk",
+     "regional": {}
+    },
+    "senses.0.gloss_en": "chess (the game)"
+   }
   }
  ]
 }
